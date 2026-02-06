@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>28.1. 上传，命名，美术规范 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="28.1. 上传，命名，美术规范 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="281-上传命名美术规范">28.1. 上传，命名，美术规范</h1>
+
+<h1 id="1-上传规范">1. 上传规范</h1>
+<p>每个分支，都应该尽量少的修改内容。 小到： 以一个坦克或飞机的修改为一个分支。切记，不要在一个分支内，提交大量的载具修改，然后再进行合并，<strong>此类合并将无法通过。</strong></p>
+<h1 id="2-命名规范">2. 命名规范</h1>
+<ol>
+<li>任何的文件应该以大写字母开头，然后接小写字母如：</li>
+</ol>
+<p><img src="imgs/ac7b5339869d_1677924244339-8f9b851a-ffdd-4300-b928-a5d4e1f73395.png" alt=""></p>
+<ol start="2">
+<li>任何的文件，都应该有一个清晰明确的名称，而非一串乱码之类的</li>
+<li>尽量不要拼错单词</li>
+</ol>
+<h1 id="3-在原本模型上进行修改应替换-fbx-而非新增-fbx">3. 在原本模型上进行修改，应替换 Fbx 而非新增 Fbx</h1>
+<p>导出新的 fbx，覆盖原本的 fbx 文件。 此步骤可在建模软件导出时候覆盖，或者在文件夹中复制进行覆盖。无法在 Unity 编辑器内直接完成。如果在 fbx 内新增模型，则将新的 fbx 拖入空场景，然后复制新增部分到原本老的预制体内。</p>
+<p><img src="imgs/6b8bbf7513c5_1677924311878-9a50ffb9-8e9f-4f59-b9f4-e8894f693fd0.png" alt=""></p>
+<p><strong>切记，不要因为对 fbx 新增一块区域的模型，就只是新增一个 fbx 文件。 会导致 XXX_fix.fbx XXX_fix2.fbx ... 这样的情况，导致项目文件混乱。</strong></p>
+<h1 id="4-法线图与-rgb-图不要用一张不要设置-normal-强度">4. 法线图与 RGB 图不要用一张，不要设置 Normal 强度</h1>
+<p><img src="imgs/ed0cfeaf8a81_1677922679075-c6f95e01-e407-4079-af3e-94e4762e4c27.png" alt=""></p>
+<p>解决方法：</p>
+<p>在建模软件里不要将 RGB 图引用给 Normal，也不要设置 Normal 强度</p>
+<p>如：Blender 中删除以下节点</p>
+<p><img src="imgs/dfc3c19d431e_1677922746658-0c4d72ee-e83e-4073-8e15-7623b6d329a2.png" alt=""></p>
+<p>以及删除以下节点</p>
+<p><img src="imgs/45a04dd1d9bf_1677922891268-1001e17b-2a11-4041-a227-824572be3287.png" alt=""></p>
+<h1 id="5-避免重复的材质球">5. 避免重复的材质球</h1>
+<p>重复的材质球指的是 相同的贴图，但是使用了不同的材质球。这个会造成渲染压力的增加。</p>
+<p>重复的材质球出现的情况一般是在 Blender 里使用了 ctrl c + ctrl v。 <strong>我们建议使用 shift +d 的方式复制物体，以避免创建重复的材质球。</strong></p>
+<p>对于已经创建了的重复材质球，则需要手动的在 Blender 里，把引用的材质球都换成相同的，以避免重复。</p>
+<p>下拉框可以看目前还有哪些材质有重复，一般重复的材质都会以 .001,.002 结尾。</p>
+<p><img src="imgs/fda33d09fc32_1677925024048-9e7cc9d2-907f-4860-849f-0699ac64de3d.png" alt=""></p>
+<p>可以在上面的搜索框，搜索重复的材质名称</p>
+<p><img src="imgs/0d1fcc12ad08_1677926683292-b2361d26-3d05-407c-8e62-891a63b61e60.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

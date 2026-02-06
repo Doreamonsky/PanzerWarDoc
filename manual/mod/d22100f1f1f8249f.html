@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>13. Destructive Objects 可破坏物体 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="13. Destructive Objects 可破坏物体 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="13-destructive-objects-可破坏物体">13. Destructive Objects 可破坏物体</h1>
+
+<h1 id="model-replacement-模型替换">Model Replacement 模型替换</h1>
+<h2 id="structure-结构">Structure 结构</h2>
+<p><img src="imgs/a17bc441b7bb_1639498768076-4bd22e6a-4754-4752-bd5b-924802a5dbc9.png" alt=""></p>
+<p>The structure of building should like this picture. You should have the same naming.</p>
+<p>建筑结构要如图所示。你需要拥有相同的命名。</p>
+<h2 id="mainmodel-主模型">MainModel 主模型</h2>
+<p><img src="imgs/c28710706954_1639498869799-713c5f90-ae63-45ca-900c-eb9a1cdc7f12.png" alt=""></p>
+<p>Then，put the origin model under MainModel (Without any collision)</p>
+<p>随后，在 MainModel 下放置自己的初始模型。 （不包含任何碰撞）</p>
+<h2 id="destroyedmodel-击毁模型">DestroyedModel 击毁模型</h2>
+<p><img src="imgs/72e27c41a302_1639498882909-b7f4c2b8-8dfa-4a2a-9b81-1b11a3a369a9.png" alt=""></p>
+<p>Put the destroyed model under DestroyedModel (Without any collision)</p>
+<p>在 DestroyedModel  下放置自己的破损模型。（不包含任何碰撞）</p>
+<h2 id="collisiontrigger-碰撞触发器">CollisionTrigger 碰撞触发器</h2>
+<p><img src="imgs/8b179ac78144_1639498933934-f0aae872-0fc3-489e-885f-bd2f199ad626.png" alt=""></p>
+<p><img src="imgs/aa69893279c2_1639499173875-29c11394-d397-41ea-9e77-bb31c0e7bb33.png" alt=""></p>
+<p>Put empty gameobject with collider component（Trigger toggle on） under CollisionTrigger</p>
+<p>在 CollisionTrigger 下放置自己的带 Collider 组件（将 Trigger 勾上）的空物体。</p>
+<h2 id="parent-transform-setting-父节点设置">Parent Transform Setting 父节点设置</h2>
+<p><img src="imgs/c6026607e215_1639499116366-7ffbec58-e90c-446b-afa5-0f3ee0adfeb6.png" alt=""></p>
+<p>Follow this picture to add rigidbody and building component to the prefab.</p>
+<p>如图添加组件并设置如图一样的参数。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

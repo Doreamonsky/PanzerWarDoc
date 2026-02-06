@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>3. 游戏运行日志显示 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="3. 游戏运行日志显示 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="3-游戏运行日志显示">3. 游戏运行日志显示</h1>
+
+<p>游戏日志是用于分析游戏卡死原因的主要手段之一。</p>
+<h1 id="开启游戏日志">开启游戏日志</h1>
+<p>出于性能的考虑，在最近的版本默认保持了关闭。若需要开启，则需要手动在<strong>模组文件夹</strong>创建空文件 log.debug 或下载以下文件解压到<strong>模组文件夹下</strong></p>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2022/zip/23154724/1668869627250-b8aa8a9d-da81-4c3b-b946-1a3272801ce6.zip">log.zip</a></p>
+<p><img src="imgs/8adf4def56c5_1668869677465-5ec82ede-d643-4bd6-ba26-83d90b365cc6.png" alt=""></p>
+<p><strong>模组文件夹</strong>各平台路径</p>
+<p>安卓决定版：/sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/</p>
+<p>安卓普通版：/sdcard/Android/data/com.ShanghaiWindy.PanzerWarOpenSource/files/mods/</p>
+<p>电脑普通版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar\mods</p>
+<p>电脑决定版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\mods</p>
+<p>电脑HDRP版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\mods</p>
+<p>对于安卓设备，装有 adb 环境，则也可以使用 如下 adb 命令</p>
+<p>adb shell touch /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/log.debug</p>
+<h1 id="调试日志显示">调试日志显示</h1>
+<p>然后，你就可以看到游戏内调试窗口显示的运行日志。使用方法: 点击右上角自定义，拉到最下面，开启调试日志。 点击新出现的框，查看报错。</p>
+<h1 id="电脑版日志文件">电脑版日志文件</h1>
+<p>电脑普通版： C:\Users\你的用户名\AppData\LocalLow\ShanghaiWindy\PanzerWar\Player.log</p>
+<p>电脑决定版： C:\Users\你的用户名\AppData\LocalLow\ShanghaiWindy\PanzerWar-DE\Player.log</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

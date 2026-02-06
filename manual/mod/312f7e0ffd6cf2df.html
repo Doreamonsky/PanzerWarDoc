@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>0.3.2 Migration 旧工程迁移新工程 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="0.3.2 Migration 旧工程迁移新工程 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="032-migration-旧工程迁移新工程">0.3.2 Migration 旧工程迁移新工程</h1>
+
+<h1 id="introduction-概述">Introduction 概述</h1>
+<p>To simplify game editor update. All the codes are removed from project and moved to MiddleLibLayer folder. So, if we want to update game editor, only need to delete old MiddleLibLayer folder and copy new MiddleLibLayer folder to original folder.</p>
+<p>为了简化编辑器功能的更新流程，游戏相关的代码与工程进行了分离。 Unity Project 将只包含数据，而游戏相关的代码则放在了 MiddleLibLayer 目录下。若需要使用新的编辑器功能，则只需要删除旧的 MiddleLibLayer 目录，然后复制新的 MiddleLibLayer 到原目录即可。</p>
+<h1 id="old-project-migration-老工程迁移">Old Project Migration 老工程迁移</h1>
+<p>旧工程定义:</p>
+<ol>
+<li>UnityProject 文件夹下存在 Runtime-Supports 文件</li>
+</ol>
+<p>Q: How to define old project?</p>
+<p>A: If you have Runtime-Supports folder under UnityProject, then it is an old project.</p>
+<h2 id="1-download-latest-project-下载最新工程">1. Download Latest Project 下载最新工程</h2>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/hxsy4x">1. GetStarted 项目初始化</a></p>
+<p>Download the latest project，you can refer this document.</p>
+<p>下载最新的工程。</p>
+<h1 id="section"><img src="imgs/290b662bcb31_1669740409603-9e2ca5c8-1df5-45bd-a3cf-62dffea9046b.png" alt=""></h1>
+<h2 id="2-open-your-old-project-打开你的旧工程">2. Open Your Old Project 打开你的旧工程</h2>
+<p>**Backup your project **then delete the following selected folders</p>
+<p><strong>备份你的工程</strong>，然后删除如图选中的文件夹</p>
+<p><img src="imgs/79e3065c9469_1669740894907-bb171c5f-590f-4241-84d1-5f50739c8c74.png" alt=""></p>
+<p><img src="imgs/dc8e783e60e3_1669740929293-6e5a6db7-8859-4a14-89a2-c6ca87c571eb.png" alt=""></p>
+<p>Add the following package from local. It is located in  where you download in Step.1.</p>
+<p>添加以下本地 Package 。 他位于本地，且路径为你在步骤.1 你下载的工程路径中。</p>
+<h2 id="section-1"><img src="imgs/4cee8d048822_1669740659206-80a80517-a1e4-4287-83d5-7a9ce3cdd1cd.png" alt=""></h2>
+<p><img src="imgs/020603c210df_1669740945426-5c6ab13b-bc2e-43da-8d63-628be683799c.png" alt=""></p>
+<p><img src="imgs/9bf63b3b806c_1669740967641-350752f4-73ad-4857-9fc4-fdf69f85542e.png" alt=""></p>
+<p>When package is showed, it means upgrade is finished.</p>
+<p>显示如下文字，就说明升级完成</p>
+<p><img src="imgs/8d1ab07179e9_1669741075648-b31885a0-9beb-4493-95bc-8329c12afd32.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

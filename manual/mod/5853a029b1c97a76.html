@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>10. Encryption 加密模组 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="10. Encryption 加密模组 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="10-encryption-加密模组">10. Encryption 加密模组</h1>
+
+<p>The encryption mod is a way to encourage modders to create high quality mods. You can only create the encryption mods to player if you created your mod without copyright issues.  <strong>In other word,you can't use models from other games such as World of Tanks / War Thunder to make encryption mods. If you make encryption mods with copyright issues,the developer has rights to close your account and revoke all the keys you have generated.</strong>  This agreement will affect all the mod package that is created after <strong>2020/7/5.</strong> You can purchase models from CGTrader / Unity asset store and other cg stores to create encryption mods. Or you can learn to create model on your own.</p>
+<p>加密模组是一种鼓励模组制作者创造高质量模组的方式。只有在确保自己所制作的模组没有版权问题的情况下，才能为玩家创建加密模组。换句话说，你不能使用其他游戏（如《坦克世界》/《战争雷霆》）的模型来制作加密模组。如果你使用有版权问题的内容制作加密模组，开发者有权关闭你的账户并撤销你生成的所有密钥。该协议将影响2020年7月5日之后创建的所有模组包。你可以从CGTrader、Unity资产商店及其他CG商店购买模型来制作加密模组，或者学习自己创建模型。</p>
+<h2 id="enable-encryption-in-buildpipline-在构建管线中启用加密">Enable Encryption in BuildPipline 在构建管线中启用加密</h2>
+<p><img src="imgs/a0caa48cb552_1637488778183-a2ced63b-8a1c-4e71-b3a4-5f7271ac49d9.jpeg" alt=""></p>
+<p>The Build-Pipline file will automatically generate key and iv for your package.</p>
+<p>构建管线文件将自动为你的包生成密钥和IV</p>
+<h2 id="create-mod-pack-创建模组包">Create Mod Pack 创建模组包</h2>
+<p>You can manage your paid mod from</p>
+<p>您可以从以下位置管理您的付费模组</p>
+<p><a href="https://game.windyverse.net/packagemanager">https://game.windyverse.net/packagemanager</a></p>
+<p>To use this page, you need to apply for permission. Please send an email to message@windyverse.net and provide some of your works for our review.</p>
+<p>此页面需要向我们申请资格，才可以使用，发送邮件至 message@windyverse.net ，提供一些你的作品以供我们审核。</p>
+<p>Copy and Paste Key and IV from your mod package in to the web page.</p>
+<p>Qp+zqMYSnmFeLzYAY2BDK6AFMhmm4V1DAnoHoqgqPxE=</p>
+<p>3MHPAwfwqCS9ZsC6UF+NLQ==</p>
+<h2 id="get-uid-for-modpackage-获取-modpackage-的-uid">Get Uid for ModPackage 获取 ModPackage 的 UID</h2>
+<p><img src="imgs/75d4cfb297f6_1746957693985-7fd08584-bef8-4bcc-94b4-33be8fdb44b4.png" alt=""></p>
+<h2 id="set-uid-for-modpackage-设置-modpackage-的-uid">Set Uid for ModPackage 设置 ModPackage 的 UID</h2>
+<p><img src="imgs/f3da404a8401_1637488778073-4f229b6b-a4c1-4217-a936-25088527e8c7.jpeg" alt=""></p>
+<p>After that,you can build the package as normal. 之后，您可以像往常一样构建包。</p>
+<h2 id="manage-cd-key-管理激活码">Manage CD-Key 管理激活码</h2>
+<p><img src="imgs/bc620f019e66_1746957730309-20c17bf3-1473-4865-ab0b-ee313f163f32.png" alt=""></p>
+<h2 id="request-cd-key--申请激活码">Request CD-Key  申请激活码</h2>
+<p><img src="imgs/7e088ed0581e_1746957751612-06b0c460-4fe5-4a8d-ae6a-6ecf9cc7bc33.png" alt=""></p>
+<p><img src="imgs/d9fde48af9d1_1746957773899-b98e7df3-d54c-4bf8-8c23-a6f49885ebe7.png" alt=""></p>
+<h1 id="others--其他附加">Others  其他附加</h1>
+<h2 id="bundled-sub-modpack-捆绑包">Bundled Sub ModPack 捆绑包</h2>
+<p><img src="imgs/2729f75c6948_1757840368491-976cbc56-df3d-44dd-9279-7ec17248439c.png" alt=""><br>
+The module now supports the addition of bundle functionality. For example, if Module A is set to bundle the UIDs of Modules B and C, when a user activates Module A, they will automatically receive Modules B and C as well. Additionally, you can dynamically adjust the bundle for Module A, and the changes will be synchronized in real-time for the users.</p>
+<p>模组现支持增加捆绑包功能。<br>
+比如 A 模组设置捆绑 B，C 的 Uid 后，<br>
+用户激活 A 模组后，自动获取 B，C 模组。<br>
+且你可以动态调整 A 的捆绑包，用户侧会实时同步结果。</p>
+<h2 id="payment-link-支付链接">Payment Link 支付链接</h2>
+<p><img src="imgs/f552c1d5399f_1757840343068-1bdb3184-0972-4722-9a00-146009fb4be0.png" alt=""><br>
+<img src="imgs/9854231158d7_1757840505402-59c01a99-0eaf-4f76-a9d3-fa35c0c4c837.png" alt=""></p>
+<p>The module now supports setting a payment link. After selecting the payment link, it will be directly displayed on the module's guided unlock page.</p>
+<p>模组现已支持设置支付链接，选择支付链接后，会在模组引导解锁页面，直接显示支付链接</p>
+<h2 id="user-activation-用户激活">User Activation 用户激活</h2>
+<p><img src="imgs/bccc2e7bacb5_1757840487395-b7b2e099-d114-4b78-b6ad-17e59a57fb0d.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

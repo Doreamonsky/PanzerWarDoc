@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>26.4. Fmod Profiler | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="26.4. Fmod Profiler | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="264-fmod-profiler">26.4. Fmod Profiler</h1>
+
+<p>Profiler 是 FMOD Studio 中的一个实用工具，可以实时查看 Unity 引擎中发生的音频事件、内存使用、CPU 使用等信息。要在 FMOD Studio 的 Profiler 中连接 Unity 引擎，请遵循以下步骤：</p>
+<ol>
+<li>打开 FMOD Studio：启动 FMOD Studio 并打开你的音频项目。</li>
+<li>打开 Profiler：在 FMOD Studio 的顶部菜单栏中，点击 &quot;Window&quot;，然后选择 &quot;Profiler&quot;。这将打开 Profiler 窗口。</li>
+<li>启动 Unity：确保 Unity 项目已打开，并在 Unity 中加载包含 FMOD 插件的场景。</li>
+<li>设置连接：回到 Unity，点击顶部菜单栏中的 &quot;FMOD&quot;，然后选择 &quot;Edit Settings&quot;。在 Inspector 窗口中，展开 &quot;Live Update&quot; 部分，并勾选 &quot;Enable Live Update&quot;。确保 &quot;Live Update Port&quot; 与 FMOD Studio Profiler 中的端口设置相匹配（默认为 9264）。</li>
+</ol>
+<p><img src="imgs/0cfd0255ecaa_1681140707487-fcd41e8b-2c4a-4b65-b657-c2a339c9007d.png" alt=""></p>
+<p><img src="imgs/56dac497d0be_1681140686523-2be3c984-2cfe-4ea6-9738-149304edd8a4.png" alt=""></p>
+<ol start="5">
+<li>激活实时更新：在 FMOD Studio 的 Profiler 窗口中，点击 &quot;Live Update&quot; 按钮，确保它已激活。激活后，按钮的背景颜色应为绿色。这将允许 FMOD Studio 与 Unity 引擎实时同步音频数据。</li>
+</ol>
+<p><img src="imgs/af09a34edfec_1681140672361-37a311cb-aed6-4bf1-a692-a9bd1126d2c2.png" alt=""></p>
+<ol start="6">
+<li>连接 Profiler：现在，回到 FMOD Studio 的 Profiler 窗口。点击录制的圆形按钮</li>
+</ol>
+<p><img src="imgs/c8ab3138c2e5_1681140585048-2b5dbbe7-b4c4-4d2e-939c-d7286f2e4abf.png" alt=""></p>
+<ol start="7">
+<li>开始调试：现在，可以开始在 Unity 中运行你的场景。在 FMOD Studio 的 Profiler 窗口中，你可以实时查看 Unity 引擎中的音频事件、内存使用、CPU 使用等信息，从而更好地分析和调试音量问题。</li>
+</ol>
+<h1 id="检查音效">检查音效</h1>
+<p>在 FMOD Studio 的 Profiler 中，可以通过以下方法对比并诊断音量问题：</p>
+<ol>
+<li>检查事件的实时音量：在 Profiler 窗口的左侧栏中，可以查看正在播放的音频事件。选中其中一个事件，然后在右侧栏中可以看到该事件的实时音量数据。观察音量数据，检查是否有异常波动或值过低的情况。</li>
+<li>使用 Mixer 查看音量：在 FMOD Studio 的顶部菜单栏中，点击 &quot;Window&quot;，然后选择 &quot;Mixer&quot;。这将打开 Mixer 窗口。在 Mixer 中，你可以查看不同总线的音量以及它们之间的关系。请注意，如果 Profiler 中的 &quot;Live Update&quot; 已连接到 Unity，Mixer 也会显示实时音量数据。检查各个总线的音量，以确保它们没有低于预期的值。</li>
+<li>监听音频：在 Profiler 的 &quot;Live Update&quot; 已连接到 Unity 时，你可以实时收听 Unity 中播放的音频。这样，你可以直接比较 FMOD Studio 和 Unity 中的音频效果，并判断音量是否存在问题。</li>
+<li>记录并分析：在 Profiler 窗口中，你可以点击 &quot;Record&quot; 按钮开始录制音频性能数据。录制完成后，你可以详细分析音量、CPU 使用、内存使用等数据，找出可能的问题所在。</li>
+<li>对比预期效果：如果你有音频效果的预期结果（例如，之前的录音或参考音频），你可以将实时播放的音频与预期结果进行对比。这有助于判断音量是否有问题。</li>
+</ol>
+<p>通过这些方法，你可以在 FMOD Studio 的 Profiler 中对比并诊断音量问题。请注意，音量问题可能源于 FMOD 项目设置、音频文件的初始音量、Unity 中的音量设置等多种原因。在诊断问题时，请全面检查各个方面的设置。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

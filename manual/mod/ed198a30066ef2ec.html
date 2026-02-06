@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.7 祝昔的载具 Mod 开发总结 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.7 祝昔的载具 Mod 开发总结 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="027-祝昔的载具-mod-开发总结">02.7 祝昔的载具 Mod 开发总结</h1>
+
+<p>作者：@情绪薫</p>
+<p>PW mod制作中可能遇到的问题</p>
+<h1 id="首先模型获取途径">首先模型获取途径</h1>
+<p>第一个<a href="https://sketchfab.com/">Sketchfab - The best 3D viewer on the web</a>，上面有着大量模型，包括付费以及免费模型</p>
+<p>第二个<a href="https://gamemodels3d.com/">游戏中的载具模型 (gamemodels3d.com)</a>,上面有WT，WOT，WOTB，AW的大量模型，并且大部分WT模型都包含内构，需要付费注册账号来下载模型</p>
+<p>第三个<a href="https://www.cgtrader.com/">CGTrader - 3D Models for VR / AR and CG projects</a>，上面有着大量付费模型</p>
+<p>第四个其他。</p>
+<p>接下来分为<strong>制作mod中遇到的问题</strong>以及<strong>制作更好的mod遇到的问题</strong>两个方面</p>
+<h1 id="制作mod中遇到的问题">制作mod中遇到的问题</h1>
+<ol>
+<li>模型原点位置的确定</li>
+<li>无炮塔坦歼的制作</li>
+<li>mod内构在游戏里不显示</li>
+<li>在编辑过程中突然看不到hitbox</li>
+<li>mod在车库中起飞翻转</li>
+<li>炮弹击中后产生的弹痕贴图过大</li>
+<li>mod在游戏中不显示</li>
+</ol>
+<h1 id="制作更好的mod遇到的问题">制作更好的mod遇到的问题</h1>
+<ol>
+<li>动画制作</li>
+<li>更换实体履带</li>
+<li>如何设置不同方向炮塔不同俯仰角</li>
+<li>如何给mod设置缩略图</li>
+<li>如何设置爆反装甲</li>
+<li>如何去除内构模型颜色</li>
+<li>如何给mod起名字</li>
+<li>如何将多边形炮管变圆</li>
+<li>多炮塔设置的例子</li>
+<li>配对节点和重力节点的运用</li>
+<li>如何解决载具移动停止时的猛烈磕头</li>
+</ol>
+<h1 id="一在制作mod中遇到的问题">一、在制作mod中遇到的问题</h1>
+<h2 id="1-模型原点的确定">1. 模型原点的确定</h2>
+<p>在blender中，你需要对以下部件设置原点</p>
+<p>炮塔turret,设置炮塔原点以确保炮塔绕轴进行水平转动。</p>
+<p>（先点击左侧工具栏中的移动然后勾选右上角的原点，父级，然后就可以将物体原点移动到你想要的地方，完成后记得取消勾选原点和父级）</p>
+<p><img src="imgs/3a7e4a89aacb_1673883296923-993e3e49-98f8-47a2-8482-fe1a0e936c14.png" alt="">炮盾Gun，将设置炮盾原点以确保坦克炮管俯仰正常</p>
+<p>炮管Dym，设置炮管原点来确保炮弹发射位置正确</p>
+<p>轮子UpperWheel以及Wheel，右键设置原点在质心体积来确保轮子绕轴旋转</p>
+<h2 id="2-无炮塔坦歼">2. 无炮塔坦歼</h2>
+<p><img src="imgs/b81d9ec02f82_1673883297329-59871760-e556-46df-a793-e4e89e29d61e.png" alt="">对于无炮塔坦歼如猎虎，在blender中按shift+a，创建一个空轴来作为其炮塔，按g来移动空轴原点。</p>
+<h2 id="3-mod-制作了内构但游戏里不显示">3. Mod 制作了内构但游戏里不显示</h2>
+<p><img src="imgs/4cddcb0998a9_1673883297825-21ef51d6-c088-4cbd-ba49-c5d91d690849.png" alt="">查看是否勾选配置模块化信息</p>
+<h2 id="4-在编辑过程中突然看不到hitbox">4. 在编辑过程中突然看不到hitbox</h2>
+<p>查看hitbox是否隐藏<img src="imgs/6cebba7aa073_1673883298317-092c6102-ad67-4134-a07b-e05569dd3b2f.png" alt=""></p>
+<h2 id="5-坦克在车库中起飞翻转">5. 坦克在车库中起飞翻转</h2>
+<p>查看是否设置坦克质量</p>
+<h2 id="6-炮弹击中后产生的贴图过大">6. 炮弹击中后产生的贴图过大</h2>
+<p>查看炮弹口径是否填写出错</p>
+<h2 id="7-mod-在游戏内不显示">7. Mod 在游戏内不显示</h2>
+<p>查看是否有音效未填</p>
+<h1 id="二如何制作更好的-mod">二、如何制作更好的 Mod</h1>
+<h2 id="1-动画">1. 动画</h2>
+<p>举例某些坦克上有旋转的雷达</p>
+<p><img src="imgs/5dd42ae504f5_1673883298807-679a3a01-0998-4260-8ab5-3e34c5393a03.png" alt=""><img src="imgs/a933af9456d7_1673883299396-b9091538-5dd1-45b3-b9b0-33dcd2e98d28.png" alt="">如图在合适的位置创建一个空轴来保证雷达绕此轴旋转，然后将雷达放入空轴中，将空轴移动到炮塔下</p>
+<p>接着在unity中将物体拖入左侧栏中，选中该物体的雷达部件，右侧选择animation，animation制作教程可参照下面的视频</p>
+<p><a href="https://www.bilibili.com/video/BV1zR4y1G7rt/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66">https://www.bilibili.com/video/BV1zR4y1G7rt/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66</a></p>
+<p>制作完后需要将animator勾选（没有则需要在下方add component选择animator）</p>
+<p><img src="imgs/e5517ad778fe_1673883299900-ef6bb856-66ef-4814-87b6-02285a08bc8f.png" alt=""></p>
+<p>最后模型上好贴图并设置碰撞体积放入collision文件夹中保存即可。</p>
+<h2 id="2-实体履带">2. 实体履带</h2>
+<p>将履带块模型分离出来后，右键设置原点在质心（体积），接着右键吸附-选中项-游标，将模型角度调整如下，然后ctrl+a应用旋转，保存即可</p>
+<p><img src="imgs/9e69f25d26d1_1673883300443-d7ff9081-c19b-4ad5-a882-f1e02745ba45.png" alt=""></p>
+<p>注意，当你需要设置左右两侧履带模型时，左履带模型需在上图基础上顺时针转动180度后再应用旋转</p>
+<p><img src="imgs/ec6a778e6160_1673883301029-1e728b4a-336d-4de3-8181-5850093553b0.png" alt=""></p>
+<h2 id="3-不同方向炮塔不同俯仰角">3. 不同方向炮塔不同俯仰角</h2>
+<p>大部分坦克在不同方向的俯仰角不同，可以在特殊的俯仰角位置中进行设置</p>
+<p><img src="imgs/2ad4a26d5e93_1673883301516-720690e0-61f3-4a5d-be3a-90c9d6563c18.png" alt=""></p>
+<h2 id="4-如何给mod设置缩略图">4. 如何给mod设置缩略图</h2>
+<p>将你的图片放入编辑器后，右侧设置选择sprite和single，再点击下方的apply即可</p>
+<p><img src="imgs/50ea4b63f33a_1673883302092-32dde9d8-b89b-4f4c-b8c8-67f67a459317.png" alt=""></p>
+<h2 id="5-如何设置爆反装甲">5. 如何设置爆反装甲</h2>
+<p>将爆反在HitBox中设置为reactive armor同时在内构中将其设置为内部装甲（你也可建一个内部爆反的模型）</p>
+<h2 id="6-mod-查看装甲时部分装甲透明">6. Mod 查看装甲时部分装甲透明</h2>
+<p>有时当你查看一些地方的装甲时，它不会是红绿黄三色之一，而是透明的，这代表着该处法线反了，你需要用按tab进入编辑模式后选中透明处装甲，按shift+n来将法线调正。也可通过这个视频来学习如何修复法线。<a href="https://www.bilibili.com/video/BV1xr4y187Fc/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66">https://www.bilibili.com/video/BV1xr4y187Fc/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66</a></p>
+<h2 id="7-去除内构模型颜色">7. 去除内构模型颜色</h2>
+<p>有时当你查看内构时，有些内构模型仍然有贴图存在，这时你需要将内构模型拖入unity左侧栏中，点击reset来去除所有贴图，再对模型进行保存</p>
+<p><img src="imgs/910e9a0e85bd_1673883302617-1409a304-34e3-4d60-aa5a-7c2e9b42672e.png" alt=""></p>
+<h2 id="8-给模型起名字">8. 给模型起名字</h2>
+<p><img src="imgs/eb3dc89aa7c0_1673883303124-3f03d8b1-abf2-48eb-99a2-f4641431f863.png" alt=""></p>
+<h2 id="9-多边形炮管变圆">9. 多边形炮管变圆</h2>
+<p>有时你所拿到模型它的炮管和其他一些部位是多边形的，你可以在blender中点击模型，然后右键平滑着色来让它变圆</p>
+<h2 id="10-多炮塔例子">10. 多炮塔例子</h2>
+<p><img src="imgs/b3c3e6781764_1673883303703-d3aab2bc-e256-4135-b020-8b3b64871ca2.png" alt=""></p>
+<p>其中SubTurret02是炮塔顶部的机枪，我用空轴来作为它的dym</p>
+<p>而SubTurret01是共轴机枪，我将三个空轴叠加来作为共轴机枪，并套在Dym下，这使得它将同主炮一同移动，而你不需要设置其他多余的数据（如炮塔俯仰角，转速）</p>
+<h2 id="11-配对节点和重力节点">11. 配对节点和重力节点</h2>
+<p>重力节点意味着履带在该点会受到重力影响而自然下垂</p>
+<p>而配对节点则能够使得上下履带随负重轮一同上下运动</p>
+<p>如下图使用</p>
+<p><img src="imgs/ccdef3343da6_1673883304199-7f16a736-6f85-4182-9b66-1ad211631796.png" alt=""></p>
+<h2 id="12-如何解决mod启动停止时的猛烈磕头">12. 如何解决mod启动停止时的猛烈磕头</h2>
+<p>一是将center of gravity摆放适中同时将其稍微下移（重心越高越不稳定），二是调整wheelcollider中右侧数据来调整摩擦</p>
+<p>详情请见此<a href="https://blog.csdn.net/weixin_43147385/article/details/124266796">https://blog.csdn.net/weixin_43147385/article/details/124266796</a></p>
+<p><img src="imgs/7008b4410291_1673883304655-5665b577-9318-4f1c-b3b5-af3589979daa.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.3 Multi-Fire (Old) - 多炮塔 （旧） | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.3 Multi-Fire (Old) - 多炮塔 （旧） | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="023-multi-fire-old---多炮塔-旧">02.3 Multi-Fire (Old) - 多炮塔 （旧）</h1>
+
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/laq4pi56v5clqpc1">2.13 Blender 修正模型轴向</a></p>
+<h1 id="general-综合">General 综合</h1>
+<p>Multi-Fire (Old) system is designed for one turret and one gun.</p>
+<p>多炮塔（旧）系统被设计用于对应一个炮塔与炮管。</p>
+<h1 id="child-parent-relation-父子关系">Child-Parent Relation 父子关系</h1>
+<p>Suppose we have an ATGM on the turret. We should SubTurret under Turret. Also you need to put SubGun under SubTurret and SubDym under SubTurret.</p>
+<p>假设我们在炮塔下面有 ATGM，则我们需要将 SubTurret 放置于 Turret。此外，我们需要将 SubGun  放置于 SubTurret ，将 SubDym 放置于 SubTurret。</p>
+<p><img src="imgs/b11b4769b8fd_1647607782289-4385d419-0af3-4687-aa4a-0aba3e505e6c.png" alt=""></p>
+<h1 id="property-属性">Property 属性</h1>
+<h2 id="relative-path-相对路径">Relative Path 相对路径</h2>
+<p>You need to set the relative path of turret ,gun and dym.</p>
+<p>你需要针对炮塔，炮管，炮管活动部分设置他的相对路径。</p>
+<h1 id="section"><img src="imgs/c7d52613f809_1647607724903-f76fa47a-7a52-47e1-b3d1-4083469992bd.png" alt=""></h1>
+<h2 id="ffpoint--effect-start-offset-开火位置偏移">FFPoint / Effect Start Offset 开火位置偏移</h2>
+<p>The offset will decide where ffpoint and effect start are. In genereted prefab,you can see the red dumps indicates these points.</p>
+<p>偏移值会决定开火位置。 在创建出来的预制体中，你可以看到这些虚节点。</p>
+<p><img src="imgs/b8fac1aec081_1647608307261-bdb72e3b-0a15-40dc-8327-b4d3aa80a800.png" alt=""></p>
+<p><img src="imgs/d269eb7066ea_1647608351642-29f790c3-da03-4358-abbe-f131a0ec542e.png" alt=""></p>
+<h2 id="tank-fire-param-开火设置">Tank Fire Param 开火设置</h2>
+<p>The structure is same as the ordinary one.</p>
+<p>结构与普通的开火设置一样。</p>
+<p><img src="imgs/4d2db4b2cd6c_1647608099719-cd47bb84-cd40-45fe-a333-cd4dc8a6080a.png" alt=""></p>
+<h2 id="turret-param-炮塔设置">Turret Param 炮塔设置</h2>
+<p>The structure is same as the ordinary one.</p>
+<p>结构与普通的炮塔设置一样。</p>
+<p><img src="imgs/cf04c92488ad_1647608145787-31779669-8a61-41db-8c9b-8f8f6a5fc798.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

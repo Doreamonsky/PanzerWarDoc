@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>26.3. VoicePack As Practice 语言包实战 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="26.3. VoicePack As Practice 语言包实战 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="263-voicepack-as-practice-语言包实战">26.3. VoicePack As Practice 语言包实战</h1>
+
+<p>As an example,this chapter will introduce the events in fmod and configs for game.</p>
+<p>以语言包为例，讲解从 Fmod 的事件 以及 游戏的音频配置。</p>
+<h1 id="1-import-assets-导入资源">1. Import Assets 导入资源</h1>
+<p>Create a subfolder in crew folder, drag your voice assets into this folder.</p>
+<p>在 crew 下创建一个文件夹，然后将音频文件拖入此文件夹。</p>
+<p><img src="imgs/3942e5a2c71f_1669543199675-74bd3eb3-5c23-4d6d-bc47-c4c137377c77.png" alt=""></p>
+<h1 id="2-create-events-创建事件">2. Create Events 创建事件</h1>
+<p>Create a subfolder in crew/ground. Select a set of existing voice event. Press Ctrl + D to duplicate it and drag it into newly created subfolder. Change the suffix from cn to whatever you want.</p>
+<p>在 crew/ground 下创建一个文件夹，选中一份现有的事件，按 ctrl + d 复制并拖入刚刚创建的文件夹，更改事件的结尾名称 将 cn 改成你想要的标识。如图中 cn 改为 jp</p>
+<p><img src="imgs/d8e5f4739832_1669543254097-88e5f04d-cf55-41c0-b975-c401ef0ec2b0.png" alt=""></p>
+<p><img src="imgs/3fbf2ddd75b9_1669543423758-b4bd9913-79f8-4a98-b3ea-0d9d6e9775f2.png" alt=""></p>
+<p>Select your event. Delete the original sounds from playlist and add your sounds into playlist one by one.</p>
+<p>选中事件，将 Playlist 中的音频替换为你的音频。可以删除原有音频，然后将你的音频拖入其中即可。</p>
+<p><img src="imgs/a6ed9a8f6b13_1669543842835-7220ab79-a9c6-49b5-a4d1-786bf7c35b4e.png" alt=""></p>
+<h1 id="3-check-mixer-检查-mixer">3. Check Mixer 检查 Mixer</h1>
+<p>Press Ctrl + 2 into Mixer window. Be sure the newly created events are under dialogs group.</p>
+<p>按 Ctrl + 2 进入 Mixer 窗口，查看新创建的事件是否在 dialogs 组中</p>
+<p><img src="imgs/690733adb310_1669543667628-297e0600-5bc9-435c-9150-d80a9bb022fc.png" alt=""></p>
+<h1 id="4-create-sound-bank-创建-soundbank">4. Create Sound Bank 创建 SoundBank</h1>
+<p>在 Banks 中创建一个新的 Bank，</p>
+<p><img src="imgs/230c669a8165_1669543719240-deb5993a-5838-477d-a02d-8af881cfdaca.png" alt=""></p>
+<p><img src="imgs/3382e3c704f6_1669543817900-abbdc4f0-e24b-4682-ab4e-cd0f3e650b7b.png" alt=""></p>
+<p>Then build all platforms. It will generate bank file at PanzerWar-Mods\PanzerWar-FMod-UGC-Project\Build.</p>
+<p>然后，打包所有平台的 banks 文件。然后 bank 文件会在 PanzerWar-Mods\PanzerWar-FMod-UGC-Project\Build 创建。</p>
+<p><img src="imgs/d2abffc80f4e_1669543954260-bd16691e-d84e-4998-8f37-8bc15a36bb04.png" alt=""></p>
+<p>Then the work in Fmod Studio is finished. Let's go back to Unity project.</p>
+<p>然后，Fmod 侧的工作就结束了，让我们回到 Unity 工程。</p>
+<h1 id="5-create-config-创建配置">5. Create Config 创建配置</h1>
+<p>Use the following tool to create config faster.</p>
+<p>使用以下工具快速创建配置信息</p>
+<p><img src="imgs/24cc3e414efa_1669546221698-3b866bc6-a3b0-44be-90d7-928e9e89baad.png" alt=""></p>
+<h2 id="51-create-crew-voice-config-创建成员语言配置">5.1 Create Crew Voice Config 创建成员语言配置</h2>
+<p><img src="imgs/85bf4a3d9d83_1669546247890-a49e8db7-855c-4ecb-9200-58d99929fd25.png" alt=""></p>
+<p>Select the events that you created in fmod in previous step.</p>
+<p>将创建的事件名称填入对应类型</p>
+<p><img src="imgs/39e283de3fd7_1669546208456-1c2880b6-fd76-4f00-be73-e1d9bfa297cc.png" alt=""></p>
+<h2 id="52-create-bank-buildpipline-创建-bank-打包配置">5.2 Create Bank BuildPipline 创建 Bank 打包配置</h2>
+<p><img src="imgs/a7864e719290_1669546918411-111e4ced-bab2-4ed8-b253-2b79778f2bce.png" alt=""></p>
+<p>Create the SoundBankBuildPiplineData Build file</p>
+<p>创建音效打包文件 （SoundBankBuildPiplineData）</p>
+<p><img src="imgs/ce28d8445b1c_1713594578218-e33eef5e-c86b-4175-8cee-d08f3e1f3885.png" alt=""></p>
+<p>Pick the folder that banks are built</p>
+<p>选择打包 Bank 的文件夹</p>
+<p><img src="imgs/9d9fe87fd8b9_1713594613629-782ff71f-a2ca-4392-97f7-e16992005288.png" alt=""></p>
+<p>Pick .bank extension files</p>
+<p>选择 bank 后缀文件</p>
+<p><img src="imgs/ea6f9a93f18e_1713594630787-282e8025-641a-4bc5-8ad8-11efdb4e61f2.png" alt=""></p>
+<p>In the configs array, sound bank configs are generated automatically.</p>
+<p>在配置文件中，会自动生成对应的  SoundBank Config</p>
+<p><img src="imgs/b6b6be571c9e_1713594642933-3e1ca774-3b51-4699-81c6-586ea931f78b.png" alt=""></p>
+<h1 id="6-build-config-打包配置">6. Build Config 打包配置</h1>
+<p><img src="imgs/e729c06b9786_1669547074862-2fdacc45-bdff-43f0-b601-137c5409dbe9.png" alt=""></p>
+<p><img src="imgs/a7b0436199c4_1669547092596-13eb4869-9e68-4592-a98a-121c26ed0a04.png" alt=""></p>
+<p><img src="imgs/f5389fe6f4a0_1669547149232-b53d4a2b-50ce-4f5d-ae78-930dc7bb295c.png" alt=""></p>
+<p>Then, you can build like other mods.</p>
+<p>然后，就能和其他 Mod 一样进行打包即可。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

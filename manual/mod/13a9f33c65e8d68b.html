@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>32. Custom Shader Data 自定义着色器 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="32. Custom Shader Data 自定义着色器 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="32-custom-shader-data-自定义着色器">32. Custom Shader Data 自定义着色器</h1>
+
+<h1 id="32-custom-shader-data-自定义着色器-1">32. Custom Shader Data 自定义着色器</h1>
+<h2 id="create-data-创建数据配置">Create Data 创建数据配置</h2>
+<p>Create the custom shader data from out menu</p>
+<p>如图所示，创建我们的自定义着色器数据。</p>
+<p><img src="imgs/a385abea0a7e_1703064677417-7cee3536-b2ba-43e7-a54d-80c21bd218d9.png" alt=""></p>
+<p><img src="imgs/3424263d05d8_1703064568072-640047a5-9c0a-49d1-82f0-0469611d8fb2.png" alt="">\</p>
+<p>Pick your custom material. If you do not know about Unity material system, please search about the Unity material and shader graph tutorials.</p>
+<p>选择你的自定义材质，如果不了解 Unity 的材质系统，请搜素 Unity Material 以及 Shader Graph 相关教程</p>
+<p><img src="imgs/6445dbb99794_1703064533301-cf14794f-16f4-4ca3-a1de-8a5e5ffe45fc.png" alt=""></p>
+<h2 id="config-component-配置组件">Config Component 配置组件</h2>
+<p>Add CoreRPMatComponent component to your model and toggle on is component based. You need to assgin the guid from custom shader data to your component. Ensure the urp and hdrp should be different guids.</p>
+<p>为你的模型添加 CoreRPMatComponent 组件，勾上基于组件数据，并配置唯一标识为你刚刚创建的自定义着色器配置的唯一标识。值得注意的是，urp 与 hdrp 需要填写不同的guid，且材质文件需要在不同的管线下打包。</p>
+<p><img src="imgs/74d0b9d7a371_1703065110654-e43a7a52-a98c-4106-b6a2-7bd1fd2c3743.png" alt=""></p>
+<h2 id="build--打包">Build  打包</h2>
+<p>If the shader is only for one vehicle, you can just put the CusomShaderData with VehicleInfo to pack. If it is for public resource purpose, you should pack it separately.</p>
+<p>如着色器仅用于一个坦克，建议直接将 CusomShaderData 与 VehicleInfo 放一起打包。 若是一个公用资源，则建议单独打包，然后填上包依赖方式。</p>
+<p><img src="imgs/5384e20ff32d_1703072604365-badcbb6c-c348-4d84-b0bb-1ac10a033e10.png" alt=""></p>
+<h2 id="advance-进阶知识">Advance 进阶知识</h2>
+<p>The logic behind custom shader data</p>
+<p>We use the custom material on your custom shader data and copy your material properties to the material you linked on CoreRPMatComponent.</p>
+<p>The material you linked will keep the following properties (They will not be overrided by your custom material). If you want to use the following properties you should keep the same name as the following table.</p>
+<p>此功能原理：</p>
+<p>我们使用你填写在 自定义着色器的材质上的 着色器，以及相关的材质属性（各种勾选项，下拉框的值），并覆盖到你通过 CoreRPMatComponent 关联的材质上。</p>
+<p>CoreRPMatComponent 关联的材质上的如下属性，会得到保留。 你的自定义着色器若想使用以下属性，请确保你的自定义着色器的通道名称与下方列表保持一致。</p>
+<table>
+<thead>
+<tr>
+<th>Channel Name 通道名称</th>
+<th>Type 类型</th>
+<th>Description 介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_BaseMap</td>
+<td>Texture2d</td>
+<td>Diffuse map 漫反射贴图</td>
+</tr>
+<tr>
+<td>_BumpMap</td>
+<td>Texture2d</td>
+<td>Normal map 法线贴图</td>
+</tr>
+<tr>
+<td>_MaskMap</td>
+<td>Texture2d</td>
+<td>Mask map  Unity URP 的 PBR 贴图</td>
+</tr>
+<tr>
+<td>_Smoothness</td>
+<td>float</td>
+<td>Smoothness 光滑度</td>
+</tr>
+<tr>
+<td>_KEYWORDENABLEDIRT</td>
+<td>keyword</td>
+<td>Enable camouflage 是否启用涂装</td>
+</tr>
+<tr>
+<td>_CamoPatternMap</td>
+<td>Texture2d</td>
+<td>Camouflage Pattern Map 涂装的样式图</td>
+</tr>
+<tr>
+<td>_CamoPatternTiling</td>
+<td>Vector4</td>
+<td>Camouflage Pattern Tiling 涂装的样式图的缩放比</td>
+</tr>
+<tr>
+<td>_CamoBlackTint</td>
+<td>Color4</td>
+<td>Color stands for camouflage pattern map back channel<br>黑色通道对应颜色</td>
+</tr>
+<tr>
+<td>_CamoRedTint</td>
+<td>Color4</td>
+<td>Color stands for camouflage pattern map red channel<br>红色通道对应颜色</td>
+</tr>
+<tr>
+<td>_CamoGreenTint</td>
+<td>Color4</td>
+<td>Color stands for camouflage pattern map green channel<br>绿色通道对应颜色</td>
+</tr>
+<tr>
+<td>_CamoBlueTint</td>
+<td>Color4</td>
+<td>Color stands for camouflage pattern map blue channel<br>蓝色通道对应颜色</td>
+</tr>
+<tr>
+<td>_KEYWORD_ENABLE_CAMO_COLOR_TEX</td>
+<td>keyword</td>
+<td>Enable texture camouflage 是否启用贴图的涂装</td>
+</tr>
+<tr>
+<td>_Lerp</td>
+<td>float (Clamp in 0-1)</td>
+<td>Lerp between camouflage 涂装颜色占比</td>
+</tr>
+<tr>
+<td>_DirtRange</td>
+<td>float (Clamp in 0-1)</td>
+<td>Lerp between dirty 污渍占比</td>
+</tr>
+<tr>
+<td>_DirtTex</td>
+<td>Texture2d</td>
+<td>Dity texture 污渍贴图</td>
+</tr>
+<tr>
+<td>_KEYWORDENABLEDIRT</td>
+<td>keyword</td>
+<td>Enable dirty 启用污渍贴图</td>
+</tr>
+</tbody>
+</table>
+<h2 id="some-special-channel-usage-一些特殊通道的用法">Some Special Channel Usage 一些特殊通道的用法</h2>
+<h3 id="_camopatternmap-涂装的样式图">_CamoPatternMap 涂装的样式图</h3>
+<p>Usage Split rgba channel and lerp with tint color</p>
+<p>用法： 提取rgba，使用 lerp ，取 tint 颜色</p>
+<p><img src="imgs/6431fe049d77_1703157643144-bff64d7d-6a9b-43b1-83a3-afb31a53cf4c.png" alt=""></p>
+<p><img src="imgs/4be463bbc25d_1703157598790-671554c5-2921-414c-a6a7-abd0b7c57b83.png" alt=""></p>
+<p><img src="imgs/2dd6f48be3e7_1709471178226-38c986ab-1f93-4c09-9998-18d9357c22ce.png" alt=""></p>
+<p><img src="imgs/8b015b13e080_1709471182149-cbc96956-47f9-480a-b8cf-4b9ff21041ca.png" alt=""></p>
+<p><img src="imgs/b8255cc3b450_1709471185039-5178eb95-c26e-4814-9a1f-f8698801b5ff.png" alt=""></p>
+<p><img src="imgs/338abf6b4fc4_1703157608692-dffde230-e570-414f-b5d1-1e7fea5a3116.png" alt=""></p>
+<h2 id="vehicle-custom-shader-载具自定义着色器">Vehicle Custom Shader 载具自定义着色器</h2>
+<p>Pick custom shader type as Custom Vehicle Option</p>
+<p>着色器类型选择自定义载具选项</p>
+<p>Change the channel name to your name defined in shader.</p>
+<p>将下面的通道名称，改成你的 Shader 里定义的名称</p>
+<p><img src="imgs/e17a3a0e49d9_1703503868067-feedd871-edca-4a34-bf81-6f3feccf4db4.png" alt=""></p>
+<h2 id="如何适配脏迹效果">如何适配脏迹效果？</h2>
+<p>在 _KEYWORDENABLEDIRT 关键词开启时，将载具的 AO 图，和 _DirtTex 以 _DirtRange 的强度，进行混合。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

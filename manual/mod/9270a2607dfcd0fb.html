@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>22.3 安装 VS Code 和配置 Emmy Lua 环境 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="22.3 安装 VS Code 和配置 Emmy Lua 环境 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="223-安装-vs-code-和配置-emmy-lua-环境">22.3 安装 VS Code 和配置 Emmy Lua 环境</h1>
+
+<p>Visual Studio Code（以下简称 VS Code）是一款由微软推出的免费且开源的代码编辑器。而 Emmy Lua 是一款专为 Lua 语言开发者设计的插件。在本文中，我们将介绍如何安装 VS Code 并配置 Emmy Lua 环境，以便进行 Lua 开发。</p>
+<h2 id="安装-vs-code">安装 VS Code</h2>
+<p>首先，我们需要下载并安装 VS Code。请按照以下步骤操作：</p>
+<ol>
+<li>访问 <a href="https://code.visualstudio.com/">VS Code 官网</a>。</li>
+<li>点击 “Download for Windows”（如果你使用 Windows 操作系统）或 “Download for Mac”（如果你使用 macOS 操作系统）。</li>
+<li>根据你的操作系统选择适合的安装程序，并下载。</li>
+<li>运行下载好的安装程序，并按照提示进行安装。</li>
+</ol>
+<p>或者，可以从以下连接进行安装</p>
+<p><a href="https://vscode.cdn.azure.cn/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCodeUserSetup-x64-1.62.2.exe">https://vscode.cdn.azure.cn/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCodeUserSetup-x64-1.62.2.exe</a></p>
+<h2 id="安装-emmy-lua">安装 Emmy Lua</h2>
+<p>安装 VS Code 后，我们需要安装 Emmy Lua 插件。请按照以下步骤操作：</p>
+<ol>
+<li>打开 VS Code。</li>
+<li>点击左侧的扩展图标（或按下快捷键 <strong>Ctrl + Shift + X</strong>）。</li>
+<li>在搜索框中输入 “Emmy Lua” 并选择第一个搜索结果。</li>
+<li>点击 “Install” 按钮，等待插件安装完成。</li>
+</ol>
+<h2 id="配置-emmy-lua-环境">配置 Emmy Lua 环境</h2>
+<p>配置 Emmy Lua 环境需要先安装 JDK。如果你已经安装了 JDK，可以跳过本节内容。</p>
+<h3 id="安装-jdk">安装 JDK</h3>
+<p>jdk 版本推荐在 &quot;1.8.0_181&quot; 以上</p>
+<ol>
+<li>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html">JDK 下载页面</a>。</li>
+<li>选择适合你操作系统的版本，并下载。</li>
+<li>运行下载好的安装程序，并按照提示进行安装。</li>
+</ol>
+<p>更加详细的步骤看此文档</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/bbe3yz2nqir9q36d">如何安装 JDK（Java Development Kit）</a></p>
+<h3 id="配置-emmy-lua-环境-1">配置 Emmy Lua 环境</h3>
+<p>安装完 JDK 后，如果没有设置 JDK 的环境变量则我们需要对 Emmy Lua 插件进行一些简单的配置。请按照以下步骤操作：</p>
+<ol>
+<li>打开 VS Code。</li>
+<li>点击左侧的扩展图标（或按下快捷键 <strong>Ctrl + Shift + X</strong>）。</li>
+<li>在已安装的插件列表中找到 “Emmy Lua” 插件，并点击右侧的 “Extension Settings” 按钮。</li>
+</ol>
+<p><img src="imgs/ff079ed3aa85_1678810657227-ea2a3e40-3974-4d9f-9083-5bbf7a80dbe9.png" alt=""></p>
+<ol start="4">
+<li>在弹出的配置面板中，找到 “Emmy: Java Home” 选项，并填入 JDK 的安装路径。</li>
+</ol>
+<p>*<em>&quot;emmylua.java.home&quot;: &quot;&lt;你的路径&gt;&quot; 注意，路径需要用 / 分割，而非 *</em></p>
+<p><img src="imgs/000009d05a9f_1678810634351-0cf64335-d627-404d-b833-878be494db6a.png" alt=""></p>
+<p><img src="imgs/544471de15ea_1678810747328-f4866b82-02f6-4bba-b92f-23e400ca38cc.png" alt=""></p>
+<pre><code>- 在 Windows 上，默认安装路径为 **C:/Program Files/Java/jdk{版本号}**。
+- 在 macOS 上，默认安装路径为 **/Library/Java/JavaVirtualMachines/jdk{版本号}/Contents/Home**。
+</code></pre>
+<ol start="5">
+<li>配置完成后，关闭配置面板。</li>
+</ol>
+<p>至此，我们已经成功安装了 VS Code 和 JDK，并配置了 Emmy Lua 环境，可以开始愉快地进行 Lua 开发了。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

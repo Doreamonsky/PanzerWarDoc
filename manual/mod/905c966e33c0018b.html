@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>22.4 如何使用 LuaBehaviorMono 组件 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="22.4 如何使用 LuaBehaviorMono 组件 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="224-如何使用-luabehaviormono-组件">22.4 如何使用 LuaBehaviorMono 组件</h1>
+
+<p>这份文档是为小白用户编写的，旨在帮助您了解如何使用 LuaBehaviorMono 组件。在这里，我们不会涉及任何代码细节，而是从用户的角度解释组件的功能和用法。</p>
+<h2 id="1-简介">1. 简介</h2>
+<p>LuaBehaviorMono 是一个 Unity 组件，它允许您将 Lua 脚本绑定到 Unity 游戏对象上。这样，您可以通过编写 Lua 脚本来实现游戏逻辑，而无需编写 C# 代码。这对于使用 Lua 作为脚本语言的游戏开发者来说非常有用。</p>
+<h2 id="2-如何使用-luabehaviormono-组件">2. 如何使用 LuaBehaviorMono 组件</h2>
+<p>要使用 LuaBehaviorMono 组件，您需要先将它添加到 Unity 游戏对象上。以下是使用组件的基本步骤：</p>
+<h3 id="21-添加组件">2.1 添加组件</h3>
+<ol>
+<li>在 Unity 编辑器中，选择您想要添加 LuaBehaviorMono 组件的游戏对象。</li>
+<li>在检查器面板中，点击 &quot;Add Component&quot; 按钮。</li>
+<li>在搜索框中输入 &quot;LuaBehaviorMono&quot;，然后选择 &quot;LuaBehaviorMono&quot; 组件。</li>
+</ol>
+<h3 id="22-设置-lua-行为脚本">2.2 设置 Lua 行为脚本</h3>
+<ol>
+<li>在检查器面板中，找到 &quot;LuaBehaviorMono&quot; 组件。</li>
+<li>将您的 Lua 行为脚本拖拽到 &quot;行为脚本 - Behavior&quot; 区域。</li>
+</ol>
+<h3 id="23-设置实例属性">2.3 设置实例属性</h3>
+<ol>
+<li>在检查器面板中，找到 &quot;LuaBehaviorMono&quot; 组件。</li>
+<li>在 &quot;实例属性 - Instance Property&quot; 区域，点击加号按钮添加新的实例属性。</li>
+<li>为实例属性设置名称和值。</li>
+</ol>
+<h2 id="3-注意事项">3. 注意事项</h2>
+<ol>
+<li>如果您想要访问其他游戏对象上的 LuaBehaviorMono 组件，可以使用 <strong>GetLuaComponent</strong> 方法。</li>
+<li>若要访问 Unity 原生组件，可以使用 <strong>GetNativeComponent</strong> 方法。</li>
+</ol>
+<p>通过以上步骤，您应该已经了解了如何使用 LuaBehaviorMono 组件。祝您在游戏开发过程中一切顺利！</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

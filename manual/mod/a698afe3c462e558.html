@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.4 Material Component 材质组件 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.4 Material Component 材质组件 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="024-material-component-材质组件">02.4 Material Component 材质组件</h1>
+
+<p>For now,you need to upgrade your editor to 2021 version to use this new feature.</p>
+<p>目前而言，你需要将你的模组工具升级到 2021 才可以使用此功能</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/ymsakm">15.Upgrade 2021 Editor 升级 2021 编辑器</a></p>
+<h1 id="general-综述">General 综述</h1>
+<p>The game has three version of renderer pipline. To make it possible to build once and run on all version. We need some components to fix material problems.</p>
+<p>游戏拥有三种渲染管线版本，为了实现一次打包三个管线正常渲染，我们需要一些中间组件，来帮助我们解决材质兼容的问题。</p>
+<h1 id="通用pbr-材质-shader">通用PBR 材质 Shader</h1>
+<h2 id="支持-mask-texture-的材质球">支持 Mask Texture 的材质球</h2>
+<p>切换 Shader 为 SRP-Vehicle-Camouflage</p>
+<p><img src="imgs/9d205198b0ab_1675569536761-81d3a283-54e5-4628-ae90-d7e8eb52f3cb.png" alt=""></p>
+<p><img src="imgs/3e119ce19062_1675569798885-9677a422-757b-44e8-9bcc-cc3155306cde.png" alt=""></p>
+<p>A mask for PBR effect.  You can refer channel from <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html">https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html</a></p>
+<p>一个反光遮罩贴图用于 PBR 效果。贴图通道信息查看 <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html">https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html</a></p>
+<h1 id="render-component-渲染组件">Render component 渲染组件</h1>
+<h2 id="core-rp-matdata">Core RP MatData</h2>
+<p>Right click the project and select the menu in the picture.</p>
+<p>右键工程，选择如菜单的按钮。</p>
+<h1 id="section"><img src="imgs/59fd458d29c3_1647620626988-4a556542-5333-4a6d-86ac-9ba013a05708.png" alt=""></h1>
+<h3 id="linked-material-链接的材质">Linked Material 链接的材质</h3>
+<p>Select the material you want to override. 选择你要覆盖的材质</p>
+<p><img src="imgs/e37f0d065466_1647620935457-e995c704-e5e0-4538-9430-12c93f4721a2.png" alt=""></p>
+<h3 id="transparency-透明贴图">Transparency 透明贴图</h3>
+<p>Change the alpha of color to make material transparent.</p>
+<p>改变颜色的 Alpha 值，实现透明效果。</p>
+<p><img src="imgs/ddc4c2e2acc5_1647620885675-29eefdd9-cac3-416f-9f34-d350741ec584.png" alt=""></p>
+<p>Add Core RP Mat Component on your mesh renderer.</p>
+<p>在你的 mesh renderer 组件上挂载  Core RP Mat 组件。</p>
+<p><img src="imgs/6b586c884288_1647620518810-5ec2c80b-c703-4f46-b4e1-e5bfb0de1896.png" alt=""></p>
+<p>Select the CoreRPMatData  you created previously. You need to make the linked material on CoreRPMatData is one of the mesh renderer that contains the same material.</p>
+<p>选择你先前创建的 CoreRPMatData。你需要保证你添加的 linked material 是其节点下某个 Mesh Renderer 所拥有的材质球。</p>
+<p><img src="imgs/ef64daeba65d_1647621003422-156504a6-e5af-43a8-9ee4-47e135a515b3.png" alt=""></p>
+<h2 id="section-1"></h2>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>14. Upload to Steam Workshop 上传 Steam 创意工坊 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="14. Upload to Steam Workshop 上传 Steam 创意工坊 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="14-upload-to-steam-workshop-上传-steam-创意工坊">14. Upload to Steam Workshop 上传 Steam 创意工坊</h1>
+
+<p>You should read this doc before get started. This will help you to update mods on multi-platform without re-importing all your resources.</p>
+<p>在开始之前，你应该了解这个文章，方便你进行多平台的同时更新。（国内创意工坊需要加速器来访问...）</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/fxg5w8">4. Multi-Platform Build 多平台打包</a></p>
+<h1 id="preparation-准备">Preparation 准备</h1>
+<p>You need to build the pipline. And you get a folder with mod resources.</p>
+<p>首先，你要打包 Mod 的 Package 获得如下图的模组资源目录。<img src="imgs/1620ea5ef4f5_1671210713255-c523d0bb-37c9-40e1-808e-108301b5d427.png" alt=""></p>
+<p><img src="imgs/3b6e5e4c4869_1671210789683-2ccbea6c-c536-431e-a76c-89db3238e738.png" alt=""></p>
+<h1 id="mod-upload-tool-模组上传工具">Mod Upload Tool 模组上传工具</h1>
+<p>Select mod upload tool from Steam.</p>
+<p>从 Steam 选择模组上传工具。</p>
+<p><img src="imgs/05f116f0aa4b_1647618110496-b73cabca-2e74-43e9-ae6b-7e4c1e922548.png" alt=""></p>
+<p>Or from mod project</p>
+<p>或者 从模组工程的菜单打开</p>
+<p><img src="imgs/16cd26a7203b_1671210949081-3062e7e5-a112-4e94-b18b-dd1abf2ebd1a.png" alt=""></p>
+<h1 id="create-your-mod-package-创建你的模组包">Create your mod package 创建你的模组包</h1>
+<p>Input the mod pack file name to create item</p>
+<p>输入你的模组名称，然后点击 Create Item 按钮</p>
+<p><img src="imgs/5919584d75ae_1647618328999-e8b96dde-abcb-49dd-acbe-126d23511c01.png" alt=""></p>
+<h2 id="copy-your-mod-resources-拷贝你的模组资源">Copy your mod resources. 拷贝你的模组资源</h2>
+<p>Copy the prepared mod resources（PanzerWar-Mods\UnityProject\Build\Mod-BuildPipline\StandaloneWindows64\StandaloneWindows64_<your pack="" name="">_ShipSteam） to new folder: SteamLibrary\steamapps\common\Cry of War\Mod-PW-Uploader\WorkshopContent&lt;Your item name&gt;</your></p>
+<p>拷贝你准备好的模组资源（PanzerWar-Mods\UnityProject\Build\Mod-BuildPipline\StandaloneWindows64\StandaloneWindows64_&lt;你的 ModPack 名称&gt;_ShipSteam）到这个新文件夹r: SteamLibrary\steamapps\common\Cry of War\Mod-PW-Uploader\WorkshopContent&lt;你的Item名称&gt;</p>
+<p><img src="imgs/59f5bd81f2bf_1671210855113-0e38f7d1-1d12-4364-9435-c36edecea177.png" alt=""></p>
+<h2 id="preview-icon-预览图片">Preview Icon 预览图片</h2>
+<p>Preview icon should an jpg or png image file size less than 1mb.</p>
+<p>预览图片应该是一张 jpg 或者 png，其大小应该小于 1mb.</p>
+<p>You can click pick icon to select icon faster.</p>
+<p>你可以通过点击 Pick Icon 按钮，选择图片。</p>
+<p><img src="imgs/8e2fb1a6fe6c_1647618575654-3b0d51f0-145e-4281-af6a-afd40c981d3b.png" alt=""></p>
+<h2 id="basic-information-基础信息">Basic Information 基础信息</h2>
+<p>You need to input title and description.</p>
+<p>你需要输入标题与简介。</p>
+<p><img src="imgs/1b07177c2cf1_1647618738446-821d59a1-9a47-4cb0-87b3-b2db68d858e9.png" alt=""></p>
+<h2 id="tag-标签">Tag 标签</h2>
+<p>You can select the following tag to help sorting. Vehicle,Skin,Voice,Map</p>
+<p>你可以选择标签如： Vehicle,Skin,Voice,Map 方便进行分类</p>
+<p><img src="imgs/f6e14afb1183_1647618750076-6bff8c8b-a83c-44d0-a184-1f9c36b1d2e2.png" alt=""></p>
+<h2 id="visibility-可见性">Visibility 可见性</h2>
+<p>Visibility will decide who can see your workshop item. Private means only you can see it. Friend means only you and friends can see it.  Public means everyone can see it.</p>
+<p>可见性会决定谁可以看到你的创意工坊内容。 Private 表示只有你可以看见。Friend 表示你和你的好友可以看到。Public 表示所有人可以看到。</p>
+<p><img src="imgs/7104cbb7f1ba_1647618817552-c221b1d5-8ccd-48ba-b920-eef67037e68b.png" alt=""></p>
+<h2 id="click-submit-to-upload-点击提交以上传">Click Submit to upload 点击提交以上传</h2>
+<p><img src="imgs/58be346c9fb6_1647618562130-0fd86d6a-fd1a-412f-a7fa-12d21ed6d415.png" alt=""></p>
+<p><img src="imgs/8c8edfd31741_1647618944323-a5715037-5f80-483d-bfb0-ceea334c9bcc.png" alt=""></p>
+<h2 id="fq-常见问题">F&amp;Q 常见问题</h2>
+<h3 id="1-you-need-to-accept-the-steam-workshop-legal-agreement-for-this-game-before-you-can-upload-items">1. You need to accept the Steam Workshop legal agreement for this game before you can upload items!</h3>
+<p>Visit： [https://steamcommunity.com/id/<your steamid="">/myworkshopfiles/](<a href="https://steamcommunity.com/id/">https://steamcommunity.com/id/</a><your steamid="">/myworkshopfiles/) and accept the legal agreement. Replace <your steamid=""> in url to your steam id</your></your></your></p>
+<p>访问 [https://steamcommunity.com/id/<your steamid="">/myworkshopfiles/](<a href="https://steamcommunity.com/id/">https://steamcommunity.com/id/</a><your steamid="">/myworkshopfiles/) 然后同意协议，将链接中的<your steamid=""> 改成你的 Steam ID.</your></your></your></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>18.1 Jenkins 安装与配置教程 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="18.1 Jenkins 安装与配置教程 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="181-jenkins-安装与配置教程">18.1 Jenkins 安装与配置教程</h1>
+
+<h1 id="1-安装-jenkins">1. 安装 Jenkins：</h1>
+<p>Jenkins 是一款开源的自动化构建工具，你需要先安装 Jenkins。你可以从 Jenkins 的官方网站 <a href="https://www.jenkins.io/download/">https://www.jenkins.io/download/</a> 上下载适合你系统的 Jenkins 安装包，按照安装向导进行安装。安装成功后，你可以通过在浏览器中输入 <a href="http://localhost:8080/">http://localhost:8080/</a> 访问 Jenkins。</p>
+<h2 id="面向小白的详细的安装教程">面向小白的详细的安装教程：</h2>
+<blockquote>
+<ol>
+<li>在你的服务器或本地计算机上打开一个浏览器，并转到 Jenkins 官方网站：<a href="https://www.jenkins.io/download/%E3%80%82">https://www.jenkins.io/download/。</a></li>
+<li>在 Jenkins 的下载页面上，你可以看到不同操作系统的 Jenkins 安装包。选择适合你的操作系统的 Jenkins 安装包下载链接，比如 Windows 系统可以选择 Windows 的 MSI 安装包。</li>
+<li>下载完成后，双击安装包打开安装向导。按照向导的提示，选择安装目录、安装类型等设置。默认情况下，Jenkins 会安装在 C:\Program Files (x86)\Jenkins 目录下。</li>
+<li>在安装过程中，你需要选择安装 Jenkins 的运行环境。你可以选择安装 Jenkins 的 Windows 服务或者作为一个普通的 Windows 程序运行。对于大多数情况，我们建议安装 Jenkins 的 Windows 服务，以便在系统重启后能够自动启动 Jenkins。</li>
+<li>安装完成后，Jenkins 会启动并监听默认的 HTTP 端口 8080。你可以在浏览器中输入 <a href="http://localhost:8080/">http://localhost:8080/</a> 访问 Jenkins 的 Web 界面。如果你安装了 Jenkins 的 Windows 服务，那么 Jenkins 会在后台自动运行，并且你可以在 Windows 服务列表中找到它，以便在需要的时候手动启动、停止或重启 Jenkins。</li>
+<li>在首次启动 Jenkins 时，你需要输入管理员帐号的用户名和密码。Jenkins 会要求你选择安装插件，你可以选择推荐的插件或者手动选择需要安装的插件。安装插件需要一些时间，请耐心等待。</li>
+<li>安装完成后，你会看到 Jenkins 的主界面。现在你已经成功安装了 Jenkins，可以开始使用它来构建你的项目。</li>
+</ol>
+</blockquote>
+<h1 id="2-安装-unity3d">2. 安装 Unity3D：</h1>
+<p>在 Jenkins 中打包 Unity3D 项目之前，需要在 Jenkins 服务器上安装 Unity3D。确保安装了适合你项目的 Unity3D 版本。</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/ylrmcc004ksogs5v">Unity Engine Requirement Unity 引擎版本要求</a></p>
+<h1 id="3-安装-unity3d-插件">3. 安装 Unity3D 插件：</h1>
+<p>在 Jenkins 中打包 Unity3D 项目，需要安装 Unity3D 插件。打开 Jenkins，进入“插件管理”页面，搜索“Unity3D”并安装。安装成功后，你需要重启 Jenkins。</p>
+<p><img src="imgs/23e1d014b2d4_1678808900026-59bf7d21-8d3e-44bf-98f3-34c45fba6f45.png" alt=""></p>
+<h1 id="4-配置-jenkins-项目">4. 配置 Jenkins 项目：</h1>
+<p>进入 Jenkins 项目的“配置”页面。在设置 Unity3D 安装目录路径。</p>
+<p><img src="imgs/84da543c5494_1678808965160-e4ffaf1c-6372-4a75-9c24-d9fc97ac03c0.png" alt=""></p>
+<p><img src="imgs/2861a1deed2a_1678809003360-ad517246-05dc-4c95-aa9a-7530f0673948.png" alt=""></p>
+<h1 id="5-创建-jenkins-项目">5. 创建 Jenkins 项目：</h1>
+<p>在 Jenkins 中创建一个新项目。进入 Jenkins 主页，点击“新建项目”按钮，选择“自由风格软件项目”并输入项目名称。</p>
+<p>增加一个构建步骤：</p>
+<p><img src="imgs/e73606a70870_1678809187663-34e603b3-ddba-4043-89f0-501fd701649b.png" alt=""></p>
+<p>选择刚刚配置的 Unity，然后设置如下打包命令</p>
+<pre><code class="lang-shell">-projectPath &lt;项目路径&gt; -batchmode -quit -executeMethod ShanghaiWindy.Editor.Utility_BuildPipline.DoBuildPiplineManifest -config &lt;配置文件路径&gt;
+</code></pre>
+<p><img src="imgs/d6a25f76765f_1678808439838-77c2e6d5-1c01-4b08-861f-96b3f276b247.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

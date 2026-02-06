@@ -1,0 +1,1214 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class VehicleAPI
+ | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class VehicleAPI
+ | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ShanghaiWindy.Core.API.VehicleAPI">
+
+
+  <h1 id="ShanghaiWindy_Core_API_VehicleAPI" data-uid="ShanghaiWindy.Core.API.VehicleAPI" class="text-break">Class VehicleAPI
+</h1>
+  <div class="markdown level0 summary">
+载具通用 API
+Vehicle Common APIs
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">VehicleAPI</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a>.<a class="xref" href="ShanghaiWindy.Core.API.html">API</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="ShanghaiWindy_Core_API_VehicleAPI_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static class VehicleAPI</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetAllDriveableVehicleList_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetAllDriveableVehicleList*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetAllDriveableVehicleList_System_Boolean_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetAllDriveableVehicleList(System.Boolean)">GetAllDriveableVehicleList(bool)</h4>
+  <div class="markdown level1 summary">
+获取所有可驾驶载具列表
+Get All Driveable Vehicle List
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static List&lt;VehicleInfo&gt; GetAllDriveableVehicleList(bool ignoreModule)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">ignoreModule</span></td>
+        <td>是否在模块模式下过滤非模块载具 Ignore non-module vehicles in module mode</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>&gt;</td>
+        <td>可驾驶载具列表 Driveable Vehicle List</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetFilteredBotVehicles_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetFilteredBotVehicles*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetFilteredBotVehicles_System_Int32_System_Int32_System_Boolean_ShanghaiWindy_Core_VehicleInfo_Type_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetFilteredBotVehicles(System.Int32,System.Int32,System.Boolean,ShanghaiWindy.Core.VehicleInfo.Type)">GetFilteredBotVehicles(int, int, bool, Type)</h4>
+  <div class="markdown level1 summary">
+过滤人机载具
+Filter Bot Vehicle
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static List&lt;VehicleInfo&gt; GetFilteredBotVehicles(int minRank, int maxRank, bool allowArtillery, VehicleInfo.Type vehicleType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">minRank</span></td>
+        <td>最小等级 Min Rank</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">maxRank</span></td>
+        <td>最大等级 Max Rank</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">allowArtillery</span></td>
+        <td>允许使用火炮 Allow Artillery</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>.<span class="xref">ShanghaiWindy.Core.VehicleInfo.Type</span></td>
+        <td><span class="parametername">vehicleType</span></td>
+        <td>载具类型 Vehicle Type</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>&gt;</td>
+        <td>载具列表 Vehicle List</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetFilteredVehicles_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetFilteredVehicles*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetFilteredVehicles_System_Int32_System_Int32_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetFilteredVehicles(System.Int32,System.Int32)">GetFilteredVehicles(int, int)</h4>
+  <div class="markdown level1 summary">
+过滤载具
+Filter Vehicle
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static List&lt;VehicleInfo&gt; GetFilteredVehicles(int minRank, int maxRank)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">minRank</span></td>
+        <td>最小等级 Min Rank</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">maxRank</span></td>
+        <td>最大等级 Max Rank</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>&gt;</td>
+        <td>载具列表 Vehicle List</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetFireList_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetFireList*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetFireList_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetFireList(ShanghaiWindy.Core.BaseInitSystem)">GetFireList(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">
+从载具中获取所有火力系统。
+Get all the fire system from vehicle.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static List&lt;BaseFireSystem&gt; GetFireList(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.BaseFireSystem.html">BaseFireSystem</a>&gt;</td>
+        <td>火力系统数组 Array of fire system</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetPlayerVehicle_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetPlayerVehicle*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetPlayerVehicle" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetPlayerVehicle">GetPlayerVehicle()</h4>
+  <div class="markdown level1 summary">
+获取玩家的载具。如果玩家未出现，则可能为空。
+Get the player vehicle. It can be null if player is not spawned.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static BaseInitSystem GetPlayerVehicle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td>一个已存在的本地玩家 A exist local player</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetVehicleInfoByGuid_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetVehicleInfoByGuid*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetVehicleInfoByGuid_System_String_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetVehicleInfoByGuid(System.String)">GetVehicleInfoByGuid(string)</h4>
+  <div class="markdown level1 summary">
+获取载具信息
+Get vehicle info guid
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static VehicleInfo GetVehicleInfoByGuid(string guid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">guid</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetVehicleInfoByName_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetVehicleInfoByName*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetVehicleInfoByName_System_String_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetVehicleInfoByName(System.String)">GetVehicleInfoByName(string)</h4>
+  <div class="markdown level1 summary">
+获取载具信息
+Get Vehicle Info
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static VehicleInfo GetVehicleInfoByName(string vehicleName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">vehicleName</span></td>
+        <td>载具名称 Vehicle Name</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a></td>
+        <td>载具信息 Vehicle Info</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsArmyVehicle_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsArmyVehicle*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsArmyVehicle_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsArmyVehicle(ShanghaiWindy.Core.BaseInitSystem)">IsArmyVehicle(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">
+判断载具是否为陆军类型
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool IsArmyVehicle(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>基础类型载具 Vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>返回载具是否为陆军类型 true if ArmyVehicle, false otherwise</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsFlightVehicle_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsFlightVehicle*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsFlightVehicle_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsFlightVehicle(ShanghaiWindy.Core.BaseInitSystem)">IsFlightVehicle(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">
+判断载具是否为飞行器类型
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool IsFlightVehicle(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>基础类型载具 Vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>返回载具是否为飞行器类型 true if FlightVehicle, false otherwise</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsTankVehicle_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsTankVehicle*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsTankVehicle_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsTankVehicle(ShanghaiWindy.Core.BaseInitSystem)">IsTankVehicle(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">
+判断载具是否为坦克类型
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool IsTankVehicle(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>基础类型载具 Vehicle </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>返回载具是否为坦克类型 true if TankVehicle, false otherwise</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_LoadVehicleThumbnail_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_LoadVehicleThumbnail_ShanghaiWindy_Core_VehicleInfo_OnVehicleThumbnailLoadedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo,OnVehicleThumbnailLoadedDelegate)">LoadVehicleThumbnail(VehicleInfo, OnVehicleThumbnailLoadedDelegate)</h4>
+  <div class="markdown level1 summary">
+加载缩略图
+
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void LoadVehicleThumbnail(VehicleInfo vehicleInfo, OnVehicleThumbnailLoadedDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a></td>
+        <td><span class="parametername">vehicleInfo</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleThumbnailLoadedDelegate</span></td>
+        <td><span class="parametername">callback</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_RandomPickVehicleFromList_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RandomPickVehicleFromList*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_RandomPickVehicleFromList_System_Collections_Generic_List_ShanghaiWindy_Core_VehicleInfo__System_Int32_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RandomPickVehicleFromList(System.Collections.Generic.List{ShanghaiWindy.Core.VehicleInfo},System.Int32)">RandomPickVehicleFromList(List&lt;VehicleInfo&gt;, int)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static List&lt;VehicleInfo&gt; RandomPickVehicleFromList(List&lt;VehicleInfo&gt; vehicleList, int maxVehicles)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>&gt;</td>
+        <td><span class="parametername">vehicleList</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">maxVehicles</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_RegisterBulletFiredEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_RegisterBulletFiredEvent_ShanghaiWindy_Core_BaseInitSystem_System_Int32_OnFiredDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,OnFiredDelegate)">RegisterBulletFiredEvent(BaseInitSystem, int, OnFiredDelegate)</h4>
+  <div class="markdown level1 summary">
+注册载具开火时触发的事件。
+Register an event dispatched when vehicle fired.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void RegisterBulletFiredEvent(BaseInitSystem vehicle, int index, OnFiredDelegate tankFiredDelegate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>火炮序号 Fire index</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnFiredDelegate</span></td>
+        <td><span class="parametername">tankFiredDelegate</span></td>
+        <td>开火回调 Fired Callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleDestroyedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleDestroyedDelegate)">RegisterVehicleDestroyedEvent(BaseInitSystem, OnVehicleDestroyedDelegate)</h4>
+  <div class="markdown level1 summary">
+注册载具被摧毁事件。
+Register an event dispatched when vehicle destroyed.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void RegisterVehicleDestroyedEvent(BaseInitSystem vehicle, OnVehicleDestroyedDelegate vehicleDestroyedDelegate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleDestroyedDelegate</span></td>
+        <td><span class="parametername">vehicleDestroyedDelegate</span></td>
+        <td>载具被击毁回调 Vehicle destroyed callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleGameObjectDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleRemovedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleRemovedDelegate)">RegisterVehicleGameObjectDestroyedEvent(BaseInitSystem, OnVehicleRemovedDelegate)</h4>
+  <div class="markdown level1 summary">
+注册载具物体被摧毁时触发的事件。
+Register an event dispatched when vehicle gamobject destroyed.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void RegisterVehicleGameObjectDestroyedEvent(BaseInitSystem vehicle, OnVehicleRemovedDelegate vehicleGameObjectDestroyed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleRemovedDelegate</span></td>
+        <td><span class="parametername">vehicleGameObjectDestroyed</span></td>
+        <td>载具物体被摧毁回调 Vehicle gamobject destroyed callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleLoadedEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleLoadedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleLoadedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleLoadedDelegate)">RegisterVehicleLoadedEvent(BaseInitSystem, OnVehicleLoadedDelegate)</h4>
+  <div class="markdown level1 summary">
+注册载具加载事件。
+Register an event dispatched when vehicle loaded.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void RegisterVehicleLoadedEvent(BaseInitSystem vehicle, OnVehicleLoadedDelegate vehicleLoadedDelegate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleLoadedDelegate</span></td>
+        <td><span class="parametername">vehicleLoadedDelegate</span></td>
+        <td>载具加载完毕回调 Vehicle loaded callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_TryGetArmyInitSystemFromGameObject_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_TryGetArmyInitSystemFromGameObject_GameObject_ArmyInitSystem__" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject,ArmyInitSystem@)">TryGetArmyInitSystemFromGameObject(GameObject, out ArmyInitSystem)</h4>
+  <div class="markdown level1 summary">
+尝试从目标游戏对象中获取陆军载具。
+Try get army vehicle from target gameobject.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool TryGetArmyInitSystemFromGameObject(GameObject gameObject, out ArmyInitSystem armyInitSystem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td>目标游戏对象 Target gameobject</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ArmyInitSystem</span></td>
+        <td><span class="parametername">armyInitSystem</span></td>
+        <td>步兵载具 Army</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否为步兵载具 Is army</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_TryGetBaseInitSystemFromGameObject_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetBaseInitSystemFromGameObject*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_TryGetBaseInitSystemFromGameObject_GameObject_ShanghaiWindy_Core_BaseInitSystem__" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetBaseInitSystemFromGameObject(GameObject,ShanghaiWindy.Core.BaseInitSystem@)">TryGetBaseInitSystemFromGameObject(GameObject, out BaseInitSystem)</h4>
+  <div class="markdown level1 summary">
+尝试从目标游戏对象中获取载具
+Try get vehicle from target gameobject.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool TryGetBaseInitSystemFromGameObject(GameObject gameObject, out BaseInitSystem baseInitSystem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">baseInitSystem</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_TryGetFlightInitSystemFromGameObject_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetFlightInitSystemFromGameObject*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_TryGetFlightInitSystemFromGameObject_GameObject_ShanghaiWindy_Core_FlightInitSystem__" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetFlightInitSystemFromGameObject(GameObject,ShanghaiWindy.Core.FlightInitSystem@)">TryGetFlightInitSystemFromGameObject(GameObject, out FlightInitSystem)</h4>
+  <div class="markdown level1 summary">
+尝试从目标游戏对象中获取飞行载具。
+Try get flight vehicle from target gameobject.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool TryGetFlightInitSystemFromGameObject(GameObject gameObject, out FlightInitSystem flightInitSystem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td>目标游戏对象 Target gameobject</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.FlightInitSystem</span></td>
+        <td><span class="parametername">flightInitSystem</span></td>
+        <td>飞行载具 Flight</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否为飞行载具 Is flight</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_TryGetTankInitSystemFromGameObject_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetTankInitSystemFromGameObject*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_TryGetTankInitSystemFromGameObject_GameObject_ShanghaiWindy_Core_VehicleInitSystem__" data-uid="ShanghaiWindy.Core.API.VehicleAPI.TryGetTankInitSystemFromGameObject(GameObject,ShanghaiWindy.Core.VehicleInitSystem@)">TryGetTankInitSystemFromGameObject(GameObject, out VehicleInitSystem)</h4>
+  <div class="markdown level1 summary">
+尝试从目标游戏对象中获取坦克载具。
+Try get tank vehicle from target gameobject.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static bool TryGetTankInitSystemFromGameObject(GameObject gameObject, out VehicleInitSystem vehicleInitSystem)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td><span class="parametername">gameObject</span></td>
+        <td>目标游戏对象 Target gameobject</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.VehicleInitSystem.html">VehicleInitSystem</a></td>
+        <td><span class="parametername">vehicleInitSystem</span></td>
+        <td>坦克 Tank</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否为坦克载具 Is tank vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterBulletFiredEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterBulletFiredEvent_ShanghaiWindy_Core_BaseInitSystem_System_Int32_OnFiredDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,OnFiredDelegate)">UnRegisterBulletFiredEvent(BaseInitSystem, int, OnFiredDelegate)</h4>
+  <div class="markdown level1 summary">
+注销载具开火时触发的事件。
+UnRegister an event dispatched when vehicle fired.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void UnRegisterBulletFiredEvent(BaseInitSystem vehicle, int index, OnFiredDelegate tankFiredDelegate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>火炮序号 Fire index</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnFiredDelegate</span></td>
+        <td><span class="parametername">tankFiredDelegate</span></td>
+        <td>开火回调 Fired callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleDestroyedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleDestroyedDelegate)">UnRegisterVehicleDestroyedEvent(BaseInitSystem, OnVehicleDestroyedDelegate)</h4>
+  <div class="markdown level1 summary">
+注销载具被摧毁时触发的事件。
+Unregister an event dispatched when vehicle destroyed.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void UnRegisterVehicleDestroyedEvent(BaseInitSystem vehicle, OnVehicleDestroyedDelegate vehicleDestroyedDelegate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleDestroyedDelegate</span></td>
+        <td><span class="parametername">vehicleDestroyedDelegate</span></td>
+        <td>载具被击毁回调 Vehicle destroyed callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleGameObjectDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleRemovedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleRemovedDelegate)">UnRegisterVehicleGameObjectDestroyedEvent(BaseInitSystem, OnVehicleRemovedDelegate)</h4>
+  <div class="markdown level1 summary">
+注销载具物体被摧毁时触发的事件。
+Unregister an event dispatched when vehicle gamobject destroyed.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void UnRegisterVehicleGameObjectDestroyedEvent(BaseInitSystem vehicle, OnVehicleRemovedDelegate vehicleGameObjectDestroyed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleRemovedDelegate</span></td>
+        <td><span class="parametername">vehicleGameObjectDestroyed</span></td>
+        <td>载具物体被摧毁回调 Vehicle gamobject destroyed callback</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleLoaedEvent_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleLoaedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleLoadedDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleLoadedDelegate)">UnRegisterVehicleLoaedEvent(BaseInitSystem, OnVehicleLoadedDelegate)</h4>
+  <div class="markdown level1 summary">
+取消注册载具加载事件。
+Unregister an event dispatched when vehicle loaded.
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void UnRegisterVehicleLoaedEvent(BaseInitSystem vehicle, OnVehicleLoadedDelegate vehicleLoadedDelegate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">OnVehicleLoadedDelegate</span></td>
+        <td><span class="parametername">vehicleLoadedDelegate</span></td>
+        <td>载具加载完毕回调 Vehicle loaded callback</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

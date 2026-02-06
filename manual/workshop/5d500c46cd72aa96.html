@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>2. GLB Import 工坊 (GLB 格式）模型规范 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="2. GLB Import 工坊 (GLB 格式）模型规范 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2-glb-import-工坊-glb-格式模型规范">2. GLB Import 工坊 (GLB 格式）模型规范</h1>
+
+<p>The tutorial process uses Blender modeling software, and the steps can be referred to for other modeling software as well. Blender can be downloaded for free on Steam.</p>
+<p>教程使用的流程均为 Blender 建模软件的流程，其他建模软件也可以参考此教程的一些规范， Blender 可在 Steam 上免费下载。</p>
+<p>The finished file this tutorial provided.</p>
+<p>本期教程的所完成的案例文件</p>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2024/rar/23154724/1719818123512-5e5a1af4-02c0-44b8-847e-5d185fbb2df7.rar">BattleGun.rar</a></p>
+<h1 id="prepare-visual-model-准备外观模型">Prepare Visual Model 准备外观模型</h1>
+<p>If using Blender, please refer to the following documentation. For the PBR workflow, follow the PBR rules outlined in the documentation to create the following textures: 1. Base Color, 2. Metallic and Roughness, 3. Baked Ambient Occlusion, and 4. Normal Map. Other textures mentioned in the documentation are not required. You can use Substance Painter to create the necessary textures. If not following the PBR workflow, you need to create 1. Base Color (mandatory) and 2. Normal Map (optional). However, the model will not achieve realistic physical reflections.</p>
+<p>若使用 Blender，则可以参考下面的文档。</p>
+<p>制作 PBR 流程，则需按文档中的 PBR 规则，制作 1. 基础色，2. 金属度与粗糙度，3. 烘焙的环境光遮蔽与 4. 法线贴图。 其他文档中提及的贴图无需制作。可使用 Substance Painter 制作相应的贴图。</p>
+<p>若不按 PBR 流程制作，则需要制作 1. 基础色 （必选）  2. 法线贴图 （可选）。但是模型无法获得真实的物理反光效果。</p>
+<p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">glTF 2.0 - Blender 4.3 Manual</a></p>
+<p>（中文用户点击此链接打开文档：<a href="https://docs.blender.org/manual/zh-hans/4.3/addons/import_export/scene_gltf2.html">https://docs.blender.org/manual/zh-hans/4.3/addons/import_export/scene_gltf2.html</a>）</p>
+<p>Preview the effect of the completed model in Blender.</p>
+<p>制作完成后的模型在 Blender 中的效果预览。</p>
+<p><img src="imgs/59fdc77e3894_1719719819913-afe4675d-77c6-41c8-8826-211df74e4818.png" alt="Visual Model 显示外观模型"></p>
+<p>Additionally, you need to use LOD tools to create corresponding low-polygon models for displaying objects at a distance, reducing rendering performance pressure. You can choose to use the InstaLOD Blender plugin to automatically create LODs:</p>
+<p>此外，你需要使用 LOD 工具，制作对应的低多边形的模型，用于物体在远处的显示，以降低渲染性能压力。</p>
+<p>可以选择使用 InstaLOD 的 Blender插件自动制作 LOD：<a href="https://docs.instalod.io/en/Products/Integrations/InstaLOD_For_Blender">https://docs.instalod.io/en/Products/Integrations/InstaLOD_For_Blender</a></p>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2024/zip/23154724/1719735002465-d0dcc2b2-8ebb-454f-84b9-343e7cdd4dc0.zip">InstaLOD for Blender (Windows _ MacOS).zip</a></p>
+<p>or use InstaLOD Studio.</p>
+<p>或者使用 InstaLOD Studio</p>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2024/zip/23154724/1719733472239-cc4cb890-67a4-4a13-a6a7-fdab82cf82bd.zip">InstaLOD Studio (Windows).zip</a></p>
+<h1 id="child-parent-父子关系">Child-Parent 父子关系</h1>
+<h2 id="rule-放置规则">Rule 放置规则</h2>
+<p>Create four empty objects (Shift + A and select Empty - Plain Axes) and name them Visual, Collider, HitBox, and Module respectively. Note that the size and spelling must be exactly the same. Visual is used for placing the appearance model and LOD, Collider is used for placing non-concave collision models, HitBox is used for placing external armor, and Module is used for placing internal armor.</p>
+<p>创建四个空物体 （Shift + A 选择 Empty - Plain Axes），并分别命名为 Visual，Collider，HitBox 与 Module。 注意，大小与拼写需要保持完全一致。 Visual 用于放置外观模型与LOD，Collider 用于摆放非凹的碰撞模型，HitBox 用于放置外部装甲，Module 用于放置内部装甲。</p>
+<p><img src="imgs/d661713b4f54_1719720424567-71705b3d-b12a-47b1-9193-0b490600e0c3.png" alt="Create Plain Axes 创建空轴"></p>
+<p><img src="imgs/210f725c65cb_1719720506300-fc706d69-6753-46aa-8450-7dbebc801e54.png" alt="Renamed 重命名"></p>
+<h2 id="completed-state-制作完成后状态">Completed State 制作完成后状态</h2>
+<p>After completing the various models, place them according to the rules in section 2.1. The specifications for creating damage models and internal structure models will be introduced in sections 3 and 4. (If this module is an object that can be hit by shells, these two models must be created.) The Collider collision model only needs to be created when making the vehicle hull model.</p>
+<p>在制作完成各类模型后，按照 2.1 的规则放置各类模型。</p>
+<p>伤害模型与内构模型的制作规范会在第 3，4 节中介绍。 （若此模块是可被炮弹击中的物体，则必须制作这两个模型）</p>
+<p>Collider 碰撞模型只有制作车体模型时候才需要制作。</p>
+<p><img src="imgs/3035b92fad7f_1719737643512-c42e6955-0eab-41a3-bf34-9ab1bceb9730.png" alt="Completed 完成后"></p>
+<h2 id="lod-特殊处理">LOD 特殊处理</h2>
+<p>Make the LOD models child objects of the unoptimized model and name them OriginalObjectName_LODNumber (starting from 1, up to a maximum of 3 LOD levels). **The name of the unoptimized original model must end with LOD0.  **</p>
+<p>将 LOD 模型作为未优化模型的子物体，并命名为 原始物体名称_LOD序号 （序号从1 开始，至多可以制作3层 LOD)。<strong>未优化的原始模型的名称必须以 LOD0 结尾。</strong></p>
+<p><img src="imgs/8965747e5c70_1719737716877-925e902e-8dbc-4e5c-a527-d5704816590b.png" alt=""></p>
+<p>LOD 模型</p>
+<h1 id="hitbox-外部装甲">HitBox 外部装甲</h1>
+<p>Reduced-polygon versions of the visual model. Models with different armor thicknesses need to be separated and then set their armor type and armor thickness according to the naming conventions in section 5.</p>
+<p>外观模型的减面版本的模型。 不同装甲厚度的模型需要分离开，然后通过第5节的命名规范设置其装甲类型，装甲厚度。</p>
+<p><img src="imgs/d8c230515b66_1719733989735-745bb179-9982-4a1f-aa9a-0b8d36cd72b6.png" alt="Reduced-polygon versions of the visual model 外观模型的减面版本的模型"></p>
+<p><img src="imgs/177568ca9b17_1719734025662-7efe028d-8811-41fb-9279-6c55d2e15928.png" alt="Models with different armor thicknesses need to be separated 不同装甲厚度的模型需要分离开"></p>
+<h1 id="internal-module-内构模型">Internal Module 内构模型</h1>
+<p>Lower-polygon internal module models are used for post-penetration shell damage. Then, set their type, armor thickness, and health according to the naming conventions in section 5.</p>
+<p>较低面数的内部模块模型，用于炮弹后效伤害。 然后通过第5节的命名规范设置其类型，装甲厚度与血量。</p>
+<p><img src="imgs/d6e7a01f67e4_1719736060590-ba924d44-4172-45d1-85c6-e090818197b8.png" alt="Lower-polygon internal module models 较低面数的内部模块模型"></p>
+<h1 id="collider-碰撞模型">Collider 碰撞模型</h1>
+<p>只有制作给车体的模型，才需要制作碰撞模型。</p>
+<p><img src="imgs/7c4c2e62d6a6_1719743677689-340933b6-3064-447a-866d-9d0163975815.png" alt=""></p>
+<h1 id="naming-命名规范">Naming 命名规范</h1>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/ouu3ksg776g7tmlm">2.12 HitBox Naming 伤害模型命名规范</a></p>
+<h1 id="export-导出">Export 导出</h1>
+<p>Select the model you want to export, then click on glTF 2.0, choose the .glb format, check Selected Objects, and click Export.</p>
+<p>选中你要导出的模型，然后点击 glTF 2.0，格式选择 .glb ，勾上 Selected Object，然后点击 Export。</p>
+<p><img src="imgs/8610f090118a_1719736292489-ab28b9d7-dd75-43cb-bed7-019f9b55af72.png" alt=""></p>
+<p><img src="imgs/33ba5b16f690_1719736334697-135a8b61-30a6-4ef1-b3b0-5c268a6312dc.png" alt=""></p>
+<p><img src="imgs/f96f2176ab0d_1719736357062-5fcd6eed-13f6-4696-aa08-a1ddaa92ad6b.png" alt=""></p>
+<h1 id="using-model-使用模型">Using Model 使用模型</h1>
+<p>Use Model Importer</p>
+<p>使用模型导入工具</p>
+<h2 id="windows-platform-电脑平台">Windows Platform 电脑平台</h2>
+<p><img src="imgs/e852e55c22f7_1719736669692-e624b4e6-bf05-4023-83d5-35f2a261dd7e.png" alt=""></p>
+<p><img src="imgs/5d742bda8f77_1719736699208-3855419f-af4c-46a8-858f-562381a2525c.png" alt=""></p>
+<p><img src="imgs/439bd1b1b332_1719736762542-53056e9d-665c-4239-95ee-4b1d34aab8ff.png" alt=""></p>
+<h2 id="android-platform-安卓平台">Android Platform 安卓平台</h2>
+<p><a href="https://customspace.yuque.com/chaojiduolajiang/panzerwar/wa12no60ensgazht#VEcNb">此处为语雀卡片，点击链接查看</a></p>
+<p>Click on the glb format file and select Panzer War: Definitive Edition as the opening application. Enter the Tank Workshop, choose Model Import, and enter your glb file name (including the file extension).</p>
+<p>点击 glb 格式文件，打开方式选择 装甲纷争：决定版。进入坦克工坊，选择 模型导入，输入你的 glb 文件名 （带后缀）</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

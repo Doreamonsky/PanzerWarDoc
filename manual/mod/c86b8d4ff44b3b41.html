@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>28.2. DIY 地图工程导入 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="28.2. DIY 地图工程导入 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="282-diy-地图工程导入">28.2. DIY 地图工程导入</h1>
+
+<h1 id="拉取-diy-素材">拉取 DIY 素材</h1>
+<p>本仓库包含 DIY 地图的美术素材以及 DIY 地图的配置文件。 导入 Yaml 配置是必备的。</p>
+<p>使用 git 拉取项目： <a href="https://gitlab.waroftanks.cn/modder/ShanghaiWindyMaps">https://gitlab.waroftanks.cn/modder/ShanghaiWindyMaps</a></p>
+<h1 id="打开-urp-工程场景">打开 URP 工程场景</h1>
+<p>确保拉取了默认的 Mod 工程，然后使用 Unity 打开 UnityURPProject 文件夹</p>
+<p><img src="imgs/9ddba1ec3bbf_1676304775153-df32e578-cf73-4205-85f6-a60b44fbe748.png" alt=""></p>
+<h1 id="导入包">导入包</h1>
+<p>打开 Package Manager，导入本地的 DIY 素材包</p>
+<p><img src="imgs/203054a6162f_1676304851290-79df6677-b0ac-435b-af47-edff54b32a95.png" alt=""></p>
+<p>选中这两个文件夹下的 package.json</p>
+<p><img src="imgs/5facb97554ea_1676304886024-13ff7e7b-0829-4768-b2b7-e352f484fab2.png" alt=""></p>
+<p>正确安装后，素材和配置都会显示已经装配至工程</p>
+<p><img src="imgs/8e3c5877fba4_1676304914092-fa16e993-2d62-4b96-965c-e96d9b9ede2f.png" alt=""></p>
+<p>导入 DIY 地图的 Yaml，位于游戏的 saves 文件夹下</p>
+<p><img src="imgs/43ede325491e_1676304960442-026f786e-5fe6-4ee3-9b86-d20eac67a5e3.png" alt=""></p>
+<p>导入后，可以对场景进行编辑与修改。可以通过打包成 Mod 场景的方式，将此地图发布。</p>
+<p>若只是改了位置，也可以选择导出地图的 Yaml</p>
+<p><img src="imgs/44bd29259c2c_1676305005176-6c1342d7-babf-44ca-9129-80561b18cecd.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

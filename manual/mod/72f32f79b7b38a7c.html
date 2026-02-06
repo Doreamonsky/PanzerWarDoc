@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>37. 着色器收集与打包 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="37. 着色器收集与打包 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="37-着色器收集与打包">37. 着色器收集与打包</h1>
+
+<p>如果使用任何的自定义的 Shader，请用以下方式收集其变体：</p>
+<p><img src="imgs/c65a39c6f6fd_1713719391158-1bbb686b-e6fc-4dd6-a37e-41847efd5f69.png" alt=""></p>
+<p>开启开发模式</p>
+<p><img src="imgs/336f82472234_1713719419634-3d3bd5bd-f2da-4ead-9904-751436c6d9e3.png" alt=""></p>
+<p>创建变体收集</p>
+<p><img src="imgs/21c5db82ef38_1713719497023-22fc69d0-5bf0-4578-b02e-0d0f05fe98f2.png" alt=""></p>
+<p>在模组打包文件上，选择刚刚创建的变体收集。</p>
+<p>如果 Shader 存在自定义的 Shader Feature，则需填写在变体收集的列表中。</p>
+<p><img src="imgs/8c58359cf072_1713719541568-58431855-0d47-4613-9bd6-46128e6db4d0.png" alt=""></p>
+<p>点击导出 Shader 变体</p>
+<p><img src="imgs/fc63203b9e33_1713719442621-f8b9c319-7e53-4dc5-b025-99b961ac8e5c.png" alt=""></p>
+<p>会在模组打包文件下方，生成一份 svc 文件</p>
+<p><img src="imgs/09e7e68aff66_1713719561038-929d42c0-ace4-4390-be50-6b20efd8282e.png" alt=""></p>
+<p>拖入打包的资源列表，并勾选上共享相同的着色器。</p>
+<p><img src="imgs/d1439b059d49_1713719583559-afabf455-82e5-4f56-80cb-bcc33f7fc06d.png" alt=""></p>
+<p>打包后，我们会将所有的 Shader 放在一个 .shader 文件下。以保证所有的材质之间的shader ，公用一份。</p>
+<p><img src="imgs/6f7cdd882474_1713719717348-4a02d427-18f7-4560-a68f-f273e2499d50.png" alt=""></p>
+<h1 id="fog-关键词">Fog 关键词</h1>
+<table>
+<thead>
+<tr>
+<th>_FOG_LINEAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_FOG_EXP</td>
+</tr>
+<tr>
+<td>_FOG_EXP2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/595b7c241467_1731504004944-6012b630-03f7-4b08-971c-023b10ace923.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>26.2. Setup Fmod Proj 设置 Fmod 工程 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="26.2. Setup Fmod Proj 设置 Fmod 工程 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="262-setup-fmod-proj-设置-fmod-工程">26.2. Setup Fmod Proj 设置 Fmod 工程</h1>
+
+<p>Make sure you have finished this step.</p>
+<p>确保你已经完成了此步骤。</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/hxsy4x">1. GetStarted 项目初始化</a></p>
+<h1 id="1-import-to-fmod-studio-导入-fmod-studio">1. Import to FMod Studio 导入 FMod Studio</h1>
+<p>**Plan A: Open the pre-configured FMOD project directly and build the banks.<br>
+**<strong>You can then proceed to Step 2.</strong></p>
+<p><strong>方案.A 直接打开已配置完成的 Fmod 工程，然后打包 Bank，</strong></p>
+<p>即可进入步骤 2</p>
+<p>Project download link:</p>
+<p>工程下载地址： <a href="https://www.123865.com/s/8pZNTd-6dSKA">https://www.123865.com/s/8pZNTd-6dSKA</a></p>
+<hr>
+<p><strong>Plan B: Import using an empty project:</strong></p>
+<p><strong>方案.B  导入空项目的方式：</strong></p>
+<p><img src="imgs/b49e620c2f09_1669732020313-87d56436-eb66-4734-9686-1c080127a822.png" alt=""></p>
+<p><img src="imgs/c1ed7120206c_1669732052853-91c81a67-a907-4d4b-90cf-8c758a52bed6.png" alt=""></p>
+<p>Create a empty folder name it as what ever you want. The name is FModUGCFolder in our demonstrate.</p>
+<p>创建一个任意名字的空文件夹，在本次演示中，我使用了 FModUGCFolder 的名称作为文件夹名称</p>
+<p><img src="imgs/336fed3183a9_1669732097127-010df83a-d738-48c1-8624-7062c6e77562.png" alt=""></p>
+<p><img src="imgs/ca102c5d1b54_1669732108078-87d5683a-0200-446a-9541-e59da238d903.png" alt=""></p>
+<p><img src="imgs/37306fd49752_1669732112152-f8e9dcdb-c5d6-42c9-985d-e4bdc830754f.png" alt=""></p>
+<p><img src="imgs/e1f4d09750cc_1669732581591-74b7a76f-ec00-4bc4-a265-277994f83cd0.png" alt=""></p>
+<h1 id="2-unity-editor-settting-unity-编辑器设置">2. Unity Editor Settting Unity 编辑器设置</h1>
+<p><img src="imgs/4d8ab71c702d_1669732432894-3d249261-d82d-4d5a-9c74-1292e2a6eb82.png" alt=""></p>
+<p><img src="imgs/f0b3572d45ef_1669732135669-566a5af7-a0dd-428f-86a0-53500aa48bcc.png" alt=""></p>
+<p><img src="imgs/cbcd79ad7030_1669732164518-937a8e57-7506-4607-baf5-e497bce9a65a.png" alt=""></p>
+<p><img src="imgs/5902e273f6ae_1669732184964-5c86b394-07d0-413b-8ace-785b28dbe2b7.png" alt=""></p>
+<p><img src="imgs/4513853a678c_1669732358611-22168c51-223c-48cf-a212-842acc9c7602.png" alt=""></p>
+<p><img src="imgs/88f29a8987c6_1669732198313-1a134dba-757b-48eb-9b04-dbc8c5ea584f.png" alt=""></p>
+<p>When you see all the events, it means everything is imported correctly.</p>
+<p>当你看到你的事件名称，这就表明工程已正常设置</p>
+<p><img src="imgs/9fcc642dde65_1669732346995-b0680bfe-c0ce-4c94-8e99-19fc5f90927c.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

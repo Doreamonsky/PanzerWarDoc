@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>18. 持续构建 （脚本化构建模组） | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="18. 持续构建 （脚本化构建模组） | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="18-持续构建-脚本化构建模组">18. 持续构建 （脚本化构建模组）</h1>
+
+<p>创建持续构建流程，可以更快的进行模组文件的迭代更新，高度自定义打包哪些模组，拷贝至什么文件夹，无需手动操作，也无需打开 Unity 点击任何按钮。</p>
+<h1 id="1-创建一个-manifest-描述-json">1. 创建一个 manifest 描述 json</h1>
+<p>modNames 为一个数组，填写你要构建的模组包列表。</p>
+<p>copyInfo 会根据平台，将最终生成的文件拷贝到指定目录。(安卓工程则只拷贝安卓文件，Windows 工程则只拷贝 Windows 文件)</p>
+<p>isPackage 为 true 则拷贝 modpackage 为 false 则拷贝 buildpipline 原始资源（传 Steam 创意工坊用）</p>
+<h2 id="案例--testbuildpiplinejson">案例  TestBuildPipline.json</h2>
+<ol>
+<li>构建模组包 BuildPipline-Lua-ModeRes 与 BuildPipline-Vehicles ，生成 modpackage 文件。</li>
+<li>将安卓平台资源拷贝至 D:/Projects/Android-Ship 将电脑平台资源拷贝至 D:/Projects/Windows-Ship</li>
+</ol>
+<pre><code class="lang-json">{
+    &quot;infos&quot;: [
+        {
+            &quot;modNames&quot;: [
+                &quot;BuildPipline-Lua-ModeRes&quot;,
+                &quot;BuildPipline-Vehicles&quot;
+            ],
+            &quot;copyInfo&quot;: [
+                {
+                    &quot;platform&quot;: &quot;Android&quot;,
+                    &quot;dstDir&quot;: &quot;D:/Projects/Android-Ship&quot;
+                },
+                {
+                    &quot;platform&quot;: &quot;StandaloneWindows64&quot;,
+                    &quot;dstDir&quot;: &quot;D:/Projects/Windows-Ship&quot;
+                }
+            ],
+            &quot;isPackage&quot; : true
+        }
+    ]
+}
+</code></pre>
+<h1 id="2-ci-脚本">2. CI 脚本</h1>
+<p>调用 ShanghaiWindy.Editor.Utility_BuildPipline.DoBuildPiplineManifest 传入 -config 参数 (manifest 路径)</p>
+<h2 id="案例-buildpiplinecish">案例 BuildPiplineCI.sh</h2>
+<p>projectDir 为你的 Unity 项目路径</p>
+<p>manifestDir 为 步骤.1 中的 manifest 的 json 文件的路径</p>
+<p>editorDir 为你的 Unity 安装路径</p>
+<p>logPath 为你的打包日志输出路径</p>
+<p>（Windows 上执行 bash，可安装一个 git，然后通过 git bash 执行以下脚本）</p>
+<pre><code class="lang-bash">projectDir=&quot;D:\Projects\PanzerWar-URP&quot;
+manifestDir=&quot;D:\Projects\PanzerWar-URP\CLI\BuildPiplineCI\TestBuildPipline.json&quot;
+editorDir=&quot;H:\UnityEditor\2021.3.0f1\Editor\Unity.exe&quot;
+logPath=&quot;D:\Projects\PanzerWar-URP\CLI\BuildPiplineCI\log.txt&quot;
+$editorDir -projectPath $projectDir -batchmode -quit -executeMethod ShanghaiWindy.Editor.Utility_BuildPipline.DoBuildPiplineManifest -config $manifestDir -logFile $logPath
+</code></pre>
+<p><strong>完整的构建案例，可直接查看 PanzerWar-Mods\UnityProject\BuildPiplineCI 文件夹，</strong></p>
+<p>**调整 **BuildPiplineCI.sh <strong>为自己项目的路径，用 git bash 方式执行即可。</strong></p>
+<p><img src="imgs/94acbe4e59ea_1651983372541-b99904f9-4c9a-4cd0-aee0-1a908dc4e7e0.png" alt=""></p>
+<h1 id="3-jenkins-集成">3. Jenkins 集成</h1>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/vcg270sfdel8a3i3">Jenkins 安装与配置教程</a></p>
+<h1 id="4-特殊情况">4. 特殊情况</h1>
+<h2 id="1-buildpipline-位于-modmanager-的子文件夹">1. BuildPipline 位于 ModManager 的子文件夹</h2>
+<p>这种情况，需要 modNames 设置名称时候，也要加上前缀</p>
+<p>比如位于 Assets/ModManager/<strong>AAAA/BBBB/Vehicle-XXX</strong></p>
+<p>则填写 <strong>AAAA/BBBB/Vehicle-XXX</strong></p>
+<p><img src="imgs/4b6a409faa05_1653837789470-d95ca9e7-903e-47f5-98f2-65361018216d.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

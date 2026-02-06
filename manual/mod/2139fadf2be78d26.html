@@ -1,0 +1,854 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.12 HitBox Naming 伤害模型命名规范 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.12 HitBox Naming 伤害模型命名规范 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="0212-hitbox-naming-伤害模型命名规范">02.12 HitBox Naming 伤害模型命名规范</h1>
+
+<h1 id="naming-命名规范">Naming 命名规范</h1>
+<p><img src="imgs/808395e56965_1637478562884-bfba78af-75b9-49a9-acb3-5610c8b4ff76.png" alt=""></p>
+<p>There is a naming rule that can automatically set hitbox armor in Unity.</p>
+<p>Normal Armor: Name_{ArmorValue}</p>
+<p>Intermittent Armor: Name_{ArmorValue}_Inter</p>
+<p>Replace {ArmorValue} to armor number such as 100</p>
+<p>对于伤害模型，有一个命名规范，会在 Unity 内自动设置装甲数值</p>
+<p>普通装甲： 名称_{装甲值}</p>
+<p>间隙装甲： 名称_{装甲值}_Inter</p>
+<p>替换 {装甲值} 为你想要的数值 比如 100</p>
+<h3 id="internal-module-内构模型-命名规范">Internal Module 内构模型 命名规范</h3>
+<p>There is a naming rule that can automatically set internal module in unity</p>
+<p><strong>{ModuleType}</strong><em>**{HitPoint}</em>{ArmorValue}**</p>
+<p>Example:</p>
+<p><strong>Transmission_120_15</strong></p>
+<p>If duplicate items in blender you can name with .001 .002</p>
+<p>eg.</p>
+<p><strong>AmmoShell_50_15.001</strong></p>
+<p><strong>AmmoShell_50_15.002</strong></p>
+<p>对于内构模型，有一个命名规范，会在 Unity 内自动设置模块类型</p>
+<p><strong>{模块类型}</strong><em>**{血量}</em>{装甲值}**</p>
+<p>例子：</p>
+<p><strong>Transmission_120_15</strong></p>
+<p>如果在 Blender 建模软件内存在重名的情况，你可以以 .001 .002 结尾</p>
+<p>如：</p>
+<p><strong>AmmoShell_50_15.001</strong></p>
+<p><strong>AmmoShell_50_15.002</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>{ModuleType}</strong> <strong>{模块类型}</strong></th>
+<th>备注 (仅供参考，建模软件中请填写左侧的英文名称)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transmission</td>
+<td>传动</td>
+</tr>
+<tr>
+<td>Engine</td>
+<td>引擎</td>
+</tr>
+<tr>
+<td>HeatSink</td>
+<td>散热器</td>
+</tr>
+<tr>
+<td>OilTank</td>
+<td>油箱</td>
+</tr>
+<tr>
+<td>Traversing</td>
+<td>方向机</td>
+</tr>
+<tr>
+<td>Breech</td>
+<td>炮闩</td>
+</tr>
+<tr>
+<td>Elevator</td>
+<td>高低机</td>
+</tr>
+<tr>
+<td>Sighting</td>
+<td>观察镜</td>
+</tr>
+<tr>
+<td>AmmoShell</td>
+<td>弹药架</td>
+</tr>
+<tr>
+<td>Crew</td>
+<td>成员</td>
+</tr>
+<tr>
+<td>InternalArmor</td>
+<td>内部装甲</td>
+</tr>
+<tr>
+<td>Radiator</td>
+<td>雷达</td>
+</tr>
+<tr>
+<td>AutoReloader</td>
+<td>自动装弹机</td>
+</tr>
+<tr>
+<td>OilPipline</td>
+<td>滑油系统</td>
+</tr>
+<tr>
+<td>SurfaceControlRope</td>
+<td>舵面控制钢索</td>
+</tr>
+<tr>
+<td>WingSurface</td>
+<td>机翼</td>
+</tr>
+</tbody>
+</table>
+<p>If the crew module type is Crew. It should end with its crew type or crew types. <strong>_{CrewType}</strong></p>
+<p>Examples:</p>
+<p><strong>Crew_10_0_Commander_Gunner</strong></p>
+<p><strong>Crew_10_0_Radioer</strong></p>
+<p>duplicate items in blender you can name with .001 .002</p>
+<p>eg.</p>
+<p><strong>Crew_10_0_Reloader.001</strong></p>
+<p><strong>Crew_10_0_Reloader.002</strong></p>
+<p>如果模块类型为Crew (成员)，则可根据其职业，</p>
+<p>以** _{职业类型}** 结尾</p>
+<p>例子：</p>
+<p><strong>Crew_10_0_Commander_Gunner</strong></p>
+<p><strong>Crew_10_0_Radioer</strong></p>
+<p>如果在 Blender 建模软件内存在重名的情况，你可以以 .001 .002 结尾</p>
+<p><strong>Crew_10_0_Reloader.001</strong></p>
+<p><strong>Crew_10_0_Reloader.002</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>{CrewType}</strong></th>
+<th>备注 (仅供参考，建模软件中请填写左侧的英文名称)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commander</td>
+<td>指挥官</td>
+</tr>
+<tr>
+<td>Driver</td>
+<td>驾驶员</td>
+</tr>
+<tr>
+<td>Gunner</td>
+<td>炮手</td>
+</tr>
+<tr>
+<td>Radioer</td>
+<td>通讯员</td>
+</tr>
+<tr>
+<td>Reloader</td>
+<td>装填手</td>
+</tr>
+</tbody>
+</table>
+<h1 id="hit-point-血量设置规范">Hit Point 血量设置规范</h1>
+<h3 id="模块血量比例表">模块血量比例表</h3>
+<h4 id="总体hitpoint设置建议及模块血量分配">总体HitPoint设置建议及模块血量分配</h4>
+<table>
+<thead>
+<tr>
+<th>车辆等级范围</th>
+<th>Vehicle Level Range</th>
+<th>建议总体HitPoint数值</th>
+<th>Recommended Total Hit Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-3级车</td>
+<td>Level 1-3</td>
+<td>50 左右</td>
+<td>Around 50</td>
+</tr>
+<tr>
+<td>4-6级车</td>
+<td>Level 4-6</td>
+<td>100 左右</td>
+<td>Around 100</td>
+</tr>
+<tr>
+<td>7-8级车</td>
+<td>Level 7-8</td>
+<td>200 左右</td>
+<td>Around 200</td>
+</tr>
+<tr>
+<td>9-10级车</td>
+<td>Level 9-10</td>
+<td>300 左右</td>
+<td>Around 300</td>
+</tr>
+<tr>
+<td>11-12级车</td>
+<td>Level 11-12</td>
+<td>350 左右</td>
+<td>Around 350</td>
+</tr>
+<tr>
+<td>13-15级车</td>
+<td>Level 13-15</td>
+<td>380 左右（不建议超过400以上）</td>
+<td>Around 380 (not recommended to exceed 400)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-3级车--level-1-3">1-3级车 / Level 1-3</h3>
+<table>
+<thead>
+<tr>
+<th>模块类型</th>
+<th>英文名称</th>
+<th>血量比例系数</th>
+<th>计算结果 (HitPoints = 50)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传动</td>
+<td>Transmission</td>
+<td>0.4</td>
+<td>20</td>
+</tr>
+<tr>
+<td>引擎</td>
+<td>Engine</td>
+<td>0.8</td>
+<td>40</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>HeatSink</td>
+<td>0.25</td>
+<td>13</td>
+</tr>
+<tr>
+<td>油箱</td>
+<td>OilTank</td>
+<td>0.5</td>
+<td>25</td>
+</tr>
+<tr>
+<td>横向运动</td>
+<td>Traversing</td>
+<td>0.5</td>
+<td>25</td>
+</tr>
+<tr>
+<td>炮闩</td>
+<td>Breech</td>
+<td>0.25</td>
+<td>13</td>
+</tr>
+<tr>
+<td>升降机</td>
+<td>Elevator</td>
+<td>0.25</td>
+<td>13</td>
+</tr>
+<tr>
+<td>瞄准具</td>
+<td>Sighting</td>
+<td>0.2</td>
+<td>10</td>
+</tr>
+<tr>
+<td>弹药</td>
+<td>AmmoShell</td>
+<td>0.5</td>
+<td>25</td>
+</tr>
+<tr>
+<td>乘员</td>
+<td>Crew</td>
+<td>0.1</td>
+<td>None: 10, Vast: 20, Alien: 50, Huawei: 100</td>
+</tr>
+<tr>
+<td>内部装甲</td>
+<td>InternalArmor</td>
+<td>0.5</td>
+<td>25</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>Radiator</td>
+<td>0.2</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-6级车--level-4-6">4-6级车 / Level 4-6</h3>
+<table>
+<thead>
+<tr>
+<th>模块类型</th>
+<th>英文名称</th>
+<th>血量比例系数</th>
+<th>计算结果 (HitPoints = 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传动</td>
+<td>Transmission</td>
+<td>0.4</td>
+<td>40</td>
+</tr>
+<tr>
+<td>引擎</td>
+<td>Engine</td>
+<td>0.8</td>
+<td>80</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>HeatSink</td>
+<td>0.25</td>
+<td>25</td>
+</tr>
+<tr>
+<td>油箱</td>
+<td>OilTank</td>
+<td>0.5</td>
+<td>50</td>
+</tr>
+<tr>
+<td>横向运动</td>
+<td>Traversing</td>
+<td>0.5</td>
+<td>50</td>
+</tr>
+<tr>
+<td>炮闩</td>
+<td>Breech</td>
+<td>0.25</td>
+<td>25</td>
+</tr>
+<tr>
+<td>升降机</td>
+<td>Elevator</td>
+<td>0.25</td>
+<td>25</td>
+</tr>
+<tr>
+<td>瞄准具</td>
+<td>Sighting</td>
+<td>0.2</td>
+<td>20</td>
+</tr>
+<tr>
+<td>弹药</td>
+<td>AmmoShell</td>
+<td>0.5</td>
+<td>50</td>
+</tr>
+<tr>
+<td>乘员</td>
+<td>Crew</td>
+<td>0.1</td>
+<td>None: 10, Vast: 20, Alien: 50, Huawei: 100</td>
+</tr>
+<tr>
+<td>内部装甲</td>
+<td>InternalArmor</td>
+<td>0.5</td>
+<td>50</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>Radiator</td>
+<td>0.2</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-8级车--level-7-8">7-8级车 / Level 7-8</h3>
+<table>
+<thead>
+<tr>
+<th>模块类型</th>
+<th>英文名称</th>
+<th>血量比例系数</th>
+<th>计算结果 (HitPoints = 200)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传动</td>
+<td>Transmission</td>
+<td>0.4</td>
+<td>80</td>
+</tr>
+<tr>
+<td>引擎</td>
+<td>Engine</td>
+<td>0.8</td>
+<td>160</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>HeatSink</td>
+<td>0.25</td>
+<td>50</td>
+</tr>
+<tr>
+<td>油箱</td>
+<td>OilTank</td>
+<td>0.5</td>
+<td>100</td>
+</tr>
+<tr>
+<td>横向运动</td>
+<td>Traversing</td>
+<td>0.5</td>
+<td>100</td>
+</tr>
+<tr>
+<td>炮闩</td>
+<td>Breech</td>
+<td>0.25</td>
+<td>50</td>
+</tr>
+<tr>
+<td>升降机</td>
+<td>Elevator</td>
+<td>0.25</td>
+<td>50</td>
+</tr>
+<tr>
+<td>瞄准具</td>
+<td>Sighting</td>
+<td>0.2</td>
+<td>40</td>
+</tr>
+<tr>
+<td>弹药</td>
+<td>AmmoShell</td>
+<td>0.5</td>
+<td>100</td>
+</tr>
+<tr>
+<td>乘员</td>
+<td>Crew</td>
+<td>0.1</td>
+<td>None: 10, Vast: 20, Alien: 50, Huawei: 100</td>
+</tr>
+<tr>
+<td>内部装甲</td>
+<td>InternalArmor</td>
+<td>0.5</td>
+<td>100</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>Radiator</td>
+<td>0.2</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<h3 id="9-10级车--level-9-10">9-10级车 / Level 9-10</h3>
+<table>
+<thead>
+<tr>
+<th>模块类型</th>
+<th>英文名称</th>
+<th>血量比例系数</th>
+<th>计算结果 (HitPoints = 300)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传动</td>
+<td>Transmission</td>
+<td>0.4</td>
+<td>120</td>
+</tr>
+<tr>
+<td>引擎</td>
+<td>Engine</td>
+<td>0.8</td>
+<td>240</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>HeatSink</td>
+<td>0.25</td>
+<td>75</td>
+</tr>
+<tr>
+<td>油箱</td>
+<td>OilTank</td>
+<td>0.5</td>
+<td>150</td>
+</tr>
+<tr>
+<td>横向运动</td>
+<td>Traversing</td>
+<td>0.5</td>
+<td>150</td>
+</tr>
+<tr>
+<td>炮闩</td>
+<td>Breech</td>
+<td>0.25</td>
+<td>75</td>
+</tr>
+<tr>
+<td>升降机</td>
+<td>Elevator</td>
+<td>0.25</td>
+<td>75</td>
+</tr>
+<tr>
+<td>瞄准具</td>
+<td>Sighting</td>
+<td>0.2</td>
+<td>60</td>
+</tr>
+<tr>
+<td>弹药</td>
+<td>AmmoShell</td>
+<td>0.5</td>
+<td>150</td>
+</tr>
+<tr>
+<td>乘员</td>
+<td>Crew</td>
+<td>0.1</td>
+<td>None: 10, Vast: 20, Alien: 50, Huawei: 100</td>
+</tr>
+<tr>
+<td>内部装甲</td>
+<td>InternalArmor</td>
+<td>0.5</td>
+<td>150</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>Radiator</td>
+<td>0.2</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-12级车--level-11-12">11-12级车 / Level 11-12</h3>
+<table>
+<thead>
+<tr>
+<th>模块类型</th>
+<th>英文名称</th>
+<th>血量比例系数</th>
+<th>计算结果 (HitPoints = 350)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传动</td>
+<td>Transmission</td>
+<td>0.4</td>
+<td>140</td>
+</tr>
+<tr>
+<td>引擎</td>
+<td>Engine</td>
+<td>0.8</td>
+<td>280</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>HeatSink</td>
+<td>0.25</td>
+<td>88</td>
+</tr>
+<tr>
+<td>油箱</td>
+<td>OilTank</td>
+<td>0.5</td>
+<td>175</td>
+</tr>
+<tr>
+<td>横向运动</td>
+<td>Traversing</td>
+<td>0.5</td>
+<td>175</td>
+</tr>
+<tr>
+<td>炮闩</td>
+<td>Breech</td>
+<td>0.25</td>
+<td>88</td>
+</tr>
+<tr>
+<td>升降机</td>
+<td>Elevator</td>
+<td>0.25</td>
+<td>88</td>
+</tr>
+<tr>
+<td>瞄准具</td>
+<td>Sighting</td>
+<td>0.2</td>
+<td>70</td>
+</tr>
+<tr>
+<td>弹药</td>
+<td>AmmoShell</td>
+<td>0.5</td>
+<td>175</td>
+</tr>
+<tr>
+<td>乘员</td>
+<td>Crew</td>
+<td>0.1</td>
+<td>None: 10, Vast: 20, Alien: 50, Huawei: 100</td>
+</tr>
+<tr>
+<td>内部装甲</td>
+<td>InternalArmor</td>
+<td>0.5</td>
+<td>175</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>Radiator</td>
+<td>0.2</td>
+<td>70</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-15级车--level-13-15">13-15级车 / Level 13-15</h3>
+<table>
+<thead>
+<tr>
+<th>模块类型</th>
+<th>英文名称</th>
+<th>血量比例系数</th>
+<th>计算结果 (HitPoints = 380)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>传动</td>
+<td>Transmission</td>
+<td>0.4</td>
+<td>152</td>
+</tr>
+<tr>
+<td>引擎</td>
+<td>Engine</td>
+<td>0.8</td>
+<td>304</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>HeatSink</td>
+<td>0.25</td>
+<td>95</td>
+</tr>
+<tr>
+<td>油箱</td>
+<td>OilTank</td>
+<td>0.5</td>
+<td>190</td>
+</tr>
+<tr>
+<td>横向运动</td>
+<td>Traversing</td>
+<td>0.5</td>
+<td>190</td>
+</tr>
+<tr>
+<td>炮闩</td>
+<td>Breech</td>
+<td>0.25</td>
+<td>95</td>
+</tr>
+<tr>
+<td>升降机</td>
+<td>Elevator</td>
+<td>0.25</td>
+<td>95</td>
+</tr>
+<tr>
+<td>瞄准具</td>
+<td>Sighting</td>
+<td>0.2</td>
+<td>76</td>
+</tr>
+<tr>
+<td>弹药</td>
+<td>AmmoShell</td>
+<td>0.5</td>
+<td>190</td>
+</tr>
+<tr>
+<td>乘员</td>
+<td>Crew</td>
+<td>0.1</td>
+<td>None: 10, Vast: 20, Alien: 50, Huawei: 100</td>
+</tr>
+<tr>
+<td>内部装甲</td>
+<td>InternalArmor</td>
+<td>0.5</td>
+<td>190</td>
+</tr>
+<tr>
+<td>散热器</td>
+<td>Radiator</td>
+<td>0.2</td>
+<td>76</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section"></h3>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

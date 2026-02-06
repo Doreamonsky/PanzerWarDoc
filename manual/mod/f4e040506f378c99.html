@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.8 樱花的坦克抛壳动画 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.8 樱花的坦克抛壳动画 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="028-樱花的坦克抛壳动画">02.8 樱花的坦克抛壳动画</h1>
+
+<p><strong>一、Blender内准备</strong></p>
+<p>1.我们需要在Blender中设置好退壳装置的旋转位置(如果没有退壳装置，忽略这一步)。以AGS为例，们需要设置物体原点到旋转中心，如图所示：</p>
+<p><img src="imgs/bbf6bdcea284_1680929668901-b4185fa0-f398-4a1b-9122-9b68549de13b.png" alt=""></p>
+<p>2.我们将弹壳放入炮塔内，设置为炮管或者炮塔的子级：</p>
+<p><img src="imgs/77728fd12c5a_1680929673031-6538c138-774b-4fcb-9a10-d6be9ff3bbd6.png" alt=""></p>
+<p>注：如果退壳装置旋转轴不是x,y,z轴，以T72A为例，可以设置一个空物体，旋转到和抛壳装置同一个角度，并将退壳装置设置为空物体的子级，这样在unity里我们只需旋转空物体即可，如下图所示：</p>
+<p><img src="imgs/19fd305f4cc1_1680929680463-7046aaa7-e616-4f8e-970b-43cc29b5c2f7.png" alt=""></p>
+<p><strong>二、<strong><strong>unity</strong></strong>内制作</strong></p>
+<p>1.首先打开unity的animation组件</p>
+<p><img src="imgs/f972a8af49b7_1680929691741-b149274a-3023-471f-ac40-4c1015f3ff1f.png" alt=""></p>
+<p>2.选定需要制作动画的模型后，点击create创建动画</p>
+<p><img src="imgs/42c3b2a11c8a_1680929696439-8a939233-af48-4ab5-98e2-2380ef714643.png" alt=""></p>
+<p>3.设置你的动画文件名称后，点击保存</p>
+<p><img src="imgs/101cf7c98763_1680929700084-160bf3ce-efb8-4360-9f5a-30d891f335e5.png" alt=""></p>
+<p>4.点击Add Property，可以在Transform中创建位置，旋转，大小三种变换，我们这里选择位置Position，如果需要动画过程中旋转，也可以添加Rotation。</p>
+<p><img src="imgs/ada882da72ee_1680929706809-b24c5568-2429-4bf6-b93e-9bbe2a95434a.png" alt=""></p>
+<p>5.动画的制作可以参考如下链接中的视频：</p>
+<p><a href="https://www.bilibili.com/video/BV17t4y1F7CZ/?spm_id_from=333.788&amp;vd_source=5f5f291242e9ace2af6f7105ccc768bf">https://www.bilibili.com/video/BV17t4y1F7CZ/?spm_id_from=333.788&amp;vd_source=5f5f291242e9ace2af6f7105ccc768bf</a></p>
+<p>在动画制作过程中，我们可以点击下方的curves，调整动画曲线</p>
+<p><img src="imgs/fe3b44bc9c09_1680929712064-89316928-fb0f-4b7e-907d-50d0b54735ff.png" alt=""></p>
+<p>注：对于旋转轴不是x,y,z的模型，我们需要将坐标系调整到局部坐标下来制作动画，如下图所示：</p>
+<p><img src="imgs/8baec17c1840_1680929725309-e9426f5e-89b3-457a-b498-91769b4a454c.png" alt=""></p>
+<p>同时需要调整旋转为四元数旋转模式(需要在没有制作动画之前设置，否则动画过程不会生效，需要重新制作：</p>
+<p><img src="imgs/1bc7aee33a84_1680929744266-2ca16c44-76d6-4e25-87fc-1b5ae0acaa57.png" alt=""></p>
+<p>**三、**<strong>组件设置</strong></p>
+<ol>
+<li>
+<pre><code>增加Animation组件，如下设置：
+</code></pre>
+</li>
+</ol>
+<p><img src="imgs/00314ec856ca_1680929749268-06523868-304b-4858-9b34-726fd59a1d43.png" alt=""></p>
+<ol start="2">
+<li>
+<pre><code>点击制作的动画，进入debug模式，勾选Legacy后，返回Normal模式：
+</code></pre>
+</li>
+</ol>
+<p><img src="imgs/3e99e7a452ce_1680929755321-6fc7ff2d-1fa4-40e0-b0e1-80e8d461da18.png" alt=""></p>
+<p>保证wrap mode模式为default</p>
+<p><img src="imgs/28423aa09cfa_1680929764431-56f3b25b-fc87-4b30-810e-62c5727d5643.png" alt=""></p>
+<p>3.挂载Lua脚本组件：</p>
+<p><img src="imgs/5ae362ac33b4_1680929776933-b6e89cf4-bb5c-41d8-82b7-e8b2f93b8b52.png" alt=""></p>
+<p>lua代码如下：</p>
+<pre><code class="lang-lua">local PlayAnimationComponent = class(&quot;PlayAnimationComponent&quot;)
+
+Behavior()
+Property = {
+}
+
+function PlayAnimationComponent:OnStarted()
+    local animation = self.script:GetNativeComponent(&quot;Animation&quot;)
+    local ret, vehicle = self.script:TryGetTankInitSystem()
+    if ret then
+        VehicleAPI.RegisterVehicleLoadedEvent(vehicle, function()
+            VehicleAPI.RegisterBulletFiredEvent(vehicle, 0, function()
+                local isPlayed = animation:Play()
+            end)
+        end)
+    end
+end
+
+return PlayAnimationComponent
+
+</code></pre>
+<p>至此动画制作完成。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>2. VehicleTextData 使用说明 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="2. VehicleTextData 使用说明 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2-vehicletextdata-使用说明">2. VehicleTextData 使用说明</h1>
+
+<p><strong>VehicleTextData</strong> 是一个用于配置载具（如坦克、机甲、汽车等）的各种参数的类。本文档将指导您如何在 Unity Inspector 界面上使用它。</p>
+<h2 id="基础">基础</h2>
+<h3 id="玩家状态参数-基础数据">玩家状态参数 (基础数据)</h3>
+<p><strong>PSParameter</strong> - 这个属性包含了玩家状态的基本参数。例如，生命值、国家、载具类型等。</p>
+<h2 id="移动">移动</h2>
+<h3 id="履带参数">履带参数</h3>
+<p><strong>PTCParameter</strong> - 仅在载具使用履带时显示，此属性包含了履带控制器的参数。例如，坦克的动力，速度，负重轮参数，独立悬挂履带等。</p>
+<h3 id="机甲参数">机甲参数</h3>
+<p><strong>MechParameter</strong> - 包含机甲控制器的参数。例如，机甲的转向速度，飞行参数等。</p>
+<h3 id="汽车参数">汽车参数</h3>
+<p><strong>CarControllerParameter</strong> - 包含汽车控制器的参数。</p>
+<h2 id="开火">开火</h2>
+<h3 id="共享主炮数据">共享主炮数据</h3>
+<p><strong>SharedGunData</strong> - 此属性用于存储可以在多个载具之间共享的主炮数据。包括炮弹类型、射速、弹道、弹药容量等。</p>
+<h3 id="主炮参数">主炮参数</h3>
+<p><strong>TFParameter</strong> - 当没有共享主炮数据时显示，此属性包含了主炮的参数。例如，射速、弹道、炮口初速、后坐力等。</p>
+<h3 id="自爆参数">自爆参数</h3>
+<p><strong>VehicleSelfExplosionParams</strong> - 包含载具自爆功能的相关参数。例如，自爆范围、自爆伤害、自爆延迟等。</p>
+<h2 id="炮塔">炮塔</h2>
+<h3 id="共享炮塔数据">共享炮塔数据</h3>
+<p><strong>SharedTurretData</strong> - 用于存储可以在多个载具之间共享的炮塔数据。包括炮塔旋转速度、炮管升降速度、最大仰角等。</p>
+<h3 id="炮塔参数">炮塔参数</h3>
+<p><strong>MTParameter</strong> - 当没有共享炮塔数据时显示，此属性包含了炮塔的参数。例如，炮塔旋转角度、炮管升降速度、最大俯角等。</p>
+<h2 id="新多炮塔">新多炮塔</h2>
+<h3 id="多炮塔数据">多炮塔数据</h3>
+<p><strong>MultiFireSystemData</strong> - 此属性包含了多炮塔系统的数据。例如，每个炮塔的炮弹类型、射速、弹道等。</p>
+<h3 id="简单多炮塔数据">简单多炮塔数据</h3>
+<p><strong>SimpleVehicleFireSystemParameters</strong> - 此属性包含了简单d多炮塔系统的参数。例如，炮塔旋转速度、炮管升降速度等。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

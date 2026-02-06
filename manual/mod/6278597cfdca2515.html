@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="41-mod-mirror-site-setup-guide-模组镜像站点搭建指南">41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南</h1>
+
+<h1 id="source-源">Source 源</h1>
+<p>We have compiled all the mods, their update dates, and download links in the following JSON file: We will refresh this JSON file every 12 hours.</p>
+<p><a href="https://dl-workshop.windyverse.net/packages/files_list.json">https://dl-workshop.windyverse.net/packages/files_list.json</a></p>
+<p>我们将所有的模组，更新日期与其下载链接，放在了如下 json 文件中。</p>
+<p>我们会每12小时刷新一次本 json。</p>
+<p><a href="https://dl-workshop.windyverse.net/packages/files_list.json">https://dl-workshop.windyverse.net/packages/files_list.json</a></p>
+<h1 id="run-script-一键下载脚本">Run script 一键下载脚本</h1>
+<p>We have thoughtfully prepared a Python script for you that allows one-click downloading of all mods. You can use it directly.</p>
+<p>我们贴心的为各位准备了一键下载所有模组的 python 脚本，可供各位直接使用。</p>
+<h2 id="dependence-脚本依赖">Dependence 脚本依赖</h2>
+<p>Before running the script, please ensure that the following dependencies are installed in your Python environment:</p>
+<p>在运行脚本之前，请确保您的 Python 环境中已安装以下依赖项：</p>
+<ul>
+<li><code>requests</code>：用于处理 HTTP 请求。</li>
+<li><code>tqdm</code>：用于显示进度条。</li>
+</ul>
+<p>You can install the dependencies using the following command:</p>
+<p>您可以通过以下命令安装依赖：</p>
+<pre><code class="lang-bash">pip install requests tqdm
+</code></pre>
+<h2 id="run-script-运行脚本">Run Script 运行脚本</h2>
+<pre><code class="lang-python">import os
+import json
+import requests
+import zipfile
+import re
+from datetime import datetime
+from tqdm import tqdm
+
+# Path to the JSON file that tracks downloaded files
+TRACKING_FILE = 'downloaded_files.json'
+TEMP_DIR = 'tmp'  # Temporary directory for incomplete downloads
+SAVE_DIR = 'packages'  # Base directory where all files will be saved
+
+PLATFORM_FOLDERS = {
+    'PlatformAndroid': 'android',
+    'PlatformWin64': 'win64',
+    'PlatformIos': 'ios'
+}
+
+def load_downloaded_files():
+    &quot;&quot;&quot;Load the list of downloaded files from the tracking JSON file.&quot;&quot;&quot;
+    if os.path.exists(TRACKING_FILE):
+        with open(TRACKING_FILE, 'r') as file:
+            return json.load(file)
+    return {}
+
+def save_downloaded_file(downloaded_files, url, local_path):
+    &quot;&quot;&quot;Save the downloaded file information to the tracking JSON file.&quot;&quot;&quot;
+    downloaded_files[url] = local_path
+    with open(TRACKING_FILE, 'w') as file:
+        json.dump(downloaded_files, file, indent=4)
+
+def sanitize_mod_name(mod_name):
+    # Remove only special characters that are not allowed in file names
+    return re.sub(r'[&lt;&gt;:&quot;/\\|?*]', '', mod_name)
+
+def download_file(url, temp_path):
+    try:
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+
+        total_size = int(response.headers.get('content-length', 0))
+        block_size = 8192  # 8KB
+        progress_bar = tqdm(total=total_size, unit='iB', unit_scale=True, desc=os.path.basename(temp_path), leave=False)
+
+        with open(temp_path, 'wb') as file:
+            for chunk in response.iter_content(chunk_size=block_size):
+                progress_bar.update(len(chunk))
+                file.write(chunk)
+        
+        progress_bar.close()
+
+        if total_size != 0 and progress_bar.n != total_size:
+            print(f&quot;Warning: Downloaded file size mismatch for {temp_path}&quot;)
+        else:
+            print(f&quot;Downloaded: {temp_path}&quot;)
+    except requests.exceptions.RequestException as e:
+        print(f&quot;Failed to download {url}: {e}&quot;)
+
+def extract_mod_name_from_zip(zip_path):
+    if os.path.exists(zip_path):  # Check if the file exists before attempting to open it
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            if 'package.json' in zip_ref.namelist():
+                with zip_ref.open('package.json') as package_file:
+                    package_data = json.load(package_file)
+
+                    # Check for defaultName in localizedModName
+                    mod_name = package_data.get('modName', 'default')
+                    localized_mod_name = package_data.get('localizedModName', {})
+                    default_name = localized_mod_name.get('defaultName', '').strip()
+
+                    # Prioritize defaultName if it exists and is not empty
+                    if default_name:
+                        mod_name = default_name
+                    
+                    return sanitize_mod_name(mod_name)
+    return None
+
+def validate_downloaded_files(downloaded_files):
+    &quot;&quot;&quot;Check if the files recorded in the tracking JSON exist locally, and remove any entries that don't.&quot;&quot;&quot;
+    missing_files = []
+    for url, path in list(downloaded_files.items()):
+        if not os.path.exists(path):
+            print(f&quot;File missing: {path}. Removing from tracking.&quot;)
+            missing_files.append(url)
+    
+    for url in missing_files:
+        del downloaded_files[url]
+
+    # Save the updated tracking list
+    if missing_files:
+        with open(TRACKING_FILE, 'w') as file:
+            json.dump(downloaded_files, file, indent=4)
+
+def download_files_from_json(json_data, downloaded_files):
+    if not os.path.exists(TEMP_DIR):
+        os.makedirs(TEMP_DIR)
+    if not os.path.exists(SAVE_DIR):
+        os.makedirs(SAVE_DIR)
+
+    with tqdm(total=len(json_data), desc=&quot;Overall Progress&quot;, unit=&quot;file&quot;) as overall_progress:
+        for file_info in json_data:
+            file_name = file_info['file_name']
+            download_link = file_info['download_link']
+
+            # Skip if the file is already recorded as downloaded
+            if download_link in downloaded_files:
+                if os.path.exists(downloaded_files[download_link]):
+                    print(f&quot;File already downloaded, skipping: {downloaded_files[download_link]}&quot;)
+                    overall_progress.update(1)
+                    continue
+                else:
+                    print(f&quot;File {downloaded_files[download_link]} is missing. Redownloading.&quot;)
+                    del downloaded_files[download_link]
+
+            # Define the temporary download path
+            temp_file_path = os.path.join(TEMP_DIR, file_name)
+
+            # Download the file to the temporary location
+            download_file(download_link, temp_file_path)
+
+            # Extract modName and rename the file with the prefix
+            mod_name = extract_mod_name_from_zip(temp_file_path)
+            if mod_name:
+                new_file_name = f&quot;{mod_name}-#-#-{file_name}&quot;
+            else:
+                new_file_name = file_name
+
+            # Determine the platform folder based on the filename
+            for platform, folder in PLATFORM_FOLDERS.items():
+                if platform in file_name:
+                    final_dir = os.path.join(SAVE_DIR, folder)
+                    break
+            else:
+                final_dir = SAVE_DIR  # Default to base save directory if no platform is found
+
+            if not os.path.exists(final_dir):
+                os.makedirs(final_dir)
+
+            final_file_path = os.path.join(final_dir, new_file_name)
+
+            # Move the file from the temporary location to the final directory
+            os.rename(temp_file_path, final_file_path)
+            print(f&quot;Moved to: {final_file_path}&quot;)
+
+            # Update the tracking dictionary
+            save_downloaded_file(downloaded_files, download_link, final_file_path)
+            
+            overall_progress.update(1)
+
+if __name__ == &quot;__main__&quot;:
+    json_url = 'https://dl-workshop.windyverse.net/packages/files_list.json'
+
+    try:
+        response = requests.get(json_url)
+        response.raise_for_status()
+        json_data = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f&quot;Failed to retrieve JSON file from {json_url}: {e}&quot;)
+        json_data = []
+
+    if json_data:
+        downloaded_files = load_downloaded_files()
+        validate_downloaded_files(downloaded_files)  # Ensure the tracked files exist
+        download_files_from_json(json_data, downloaded_files)
+
+</code></pre>
+<h1 id="file-synchronization-to-netdisk-文件同步至网盘">File synchronization to NetDisk 文件同步至网盘</h1>
+<p>Using UC NetDisk as an example, automatically back up the <code>packages</code> folder and wait for the synchronization to complete. Once the synchronization is finished, share this folder with the players. This completes the setup of the NetDisk mirror site.</p>
+<p>以 UC 网盘为例，自动备份选择 packages 文件夹，等待其同步完成。然后将此文件夹共享给玩家，即完成网盘镜像站的搭建。</p>
+<p><img src="imgs/293de657d324_1725217181171-1208c7b7-7f26-45f4-b3ea-039f5b037c9a.png" alt=""></p>
+<p><img src="imgs/0240a1426da4_1725217230799-9e1b20f8-34f6-4e79-8ef6-374e4627303d.png" alt=""></p>
+<h2 id="alternative-mirror-site-setup-solutions--其他镜像站搭建方案">Alternative Mirror Site Setup Solutions  其他镜像站搭建方案</h2>
+<p>You can use tools like Nginx to set up a dedicated mod download site. This helps to offload the traffic from the official downloader and improves download speeds.</p>
+<p>可使用 nginx 等工具，搭建专属的模组下载站点，以分流官方下载器的压力，并提高下载速度。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

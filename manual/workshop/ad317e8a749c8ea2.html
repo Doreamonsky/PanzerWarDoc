@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>3. Gun Tutorial 火炮教程 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="3. Gun Tutorial 火炮教程 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="3-gun-tutorial-火炮教程">3. Gun Tutorial 火炮教程</h1>
+
+<h1 id="custom-reload-type-自定义装填类型">Custom Reload Type 自定义装填类型</h1>
+<h2 id="simple-简单">Simple 简单</h2>
+<p>Traditional single-shot shells only require setting the reload time.</p>
+<p>传统的单发炮弹，只需要设置装填时间。</p>
+<p><img src="imgs/4959f5b4f97f_1720280457664-b26d68db-3e46-47a3-8b35-f645c5fbfbd2.png" alt=""></p>
+<h2 id="advance-高级">Advance 高级</h2>
+<p>For multi-shot magazine guns, you need to set the small reload time, the large reload time, and the magazine size.</p>
+<p>多发弹夹炮，需要设置小装填，大装填，以及弹夹长度。</p>
+<p><img src="imgs/4fb21c57d48e_1720280509647-8507bfef-2a96-4d37-ba59-a4dedbc2be1d.png" alt=""></p>
+<p>If the magazine size is too large, you can hide the icon to avoid a cluttered UI.</p>
+<p>如果弹夹长度过大，可以隐藏图标，以避免 UI 过于拥挤。</p>
+<p><img src="imgs/e426a58d2ef5_1720280519104-2953d13f-a005-4b23-a504-bbd1b13e429d.png" alt=""></p>
+<h2 id="drum-弹鼓">Drum 弹鼓</h2>
+<p>Invented by the Italians, the drum mechanism is an optimized type of magazine gun that allows you to fire while loading backup rounds. You need to set the reload time for each backup round and the minimum firing interval of the drum.</p>
+<p>由意大利发明的弹鼓机制，弹夹炮的优化类型，可以一边装载备发弹，一边开火。需要设置每个备发弹的装填时间，以及弹鼓的最小射击间隔。</p>
+<p><img src="imgs/e55bb4c77f0d_1720280662921-01c432af-5998-4d67-abce-89f9e488d45d.png" alt=""></p>
+<h1 id="import-default-bullet-导入现有炮弹">Import Default Bullet 导入现有炮弹</h1>
+<p>You can modify the specific parameters of the default shells by importing the default shells.</p>
+<p>你可以通过导入默认炮弹的方式，以修改默认的炮弹的具体参数。</p>
+<p>If you wish to fully customize your shells, you can also directly add different types of shells using the add button above.</p>
+<p>如果你希望完全自定义你的炮弹，也可以直接通过上方的添加按钮，添加不同类型的炮弹。</p>
+<p><img src="imgs/da15683f9a4d_1720279864362-98fa2bda-293d-4523-8ed3-2273be7f16e9.png" alt=""></p>
+<p>The shell data will display the basic parameters of the shell, along with some specialized parameters in modular mode.</p>
+<p>在炮弹数据中会显示炮弹的基本参数，与模块模式中的一些专用参数。</p>
+<p><img src="imgs/1f4c434b350e_1720279926841-2c463374-0b29-42eb-b333-27136315059a.png" alt=""></p>
+<p>In the debugging information of the shell, you can see the calculated data. If you modify the parameters of the shell, you need to click the recalculate button.</p>
+<p>在炮弹的调试信息中，你可以看到计算后的相关数据。若修改了炮弹的参数，需要点击重新计算按钮。</p>
+<p><img src="imgs/2641d22efc41_1720279935068-a5d32b6d-680e-4e12-a5f1-20d94faf2a73.png" alt=""></p>
+<h1 id="demarre-formula-德马尔公式">Demarre Formula 德马尔公式</h1>
+<p>In our game, the penetration mechanics are based on the De Marre formula, which is used to estimate the penetration of a shell against armor. Here is an explanation of the formula and its parameters.</p>
+<p>在我们的游戏中，穿甲弹机制基于德马尔公式，用于估算穿甲弹对装甲的穿透能力。以下是公式及其参数的解释。</p>
+<p>$ \text{Penetration 穿深} = \left( \frac{m \cdot v_{\text{rel}}^2}{d^3 \cdot D_{\text{term}}} \right)^{\frac{1}{C_{\text{armor}}}} \cdot d \cdot K_{\text{nap}} \cdot 100 $</p>
+<ul>
+<li>$ m  $ is the shell mass (kg)   是炮弹的质量 （千克）；</li>
+<li>$ v_{\text{rel}} $ is the shell velocity component in the direction of the plate, calculated as:</li>
+</ul>
+<p>炮弹命中装甲板的速度，如下计算：$  v_{\text{rel}} = v_d \cdot \cos(\theta \cdot 0.85 \cdot C_{\text{angle}}) $ where 其中 $ C_{\text{angle}} $is penetration vs angle coefficient 是斜穿系数；and where 其中 $  v_d  = v_0 \left( 1 - \frac{\lambda d}{v_0} \right) $ $ \lambda $ is the drag 是阻力；$ v_0 $is the initial velocity 是炮弹初速度；</p>
+<ul>
+<li>$ d $ is the shell diameter  是炮弹直径 （单位米）；</li>
+<li>$ D_{\text{term}} $ is the De Marre term 是德马尔项, calculated as 计算如下：  $ D_{\text{term}} = \left( D_{\text{const}} \right)^2 \cdot d^{-0.1} $ where 其中 $ D_{\text{const}}  $is the De Marre constant 是德马尔常数；</li>
+<li>$ C_{\text{armor}} $ is the armor material coefficient   是命中装甲板的材料系数；</li>
+<li>$ K_{\text{nap}} $ is the adjustment factor based on the TNT  ratio  是基于 TNT 比例的调整系数  , calculated as follows  计算如下  :  $   K_{\text{nap}} = \begin{cases}
+1 &amp; \text{if } \frac{\text{TNT}}{m} &lt; 0.65 \
+1 + \frac{\left(\frac{\text{TNT}}{m} - 0.65 \right) \cdot (0.93 - 1)}{1.6 - 0.65} &amp; \text{if } 0.65 \leq \frac{\text{TNT}}{m} &lt; 1.6 \
+0.93 + \frac{\left(\frac{\text{TNT}}{m} - 1.6 \right) \cdot (0.9 - 0.93)}{2 - 1.6} &amp; \text{if } 1.6 \leq \frac{\text{TNT}}{m} &lt; 2 \
+0.9 + \frac{\left(\frac{\text{TNT}}{m} - 2 \right) \cdot (0.85 - 0.9)}{3 - 2} &amp; \text{if } 2 \leq \frac{\text{TNT}}{m} &lt; 3 \
+0.85 + \frac{\left(\frac{\text{TNT}}{m} - 3 \right) \cdot (0.75 - 0.85)}{4 - 3} &amp; \text{if } 3 \leq \frac{\text{TNT}}{m} &lt; 4 \
+0.75 &amp; \text{if } \frac{\text{TNT}}{m} \geq 4
+\end{cases} $</li>
+</ul>
+<p>This formula combines all the terms to calculate the penetration of the shell against armor, taking into account the mass, velocity, diameter, material properties, impact angle, and explosive charge of the shell.</p>
+<p>该公式结合所有参数来计算炮弹对装甲的穿透力，考虑了炮弹的质量、速度、直径、材料特性、入射角度和装药量。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

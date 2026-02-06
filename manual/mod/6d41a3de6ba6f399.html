@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.1 Vehicle Basic 载具基础 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.1 Vehicle Basic 载具基础 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="021-vehicle-basic-载具基础">02.1 Vehicle Basic 载具基础</h1>
+
+<h1 id="preparation-准备">Preparation 准备</h1>
+<p>Assets:</p>
+<ol>
+<li>Vehicle Model with textures and Vehicle HitBox</li>
+<li>Vehicle Engine Sounds(Start,Idle,Running)</li>
+<li>Fire Sound(Near and Far)</li>
+</ol>
+<p>Recommand softwares for art:</p>
+<ol>
+<li>Blender 2.7</li>
+</ol>
+<p>Blender is a free software for modeling. It can be used for making tank model and hitbox model. You can download it from <a href="https://www.blender.org/download/">https://www.blender.org/download/</a>.</p>
+<ol start="2">
+<li>Substance Painter &amp; Photoshop</li>
+</ol>
+<p><strong>Set up mod project environment in GetStarteds</strong></p>
+<p>资源:</p>
+<ol>
+<li>模型，贴图，与载具伤害模型</li>
+<li>坦克引擎音效 （包括 启动，待机，运行）</li>
+<li>坦克开火音效 （包括近，远）</li>
+</ol>
+<p>推荐的美术相关软件</p>
+<ol>
+<li>Blender 2.7</li>
+</ol>
+<p>Blender 是一个免费的建模软件，你可以在 Steam 上进行下载安装。我们可用 Blender  制作载具的模型与伤害模型。</p>
+<ol start="2">
+<li>Substance Painter 与 PhotoShop</li>
+</ol>
+<p><strong>设置模组的开发环境 （查看文档 1 项目初始化）</strong></p>
+<h1 id="section"></h1>
+<p>Process the Vehicle Model 预处理载具模型
+<img src="imgs/24b58a7ad106_1637476779413-8557a6bc-24db-404a-8676-b85e48bf3bdd.jpeg" alt=""></p>
+<p>Before get started,you should learn about the 3D model softwares.Blender is recommended because it is free and small.The following tutorial will use Blender as the modeling software.</p>
+<p>在开始之前，你应该要掌握至少一个 3D 建模软件的使用。 我推荐你使用 Blender ，因为他免费。 在接下来的教程中，我都将使用 Blender</p>
+<h3 id="child-parent-relationship-and-naming-父子关系与命名">Child-Parent Relationship and naming 父子关系与命名</h3>
+<p>The wheels,turret,gun and dym(barrel) of the vehicle model should have a correct child-parent relationship and name.</p>
+<p>The child-parent relationship should like this.</p>
+<p>坦克的车轮，炮塔，主炮，炮管设置正确的父子关系。</p>
+<table>
+<thead>
+<tr>
+<th>** **</th>
+<th>** **</th>
+<th>** **</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MainBody</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LeftWheel</td>
+<td>l_1-l_n</td>
+<td></td>
+</tr>
+<tr>
+<td>LeftUpperWheel</td>
+<td>l_1-l_n</td>
+<td></td>
+</tr>
+<tr>
+<td>LeftTrack</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RightWheel</td>
+<td>r_1-r_n</td>
+<td></td>
+</tr>
+<tr>
+<td>RightUpperWheel</td>
+<td>ru_1-ru_n</td>
+<td></td>
+</tr>
+<tr>
+<td>RightTrack</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Turret</td>
+<td>Gun</td>
+<td>Dym</td>
+</tr>
+</tbody>
+</table>
+<p>You should have objects with names above. You should not miss any of it.</p>
+<p>LeftWheel,LeftUpperWheel,RightWheel,RightUpperWheel are empty objects.</p>
+<p>MainBody,Turret,Gun,Dym are model.</p>
+<p>你的载具的物体名称需要与上表保持一致，不能遗漏任何一个。</p>
+<p>LeftWheel,LeftUpperWheel,RightWheel,RightUpperWheel  是空物体</p>
+<p>MainBody,Turret,Gun,Dym 是模型</p>
+<p>You can refer the following videos</p>
+<ol>
+<li>Model pre-process from websites <a href="https://youtu.be/M0aoe-EPTjs">https://youtu.be/M0aoe-EPTjs</a></li>
+<li>Preprocessing for Tank Destroyer <a href="https://youtu.be/Ex-P-mdSWJk">https://youtu.be/Ex-P-mdSWJk</a></li>
+</ol>
+<p>你可以参考如下的视频</p>
+<ol>
+<li>模型分离教程 <a href="https://www.bilibili.com/video/BV1U5411x7s3">https://www.bilibili.com/video/BV1U5411x7s3</a></li>
+</ol>
+<h3 id="model-export-模型导出">Model Export 模型导出</h3>
+<p>Axis 轴向</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/laq4pi56v5clqpc1">2.13 Blender 修正模型轴向</a></p>
+<p>Scale 缩放</p>
+<p><img src="imgs/5afdde883118_1756985134642-25b88ce0-cb29-43fe-a8f2-ddbafb993cce.png" alt=""></p>
+<h3 id="create-vehicle-hitbox-创建载具伤害模型">Create Vehicle HitBox 创建载具伤害模型</h3>
+<p><img src="imgs/9e8434c1edb5_1637478147025-78e3fd61-4a5c-4dd8-82a1-f5a85bcb117b.jpeg" alt=""></p>
+<p>The HitBox Model is used for penetration system. You should separate HitBox to pieces. Every piece of HitBox will have their own armor thickness after being imported to the game engine. In addition, It is not recommend to have a very precise hit box model. It will affect performance.</p>
+<p>伤害模型用于游戏的击穿系统，你需要将不同装甲数值的模型分成不同的物体。<strong>此外，不建议伤害模型面数很高，会影响游戏性能。</strong></p>
+<hr>
+<h3 id="hitbox-naming-载具伤害模型命名">HitBox Naming 载具伤害模型命名</h3>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/ouu3ksg776g7tmlm">2.12 HitBox Naming 伤害模型命名规范</a></p>
+<h3 id="model-optimization-模型优化">Model Optimization 模型优化</h3>
+<p>Number of model faces should not be larger than 20,000.</p>
+<p>Number of materials should not be larger than 4.</p>
+<p>Texture should not larger than 2048 x 2048</p>
+<p>Number of hitbox faces should not be larger than 5,000</p>
+<p>模型面数不应该超过 2万面</p>
+<p>模型材质数不应该超过 4个</p>
+<p>贴图分辨率不应该超过 2048 x 2048</p>
+<p>伤害模型面数不应该超过 5千面</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/laq4pi56v5clqpc1">2.13 Blender 修正模型轴向</a></p>
+<h2 id="import-model-and-set-materials-设置模型与材质">Import Model and set materials 设置模型与材质</h2>
+<p><img src="imgs/b3d5bb56fc82_1637479496408-5ff1ee94-75fb-4f19-9b1f-52da76cde49a.jpeg" alt=""></p>
+<p><strong>Before getting started,you should have a quick view of the basic control of the Unity Engine.</strong></p>
+<p>Open the project which is mentioned in the</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/hxsy4x">1. GetStarted 项目初始化</a></p>
+<p>.</p>
+<p>Create a folder in the project window in the Unity Engine,and drag your models into that folder.</p>
+<p>Set up the materials.</p>
+<p><strong>在开始下面步骤之前，你应该先了解 Unity 引擎的一些基础操作。</strong></p>
+<p>打开在项目初始化中提及的模组项目环境</p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/hxsy4x">1. GetStarted 项目初始化</a></p>
+<p>在项目中创建一个文件夹，将你的模型拖入其中。设置相关材质。</p>
+<h2 id="set-up-collision-设置碰撞">Set Up Collision 设置碰撞</h2>
+<p><img src="imgs/1a393b41f17d_1637479567184-67e9ad8d-35d4-4db6-af76-c2ab84ea6f95.jpeg" alt=""></p>
+<p>Drag the vehicle model from the project window to the Hierachy window to set up the collision.</p>
+<p>Add box colldiers to the MainBody and Turret. Modify the size of box collider to suit the the MainBody and Turret.</p>
+<p>Then,create a subfolder in your folder and name it Collision.Drag your model from the Hierachy Windows into that folder.</p>
+<p>You can refer the Template-Vehicle folder.</p>
+<p>将模型从 Project 窗口拖入 Hierarchy 窗口，进行碰撞的设置。</p>
+<p>对 MainBody 与 Turret 物体增加 Box Collider 组件。 根据模型来调整其大小。 注意： MainBody 的 碰撞不可以设置太低，会导致坦克底盘被地形卡住无法移动。 在设置完碰撞后，将模型从 Hierarchy 窗口再拖回至 Project 窗口，保存为预制体（Prefab）。 这个就是你的载具碰撞预制体文件了。你可以参考 Template-Vehicle  示例文件夹。</p>
+<h2 id="create-vehicle-data-创建载具数据">Create Vehicle Data 创建载具数据</h2>
+<h3 id="mod-editor-模组编辑器">Mod Editor 模组编辑器</h3>
+<p><img src="imgs/fc83027338a0_1731393396826-7c264a22-5143-40ca-b7ec-d88bffc422f1.png" alt=""></p>
+<p>You should find Framework/1. Editor Tool in the top windows bar alternatively short key Ctrl+G to open Editor Tools  ,<strong>if there are no errors in the console.</strong></p>
+<p>你应该可以在顶部菜单栏 游戏框架/1. 编辑器工具 ，或者按 Ctrl + G 快捷键，以打开创建窗口</p>
+<p>Click Open Create Vehicle Button</p>
+<p>点击 Open Create Vehicle 按钮</p>
+<h3 id="create-vehicle-data-editor-创建载具数据编辑器">Create Vehicle Data Editor 创建载具数据编辑器</h3>
+<p><img src="imgs/363e3843f5e0_1731393419329-4df1e5b9-38ba-47a4-a036-8aea8d4ee303.png" alt=""></p>
+<p><img src="imgs/648d9ae183ee_1731393444226-42ff31dc-833b-40d9-ac2e-368d2caca330.png" alt=""></p>
+<p>Input the name of your vehicle. Then,click Create Vehicle button. The name of the vehicle should only contains alphabet,number and underscore. Do not contain blank ! It will not load on certain platform.</p>
+<p>输入载具的名称，然后点击 Create Vehicle 按钮进行创建。载具名称只可以包括中文，字母，数字和下划线。不要包含空格，会导致某些平台加载异常。</p>
+<p><img src="imgs/276bdc2d3606_1637480331655-7df372fd-58ec-455b-8a33-9a7abbaa29b3.png" alt=""></p>
+<p>These files will be created after you clicked.</p>
+<p>当按下按钮后，这些文件会被创建。</p>
+<p>In the following,I will guide you how to set them one by one.</p>
+<p>接下来我会一步步教你怎么设置如下的组件，你可以按照顺序一一设置。</p>
+<h3 id="1-vehicleinfo-坦克描述数据">1. VehicleInfo 坦克描述数据</h3>
+<p>You can set vehicle name,rank and other basic info in VehicleInfo.</p>
+<p>你可以在 VehicleInfo 设置载具的名称，等级以及其他一些基础信息</p>
+<p><img src="imgs/d6bb63352543_1637482591344-1e5666c0-d64a-4d6e-b0ac-17673ab731de.png" alt=""></p>
+<h3 id="2-vehicle-hitbox-载具伤害模型">2. Vehicle HitBox 载具伤害模型</h3>
+<h4 id="data-binding-数据设置">Data Binding 数据设置</h4>
+<p><img src="imgs/0d19efce7a21_1637483201614-54bc5908-b23f-4e32-8cd6-ded6bbd2b8fd.png" alt=""></p>
+<p>Assign the variable External Armor Model with your HitBox model.</p>
+<p>Click <strong>Create Prefab</strong> Button.</p>
+<p>将你的伤害模型 拖入  External Armor Model 中</p>
+<p>点击 <strong>生成预制</strong> 按钮</p>
+<p><img src="imgs/600ff07bd6a1_1637483231306-d7ecdc91-8183-48ff-b407-d5d64798b463.png" alt=""></p>
+<p>Click <strong>Open Edit Mode</strong> Button</p>
+<p>点击 <strong>编辑模式</strong> 按钮</p>
+<h4 id="edit-mode-编辑模式">Edit Mode 编辑模式</h4>
+<p><img src="imgs/63b09be0b7d7_1637483405903-e515afc5-0c35-4adb-9763-fe308a6a0601.png" alt=""></p>
+<p>Click Generate HitBox Model.</p>
+<p><img src="imgs/abc7c89d6f7b_1637483432790-ffe3786b-296b-4edb-b73e-cd3c8ac092e6.png" alt=""></p>
+<p>You will notice that HitBox Model are generated in the scene.</p>
+<h4 id="armor-thickness-and-type-装甲厚度与类型">Armor Thickness and Type 装甲厚度与类型</h4>
+<p><img src="imgs/66afaef387d7_1637483448709-e6233926-a29a-498d-b156-0a80cf7a1c0d.png" alt=""></p>
+<p>You can set the armor thickness by clicking it.</p>
+<h4 id="hitbox-parent-伤害模型父子关系">HitBox Parent 伤害模型父子关系</h4>
+<p><img src="imgs/95359974632d_1637483491550-82c1c750-d8f3-410e-9c72-6a394d89d1e7.png" alt=""></p>
+<p>Drag HitBox gameobject to Main,Turret,Gun,Dym depending on its type.</p>
+<p>拖拽 HitBox 物体，根据其类型放置到 Main,Turret,Gun,Dym 物体下</p>
+<h4 id="module-place-模块放置">Module Place 模块放置</h4>
+<p>You need to set module if you want it can be damaged in module mode.</p>
+<p>如果你需要载具在模块模式下可以被损坏，则需要设置内部模块</p>
+<p><img src="imgs/ddc3a421469d_1637483960712-deead419-e4d9-47f1-ac2a-ab8753215625.png" alt=""></p>
+<p>Select Module Type and click **Spawn **Button</p>
+<p>选择模块类型，点击<strong>放置</strong>按钮</p>
+<p><img src="imgs/946ef3163aee_1637483978979-214fc820-38f9-4e67-8ac5-cf0f0934a8f1.png" alt=""></p>
+<p>Place it to right position and right parent.</p>
+<p>将模型放置于正确的位置和父节点下</p>
+<h4 id="module-hp-模块血条">Module HP 模块血条</h4>
+<p><img src="imgs/a618b7f6d274_1637484460226-e2d168d3-f9c8-46b1-8305-7d42d4238ea4.png" alt=""></p>
+<p><img src="imgs/8033049bb483_1637484408333-05e4a9ed-8bb1-4b69-aec2-ab1920ef6607.png" alt=""></p>
+<p><img src="imgs/a5d1d102653d_1637484419077-9c115c36-2b0a-4aef-b875-5f6bfd6c4356.png" alt=""></p>
+<p>Every module has its hidden HP. You can set it individually.</p>
+<p>Also, you can set it automatically. Set the total hit point and click Auto Assign Internal Module Hit Points.</p>
+<p>每个模块有一个隐藏的血条机制，你可以为每个模块独自设置。</p>
+<p>此外，你可以设置一个总血量，然后分配给每个模块。</p>
+<h4 id="module-crew--模块载具职业">Module Crew  模块载具职业</h4>
+<p><img src="imgs/1457dc82a4ca_1637484657078-d91f6424-293f-4065-86ae-db928a0d0be4.png" alt=""></p>
+<p>For crews,you need to toggle on their role</p>
+<p>对于成员，你需要设置他们的职业</p>
+<h4 id="module-ammo-shell-模块弹药架">Module Ammo Shell 模块弹药架</h4>
+<p>For Ammo Shell, you need to set bounds for ammo shell to control how the ammo shell change when capacity change.</p>
+<p>对于弹药架，你需要设置边界，来控制弹药数量变化时，弹药架的变化。</p>
+<p><img src="imgs/9b7b4563687e_1637485392409-c3b8381b-e385-4410-a58c-a5750a140376.png" alt=""></p>
+<p>Double click vehicle hitbox prefab and set the internal module component on the AmmoShell gameobject.</p>
+<p>双击你载具生成的 VehicleHitBox 的预制体，找到 AmmoShell 物体上挂载的 InternalModule 组件</p>
+<p><img src="imgs/17f96f0317bd_1637484893357-4b1db1ab-522b-448c-8255-ed8c53c919e8.png" alt=""></p>
+<p>Click **Add new bounds **button and resize it to fit the ammo shell.</p>
+<p>Click <strong>Create Cache</strong> Button to general mesh data.</p>
+<p>Press Ctrl + S to save the prefab.</p>
+<p>点击 **添加新边界 **按钮，调整其大小</p>
+<p>点击 **创建模型缓存 **按钮，生成相关数据</p>
+<p>点击 Ctrl + S 来保存对预制体的修改</p>
+<h4 id="save-prefab-保存预制体">Save prefab 保存预制体</h4>
+<p>To save the edit of hitbox,you need to click Save as prefab and connect button.</p>
+<p>为了保存伤害模型的预制体，你需要点击保存并链接为预制体按钮。</p>
+<h3 id="3-vehicle-enginesound-data-坦克引擎数据">3. Vehicle EngineSound Data 坦克引擎数据</h3>
+<p>Drag your sound files to the project window. And assign the variables one by one.</p>
+<p>将对应的音效文件拖入。</p>
+<p><img src="imgs/1929f4fa7f8c_1637480857770-490684cf-c994-4756-8bea-f84b22fe69ff.png" alt=""></p>
+<h3 id="4-vehicle-text-data-坦克详细参数数据">4. Vehicle Text Data 坦克详细参数数据</h3>
+<h4 id="create-bullet-related-assets-创建子弹相关资源">Create Bullet Related Assets 创建子弹相关资源</h4>
+<p>We need to create fire sound assets and bullet data assets first.</p>
+<p>我们需要先创建开火音效资源，与炮弹资源。</p>
+<p><img src="imgs/98d4c71b20e5_1637480389320-f6b3fb75-e5da-402e-b2e4-9cffaa517faa.jpeg" alt="">By right clicking the project window,you can create fire sound asset and bullet data asset.</p>
+<p>右键点击 Project 窗口，你可以创建开火音效与炮弹资源。</p>
+<h4 id="firesound-asset-炮声资源">FireSound Asset 炮声资源</h4>
+<p><img src="imgs/124ed69ac2b2_1637480883547-6782c76f-20d2-436e-a2d3-6744ada4683d.png" alt=""></p>
+<p>Set the variable of Fire Near and Fire Far with fire sound.</p>
+<p>拖入相应音效文件。</p>
+<h4 id="bullet-data-asset-子弹">Bullet Data Asset 子弹</h4>
+<p><img src="imgs/241d4419fef6_1637480787161-a9e8d6f0-0509-49bd-9e0e-4a1734daaa15.png" alt=""></p>
+<p><img src="imgs/2030c08e1379_1637486766215-e9abb677-1d1a-4b57-a053-bdc1c9f0b2f5.png" alt=""></p>
+<p>You need to select BulletVFX according to your ammo type.</p>
+<p>你需要根据你的炮弹类型，来选择其特效文件。</p>
+<h4 id="vehicletextdata-载具详细数据">VehicleTextData 载具详细数据</h4>
+<p>Set the vehicle data as you wish or according to the picture.</p>
+<h4 id="base-data-基础数据">Base Data 基础数据</h4>
+<p><img src="imgs/98c49e4ca4da_1637486835983-55edc2d8-5108-40c1-9bc3-5675028ed597.png" alt=""></p>
+<h4 id="track-移动">Track 移动</h4>
+<p><img src="imgs/beeedde3dc64_1637486853411-1926fc80-39a5-4283-8f89-8933be83c7a1.png" alt=""></p>
+<h4 id="fire-开火">Fire 开火</h4>
+<p><img src="imgs/e74fc8b2c3cd_1637486869237-a55be734-6344-446b-a581-ecf2460c2368.png" alt=""></p>
+<h4 id="turret-炮管">Turret 炮管</h4>
+<p><img src="imgs/198ad919010b_1637486883087-ff06411a-ce0b-444f-a755-9ef3c2e8b2d4.png" alt=""></p>
+<h4 id="import-data-from-tankgg-从-tank-gg-导入数据">Import Data From Tankgg 从 Tank GG 导入数据</h4>
+<p><img src="imgs/eeed2f9ac7c2_1637486954173-c181ac2a-e665-4ead-83af-b303509f6c90.png" alt=""></p>
+<p><img src="imgs/57929c56e2b6_1637486972781-461403e5-6f3a-4776-bdd5-4a26c09ddedb.png" alt=""></p>
+<p>You can import a part of track,turret and gun data from tankgg. <strong>You need to add other missing data!!!</strong></p>
+<p>你可以从tankgg 导入 一些相关数据，<strong>但你需要补齐其他的缺失数据。</strong></p>
+<h3 id="5-vehicle-data-坦克打包数据">5. Vehicle Data 坦克打包数据</h3>
+<p><img src="imgs/c228d792dba4_1637480390014-a675b860-92ad-43e9-9cf0-ab1d2b914d5d.jpeg" alt=""></p>
+<p>Assign the variable MainModel with <strong>the one that you have set the collider</strong> and click Open Edit Mode.</p>
+<p>将设置了 Box Collider 的坦克预制体模型拖入至 MainModel</p>
+<p><img src="imgs/03dc7808eeca_1637480390089-02befb16-4908-468f-a3fd-682d8f2c167b.jpeg" alt=""></p>
+<p>Move and rotate the GameObject with <strong>orange icon</strong> to the right position and rotation. Then,<strong>press 'K' key to save the transform data of the selected GameObject to the vehicle data.</strong></p>
+<p>Then,Click <strong>UnLock Inspector</strong>  button to exit.</p>
+<p>移动与旋转橙色的图标来将对应物体放置于合适的位置，点击 K 来保存相关信息。</p>
+<p>点击 **UnLock Inspector **按钮退出</p>
+<h3 id="6-wheel-collider-坦克负重轮">6. Wheel Collider 坦克负重轮</h3>
+<p>Drag the WheelCollider and the main model into the scene so that you can edit the wheel collider data much more easier.After you set them,right click the variable with blue rect and click apply to prefab XXXX.</p>
+<p>将 WheelCollider 和 载具模型拖入场景，然后设置 WheelCollider 的属性，并如图进行保存</p>
+<p><img src="imgs/e6c6c173e5f7_1637480389853-b20e4690-006e-4b11-9acc-888083723527.jpeg" alt=""></p>
+<p>You can refer to this picture to set the fiction of the wheel collider.</p>
+<p>你可以参考如下设置</p>
+<p><img src="imgs/c4aae431a4e4_1637480389963-c9762232-1fb9-4235-a942-4612803ea804.jpeg" alt=""></p>
+<h3 id="7-vehicle-track-data-坦克履带">7. Vehicle Track Data 坦克履带</h3>
+<p>Assign the variable Track Mesh. (You can use Panzer_Track_Middle prefab if you don't prepare the single track model)</p>
+<p>And edit the Track Distance(You can leave it for default value now)</p>
+<p>Other data are generated by editor itself. So don't touch it unless you know what you are doing.</p>
+<p>设置 Track Mesh. (如果你没履带素材，你可使用预制体 Panzer_Track_Middle )</p>
+<p>你可以设置 Track Distance(也可以保持默认数值)</p>
+<p>其他数值由编辑器生成，不用碰他们</p>
+<p><img src="imgs/9adfa93e86bc_1637480390355-3ad2b795-33e0-40ca-8b80-10a134e69945.jpeg" alt=""></p>
+<p>Drag the GameObject generated by VehicleData to Target Edit Object.</p>
+<p>Then Click the Load Suspension Data Button.</p>
+<p>(If you have deleted that GameObject. You can regenerate it by going back to VehicleData. Then Click Open Edit Mode and click UnLock Inspector)</p>
+<p>For your convenience,you can hide the HitBox from here.</p>
+<p>将由 VehicleData 生成的模型拖拽到 Target Edit Object 中</p>
+<p>然后 点击 Load Suspension Data 按钮.</p>
+<p>(如果你已经删除了 VehicleData 生成的模型的模型. 你可以回到 VehicleData. 然后 点击 Open Edit Mode 再点击 UnLock Inspector)</p>
+<p>为了你操作方便，可以在这里隐藏伤害模型</p>
+<p><img src="imgs/fa41b5062d6d_1637480390483-59b800d7-5852-4fbc-b24a-91e569d02283.jpeg" alt=""></p>
+<p>Then,Click Create Node. Surround the track with your nodes.</p>
+<p>然后,点击 Create Node. 如图，用顶点包围履带.</p>
+<p><img src="imgs/e7eed1a38d77_1637480390620-463cd098-173c-43d5-ae8b-fc1c52364ff1.jpeg" alt=""></p>
+<p>When you have done it,you can click Preview Track. You can remove the static track to view the advacne track more clearly.</p>
+<p><strong>Click Unlock Inspector when you have finished editing the track.</strong></p>
+<p>完成此步骤后，你可以点击 Preview Track 来预览履带 （可移除静态履带获得更好的观察）</p>
+<p>编辑完毕履带后点击 Unlock Inspector.</p>
+<h3 id="8-build-vehciledata-to-prefab-打包载具">8. Build VehcileData to Prefab 打包载具</h3>
+<p><img src="imgs/91b2bab87a4d_1637480390585-98b1e8ed-f06f-42b7-af8f-4aab5414ae18.jpeg" alt=""></p>
+<p>Find VehicleData and click Pack Asset. It will generate two prefab located at Assets/Res/Cooked/xxxx_Pre and Assets/Res/Cooked/DedicatedServer/xxxx_Pre</p>
+<p>For the client,only the first one is useful. <strong>You will need to do this build task again if you have changed the hitbox or edit the node transform with orange icon.</strong></p>
+<p>找到 VehicleData  然后点击 Pack Asset. 他会创建两个物体 位于 Assets/Res/Cooked/xxxx_Pre and Assets/Res/Cooked/DedicatedServer/xxxx_Pre</p>
+<p>第一个是客户端文件，第二个是服务器端文件. 如果你修改了碰撞模型，伤害模型或者橙色物体的位置，都需要重进行此步骤</p>
+<h1 id="create-mod-package-打包模组">Create Mod Package 打包模组</h1>
+<p><img src="imgs/9da27e6ec301_1731398661683-a4176a36-50d5-43f6-87af-61316ffc76ae.png" alt=""></p>
+<p><img src="imgs/9259583f89ba_1731398653461-76100709-92c6-485c-9a2c-a2d2cecda9d5.png" alt=""></p>
+<p>Open Mod Manager again.</p>
+<p>再次打开 Mod Manager .</p>
+<p><img src="imgs/2cf92c06edc0_1731398678834-a2f8089c-baa0-4949-9bf2-c10cd5f5a10e.png" alt=""></p>
+<p>Name a package. <strong>You can't just name it as your vehicle name.</strong> You should name it in the following pattern Vehicle-XXXXXX.</p>
+<p>And click Create Mod Package Button.</p>
+<p>命名 package. 你不能以载具名称来命名！！！会加载错误！！！. 你应该用以下方式来命名 Vehicle-XXXX (其中 XXXX 是你的坦克名称).</p>
+<p>然后点击 Create Mod Package 按钮.</p>
+<h3 id="buildpipline">BuildPipline</h3>
+<p><img src="imgs/7c78607ab32e_1637485689631-23360bef-cad9-4dc1-901d-cf2f057b1f42.png" alt=""></p>
+<p>Drag your vehicle info to the linked object to the linked object. And then,click the Build Linked Objects to AssetBundle button.</p>
+<p>Press Ctrl + Shift + B to select your desired platform. <strong>Remember you can't run mods with an incorrect build platform</strong></p>
+<h3 id="modpackagedata">ModPackageData</h3>
+<p><img src="imgs/d7960189e96d_1646837641757-f53a90bc-f265-4f53-9c87-2e899827e1bf.png" alt=""></p>
+<p>Then click the Linked Mod Package.Edit the infos and click Package Now.</p>
+<p>You modpackage will be generated at UnityProject\Build\Mod-Package. And its extension is modpackage.You can test it with the common installation.</p>
+<p>将 vehicle info 加入到 linked object 中.</p>
+<p>点击 Ctrl + Shift + B 切换你要的平台. <strong>模组必须使用相同的平台才能运行</strong></p>
+<p>然后点击 Build Linked Objects to AssetBundle 按钮.</p>
+<p>然后点击 Linked Mod Package.编辑信息然后点击 Package Now.</p>
+<p>你的模组文件会生成在 UnityProject\Build\Mod-Package. 扩展名为 modpackage. 可用与之前官方模组与社区模组一样的方式进行安装.</p>
+<hr>
+<p><strong>If you switch the platform. You should go to the BuildPipline and click the Build Linked Objects to AssetBundle button. Then go to the Linked Mod Package and click Package Now.</strong></p>
+<p>如果你切换平台需要重开始 BuildPipline 的步骤.</p>
+<hr>
+<p>If you have any issue during reading this tutorial,you can send an email to me. My E-mail: 403036847@qq.com Or Contact me on <a href="https://vk.com/doreamonsky">VK</a></p>
+<p>如果你在阅读本教程过程中遇到任何问题，都可以 QQ 联系我 QQ:403036847</p>
+<h1 id="special-vehicle-guidance-特别载具指南">Special Vehicle Guidance 特别载具指南</h1>
+<h3 id="wheel-vehicles-轮式载具">Wheel Vehicles 轮式载具</h3>
+<p><img src="imgs/b699f7ca4a4b_1637480391380-44aeb761-9c99-4ef9-959f-5814093fc522.jpeg" alt=""></p>
+<p>For wheel vehicles,you should prepare the model like this. LeftTrack and RightTrack can be an empty gameobject but it can't be missing.</p>
+<p>模型如上图准备 LeftTrack 和 RightTrack 可以是空物体，但不可缺少</p>
+<p><img src="imgs/53a3b1b6f57b_1637480391463-9bc7be80-c23e-4157-af40-1afa3f57f23b.jpeg" alt=""></p>
+<p>You can refer this setting for your wheel vehicles.</p>
+<p>轮式载具设置可以参考上图</p>
+<h3 id="slot-gun-机炮">Slot Gun 机炮</h3>
+<p><img src="imgs/8f4eda66bc21_1637480391607-1d7fbfc8-1e79-469f-86e7-21063daeebd9.jpeg" alt=""></p>
+<p>To make gun like M3 Stuart,you can refer this.</p>
+<p>参考上图设置</p>
+<h3 id="drum-gun-弹鼓炮">Drum Gun 弹鼓炮</h3>
+<p><img src="imgs/bfd48b2b8463_1637480391692-8196cebf-48bd-4869-90b7-8071a4f51045.jpeg" alt=""></p>
+<p>To make drum gun like Progetto 65,you can refer this.</p>
+<p>参考上图设置</p>
+<h3 id="advance-gun-弹夹炮">Advance Gun 弹夹炮</h3>
+<p><img src="imgs/f40c253adb42_1637480391847-cb7795c1-8427-44be-8c97-6347aee5a050.jpeg" alt=""></p>
+<p>To make advance gun like Bat 25t,you can refer this.</p>
+<p>参考上图设置</p>
+<h3 id="multi-turret-多炮塔">Multi-Turret 多炮塔</h3>
+<p>For example,bmd-1 is using the multi-turret mechanic to shoot common bullets and atgm.</p>
+<p>以 BMD-1 的副炮导弹为例。</p>
+<p><img src="imgs/7f626e9418de_1637480391828-5b043587-7119-465d-9eeb-611faed24859.jpeg" alt=""></p>
+<p>You should first perpare model like this.</p>
+<p>你需要按如上结构准备模型。</p>
+<p><img src="imgs/9b064bef51cb_1637480392195-99804c15-cf8f-4fcd-bd38-2cb97862cd2a.jpeg" alt=""></p>
+<p>Then, configure like this.</p>
+<p>然后，像这样配置数据。</p>
+<p><img src="imgs/1950b54d839e_1637480392348-959c491d-2057-47a2-8260-d43f5cc5671c.jpeg" alt=""></p>
+<p>Be caution! The position of ffpoint and fireeffect can only be set in the inspector.</p>
+<p>注意，炮弹发射点与开火特效口由偏移控制。</p>
+<h4 id="t-35-example-t-35-例子">T-35 example T-35 例子</h4>
+<p>Hierachy:</p>
+<p>父子结构</p>
+<p><img src="imgs/b75eebc592da_1637480392448-744a8a9f-3c4f-477f-834a-15b17c7e15c2.jpeg" alt=""></p>
+<p>Vehicle Text Data:</p>
+<p>数据参考</p>
+<p><img src="imgs/9b040be5770c_1637480392279-fac3089b-2754-41cb-9065-52457c1f0582.jpeg" alt=""></p>
+<h3 id="two-barrel-example-st-ii-双管例子">Two barrel example ST-II 双管例子</h3>
+<p>The pivot position of second barrel:</p>
+<p>第二个炮管的模型坐标轴</p>
+<p><img src="imgs/5a9676f08f1b_1642176429893-47395aa9-7e04-433b-a53f-eccd8f4c897c.png" alt=""></p>
+<p>Hierachy:</p>
+<p>父子结构</p>
+<p><img src="imgs/fbfbecf6b510_1637480392879-26f011c7-0c20-443f-b7bd-cad58b9c8d45.jpeg" alt=""></p>
+<p>Vehicle Text Data:</p>
+<p>数据</p>
+<p><img src="imgs/b9641e6dcfcf_1637480392776-467ac9ad-5525-4e87-a1bb-1d435a8058a7.jpeg" alt=""></p>
+<h1 id="issues-you-may-encounter-你可能遇到的问题">Issues you may encounter 你可能遇到的问题</h1>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/sy58so">Issues you may encounter 你可能遇到的问题</a></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

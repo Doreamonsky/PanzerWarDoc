@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.9 Q&amp;A 疑难杂症解决 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.9 Q&amp;A 疑难杂症解决 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="029-qa-疑难杂症解决">02.9 Q&amp;A 疑难杂症解决</h1>
+
+<p>Issues you may encounter 你可能遇到的问题</p>
+<h3 id="game-cant-load-the-vehicle-载具无法正常加载">Game can't load the vehicle 载具无法正常加载</h3>
+<p><img src="imgs/5bb7167dd0f2_1637480393085-03147fd5-6417-4e59-a835-7b1890017e92.jpeg" alt=""></p>
+<p>In this case,the reason might be that the name of your mod package is the same as the vehicle name. This is not allowed. Try another mod package name. For example,the mod package name can be Vehicle-XXXX (XXXX refer to the vehicle name) eg. Vehicle-T-72</p>
+<p>这可能是因为你的模组包名和载具名一致导致，尝试修改你的模组包名。比如你载具是 T-72,模组包名可设置为 Vehicle-T-72.</p>
+<h3 id="game-cant-load-the-vehicle-correctly-无法运行载具">Game can't load the vehicle correctly 无法运行载具</h3>
+<p><img src="imgs/61f8037e42b6_1637480393008-3fc472e8-7e5e-49d8-8d75-baba2c21c1bb.jpeg" alt=""></p>
+<p>In this case,the reason might be that your vehicle assets miss some reference. Please check if the following files are set correctly VehicleEngineSoundData,VehicleHitBox,FireSound Asset,Bullet Data Asset,VehicleTextData,VehicleTrack and VehicleData. You can refer to this document and you can refer to the template vehicle in the project.</p>
+<p>查看是否有资源引用丢失。</p>
+<h3 id="cant-elevate-the-gun-无法抬升炮管">Can't elevate the gun 无法抬升炮管</h3>
+<p>In this case,the reason might be that down max angle can't be negative. It should be positive.</p>
+<p>查看是否炮管俯角设置为 负值了，应该设置为正值。</p>
+<h3 id="tank-move-strange-坦克移动奇怪">Tank Move Strange 坦克移动奇怪</h3>
+<h4 id="tank-mass-坦克质量">Tank Mass 坦克质量</h4>
+<p><img src="imgs/04c0ba0ff8cc_1637485799550-690e6886-6607-45ca-8688-cd1cb4edb247.png" alt=""></p>
+<p>Do not set a too small or too large mass for the tank</p>
+<p>不要质量设置过大或过小</p>
+<h4 id="wheel-collider">Wheel Collider</h4>
+<p><img src="imgs/132c1dd0a880_1637485841230-426cad9a-ff18-4322-82da-9807abc77ac9.png" alt=""></p>
+<p>Mass should not larger than 1000. You can refer this setting.</p>
+<p>Mass 质量不要超过 1000， 悬挂系数参考如下设置</p>
+<h3 id="model-render-strange-模型渲染奇怪">Model Render Strange 模型渲染奇怪</h3>
+<p>This may caused by wrong normal direction. You can check the following settings.</p>
+<p>这可能是由法线的错误朝向导致，你可以检查如下设置。</p>
+<h4 id="normal-map-type-法线贴图类型">Normal Map Type 法线贴图类型</h4>
+<p><img src="imgs/2c3712846e89_1637486029676-bd80ac4e-0eb0-4130-a5ce-5e66c66bff7d.png" alt=""></p>
+<p>If you imported normal map,you should set the texture type to Normal Map.</p>
+<p>如果你导入了法线贴图，则应该设置贴图类型至法线。</p>
+<h4 id="mesh-normal-模型法线">Mesh Normal 模型法线</h4>
+<p><img src="imgs/4eba5999e3ab_1637485951371-428d79f3-14f6-4e1c-b60e-8af31efccba6.png" alt=""></p>
+<p>Check face orientation,it should have no red color. Flip the normal of red faces.</p>
+<p>检查面朝向，应该没有红色。翻转红色面的法线朝向。</p>
+<h1 id="index-out-of-range-数组越界报错">Index out of range 数组越界报错</h1>
+<p>Ensure all sub turrets bullet data length is not zero！确保所有副炮 BulletData 数组不为 0</p>
+<p><img src="imgs/f5ea053b49b0_1653839484476-c385896f-7789-4e59-852d-7785fc48cf1e.jpeg" alt=""></p>
+<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/wln44ydaxikn9sfu">祝昔的十万个为什么(1)</a></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

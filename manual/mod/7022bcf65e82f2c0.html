@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>20. 地图工坊素材构建 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="20. 地图工坊素材构建 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="20-地图工坊素材构建">20. 地图工坊素材构建</h1>
+
+<h1 id="1-暂时只支持-urp">1. 暂时只支持 URP</h1>
+<p>建议新开一个模组工程， 然后打开 Package Manager 安装 Universal RP</p>
+<p><img src="imgs/9a9e639048ce_1653838547148-0dedc81d-8424-4c10-8bf4-49aaa6586ace.png" alt=""></p>
+<p><img src="imgs/27de268166ec_1653838649023-a0fe9bfe-8e59-4516-a8c5-a5e1e647f5e8.png" alt=""></p>
+<p><img src="imgs/30e8b0eb89e3_1653838672084-3d3e20d8-98b1-454f-ab4b-9933a84b0ad2.png" alt=""></p>
+<p><img src="imgs/3cf45f3193bf_1653838705692-3791586a-3068-4a14-a6a6-ade13316d8ac.png" alt=""></p>
+<h1 id="2-素材准备">2. 素材准备</h1>
+<p>将模型拖入场景，设置坐标 0，0，0。旋转 0，0，0。</p>
+<p>添加 碰撞 （Box Collider / Mesh Collider）</p>
+<p>模型的层，全部设置为 Building （设置父物体为 Building 有选项勾选全部子物体）</p>
+<p>将此模型拖回 Project 窗口，就变成了 Prefab （预制体）</p>
+<p><img src="imgs/ae84a3e292a1_1653838879848-0bdf231e-4025-446b-96b7-980cf808318e.png" alt=""></p>
+<h1 id="3-创建数据文件">3. 创建数据文件</h1>
+<p>在已创建的 Prefab 上右键，选择 PropFromSelection，选择保存的路径（请选择在项目内的路径）。</p>
+<p>找到创建出来的数据文件，修改渲染类型为 URP，点击更新预制体与更新缩略图</p>
+<h1 id="section"><img src="imgs/bab2a6f583ca_1653838926065-f10c4123-ee10-4768-8ec4-bb5fe5270fc5.png" alt=""></h1>
+<p><img src="imgs/781cc59bcdad_1653839007293-f3076bc4-2240-45d3-871f-cc7a971533a9.png" alt=""></p>
+<p><img src="imgs/54f5cb0bb52f_1653839058913-b15f73fe-945a-4f0e-8d56-5f69796fa5ae.png" alt=""></p>
+<h1 id="4-打包">4. 打包</h1>
+<p>创建 DIYMapDataBuildAssemble，点击自动设置所有打包，将创建的 DIYMapDataBuildAssemble 加到 ModBuildPipline 中。即可正常打包。同时，可以将重复的资源加入到 LinkedObject，勾选加载依赖资源，勾选共享相同材质球，共享相同模型，则会减小模组包体大小。</p>
+<p><img src="imgs/2abf3b3c8b0b_1653839159409-46d08e5e-73d3-4b40-a4d7-761e4fc5e4a0.png" alt=""></p>
+<p><img src="imgs/4acaf585cc4d_1653839210322-e0d8cec0-bb6e-4554-a0b8-f2da07f0397a.png" alt=""></p>
+<p><img src="imgs/d07e174159fe_1653839281592-e51d42f8-ef1c-4f89-931b-81a49324a9cf.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>05. Create Mech 创建机甲 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="05. Create Mech 创建机甲 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="05-create-mech-创建机甲">05. Create Mech 创建机甲</h1>
+
+<p>在阅读此文本之前，请务必有普通坦克模组的开发经验。</p>
+<h2 id="前期准备">前期准备</h2>
+<h3 id="1-模型">1. 模型</h3>
+<p><img src="imgs/e0d81d253e24_1637488518723-f6a088f6-396a-4cf5-87be-89f08ddb4a15.jpeg" alt=""></p>
+<p>骨骼模型：一个绑定骨骼的机甲模型。</p>
+<p><img src="imgs/7b5b9da4304f_1637488518472-6dfed750-98b6-473d-94a9-f06b6ddfb9f7.jpeg" alt=""></p>
+<p>伤害模型：一个将各个关节分离的简易的伤害模型。</p>
+<h3 id="2-动画">2. 动画</h3>
+<p>你至少需要拥有以下动画：</p>
+<ol>
+<li>待机动画</li>
+<li>走路动画：笔直向前走路动画，向左的走路动画，向右的走路动画，原地左转的动画，和原地向右的动画。</li>
+</ol>
+<p>注：倒退走路动画可以在动画树中，以-1倍的速度播放，实现倒退。</p>
+<p>你可以额外制作以下动画:</p>
+<ol>
+<li>飞行动画：飞行起步动画，飞行中待机动画，和飞行结束落地动画。</li>
+</ol>
+<h3 id="3-导入引擎动画的设置">3. 导入引擎动画的设置</h3>
+<p>动画导入引擎后有相关设置，才可以使机甲符合物理模拟效果。</p>
+<p><img src="imgs/0f72e15b3872_1637488518513-2e3b865c-369a-4d74-9458-442eab5f7e10.jpeg" alt=""></p>
+<ol>
+<li>需要将 Root Transform Position (Y) 中的 Bake Into Pose 勾上。</li>
+<li>在 Curve 增加 GravityWeight 属性，<strong>并将曲线设置为值为1的水平线。</strong></li>
+<li>含脚步落地的动画帧，在 Events 中添加 WalkSound 事件。</li>
+</ol>
+<h2 id="载具属性设置">载具属性设置</h2>
+<h3 id="机甲预制体制作">机甲预制体制作</h3>
+<ol>
+<li>动画控制器。在含有Animator组件的物体上增加 MechAnimatorController 组件 和 CharacterController 组件。</li>
+</ol>
+<p><img src="imgs/1031ab2bd67e_1637488518587-9a5db664-de18-4f1f-8ba3-22b26071d636.jpeg" alt=""></p>
+<ol>
+<li>物理碰撞。调整 CharacterController 的属性，使胶囊体底部与脚底一致。</li>
+</ol>
+<p><img src="imgs/04e7f7c1dce7_1637488518555-9a6004b9-17f6-46e1-977c-5fe37f8291ea.jpeg" alt=""></p>
+<ol>
+<li>机甲脚底碰撞。在机甲两个脚底均增加 MechLegEndPoint 组件，与BoxCollider 组件。并勾选 BoxCollider 的 isTriiger 属性。若机甲可以飞行，则增加 MechFireBurst 组件,并调整相应参数。</li>
+</ol>
+<p><img src="imgs/4b220b9c6856_1637488519146-43879b8f-8cfd-4e0a-bb6d-65159426a955.jpeg" alt=""></p>
+<ol>
+<li>炮塔同步。增加 Turret/Gun/Dym 的空物体。在机甲模型上，上半身旋转控制的位置增加 MechTurretSync 组件，来同步相应位置。</li>
+</ol>
+<p><img src="imgs/5eaf3c8c8908_1637488519275-9e3e1d30-0da1-4d28-bf5d-7a62d272f95d.jpeg" alt=""></p>
+<h3 id="动画树制作">动画树制作</h3>
+<p><img src="imgs/27aaae6333f1_1637488519322-d6a0be45-246f-4822-a9b5-998a87ccf960.jpeg" alt=""></p>
+<p><img src="imgs/c6aa1683d173_1637488519333-a40e1bc9-21be-4ccc-b50e-14100356435c.jpeg" alt=""></p>
+<p>在 Project 新增 Animator Controller 并拖入机甲预制体含Animator的组件上。</p>
+<ol>
+<li>增加如下参数。 类型一定要与图中一致。</li>
+</ol>
+<p><img src="imgs/426fe91e45f3_1637488520523-5e993474-7961-44e0-a882-1a732e05cb38.jpeg" alt=""></p>
+<ol>
+<li>增加动画状态。 若含飞行的三个状态动画，则一定要与图中的三个Jet开头的动画命名一致。</li>
+</ol>
+<p><img src="imgs/8e1d52206c2e_1637488519711-63f06734-747a-4ee4-a2c4-7105c7e01a99.jpeg" alt=""></p>
+<p>向前走路（Walk）由多个动画的混合组成（Blend Tree）。 混合使用的参数为 Turn。0.5为笔直向前的动画。 0为向左的走路动画，1为向右的走路动画。可以在中间插入更多动画作补帧，使动画更加自然。</p>
+<p>注：倒退动画可以在动画树中，以-1倍的速度播放，实现倒退。</p>
+<p><img src="imgs/9a5eba1bd0b6_1637488519911-53e52095-e126-4edd-bcae-4df4eb9b684a.jpeg" alt=""></p>
+<ol>
+<li>动画转换条件。在下图出现的连线，需要增加如图的条件。</li>
+</ol>
+<p>向前走路动画条件: <img src="imgs/194ac713f7a4_1637488520022-c3369e84-4b8d-4f07-b2ef-a6ec400ca778.jpeg" alt=""></p>
+<p>向后走路动画条件: <img src="imgs/6d37a7d22fde_1637488519931-4531b587-dd4f-4762-9095-febf423f73dd.jpeg" alt=""></p>
+<p>向左走路动画条件: <img src="imgs/c8f97fde4c5c_1637488520287-e0d5e12b-17c7-4948-8b3e-1ffefc4be90c.jpeg" alt=""></p>
+<p>向右走路动画条件: <img src="imgs/5eb90dc8dd79_1637488520577-46132bb0-dd2b-46bc-b3b6-bb33d3ad3e5d.jpeg" alt=""></p>
+<p>若含飞行动画，则飞行落地动画条件: <img src="imgs/1636c4c3ee05_1637488520588-2f8f7444-a71f-44b0-8be4-79756b706361.jpeg" alt=""></p>
+<p>从 Idle 转到其他状态，无需设置 Has Exit Time。其他状态转到 Idle ，则需要设置 Has Exit Time。</p>
+<p>注意:游戏的输入为 Walk 与 Turn 。Walk 的范围为 -1到1。Turn的范围为 0到1。 可以根据自己的动画，设置更加复杂的动画切换。 动画系统的条件切换可以在引擎内直接进行调试，可访问 Unity 动画教程了解更多详情。</p>
+<h2 id="创建-vehicledata">创建 VehicleData</h2>
+<p>像普通坦克一样，创建坦克配置参数。然后删除生成的 VehicleTrack 文件。</p>
+<p><img src="imgs/7c6bcb773f3c_1637488520673-baa4e2c1-958b-4f15-b1d2-974c1ad915a4.jpeg" alt=""></p>
+<p>其他配置信息和坦克一样进行配置即可。</p>
+<p>在 VehicleTextData 需要额外关心，设置机甲专用参数。</p>
+<p><img src="imgs/a416dbce3391_1637488520940-ac0d0d8e-7ce0-4e5b-b72f-72911e46d886.jpeg" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

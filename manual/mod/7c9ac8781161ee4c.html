@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>02.5 Physic Wheel 物理轮子 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="02.5 Physic Wheel 物理轮子 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="025-physic-wheel-物理轮子">02.5 Physic Wheel 物理轮子</h1>
+
+<h1 id="asset-preparation-资源准备">Asset Preparation 资源准备</h1>
+<p>Prefab structure</p>
+<p>模型预制体结构</p>
+<p><img src="imgs/e73a7dd4f4ce_1651078916769-de9f4a70-fc54-4fd8-92f3-b825f2efdc5f.png" alt=""></p>
+<h1 id="一-根节点组件-root-components">一. 根节点组件 Root Components</h1>
+<p>You should add the following components to root. (SUV node in the picture)</p>
+<p>在根节点挂载以下组件 (如图的 SUV 节点)</p>
+<h2 id="1-nphysiccarcontroller">1. NPhysicCarController</h2>
+<p><img src="imgs/9de5ec857b5a_1651078939258-d4eb167e-5390-4bfb-a24e-8cf773942931.png" alt=""></p>
+<h2 id="2-rigidbody">2. RigidBody</h2>
+<p><img src="imgs/9051df333e36_1651078987968-8c1a4f19-18d8-425c-90b3-3ed2f6741755.png" alt=""></p>
+<h2 id="3-centerofmass">3. CenterOfMass</h2>
+<p><img src="imgs/5f11e6175fa3_1651079011800-2af1c639-ed78-453c-8a84-cc7fa1cc9fc4.png" alt=""></p>
+<h2 id="4-nphyisc">4. NPhyisc</h2>
+<p><img src="imgs/f38e79bfed84_1651079027483-43caa3a4-fe62-4b8d-9ebd-c30a6f00bd69.png" alt=""></p>
+<h1 id="二-轮子组件-wheel-components">二. 轮子组件 Wheel Components</h1>
+<p>You should add WheelController to every wheel transfrom.</p>
+<p>在轮子 Transform 上挂载 WheelController 组件</p>
+<h2 id="wheelcontroller">WheelController</h2>
+<p><img src="imgs/1b6369212475_1651079105722-a89846df-18bf-48f7-8fee-ddb017008f92.png" alt=""></p>
+<p><img src="imgs/fac4f8f39077_1651079116858-429f8ffe-ebfe-4c5e-981a-a94231a74dca.png" alt=""></p>
+<h2 id="摩擦力组件-friction-preset">摩擦力组件 Friction Preset</h2>
+<p><img src="imgs/0b6a041a0549_1651079307586-f580f8a1-0543-4ac6-a5f3-e346b423bc48.png" alt=""></p>
+<h1 id="三-确认组件-confirm-components">三. 确认组件 Confirm Components</h1>
+<p>The prefab should look like the following picture when all the components are attached.</p>
+<p>挂载完所有组件 3D 视窗应如下效果</p>
+<p><img src="imgs/82430c0a11c4_1651079211668-dcfb0a33-a56a-4837-834b-9e588331d9bf.png" alt=""></p>
+<h1 id="四-vehicletextdata-设置">四. VehicleTextData 设置</h1>
+<p><img src="imgs/f28f86cbd95d_1651079162766-48f7d165-95a9-4cf1-a9cd-9604436b7ba3.png" alt=""></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
