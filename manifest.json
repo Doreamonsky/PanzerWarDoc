@@ -40,7 +40,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.CaptureZoneNetGameMode.html",
-          "hash": "8k1rvresDEx7f5fCdMgnVEZ4YV9XXQy8xcFU7ZnY0+U="
+          "hash": "jcmI9qCyKeCiXcRy4v9Fjw/NCXBXuDnJApTPy+a3DXw="
         }
       },
       "is_incremental": false,
@@ -148,7 +148,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.API.BotAPI.html",
-          "hash": "h/lQaxtwyiJ4e5V4x7l/NfcBThaGkNndrxzvOXNjx24="
+          "hash": "+OJ8E9rjXp5yX4W7WaFPklFf9nB13/Sl5be8XDLQWO0="
         }
       },
       "is_incremental": false,
@@ -220,7 +220,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.API.ConfigAPI.html",
-          "hash": "EqhXhrkGW1x30Q8KG1QzVZXgW8lxwgS/dc4SIBE1DwM="
+          "hash": "HmweHaR0nOejrZUYP/N/3cCLpNydGBfo9D+kO7t4k1Y="
         }
       },
       "is_incremental": false,
@@ -352,7 +352,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.API.ModeAPI.html",
-          "hash": "SlOFdsqMji1Geb9xJukQE1rzNmMM3nn+wGW0bOOio18="
+          "hash": "tTz/E2kn+cNNja53gCBC5Hw8zRmBEE7XK1Oyh9RipyI="
         }
       },
       "is_incremental": false,
@@ -556,7 +556,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.BaseFireSystem.html",
-          "hash": "uxOorNaDrYuZ2QS0ot25QwVWEzKZe8LmnOv3ZqOc7Hk="
+          "hash": "dUk0xUaOYlJqhQ/0EkctBDFZrGBZIqrgCE2HpkQwUdM="
         }
       },
       "is_incremental": false,
@@ -580,7 +580,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.BasePawn.html",
-          "hash": "0l1coTb6cAahWqSEfdcdRgL7V9zyYGCEKgOVXCrNaaU="
+          "hash": "f+30wxuuinx6VFnh8OucAROTNv2ELLBk5AahA7kmR7I="
         }
       },
       "is_incremental": false,
@@ -604,7 +604,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.CaptureZoneTask.html",
-          "hash": "Y2OJ7w+Xloc1JjwpstCSeU+yQy1ShXuxMNZhZ/d72Q8="
+          "hash": "bus0ynF5eQIpLnHLTRTDZ6W2LWt0gaG0ZpjiQytT7Tk="
         }
       },
       "is_incremental": false,
@@ -900,18 +900,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/ShanghaiWindy.Core.FlightPlayerState.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ShanghaiWindy.Core.FlightPlayerState.html",
-          "hash": "yA+qOGDOdSyHyU5T0MTrrpd66cE4bO6/1fhvRcRp+6c="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/ShanghaiWindy.Core.IVehicleController.yml",
       "output": {
         ".html": {
@@ -976,7 +964,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.Lua.ILuaGameMode.html",
-          "hash": "Rmq3jbevy20ZGh2EWtmKPL/yLQ9ZmAUngu8PrQWdOWk="
+          "hash": "hJwZ0WHnOnsiTp5Ap9Ldrdkyb0lO4oq930NAdO62ngw="
         }
       },
       "is_incremental": false,
@@ -1060,7 +1048,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.TankFire.html",
-          "hash": "gQZwQocV7MW5dS3U/0Vfzbvvl6tBs2ZYPc1C4aKFyvg="
+          "hash": "dWA00jxsM477561Hl6e5L9HKXm3C9G3KLljg7MejTKE="
         }
       },
       "is_incremental": false,
@@ -1132,7 +1120,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.VehicleComponents.html",
-          "hash": "hNFXMYCpOrl3obNuzBbtsMN8g9xK8/YWtlODak7ICmg="
+          "hash": "LDEhX2frfRsU3zgsIr+q8rl1/GP5gE7nloZF6HbDalo="
         }
       },
       "is_incremental": false,
@@ -1168,7 +1156,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Core.html",
-          "hash": "L2yA/d4XfK4w20XDRQyD7I/pKVRwE15G36ttNNt7wx4="
+          "hash": "cYziHk/+qdgr+cHFWxNmPqV6rk6WYGEU6AB0lWt6/Ow="
         }
       },
       "is_incremental": false,
@@ -1217,6 +1205,30 @@
         ".html": {
           "relative_path": "api/ShanghaiWindy.Data.TransformInfo.html",
           "hash": "S69GsQ5eeJziJv8vbFocAieEVXoiBxDVjuF3Bz3Oxlg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Data.WarZoneCaptureZone.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Data.WarZoneCaptureZone.html",
+          "hash": "VfHwUslfXb3s5WBiAl9h8n1iycyARaw7KLqQI4v72f4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Data.WarZoneModeConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Data.WarZoneModeConfig.html",
+          "hash": "CXRJz79Gm5vRKtNfEfAhrhFKVWK0LFhN84G5VJHcUjI="
         }
       },
       "is_incremental": false,
@@ -1288,7 +1300,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ShanghaiWindy.Data.html",
-          "hash": "ryFDix45PifmISRGt8HKY3VgyppFZJHcHfkYlfrORUI="
+          "hash": "ElpIu6Zk/d2HbtRgykj2gsAa7xbCCvlJFVMwwKbIY4Y="
         }
       },
       "is_incremental": false,
@@ -1312,7 +1324,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "yaBi/mBrNz36lHz1mx9CwtzIF9Yfp9h1oG5hbkoJFHk="
+          "hash": "N7xKiKsIIRCnObmQr0Yej3AWldPJhNEuTLx1xz3Pano="
         }
       },
       "is_incremental": false,
@@ -9600,7 +9612,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 106,
+          "total_file_count": 107,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

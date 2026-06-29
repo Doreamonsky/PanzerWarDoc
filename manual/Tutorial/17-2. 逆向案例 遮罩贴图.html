@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>17-2. 逆向案例 遮罩贴图 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="17-2. 逆向案例 遮罩贴图 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="17-2-逆向案例-遮罩贴图">17-2. 逆向案例 遮罩贴图</h1>
+
+<p>以下内容仅用于学习交流，禁止用于商业。
+Unity URP 用一张贴图，三个通道对应了三个值，而 WOT 用了两张贴图，所以制作了一个工具将两张贴图的通道信息转化为 Unity URP 支持的通道信息。
+<img src="images/20231024_1405369962.png" alt="image.png"></p>
+<h1 id="工具准备">工具准备</h1>
+<ol>
+<li>模型导出工具 <a href="https://github.com/mikeoverbay/TankExporter">https://github.com/mikeoverbay/TankExporter</a></li>
+<li>模型贴图处理工具 <a href="https://github.com/mikeoverbay/Swizzler">https://github.com/mikeoverbay/Swizzler</a></li>
+</ol>
+<h1 id="贴图准备">贴图准备</h1>
+<p><img src="images/20231024_1405363348.png" alt="image.png">
+格式转为 png</p>
+<h1 id="环境准备">环境准备</h1>
+<ol>
+<li>安装 Python3</li>
+<li>安装 Python 包  opencv2 numpy</li>
+</ol>
+<p>可参考如下命令行
+pip install opencv-python -i <a href="https://mirrors.aliyun.com/pypi/simple/">https://mirrors.aliyun.com/pypi/simple/</a>
+pip install numpy -i <a href="https://mirrors.aliyun.com/pypi/simple/">https://mirrors.aliyun.com/pypi/simple/</a></p>
+<p>脚本，打开txt，贴入以下内容，储存为 wgRemap.py</p>
+<pre><code class="lang-python"># WG 贴图逆向 转为 URP / HDRP Mask 贴图
+import os
+import argparse
+import cv2
+import numpy as np
+
+parser = argparse.ArgumentParser(description=&quot;Wargaming Texture Remap&quot;)
+parser.add_argument('-d', '--dir', default=&quot;.&quot;)
+args = parser.parse_args()
+
+for root, dirs, files in os.walk(args.dir, topdown=True):
+    for name in files:
+        file = os.path.join(root, name)
+
+        if &quot;GMM&quot; in file and &quot;meta&quot; not in file:
+            img = cv2.imread(file)
+            y, x, z = img.shape[0:3] # 获得的是高度、宽度、通道
+
+            print(file,&quot;size:&quot;,y,x)
+            aoImg = cv2.imread(file[:-7] + &quot;AO.png&quot;)
+
+            if aoImg is not None:
+                # 尝试同目录下寻找 AO 贴图
+                aoImg = cv2.resize(aoImg,(x,y))
+                _,ao,_ = cv2.split(aoImg)
+            else:
+                # Ops... 没有找到 AO 贴图 用单位矩阵代替
+                ao = np.ones((y,x,1),dtype=np.uint8)
+
+            b,g,r = cv2.split(img) # g -&gt; Metallic r -&gt; Smoothness
+            empty = np.zeros((y,x,1),dtype=np.uint8)
+
+            # Unity Mask
+            # Red	Metallic
+            # Green	Occlusion
+            # Blue	Detail mask
+            # Alpha	Smoothness
+            channel_list = [empty,ao,g,r]
+            
+            new_image = cv2.merge(channel_list)
+            cv2.imwrite(name, new_image)
+            print(name + &quot; is write to disk&quot;)
+          
+</code></pre>
+<p>执行案例：
+<img src="images/20231024_1405362271.png" alt="image.png">
+python .\wgRemap.py -d H:\StreamLine-Process\R49_SU100Y\</p>
+<h1 id="贴图配置">贴图配置</h1>
+<p>切换 Shader 为 SRP-Vehicle-Camouflage
+<img src="images/20231024_1405368817.png" alt="image.png">
+将 AM 放在 BaseMap
+将 ANM 放在 BumpMap
+将 GMM 放在 MaskMap
+<img src="images/20231024_1405368764.png" alt="image.png">
+<a href="https://www.yuque.com/chaojiduolajiang/panzerwar/dq3g7g5ciwvm1pky?view=doc_embed">4. Mask 贴图编辑器内预览</a></p>
+<h1 id="实际效果">实际效果</h1>
+<p><img src="images/20231024_1405366538.png" alt="NGvgq879CL1qc0u0.jpeg"><img src="images/20231024_1405367572.png" alt="gwKsWvrmAk1qc0u0.jpeg"><img src="images/20231024_1405373772.png" alt="lbpwERBi2p1qc0u0.jpeg"><img src="images/20231024_1405376510.png" alt="e5uiNZNJqn1qc0u0.jpeg"></p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

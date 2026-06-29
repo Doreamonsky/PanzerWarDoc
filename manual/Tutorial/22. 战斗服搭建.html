@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>22. 战斗服搭建 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="22. 战斗服搭建 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="22-战斗服搭建">22. 战斗服搭建</h1>
+
+<p>新版服务器会自动挂载至服务器列表，只需运行服务器，玩家即可加入。
+搭建流程如下：</p>
+<h1 id="服务器">服务器</h1>
+<p>购买 Cent OS 系统的服务器，或者自己搭建 Cent OS 的虚拟机，</p>
+<h1 id="安装流程">安装流程</h1>
+<ol>
+<li>打开终端 或者用 VS Code 远程</li>
+</ol>
+<pre><code class="lang-bash">yum install git -y
+yum install git-lfs -y
+
+git clone https://gitlab.waroftanks.cn/Doreamonsky/Panzer-War-Server.git
+cd Panzer-War-Server
+git lfs pull
+
+chmod +x Linux_Core.x86_64
+nohup ./Linux_Core.x86_64 -clientType Server -batchmode -nographics &gt; server.log 2&gt;&amp;1 &amp;
+</code></pre>
+<p>如果是决定版服务器，第二行的地址改为 <a href="https://gitlab.waroftanks.cn/Doreamonsky/Panzer-War-URP-Server.git">https://gitlab.waroftanks.cn/Doreamonsky/Panzer-War-URP-Server.git</a></p>
+<h1 id="运维流程">运维流程</h1>
+<h2 id="自启动">自启动</h2>
+<p>将服务器的启动流程写入 /etc/rc.d/rc.local，保证每次服务器重启后，战斗服能自动启动。
+命令可参考
+nohup /root/Panzer-War-Server/Linux_Core.x86_64 -clientType Server -batchmode -nographics &gt; server.log 2&gt;&amp;1 &amp;</p>
+<h2 id="自重启">自重启</h2>
+<p>为了防止服务器内存泄漏，建议设置服务器定时重启
+设置凌晨2点重启服务器
+crontab -e
+0 2 * * * /usr/sbin/reboot</p>
+<h1 id="战斗服配置">战斗服配置</h1>
+<p>战斗配置存储为 yaml 格式，启动服务器时候，带参数 -conf &lt;Yaml 配置文件路径&gt; 即可读取自定义战斗服配置参数</p>
+<pre><code class="lang-yaml">serverName: Dedicated Server 独立服务器
+mapName: RAND
+playerCount: 32
+botCount: 2
+battleRank: 5
+battleRankRange: 2
+battleLength: 420
+isMod: false
+isModule: false
+isPVE: false
+isAutoAim: true
+isFlight: false
+shellStrength: High
+</code></pre>
+<p>案例：</p>
+<pre><code class="lang-bash">    nohup /root/Panzer-War-Server/Linux_Core.x86_64 -clientType Server -conf /root/Panzer-War-Server-Conf/classic-old-desert.yaml -batchmode -nographics &gt; server.log 2&gt;&amp;1 &amp;
+</code></pre>
+<pre><code class="lang-yaml">serverName: 老沙漠 经典永传	
+mapName: Desert-Old
+playerCount: 32
+botCount: 2
+battleRank: 4
+battleRankRange: 2
+battleLength: 420
+isMod: false
+isModule: false
+isPVE: false
+isAutoAim: true
+isFlight: false
+shellStrength: High
+
+</code></pre>
+<h1 id="多组战斗服配置">多组战斗服配置</h1>
+<p>单服务器，配置多个 yaml 同时启动服务器。</p>
+<h2 id="批量启动战斗服">批量启动战斗服</h2>
+<pre><code class="lang-shell">#!/bin/bash
+
+confs=(&quot;classic-old-desert.yaml&quot; &quot;yukon-flight.yaml&quot; &quot;modern-war.yaml&quot;) # 配置名称 数组，可任意额外增加配置
+serverPath=/root/Panzer-War-Server/Linux_Core.x86_64 # 服务器路径
+args=&quot;-clientType Server -batchmode -nographics&quot; # 默认参数
+log=/root/server.log
+
+for conf in ${confs[@]}
+do
+    confUrl=/root/Panzer-War-Server-Conf/$conf # 配置绝对路径
+    nohup $serverPath $args -conf $confUrl &gt; /root/server_$conf.log 2&gt;&amp;1 &amp; # 启动服务器
+
+    printf &quot;conf %s is loaded. 
+&quot; $confUrl
+
+    sleep 1s # 等待1秒
+done
+
+</code></pre>
+<h2 id="批量关闭战斗服">批量关闭战斗服</h2>
+<pre><code class="lang-shell">ps -ef  | grep Panzer-War | grep -v grep | awk '{print $2}' | xargs kill -9
+</code></pre>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

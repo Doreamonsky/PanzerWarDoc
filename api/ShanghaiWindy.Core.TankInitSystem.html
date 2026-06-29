@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TankInitSystem
+ | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TankInitSystem
+ | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ShanghaiWindy.Core.TankInitSystem">
+
+
+  <h1 id="ShanghaiWindy_Core_TankInitSystem" data-uid="ShanghaiWindy.Core.TankInitSystem" class="text-break">Class TankInitSystem
+</h1>
+  <div class="markdown level0 summary">
+坦克初始化系统
+Tank Initialization System
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></div>
+    <div class="level2"><span class="xref">TankInitSystem</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">IDynamicDataPatchable</span></div>
+    <div><span class="xref">IIndex</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_OnVehicleLoaded">BaseInitSystem.OnVehicleLoaded</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_OnVehicleDestroyed">BaseInitSystem.OnVehicleDestroyed</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_OnGameObjectDestroyed">BaseInitSystem.OnGameObjectDestroyed</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_OnDamagedInternalModule">BaseInitSystem.OnDamagedInternalModule</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_basePlayerState">BaseInitSystem.basePlayerState</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_OwnerTeam">BaseInitSystem.OwnerTeam</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_IsDestroyed">BaseInitSystem.IsDestroyed</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_IsLoaded">BaseInitSystem.IsLoaded</a>
+    </div>
+    <div>
+      <a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_equipmentBuffDataList">BaseInitSystem.equipmentBuffDataList</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a></h6>
+  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h5 id="ShanghaiWindy_Core_TankInitSystem_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public class TankInitSystem : BaseInitSystem, IDynamicDataPatchable, IIndex</code></pre>
+  </div>
+  <h3 id="fields">Fields
+</h3>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_diyReferenceManager" data-uid="ShanghaiWindy.Core.TankInitSystem.diyReferenceManager">diyReferenceManager</h4>
+  <div class="markdown level1 summary">
+DIY 车辆组件引用管理器
+DIY Vehicle Components Reference Manager
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public DIYVehicleComponentsReferenceManager diyReferenceManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.DIYVehicleComponentsReferenceManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_InstanceMesh" data-uid="ShanghaiWindy.Core.TankInitSystem.InstanceMesh">InstanceMesh</h4>
+  <div class="markdown level1 summary">
+实例网格
+Instance Mesh
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public GameObject InstanceMesh</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">GameObject</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_referenceManager" data-uid="ShanghaiWindy.Core.TankInitSystem.referenceManager">referenceManager</h4>
+  <div class="markdown level1 summary">
+车辆组件引用管理器
+Vehicle Components Reference Manager
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public VehicleComponentsReferenceManager referenceManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.VehicleComponentsReferenceManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_thinkLogic" data-uid="ShanghaiWindy.Core.TankInitSystem.thinkLogic">thinkLogic</h4>
+  <div class="markdown level1 summary">
+机器人逻辑
+Bot Logic
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public BotLogic thinkLogic</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.BotLogic</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_vehicleComponents" data-uid="ShanghaiWindy.Core.TankInitSystem.vehicleComponents">vehicleComponents</h4>
+  <div class="markdown level1 summary">
+车辆组件集合
+Vehicle Components Collection
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public TankVehicleComponents vehicleComponents</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.TankVehicleComponents.html">TankVehicleComponents</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_vehicleInfo" data-uid="ShanghaiWindy.Core.TankInitSystem.vehicleInfo">vehicleInfo</h4>
+  <div class="markdown level1 summary">
+车辆信息
+Vehicle Information
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public VehicleInfo vehicleInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_vehicleRemoveManagerModule" data-uid="ShanghaiWindy.Core.TankInitSystem.vehicleRemoveManagerModule">vehicleRemoveManagerModule</h4>
+  <div class="markdown level1 summary">
+车辆移除管理模块
+Vehicle Remove Manager Module
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public VehicleRemoveManagerModule vehicleRemoveManagerModule</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.VehicleRemoveManagerModule</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_vehicleTextData" data-uid="ShanghaiWindy.Core.TankInitSystem.vehicleTextData">vehicleTextData</h4>
+  <div class="markdown level1 summary">
+车辆文本数据
+Vehicle Text Data
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public VehicleTextData vehicleTextData</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.VehicleTextData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+
+
+  <a id="ShanghaiWindy_Core_TankInitSystem_CurEngineParam_" data-uid="ShanghaiWindy.Core.TankInitSystem.CurEngineParam*"></a>
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_CurEngineParam" data-uid="ShanghaiWindy.Core.TankInitSystem.CurEngineParam">CurEngineParam</h4>
+  <div class="markdown level1 summary">
+当前引擎参数
+Current Engine Parameter
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public PlayerTankControllerParameter CurEngineParam { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.PlayerTankControllerParameter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_TankInitSystem_CurMainTankFireParam_" data-uid="ShanghaiWindy.Core.TankInitSystem.CurMainTankFireParam*"></a>
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_CurMainTankFireParam" data-uid="ShanghaiWindy.Core.TankInitSystem.CurMainTankFireParam">CurMainTankFireParam</h4>
+  <div class="markdown level1 summary">
+当前主坦克火力参数
+Current Main Tank Fire Parameter
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public TankFireParameter CurMainTankFireParam { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.TankFireParameter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_TankInitSystem_CurMainTurretParam_" data-uid="ShanghaiWindy.Core.TankInitSystem.CurMainTurretParam*"></a>
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_CurMainTurretParam" data-uid="ShanghaiWindy.Core.TankInitSystem.CurMainTurretParam">CurMainTurretParam</h4>
+  <div class="markdown level1 summary">
+当前主炮塔参数
+Current Main Turret Parameter
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public MouseTurretParameter CurMainTurretParam { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.MouseTurretParameter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_TankInitSystem_CurPlayerStateParam_" data-uid="ShanghaiWindy.Core.TankInitSystem.CurPlayerStateParam*"></a>
+  <h4 id="ShanghaiWindy_Core_TankInitSystem_CurPlayerStateParam" data-uid="ShanghaiWindy.Core.TankInitSystem.CurPlayerStateParam">CurPlayerStateParam</h4>
+  <div class="markdown level1 summary">
+当前玩家状态参数
+Current Player State Parameter
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public PlayerStateParameter CurPlayerStateParam { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.PlayerStateParameter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IDynamicDataPatchable</span>
+  </div>
+  <div>
+      <span class="xref">IIndex</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

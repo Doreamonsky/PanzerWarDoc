@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>04. Multi-Platform Build 多平台打包 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="04. Multi-Platform Build 多平台打包 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="04-multi-platform-build-多平台打包">04. Multi-Platform Build 多平台打包</h1>
+
+<h2 id="1-description-介绍">1. Description 介绍</h2>
+<p>Support for both Windows and Android is a must for sharing the Mod to the community.Here is a quick way for you to build two platforms without swtiching the platform. We will need to use soft link.
+对于分享模组到社区，支持 Windows 与 Android 的模组文件是必不可少的。为了避免来回切换平台，我们需要将项目进行软连接，建立 Windows 与 Android 同步资源的打包环境。
+<img src="images/20231024_1406201040.png" alt=""></p>
+<h2 id="21-python-工具">2.1 Python 工具</h2>
+<pre><code class="lang-python">import os
+
+PRJ_NAME=&quot;UnityProject&quot;
+
+root= os.getcwd() + &quot;/&quot; + PRJ_NAME + &quot;-Softlink&quot;
+subFolders=[&quot;Assets&quot;,&quot;Packages&quot;,&quot;ProjectSettings&quot;]
+
+if not os.path.exists(root):
+    os.mkdir(root)
+
+def mkStr(str):
+    tmp =  r'&quot;' + str + r'&quot;'
+    return tmp
+
+for subFolder in subFolders:
+    src = os.getcwd() + &quot;/&quot; + PRJ_NAME +&quot;/&quot; + subFolder
+    dstFolder = root + &quot;/&quot; 
+    dst = dstFolder + &quot;/&quot; + subFolder
+
+    if not os.path.exists(dstFolder):
+        os.mkdir(dstFolder)
+
+
+    cmd = &quot;mklink /J&quot; + &quot; &quot; + mkStr(dst) + &quot; &quot; + mkStr(src)
+    os.system(cmd)
+
+input()
+
+</code></pre>
+<p>将以上代码放入文本，并改名为 softlink.py 放在 与 UnityProject 同级的目录，然后运行 Python 脚本。
+（如果是使用 UnityURPProject，则将 PRJ_NAME=&quot;UnityProject&quot; 改为 PRJ_NAME=&quot;UnityURPProject&quot;）</p>
+<p><img src="images/20231024_1406203742.png" alt="image.png">
+<img src="images/20231024_1406201854.png" alt="image.png"></p>
+<h2 id="22-cmd-命令行式">2.2 Cmd 命令行式</h2>
+<p>Suppose you have a Mod project with Windows build platform here. And,you want to build Android platform now.
+假设你已经有了一个针对 Windows 平台的打包环境，你想要增加一个 Android 平台的打包环境
+<img src="images/20231024_1406206744.png" alt="">
+First,create a folder somewhere else.
+Then,open the cmd and cd to that folder.
+Refer the following picture.
+首先，在其他目录下创建一个文件夹。
+然后打开 CMD ，用 CD 命令移动到这个文件夹。
+参考下图。
+<img src="images/20231024_1406203093.png" alt="">
+Make a folder link，refer command on the picture.
+创建一个目录软连接，参考图上的命令。</p>
+<h2 id="3-add-in-unityhub-在-unity-hub-添加项目">3. Add in UnityHub 在 Unity Hub 添加项目</h2>
+<p><img src="images/20231024_1406205736.png" alt="">
+Then,you can open this folder in Unity and the files are the same all the time as what in your Windows project. Then you can switch its platform to Android.</p>
+<p>然后你就可以给 Unity 额外增加一个项目工程打开，切换为 Android 平台。</p>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
