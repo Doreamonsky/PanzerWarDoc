@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>2. VehicleTextData 使用说明 | Panzer War Document </title>
+    <title>2. VehicleTextData 使用说明 Usage Guide | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="2. VehicleTextData 使用说明 | Panzer War Document ">
+    <meta name="title" content="2. VehicleTextData 使用说明 Usage Guide | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,36 +76,48 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2-vehicletextdata-使用说明">2. VehicleTextData 使用说明</h1>
+<h1 id="2-vehicletextdata-使用说明-usage-guide">2. VehicleTextData 使用说明 Usage Guide</h1>
 
 <p><strong>VehicleTextData</strong> 是一个用于配置载具（如坦克、机甲、汽车等）的各种参数的类。本文档将指导您如何在 Unity Inspector 界面上使用它。</p>
-<h2 id="基础">基础</h2>
-<h3 id="玩家状态参数-基础数据">玩家状态参数 (基础数据)</h3>
+<p><strong>VehicleTextData</strong> is a class used to configure the various parameters of a vehicle (such as a tank, mech, or car). This document explains how to use it in the Unity Inspector.</p>
+<h2 id="基础-basics">基础 Basics</h2>
+<h3 id="玩家状态参数-基础数据-player-state-parameters-basic-data">玩家状态参数 (基础数据) Player State Parameters (Basic Data)</h3>
 <p><strong>PSParameter</strong> - 这个属性包含了玩家状态的基本参数。例如，生命值、国家、载具类型等。</p>
-<h2 id="移动">移动</h2>
-<h3 id="履带参数">履带参数</h3>
+<p><strong>PSParameter</strong> - This property contains the basic player state parameters, such as health, country, and vehicle type.</p>
+<h2 id="移动-movement">移动 Movement</h2>
+<h3 id="履带参数-track-parameters">履带参数 Track Parameters</h3>
 <p><strong>PTCParameter</strong> - 仅在载具使用履带时显示，此属性包含了履带控制器的参数。例如，坦克的动力，速度，负重轮参数，独立悬挂履带等。</p>
-<h3 id="机甲参数">机甲参数</h3>
+<p><strong>PTCParameter</strong> - Shown only when the vehicle uses tracks. This property contains the track controller parameters, such as the tank's power, speed, road wheel parameters, and independently suspended tracks.</p>
+<h3 id="机甲参数-mech-parameters">机甲参数 Mech Parameters</h3>
 <p><strong>MechParameter</strong> - 包含机甲控制器的参数。例如，机甲的转向速度，飞行参数等。</p>
-<h3 id="汽车参数">汽车参数</h3>
+<p><strong>MechParameter</strong> - Contains the mech controller parameters, such as the mech's turning speed and flight parameters.</p>
+<h3 id="汽车参数-car-parameters">汽车参数 Car Parameters</h3>
 <p><strong>CarControllerParameter</strong> - 包含汽车控制器的参数。</p>
-<h2 id="开火">开火</h2>
-<h3 id="共享主炮数据">共享主炮数据</h3>
+<p><strong>CarControllerParameter</strong> - Contains the car controller parameters.</p>
+<h2 id="开火-firing">开火 Firing</h2>
+<h3 id="共享主炮数据-shared-main-gun-data">共享主炮数据 Shared Main Gun Data</h3>
 <p><strong>SharedGunData</strong> - 此属性用于存储可以在多个载具之间共享的主炮数据。包括炮弹类型、射速、弹道、弹药容量等。</p>
-<h3 id="主炮参数">主炮参数</h3>
+<p><strong>SharedGunData</strong> - This property stores main gun data that can be shared across multiple vehicles, including shell type, rate of fire, ballistics, and ammunition capacity.</p>
+<h3 id="主炮参数-main-gun-parameters">主炮参数 Main Gun Parameters</h3>
 <p><strong>TFParameter</strong> - 当没有共享主炮数据时显示，此属性包含了主炮的参数。例如，射速、弹道、炮口初速、后坐力等。</p>
-<h3 id="自爆参数">自爆参数</h3>
+<p><strong>TFParameter</strong> - Shown when there is no shared main gun data. This property contains the main gun parameters, such as rate of fire, ballistics, muzzle velocity, and recoil.</p>
+<h3 id="自爆参数-self-destruct-parameters">自爆参数 Self-Destruct Parameters</h3>
 <p><strong>VehicleSelfExplosionParams</strong> - 包含载具自爆功能的相关参数。例如，自爆范围、自爆伤害、自爆延迟等。</p>
-<h2 id="炮塔">炮塔</h2>
-<h3 id="共享炮塔数据">共享炮塔数据</h3>
+<p><strong>VehicleSelfExplosionParams</strong> - Contains the parameters for the vehicle self-destruct feature, such as blast radius, blast damage, and detonation delay.</p>
+<h2 id="炮塔-turret">炮塔 Turret</h2>
+<h3 id="共享炮塔数据-shared-turret-data">共享炮塔数据 Shared Turret Data</h3>
 <p><strong>SharedTurretData</strong> - 用于存储可以在多个载具之间共享的炮塔数据。包括炮塔旋转速度、炮管升降速度、最大仰角等。</p>
-<h3 id="炮塔参数">炮塔参数</h3>
+<p><strong>SharedTurretData</strong> - Stores turret data that can be shared across multiple vehicles, including turret rotation speed, gun barrel elevation speed, and maximum elevation angle.</p>
+<h3 id="炮塔参数-turret-parameters">炮塔参数 Turret Parameters</h3>
 <p><strong>MTParameter</strong> - 当没有共享炮塔数据时显示，此属性包含了炮塔的参数。例如，炮塔旋转角度、炮管升降速度、最大俯角等。</p>
-<h2 id="新多炮塔">新多炮塔</h2>
-<h3 id="多炮塔数据">多炮塔数据</h3>
+<p><strong>MTParameter</strong> - Shown when there is no shared turret data. This property contains the turret parameters, such as turret rotation angle, gun barrel elevation speed, and maximum depression angle.</p>
+<h2 id="新多炮塔-new-multi-turret">新多炮塔 New Multi-Turret</h2>
+<h3 id="多炮塔数据-multi-turret-data">多炮塔数据 Multi-Turret Data</h3>
 <p><strong>MultiFireSystemData</strong> - 此属性包含了多炮塔系统的数据。例如，每个炮塔的炮弹类型、射速、弹道等。</p>
-<h3 id="简单多炮塔数据">简单多炮塔数据</h3>
-<p><strong>SimpleVehicleFireSystemParameters</strong> - 此属性包含了简单d多炮塔系统的参数。例如，炮塔旋转速度、炮管升降速度等。</p>
+<p><strong>MultiFireSystemData</strong> - Contains the data for the multi-turret system, such as the shell type, rate of fire, and ballistics of each turret.</p>
+<h3 id="简单多炮塔数据-simple-multi-turret-data">简单多炮塔数据 Simple Multi-Turret Data</h3>
+<p><strong>SimpleVehicleFireSystemParameters</strong> - 此属性包含了简单多炮塔系统的参数。例如，炮塔旋转速度、炮管升降速度等。</p>
+<p><strong>SimpleVehicleFireSystemParameters</strong> - Contains the parameters for the simple multi-turret system, such as turret rotation speed and gun barrel elevation speed.</p>
 </article>
           </div>
 

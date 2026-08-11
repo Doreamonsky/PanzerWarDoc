@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>0.1 模组开发问题归档 | Panzer War Document </title>
+    <title>0.1 模组开发问题归档 Modding Issue Archive | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="0.1 模组开发问题归档 | Panzer War Document ">
+    <meta name="title" content="0.1 模组开发问题归档 Modding Issue Archive | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,26 +76,32 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="01-模组开发问题归档">0.1 模组开发问题归档</h1>
+<h1 id="01-模组开发问题归档-modding-issue-archive">0.1 模组开发问题归档 Modding Issue Archive</h1>
 
-<p>归档一些最近遇到的 Mod 开发问题</p>
-<h1 id="1-地图空气碰撞">1. 地图空气碰撞</h1>
+<p>归档一些最近遇到的模组开发问题</p>
+<p>An archive of some recently encountered modding issues.</p>
+<h1 id="1-地图空气碰撞-map-invisible-collision">1. 地图空气碰撞 Map Invisible Collision</h1>
 <p>选中所有物体，然后查看是否有绿色的碰撞框覆盖该区域。 检查是不是复制时候，多复制了一个 mesh collider，或者把 mesh collider 与显示模型放在了不同地方</p>
+<p>Select all objects and check whether a green collision box covers that area. Check whether you duplicated an extra mesh collider when copying, or whether the mesh collider was placed somewhere other than the visual model.</p>
 <p><img src="imgs/cf614c18ff7d_1676986454097-8247d1d3-2857-43bf-b063-5d7ed65615ad.png" alt=""></p>
 <p><img src="imgs/3c909b62d678_1676986470416-03bcf121-837b-41fb-a62e-425f2e960ce5.png" alt=""></p>
-<h1 id="2-悬挂回弹慢转弯翻车">2. 悬挂回弹慢，转弯翻车</h1>
+<h1 id="2-悬挂回弹慢转弯翻车-slow-suspension-rebound-rolling-over-when-turning">2. 悬挂回弹慢，转弯翻车 Slow Suspension Rebound, Rolling Over When Turning</h1>
 <p>检查 Wheel Collider 配置</p>
+<p>Check the Wheel Collider settings.</p>
 <p>这个是默认的悬挂配置</p>
+<p>This is the default suspension configuration.</p>
 <p><img src="imgs/c72099904965_1676986574064-f0a9cfdf-0ffe-43b6-a24c-20d12a5eeab8.png" alt=""></p>
-<h1 id="3-地图炮弹碰撞与显示层级">3. 地图炮弹碰撞与显示层级</h1>
+<h1 id="3-地图炮弹碰撞与显示层级-map-shell-collision-and-render-layers">3. 地图炮弹碰撞与显示层级 Map Shell Collision and Render Layers</h1>
 <p><img src="imgs/2a923edaa1f6_1676986861118-9cdda1a6-9418-4116-a27c-6c4b9e81dff4.png" alt=""></p>
-<h1 id="4-blender-材质球重复问题">4. Blender 材质球重复问题</h1>
+<h1 id="4-blender-材质球重复问题-duplicate-materials-in-blender">4. Blender 材质球重复问题 Duplicate Materials in Blender</h1>
 <p>尽量减少出现重复的材质球</p>
+<p>Try to avoid creating duplicate materials.</p>
 <p>ctrl c + ctrl v<br>
 <img src="imgs/529be0deff2e_1677773279263-7cd182b3-ce34-401e-9763-9a703ea2c38b.png" alt=""></p>
 <p>shift + d<br>
 <img src="imgs/dbdf485a9cc4_1677773276449-687f9e63-fa3d-4aca-a9ae-049c867cffb6.png" alt=""><br>
 这个各位用 blender 时候注意下，尽量用 shift + d 的方式复制物体，不然会导致重复的材质球的出现</p>
+<p>Keep this in mind when using Blender: prefer shift + d to duplicate objects, otherwise you will end up with duplicate materials.</p>
 </article>
           </div>
 

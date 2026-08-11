@@ -79,14 +79,19 @@
 <h1 id="40-destructible-object-creation-可破坏物体制作">40. Destructible Object Creation 可破坏物体制作</h1>
 
 <p>在需要破坏的物体上，挂上 Shatter 组件</p>
+<p>Attach the Shatter component to the object you want to make destructible.</p>
 <p><img src="imgs/58e8d2003b97_1713183537552-be37cafe-1b66-4832-bcdb-b47662249bdf.png" alt=""></p>
 <p>选择合适的参数后，点击 Fragment 进行分割。然后点击 Export Last Fragment 以保存切割后的 Mesh。</p>
+<p>After choosing suitable parameters, click Fragment to split the object, then click Export Last Fragment to save the resulting mesh.</p>
 <p>然后将生成 Fragment 保存为预制体。</p>
+<p>Then save the generated Fragment as a prefab.</p>
 <p><img src="imgs/ba548052f15f_1713183547339-94717496-e0ee-4629-8a79-63acd061aa62.png" alt=""></p>
-<p>在 xxx_root 上，挂在 RayFire Rigid 组件，Object Type 改为 Mesh Root。 点击 Editor Setup。</p>
+<p>在 xxx_root 上，挂上 RayFire Rigid 组件，Object Type 改为 Mesh Root。 点击 Editor Setup。</p>
+<p>On xxx_root, attach the RayFire Rigid component, change Object Type to Mesh Root, and then click Editor Setup.</p>
 <p><img src="imgs/1204fcb0aeac_1713183569576-4fead629-56c3-4c02-a505-d4ffbe96b86e.png" alt=""></p>
 <p><img src="imgs/ea25ba889bd7_1713183560752-9a023f01-4427-428a-9a2c-15557d2cb72e.png" alt=""></p>
 <p>将所有的子物体的 Layer 改为 Fracture</p>
+<p>Change the Layer of every child object to Fracture.</p>
 <p><img src="imgs/a4334a97bba9_1713183577280-f17db8aa-575e-4f9a-b210-ac163eaba8fb.png" alt=""></p>
 <p><img src="imgs/465ed61cf667_1713183598079-891b58c1-462f-43f7-a11b-78c67fce7a0e.png" alt=""></p>
 </article>

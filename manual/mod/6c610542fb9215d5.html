@@ -78,10 +78,10 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="023-multi-fire-old---多炮塔-旧">02.3 Multi-Fire (Old) - 多炮塔 （旧）</h1>
 
-<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/laq4pi56v5clqpc1">2.13 Blender 修正模型轴向</a></p>
+<p><a href="67a6346d70965e4c.html">2.13 Blender 修正模型轴向</a></p>
 <h1 id="general-综合">General 综合</h1>
 <p>Multi-Fire (Old) system is designed for one turret and one gun.</p>
-<p>多炮塔（旧）系统被设计用于对应一个炮塔与炮管。</p>
+<p>多炮塔（旧）系统被设计用于对应一个炮塔（Turret）与一门主炮（Gun）。</p>
 <h1 id="child-parent-relation-父子关系">Child-Parent Relation 父子关系</h1>
 <p>Suppose we have an ATGM on the turret. We should SubTurret under Turret. Also you need to put SubGun under SubTurret and SubDym under SubTurret.</p>
 <p>假设我们在炮塔下面有 ATGM，则我们需要将 SubTurret 放置于 Turret。此外，我们需要将 SubGun  放置于 SubTurret ，将 SubDym 放置于 SubTurret。</p>
@@ -89,10 +89,10 @@
 <h1 id="property-属性">Property 属性</h1>
 <h2 id="relative-path-相对路径">Relative Path 相对路径</h2>
 <p>You need to set the relative path of turret ,gun and dym.</p>
-<p>你需要针对炮塔，炮管，炮管活动部分设置他的相对路径。</p>
+<p>你需要针对炮塔（Turret）、主炮（Gun）、炮管（Dym）分别设置各自的相对路径。</p>
 <h1 id="section"><img src="imgs/c7d52613f809_1647607724903-f76fa47a-7a52-47e1-b3d1-4083469992bd.png" alt=""></h1>
 <h2 id="ffpoint--effect-start-offset-开火位置偏移">FFPoint / Effect Start Offset 开火位置偏移</h2>
-<p>The offset will decide where ffpoint and effect start are. In genereted prefab,you can see the red dumps indicates these points.</p>
+<p>The offset will decide where ffpoint and effect start are. In the generated prefab, you can see the dummy points indicating these positions.</p>
 <p>偏移值会决定开火位置。 在创建出来的预制体中，你可以看到这些虚节点。</p>
 <p><img src="imgs/b8fac1aec081_1647608307261-bdb72e3b-0a15-40dc-8327-b4d3aa80a800.png" alt=""></p>
 <p><img src="imgs/d269eb7066ea_1647608351642-29f790c3-da03-4358-abbe-f131a0ec542e.png" alt=""></p>

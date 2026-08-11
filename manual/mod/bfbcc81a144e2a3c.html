@@ -79,15 +79,17 @@
 <h1 id="28-official-art-assets-官方美术资产库">28. Official Art Assets 官方美术资产库</h1>
 
 <h1 id="repository-项目地址">Repository 项目地址</h1>
+<p>Access to the repositories requires permission. Send your email address to the developers to apply.</p>
 <p>仓库访问需要申请权限，将邮箱发送给开发者。</p>
 <p>Community Repository 通用仓库： <a href="https://lab.windyverse.net/modder/panzer-war-community-mods">https://lab.windyverse.net/modder/panzer-war-community-mods</a></p>
 <p>Sound Repository 音效仓库： <a href="https://lab.windyverse.net/modder/Panzer-War-Fmod">https://lab.windyverse.net/modder/Panzer-War-Fmod</a></p>
 <p>Map Repository 地图仓库**（需与 Community Repository 父目录一致）**</p>
+<p><strong>Must be cloned under the same parent directory as the Community Repository.</strong></p>
 <p>地图：<a href="https://lab.windyverse.net/modder/ShanghaiWindyMaps">https://lab.windyverse.net/modder/ShanghaiWindyMaps</a></p>
 <p>公用资源：<a href="https://lab.windyverse.net/modder/ShanghaiWindyPublicResources">https://lab.windyverse.net/modder/ShanghaiWindyPublicResources</a></p>
 <hr>
 <h1 id="contribution-合作方式">Contribution 合作方式</h1>
-<p>Use git to pull the project and <strong>create your own banch</strong>. Then push your branch. The developer will merge your branch to master branch.</p>
+<p>Use git to pull the project and <strong>create your own branch</strong>. Then push your branch. The developer will merge your branch to master branch.</p>
 <p>使用 git 拉取项目，<strong>创建你的分支</strong>，然后上传提交。 由开发者合入你的分支。</p>
 <h1 id="section"></h1>
 <h1 id="tutorial-使用项目教程">Tutorial 使用项目教程</h1>
@@ -96,11 +98,11 @@
 <p><a href="https://www.bilibili.com/video/BV1ty4y1d75L/?vd_source=e15c0a91ecb03b1eba53ffdbae813bba#reply148974070768">装甲纷争 模组工程 编写自定义脚本 以及调整载具数值_哔哩哔哩_bilibili</a></p>
 <h2 id="text-文本教程">Text 文本教程</h2>
 <h2 id="1-install-git-安装-git">1. Install Git 安装 Git</h2>
-<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/tstaei6gc70q1s4r">安装 Git</a></p>
-<h2 id="2-install-toroisegit-安装小乌龟-git">2. Install Toroisegit 安装小乌龟 Git</h2>
-<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/hat0muhd2qbrb4zp">2. 安装小乌龟</a></p>
+<p><a href="b4f113dfe8851d79.html">安装 Git</a></p>
+<h2 id="2-install-tortoisegit-安装小乌龟-git">2. Install TortoiseGit 安装小乌龟 Git</h2>
+<p><a href="32a999a46c34fee8.html">2. 安装小乌龟</a></p>
 <h2 id="3-pull-project-拉取项目">3. Pull Project 拉取项目</h2>
-<p>Click Git clone after installed Toroisegit.</p>
+<p>Click Git clone after installing TortoiseGit.</p>
 <p>在安装完小乌龟 Git 后，在菜单栏由 Git Clone...</p>
 <p><img src="imgs/7b74f856a156_1674390092837-0ba1c225-2c19-42ba-ab59-8f3358637cf5.png" alt=""></p>
 <p>Open our repository and click clone. Copy the https link.</p>
@@ -109,7 +111,7 @@
 <p>Paste it into url</p>
 <p>输入到 url</p>
 <p><img src="imgs/bac489b1e871_1674390142910-6af209a7-9f1b-4183-9b1b-309a29af1205.png" alt=""></p>
-<p>Fillin the account in our gitlab.</p>
+<p>Fill in the account in our gitlab.</p>
 <p>输入在 gitlab 的账号与密码</p>
 <p><img src="imgs/ba7b91508dfd_1674390155990-e4df745b-49d2-4a0d-a339-daff9378cfbe.png" alt=""></p>
 <h2 id="4-open-the-project-打开项目">4. Open the Project 打开项目</h2>
@@ -117,16 +119,15 @@
 <p>主要项目的文件位于： Assets/Res/Vehicles/Ground/Data 路径</p>
 <p><img src="imgs/afebfaf65525_1674390401029-d97e4d14-ab82-420e-9263-fab30a943f72.png" alt=""></p>
 <h2 id="5-commit-changes-提交修改">5. Commit Changes 提交修改</h2>
-<p>You can view this video</p>
-<p>可查看此视频流程</p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2023/mp4/23154724/1674395443150-178233ab-1b95-4a04-a874-6c8e70d79eff.mp4">Git 创建提交.mp4</a></p>
+<p>Follow the illustrated steps below to create a branch and commit your changes.</p>
+<p>按照下方图文步骤创建分支并提交修改。</p>
 <p>After creating the changes to the project, you need to create your own branch and commit changes.</p>
 <p>当自己完成了对工程的修改后，需要创建一个属于你的分支，然后再提交你的修改。</p>
 <p>Create the branch. (Right click in the project folder!)</p>
 <p>创建分支 （请确保是在项目的文件夹内点击右键）</p>
 <p><img src="imgs/2fd17d8c6cfc_1674390841486-68fdd1ce-ef2e-42b4-be9e-873f0c46e6cd.png" alt=""></p>
-<p>Fill in the branch name. The branch name should be XXX-mod</p>
-<p>输入你的分支名称，按照你的修改内容决定分支名称。如：为 xxx 坦克修改了 xxx 内容</p>
+<p>Fill in the branch name. The branch name should be XXX-mod, where XXX describes what you changed. For example, the tank you modified and the content you modified on it.</p>
+<p>输入你的分支名称，分支名称应为 XXX-mod，其中 XXX 按照你的修改内容决定。如：为 xxx 坦克修改了 xxx 内容</p>
 <p><img src="imgs/8de716ae3cae_1674390886668-64c292cc-f99c-497a-8908-187fb8f5c517.png" alt=""></p>
 <p>Switch to your branch</p>
 <p>然后切换到项目分支</p>
@@ -163,17 +164,20 @@
 <p>After pull then click stash pop</p>
 <p>在 Pull 执行完毕后，点击</p>
 <p><img src="imgs/d8f8f7eda2e6_1674392000586-69037279-feb1-4ea8-b35f-d9e78b2d67ef.png" alt=""></p>
-<h2 id="使用编辑器内-git-工具">使用编辑器内 Git 工具</h2>
+<h2 id="git-tools-inside-the-editor-使用编辑器内-git-工具">Git tools inside the editor 使用编辑器内 Git 工具</h2>
+<p>Using Git is the recommended way.</p>
 <p>推荐使用 Git 方式。</p>
 <p><img src="imgs/29dcd1011a02_1675170248368-585273b7-f0b0-4a89-9c66-8e6e684b6a42.png" alt=""></p>
-<h3 id="创建分支并提交修改">创建分支并提交修改</h3>
+<h3 id="create-a-branch-and-commit-changes-创建分支并提交修改">Create a branch and commit changes 创建分支并提交修改</h3>
 <p><img src="imgs/4592a51e9fea_1675170203670-a2380ba2-a4de-4044-ab79-dc19a40f9fdb.png" alt=""></p>
 <p><img src="imgs/138a26471f6a_1675170228975-d9948b4e-c10c-4a0c-961c-b2f6dab3ff2d.png" alt=""></p>
-<h3 id="拉取最新项目">拉取最新项目</h3>
+<h3 id="pull-the-latest-project-拉取最新项目">Pull the latest project 拉取最新项目</h3>
+<p>Switch back to the master branch, then click download and overwrite.</p>
 <p>切换回 master 分支，然后点击下载并覆盖。</p>
 <p><img src="imgs/bd5b116da417_1675170174449-ff918ca6-d8e0-4779-a93a-5ca284ab41f8.png" alt=""></p>
-<h2 id="注意事项">注意事项</h2>
-<h3 id="配置文件报错">配置文件报错</h3>
+<h2 id="notes-注意事项">Notes 注意事项</h2>
+<h3 id="configuration-file-errors-配置文件报错">Configuration file errors 配置文件报错</h3>
+<p>If a configuration file shows as Missing, report which file it is to the developers.</p>
 <p>若存在配置文件显示 Missing，请和开发者反馈是哪个文件。</p>
 <p><img src="imgs/bb768d3a29b3_1674392711611-14580ae5-b33b-446b-b3b0-32a62b24db26.png" alt=""></p>
 </article>

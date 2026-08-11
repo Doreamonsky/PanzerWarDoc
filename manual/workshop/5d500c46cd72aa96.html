@@ -80,9 +80,6 @@
 
 <p>The tutorial process uses Blender modeling software, and the steps can be referred to for other modeling software as well. Blender can be downloaded for free on Steam.</p>
 <p>教程使用的流程均为 Blender 建模软件的流程，其他建模软件也可以参考此教程的一些规范， Blender 可在 Steam 上免费下载。</p>
-<p>The finished file this tutorial provided.</p>
-<p>本期教程的所完成的案例文件</p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2024/rar/23154724/1719818123512-5e5a1af4-02c0-44b8-847e-5d185fbb2df7.rar">BattleGun.rar</a></p>
 <h1 id="prepare-visual-model-准备外观模型">Prepare Visual Model 准备外观模型</h1>
 <p>If using Blender, please refer to the following documentation. For the PBR workflow, follow the PBR rules outlined in the documentation to create the following textures: 1. Base Color, 2. Metallic and Roughness, 3. Baked Ambient Occlusion, and 4. Normal Map. Other textures mentioned in the documentation are not required. You can use Substance Painter to create the necessary textures. If not following the PBR workflow, you need to create 1. Base Color (mandatory) and 2. Normal Map (optional). However, the model will not achieve realistic physical reflections.</p>
 <p>若使用 Blender，则可以参考下面的文档。</p>
@@ -95,11 +92,12 @@
 <p><img src="imgs/59fdc77e3894_1719719819913-afe4675d-77c6-41c8-8826-211df74e4818.png" alt="Visual Model 显示外观模型"></p>
 <p>Additionally, you need to use LOD tools to create corresponding low-polygon models for displaying objects at a distance, reducing rendering performance pressure. You can choose to use the InstaLOD Blender plugin to automatically create LODs:</p>
 <p>此外，你需要使用 LOD 工具，制作对应的低多边形的模型，用于物体在远处的显示，以降低渲染性能压力。</p>
-<p>可以选择使用 InstaLOD 的 Blender插件自动制作 LOD：<a href="https://docs.instalod.io/en/Products/Integrations/InstaLOD_For_Blender">https://docs.instalod.io/en/Products/Integrations/InstaLOD_For_Blender</a></p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2024/zip/23154724/1719735002465-d0dcc2b2-8ebb-454f-84b9-343e7cdd4dc0.zip">InstaLOD for Blender (Windows _ MacOS).zip</a></p>
-<p>or use InstaLOD Studio.</p>
-<p>或者使用 InstaLOD Studio</p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2024/zip/23154724/1719733472239-cc4cb890-67a4-4a13-a6a7-fdab82cf82bd.zip">InstaLOD Studio (Windows).zip</a></p>
+<p>Follow the <a href="https://docs.instalod.io/Products/Integrations/InstaLOD_For_Blender">InstaLOD for Blender official installation guide</a> to sign in to License Management, then download the latest plugin and the InstaLOD Pipeline from <code>Your Files</code>.</p>
+<p>可以选择使用 InstaLOD 的 Blender 插件自动制作 LOD。请按照 <a href="https://docs.instalod.io/Products/Integrations/InstaLOD_For_Blender">InstaLOD for Blender 官方安装文档</a>登录 License Management，并从 <code>Your Files</code> 下载最新插件和 InstaLOD Pipeline。</p>
+<p>Or use InstaLOD Studio: follow the <a href="https://docs.instalod.io/Products/InstaLOD_Studio/Installation">InstaLOD Studio official installation guide</a> to download and install the standalone version.</p>
+<p>或者按照 <a href="https://docs.instalod.io/Products/InstaLOD_Studio/Installation">InstaLOD Studio 官方安装文档</a>下载并安装独立版。</p>
+<p>If you do not use InstaLOD, you can also create low-polygon LODs manually with Blender's built-in <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate Modifier</a>.</p>
+<p>不使用 InstaLOD 时，也可以使用 Blender 内置的 <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate Modifier</a>手动制作低面数 LOD。</p>
 <h1 id="child-parent-父子关系">Child-Parent 父子关系</h1>
 <h2 id="rule-放置规则">Rule 放置规则</h2>
 <p>Create four empty objects (Shift + A and select Empty - Plain Axes) and name them Visual, Collider, HitBox, and Module respectively. Note that the size and spelling must be exactly the same. Visual is used for placing the appearance model and LOD, Collider is used for placing non-concave collision models, HitBox is used for placing external armor, and Module is used for placing internal armor.</p>
@@ -127,10 +125,11 @@
 <p>较低面数的内部模块模型，用于炮弹后效伤害。 然后通过第5节的命名规范设置其类型，装甲厚度与血量。</p>
 <p><img src="imgs/d6e7a01f67e4_1719736060590-ba924d44-4172-45d1-85c6-e090818197b8.png" alt="Lower-polygon internal module models 较低面数的内部模块模型"></p>
 <h1 id="collider-碰撞模型">Collider 碰撞模型</h1>
+<p>A collision model only needs to be created for the vehicle hull model.</p>
 <p>只有制作给车体的模型，才需要制作碰撞模型。</p>
 <p><img src="imgs/7c4c2e62d6a6_1719743677689-340933b6-3064-447a-866d-9d0163975815.png" alt=""></p>
 <h1 id="naming-命名规范">Naming 命名规范</h1>
-<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/ouu3ksg776g7tmlm">2.12 HitBox Naming 伤害模型命名规范</a></p>
+<p><a href="../mod/2139fadf2be78d26.html">2.12 HitBox Naming 伤害模型命名规范</a></p>
 <h1 id="export-导出">Export 导出</h1>
 <p>Select the model you want to export, then click on glTF 2.0, choose the .glb format, check Selected Objects, and click Export.</p>
 <p>选中你要导出的模型，然后点击 glTF 2.0，格式选择 .glb ，勾上 Selected Object，然后点击 Export。</p>
@@ -145,7 +144,6 @@
 <p><img src="imgs/5d742bda8f77_1719736699208-3855419f-af4c-46a8-858f-562381a2525c.png" alt=""></p>
 <p><img src="imgs/439bd1b1b332_1719736762542-53056e9d-665c-4239-95ee-4b1d34aab8ff.png" alt=""></p>
 <h2 id="android-platform-安卓平台">Android Platform 安卓平台</h2>
-<p><a href="https://customspace.yuque.com/chaojiduolajiang/panzerwar/wa12no60ensgazht#VEcNb">此处为语雀卡片，点击链接查看</a></p>
 <p>Click on the glb format file and select Panzer War: Definitive Edition as the opening application. Enter the Tank Workshop, choose Model Import, and enter your glb file name (including the file extension).</p>
 <p>点击 glb 格式文件，打开方式选择 装甲纷争：决定版。进入坦克工坊，选择 模型导入，输入你的 glb 文件名 （带后缀）</p>
 </article>

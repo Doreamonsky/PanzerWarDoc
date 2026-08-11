@@ -78,25 +78,36 @@
             <article class="content wrap" id="_content" data-uid="">
 <h1 id="026-flight-飞机">02.6 Flight 飞机</h1>
 
-<h1 id="起落架动画机与动画">起落架动画机与动画</h1>
-<h2 id="动画准备">动画准备</h2>
+<h1 id="起落架动画控制器与动画-landing-gear-animator-controller-and-animations">起落架动画控制器与动画 Landing Gear Animator Controller and Animations</h1>
+<h2 id="动画准备-preparing-the-animations">动画准备 Preparing the Animations</h2>
 <p>需要使用 Animation 或者 Blender 等，k三个飞机状态的动画</p>
+<p>You need to use Animation, Blender or a similar tool to key three aircraft state animations.</p>
 <p>飞行中动画：起落架收起的常态</p>
+<p>In-flight animation: the steady state with the landing gear retracted.</p>
 <p>降落动画：起落架从收起到展开的过程</p>
+<p>Landing animation: the transition of the landing gear from retracted to extended.</p>
 <p>降落完毕动画：起落架展开的常态</p>
+<p>Landing-complete animation: the steady state with the landing gear extended.</p>
 <p>需要把动画 k 在显示模型上</p>
+<p>The animations must be keyed on the display model.</p>
 <p><img src="imgs/a18504eb75e1_1675570095807-961adf6d-a8dc-477a-bc23-d561ecd3be21.png" alt=""><img src="imgs/f91244fa0465_1675570108718-0389ae7e-79ae-43c0-8260-15e0c178f3ea.png" alt=""></p>
 <p><img src="imgs/a5e991387021_1675570161946-e82124cc-70f3-4a72-8e19-26ab89ca43cd.png" alt=""></p>
-<h2 id="动画机准备">动画机准备</h2>
+<h2 id="动画控制器准备-preparing-the-animator-controller">动画控制器准备 Preparing the Animator Controller</h2>
 <p>创建一份 Override 的动画控制器</p>
+<p>Create an Override animator controller.</p>
 <p><img src="imgs/54a98e72ed68_1675570397903-a17b60ad-f029-4095-9c6e-4cb5dba56c0e.png" alt=""></p>
 <p>Controller 选择项目内自带的 BF-110</p>
+<p>For Controller, select the BF-110 that comes with the project.</p>
 <p><img src="imgs/a3e49923c208_1675570431959-1844eee4-e049-4c8f-8919-6d8f311074b8.png" alt=""></p>
-<p>右侧的三个动画表示用你的动画去覆盖原本动画机的动画</p>
+<p>右侧的三个动画表示用你的动画去覆盖原本动画控制器的动画</p>
+<p>The three animations on the right are the ones your own animations will use to override the animations in the original animator controller.</p>
 <p>比如这样：用自己的 landing 动画，覆盖默认的 landing 动画</p>
+<p>For example: use your own landing animation to override the default landing animation.</p>
 <p>三个都要填上</p>
+<p>All three must be filled in.</p>
 <p><img src="imgs/e2b156042725_1675570494608-e1f6215a-878d-43a8-b539-1a186425706f.png" alt=""></p>
 <p>在模型上增加 Animator 组件</p>
+<p>Add an Animator component to the model.</p>
 <p><img src="imgs/2df2ec17089e_1675570565196-afdb5142-53bd-44de-b981-b4d704226d20.png" alt=""></p>
 </article>
           </div>

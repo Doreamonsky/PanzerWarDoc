@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>18. 持续构建 （脚本化构建模组） | Panzer War Document </title>
+    <title>18. 持续构建 （脚本化构建模组） Continuous Build (Scripted Mod Building) | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="18. 持续构建 （脚本化构建模组） | Panzer War Document ">
+    <meta name="title" content="18. 持续构建 （脚本化构建模组） Continuous Build (Scripted Mod Building) | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,17 +76,27 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="18-持续构建-脚本化构建模组">18. 持续构建 （脚本化构建模组）</h1>
+<h1 id="18-持续构建-脚本化构建模组-continuous-build-scripted-mod-building">18. 持续构建 （脚本化构建模组） Continuous Build (Scripted Mod Building)</h1>
 
 <p>创建持续构建流程，可以更快的进行模组文件的迭代更新，高度自定义打包哪些模组，拷贝至什么文件夹，无需手动操作，也无需打开 Unity 点击任何按钮。</p>
-<h1 id="1-创建一个-manifest-描述-json">1. 创建一个 manifest 描述 json</h1>
+<p>Setting up a continuous build pipeline lets you iterate on mod files faster. You can freely customize which mods are built and which folder they are copied to, without doing anything by hand and without opening Unity to click any button.</p>
+<h1 id="1-创建一个-manifest-描述-json-create-a-manifest-json">1. 创建一个 manifest 描述 json Create a manifest json</h1>
 <p>modNames 为一个数组，填写你要构建的模组包列表。</p>
+<p>modNames is an array; fill in the list of mod packages you want to build.</p>
 <p>copyInfo 会根据平台，将最终生成的文件拷贝到指定目录。(安卓工程则只拷贝安卓文件，Windows 工程则只拷贝 Windows 文件)</p>
+<p>copyInfo copies the generated files to the given directory according to the platform. (An Android project only copies the Android files, a Windows project only copies the Windows files.)</p>
 <p>isPackage 为 true 则拷贝 modpackage 为 false 则拷贝 buildpipline 原始资源（传 Steam 创意工坊用）</p>
-<h2 id="案例--testbuildpiplinejson">案例  TestBuildPipline.json</h2>
+<p>When isPackage is true the modpackage file is copied; when it is false the raw buildpipline assets are copied instead (these are the ones you upload to the Steam Workshop).</p>
+<h2 id="案例--testbuildpiplinejson-example-testbuildpiplinejson">案例  TestBuildPipline.json Example TestBuildPipline.json</h2>
 <ol>
-<li>构建模组包 BuildPipline-Lua-ModeRes 与 BuildPipline-Vehicles ，生成 modpackage 文件。</li>
-<li>将安卓平台资源拷贝至 D:/Projects/Android-Ship 将电脑平台资源拷贝至 D:/Projects/Windows-Ship</li>
+<li><p>构建模组包 BuildPipline-Lua-ModeRes 与 BuildPipline-Vehicles ，生成 modpackage 文件。</p>
+</li>
+<li><p>将安卓平台资源拷贝至 D:/Projects/Android-Ship 将电脑平台资源拷贝至 D:/Projects/Windows-Ship</p>
+</li>
+<li><p>Build the mod packages BuildPipline-Lua-ModeRes and BuildPipline-Vehicles into modpackage files.</p>
+</li>
+<li><p>Copy the Android assets to D:/Projects/Android-Ship and the desktop assets to D:/Projects/Windows-Ship.</p>
+</li>
 </ol>
 <pre><code class="lang-json">{
     &quot;infos&quot;: [
@@ -110,14 +120,20 @@
     ]
 }
 </code></pre>
-<h1 id="2-ci-脚本">2. CI 脚本</h1>
+<h1 id="2-ci-脚本-ci-script">2. CI 脚本 CI Script</h1>
 <p>调用 ShanghaiWindy.Editor.Utility_BuildPipline.DoBuildPiplineManifest 传入 -config 参数 (manifest 路径)</p>
-<h2 id="案例-buildpiplinecish">案例 BuildPiplineCI.sh</h2>
+<p>Call ShanghaiWindy.Editor.Utility_BuildPipline.DoBuildPiplineManifest and pass the -config argument (the path of the manifest).</p>
+<h2 id="案例-buildpiplinecish-example-buildpiplinecish">案例 BuildPiplineCI.sh Example BuildPiplineCI.sh</h2>
 <p>projectDir 为你的 Unity 项目路径</p>
+<p>projectDir is the path of your Unity project.</p>
 <p>manifestDir 为 步骤.1 中的 manifest 的 json 文件的路径</p>
+<p>manifestDir is the path of the manifest json file from step 1.</p>
 <p>editorDir 为你的 Unity 安装路径</p>
+<p>editorDir is the path where Unity is installed.</p>
 <p>logPath 为你的打包日志输出路径</p>
+<p>logPath is the output path of the build log.</p>
 <p>（Windows 上执行 bash，可安装一个 git，然后通过 git bash 执行以下脚本）</p>
+<p>(To run bash on Windows, install git and then run the following script through git bash.)</p>
 <pre><code class="lang-bash">projectDir=&quot;D:\Projects\PanzerWar-URP&quot;
 manifestDir=&quot;D:\Projects\PanzerWar-URP\CLI\BuildPiplineCI\TestBuildPipline.json&quot;
 editorDir=&quot;H:\UnityEditor\2021.3.0f1\Editor\Unity.exe&quot;
@@ -126,14 +142,19 @@ $editorDir -projectPath $projectDir -batchmode -quit -executeMethod ShanghaiWind
 </code></pre>
 <p><strong>完整的构建案例，可直接查看 PanzerWar-Mods\UnityProject\BuildPiplineCI 文件夹，</strong></p>
 <p>**调整 **BuildPiplineCI.sh <strong>为自己项目的路径，用 git bash 方式执行即可。</strong></p>
+<p><strong>For a complete build example, look at the PanzerWar-Mods\UnityProject\BuildPiplineCI folder.</strong></p>
+<p><strong>Change the paths in <strong>BuildPiplineCI.sh</strong> to the ones of your own project and run it through git bash.</strong></p>
 <p><img src="imgs/94acbe4e59ea_1651983372541-b99904f9-4c9a-4cd0-aee0-1a908dc4e7e0.png" alt=""></p>
-<h1 id="3-jenkins-集成">3. Jenkins 集成</h1>
-<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/vcg270sfdel8a3i3">Jenkins 安装与配置教程</a></p>
-<h1 id="4-特殊情况">4. 特殊情况</h1>
-<h2 id="1-buildpipline-位于-modmanager-的子文件夹">1. BuildPipline 位于 ModManager 的子文件夹</h2>
+<h1 id="3-jenkins-集成-jenkins-integration">3. Jenkins 集成 Jenkins Integration</h1>
+<p><a href="7528cd260a094da5.html">Jenkins 安装与配置教程</a></p>
+<h1 id="4-特殊情况-special-cases">4. 特殊情况 Special Cases</h1>
+<h2 id="1-buildpipline-位于-modmanager-的子文件夹-buildpipline-in-a-subfolder-of-modmanager">1. BuildPipline 位于 ModManager 的子文件夹 BuildPipline in a Subfolder of ModManager</h2>
 <p>这种情况，需要 modNames 设置名称时候，也要加上前缀</p>
+<p>In this case the name you write in modNames has to carry the prefix as well.</p>
 <p>比如位于 Assets/ModManager/<strong>AAAA/BBBB/Vehicle-XXX</strong></p>
+<p>For example, for a mod located at Assets/ModManager/<strong>AAAA/BBBB/Vehicle-XXX</strong></p>
 <p>则填写 <strong>AAAA/BBBB/Vehicle-XXX</strong></p>
+<p>you write <strong>AAAA/BBBB/Vehicle-XXX</strong>.</p>
 <p><img src="imgs/4b6a409faa05_1653837789470-d95ca9e7-903e-47f5-98f2-65361018216d.png" alt=""></p>
 </article>
           </div>

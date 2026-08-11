@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>28.1. 上传，命名，美术规范 | Panzer War Document </title>
+    <title>28.1. Upload, Naming and Art Standards 上传，命名，美术规范 | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="28.1. 上传，命名，美术规范 | Panzer War Document ">
+    <meta name="title" content="28.1. Upload, Naming and Art Standards 上传，命名，美术规范 | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,38 +76,56 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="281-上传命名美术规范">28.1. 上传，命名，美术规范</h1>
+<h1 id="281-upload-naming-and-art-standards-上传命名美术规范">28.1. Upload, Naming and Art Standards 上传，命名，美术规范</h1>
 
-<h1 id="1-上传规范">1. 上传规范</h1>
+<h1 id="1-upload-standards-上传规范">1. Upload Standards 上传规范</h1>
 <p>每个分支，都应该尽量少的修改内容。 小到： 以一个坦克或飞机的修改为一个分支。切记，不要在一个分支内，提交大量的载具修改，然后再进行合并，<strong>此类合并将无法通过。</strong></p>
-<h1 id="2-命名规范">2. 命名规范</h1>
+<p>Each branch should contain as few changes as possible — ideally one branch per tank or aircraft. Never commit a large batch of vehicle changes on a single branch and then ask for a merge; <strong>such merges will not be accepted.</strong></p>
+<h1 id="2-naming-standards-命名规范">2. Naming Standards 命名规范</h1>
 <ol>
-<li>任何的文件应该以大写字母开头，然后接小写字母如：</li>
+<li><p>任何的文件应该以大写字母开头，然后接小写字母如：</p>
+<p>Every file name should begin with an uppercase letter followed by lowercase letters, for example:</p>
+</li>
 </ol>
 <p><img src="imgs/ac7b5339869d_1677924244339-8f9b851a-ffdd-4300-b928-a5d4e1f73395.png" alt=""></p>
 <ol start="2">
-<li>任何的文件，都应该有一个清晰明确的名称，而非一串乱码之类的</li>
-<li>尽量不要拼错单词</li>
+<li><p>任何的文件，都应该有一个清晰明确的名称，而非一串乱码之类的</p>
+<p>Every file should have a clear, meaningful name instead of a string of gibberish.</p>
+</li>
+<li><p>尽量不要拼错单词</p>
+<p>Try not to misspell words.</p>
+</li>
 </ol>
-<h1 id="3-在原本模型上进行修改应替换-fbx-而非新增-fbx">3. 在原本模型上进行修改，应替换 Fbx 而非新增 Fbx</h1>
+<h1 id="3-when-modifying-an-existing-model-replace-the-fbx-instead-of-adding-a-new-one-在原本模型上进行修改应替换-fbx-而非新增-fbx">3. When Modifying an Existing Model, Replace the Fbx Instead of Adding a New One 在原本模型上进行修改，应替换 Fbx 而非新增 Fbx</h1>
 <p>导出新的 fbx，覆盖原本的 fbx 文件。 此步骤可在建模软件导出时候覆盖，或者在文件夹中复制进行覆盖。无法在 Unity 编辑器内直接完成。如果在 fbx 内新增模型，则将新的 fbx 拖入空场景，然后复制新增部分到原本老的预制体内。</p>
+<p>Export the new fbx and overwrite the original fbx file. You can overwrite it while exporting from your modelling software, or by copying the file over in the folder. This cannot be done directly inside the Unity editor. If you added new models inside the fbx, drag the new fbx into an empty scene, then copy the newly added parts into the original old prefab.</p>
 <p><img src="imgs/6b8bbf7513c5_1677924311878-9a50ffb9-8e9f-4f59-b9f4-e8894f693fd0.png" alt=""></p>
 <p><strong>切记，不要因为对 fbx 新增一块区域的模型，就只是新增一个 fbx 文件。 会导致 XXX_fix.fbx XXX_fix2.fbx ... 这样的情况，导致项目文件混乱。</strong></p>
-<h1 id="4-法线图与-rgb-图不要用一张不要设置-normal-强度">4. 法线图与 RGB 图不要用一张，不要设置 Normal 强度</h1>
+<p><strong>Never add a separate fbx file just because you added one more piece of geometry. It leads to XXX_fix.fbx, XXX_fix2.fbx and so on, which turns the project files into a mess.</strong></p>
+<h1 id="4-do-not-reuse-one-texture-for-both-normal-and-rgb-maps-and-do-not-set-normal-strength-法线图与-rgb-图不要用一张不要设置-normal-强度">4. Do Not Reuse One Texture for Both Normal and RGB Maps, and Do Not Set Normal Strength 法线图与 RGB 图不要用一张，不要设置 Normal 强度</h1>
 <p><img src="imgs/ed0cfeaf8a81_1677922679075-c6f95e01-e407-4079-af3e-94e4762e4c27.png" alt=""></p>
 <p>解决方法：</p>
+<p>Solution:</p>
 <p>在建模软件里不要将 RGB 图引用给 Normal，也不要设置 Normal 强度</p>
+<p>In your modelling software, do not feed the RGB map into Normal, and do not set the Normal strength.</p>
 <p>如：Blender 中删除以下节点</p>
+<p>For example, in Blender, delete the following node:</p>
 <p><img src="imgs/dfc3c19d431e_1677922746658-0c4d72ee-e83e-4073-8e15-7623b6d329a2.png" alt=""></p>
 <p>以及删除以下节点</p>
+<p>And delete the following node as well:</p>
 <p><img src="imgs/45a04dd1d9bf_1677922891268-1001e17b-2a11-4041-a227-824572be3287.png" alt=""></p>
-<h1 id="5-避免重复的材质球">5. 避免重复的材质球</h1>
+<h1 id="5-avoid-duplicate-materials-避免重复的材质球">5. Avoid Duplicate Materials 避免重复的材质球</h1>
 <p>重复的材质球指的是 相同的贴图，但是使用了不同的材质球。这个会造成渲染压力的增加。</p>
+<p>Duplicate materials means separate materials that use exactly the same textures. This increases the rendering cost.</p>
 <p>重复的材质球出现的情况一般是在 Blender 里使用了 ctrl c + ctrl v。 <strong>我们建议使用 shift +d 的方式复制物体，以避免创建重复的材质球。</strong></p>
+<p>Duplicate materials usually appear after copying objects in Blender with Ctrl+C and Ctrl+V. <strong>We recommend duplicating objects with Shift+D instead, so that no duplicate material is created.</strong></p>
 <p>对于已经创建了的重复材质球，则需要手动的在 Blender 里，把引用的材质球都换成相同的，以避免重复。</p>
+<p>For duplicates that already exist, you have to switch the referenced materials manually in Blender so that they all point to the same material.</p>
 <p>下拉框可以看目前还有哪些材质有重复，一般重复的材质都会以 .001,.002 结尾。</p>
+<p>The dropdown shows which materials are still duplicated; duplicated ones normally end with .001, .002 and so on.</p>
 <p><img src="imgs/fda33d09fc32_1677925024048-9e7cc9d2-907f-4860-849f-0699ac64de3d.png" alt=""></p>
 <p>可以在上面的搜索框，搜索重复的材质名称</p>
+<p>You can use the search box above to look up duplicated material names.</p>
 <p><img src="imgs/0d1fcc12ad08_1677926683292-b2361d26-3d05-407c-8e62-891a63b61e60.png" alt=""></p>
 </article>
           </div>

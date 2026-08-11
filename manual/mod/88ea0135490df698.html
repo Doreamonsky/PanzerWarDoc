@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>17.2. Mask 贴图编辑器内预览 | Panzer War Document </title>
+    <title>17.2. Mask 贴图编辑器内预览 Preview Mask Texture in the Editor | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="17.2. Mask 贴图编辑器内预览 | Panzer War Document ">
+    <meta name="title" content="17.2. Mask 贴图编辑器内预览 Preview Mask Texture in the Editor | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,25 +76,34 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="172-mask-贴图编辑器内预览">17.2. Mask 贴图编辑器内预览</h1>
+<h1 id="172-mask-贴图编辑器内预览-preview-mask-texture-in-the-editor">17.2. Mask 贴图编辑器内预览 Preview Mask Texture in the Editor</h1>
 
-<h1 id="unity-中使用贴图">Unity 中使用贴图</h1>
+<h1 id="unity-中使用贴图-using-the-texture-in-unity">Unity 中使用贴图 Using the Texture in Unity</h1>
 <p>使用此 Shader Shader Graphs/SRP-Vehicle-Camouflage</p>
+<p>Use this shader: Shader Graphs/SRP-Vehicle-Camouflage</p>
 <p><img src="imgs/ebb15823d96b_1679576649816-61e60ed8-7c22-436d-8fe4-8b813d16823b.png" alt=""></p>
 <p>在编辑器内预览 PBR 效果：</p>
+<p>To preview the PBR result inside the editor:</p>
 <p>编辑 Shader 点击 Edit</p>
+<p>Click Edit to open the shader for editing.</p>
 <p><img src="imgs/067db92b02af_1679576714496-d813af52-6522-45af-ba07-be6078e28d74.png" alt=""></p>
 <p>从 Unlit 改为 Lit</p>
+<p>Change Unlit to Lit.</p>
 <p><img src="imgs/f687dbe28739_1679576738302-a012418e-7fe4-4704-b6ba-104c1da79ddf.png" alt=""></p>
 <p>然后点击 Save，Shader 会重新编译。</p>
+<p>Then click Save, and the shader will be recompiled.</p>
 <p>材质球勾选 Enable Mask 的选项。</p>
+<p>Tick the Enable Mask option on the material.</p>
 <p><img src="imgs/2e57e605ba4d_1679577010281-d16c0a8c-c7a5-4011-bb51-0e5b7d5c644c.png" alt=""></p>
 <p><strong>在预览完毕后，务必把 Material 改回 unlit。 否则会导致打包大小变大</strong></p>
-<h1 id="预览效果">预览效果</h1>
+<p><strong>After you finish previewing, make sure to change the material back to unlit. Otherwise the build size will grow.</strong></p>
+<h1 id="预览效果-preview-result">预览效果 Preview Result</h1>
 <p><img src="imgs/dc8d66c09cee_1679577141651-9868170b-5d68-463b-8968-a3046301946d.png" alt=""></p>
-<h1 id="注意事项">注意事项</h1>
+<h1 id="注意事项-notes">注意事项 Notes</h1>
 <p><strong>在预览完毕后，务必把 Material 改回 unlit。 否则会导致打包大小变大。</strong></p>
+<p><strong>After you finish previewing, make sure to change the material back to unlit. Otherwise the build size will grow.</strong></p>
 <p><strong>在决定版运行时，会自动识别 Mask 贴图，并使用 PBR 的材质球。</strong></p>
+<p><strong>At runtime, the Definitive Edition automatically detects the Mask texture and uses the PBR material.</strong></p>
 </article>
           </div>
 

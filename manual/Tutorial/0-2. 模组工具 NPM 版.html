@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>0-2. 模组工具 NPM 版 | Panzer War Document </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="0-2. 模组工具 NPM 版 | Panzer War Document ">
+    <meta name="generator" content="docfx ">
+  
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="0-2-模组工具-npm-版">0-2. 模组工具 NPM 版</h1>
+
+<h1 id="npm-版">NPM 版</h1>
+<p>好处：</p>
+<ol>
+<li>通过 Package Manger 管理版本，无需自己下载解压新的工具</li>
+<li>可以切任意旧版本工具，方便回退与更新</li>
+</ol>
+<p>坏处：</p>
+<ol>
+<li>国内部分地方可能访问会比较慢</li>
+<li>无法修改模组工具中的任何内容</li>
+</ol>
+<h1 id="使用方式">使用方式</h1>
+<p>先需要在项目的Packages/manifest.json中，添加middlelayer的源信息，在这个文件的dependencies节点前增加以下代码</p>
+<p>| ```json
+&quot;scopedRegistries&quot;: [
+{
+&quot;name&quot;: &quot;middlelayer&quot;,
+&quot;url&quot;: &quot;https://registry.npmjs.org&quot;,
+&quot;scopes&quot;: [
+&quot;com.shanghaiwindy&quot;
+]
+}
+],</p>
+<pre><code> |
+| --- |
+
+![image.png](./images/20231024_1405307045.png)
+然后通过Unity的Window-&gt;Package Manager菜单，打开Package Manager.
+如果已安装本地的** Panzer War MiddleLayer (Mod Libs)，**则需要先把本地的从 Package Manager 中移除。然后再安装 NPM 版。
+
+点击 Add package by name...
+![image.png](./images/20231024_1405309843.png)
+然后输入：
+**com.shanghaiwindy.middlelayer**
+就会自动开始下载并安装。
+
+以上是核心的 Mod 工具的安装说明，还有如下包名可以在需要的时候进行安装：
+安装方式也是点击 Add package by name...，然后输入包名
+
+1. 共享的配置和共享的内构模型
+
+包名：[com.shanghaiwindy.middlesharedresources](https://www.npmjs.com/package/com.shanghaiwindy.middlesharedresources)
+
+
+# 更新版本
+当存在新版本时候，会在 remove 旁边出现 update 的按钮
+![image.png](./images/20231024_1405308218.png)
+
+# 回退版本
+点击 See other version，然后选择旧版本进行安装
+![image.png](./images/20231024_1405307228.png)
+</code></pre>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <div class="toggle-mode">
+                <div class="icon">
+                  <i aria-hidden="true">☀</i>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="switch-style">
+                  <span class="slider round"></span>
+                </label>
+                <div class="icon">
+                  <i aria-hidden="true">☾</i>
+                </div>
+              </div>
+
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <h5>In This Article</h5>
+              <div></div>
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div class="pull-left">
+        Panzer War Document
+        
+            </div>
+            <div class="toggle-mode pull-right visible-sm visible-xs">
+              <div class="icon">
+                <i aria-hidden="true">☀</i>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="switch-style-m">
+                <span class="slider round"></span>
+              </label>
+              <div class="icon">
+                <i aria-hidden="true">☾</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+      </footer>    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

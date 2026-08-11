@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>6. 地图编辑器使用教程 | Panzer War Document </title>
+    <title>6. 地图编辑器使用教程 Map Editor Tutorial | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="6. 地图编辑器使用教程 | Panzer War Document ">
+    <meta name="title" content="6. 地图编辑器使用教程 Map Editor Tutorial | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,21 +76,37 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="6-地图编辑器使用教程">6. 地图编辑器使用教程</h1>
+<h1 id="6-地图编辑器使用教程-map-editor-tutorial">6. 地图编辑器使用教程 Map Editor Tutorial</h1>
 
 <p><img src="imgs/14b8979688f1_1648381760012-b2d83595-abd6-4832-b7f4-91fe2e166b0e.png" alt=""></p>
 <p>案例地图分享码：</p>
+<p>Share code of the example map:</p>
 <p>c564f128-6d1b-4db5-84a2-953b1de0d52c -[Map]-[simplemap]</p>
-<h1 id="地图制作注意事项">地图制作注意事项</h1>
+<h1 id="地图制作注意事项-notes-on-making-a-map">地图制作注意事项 Notes on Making a Map</h1>
 <ol>
-<li>需要包含 Tag，TeamAStartPoint（A 队出生点），TeamBStartPoint （B 队出生点）应该相互有一定距离间隔</li>
-<li>使用空气墙组件，拉伸模型，围住地图边缘</li>
-<li>警惕 Z-Fighting 带来的抖动，模型请勿完全重叠，会导致模型来回闪烁。</li>
+<li><p>需要包含 Tag，TeamAStartPoint（A 队出生点），TeamBStartPoint （B 队出生点）应该相互有一定距离间隔</p>
+</li>
+<li><p>使用空气墙组件，拉伸模型，围住地图边缘</p>
+</li>
+<li><p>警惕 Z-Fighting 带来的抖动，模型请勿完全重叠，会导致模型来回闪烁。</p>
+</li>
+<li><p>The map must contain the tags TeamAStartPoint (Team A spawn point) and TeamBStartPoint (Team B spawn point), and they should be placed a certain distance apart from each other.</p>
+</li>
+<li><p>Use the air wall component and stretch its model to enclose the edges of the map.</p>
+</li>
+<li><p>Beware of the flickering caused by Z-Fighting. Do not let models overlap completely, otherwise they will flicker back and forth.</p>
+</li>
 </ol>
-<h1 id="运行下可能问题">运行下可能问题</h1>
+<h1 id="运行时可能遇到的问题-possible-issues-at-runtime">运行时可能遇到的问题 Possible Issues at Runtime</h1>
 <ol>
-<li>无法出生。 设置的 tag 太少或者距离过近。</li>
-<li>远距离没看见自己摆放的小细节物体。由于优化原因，只有在工坊时候，才会显示所有物体，运行时会根据 lod 策略选择物体的细节等级</li>
+<li><p>无法出生。 设置的 tag 太少或者距离过近。</p>
+</li>
+<li><p>远距离没看见自己摆放的小细节物体。由于优化原因，只有在工坊时候，才会显示所有物体，运行时会根据 lod 策略选择物体的细节等级</p>
+</li>
+<li><p>Unable to spawn. Too few tags were set, or they are placed too close to each other.</p>
+</li>
+<li><p>Small detail objects you placed are not visible from a distance. For optimization reasons, all objects are displayed only in the workshop; at runtime the level of detail of an object is chosen according to the LOD policy.</p>
+</li>
 </ol>
 </article>
           </div>

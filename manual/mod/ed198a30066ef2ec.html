@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>02.7 祝昔的载具 Mod 开发总结 | Panzer War Document </title>
+    <title>02.7 祝昔的载具 Mod 开发总结 Vehicle Modding Notes by 祝昔 | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="02.7 祝昔的载具 Mod 开发总结 | Panzer War Document ">
+    <meta name="title" content="02.7 祝昔的载具 Mod 开发总结 Vehicle Modding Notes by 祝昔 | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,103 +76,148 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="027-祝昔的载具-mod-开发总结">02.7 祝昔的载具 Mod 开发总结</h1>
+<h1 id="027-祝昔的载具-mod-开发总结-vehicle-modding-notes-by-祝昔">02.7 祝昔的载具 Mod 开发总结 Vehicle Modding Notes by 祝昔</h1>
 
 <p>作者：@情绪薫</p>
-<p>PW mod制作中可能遇到的问题</p>
-<h1 id="首先模型获取途径">首先模型获取途径</h1>
+<p>Author: @情绪薫</p>
+<p>PW 模组制作中可能遇到的问题</p>
+<p>Problems you may run into when making mods for PW</p>
+<h1 id="首先模型获取途径-where-to-get-models">首先模型获取途径 Where to Get Models</h1>
 <p>第一个<a href="https://sketchfab.com/">Sketchfab - The best 3D viewer on the web</a>，上面有着大量模型，包括付费以及免费模型</p>
+<p>First, <a href="https://sketchfab.com/">Sketchfab - The best 3D viewer on the web</a>. It hosts a large number of models, both paid and free.</p>
 <p>第二个<a href="https://gamemodels3d.com/">游戏中的载具模型 (gamemodels3d.com)</a>,上面有WT，WOT，WOTB，AW的大量模型，并且大部分WT模型都包含内构，需要付费注册账号来下载模型</p>
+<p>Second, <a href="https://gamemodels3d.com/">游戏中的载具模型 (gamemodels3d.com)</a>. It has a large number of models from WT, WOT, WOTB and AW, and most WT models include internal structure. You need a paid account to download the models.</p>
 <p>第三个<a href="https://www.cgtrader.com/">CGTrader - 3D Models for VR / AR and CG projects</a>，上面有着大量付费模型</p>
+<p>Third, <a href="https://www.cgtrader.com/">CGTrader - 3D Models for VR / AR and CG projects</a>. It has a large number of paid models.</p>
 <p>第四个其他。</p>
-<p>接下来分为<strong>制作mod中遇到的问题</strong>以及<strong>制作更好的mod遇到的问题</strong>两个方面</p>
-<h1 id="制作mod中遇到的问题">制作mod中遇到的问题</h1>
+<p>Fourth, other sources.</p>
+<p>接下来分为<strong>制作模组中遇到的问题</strong>以及<strong>制作更好的模组遇到的问题</strong>两个方面</p>
+<p>The rest is divided into two parts: <strong>problems encountered while making a mod</strong> and <strong>problems encountered while making a better mod</strong>.</p>
+<h1 id="制作模组中遇到的问题-problems-encountered-while-making-a-mod">制作模组中遇到的问题 Problems Encountered While Making a Mod</h1>
 <ol>
-<li>模型原点位置的确定</li>
-<li>无炮塔坦歼的制作</li>
-<li>mod内构在游戏里不显示</li>
-<li>在编辑过程中突然看不到hitbox</li>
-<li>mod在车库中起飞翻转</li>
-<li>炮弹击中后产生的弹痕贴图过大</li>
-<li>mod在游戏中不显示</li>
+<li>模型原点的确定 Determining the model origin</li>
+<li>无炮塔坦歼 Turretless tank destroyers</li>
+<li>模组制作了内构但游戏里不显示 The mod has internal structure but it does not show up in game</li>
+<li>在编辑过程中突然看不到hitbox The hitbox suddenly disappears while editing</li>
+<li>坦克在车库中起飞翻转 The tank takes off and flips over in the garage</li>
+<li>炮弹击中后产生的贴图过大 The decal produced when a shell hits is too large</li>
+<li>模组在游戏内不显示 The mod does not show up in game</li>
 </ol>
-<h1 id="制作更好的mod遇到的问题">制作更好的mod遇到的问题</h1>
+<h1 id="制作更好的模组遇到的问题-problems-encountered-while-making-a-better-mod">制作更好的模组遇到的问题 Problems Encountered While Making a Better Mod</h1>
 <ol>
-<li>动画制作</li>
-<li>更换实体履带</li>
-<li>如何设置不同方向炮塔不同俯仰角</li>
-<li>如何给mod设置缩略图</li>
-<li>如何设置爆反装甲</li>
-<li>如何去除内构模型颜色</li>
-<li>如何给mod起名字</li>
-<li>如何将多边形炮管变圆</li>
-<li>多炮塔设置的例子</li>
-<li>配对节点和重力节点的运用</li>
-<li>如何解决载具移动停止时的猛烈磕头</li>
+<li>动画 Animation</li>
+<li>实体履带 Solid tracks</li>
+<li>不同方向炮塔不同俯仰角 Different elevation angles in different turret directions</li>
+<li>如何给模组设置缩略图 How to set a thumbnail for a mod</li>
+<li>如何设置爆反装甲 How to set up reactive armor</li>
+<li>模组查看装甲时部分装甲透明 Some armor is transparent when viewing armor in a mod</li>
+<li>去除内构模型颜色 Removing the colors from internal structure models</li>
+<li>给模型起名字 Naming the model</li>
+<li>多边形炮管变圆 Making a faceted gun barrel look round</li>
+<li>多炮塔例子 A multi-turret example</li>
+<li>配对节点和重力节点 Pairing nodes and gravity nodes</li>
+<li>如何解决模组启动停止时的猛烈磕头 How to fix violent nose-diving when the mod starts and stops</li>
 </ol>
-<h1 id="一在制作mod中遇到的问题">一、在制作mod中遇到的问题</h1>
-<h2 id="1-模型原点的确定">1. 模型原点的确定</h2>
+<h1 id="一在制作模组中遇到的问题-part-1-problems-encountered-while-making-a-mod">一、在制作模组中遇到的问题 Part 1: Problems Encountered While Making a Mod</h1>
+<h2 id="1-模型原点的确定-determining-the-model-origin">1. 模型原点的确定 Determining the Model Origin</h2>
 <p>在blender中，你需要对以下部件设置原点</p>
+<p>In Blender you need to set the origin for the following parts.</p>
 <p>炮塔turret,设置炮塔原点以确保炮塔绕轴进行水平转动。</p>
+<p>Turret: set the turret origin so that the turret rotates horizontally around its axis.</p>
 <p>（先点击左侧工具栏中的移动然后勾选右上角的原点，父级，然后就可以将物体原点移动到你想要的地方，完成后记得取消勾选原点和父级）</p>
-<p><img src="imgs/3a7e4a89aacb_1673883296923-993e3e49-98f8-47a2-8482-fe1a0e936c14.png" alt="">炮盾Gun，将设置炮盾原点以确保坦克炮管俯仰正常</p>
+<p>(First click Move in the left toolbar, then tick Origin and Parent in the top right. You can then move the object origin wherever you want. Remember to untick Origin and Parent when you are done.)</p>
+<p><img src="imgs/3a7e4a89aacb_1673883296923-993e3e49-98f8-47a2-8482-fe1a0e936c14.png" alt=""></p>
+<p>炮盾Gun，将设置炮盾原点以确保坦克炮管俯仰正常</p>
+<p>Gun mantlet (Gun): set the mantlet origin so that the tank's gun barrel elevates and depresses correctly.</p>
 <p>炮管Dym，设置炮管原点来确保炮弹发射位置正确</p>
+<p>Gun barrel (Dym): set the barrel origin so that shells are fired from the correct position.</p>
 <p>轮子UpperWheel以及Wheel，右键设置原点在质心体积来确保轮子绕轴旋转</p>
-<h2 id="2-无炮塔坦歼">2. 无炮塔坦歼</h2>
-<p><img src="imgs/b81d9ec02f82_1673883297329-59871760-e556-46df-a793-e4e89e29d61e.png" alt="">对于无炮塔坦歼如猎虎，在blender中按shift+a，创建一个空轴来作为其炮塔，按g来移动空轴原点。</p>
-<h2 id="3-mod-制作了内构但游戏里不显示">3. Mod 制作了内构但游戏里不显示</h2>
-<p><img src="imgs/4cddcb0998a9_1673883297825-21ef51d6-c088-4cbd-ba49-c5d91d690849.png" alt="">查看是否勾选配置模块化信息</p>
-<h2 id="4-在编辑过程中突然看不到hitbox">4. 在编辑过程中突然看不到hitbox</h2>
-<p>查看hitbox是否隐藏<img src="imgs/6cebba7aa073_1673883298317-092c6102-ad67-4134-a07b-e05569dd3b2f.png" alt=""></p>
-<h2 id="5-坦克在车库中起飞翻转">5. 坦克在车库中起飞翻转</h2>
+<p>Wheels (UpperWheel and Wheel): right-click and set the origin to center of mass (volume) so that the wheels rotate around their axis.</p>
+<h2 id="2-无炮塔坦歼-turretless-tank-destroyers">2. 无炮塔坦歼 Turretless Tank Destroyers</h2>
+<p><img src="imgs/b81d9ec02f82_1673883297329-59871760-e556-46df-a793-e4e89e29d61e.png" alt=""></p>
+<p>对于无炮塔坦歼如猎虎，在blender中按shift+a，创建一个空轴来作为其炮塔，按g来移动空轴原点。</p>
+<p>For turretless tank destroyers such as the Jagdtiger, press shift+a in Blender to create an empty that acts as the turret, and press g to move the empty's origin.</p>
+<h2 id="3-模组制作了内构但游戏里不显示-the-mod-has-internal-structure-but-it-does-not-show-up-in-game">3. 模组制作了内构但游戏里不显示 The Mod Has Internal Structure but It Does Not Show up in Game</h2>
+<p><img src="imgs/4cddcb0998a9_1673883297825-21ef51d6-c088-4cbd-ba49-c5d91d690849.png" alt=""></p>
+<p>查看是否勾选配置模块化信息</p>
+<p>Check whether <strong>Is Module Ready</strong> is ticked.</p>
+<h2 id="4-在编辑过程中突然看不到hitbox-the-hitbox-suddenly-disappears-while-editing">4. 在编辑过程中突然看不到hitbox The Hitbox Suddenly Disappears While Editing</h2>
+<p>查看hitbox是否隐藏</p>
+<p>Check whether the hitbox is hidden.</p>
+<p><img src="imgs/6cebba7aa073_1673883298317-092c6102-ad67-4134-a07b-e05569dd3b2f.png" alt=""></p>
+<h2 id="5-坦克在车库中起飞翻转-the-tank-takes-off-and-flips-over-in-the-garage">5. 坦克在车库中起飞翻转 The Tank Takes off and Flips over in the Garage</h2>
 <p>查看是否设置坦克质量</p>
-<h2 id="6-炮弹击中后产生的贴图过大">6. 炮弹击中后产生的贴图过大</h2>
+<p>Check whether you have set the tank's mass.</p>
+<h2 id="6-炮弹击中后产生的贴图过大-the-decal-produced-when-a-shell-hits-is-too-large">6. 炮弹击中后产生的贴图过大 The Decal Produced When a Shell Hits Is Too Large</h2>
 <p>查看炮弹口径是否填写出错</p>
-<h2 id="7-mod-在游戏内不显示">7. Mod 在游戏内不显示</h2>
+<p>Check whether the shell caliber has been entered incorrectly.</p>
+<h2 id="7-模组在游戏内不显示-the-mod-does-not-show-up-in-game">7. 模组在游戏内不显示 The Mod Does Not Show up in Game</h2>
 <p>查看是否有音效未填</p>
-<h1 id="二如何制作更好的-mod">二、如何制作更好的 Mod</h1>
-<h2 id="1-动画">1. 动画</h2>
+<p>Check whether any sound effect fields have been left empty.</p>
+<h1 id="二如何制作更好的模组-part-2-how-to-make-a-better-mod">二、如何制作更好的模组 Part 2: How to Make a Better Mod</h1>
+<h2 id="1-动画-animation">1. 动画 Animation</h2>
 <p>举例某些坦克上有旋转的雷达</p>
-<p><img src="imgs/5dd42ae504f5_1673883298807-679a3a01-0998-4260-8ab5-3e34c5393a03.png" alt=""><img src="imgs/a933af9456d7_1673883299396-b9091538-5dd1-45b3-b9b0-33dcd2e98d28.png" alt="">如图在合适的位置创建一个空轴来保证雷达绕此轴旋转，然后将雷达放入空轴中，将空轴移动到炮塔下</p>
+<p>For example, some tanks have a rotating radar.</p>
+<p><img src="imgs/5dd42ae504f5_1673883298807-679a3a01-0998-4260-8ab5-3e34c5393a03.png" alt=""><img src="imgs/a933af9456d7_1673883299396-b9091538-5dd1-45b3-b9b0-33dcd2e98d28.png" alt=""></p>
+<p>如图在合适的位置创建一个空轴来保证雷达绕此轴旋转，然后将雷达放入空轴中，将空轴移动到炮塔下</p>
+<p>As shown in the pictures, create an empty at a suitable position so that the radar rotates around that axis, then put the radar inside the empty and move the empty under the turret.</p>
 <p>接着在unity中将物体拖入左侧栏中，选中该物体的雷达部件，右侧选择animation，animation制作教程可参照下面的视频</p>
+<p>Then in Unity, drag the object into the left panel, select the radar part of that object, and choose Animation on the right. For an animation tutorial, refer to the video below.</p>
 <p><a href="https://www.bilibili.com/video/BV1zR4y1G7rt/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66">https://www.bilibili.com/video/BV1zR4y1G7rt/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66</a></p>
 <p>制作完后需要将animator勾选（没有则需要在下方add component选择animator）</p>
+<p>When you are done you need to tick Animator (if there is none, use Add Component at the bottom to add an Animator).</p>
 <p><img src="imgs/e5517ad778fe_1673883299900-ef6bb856-66ef-4814-87b6-02285a08bc8f.png" alt=""></p>
 <p>最后模型上好贴图并设置碰撞体积放入collision文件夹中保存即可。</p>
-<h2 id="2-实体履带">2. 实体履带</h2>
+<p>Finally, apply the textures to the model, set up the collision volumes, place them in the collision folder and save.</p>
+<h2 id="2-实体履带-solid-tracks">2. 实体履带 Solid Tracks</h2>
 <p>将履带块模型分离出来后，右键设置原点在质心（体积），接着右键吸附-选中项-游标，将模型角度调整如下，然后ctrl+a应用旋转，保存即可</p>
+<p>After separating out the track link model, right-click and set the origin to center of mass (volume). Then right-click Snap - Selection to Cursor, adjust the model angle as shown below, press ctrl+a to apply the rotation, and save.</p>
 <p><img src="imgs/9e69f25d26d1_1673883300443-d7ff9081-c19b-4ad5-a882-f1e02745ba45.png" alt=""></p>
 <p>注意，当你需要设置左右两侧履带模型时，左履带模型需在上图基础上顺时针转动180度后再应用旋转</p>
+<p>Note: when you need to set up track models for both the left and right sides, the left track model has to be rotated 180 degrees clockwise from the state shown above before you apply the rotation.</p>
 <p><img src="imgs/ec6a778e6160_1673883301029-1e728b4a-336d-4de3-8181-5850093553b0.png" alt=""></p>
-<h2 id="3-不同方向炮塔不同俯仰角">3. 不同方向炮塔不同俯仰角</h2>
+<h2 id="3-不同方向炮塔不同俯仰角-different-elevation-angles-in-different-turret-directions">3. 不同方向炮塔不同俯仰角 Different Elevation Angles in Different Turret Directions</h2>
 <p>大部分坦克在不同方向的俯仰角不同，可以在特殊的俯仰角位置中进行设置</p>
+<p>Most tanks have different gun elevation limits depending on the direction. You can configure this in the special elevation angle section.</p>
 <p><img src="imgs/2ad4a26d5e93_1673883301516-720690e0-61f3-4a5d-be3a-90c9d6563c18.png" alt=""></p>
-<h2 id="4-如何给mod设置缩略图">4. 如何给mod设置缩略图</h2>
+<h2 id="4-如何给模组设置缩略图-how-to-set-a-thumbnail-for-a-mod">4. 如何给模组设置缩略图 How to Set a Thumbnail for a Mod</h2>
 <p>将你的图片放入编辑器后，右侧设置选择sprite和single，再点击下方的apply即可</p>
+<p>After importing your image into the editor, choose Sprite and Single in the settings on the right, then click Apply at the bottom.</p>
 <p><img src="imgs/50ea4b63f33a_1673883302092-32dde9d8-b89b-4f4c-b8c8-67f67a459317.png" alt=""></p>
-<h2 id="5-如何设置爆反装甲">5. 如何设置爆反装甲</h2>
+<h2 id="5-如何设置爆反装甲-how-to-set-up-reactive-armor">5. 如何设置爆反装甲 How to Set up Reactive Armor</h2>
 <p>将爆反在HitBox中设置为reactive armor同时在内构中将其设置为内部装甲（你也可建一个内部爆反的模型）</p>
-<h2 id="6-mod-查看装甲时部分装甲透明">6. Mod 查看装甲时部分装甲透明</h2>
+<p>Set the reactive armor to reactive armor in the HitBox, and set it as internal armor in the internal structure (you can also build a separate model for the internal reactive armor).</p>
+<h2 id="6-模组查看装甲时部分装甲透明-some-armor-is-transparent-when-viewing-armor-in-a-mod">6. 模组查看装甲时部分装甲透明 Some Armor Is Transparent When Viewing Armor in a Mod</h2>
 <p>有时当你查看一些地方的装甲时，它不会是红绿黄三色之一，而是透明的，这代表着该处法线反了，你需要用按tab进入编辑模式后选中透明处装甲，按shift+n来将法线调正。也可通过这个视频来学习如何修复法线。<a href="https://www.bilibili.com/video/BV1xr4y187Fc/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66">https://www.bilibili.com/video/BV1xr4y187Fc/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66</a></p>
-<h2 id="7-去除内构模型颜色">7. 去除内构模型颜色</h2>
+<p>Sometimes when you inspect the armor in a certain place it is not one of the three colors (red, green, yellow) but transparent. That means the normals there are flipped. Press tab to enter edit mode, select the transparent armor, and press shift+n to correct the normals. You can also watch this video to learn how to fix normals: <a href="https://www.bilibili.com/video/BV1xr4y187Fc/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66">https://www.bilibili.com/video/BV1xr4y187Fc/?share_source=copy_web&amp;vd_source=8d9c532ad7fc3b92734fdeaf32c1ee66</a></p>
+<h2 id="7-去除内构模型颜色-removing-the-colors-from-internal-structure-models">7. 去除内构模型颜色 Removing the Colors from Internal Structure Models</h2>
 <p>有时当你查看内构时，有些内构模型仍然有贴图存在，这时你需要将内构模型拖入unity左侧栏中，点击reset来去除所有贴图，再对模型进行保存</p>
+<p>Sometimes when you view the internal structure, some internal models still have textures on them. In that case, drag the internal model into Unity's left panel, click Reset to remove all textures, then save the model.</p>
 <p><img src="imgs/910e9a0e85bd_1673883302617-1409a304-34e3-4d60-aa5a-7c2e9b42672e.png" alt=""></p>
-<h2 id="8-给模型起名字">8. 给模型起名字</h2>
+<h2 id="8-给模型起名字-naming-the-model">8. 给模型起名字 Naming the Model</h2>
 <p><img src="imgs/eb3dc89aa7c0_1673883303124-3f03d8b1-abf2-48eb-99a2-f4641431f863.png" alt=""></p>
-<h2 id="9-多边形炮管变圆">9. 多边形炮管变圆</h2>
+<h2 id="9-多边形炮管变圆-making-a-faceted-gun-barrel-look-round">9. 多边形炮管变圆 Making a Faceted Gun Barrel Look Round</h2>
 <p>有时你所拿到模型它的炮管和其他一些部位是多边形的，你可以在blender中点击模型，然后右键平滑着色来让它变圆</p>
-<h2 id="10-多炮塔例子">10. 多炮塔例子</h2>
+<p>Sometimes the model you get has a faceted gun barrel and other faceted parts. In Blender you can click the model and then right-click Shade Smooth to make it look round.</p>
+<h2 id="10-多炮塔例子-a-multi-turret-example">10. 多炮塔例子 A Multi-Turret Example</h2>
 <p><img src="imgs/b3c3e6781764_1673883303703-d3aab2bc-e256-4135-b020-8b3b64871ca2.png" alt=""></p>
 <p>其中SubTurret02是炮塔顶部的机枪，我用空轴来作为它的dym</p>
+<p>SubTurret02 is the machine gun on top of the turret; I used an empty as its dym.</p>
 <p>而SubTurret01是共轴机枪，我将三个空轴叠加来作为共轴机枪，并套在Dym下，这使得它将同主炮一同移动，而你不需要设置其他多余的数据（如炮塔俯仰角，转速）</p>
-<h2 id="11-配对节点和重力节点">11. 配对节点和重力节点</h2>
+<p>SubTurret01 is the coaxial machine gun. I stacked three empties to serve as the coaxial machine gun and nested them under Dym, which makes it move together with the main gun, so you do not have to set any extra data (such as turret elevation angles or traverse speed).</p>
+<h2 id="11-配对节点和重力节点-pairing-nodes-and-gravity-nodes">11. 配对节点和重力节点 Pairing Nodes and Gravity Nodes</h2>
 <p>重力节点意味着履带在该点会受到重力影响而自然下垂</p>
+<p>A gravity node means that the track will sag naturally at that point under the influence of gravity.</p>
 <p>而配对节点则能够使得上下履带随负重轮一同上下运动</p>
+<p>A pairing node makes the upper and lower track move up and down together with the road wheels.</p>
 <p>如下图使用</p>
+<p>Use them as shown below.</p>
 <p><img src="imgs/ccdef3343da6_1673883304199-7f16a736-6f85-4182-9b66-1ad211631796.png" alt=""></p>
-<h2 id="12-如何解决mod启动停止时的猛烈磕头">12. 如何解决mod启动停止时的猛烈磕头</h2>
+<h2 id="12-如何解决模组启动停止时的猛烈磕头-how-to-fix-violent-nose-diving-when-the-mod-starts-and-stops">12. 如何解决模组启动停止时的猛烈磕头 How to Fix Violent Nose-Diving When the Mod Starts and Stops</h2>
 <p>一是将center of gravity摆放适中同时将其稍微下移（重心越高越不稳定），二是调整wheelcollider中右侧数据来调整摩擦</p>
+<p>First, place the center of gravity in a moderate position and move it slightly downwards (the higher the center of gravity, the less stable the vehicle is). Second, adjust the values on the right side of the wheelcollider to tune friction.</p>
 <p>详情请见此<a href="https://blog.csdn.net/weixin_43147385/article/details/124266796">https://blog.csdn.net/weixin_43147385/article/details/124266796</a></p>
+<p>See this article for details: <a href="https://blog.csdn.net/weixin_43147385/article/details/124266796">https://blog.csdn.net/weixin_43147385/article/details/124266796</a></p>
 <p><img src="imgs/7008b4410291_1673883304655-5665b577-9318-4f1c-b3b5-af3589979daa.png" alt=""></p>
 </article>
           </div>

@@ -655,6 +655,88 @@ public static void ShowPickVehicleUIWithList(bool isForcePick, List&lt;VehicleIn
   </table>
 
 
+  <a id="ShanghaiWindy_Core_API_ModeAPI_ShowVehiclePicker_" data-uid="ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker*"></a>
+  <h4 id="ShanghaiWindy_Core_API_ModeAPI_ShowVehiclePicker_System_String_Action_ShanghaiWindy_Core_VehicleInfo__" data-uid="ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,Action{ShanghaiWindy.Core.VehicleInfo})">ShowVehiclePicker(string, Action&lt;VehicleInfo&gt;)</h4>
+  <div class="markdown level1 summary">
+打开载具选择器（单选，点击即关闭）
+Open vehicle picker (single select, closes on pick)
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void ShowVehiclePicker(string titleKey, Action&lt;VehicleInfo&gt; onPicked)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">titleKey</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action&lt;&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.VehicleInfo.html">VehicleInfo</a>&gt;</td>
+        <td><span class="parametername">onPicked</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <a id="ShanghaiWindy_Core_API_ModeAPI_ShowVehicleQueuePicker_" data-uid="ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker*"></a>
+  <h4 id="ShanghaiWindy_Core_API_ModeAPI_ShowVehicleQueuePicker_System_String_ShanghaiWindy_Core_ClientUserVehicleQueue_System_Int32_Action_ShanghaiWindy_Core_ClientUserVehicleQueue__" data-uid="ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,Action{ShanghaiWindy.Core.ClientUserVehicleQueue})">ShowVehicleQueuePicker(string, ClientUserVehicleQueue, int, Action&lt;ClientUserVehicleQueue&gt;)</h4>
+  <div class="markdown level1 summary">
+打开载具队列选择器（多选，确认后关闭）
+Open vehicle queue picker (multi select, closes on confirm)
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+public static void ShowVehicleQueuePicker(string titleKey, ClientUserVehicleQueue queue, int maxVehicles, Action&lt;ClientUserVehicleQueue&gt; onDone)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">titleKey</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ShanghaiWindy.Core.ClientUserVehicleQueue</span></td>
+        <td><span class="parametername">queue</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">maxVehicles</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Action&lt;&gt;</span>&lt;<span class="xref">ShanghaiWindy.Core.ClientUserVehicleQueue</span>&gt;</td>
+        <td><span class="parametername">onDone</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <a id="ShanghaiWindy_Core_API_ModeAPI_ShowVictoryOrDefeat_" data-uid="ShanghaiWindy.Core.API.ModeAPI.ShowVictoryOrDefeat*"></a>
   <h4 id="ShanghaiWindy_Core_API_ModeAPI_ShowVictoryOrDefeat_System_Boolean_" data-uid="ShanghaiWindy.Core.API.ModeAPI.ShowVictoryOrDefeat(System.Boolean)">ShowVictoryOrDefeat(bool)</h4>
   <div class="markdown level1 summary">

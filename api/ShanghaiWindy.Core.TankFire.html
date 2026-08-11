@@ -82,9 +82,7 @@
 
   <h1 id="ShanghaiWindy_Core_TankFire" data-uid="ShanghaiWindy.Core.TankFire" class="text-break">Class TankFire
 </h1>
-  <div class="markdown level0 summary">
-弹夹炮逻辑
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -92,12 +90,12 @@
     <div class="level1"><span class="xref">ShanghaiWindy.Core.BaseVehicleMonoComponent&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a>&gt;</div>
     <div class="level2"><span class="xref">ShanghaiWindy.Core.GenericVehicleMonoComponent</span></div>
     <div class="level3"><a class="xref" href="ShanghaiWindy.Core.BaseFireSystem.html">BaseFireSystem</a></div>
-    <div class="level4"><span class="xref">TankFire</span></div>
+    <div class="level4"><span class="xref">ShanghaiWindy.Core.ReloadableFireSystem</span></div>
+    <div class="level5"><span class="xref">TankFire</span></div>
   </div>
   <div class="implements">
     <h5>Implements</h5>
     <div><span class="xref">IIndex</span></div>
-    <div><span class="xref">IDynamicDataPatchable</span></div>
     <div><span class="xref">IPawnControlledComponent</span></div>
   </div>
   <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a></h6>
@@ -105,7 +103,7 @@
   <h5 id="ShanghaiWindy_Core_TankFire_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public class TankFire : BaseFireSystem, IIndex, IDynamicDataPatchable, IPawnControlledComponent</code></pre>
+public class TankFire : ReloadableFireSystem, IIndex, IPawnControlledComponent</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
@@ -276,93 +274,6 @@ public Rigidbody attachedRigidbody { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">Rigidbody</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="ShanghaiWindy_Core_TankFire_bulletCountList_" data-uid="ShanghaiWindy.Core.TankFire.bulletCountList*"></a>
-  <h4 id="ShanghaiWindy_Core_TankFire_bulletCountList" data-uid="ShanghaiWindy.Core.TankFire.bulletCountList">bulletCountList</h4>
-  <div class="markdown level1 summary">
-子弹数量列表
-Bullet Count List
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public int[] bulletCountList { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">int</span>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="ShanghaiWindy_Core_TankFire_currentBullet_" data-uid="ShanghaiWindy.Core.TankFire.currentBullet*"></a>
-  <h4 id="ShanghaiWindy_Core_TankFire_currentBullet" data-uid="ShanghaiWindy.Core.TankFire.currentBullet">currentBullet</h4>
-  <div class="markdown level1 summary">
-当前子弹
-Current Bullet
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public BulletData currentBullet { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ShanghaiWindy.Core.BulletData</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <a id="ShanghaiWindy_Core_TankFire_currentBulletId_" data-uid="ShanghaiWindy.Core.TankFire.currentBulletId*"></a>
-  <h4 id="ShanghaiWindy_Core_TankFire_currentBulletId" data-uid="ShanghaiWindy.Core.TankFire.currentBulletId">currentBulletId</h4>
-  <div class="markdown level1 summary">
-当前炮弹 ID
-Current Bullet ID
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public int currentBulletId { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -543,9 +454,6 @@ public Transform mainBody { get; set; }</code></pre>
   <h3 id="implements">Implements</h3>
   <div>
       <span class="xref">IIndex</span>
-  </div>
-  <div>
-      <span class="xref">IDynamicDataPatchable</span>
   </div>
   <div>
       <span class="xref">IPawnControlledComponent</span>

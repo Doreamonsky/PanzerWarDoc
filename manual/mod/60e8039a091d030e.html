@@ -80,25 +80,37 @@
 
 <h1 id="identifier-资源标识">Identifier 资源标识</h1>
 <p>通过资源标识，创建特效包的选项，保证可以选择不同的特效包进行切换</p>
+<p>The resource identifier creates the entry for a VFX package, so that different VFX packages can be selected and switched between.</p>
 <p><img src="imgs/f6f1f2e03293_1677679938034-2bafedeb-38b9-42de-b5a0-b6bc6ddf8e24.png" alt=""></p>
-<p>如果要在马哥的特效包内，增加自己的自定义键值特效，则使用如下的 Identifier。 解压下方的压缩包，把 asset 文件放入项目路径。</p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2023/rar/23154724/1677679912214-a3614de8-907a-47c7-81c2-4110c1358ebb.rar">马哥特效-PoolResourceIdentifierData.rar</a></p>
+<p>旧版“马哥特效包”的共享 Identifier 资产已经无法恢复。若只是制作自己的特效包，请在 Project 窗口选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; P Pool - 对象池 &gt; Pool Resource Identifier - 对象池标识</code> 新建 Identifier，再将其关联到下方的 Pool Resource。Identifier 的 GUID 会自动生成。</p>
+<p>The shared Identifier asset of the old “马哥特效包” VFX package can no longer be recovered. If you are only building your own VFX package, create a new Identifier from the Project window with <code>Create &gt; A Panzer War - 装甲纷争 &gt; P Pool - 对象池 &gt; Pool Resource Identifier - 对象池标识</code>, then link it to the Pool Resource below. The GUID of the Identifier is generated automatically.</p>
+<p>若必须向旧特效包追加资源，需要从原特效包作者处取得同一个 Identifier 资产；新建资产的 GUID 不同，不能作为兼容替代。</p>
+<p>If you really need to add resources to an old VFX package, you must obtain the very same Identifier asset from the author of that package. A newly created asset has a different GUID and cannot serve as a compatible replacement.</p>
 <h1 id="pool-resource-特效资源">Pool Resource 特效资源</h1>
 <p>创建 Pool Resource ，关联 Identifier。</p>
+<p>Create a Pool Resource and link the Identifier to it.</p>
 <p><img src="imgs/57087d85721d_1677679715599-bf307cec-59ac-4cfb-87dd-eeb0f5879353.png" alt=""></p>
 <p>添加 Spawn Reses</p>
+<p>Add Spawn Reses.</p>
 <p>特效名称：特效的键值，可自定义，然后在 Bullet VFX 中选择自定义的特效键值进行关联</p>
+<p>VFX name: the key of the effect. You may name it freely, then select this custom key in Bullet VFX to link the two.</p>
 <p>特效物体：特效的预制体</p>
+<p>VFX object: the prefab of the effect.</p>
 <p>预加载实例数量，在加载场景的时候，预先加载一批特效进内存，减少游戏时的卡顿，但是填写过大的一个数量，会导致加载时间的增加。 填写 -1 则表示运行时根据需求再创建。</p>
+<p>Preload instance count: loads a batch of effects into memory while the scene is loading, which reduces stutter during play. Entering too large a number increases the loading time. Enter -1 to create instances on demand at runtime instead.</p>
 <p>生命时长：特效播放的时长，时间到之后会被回收以便下次使用。 请不要填写 0，0 是为了喷火，激光等特殊特效所准备的</p>
+<p>Lifetime: how long the effect plays. When the time is up, the effect is recycled so it can be used again. Do not enter 0 — 0 is reserved for special effects such as flamethrowers and lasers.</p>
 <p><img src="imgs/fd946a3eab68_1677680067566-8d01cca8-4f30-483b-83f1-fd3073393f0b.png" alt=""></p>
 <p>特效对象池的物体，请挂载 PoolItemComponent。 若此物体是炮弹的 Weapon Projectile  , 请将其拖尾特效挂到指定位置</p>
+<p>Attach PoolItemComponent to the objects in the VFX pool. If the object is the Weapon Projectile of a shell, attach its trail effect at the designated position.</p>
 <p><img src="imgs/b4007e2795ed_1765798376745-92f95e1a-c139-4d70-8f27-c65e582477ad.png" alt=""></p>
-<h1 id="特效的使用">特效的使用</h1>
+<h1 id="using-the-vfx-特效的使用">Using the VFX 特效的使用</h1>
 <p>在重载中，选择你的特效。如果不使用重载的选项，请务必将你的特效的模组包的放入你的载具依赖的 guid 中。</p>
+<p>Select your effect in the override settings. If you do not use the override option, make sure the guid of your VFX mod package is added to the dependency guids of your vehicle.</p>
 <p><img src="imgs/b05f1d1d4091_1677680425323-765a3691-42b5-4e90-ae4a-069261bedfaf.png" alt=""></p>
 <h1 id="build-打包">Build 打包</h1>
 <p>将 Pool Resource 放入 BuildPipline</p>
+<p>Put the Pool Resource into the BuildPipline.</p>
 </article>
           </div>
 

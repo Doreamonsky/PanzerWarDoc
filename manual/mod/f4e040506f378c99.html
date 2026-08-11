@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>02.8 樱花的坦克抛壳动画 | Panzer War Document </title>
+    <title>02.8 樱花的坦克抛壳动画 Tank Shell Ejection Animation (by 樱花) | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="02.8 樱花的坦克抛壳动画 | Panzer War Document ">
+    <meta name="title" content="02.8 樱花的坦克抛壳动画 Tank Shell Ejection Animation (by 樱花) | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,39 +76,54 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="028-樱花的坦克抛壳动画">02.8 樱花的坦克抛壳动画</h1>
+<h1 id="028-樱花的坦克抛壳动画-tank-shell-ejection-animation-by-樱花">02.8 樱花的坦克抛壳动画 Tank Shell Ejection Animation (by 樱花)</h1>
 
 <p><strong>一、Blender内准备</strong></p>
-<p>1.我们需要在Blender中设置好退壳装置的旋转位置(如果没有退壳装置，忽略这一步)。以AGS为例，们需要设置物体原点到旋转中心，如图所示：</p>
+<p><strong>Part 1: Preparation in Blender</strong></p>
+<p>1.我们需要在Blender中设置好抛壳装置的旋转位置(如果没有抛壳装置，忽略这一步)。以AGS为例，我们需要设置物体原点到旋转中心，如图所示：</p>
+<p>Step 1: In Blender, set up the rotation position of the shell ejection mechanism (skip this step if there is no shell ejection mechanism). Taking the AGS as an example, we need to move the object origin to the center of rotation, as shown below:</p>
 <p><img src="imgs/bbf6bdcea284_1680929668901-b4185fa0-f398-4a1b-9122-9b68549de13b.png" alt=""></p>
 <p>2.我们将弹壳放入炮塔内，设置为炮管或者炮塔的子级：</p>
+<p>Step 2: Place the shell casing inside the turret and make it a child of the gun barrel or of the turret:</p>
 <p><img src="imgs/77728fd12c5a_1680929673031-6538c138-774b-4fcb-9a10-d6be9ff3bbd6.png" alt=""></p>
-<p>注：如果退壳装置旋转轴不是x,y,z轴，以T72A为例，可以设置一个空物体，旋转到和抛壳装置同一个角度，并将退壳装置设置为空物体的子级，这样在unity里我们只需旋转空物体即可，如下图所示：</p>
+<p>注：如果抛壳装置旋转轴不是x,y,z轴，以T72A为例，可以设置一个空物体，旋转到和抛壳装置同一个角度，并将抛壳装置设置为空物体的子级，这样在unity里我们只需旋转空物体即可，如下图所示：</p>
+<p>Note: if the rotation axis of the shell ejection mechanism is not the x, y or z axis — the T72A for example — you can create an empty object, rotate it to the same angle as the shell ejection mechanism, and make the mechanism a child of that empty object. Then in Unity you only need to rotate the empty object, as shown below:</p>
 <p><img src="imgs/19fd305f4cc1_1680929680463-7046aaa7-e616-4f8e-970b-43cc29b5c2f7.png" alt=""></p>
-<p><strong>二、<strong><strong>unity</strong></strong>内制作</strong></p>
+<p><strong>二、unity内制作</strong></p>
+<p><strong>Part 2: Authoring in Unity</strong></p>
 <p>1.首先打开unity的animation组件</p>
+<p>Step 1: First open Unity's animation component.</p>
 <p><img src="imgs/f972a8af49b7_1680929691741-b149274a-3023-471f-ac40-4c1015f3ff1f.png" alt=""></p>
 <p>2.选定需要制作动画的模型后，点击create创建动画</p>
+<p>Step 2: After selecting the model you want to animate, click Create to create the animation.</p>
 <p><img src="imgs/42c3b2a11c8a_1680929696439-8a939233-af48-4ab5-98e2-2380ef714643.png" alt=""></p>
 <p>3.设置你的动画文件名称后，点击保存</p>
+<p>Step 3: Enter a name for your animation file, then click Save.</p>
 <p><img src="imgs/101cf7c98763_1680929700084-160bf3ce-efb8-4360-9f5a-30d891f335e5.png" alt=""></p>
 <p>4.点击Add Property，可以在Transform中创建位置，旋转，大小三种变换，我们这里选择位置Position，如果需要动画过程中旋转，也可以添加Rotation。</p>
+<p>Step 4: Click Add Property. Under Transform you can create three kinds of transformation — position, rotation and scale. Here we choose Position; if you also need rotation during the animation, you can add Rotation as well.</p>
 <p><img src="imgs/ada882da72ee_1680929706809-b24c5568-2429-4bf6-b93e-9bbe2a95434a.png" alt=""></p>
 <p>5.动画的制作可以参考如下链接中的视频：</p>
+<p>Step 5: For making the animation itself, refer to the video at the following link:</p>
 <p><a href="https://www.bilibili.com/video/BV17t4y1F7CZ/?spm_id_from=333.788&amp;vd_source=5f5f291242e9ace2af6f7105ccc768bf">https://www.bilibili.com/video/BV17t4y1F7CZ/?spm_id_from=333.788&amp;vd_source=5f5f291242e9ace2af6f7105ccc768bf</a></p>
 <p>在动画制作过程中，我们可以点击下方的curves，调整动画曲线</p>
+<p>While creating the animation, you can click Curves at the bottom to adjust the animation curves.</p>
 <p><img src="imgs/fe3b44bc9c09_1680929712064-89316928-fb0f-4b7e-907d-50d0b54735ff.png" alt=""></p>
 <p>注：对于旋转轴不是x,y,z的模型，我们需要将坐标系调整到局部坐标下来制作动画，如下图所示：</p>
+<p>Note: for models whose rotation axis is not x, y or z, we need to switch the coordinate system to Local when creating the animation, as shown below:</p>
 <p><img src="imgs/8baec17c1840_1680929725309-e9426f5e-89b3-457a-b498-91769b4a454c.png" alt=""></p>
-<p>同时需要调整旋转为四元数旋转模式(需要在没有制作动画之前设置，否则动画过程不会生效，需要重新制作：</p>
+<p>同时需要调整旋转为四元数旋转模式(需要在没有制作动画之前设置，否则动画过程不会生效，需要重新制作)：</p>
+<p>You also need to switch rotation to quaternion rotation mode (this has to be set before you create the animation, otherwise it will not take effect during the animation and you will have to redo it):</p>
 <p><img src="imgs/1bc7aee33a84_1680929744266-2ca16c44-76d6-4e25-87fc-1b5ae0acaa57.png" alt=""></p>
-<p>**三、**<strong>组件设置</strong></p>
+<p><strong>三、组件设置</strong></p>
+<p><strong>Part 3: Component Setup</strong></p>
 <ol>
 <li>
 <pre><code>增加Animation组件，如下设置：
 </code></pre>
 </li>
 </ol>
+<p>Step 1: Add an Animation component and configure it as shown below:</p>
 <p><img src="imgs/00314ec856ca_1680929749268-06523868-304b-4858-9b34-726fd59a1d43.png" alt=""></p>
 <ol start="2">
 <li>
@@ -116,12 +131,16 @@
 </code></pre>
 </li>
 </ol>
+<p>Step 2: Select the animation you created, switch to Debug mode, tick Legacy, then switch back to Normal mode:</p>
 <p><img src="imgs/3e99e7a452ce_1680929755321-6fc7ff2d-1fa4-40e0-b0e1-80e8d461da18.png" alt=""></p>
 <p>保证wrap mode模式为default</p>
+<p>Make sure Wrap Mode is set to Default.</p>
 <p><img src="imgs/28423aa09cfa_1680929764431-56f3b25b-fc87-4b30-810e-62c5727d5643.png" alt=""></p>
 <p>3.挂载Lua脚本组件：</p>
+<p>Step 3: Attach the Lua script component:</p>
 <p><img src="imgs/5ae362ac33b4_1680929776933-b6e89cf4-bb5c-41d8-82b7-e8b2f93b8b52.png" alt=""></p>
 <p>lua代码如下：</p>
+<p>The Lua code is as follows:</p>
 <pre><code class="lang-lua">local PlayAnimationComponent = class(&quot;PlayAnimationComponent&quot;)
 
 Behavior()
@@ -144,6 +163,7 @@ return PlayAnimationComponent
 
 </code></pre>
 <p>至此动画制作完成。</p>
+<p>The animation is now complete.</p>
 </article>
           </div>
 

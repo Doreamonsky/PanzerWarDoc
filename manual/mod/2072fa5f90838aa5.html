@@ -79,14 +79,20 @@
 <h1 id="06-track-ik-悬挂架教程">06. Track IK 悬挂架教程</h1>
 
 <p><img src="imgs/6490fa7c31a9_1637488581926-547e31e3-a2fe-4e4e-8279-1a053fe5139a.jpeg" alt=""></p>
-<h2 id="模型准备">模型准备</h2>
+<h2 id="模型准备-model-preparation">模型准备 Model Preparation</h2>
 <ol>
-<li>从模型上分离悬挂架，并调整为 MainBody 的子物体。朝向通过旋转调整为向前。</li>
+<li><p>从模型上分离悬挂架，并调整为 MainBody 的子物体。朝向通过旋转调整为向前。</p>
+<p>Separate the suspension arm from the model and make it a child object of MainBody. Rotate it so that it faces forward.</p>
+</li>
 </ol>
 <p><img src="imgs/dab151679b1e_1637488582431-06c84e4e-fd0a-4a9f-a405-e37c923af486.jpeg" alt=""></p>
-<ol>
-<li>在 Unity 3D 载具的碰撞预制中增加一个空物体，并命名为 StandardUCS</li>
-<li>在悬挂架模型上添加 TrackIK 组件，并且设置相应的属性。 Target，朝向的负重轮。 Standard UCS，第二步创建的空物体。 注意！所有的悬挂架模型均要设置！</li>
+<ol start="2">
+<li><p>在 Unity 3D 载具的碰撞预制中增加一个空物体，并命名为 StandardUCS</p>
+<p>In Unity, add an empty object to the collision prefab of the 3D vehicle and name it StandardUCS.</p>
+</li>
+<li><p>在悬挂架模型上添加 TrackIK 组件，并且设置相应的属性。 Target，朝向的负重轮。 Standard UCS，第二步创建的空物体。 注意！所有的悬挂架模型均要设置！</p>
+<p>Add the TrackIK component to the suspension arm model and set its properties. Target: the road wheel it points to. Standard UCS: the empty object created in step 2. Note! Every suspension arm model must be set up this way.</p>
+</li>
 </ol>
 <p><img src="imgs/cb69073d428b_1637488581971-69e05dfc-f363-4b77-968e-4fb31942b632.jpeg" alt=""></p>
 </article>

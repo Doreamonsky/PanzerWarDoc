@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>22.3 安装 VS Code 和配置 Emmy Lua 环境 | Panzer War Document </title>
+    <title>22.3 安装 VS Code 和配置 Emmy Lua 环境 Installing VS Code and Setting Up Emmy Lua | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="22.3 安装 VS Code 和配置 Emmy Lua 环境 | Panzer War Document ">
+    <meta name="title" content="22.3 安装 VS Code 和配置 Emmy Lua 环境 Installing VS Code and Setting Up Emmy Lua | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,10 +76,11 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="223-安装-vs-code-和配置-emmy-lua-环境">22.3 安装 VS Code 和配置 Emmy Lua 环境</h1>
+<h1 id="223-安装-vs-code-和配置-emmy-lua-环境-installing-vs-code-and-setting-up-emmy-lua">22.3 安装 VS Code 和配置 Emmy Lua 环境 Installing VS Code and Setting Up Emmy Lua</h1>
 
 <p>Visual Studio Code（以下简称 VS Code）是一款由微软推出的免费且开源的代码编辑器。而 Emmy Lua 是一款专为 Lua 语言开发者设计的插件。在本文中，我们将介绍如何安装 VS Code 并配置 Emmy Lua 环境，以便进行 Lua 开发。</p>
-<h2 id="安装-vs-code">安装 VS Code</h2>
+<p>Visual Studio Code (VS Code for short) is a free and open-source code editor from Microsoft, and Emmy Lua is a plugin designed for Lua developers. This article explains how to install VS Code and configure the Emmy Lua environment so that you can develop in Lua.</p>
+<h2 id="安装-vs-code-installing-vs-code">安装 VS Code Installing VS Code</h2>
 <p>首先，我们需要下载并安装 VS Code。请按照以下步骤操作：</p>
 <ol>
 <li>访问 <a href="https://code.visualstudio.com/">VS Code 官网</a>。</li>
@@ -87,9 +88,17 @@
 <li>根据你的操作系统选择适合的安装程序，并下载。</li>
 <li>运行下载好的安装程序，并按照提示进行安装。</li>
 </ol>
-<p>或者，可以从以下连接进行安装</p>
+<p>First we need to download and install VS Code. Follow these steps:</p>
+<ol>
+<li>Visit the <a href="https://code.visualstudio.com/">VS Code official site</a>.</li>
+<li>Click “Download for Windows” (if you use Windows) or “Download for Mac” (if you use macOS).</li>
+<li>Choose the installer that matches your operating system and download it.</li>
+<li>Run the downloaded installer and follow the prompts to complete the installation.</li>
+</ol>
+<p>或者，可以从以下链接进行安装</p>
+<p>Alternatively, you can install it from the link below:</p>
 <p><a href="https://vscode.cdn.azure.cn/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCodeUserSetup-x64-1.62.2.exe">https://vscode.cdn.azure.cn/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCodeUserSetup-x64-1.62.2.exe</a></p>
-<h2 id="安装-emmy-lua">安装 Emmy Lua</h2>
+<h2 id="安装-emmy-lua-installing-emmy-lua">安装 Emmy Lua Installing Emmy Lua</h2>
 <p>安装 VS Code 后，我们需要安装 Emmy Lua 插件。请按照以下步骤操作：</p>
 <ol>
 <li>打开 VS Code。</li>
@@ -97,38 +106,72 @@
 <li>在搜索框中输入 “Emmy Lua” 并选择第一个搜索结果。</li>
 <li>点击 “Install” 按钮，等待插件安装完成。</li>
 </ol>
-<h2 id="配置-emmy-lua-环境">配置 Emmy Lua 环境</h2>
-<p>配置 Emmy Lua 环境需要先安装 JDK。如果你已经安装了 JDK，可以跳过本节内容。</p>
-<h3 id="安装-jdk">安装 JDK</h3>
-<p>jdk 版本推荐在 &quot;1.8.0_181&quot; 以上</p>
+<p>After installing VS Code, we need to install the Emmy Lua plugin. Follow these steps:</p>
 <ol>
-<li>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html">JDK 下载页面</a>。</li>
-<li>选择适合你操作系统的版本，并下载。</li>
-<li>运行下载好的安装程序，并按照提示进行安装。</li>
+<li>Open VS Code.</li>
+<li>Click the Extensions icon on the left side (or press <strong>Ctrl + Shift + X</strong>).</li>
+<li>Type “Emmy Lua” into the search box and select the first result.</li>
+<li>Click the “Install” button and wait for the plugin to finish installing.</li>
+</ol>
+<h2 id="配置-emmy-lua-环境-configuring-the-emmy-lua-environment">配置 Emmy Lua 环境 Configuring the Emmy Lua Environment</h2>
+<p>配置 Emmy Lua 环境需要先安装 JDK。如果你已经安装了 JDK，可以跳过本节内容。</p>
+<p>Configuring the Emmy Lua environment requires the JDK to be installed first. If you already have the JDK installed, you can skip this section.</p>
+<h3 id="安装-jdk-installing-the-jdk">安装 JDK Installing the JDK</h3>
+<p>jdk 版本推荐在 &quot;1.8.0_181&quot; 以上</p>
+<p>A JDK version of &quot;1.8.0_181&quot; or newer is recommended.</p>
+<ol>
+<li><p>访问 <a href="https://www.oracle.com/java/technologies/javase-downloads.html">JDK 下载页面</a>。</p>
+</li>
+<li><p>选择适合你操作系统的版本，并下载。</p>
+</li>
+<li><p>运行下载好的安装程序，并按照提示进行安装。</p>
+</li>
+<li><p>Visit the <a href="https://www.oracle.com/java/technologies/javase-downloads.html">JDK download page</a>.</p>
+</li>
+<li><p>Choose the version that matches your operating system and download it.</p>
+</li>
+<li><p>Run the downloaded installer and follow the prompts to complete the installation.</p>
+</li>
 </ol>
 <p>更加详细的步骤看此文档</p>
-<p><a href="https://www.yuque.com/chaojiduolajiang/panzerwar/bbe3yz2nqir9q36d">如何安装 JDK（Java Development Kit）</a></p>
-<h3 id="配置-emmy-lua-环境-1">配置 Emmy Lua 环境</h3>
+<p>For more detailed steps, see this document:</p>
+<p><a href="9270a2607dfcd0fb.html#%E5%AE%89%E8%A3%85-jdk">如何安装 JDK（Java Development Kit）</a></p>
+<h3 id="配置-emmy-lua-环境-configuring-the-emmy-lua-environment-1">配置 Emmy Lua 环境 Configuring the Emmy Lua Environment</h3>
 <p>安装完 JDK 后，如果没有设置 JDK 的环境变量则我们需要对 Emmy Lua 插件进行一些简单的配置。请按照以下步骤操作：</p>
+<p>After installing the JDK, if you have not set the JDK environment variable, you need to do a little configuration on the Emmy Lua plugin. Follow these steps:</p>
 <ol>
-<li>打开 VS Code。</li>
-<li>点击左侧的扩展图标（或按下快捷键 <strong>Ctrl + Shift + X</strong>）。</li>
-<li>在已安装的插件列表中找到 “Emmy Lua” 插件，并点击右侧的 “Extension Settings” 按钮。</li>
+<li><p>打开 VS Code。</p>
+<p>Open VS Code.</p>
+</li>
+<li><p>点击左侧的扩展图标（或按下快捷键 <strong>Ctrl + Shift + X</strong>）。</p>
+<p>Click the Extensions icon on the left side (or press <strong>Ctrl + Shift + X</strong>).</p>
+</li>
+<li><p>在已安装的插件列表中找到 “Emmy Lua” 插件，并点击右侧的 “Extension Settings” 按钮。</p>
+<p>In the list of installed plugins, find the “Emmy Lua” plugin and click the “Extension Settings” button on the right.</p>
+</li>
 </ol>
 <p><img src="imgs/ff079ed3aa85_1678810657227-ea2a3e40-3974-4d9f-9083-5bbf7a80dbe9.png" alt=""></p>
 <ol start="4">
-<li>在弹出的配置面板中，找到 “Emmy: Java Home” 选项，并填入 JDK 的安装路径。</li>
+<li><p>在弹出的配置面板中，找到 “Emmy: Java Home” 选项，并填入 JDK 的安装路径。</p>
+<p>In the settings panel that opens, find the “Emmy: Java Home” option and fill in the JDK installation path.</p>
+</li>
 </ol>
 <p>*<em>&quot;emmylua.java.home&quot;: &quot;&lt;你的路径&gt;&quot; 注意，路径需要用 / 分割，而非 *</em></p>
+<p><strong>&quot;emmylua.java.home&quot;: &quot;&lt;your path&gt;&quot; — note that the path must be separated with / rather than a backslash.</strong></p>
 <p><img src="imgs/000009d05a9f_1678810634351-0cf64335-d627-404d-b833-878be494db6a.png" alt=""></p>
 <p><img src="imgs/544471de15ea_1678810747328-f4866b82-02f6-4bba-b92f-23e400ca38cc.png" alt=""></p>
 <pre><code>- 在 Windows 上，默认安装路径为 **C:/Program Files/Java/jdk{版本号}**。
+- On Windows, the default installation path is **C:/Program Files/Java/jdk{version}**.
 - 在 macOS 上，默认安装路径为 **/Library/Java/JavaVirtualMachines/jdk{版本号}/Contents/Home**。
+- On macOS, the default installation path is **/Library/Java/JavaVirtualMachines/jdk{version}/Contents/Home**.
 </code></pre>
 <ol start="5">
-<li>配置完成后，关闭配置面板。</li>
+<li><p>配置完成后，关闭配置面板。</p>
+<p>Once the configuration is done, close the settings panel.</p>
+</li>
 </ol>
 <p>至此，我们已经成功安装了 VS Code 和 JDK，并配置了 Emmy Lua 环境，可以开始愉快地进行 Lua 开发了。</p>
+<p>At this point we have successfully installed VS Code and the JDK and configured the Emmy Lua environment, so you can start enjoying Lua development.</p>
 </article>
           </div>
 

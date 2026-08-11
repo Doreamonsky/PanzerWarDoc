@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>3. 游戏运行日志显示 | Panzer War Document </title>
+    <title>3. 游戏运行日志显示 Displaying the Game Runtime Log | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="3. 游戏运行日志显示 | Panzer War Document ">
+    <meta name="title" content="3. 游戏运行日志显示 Displaying the Game Runtime Log | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,26 +76,37 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="3-游戏运行日志显示">3. 游戏运行日志显示</h1>
+<h1 id="3-游戏运行日志显示-displaying-the-game-runtime-log">3. 游戏运行日志显示 Displaying the Game Runtime Log</h1>
 
 <p>游戏日志是用于分析游戏卡死原因的主要手段之一。</p>
-<h1 id="开启游戏日志">开启游戏日志</h1>
-<p>出于性能的考虑，在最近的版本默认保持了关闭。若需要开启，则需要手动在<strong>模组文件夹</strong>创建空文件 log.debug 或下载以下文件解压到<strong>模组文件夹下</strong></p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2022/zip/23154724/1668869627250-b8aa8a9d-da81-4c3b-b946-1a3272801ce6.zip">log.zip</a></p>
+<p>The game log is one of the main ways to analyze why the game freezes.</p>
+<h1 id="开启游戏日志-enabling-the-game-log">开启游戏日志 Enabling the Game Log</h1>
+<p>出于性能考虑，游戏默认关闭日志。若需要开启，请在<strong>模组文件夹</strong>中新建一个空文件并命名为 <code>log.debug</code>。请确认系统显示了文件扩展名，避免实际文件名变成 <code>log.debug.txt</code>。</p>
+<p>For performance reasons, the game disables logging by default. To enable it, create an empty file named <code>log.debug</code> in the <strong>mods folder</strong>. Make sure your system is showing file extensions, so that the actual file name does not end up as <code>log.debug.txt</code>.</p>
 <p><img src="imgs/8adf4def56c5_1668869677465-5ec82ede-d643-4bd6-ba26-83d90b365cc6.png" alt=""></p>
 <p><strong>模组文件夹</strong>各平台路径</p>
+<p>Path of the <strong>mods folder</strong> on each platform</p>
 <p>安卓决定版：/sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/</p>
+<p>Android Definitive Edition: /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/</p>
 <p>安卓普通版：/sdcard/Android/data/com.ShanghaiWindy.PanzerWarOpenSource/files/mods/</p>
+<p>Android Standard Edition: /sdcard/Android/data/com.ShanghaiWindy.PanzerWarOpenSource/files/mods/</p>
 <p>电脑普通版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar\mods</p>
+<p>PC Standard Edition: SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar\mods</p>
 <p>电脑决定版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\mods</p>
+<p>PC Definitive Edition: SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\mods</p>
 <p>电脑HDRP版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\mods</p>
+<p>PC HDRP Edition: SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\mods</p>
 <p>对于安卓设备，装有 adb 环境，则也可以使用 如下 adb 命令</p>
+<p>On an Android device with adb installed, you can also use the following adb command:</p>
 <p>adb shell touch /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/log.debug</p>
-<h1 id="调试日志显示">调试日志显示</h1>
+<h1 id="调试日志显示-viewing-the-debug-log">调试日志显示 Viewing the Debug Log</h1>
 <p>然后，你就可以看到游戏内调试窗口显示的运行日志。使用方法: 点击右上角自定义，拉到最下面，开启调试日志。 点击新出现的框，查看报错。</p>
-<h1 id="电脑版日志文件">电脑版日志文件</h1>
+<p>After that, you can see the runtime log in the in-game debug window. How to use it: click Customize in the upper-right corner, scroll down to the bottom, and turn on the debug log. Click the box that appears to view the errors.</p>
+<h1 id="电脑版日志文件-log-files-on-pc">电脑版日志文件 Log Files on PC</h1>
 <p>电脑普通版： C:\Users\你的用户名\AppData\LocalLow\ShanghaiWindy\PanzerWar\Player.log</p>
+<p>PC Standard Edition: C:\Users\YourUserName\AppData\LocalLow\ShanghaiWindy\PanzerWar\Player.log</p>
 <p>电脑决定版： C:\Users\你的用户名\AppData\LocalLow\ShanghaiWindy\PanzerWar-DE\Player.log</p>
+<p>PC Definitive Edition: C:\Users\YourUserName\AppData\LocalLow\ShanghaiWindy\PanzerWar-DE\Player.log</p>
 </article>
           </div>
 

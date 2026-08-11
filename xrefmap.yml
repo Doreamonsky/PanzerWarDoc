@@ -616,19 +616,6 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.BotAPI.GetTankBotTaskLogic
   nameWithType: BotAPI.GetTankBotTaskLogic
-- uid: ShanghaiWindy.Core.API.BotAPI.GetTankDefenceBotLogic
-  name: GetTankDefenceBotLogic()
-  href: api/ShanghaiWindy.Core.API.BotAPI.html#ShanghaiWindy_Core_API_BotAPI_GetTankDefenceBotLogic
-  commentId: M:ShanghaiWindy.Core.API.BotAPI.GetTankDefenceBotLogic
-  fullName: ShanghaiWindy.Core.API.BotAPI.GetTankDefenceBotLogic()
-  nameWithType: BotAPI.GetTankDefenceBotLogic()
-- uid: ShanghaiWindy.Core.API.BotAPI.GetTankDefenceBotLogic*
-  name: GetTankDefenceBotLogic
-  href: api/ShanghaiWindy.Core.API.BotAPI.html#ShanghaiWindy_Core_API_BotAPI_GetTankDefenceBotLogic_
-  commentId: Overload:ShanghaiWindy.Core.API.BotAPI.GetTankDefenceBotLogic
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.API.BotAPI.GetTankDefenceBotLogic
-  nameWithType: BotAPI.GetTankDefenceBotLogic
 - uid: ShanghaiWindy.Core.API.BuffAPI
   name: BuffAPI
   href: api/ShanghaiWindy.Core.API.BuffAPI.html
@@ -1147,6 +1134,19 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ConfigAPI.GetCaptureZoneConfigs
   nameWithType: ConfigAPI.GetCaptureZoneConfigs
+- uid: ShanghaiWindy.Core.API.ConfigAPI.GetWarZoneConfigs
+  name: GetWarZoneConfigs()
+  href: api/ShanghaiWindy.Core.API.ConfigAPI.html#ShanghaiWindy_Core_API_ConfigAPI_GetWarZoneConfigs
+  commentId: M:ShanghaiWindy.Core.API.ConfigAPI.GetWarZoneConfigs
+  fullName: ShanghaiWindy.Core.API.ConfigAPI.GetWarZoneConfigs()
+  nameWithType: ConfigAPI.GetWarZoneConfigs()
+- uid: ShanghaiWindy.Core.API.ConfigAPI.GetWarZoneConfigs*
+  name: GetWarZoneConfigs
+  href: api/ShanghaiWindy.Core.API.ConfigAPI.html#ShanghaiWindy_Core_API_ConfigAPI_GetWarZoneConfigs_
+  commentId: Overload:ShanghaiWindy.Core.API.ConfigAPI.GetWarZoneConfigs
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.ConfigAPI.GetWarZoneConfigs
+  nameWithType: ConfigAPI.GetWarZoneConfigs
 - uid: ShanghaiWindy.Core.API.ConfigAPI.GetWaveMissionConfig(System.String)
   name: GetWaveMissionConfig(string)
   href: api/ShanghaiWindy.Core.API.ConfigAPI.html#ShanghaiWindy_Core_API_ConfigAPI_GetWaveMissionConfig_System_String_
@@ -2095,6 +2095,38 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList
   nameWithType: ModeAPI.ShowPickVehicleUIWithList
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,Action{ShanghaiWindy.Core.VehicleInfo})
+  name: ShowVehiclePicker(string, Action<VehicleInfo>)
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehiclePicker_System_String_Action_ShanghaiWindy_Core_VehicleInfo__
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,Action{ShanghaiWindy.Core.VehicleInfo})
+  name.vb: ShowVehiclePicker(String, Action(Of VehicleInfo))
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(string, Action<ShanghaiWindy.Core.VehicleInfo>)
+  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(String, Action(Of ShanghaiWindy.Core.VehicleInfo))
+  nameWithType: ModeAPI.ShowVehiclePicker(string, Action<VehicleInfo>)
+  nameWithType.vb: ModeAPI.ShowVehiclePicker(String, Action(Of VehicleInfo))
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker*
+  name: ShowVehiclePicker
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehiclePicker_
+  commentId: Overload:ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker
+  nameWithType: ModeAPI.ShowVehiclePicker
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,Action{ShanghaiWindy.Core.ClientUserVehicleQueue})
+  name: ShowVehicleQueuePicker(string, ClientUserVehicleQueue, int, Action<ClientUserVehicleQueue>)
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehicleQueuePicker_System_String_ShanghaiWindy_Core_ClientUserVehicleQueue_System_Int32_Action_ShanghaiWindy_Core_ClientUserVehicleQueue__
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,Action{ShanghaiWindy.Core.ClientUserVehicleQueue})
+  name.vb: ShowVehicleQueuePicker(String, ClientUserVehicleQueue, Integer, Action(Of ClientUserVehicleQueue))
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(string, ShanghaiWindy.Core.ClientUserVehicleQueue, int, Action<ShanghaiWindy.Core.ClientUserVehicleQueue>)
+  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(String, ShanghaiWindy.Core.ClientUserVehicleQueue, Integer, Action(Of ShanghaiWindy.Core.ClientUserVehicleQueue))
+  nameWithType: ModeAPI.ShowVehicleQueuePicker(string, ClientUserVehicleQueue, int, Action<ClientUserVehicleQueue>)
+  nameWithType.vb: ModeAPI.ShowVehicleQueuePicker(String, ClientUserVehicleQueue, Integer, Action(Of ClientUserVehicleQueue))
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker*
+  name: ShowVehicleQueuePicker
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehicleQueuePicker_
+  commentId: Overload:ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker
+  nameWithType: ModeAPI.ShowVehicleQueuePicker
 - uid: ShanghaiWindy.Core.API.ModeAPI.ShowVictoryOrDefeat(System.Boolean)
   name: ShowVictoryOrDefeat(bool)
   href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVictoryOrDefeat_System_Boolean_
@@ -3560,18 +3592,6 @@ references:
   commentId: F:ShanghaiWindy.Core.BasePawn.isFakeHP
   fullName: ShanghaiWindy.Core.BasePawn.isFakeHP
   nameWithType: BasePawn.isFakeHP
-- uid: ShanghaiWindy.Core.BasePawn.isGodMode
-  name: isGodMode
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_isGodMode
-  commentId: F:ShanghaiWindy.Core.BasePawn.isGodMode
-  fullName: ShanghaiWindy.Core.BasePawn.isGodMode
-  nameWithType: BasePawn.isGodMode
-- uid: ShanghaiWindy.Core.BasePawn.lastBeHitPosition
-  name: lastBeHitPosition
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_lastBeHitPosition
-  commentId: F:ShanghaiWindy.Core.BasePawn.lastBeHitPosition
-  fullName: ShanghaiWindy.Core.BasePawn.lastBeHitPosition
-  nameWithType: BasePawn.lastBeHitPosition
 - uid: ShanghaiWindy.Core.BasePawn.OnDamaged
   name: OnDamaged
   href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnDamaged
@@ -3933,12 +3953,6 @@ references:
   commentId: T:ShanghaiWindy.Core.EIconPosition
   fullName: ShanghaiWindy.Core.EIconPosition
   nameWithType: EIconPosition
-- uid: ShanghaiWindy.Core.FlightPlayerState
-  name: FlightPlayerState
-  href: api/ShanghaiWindy.Core.FlightPlayerState.html
-  commentId: T:ShanghaiWindy.Core.FlightPlayerState
-  fullName: ShanghaiWindy.Core.FlightPlayerState
-  nameWithType: FlightPlayerState
 - uid: ShanghaiWindy.Core.IVehicleController
   name: IVehicleController
   href: api/ShanghaiWindy.Core.IVehicleController.html
@@ -4182,6 +4196,19 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint
   nameWithType: ILuaGameMode.IsEnableCapturePoint
+- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
+  name: IsEnableMinimap()
+  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsEnableMinimap
+  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
+  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap()
+  nameWithType: ILuaGameMode.IsEnableMinimap()
+- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap*
+  name: IsEnableMinimap
+  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsEnableMinimap_
+  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
+  nameWithType: ILuaGameMode.IsEnableMinimap
 - uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle
   name: IsProxyBattle()
   href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsProxyBattle
@@ -4504,51 +4531,12 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.TankFire.attachedRigidbody
   nameWithType: TankFire.attachedRigidbody
-- uid: ShanghaiWindy.Core.TankFire.bulletCountList
-  name: bulletCountList
-  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_bulletCountList
-  commentId: P:ShanghaiWindy.Core.TankFire.bulletCountList
-  fullName: ShanghaiWindy.Core.TankFire.bulletCountList
-  nameWithType: TankFire.bulletCountList
-- uid: ShanghaiWindy.Core.TankFire.bulletCountList*
-  name: bulletCountList
-  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_bulletCountList_
-  commentId: Overload:ShanghaiWindy.Core.TankFire.bulletCountList
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.TankFire.bulletCountList
-  nameWithType: TankFire.bulletCountList
 - uid: ShanghaiWindy.Core.TankFire.canControl
   name: canControl
   href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_canControl
   commentId: F:ShanghaiWindy.Core.TankFire.canControl
   fullName: ShanghaiWindy.Core.TankFire.canControl
   nameWithType: TankFire.canControl
-- uid: ShanghaiWindy.Core.TankFire.currentBullet
-  name: currentBullet
-  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_currentBullet
-  commentId: P:ShanghaiWindy.Core.TankFire.currentBullet
-  fullName: ShanghaiWindy.Core.TankFire.currentBullet
-  nameWithType: TankFire.currentBullet
-- uid: ShanghaiWindy.Core.TankFire.currentBullet*
-  name: currentBullet
-  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_currentBullet_
-  commentId: Overload:ShanghaiWindy.Core.TankFire.currentBullet
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.TankFire.currentBullet
-  nameWithType: TankFire.currentBullet
-- uid: ShanghaiWindy.Core.TankFire.currentBulletId
-  name: currentBulletId
-  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_currentBulletId
-  commentId: P:ShanghaiWindy.Core.TankFire.currentBulletId
-  fullName: ShanghaiWindy.Core.TankFire.currentBulletId
-  nameWithType: TankFire.currentBulletId
-- uid: ShanghaiWindy.Core.TankFire.currentBulletId*
-  name: currentBulletId
-  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_currentBulletId_
-  commentId: Overload:ShanghaiWindy.Core.TankFire.currentBulletId
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.TankFire.currentBulletId
-  nameWithType: TankFire.currentBulletId
 - uid: ShanghaiWindy.Core.TankFire.ffPoint
   name: ffPoint
   href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_ffPoint
@@ -4968,6 +4956,12 @@ references:
   commentId: F:ShanghaiWindy.Core.VehicleComponents.fireLockComponent
   fullName: ShanghaiWindy.Core.VehicleComponents.fireLockComponent
   nameWithType: VehicleComponents.fireLockComponent
+- uid: ShanghaiWindy.Core.VehicleComponents.groundAARadarSystem
+  name: groundAARadarSystem
+  href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_groundAARadarSystem
+  commentId: F:ShanghaiWindy.Core.VehicleComponents.groundAARadarSystem
+  fullName: ShanghaiWindy.Core.VehicleComponents.groundAARadarSystem
+  nameWithType: VehicleComponents.groundAARadarSystem
 - uid: ShanghaiWindy.Core.VehicleComponents.HitBoxes
   name: HitBoxes
   href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_HitBoxes
@@ -5455,6 +5449,54 @@ references:
   commentId: F:ShanghaiWindy.Data.TransformInfo.pos
   fullName: ShanghaiWindy.Data.TransformInfo.pos
   nameWithType: TransformInfo.pos
+- uid: ShanghaiWindy.Data.WarZoneCaptureZone
+  name: WarZoneCaptureZone
+  href: api/ShanghaiWindy.Data.WarZoneCaptureZone.html
+  commentId: T:ShanghaiWindy.Data.WarZoneCaptureZone
+  fullName: ShanghaiWindy.Data.WarZoneCaptureZone
+  nameWithType: WarZoneCaptureZone
+- uid: ShanghaiWindy.Data.WarZoneCaptureZone.zoneCapturePoint
+  name: zoneCapturePoint
+  href: api/ShanghaiWindy.Data.WarZoneCaptureZone.html#ShanghaiWindy_Data_WarZoneCaptureZone_zoneCapturePoint
+  commentId: F:ShanghaiWindy.Data.WarZoneCaptureZone.zoneCapturePoint
+  fullName: ShanghaiWindy.Data.WarZoneCaptureZone.zoneCapturePoint
+  nameWithType: WarZoneCaptureZone.zoneCapturePoint
+- uid: ShanghaiWindy.Data.WarZoneModeConfig
+  name: WarZoneModeConfig
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html
+  commentId: T:ShanghaiWindy.Data.WarZoneModeConfig
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig
+  nameWithType: WarZoneModeConfig
+- uid: ShanghaiWindy.Data.WarZoneModeConfig.backgroundCameraTransformInfo
+  name: backgroundCameraTransformInfo
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_backgroundCameraTransformInfo
+  commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.backgroundCameraTransformInfo
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig.backgroundCameraTransformInfo
+  nameWithType: WarZoneModeConfig.backgroundCameraTransformInfo
+- uid: ShanghaiWindy.Data.WarZoneModeConfig.captureZones
+  name: captureZones
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_captureZones
+  commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.captureZones
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig.captureZones
+  nameWithType: WarZoneModeConfig.captureZones
+- uid: ShanghaiWindy.Data.WarZoneModeConfig.displayName
+  name: displayName
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_displayName
+  commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.displayName
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig.displayName
+  nameWithType: WarZoneModeConfig.displayName
+- uid: ShanghaiWindy.Data.WarZoneModeConfig.mapGuid
+  name: mapGuid
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_mapGuid
+  commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.mapGuid
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig.mapGuid
+  nameWithType: WarZoneModeConfig.mapGuid
+- uid: ShanghaiWindy.Data.WarZoneModeConfig.warZoneName
+  name: warZoneName
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_warZoneName
+  commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.warZoneName
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig.warZoneName
+  nameWithType: WarZoneModeConfig.warZoneName
 - uid: ShanghaiWindy.Data.WaveAttackInfo
   name: WaveAttackInfo
   href: api/ShanghaiWindy.Data.WaveAttackInfo.html

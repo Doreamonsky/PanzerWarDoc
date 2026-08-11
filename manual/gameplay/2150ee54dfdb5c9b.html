@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>5. 闪退 &amp; 无法进入问题解决方案 | Panzer War Document </title>
+    <title>5. 闪退 &amp; 无法进入问题解决方案 Crashes &amp; Failure to Launch: Solutions | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="5. 闪退 &amp; 无法进入问题解决方案 | Panzer War Document ">
+    <meta name="title" content="5. 闪退 &amp; 无法进入问题解决方案 Crashes &amp; Failure to Launch: Solutions | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,27 +76,48 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="5-闪退--无法进入问题解决方案">5. 闪退 &amp; 无法进入问题解决方案</h1>
+<h1 id="5-闪退--无法进入问题解决方案-crashes--failure-to-launch-solutions">5. 闪退 &amp; 无法进入问题解决方案 Crashes &amp; Failure to Launch: Solutions</h1>
 
 <p>此文档记录一些遇到的版本问题，以及解决方案。</p>
-<h1 id="灰屏卡住">灰屏卡住</h1>
+<p>This document records some of the version-related problems that have been reported, together with their solutions.</p>
+<h1 id="灰屏卡住-stuck-on-a-grey-screen">灰屏卡住 Stuck on a Grey Screen</h1>
 <p>将 Documents/ShanghaiWindy/PanzerWarMods 文件夹重命名为 PanzerWarMods-Bak，进入游戏，车库左侧模组，点击申请外部 SDCard 权限。然后退出游戏，将 Documents/ShanghaiWindy/PanzerWarMods-Bak 重命名为 PanzerWarMods</p>
-<h1 id="闪退">闪退</h1>
+<p>Rename the folder Documents/ShanghaiWindy/PanzerWarMods to PanzerWarMods-Bak, launch the game, open Mods on the left side of the garage, and click to request external SDCard permission. Then quit the game and rename Documents/ShanghaiWindy/PanzerWarMods-Bak back to PanzerWarMods.</p>
+<h1 id="闪退-crashes">闪退 Crashes</h1>
 <p>在升级完成版本后，进入某个场景发生闪退，可能是由部分老旧数据不兼容导致游戏闪退。解决方案：备份游戏存档，然后删除游戏，重新安装游戏。<strong>请务必看备份存档！</strong></p>
-<h1 id="备份存档">备份存档</h1>
-<h2 id="手动备份存档">手动备份存档</h2>
+<p>If the game crashes when you enter a scene after upgrading to a new version, the crash may be caused by some old data that is no longer compatible. Solution: back up your game saves, then uninstall and reinstall the game. <strong>Be sure to read the &quot;Backing Up Saves&quot; section below first!</strong></p>
+<h1 id="备份存档-backing-up-saves">备份存档 Backing Up Saves</h1>
+<h2 id="手动备份存档-backing-up-saves-manually">手动备份存档 Backing Up Saves Manually</h2>
 <p><strong>注意：一定要按如下步骤一步一步进行操作，切记不要跳步骤！</strong></p>
+<p><strong>Note: follow the steps below one by one, and never skip a step!</strong></p>
 <ol>
 <li>打开文件管理器 选择目录 Android / data / com.ShanghaiWindy.PanzerWarDEM / files / saves 长按选择复制，复制到 Android / data 目录下。</li>
 </ol>
 <p>若同时想要备份模组，可将 Android / data / com.ShanghaiWindy.PanzerWarDEM / files / mods 长按复制到 Android / data 目录下。</p>
 <ol start="2">
-<li>删除游戏，重新安装</li>
-<li>正常打开游戏至车库，然后退出游戏</li>
-<li>将 Android / data / saves 目录 复制到 Android / data / com.ShanghaiWindy.PanzerWarDEM / files / saves 下</li>
-<li>打开游戏，确认数据</li>
-<li>若要恢复模组数据，请完成步骤 1 的备份。然后，将 Android / data / mods 目录 复制到 Android / data / com.ShanghaiWindy.PanzerWarDEM / files / mods 下</li>
-<li>打开游戏，确认 Mod</li>
+<li><p>删除游戏，重新安装</p>
+</li>
+<li><p>正常打开游戏至车库，然后退出游戏</p>
+</li>
+<li><p>将 Android / data / saves 目录 复制到 Android / data / com.ShanghaiWindy.PanzerWarDEM / files / saves 下</p>
+</li>
+<li><p>打开游戏，确认数据</p>
+</li>
+<li><p>若要恢复模组数据，请完成步骤 1 的备份。然后，将 Android / data / mods 目录 复制到 Android / data / com.ShanghaiWindy.PanzerWarDEM / files / mods 下</p>
+</li>
+<li><p>打开游戏，确认 Mod</p>
+</li>
+<li><p>Open your file manager, select the directory Android / data / com.ShanghaiWindy.PanzerWarDEM / files / saves, long-press it to copy it, and paste it into the Android / data directory.</p>
+</li>
+</ol>
+<p>If you also want to back up your mods, long-press Android / data / com.ShanghaiWindy.PanzerWarDEM / files / mods and copy it into the Android / data directory as well.</p>
+<ol start="2">
+<li>Uninstall the game, then reinstall it.</li>
+<li>Launch the game normally, go all the way to the garage, then quit the game.</li>
+<li>Copy the Android / data / saves directory into Android / data / com.ShanghaiWindy.PanzerWarDEM / files / saves.</li>
+<li>Launch the game and check that your data is there.</li>
+<li>To restore your mod data, you must have made the optional mods backup described in step 1. Then copy the Android / data / mods directory into Android / data / com.ShanghaiWindy.PanzerWarDEM / files / mods.</li>
+<li>Launch the game and check that your mods are there.</li>
 </ol>
 </article>
           </div>
