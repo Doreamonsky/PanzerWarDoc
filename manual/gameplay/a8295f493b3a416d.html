@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>1. 游戏调试工具 | Panzer War Document </title>
+    <title>1. 游戏调试工具 Game Debugging Tools | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="1. 游戏调试工具 | Panzer War Document ">
+    <meta name="title" content="1. 游戏调试工具 Game Debugging Tools | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,20 +76,27 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="1-游戏调试工具">1. 游戏调试工具</h1>
+<h1 id="1-游戏调试工具-game-debugging-tools">1. 游戏调试工具 Game Debugging Tools</h1>
 
-<h1 id="热更下载渠道修改">热更下载渠道修改</h1>
+<h1 id="热更下载渠道修改-changing-the-hot-update-download-channel">热更下载渠道修改 Changing the Hot-Update Download Channel</h1>
 <p>默认游戏是下载生产环境的热更文件，通过修改一个文件，可使游戏从测试环境下载热更新。 测试环境的热更新往往比生产环境的热更文件要新，但是也意味着可能存在 bug。在测试环境遇到 bug 需要及时上报给开发者。</p>
+<p>By default the game downloads hot-update files from the production environment. By editing one file, you can make the game download hot updates from the test environment instead. Hot updates on the test environment are usually newer than the ones on production, but that also means they may contain bugs. If you run into a bug on the test environment, please report it to the developers promptly.</p>
 <p>**切换方式：**需要正常进入游戏车库一次，然后打开 /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/env.txt ，把 prod 改成 staging 保存文件即可</p>
-<h1 id="校验-diy-资源是否完整">校验 DIY 资源是否完整</h1>
+<p><strong>How to switch:</strong> launch the game and reach the garage once, then open /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/env.txt, change prod to staging, and save the file.</p>
+<h1 id="校验-diy-资源是否完整-verifying-that-diy-resources-are-complete">校验 DIY 资源是否完整 Verifying That DIY Resources Are Complete</h1>
 <p>在调试窗口，增加了一些调试指令：</p>
+<p>Several debug commands have been added to the debug window:</p>
 <p>DebugDIY</p>
 <p>DebugMapDIY</p>
 <p>DebugVehicles</p>
 <p>输入调试指令后，点击回车，即可执行调试指令。所有的调试指令，输入 help 进行查看。</p>
+<p>Type a debug command and press Enter to run it. To list all of the debug commands, type help.</p>
 <p>用于检查是否有部分资源在制作时候，或者安装后有所损坏，导致游戏卡死。</p>
+<p>They are used to check whether some resources were damaged while being made, or after they were installed, which can cause the game to freeze.</p>
 <p>此检查会检查所有读取到的资源，所以过程会比较漫长。</p>
+<p>The check goes through every resource that has been loaded, so it takes quite a while.</p>
 <p>如果要检查是不是有 DIY 忘记生成预制体了，则输入 DebugDIY 。</p>
+<p>If you want to check whether a DIY item is missing its generated prefab, type DebugDIY.</p>
 <p><img src="imgs/066d89763bff_1678528554308-67e40bca-71bd-49e3-80d3-e2bcf139e6ad.jpeg" alt=""><img src="imgs/2ca671531f1d_1678528578252-731f4b3f-5aa3-4a42-ad22-9cab157f4aaf.png" alt=""></p>
 </article>
           </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>22.5.6 载具时序 | Panzer War Document </title>
+    <title>22.5.6 载具时序 Vehicle Initialization Timing | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="22.5.6 载具时序 | Panzer War Document ">
+    <meta name="title" content="22.5.6 载具时序 Vehicle Initialization Timing | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,10 +76,12 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2256-载具时序">22.5.6 载具时序</h1>
+<h1 id="2256-载具时序-vehicle-initialization-timing">22.5.6 载具时序 Vehicle Initialization Timing</h1>
 
 <p>如果是直接挂在载具上的Lua 脚本，请不要在 OnStarted 上直接运行初始化代码。</p>
+<p>If your Lua script is attached directly to a vehicle, do not run initialization code directly in OnStarted.</p>
 <p>请先注册一个加载回调，如下方式：</p>
+<p>Register a loaded callback first, like this:</p>
 <pre><code class="lang-lua">local ret, vehicle = self.script:TryGetTankInitSystem()
 if not ret then
   return
@@ -90,10 +92,13 @@ VehicleAPI.RegisterVehicleLoadedEvent(vehicle, function()
   end)
 </code></pre>
 <p><strong>修改前：</strong></p>
+<p><strong>Before:</strong></p>
 <p><img src="imgs/bbc90c1393fe_1752983057481-80b134ce-80c3-4e56-836f-4768d75776d0.png" alt=""></p>
 <p><strong>修改后：</strong></p>
+<p><strong>After:</strong></p>
 <p><img src="imgs/aed88e6aa8f3_1752983061841-f593990d-891f-4c95-b7b5-beb7798820ec.png" alt=""></p>
-<p>这样可以保证，代码在载具所有加载完成后，再执行你的代码。</p>
+<p>这样可以保证，代码在载具全部加载完成后，再执行你的代码。</p>
+<p>This guarantees that your code only runs after the vehicle has fully finished loading.</p>
 </article>
           </div>
 

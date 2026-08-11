@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>17.1 常用的贴图通道转换工具 | Panzer War Document </title>
+    <title>17.1 常用的贴图通道转换工具 Common Texture Channel Conversion Tools | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="17.1 常用的贴图通道转换工具 | Panzer War Document ">
+    <meta name="title" content="17.1 常用的贴图通道转换工具 Common Texture Channel Conversion Tools | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,15 +76,15 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="171-常用的贴图通道转换工具">17.1 常用的贴图通道转换工具</h1>
+<h1 id="171-常用的贴图通道转换工具-common-texture-channel-conversion-tools">17.1 常用的贴图通道转换工具 Common Texture Channel Conversion Tools</h1>
 
-<h1 id="基于-sd-的贴图通道修改">基于 SD 的贴图通道修改</h1>
-<p>下载安装 Substance Designer。运行 Setup 安装完成后，替换 Substance Designer.exe</p>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2024/rar/23154724/1711544893920-27270764-0869-4477-afdb-65ff788a637b.rar">substance_63959.rar</a></p>
-<h2 id="orm-贴图">ORM 贴图</h2>
-<p><a href="https://www.yuque.com/attachments/yuque/0/2024/rar/23154724/1711544928449-7a3ac3c8-8525-4177-bcd3-eba44876c01d.rar">OrmRechannel.rar</a></p>
-<p>将Bitmap 替换为自己的 orm 贴图</p>
-<p>（即 R 通道 AO，G通道 Roughness，M通道 Metallic）的贴图</p>
+<h1 id="使用-substance-3d-designer-合并-orm-通道-merging-orm-channels-with-substance-3d-designer">使用 Substance 3D Designer 合并 ORM 通道 Merging ORM Channels with Substance 3D Designer</h1>
+<p>从 <a href="https://www.adobe.com/products/substance3d/apps/designer.html">Adobe Substance 3D Designer 官方页面</a>安装已授权的当前版本。旧文档中“替换 Substance Designer.exe”的做法来源不可信，已删除，请勿使用修改过的可执行文件。</p>
+<p>Install a licensed current version from the <a href="https://www.adobe.com/products/substance3d/apps/designer.html">official Adobe Substance 3D Designer page</a>. The old documentation described replacing Substance Designer.exe; that came from an untrustworthy source and has been removed. Do not use a modified executable.</p>
+<p>ORM 贴图的通道约定为：R = Ambient Occlusion、G = Roughness、B = Metallic。使用 <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/nodes-reference-for-substance-graphs/node-library/filters/channels/rgba-merge">RGBA Merge</a> 节点，将三张灰度贴图分别连接到 R、G、B 输入，并将结果按线性颜色空间导出。</p>
+<p>The channel convention for an ORM texture is R = Ambient Occlusion, G = Roughness, B = Metallic. Use the <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/nodes-reference-for-substance-graphs/node-library/filters/channels/rgba-merge">RGBA Merge</a> node to connect the three grayscale textures to the R, G and B inputs respectively, then export the result in linear color space.</p>
+<p>若要调整已有 ORM 贴图的通道，先用 <code>RGBA Split</code> 拆分，再通过 <code>RGBA Merge</code> 按上述顺序重新连接。以下截图仅作为节点连接方式参考。</p>
+<p>To rearrange the channels of an existing ORM texture, split it with <code>RGBA Split</code> first, then reconnect the channels in the order above with <code>RGBA Merge</code>. The screenshots below are only a reference for how the nodes are connected.</p>
 <p><img src="imgs/614709a53523_1711544972632-f81b698c-4018-4fb0-b507-df6c41eb3225.png" alt=""></p>
 <p><img src="imgs/d52bf2e4f642_1711544995322-6d501a26-dc96-4b1d-8bb2-b24447827e60.png" alt=""></p>
 </article>

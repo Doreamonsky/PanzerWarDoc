@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>22.6.1 Lua 回调函数与 self | Panzer War Document </title>
+    <title>22.6.1 Lua 回调函数与 self Lua Callbacks and self | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="22.6.1 Lua 回调函数与 self | Panzer War Document ">
+    <meta name="title" content="22.6.1 Lua 回调函数与 self Lua Callbacks and self | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,11 +76,13 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2261-lua-回调函数与-self">22.6.1 Lua 回调函数与 self</h1>
+<h1 id="2261-lua-回调函数与-self-lua-callbacks-and-self">22.6.1 Lua 回调函数与 self Lua Callbacks and self</h1>
 
 <p>本文旨在为 Lua 编程新手提供一个关于回调函数与 <strong>self</strong> 的简要教程。我们将使用一个示例来说明如何在 Lua 中正确地使用回调函数和 <strong>self</strong>。</p>
-<h2 id="示例代码">示例代码</h2>
+<p>This article is a short tutorial on callback functions and <strong>self</strong> for newcomers to Lua programming. We will use an example to show how to correctly use callbacks and <strong>self</strong> in Lua.</p>
+<h2 id="示例代码-example-code">示例代码 Example Code</h2>
 <p>以下是示例代码，用于演示如何在 Lua 中使用回调函数和 <strong>self</strong>：</p>
+<p>The following example code demonstrates how to use callback functions and <strong>self</strong> in Lua:</p>
 <pre><code class="lang-lua">Behavior()
 
 -- 定义属性
@@ -146,19 +148,24 @@ end
 return InputTutorial
 
 </code></pre>
-<h2 id="关键概念">关键概念</h2>
-<h3 id="回调函数">回调函数</h3>
+<h2 id="关键概念-key-concepts">关键概念 Key Concepts</h2>
+<h3 id="回调函数-callback-functions">回调函数 Callback Functions</h3>
 <p>在这个示例中，我们使用了两个回调函数：<strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong>。这两个函数将作为参数传递给 <strong>InputAPI.RegisterKeyInput</strong> 函数，以便在某个键被按下或取消时执行相应的操作。</p>
+<p>In this example we use two callback functions: <strong>self.OnKeyPerformedCb</strong> and <strong>self.OnKeyCanceledCb</strong>. Both are passed as arguments to <strong>InputAPI.RegisterKeyInput</strong>, so that the corresponding action is performed when a key is pressed or canceled.</p>
 <h3 id="self"><strong>self</strong></h3>
 <p><strong>self</strong> 在这个示例中用于关联回调函数和 <strong>InputTutorial</strong> 表的实例。在函数 <strong>InputTutorial:OnStarted()</strong> 中，我们使用 <strong>self</strong> 来定义回调函数，并将它们存储在实例变量中。这样，在调用 <strong>InputTutorial:OnKeyPerformed(context)</strong> 和 <strong>InputTutorial:OnKeyCanceled(context)</strong> 时，这些函数可以访问和操作 <strong>InputTutorial</strong> 表的实例。</p>
-<h2 id="优点">优点</h2>
+<p>In this example, <strong>self</strong> is used to associate the callback functions with the instance of the <strong>InputTutorial</strong> table. Inside <strong>InputTutorial:OnStarted()</strong> we use <strong>self</strong> to define the callbacks and store them in instance variables. That way, when <strong>InputTutorial:OnKeyPerformed(context)</strong> and <strong>InputTutorial:OnKeyCanceled(context)</strong> are called, these functions can access and operate on the instance of the <strong>InputTutorial</strong> table.</p>
+<h2 id="优点-advantages">优点 Advantages</h2>
 <p>将回调函数与实例关联起来有以下几点好处：</p>
+<p>Associating the callback functions with the instance has the following benefits:</p>
 <ol>
-<li><strong>可读性</strong>：这种写法明确表明了回调函数属于 <strong>InputTutorial</strong> 表的实例，使代码更加清晰和易于理解。</li>
-<li><strong>重用性</strong>：将回调函数存储在实例变量中意味着你可以在其他地方重用这些回调函数，而不需要再次创建匿名函数。</li>
-<li><strong>维护性</strong>：这种写法提高了代码的维护性，因为在需要修改回调函数行为时，你只需要修改 <strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong> 的定义。</li>
+<li><strong>可读性</strong>：这种写法明确表明了回调函数属于 <strong>InputTutorial</strong> 表的实例，使代码更加清晰和易于理解。<br>
+<strong>Readability</strong>: this style makes it explicit that the callbacks belong to the instance of the <strong>InputTutorial</strong> table, which makes the code clearer and easier to understand.</li>
+<li><strong>重用性</strong>：将回调函数存储在实例变量中意味着你可以在其他地方重用这些回调函数，而不需要再次创建匿名函数。<br>
+<strong>Reusability</strong>: storing the callbacks in instance variables means you can reuse them elsewhere instead of creating another anonymous function.</li>
+<li><strong>维护性</strong>：这种写法提高了代码的维护性，因为在需要修改回调函数行为时，你只需要修改 <strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong> 的定义。<br>
+<strong>Maintainability</strong>: this style improves maintainability, because when you need to change the behavior of a callback you only have to modify the definitions of <strong>self.OnKeyPerformedCb</strong> and <strong>self.OnKeyCanceledCb</strong>.</li>
 </ol>
-<h2 id="section"></h2>
 </article>
           </div>
 

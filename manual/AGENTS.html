@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>22.2 Lua Profiler 性能监控 | Panzer War Document </title>
+    <title>Manual maintenance instructions | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="22.2 Lua Profiler 性能监控 | Panzer War Document ">
+    <meta name="title" content="Manual maintenance instructions | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
-    <link rel="shortcut icon" href="../../favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../styles/docfx.css">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
   
-  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:rel" content="../">
   
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -33,8 +33,8 @@
                 <span class="icon-bar"></span>
               </button>
 
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -76,15 +76,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="222-lua-profiler-性能监控">22.2 Lua Profiler 性能监控</h1>
+<h1 id="manual-maintenance-instructions">Manual maintenance instructions</h1>
 
-<p><img src="imgs/84cb0119fec1_1681052548206-d92147c8-fab8-436a-89fe-90b43b5fbee7.png" alt=""></p>
-<p>开启 Local mode 以及 Deep Lua</p>
-<p>Enable Local mode and Deep Lua.</p>
-<p><img src="imgs/78e760ef3e63_1681052581969-f544c3df-12c8-4d7c-b5ef-c9a9bc156bf0.png" alt=""></p>
-<p>主要需要关注 self 的耗时，耗时 0.1ms 以上的可以认为是高性能消耗的行为，需要特别注意，以避免 update 每帧执行。</p>
-<p>Pay attention mainly to the self time. Anything above 0.1 ms counts as an expensive operation and deserves a close look, so that it is not left running every frame in update.</p>
-<p><img src="imgs/169a37a52f58_1681052643140-a2ebd4a1-401b-4cfa-bc1e-66c004050842.png" alt=""></p>
+<p><code>Docs/manual</code> is the source of truth for the Panzer War manuals. Yuque is no longer available and must not be treated as an upstream source.</p>
+<h2 id="before-editing">Before editing</h2>
+<ol>
+<li>Find documents by title in <code>toc.yml</code>; legacy exported filenames are hashes and should not be guessed.</li>
+<li>Search the complete manual before adding a new page. Older pages may use a renamed title.</li>
+<li>Run <code>python tools/test_manual.py</code> to inspect link health.</li>
+</ol>
+<h2 id="editing-rules">Editing rules</h2>
+<ul>
+<li>Use relative Markdown links for all manual-to-manual references. Do not add Yuque article links.</li>
+<li>Store page images in the section's <code>imgs/</code> directory and reference them relatively.</li>
+<li>Do not rename legacy hashed Markdown or image files unless every reference and <code>toc.yml</code> entry is updated in the same change.</li>
+<li>New hand-authored pages use readable lowercase kebab-case filenames.</li>
+<li>Add every navigable page to <code>toc.yml</code>.</li>
+<li>Keep Chinese and English text when both already exist. Do not fabricate missing historical content.</li>
+<li>When an old link points to content merged into another page, link to the surviving page or heading and record the decision in <code>legacy-yuque-links.json</code>.</li>
+<li>Missing binary details and original Yuque URLs live in <code>legacy-yuque-attachments.json</code>. Keep the visible missing-attachment marker until a verified local replacement is available.</li>
+</ul>
+<h2 id="after-editing">After editing</h2>
+<p>Run:</p>
+<pre><code class="lang-text">python tools/test_manual.py
+</code></pre>
+<p>Use <code>--strict</code> only after all missing items in <code>RECOVERY.md</code> have been recovered or intentionally retired. <code>--fix</code> reapplies the recorded legacy mapping when old exports or copied text introduce Yuque links.</p>
 </article>
           </div>
 
@@ -142,11 +158,11 @@
             </div>
           </div>
         </div>
-        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
       </footer>    </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../../styles/docfx.js"></script>
-    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>

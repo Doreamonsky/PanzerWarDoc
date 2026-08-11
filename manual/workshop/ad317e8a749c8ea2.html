@@ -83,7 +83,7 @@
 <p>Traditional single-shot shells only require setting the reload time.</p>
 <p>传统的单发炮弹，只需要设置装填时间。</p>
 <p><img src="imgs/4959f5b4f97f_1720280457664-b26d68db-3e46-47a3-8b35-f645c5fbfbd2.png" alt=""></p>
-<h2 id="advance-高级">Advance 高级</h2>
+<h2 id="advanced-高级">Advanced 高级</h2>
 <p>For multi-shot magazine guns, you need to set the small reload time, the large reload time, and the magazine size.</p>
 <p>多发弹夹炮，需要设置小装填，大装填，以及弹夹长度。</p>
 <p><img src="imgs/4fb21c57d48e_1720280509647-8507bfef-2a96-4d37-ba59-a4dedbc2be1d.png" alt=""></p>
@@ -111,22 +111,39 @@
 <p>在我们的游戏中，穿甲弹机制基于德马尔公式，用于估算穿甲弹对装甲的穿透能力。以下是公式及其参数的解释。</p>
 <p>$ \text{Penetration 穿深} = \left( \frac{m \cdot v_{\text{rel}}^2}{d^3 \cdot D_{\text{term}}} \right)^{\frac{1}{C_{\text{armor}}}} \cdot d \cdot K_{\text{nap}} \cdot 100 $</p>
 <ul>
-<li>$ m  $ is the shell mass (kg)   是炮弹的质量 （千克）；</li>
-<li>$ v_{\text{rel}} $ is the shell velocity component in the direction of the plate, calculated as:</li>
-</ul>
-<p>炮弹命中装甲板的速度，如下计算：$  v_{\text{rel}} = v_d \cdot \cos(\theta \cdot 0.85 \cdot C_{\text{angle}}) $ where 其中 $ C_{\text{angle}} $is penetration vs angle coefficient 是斜穿系数；and where 其中 $  v_d  = v_0 \left( 1 - \frac{\lambda d}{v_0} \right) $ $ \lambda $ is the drag 是阻力；$ v_0 $is the initial velocity 是炮弹初速度；</p>
-<ul>
-<li>$ d $ is the shell diameter  是炮弹直径 （单位米）；</li>
-<li>$ D_{\text{term}} $ is the De Marre term 是德马尔项, calculated as 计算如下：  $ D_{\text{term}} = \left( D_{\text{const}} \right)^2 \cdot d^{-0.1} $ where 其中 $ D_{\text{const}}  $is the De Marre constant 是德马尔常数；</li>
-<li>$ C_{\text{armor}} $ is the armor material coefficient   是命中装甲板的材料系数；</li>
-<li>$ K_{\text{nap}} $ is the adjustment factor based on the TNT  ratio  是基于 TNT 比例的调整系数  , calculated as follows  计算如下  :  $   K_{\text{nap}} = \begin{cases}
+<li><p>$ m  $ is the shell mass (kg)</p>
+<p>是炮弹的质量 （千克）；</p>
+</li>
+<li><p>$ v_{\text{rel}} $ is the shell velocity component in the direction of the plate, calculated as:</p>
+<p>是炮弹命中装甲板的速度，如下计算：</p>
+<p>$  v_{\text{rel}} = v_d \cdot \cos(\theta \cdot 0.85 \cdot C_{\text{angle}}) $</p>
+<p>$  v_d  = v_0 \left( 1 - \frac{\lambda d}{v_0} \right) $</p>
+<p>where $ C_{\text{angle}} $ is the penetration vs angle coefficient, $ \lambda $ is the drag, and $ v_0 $ is the initial velocity;</p>
+<p>其中 $ C_{\text{angle}} $ 是斜穿系数，$ \lambda $ 是阻力，$ v_0 $ 是炮弹初速度；</p>
+</li>
+<li><p>$ d $ is the shell diameter (m)</p>
+<p>是炮弹直径 （单位米）；</p>
+</li>
+<li><p>$ D_{\text{term}} $ is the De Marre term, calculated as:</p>
+<p>是德马尔项，计算如下：</p>
+<p>$ D_{\text{term}} = \left( D_{\text{const}} \right)^2 \cdot d^{-0.1} $</p>
+<p>where $ D_{\text{const}}  $ is the De Marre constant;</p>
+<p>其中 $ D_{\text{const}}  $ 是德马尔常数；</p>
+</li>
+<li><p>$ C_{\text{armor}} $ is the armor material coefficient</p>
+<p>是命中装甲板的材料系数；</p>
+</li>
+<li><p>$ K_{\text{nap}} $ is the adjustment factor based on the TNT ratio, calculated as follows:</p>
+<p>是基于 TNT 比例的调整系数，计算如下：</p>
+<p>$   K_{\text{nap}} = \begin{cases}
 1 &amp; \text{if } \frac{\text{TNT}}{m} &lt; 0.65 \
 1 + \frac{\left(\frac{\text{TNT}}{m} - 0.65 \right) \cdot (0.93 - 1)}{1.6 - 0.65} &amp; \text{if } 0.65 \leq \frac{\text{TNT}}{m} &lt; 1.6 \
 0.93 + \frac{\left(\frac{\text{TNT}}{m} - 1.6 \right) \cdot (0.9 - 0.93)}{2 - 1.6} &amp; \text{if } 1.6 \leq \frac{\text{TNT}}{m} &lt; 2 \
 0.9 + \frac{\left(\frac{\text{TNT}}{m} - 2 \right) \cdot (0.85 - 0.9)}{3 - 2} &amp; \text{if } 2 \leq \frac{\text{TNT}}{m} &lt; 3 \
 0.85 + \frac{\left(\frac{\text{TNT}}{m} - 3 \right) \cdot (0.75 - 0.85)}{4 - 3} &amp; \text{if } 3 \leq \frac{\text{TNT}}{m} &lt; 4 \
 0.75 &amp; \text{if } \frac{\text{TNT}}{m} \geq 4
-\end{cases} $</li>
+\end{cases} $</p>
+</li>
 </ul>
 <p>This formula combines all the terms to calculate the penetration of the shell against armor, taking into account the mass, velocity, diameter, material properties, impact angle, and explosive charge of the shell.</p>
 <p>该公式结合所有参数来计算炮弹对装甲的穿透力，考虑了炮弹的质量、速度、直径、材料特性、入射角度和装药量。</p>

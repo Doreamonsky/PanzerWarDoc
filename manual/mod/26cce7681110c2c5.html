@@ -79,27 +79,43 @@
 <h1 id="2262-lua-中-self-与-self-的区别">22.6.2 Lua 中 self. 与 self: 的区别</h1>
 
 <p>在 Lua 编程语言中，<strong>self.</strong> 和 <strong>self:</strong> 之间的区别主要与方法调用和表中的函数有关。它们都用于访问表（table）中的字段和方法，但是在传递参数时有所不同。</p>
+<p>In the Lua programming language, the difference between <strong>self.</strong> and <strong>self:</strong> mainly concerns method calls and functions stored in a table. Both are used to access the fields and methods of a table, but they differ in how arguments are passed.</p>
 <ol>
-<li><strong>self.</strong>：当你在表（table）中使用 <strong>self.</strong> 调用一个函数时，你需要显式地传递表的实例作为第一个参数。这种情况下，函数的定义通常如下：</li>
+<li><p><strong>self.</strong>：当你在表（table）中使用 <strong>self.</strong> 调用一个函数时，你需要显式地传递表的实例作为第一个参数。这种情况下，函数的定义通常如下：</p>
+<p><strong>self.</strong>: when you call a function in a table with <strong>self.</strong>, you must pass the table instance explicitly as the first argument. In this case the function is usually defined like this:</p>
+</li>
 </ol>
-<pre><code class="lang-plain">luaCopy code
-local myTable = {} function myTable.func(self, arg1, arg2)     -- 在这里，self 是表的实例     -- arg1 和 arg2 是其他参数 end
+<pre><code class="lang-lua">local myTable = {}
+
+function myTable.func(self, arg1, arg2)
+    -- 在这里，self 是表的实例
+    -- arg1 和 arg2 是其他参数
+end
 </code></pre>
 <p>调用这个函数时，你需要显式地提供表的实例：</p>
-<pre><code class="lang-plain">luaCopy code
-local instance = myTable instance.func(instance, arg1, arg2)
+<p>When calling this function, you must provide the table instance explicitly:</p>
+<pre><code class="lang-lua">local instance = myTable
+instance.func(instance, arg1, arg2)
 </code></pre>
-<ol>
-<li><strong>self:</strong>：使用 <strong>self:</strong> 调用表中的函数时，Lua 会隐式地将表的实例作为第一个参数传递给函数。这种情况下，函数的定义通常如下：</li>
+<ol start="2">
+<li><p><strong>self:</strong>：使用 <strong>self:</strong> 调用表中的函数时，Lua 会隐式地将表的实例作为第一个参数传递给函数。这种情况下，函数的定义通常如下：</p>
+<p><strong>self:</strong>: when you call a function in a table with <strong>self:</strong>, Lua implicitly passes the table instance to the function as the first argument. In this case the function is usually defined like this:</p>
+</li>
 </ol>
-<pre><code class="lang-plain">luaCopy code
-local myTable = {} function myTable:func(arg1, arg2)     -- 在这里，self 是表的实例，已隐式地传递     -- arg1 和 arg2 是其他参数 end
+<pre><code class="lang-lua">local myTable = {}
+
+function myTable:func(arg1, arg2)
+    -- 在这里，self 是表的实例，已隐式地传递
+    -- arg1 和 arg2 是其他参数
+end
 </code></pre>
 <p>调用这个函数时，你不需要显式地提供表的实例：</p>
-<pre><code class="lang-plain">luaCopy code
-local instance = myTable instance:func(arg1, arg2)
+<p>When calling this function, you do not need to provide the table instance explicitly:</p>
+<pre><code class="lang-lua">local instance = myTable
+instance:func(arg1, arg2)
 </code></pre>
 <p>总结：<strong>self.</strong> 和 <strong>self:</strong> 的主要区别在于传递表实例的方式。使用 <strong>self.</strong> 时，需要显式地将实例作为第一个参数传递；而使用 <strong>self:</strong> 时，表实例会被隐式地传递。在面向对象编程中，<strong>self:</strong> 通常更加方便，因为它可以简化代码。</p>
+<p>Summary: the main difference between <strong>self.</strong> and <strong>self:</strong> is how the table instance is passed. With <strong>self.</strong> you must pass the instance explicitly as the first argument; with <strong>self:</strong> the table instance is passed implicitly. In object-oriented programming <strong>self:</strong> is usually more convenient, because it simplifies the code.</p>
 </article>
           </div>
 

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>02.4 Material Component 材质组件 | Panzer War Document </title>
+    <title>22. Lua 开发 | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="02.4 Material Component 材质组件 | Panzer War Document ">
+    <meta name="title" content="22. Lua 开发 | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -76,41 +76,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="024-material-component-材质组件">02.4 Material Component 材质组件</h1>
+<h1 id="22-lua-开发">22. Lua 开发</h1>
 
-<p>For now,you need to upgrade your editor to 2021 version to use this new feature.</p>
-<p>目前而言，你需要将你的模组工具升级到 2021 才可以使用此功能</p>
-<p><a href="880596c53781331d.html">15.Upgrade 2021 Editor 升级 2021 编辑器</a></p>
-<h1 id="general-综述">General 综述</h1>
-<p>The game has three version of renderer pipeline. To make it possible to build once and run on all version. We need some components to fix material problems.</p>
-<p>游戏拥有三种渲染管线版本，为了实现一次打包三个管线正常渲染，我们需要一些中间组件，来帮助我们解决材质兼容的问题。</p>
-<h1 id="general-pbr-material-shader-通用pbr-材质-shader">General PBR Material Shader 通用PBR 材质 Shader</h1>
-<h2 id="material-that-supports-mask-texture-支持-mask-texture-的材质球">Material that supports Mask Texture 支持 Mask Texture 的材质球</h2>
-<p>Switch the shader to SRP-Vehicle-Camouflage.</p>
-<p>切换 Shader 为 SRP-Vehicle-Camouflage</p>
-<p><img src="imgs/9d205198b0ab_1675569536761-81d3a283-54e5-4628-ae90-d7e8eb52f3cb.png" alt=""></p>
-<p><img src="imgs/3e119ce19062_1675569798885-9677a422-757b-44e8-9bcc-cc3155306cde.png" alt=""></p>
-<p>A mask for PBR effect.  You can refer channel from <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html">https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html</a></p>
-<p>一个反光遮罩贴图用于 PBR 效果。贴图通道信息查看 <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html">https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html</a></p>
-<h1 id="render-component-渲染组件">Render component 渲染组件</h1>
-<h2 id="core-rp-matdata">Core RP MatData</h2>
-<p>Right click the project and select the menu in the picture.</p>
-<p>右键工程，选择如菜单的按钮。</p>
-<h1 id="section"><img src="imgs/59fd458d29c3_1647620626988-4a556542-5333-4a6d-86ac-9ba013a05708.png" alt=""></h1>
-<h3 id="linked-material-链接的材质">Linked Material 链接的材质</h3>
-<p>Select the material you want to override. 选择你要覆盖的材质</p>
-<p><img src="imgs/e37f0d065466_1647620935457-e995c704-e5e0-4538-9430-12c93f4721a2.png" alt=""></p>
-<h3 id="transparency-透明度">Transparency 透明度</h3>
-<p>Change the alpha of color to make material transparent.</p>
-<p>改变颜色的 Alpha 值，实现透明效果。</p>
-<p><img src="imgs/ddc4c2e2acc5_1647620885675-29eefdd9-cac3-416f-9f34-d350741ec584.png" alt=""></p>
-<p>Add Core RP Mat Component on your mesh renderer.</p>
-<p>在你的 mesh renderer 组件上挂载  Core RP Mat 组件。</p>
-<p><img src="imgs/6b586c884288_1647620518810-5ec2c80b-c703-4f46-b4e1-e5bfb0de1896.png" alt=""></p>
-<p>Select the CoreRPMatData  you created previously. You need to make the linked material on CoreRPMatData is one of the mesh renderer that contains the same material.</p>
-<p>选择你先前创建的 CoreRPMatData。你需要保证你添加的 linked material 是其节点下某个 Mesh Renderer 所拥有的材质球。</p>
-<p><img src="imgs/ef64daeba65d_1647621003422-156504a6-e5af-43a8-9ee4-47e135a515b3.png" alt=""></p>
-<h2 id="section-1"></h2>
+<h2 id="开发与调试">开发与调试</h2>
+<ul>
+<li><a href="d7dff01fe74c5335.html">22.1 Lua 断点调试</a></li>
+<li><a href="465e27a410e58b2e.html">22.2 Lua Profiler 性能监控</a></li>
+<li><a href="9270a2607dfcd0fb.html">22.3 安装 VS Code 和配置 Emmy Lua 环境</a></li>
+<li><a href="905c966e33c0018b.html">22.4 如何使用 LuaBehaviorMono 组件</a></li>
+</ul>
+<h2 id="入门课题">入门课题</h2>
+<ul>
+<li><a href="36b19c3331f341ee.html">22.5 Lua 课题</a></li>
+<li><a href="88eb2ca113e79bbe.html">22.5.1 第一行代码 Hello World</a></li>
+<li><a href="fe7409804d64bb6e.html">22.5.2 属性 Property</a></li>
+<li><a href="d45bcf99f58d4c32.html">22.5.3 回调 Callback</a></li>
+<li><a href="a959935529849dd1.html">22.5.4 场景功能：随机陨石</a></li>
+<li><a href="4f72a64906a43e48.html">22.5.5 自定义 Lua Buff</a></li>
+<li><a href="9d85af0bb198b271.html">22.5.6 载具时序</a></li>
+</ul>
+<h2 id="知识库">知识库</h2>
+<ul>
+<li><a href="9e0068ac7dd64296.html">22.6 Lua 知识库</a></li>
+<li><a href="ef72909286442a91.html">22.6.1 Lua 回调函数与 self</a></li>
+<li><a href="26cce7681110c2c5.html">22.6.2 Lua 中 self. 与 self: 的区别</a></li>
+</ul>
 </article>
           </div>
 

@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>22.2 Lua Profiler 性能监控 | Panzer War Document </title>
+    <title>Panzer War 本地文档维护入口 | Panzer War Document </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="22.2 Lua Profiler 性能监控 | Panzer War Document ">
+    <meta name="title" content="Panzer War 本地文档维护入口 | Panzer War Document ">
     <meta name="generator" content="docfx ">
   
-    <link rel="shortcut icon" href="../../favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../styles/docfx.css">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
   
-  <meta property="docfx:rel" content="../../">
+  <meta property="docfx:rel" content="../">
   
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -33,8 +33,8 @@
                 <span class="icon-bar"></span>
               </button>
 
-              <a class="navbar-brand" href="../../index.html">
-                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -76,15 +76,23 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="222-lua-profiler-性能监控">22.2 Lua Profiler 性能监控</h1>
+<h1 id="panzer-war-本地文档维护入口">Panzer War 本地文档维护入口</h1>
 
-<p><img src="imgs/84cb0119fec1_1681052548206-d92147c8-fab8-436a-89fe-90b43b5fbee7.png" alt=""></p>
-<p>开启 Local mode 以及 Deep Lua</p>
-<p>Enable Local mode and Deep Lua.</p>
-<p><img src="imgs/78e760ef3e63_1681052581969-f544c3df-12c8-4d7c-b5ef-c9a9bc156bf0.png" alt=""></p>
-<p>主要需要关注 self 的耗时，耗时 0.1ms 以上的可以认为是高性能消耗的行为，需要特别注意，以避免 update 每帧执行。</p>
-<p>Pay attention mainly to the self time. Anything above 0.1 ms counts as an expensive operation and deserves a close look, so that it is not left running every frame in update.</p>
-<p><img src="imgs/169a37a52f58_1681052643140-a2ebd4a1-401b-4cfa-bc1e-66c004050842.png" alt=""></p>
+<p>此目录是语雀不可用后的本地文档主库。现有 121 篇导出文档按 <code>component</code>、<code>gameplay</code>、<code>mod</code>、<code>workshop</code> 分类，导航和可读标题以 <a href="toc.html">toc.yml</a> 为准。</p>
+<h2 id="agent-查找文档">Agent 查找文档</h2>
+<ol>
+<li>先在 <code>toc.yml</code> 搜标题并取得真实文件路径。</li>
+<li>标题不确定时，用正文关键词搜索整个 <code>Docs/manual</code>。</li>
+<li>旧语雀 slug 的本地对应关系在 <a href="legacy-yuque-links.json">legacy-yuque-links.json</a>。</li>
+<li>已知缺失内容和旧附件的处理结果在 <a href="RECOVERY.html">RECOVERY.md</a>，附件原始地址与替代方案保存在 <a href="legacy-yuque-attachments.json">legacy-yuque-attachments.json</a>。</li>
+</ol>
+<h2 id="本地校验">本地校验</h2>
+<pre><code class="lang-text">python tools/test_manual.py
+</code></pre>
+<p>校验工具只依赖 Python 标准库，会检查 Markdown 与 <code>toc.yml</code> 的本地目标、剩余语雀链接以及恢复清单。若旧内容重新带入语雀链接，可执行：</p>
+<pre><code class="lang-text">python tools/test_manual.py --fix
+</code></pre>
+<p>旧导出文件继续保留哈希文件名，避免破坏 DocFX 导航和图片引用；新建的人工维护页面使用可读的 kebab-case 文件名。</p>
 </article>
           </div>
 
@@ -142,11 +150,11 @@
             </div>
           </div>
         </div>
-        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
+        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
       </footer>    </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../../styles/docfx.js"></script>
-    <script type="text/javascript" src="../../styles/main.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>
