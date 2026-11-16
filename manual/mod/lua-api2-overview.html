@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>22.7 Lua API 2 概览 Lua API 2 Overview | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="22.7 Lua API 2 概览 Lua API 2 Overview | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="227-lua-api-2-概览-lua-api-2-overview">22.7 Lua API 2 概览 Lua API 2 Overview</h1>
+
+<p>从 API 版本 2 起（全局变量 <code>GAME_API_VERSION</code> 为 2），游戏为 Mod 脚本提供了一组新接口：载具装配完成的回调、随行为自动结束的事件订阅，以及战场查询、雷达、武器、载具状态等读取接口。它们直接使用游戏自己的数据和事件，比在脚本里扫描场景、按名字递归查找节点或每帧轮询更快，也更可靠。</p>
+<p>From API version 2 onwards (when the global variable <code>GAME_API_VERSION</code> is 2), the game provides a set of new interfaces for Mod scripts: a callback for when vehicle assembly is complete, event subscriptions that end automatically with the behaviour, and read interfaces for querying the battle, radar, weapons, and vehicle status. These interfaces use the game's own data and events directly, making them faster and more reliable than scanning the scene in scripts, recursively finding nodes by name, or polling every frame.</p>
+<p>本节的用例 Examples in this section:</p>
+<ul>
+<li><a href="lua-api2-missile-rack.html">22.7.1 用例：导弹挂架随弹药显示 Example: A Missile Rack That Follows the Ammo</a></li>
+<li><a href="lua-api2-charged-shot.html">22.7.2 用例：蓄力伤害加成 Example: Charged-Shot Damage Bonus</a></li>
+<li><a href="lua-api2-radar-screen.html">22.7.3 用例：防空雷达屏幕 Example: Air-Defence Radar Screen</a></li>
+<li><a href="lua-api2-air-warning.html">22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning</a></li>
+<li><a href="lua-api2-module-trigger.html">22.7.5 用例：模块被毁时播放动画 Example: Animation When a Module Is Destroyed</a></li>
+<li><a href="lua-api2-engine-gear.html">22.7.6 用例：引擎转速与起落架 Example: Engine RPM and Landing Gear</a></li>
+</ul>
+<h2 id="判断客户端版本-checking-the-client-version">判断客户端版本 Checking the Client Version</h2>
+<p>老版本的客户端没有这些接口，<code>GAME_API_VERSION</code> 为 nil。你的 Mod 需要兼容老客户端时，先判断版本：</p>
+<p>Older versions of the client do not have these interfaces; <code>GAME_API_VERSION</code> is nil. When your Mod needs to be compatible with older clients, check the version first:</p>
+<pre><code class="lang-lua">Behavior()
+Property = {}
+
+local MyBehavior = class(&quot;MyBehavior&quot;)
+
+function MyBehavior:OnStarted()
+  -- 老客户端没有 API 2：GAME_API_VERSION 为 nil / Older clients have no API 2: GAME_API_VERSION is nil
+  if (GAME_API_VERSION or 1) &lt; 2 then
+    print(&quot;[MyBehavior] this mod needs a newer game client&quot;)
+    return
+  end
+end
+
+function MyBehavior:OnVehicleReady(vehicle)
+  -- 所属载具装配完成后调用一次；车库里也会调用
+  -- Called once when the vehicle is assembled, in the garage too
+  self.vehicle = vehicle
+
+  if VehicleAPI.IsGarage(vehicle) then
+    -- 车库里不需要战斗逻辑 / No battle logic in the garage
+    self.script:SetUpdateEnabled(false)
+    return
+  end
+
+  -- 每 0.2 秒调用一次 OnUpdated / Call OnUpdated every 0.2 s
+  self.script:SetUpdateInterval(0.2)
+end
+
+function MyBehavior:OnUpdated(dt)
+  -- dt：距上次调用的秒数 / dt: seconds since the previous call
+end
+
+function MyBehavior:OnVehicleDestroyed(vehicle)
+  -- 所属载具被击毁 / The vehicle was destroyed
+end
+
+function MyBehavior:OnDestroyed()
+  -- 用 self.script 订阅的事件随后自动退订，不用手动注销
+  -- Subscriptions made with self.script end right after this; nothing to unregister
+end
+
+return MyBehavior
+</code></pre>
+<h2 id="行为回调-behaviour-callbacks">行为回调 Behaviour Callbacks</h2>
+<table>
+<thead>
+<tr>
+<th>回调 Callback</th>
+<th>何时调用 When it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OnStarted()</code></td>
+<td>脚本运行后立即调用。挂在载具上时，载具可能还没装配完。<br>Right after the script runs. On a vehicle, the vehicle may not be assembled yet.</td>
+</tr>
+<tr>
+<td><code>OnVehicleReady(vehicle)</code></td>
+<td>所属载具装配完成后调用一次；脚本运行时载具已经装好的话，紧接在 <code>OnStarted</code> 之后调用。车库里也会调用。不在载具上的行为（地图、特效）不会收到。<br>Once, when the owning vehicle is assembled; right after <code>OnStarted</code> if it already is. Also in the garage. Behaviours not on a vehicle (maps, effects) never get it.</td>
+</tr>
+<tr>
+<td><code>OnUpdated(dt)</code></td>
+<td>每帧调用，或按 <code>SetUpdateInterval</code> 的间隔调用；<code>dt</code> 是距上次调用的秒数。<br>Every frame, or at the interval set with <code>SetUpdateInterval</code>; <code>dt</code> is the time since the previous call.</td>
+</tr>
+<tr>
+<td><code>OnVehicleDestroyed(vehicle)</code></td>
+<td>所属载具被击毁时。<br>When the owning vehicle is destroyed.</td>
+</tr>
+<tr>
+<td><code>OnDestroyed()</code></td>
+<td>行为销毁时。之后本行为的事件订阅全部自动结束。<br>When the behaviour is destroyed. Its event subscriptions all end right after.</td>
+</tr>
+</tbody>
+</table>
+<p>挂在载具数据上的行为（载具、炮塔、武器的 Lua 行为），在 <code>OnStarted</code> 里就能读到游戏传入的属性：坦克的这些行为都有 <code>self.vehicle</code>，炮塔上的行为有 <code>self.turretController</code>，坦克武器上的有 <code>self.tankFire</code>，飞机武器上的有 <code>self.flightFire</code>。任何行为都可以用 <code>self.script:GetVehicle()</code> 取得所属载具。</p>
+<p>Behaviours attached to vehicle data (Lua behaviours for vehicles, turrets, and weapons) can read the properties passed by the game in <code>OnStarted</code>: these behaviours on tanks all have <code>self.vehicle</code>, behaviours on turrets have <code>self.turretController</code>, those on tank weapons have <code>self.tankFire</code>, and those on aircraft weapons have <code>self.flightFire</code>. Any behaviour can obtain its parent vehicle using <code>self.script:GetVehicle()</code>.</p>
+<h2 id="selfscript">self.script</h2>
+<table>
+<thead>
+<tr>
+<th>方法 Method</th>
+<th>作用 Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>self.script:GetVehicle()</code></td>
+<td>所属载具（坦克、飞机、步兵都适用），不在载具上时为 nil。结果会缓存，可以每帧调用。<br>The owning vehicle (tank, aircraft or infantry), or nil. Cached, so it is fine every frame.</td>
+</tr>
+<tr>
+<td><code>self.script:SetUpdateInterval(seconds)</code></td>
+<td><code>OnUpdated</code> 的调用间隔，0 为每帧。间隔内的帧不会调用 Lua。<br>How often <code>OnUpdated</code> runs; 0 means every frame. Frames in between do not call Lua.</td>
+</tr>
+<tr>
+<td><code>self.script:SetUpdateEnabled(false)</code></td>
+<td>完全停止调用 <code>OnUpdated</code>；事件回调和 <code>OnGUI</code> 不受影响。传 true 恢复。<br>Stops calling <code>OnUpdated</code>; event callbacks and <code>OnGUI</code> keep working. Pass true to resume.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事件订阅-event-subscriptions">事件订阅 Event Subscriptions</h2>
+<p>所有新事件的写法相同：<code>XxxAPI.OnSomething(self.script, target, callback)</code>，依次传入 <code>self.script</code>、目标和回调，返回一个订阅对象。</p>
+<p>All new events follow the same syntax: <code>XxxAPI.OnSomething(self.script, target, callback)</code>, passing <code>self.script</code>, the target, and the callback in order, which returns a subscription object.</p>
+<pre><code class="lang-lua">local sub = WeaponAPI.OnAmmoChanged(self.script, weapon, function()
+  self:Refresh()
+end)
+
+-- 想提前停止时 / To stop earlier:
+-- sub:Dispose()
+</code></pre>
+<ul>
+<li><p>传入 <code>self.script</code> 的订阅在行为销毁时自动结束，不用在 <code>OnDestroyed</code> 里手动注销。</p>
+</li>
+<li><p>目标载具被移除时，订阅也会自动结束。</p>
+</li>
+<li><p>游戏模式脚本和依赖库没有 <code>self.script</code>，可以传 nil；这样的订阅在退出游戏模式时自动结束。</p>
+</li>
+<li><p><code>sub.IsActive</code> 表示订阅是否仍然有效。</p>
+</li>
+<li><p>回调连续出错 10 次后会被停用，日志里会写明是哪个脚本。</p>
+</li>
+<li><p>Subscriptions made with <code>self.script</code> end automatically when the behaviour is destroyed; you do not need to manually unregister them in <code>OnDestroyed</code>.</p>
+</li>
+<li><p>Subscriptions also automatically end when the target vehicle is removed.</p>
+</li>
+<li><p>Game mode scripts and dependency libraries do not have <code>self.script</code>; you can pass nil. Such subscriptions automatically end when the game mode is exited.</p>
+</li>
+<li><p><code>sub.IsActive</code> indicates whether the subscription is still valid.</p>
+</li>
+<li><p>If a callback errors out 10 times consecutively, it will be disabled, and the log will specify which script caused it.</p>
+</li>
+</ul>
+<h2 id="接口一览-api-at-a-glance">接口一览 API at a Glance</h2>
+<table>
+<thead>
+<tr>
+<th>类 Class</th>
+<th>用途 Purpose</th>
+<th>常用函数 Common functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VehicleAPI</code></td>
+<td>载具身份与状态、战场查询、全场事件<br>Vehicle identity and state, battle queries, battle-wide events</td>
+<td><code>GetContext</code> <code>IsGarage</code> <code>IsLocalPlayer</code> <code>IsBot</code> <code>IsRemote</code> <code>IsAlive</code> <code>GetTeam</code> <code>IsEnemy</code> <code>GetDisplayName</code> <code>GetGuid</code> <code>GetVelocity</code> <code>GetSpeedKmh</code> <code>GetAimPoint</code> <code>CreateQuery</code> <code>OnVehicleSpawned</code> <code>OnVehicleKilled</code></td>
+</tr>
+<tr>
+<td><code>RadarAPI</code></td>
+<td>读取游戏的雷达（地面防空与机载）<br>The game's radars (ground air defence and airborne)</td>
+<td><code>TryGetRadar</code> <code>IsActive</code> <code>GetWorkMode</code> <code>GetScanAzimuth</code> <code>GetContactCount</code> <code>GetContact</code> <code>GetContactWorldAzimuth</code> <code>GetLockedTarget</code> <code>TryLock</code> <code>Unlock</code> <code>OnLockChanged</code> <code>OnThreat</code></td>
+</tr>
+<tr>
+<td><code>WeaponAPI</code></td>
+<td>武器：弹药、装填、开火与命中事件、提前量<br>Weapons: ammo, reload, fire and hit events, lead</td>
+<td><code>GetWeaponCount</code> <code>GetWeapon</code> <code>GetAmmo</code> <code>GetTotalAmmo</code> <code>IsReloaded</code> <code>GetReloadProgress</code> <code>GetReloadTime</code> <code>GetMuzzle</code> <code>GetShellSpeed</code> <code>PredictLead</code> <code>OnFired</code> <code>OnAmmoChanged</code> <code>OnReloaded</code> <code>OnHit</code> <code>OnKill</code></td>
+</tr>
+<tr>
+<td><code>TankAPI</code></td>
+<td>炮塔节点、引擎状态<br>Turret nodes, engine state</td>
+<td><code>GetTurretCount</code> <code>GetTurretTransform</code> <code>GetGunTransform</code> <code>GetEngineState</code></td>
+</tr>
+<tr>
+<td><code>FlightAPI</code></td>
+<td>飞行状态、起落架<br>Flight state, landing gear</td>
+<td><code>IsOnGround</code> <code>IsGearDown</code> <code>GetAirspeedKmh</code> <code>GetAltitude</code> <code>GetThrottle</code> <code>IsEngineRunning</code> <code>OnGearChanged</code></td>
+</tr>
+<tr>
+<td><code>InternalModuleAPI</code></td>
+<td>内部模块的状态与事件<br>Internal module state and events</td>
+<td><code>GetInternalModule</code> <code>IsDestroyed</code> <code>GetHitPointRatio</code> <code>OnStateChanged</code> <code>OnDamaged</code> <code>OnRepaired</code></td>
+</tr>
+<tr>
+<td><code>CameraAPI</code></td>
+<td>玩家相机<br>The player's camera</td>
+<td><code>GetCameraMode</code> <code>IsZoomed</code> <code>GetLockTarget</code></td>
+</tr>
+<tr>
+<td><code>TransformAPI</code></td>
+<td>按名字查找节点<br>Find nodes by name</td>
+<td><code>FindDeep</code> <code>FindAllDeep</code></td>
+</tr>
+<tr>
+<td><code>BuffAPI</code></td>
+<td>数值可变的 buff<br>Buffs whose value changes</td>
+<td><code>CreateValueBuff</code></td>
+</tr>
+<tr>
+<td><code>TimeAPI</code></td>
+<td>是否暂停<br>Pause state</td>
+<td><code>IsPaused</code></td>
+</tr>
+</tbody>
+</table>
+<p>每个函数的参数与说明见 API 文档里的 <code>ShanghaiWindy.Core.API</code> 命名空间；在 VS Code 里配置好 EmmyLua 后，编辑时也会显示提示。</p>
+<p>See the <code>ShanghaiWindy.Core.API</code> namespace in the API documentation for the parameters and descriptions of each function; after configuring EmmyLua in VS Code, hints will also be displayed while editing.</p>
+<h2 id="约定-conventions">约定 Conventions</h2>
+<ul>
+<li><p>传入 nil、已销毁的对象或越界的序号时，接口返回 false、0 或 nil，不会报错，不需要再用 pcall 包住每一行。</p>
+</li>
+<li><p>读取类接口每次调用都不产生垃圾。会分配内存的只有 <code>CreateQuery</code>、<code>FindAllDeep</code> 这类初始化接口，请只在初始化时调用一次。</p>
+</li>
+<li><p>联机对战中，读取其他载具的接口只返回你的队伍当前看得见的敌人；雷达目标本身已经经过探测判定。</p>
+</li>
+<li><p>控制类接口（例如雷达锁定）只对玩家正在控制的载具生效，对其他载具返回 false。</p>
+</li>
+<li><p>When passing nil, a destroyed object, or an out-of-bounds index, the interfaces return false, 0, or nil without throwing an error, so you do not need to wrap every line in pcall.</p>
+</li>
+<li><p>Read interfaces do not generate garbage on every call. Only initialisation interfaces like <code>CreateQuery</code> and <code>FindAllDeep</code> allocate memory; please call them only once during initialisation.</p>
+</li>
+<li><p>In online battles, interfaces that read other vehicles only return enemies currently visible to your team; radar targets have already undergone detection checks.</p>
+</li>
+<li><p>Control interfaces (such as radar lock) only work on the vehicle currently controlled by the player and return false for other vehicles.</p>
+</li>
+</ul>
+<h2 id="性能建议-performance-tips">性能建议 Performance Tips</h2>
+<p>下面这些是 Lua 审核里最常见的性能问题和对应的写法：</p>
+<p>These are the most common performance problems found by the Lua audit, and what to do instead:</p>
+<ul>
+<li><p>不要每帧扫描整个场景（<code>GetObjectsInWorld</code>、<code>FindObjectsOfType</code>）来找载具，用 <code>VehicleAPI.CreateQuery()</code>。</p>
+</li>
+<li><p>不要每帧递归查找节点。在 <code>OnVehicleReady</code> 里用 <code>TransformAPI.FindDeep</code> 找一次；找不到就说明模型上没有，不要重试。</p>
+</li>
+<li><p>不要在 <code>OnUpdated</code> 里反复重试初始化，把初始化放进 <code>OnVehicleReady</code>。</p>
+</li>
+<li><p>不需要每帧执行的逻辑，用 <code>SetUpdateInterval</code> 降低频率；完全靠事件驱动的脚本，用 <code>SetUpdateEnabled(false)</code> 关掉 <code>OnUpdated</code>。</p>
+</li>
+<li><p>弹药、装填、模块、起落架、雷达锁定这些状态变化都有事件，不要轮询。</p>
+</li>
+<li><p>Do not scan the entire scene every frame (<code>GetObjectsInWorld</code>, <code>FindObjectsOfType</code>) to find vehicles; use <code>VehicleAPI.CreateQuery()</code>.</p>
+</li>
+<li><p>Do not recursively find nodes every frame. Use <code>TransformAPI.FindDeep</code> once in <code>OnVehicleReady</code>; if it is not found, it means it is not on the model, so do not retry.</p>
+</li>
+<li><p>Do not repeatedly retry initialisation in <code>OnUpdated</code>; put initialisation in <code>OnVehicleReady</code>.</p>
+</li>
+<li><p>For logic that does not need to run every frame, use <code>SetUpdateInterval</code> to lower the frequency; for scripts that are entirely event-driven, use <code>SetUpdateEnabled(false)</code> to turn off <code>OnUpdated</code>.</p>
+</li>
+<li><p>Ammo, reload, module, landing gear and radar lock changes all have events; do not poll them.</p>
+</li>
+</ul>
+<h2 id="从旧写法迁移-migrating-from-old-workarounds">从旧写法迁移 Migrating from Old Workarounds</h2>
+<table>
+<thead>
+<tr>
+<th>旧写法 Old workaround</th>
+<th>改用 Use instead</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每秒 <code>GetObjectsInWorld(&quot;Rigidbody&quot;)</code> 找飞机，或读 <code>Identity.GlobalTeamList</code><br><code>GetObjectsInWorld(&quot;Rigidbody&quot;)</code> every second, or reading <code>Identity.GlobalTeamList</code></td>
+<td><code>VehicleAPI.CreateQuery()</code>；雷达车直接用 <code>RadarAPI</code>（<code>GlobalTeamList</code> 在联机时不含远程玩家）<br><code>VehicleAPI.CreateQuery()</code>; radar vehicles use <code>RadarAPI</code> (<code>GlobalTeamList</code> has no remote players online)</td>
+</tr>
+<tr>
+<td>向下 <code>RaycastAll</code> 判断地杂波、自己限制仰角<br>Casting <code>RaycastAll</code> down for ground clutter, clamping elevation yourself</td>
+<td>在载具数据的 <code>groundAARadarData</code> 里配置雷达，读 <code>RadarAPI.GetContact</code><br>Configure the radar in <code>groundAARadarData</code>, read <code>RadarAPI.GetContact</code></td>
+</tr>
+<tr>
+<td>把 <code>InstanceNetType</code> 转成字符串比较、读 <code>GarageManager.inGarage</code>、和 <code>GetPlayerVehicle()</code> 比较<br>Comparing <code>InstanceNetType</code> as text, reading <code>GarageManager.inGarage</code>, comparing with <code>GetPlayerVehicle()</code></td>
+<td><code>VehicleAPI.IsGarage</code> / <code>IsLocalPlayer</code> / <code>IsBot</code> / <code>IsRemote</code></td>
+</tr>
+<tr>
+<td><code>Time.timeScale &lt; 0.01</code></td>
+<td><code>TimeAPI.IsPaused()</code></td>
+</tr>
+<tr>
+<td>在 <code>OnUpdated</code> 里反复 <code>TryGetTankInitSystem</code>、重试初始化<br>Calling <code>TryGetTankInitSystem</code> or retrying init in <code>OnUpdated</code></td>
+<td><code>OnVehicleReady(vehicle)</code></td>
+</tr>
+<tr>
+<td>递归 <code>GetChild</code> 查找 <code>TurretTransform</code> / <code>GunTransform</code> / <code>FFPoint</code><br>Walking <code>GetChild</code> for <code>TurretTransform</code> / <code>GunTransform</code> / <code>FFPoint</code></td>
+<td><code>TankAPI.GetTurretTransform</code> / <code>GetGunTransform</code>，<code>WeaponAPI.GetMuzzle</code></td>
+</tr>
+<tr>
+<td>读 <code>bulletCountList</code>、<code>simpleReloadNowTime</code>，反射私有字段<br>Reading <code>bulletCountList</code>, <code>simpleReloadNowTime</code>, reflecting private fields</td>
+<td><code>WeaponAPI.GetAmmo</code> / <code>GetReloadProgress</code> / <code>GetReloadTime</code></td>
+</tr>
+<tr>
+<td>自己统计发射次数<br>Counting shots yourself</td>
+<td><code>WeaponAPI.OnAmmoChanged</code> + <code>GetTotalAmmo</code></td>
+</tr>
+<tr>
+<td>每帧猜测模块血量的字段名<br>Guessing module hit point field names every frame</td>
+<td><code>InternalModuleAPI.OnStateChanged</code></td>
+</tr>
+<tr>
+<td>挨个尝试 <code>&quot;curRPM&quot;</code>、<code>&quot;engineRPM&quot;</code> 等字段<br>Trying <code>&quot;curRPM&quot;</code>, <code>&quot;engineRPM&quot;</code> and similar fields</td>
+<td><code>TankAPI.GetEngineState</code></td>
+</tr>
+<tr>
+<td>遍历 <code>WheelCollider.isGrounded</code>，按节点名判断起落架<br>Walking <code>WheelCollider.isGrounded</code>, telling the gear state from node names</td>
+<td><code>FlightAPI.IsOnGround</code> / <code>IsGearDown</code> / <code>OnGearChanged</code></td>
+</tr>
+<tr>
+<td>自己写带阻力的提前量解算<br>Writing your own drag-aware lead solver</td>
+<td><code>WeaponAPI.PredictLead</code></td>
+</tr>
+<tr>
+<td>每帧 <code>RemoveBuff</code> 再新建 buff<br><code>RemoveBuff</code> and a new buff every frame</td>
+<td><code>BuffAPI.CreateValueBuff</code> + <code>SetValue</code></td>
+</tr>
+<tr>
+<td>帧回调 + <code>Time.frameCount</code> 去重<br>A frame tick plus <code>Time.frameCount</code> de-duplication</td>
+<td><code>SetUpdateInterval</code>，使用 <code>OnUpdated(dt)</code></td>
+</tr>
+</tbody>
+</table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-api2-overview.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

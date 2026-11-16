@@ -101,10 +101,42 @@ public static class GameAPI</code></pre>
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_GetApiVersion.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.GetApiVersion%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L160">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_GameAPI_GetApiVersion_" data-uid="ShanghaiWindy.Core.API.GameAPI.GetApiVersion*"></a>
+  <h4 id="ShanghaiWindy_Core_API_GameAPI_GetApiVersion" data-uid="ShanghaiWindy.Core.API.GameAPI.GetApiVersion">GetApiVersion()</h4>
+  <div class="markdown level1 summary">当前客户端提供的 Lua API 版本，与全局变量 GAME_API_VERSION 相同。没有这个函数的老客户端按版本 1 处理。
+The Lua API version of this client, the same as the global GAME_API_VERSION. Treat an older client without it as version 1.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static int GetApiVersion()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td>API 版本 API version</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_RegisterVehicleDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleDestroyedDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L86">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L116">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_GameAPI_RegisterVehicleDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent*"></a>
   <h4 id="ShanghaiWindy_Core_API_GameAPI_RegisterVehicleDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleDestroyedDelegate_" data-uid="ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)">RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)</h4>
@@ -138,7 +170,7 @@ public static void RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate 
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_RegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleGameObjectRemovedDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L108">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L138">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_GameAPI_RegisterVehicleGameObjectDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent*"></a>
   <h4 id="ShanghaiWindy_Core_API_GameAPI_RegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleGameObjectRemovedDelegate_" data-uid="ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)">RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)</h4>
@@ -172,7 +204,7 @@ public static void RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObje
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_RegisterVehicleLoadedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleLoadedDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L64">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L94">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_GameAPI_RegisterVehicleLoadedEvent_" data-uid="ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent*"></a>
   <h4 id="ShanghaiWindy_Core_API_GameAPI_RegisterVehicleLoadedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleLoadedDelegate_" data-uid="ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)">RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)</h4>
@@ -206,7 +238,7 @@ public static void RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate gameVe
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleDestroyedDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L97">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L127">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent*"></a>
   <h4 id="ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleDestroyedDelegate_" data-uid="ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)">UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)</h4>
@@ -240,7 +272,7 @@ public static void UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegat
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleGameObjectRemovedDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L119">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L149">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleGameObjectDestroyedEvent_" data-uid="ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent*"></a>
   <h4 id="ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleGameObjectRemovedDelegate_" data-uid="ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)">UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)</h4>
@@ -274,7 +306,7 @@ public static void UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameOb
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleLoadedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleLoadedDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L75">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/GameAPI.cs/#L105">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleLoadedEvent_" data-uid="ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent*"></a>
   <h4 id="ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleLoadedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleLoadedDelegate_" data-uid="ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)">UnRegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)</h4>

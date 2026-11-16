@@ -133,6 +133,20 @@ end
 return TestAddBuff
 
 </code></pre>
+<h2 id="数值会变化的-buff-buffs-whose-value-changes">数值会变化的 Buff Buffs Whose Value Changes</h2>
+<p>如果 buff 的数值需要随时间变化（例如蓄力），不要每次都移除旧 buff 再新建一个。客户端 API 2 起，可以用 <code>BuffAPI.CreateValueBuff</code> 创建一个数值可变的 buff：挂上一次，之后只调用 <code>SetValue</code>，属性会原地刷新。</p>
+<p>If a buff's value needs to change over time (for example, charge), do not remove the old buff and create a new one every time. From client API 2 on, you can use <code>BuffAPI.CreateValueBuff</code> to create a buff with a variable value: attach it once, then only call <code>SetValue</code>, and the stat will refresh in place.</p>
+<pre><code class="lang-lua">-- false：加法系数 / false: additive coefficient
+local buff = BuffAPI.CreateValueBuff(&quot;Charged Shot&quot;, false, 0)
+weapon.DamageBuffedCoff:AddBuff(buff)
+
+buff:SetValue(0.3)   -- 伤害 +30% / +30% damage
+
+-- 不再需要时取下 / Take it off when done
+weapon.DamageBuffedCoff:RemoveBuff(buff)
+</code></pre>
+<p>完整用例见 <a href="lua-api2-charged-shot.html">22.7.2 用例：蓄力伤害加成</a>。</p>
+<p>See <a href="lua-api2-charged-shot.html">22.7.2 Example: Charged shot damage bonus</a> for a complete use case.</p>
 
 </article>
           </div>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>22.7.3 用例：防空雷达屏幕 Example: Air-Defence Radar Screen | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="22.7.3 用例：防空雷达屏幕 Example: Air-Defence Radar Screen | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2273-用例防空雷达屏幕-example-air-defence-radar-screen">22.7.3 用例：防空雷达屏幕 Example: Air-Defence Radar Screen</h1>
+
+<p>游戏自带完整的雷达系统：按雷达方程探测、地杂波、地形遮挡、锁定捕获时间、给目标的雷达告警，以及游戏自己的雷达界面。你只需要在载具数据里配置 <code>groundAARadarData</code>，雷达就会工作；脚本负责的只是你自己设计的那块屏幕。</p>
+<p>The game includes a complete radar system: detection via the radar equation, ground clutter, terrain occlusion, lock-on capture time, radar warnings to the target, and the game's own radar interface. You only need to configure <code>groundAARadarData</code> in the vehicle data for the radar to work; the script is only responsible for the screen you design yourself.</p>
+<h2 id="配置雷达-configuring-the-radar">配置雷达 Configuring the Radar</h2>
+<p>在载具数据（<code>VehicleTextData</code>）的 <code>groundAARadarData</code> 里勾选 <code>hasRadar</code>，常用的字段：</p>
+<p>In the vehicle data (<code>VehicleTextData</code>), tick <code>hasRadar</code> within <code>groundAARadarData</code>. Commonly used fields:</p>
+<table>
+<thead>
+<tr>
+<th>字段 Field</th>
+<th>含义 Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxDetectionRange</code></td>
+<td>最大探测距离（米）<br>Maximum detection range (m)</td>
+</tr>
+<tr>
+<td><code>isFullRotation</code> / <code>fullRotationRate</code></td>
+<td>360° 旋转搜索及其转速（度/秒）<br>360° rotating search and its rate (°/s)</td>
+</tr>
+<tr>
+<td><code>searchAzimuthHalfAngle</code> / <code>searchElevationHalfAngle</code></td>
+<td>搜索区的水平与俯仰半角<br>Half angles of the search area</td>
+</tr>
+<tr>
+<td><code>minElevationAngle</code></td>
+<td>低于这个俯仰角的目标按地杂波过滤<br>Targets below this elevation are filtered as ground clutter</td>
+</tr>
+<tr>
+<td><code>detectGroundTargets</code></td>
+<td>打开后不做地杂波过滤，可以探测地面载具（战场搜索雷达）<br>Skips the clutter filter so ground vehicles are detected (battlefield search radar)</td>
+</tr>
+<tr>
+<td><code>displayRanges</code></td>
+<td>屏幕可切换的量程<br>Display ranges you can switch between</td>
+</tr>
+<tr>
+<td><code>canUsePD</code> / <code>pdMinDetectableSpeed</code></td>
+<td>脉冲多普勒模式及最低可探测速度<br>Pulse-Doppler mode and its minimum detectable speed</td>
+</tr>
+<tr>
+<td><code>hasIFF</code></td>
+<td>敌我识别；没有时无法区分友军<br>IFF; without it friendly contacts cannot be told apart</td>
+</tr>
+</tbody>
+</table>
+<h2 id="屏幕脚本-the-screen-script">屏幕脚本 The Screen Script</h2>
+<pre><code class="lang-lua">Behavior()
+Property = {}
+
+local RadarScreen = class(&quot;RadarScreen&quot;)
+
+local GUI = CS.UnityEngine.GUI
+local Rect = CS.UnityEngine.Rect
+
+function RadarScreen:OnVehicleReady(vehicle)
+  -- 雷达参数在载具数据的 groundAARadarData 里配置，这里只读结果
+  -- The radar is configured in the vehicle data (groundAARadarData); the script only reads it
+  local ok, radar = RadarAPI.TryGetRadar(vehicle)
+  if not ok then
+    self.script:SetUpdateEnabled(false)
+    return
+  end
+
+  self.vehicle = vehicle
+  self.radar = radar
+  self.text = &quot;&quot;
+
+  RadarAPI.OnLockChanged(self.script, radar, function(locked, target)
+    if locked then
+      print(&quot;[Radar] locked &quot; .. VehicleAPI.GetDisplayName(target))
+    else
+      print(&quot;[Radar] lock lost&quot;)
+    end
+  end)
+
+  -- 每秒刷新 5 次列表就够了 / Five list refreshes a second are enough
+  self.script:SetUpdateInterval(0.2)
+end
+
+function RadarScreen:OnUpdated(dt)
+  -- 玩家可能在编组的载具之间切换，所以每次刷新时判断，而不是在 OnVehicleReady 里关掉
+  -- The player may switch between the vehicles of a group, so check on every refresh instead of turning updates off once
+  self.visible = VehicleAPI.IsLocalPlayer(self.vehicle) and RadarAPI.IsActive(self.radar)
+  if not self.visible then
+    return
+  end
+
+  local lines = {}
+  local count = RadarAPI.GetContactCount(self.radar)
+  for i = 0, count - 1 do
+    local ok, target, distance, azimuth, elevation, altitude, radialSpeed, isFriendly = RadarAPI.GetContact(self.radar, i)
+    if ok then
+      local name = target ~= nil and VehicleAPI.GetDisplayName(target) or &quot;?&quot;
+      local bearing = RadarAPI.GetContactWorldAzimuth(self.radar, i)
+      lines[#lines + 1] = string.format(&quot;%s %s  %.1f km  %03.0f°  %.0f m&quot;,
+          isFriendly and &quot;+&quot; or &quot;!&quot;, name, distance / 1000, bearing, altitude)
+    end
+  end
+  self.text = table.concat(lines, &quot;\n&quot;)
+end
+
+function RadarScreen:OnGUI()
+  if self.visible then
+    -- 只画缓存好的文字，不在 OnGUI 里计算 / Draw the cached text only; compute nothing in OnGUI
+    GUI.Label(Rect(20, 120, 360, 300), self.text)
+  end
+end
+
+return RadarScreen
+</code></pre>
+<p>要点：</p>
+<p>Key points:</p>
+<ul>
+<li><p>目标列表用 <code>GetContactCount</code> 和 <code>GetContact</code> 读取。<code>GetContact</code> 一次返回多个值：是否成功、目标载具、距离、方位、俯仰、高度、径向速度、是否友军。目标是箔条回波时，目标载具为 nil。</p>
+</li>
+<li><p><code>GetContact</code> 给出的方位和俯仰是雷达自身坐标系下的角度（度）。画北向朝上的屏幕时，用 <code>GetContactWorldAzimuth</code> 取世界方位。</p>
+</li>
+<li><p>想让模型上的天线跟着转，可以读 <code>RadarAPI.GetScanAzimuth</code>：它是天线相对安装座的偏航角，范围 -180 到 180 度。</p>
+</li>
+<li><p>列表每秒刷新 5 次，<code>OnGUI</code> 只画缓存好的文字。不要在 <code>OnGUI</code> 里计算，它一帧会被调用好几次。</p>
+</li>
+<li><p>远程玩家的载具副本不会在本地运行雷达，读到的目标数为 0；联机时读取敌方载具的雷达也返回 0。</p>
+</li>
+<li><p><code>RadarAPI.TryLock</code>、<code>Unlock</code>、<code>CycleTarget</code>、<code>SwitchMode</code> 只对玩家正在控制的载具生效。<code>TryLock</code> 和玩家按键锁定一样：目标必须在雷达屏幕上，并且有捕获时间。</p>
+</li>
+<li><p>The target list is read using <code>GetContactCount</code> and <code>GetContact</code>. <code>GetContact</code> returns multiple values at once: success status, target vehicle, distance, azimuth, elevation, altitude, radial velocity, and whether it is a friendly unit. If the target is a chaff echo, the target vehicle is nil.</p>
+</li>
+<li><p>The azimuth and elevation provided by <code>GetContact</code> are angles (in degrees) in the radar's own coordinate system. When drawing a screen with north at the top, use <code>GetContactWorldAzimuth</code> to get the world azimuth.</p>
+</li>
+<li><p>If you want the antenna on the model to rotate accordingly, you can read <code>RadarAPI.GetScanAzimuth</code>: it is the yaw angle of the antenna relative to its mount, ranging from -180 to 180 degrees.</p>
+</li>
+<li><p>The list refreshes 5 times per second, and <code>OnGUI</code> only draws cached text. Do not perform calculations in <code>OnGUI</code>, as it is called multiple times per frame.</p>
+</li>
+<li><p>Vehicle replicas for remote players do not run the radar locally, so the number of targets read will be 0; in online battles, reading the radar of enemy vehicles also returns 0.</p>
+</li>
+<li><p><code>RadarAPI.TryLock</code>, <code>Unlock</code>, <code>CycleTarget</code>, and <code>SwitchMode</code> only work on the vehicle currently controlled by the player. <code>TryLock</code> works like the player's lock key: the target must be on the radar scope, and the lock takes the acquisition time.</p>
+</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-api2-radar-screen.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

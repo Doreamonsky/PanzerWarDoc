@@ -133,6 +133,38 @@ public static Camera GetBackGroundCamera()</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_CameraAPI_GetCameraMode.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.CameraAPI.GetCameraMode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/CameraAPI.cs/#L130">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_CameraAPI_GetCameraMode_" data-uid="ShanghaiWindy.Core.API.CameraAPI.GetCameraMode*"></a>
+  <h4 id="ShanghaiWindy_Core_API_CameraAPI_GetCameraMode" data-uid="ShanghaiWindy.Core.API.CameraAPI.GetCameraMode">GetCameraMode()</h4>
+  <div class="markdown level1 summary">当前玩家相机的模式（第三人称、瞄准镜、望远镜、车内……）。没有玩家相机时返回 Unknown。
+The mode of the player's camera (third person, sight, binocular, interior …). Unknown when there is no player camera.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static EPlayerCameraMode GetCameraMode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EPlayerCameraMode</span></td>
+        <td>相机模式 Camera mode</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_CameraAPI_GetCameraTransform.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.CameraAPI.GetCameraTransform%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -197,6 +229,38 @@ public static Camera GetGameCamera()</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_CameraAPI_GetLockTarget.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.CameraAPI.GetLockTarget%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/CameraAPI.cs/#L154">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_CameraAPI_GetLockTarget_" data-uid="ShanghaiWindy.Core.API.CameraAPI.GetLockTarget*"></a>
+  <h4 id="ShanghaiWindy_Core_API_CameraAPI_GetLockTarget" data-uid="ShanghaiWindy.Core.API.CameraAPI.GetLockTarget">GetLockTarget()</h4>
+  <div class="markdown level1 summary">玩家相机当前锁定的载具（地面载具的瞄准锁定），没有锁定时返回 nil。
+The vehicle the player's camera is locked on (a ground vehicle's aim lock), or nil when nothing is locked.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static BaseInitSystem GetLockTarget()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td>锁定的载具 Locked vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_CameraAPI_GetScreenPosition_Vector3_ShanghaiWindy_Core_EIconPosition__.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.CameraAPI.GetScreenPosition(Vector3%2CShanghaiWindy.Core.EIconPosition%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -246,6 +310,38 @@ public static Vector3 GetScreenPosition(Vector3 worldPos, out EIconPosition icon
       <tr>
         <td><span class="xref">Vector3</span></td>
         <td>屏幕坐标 Screen position</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_CameraAPI_IsZoomed.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.CameraAPI.IsZoomed%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/CameraAPI.cs/#L142">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_CameraAPI_IsZoomed_" data-uid="ShanghaiWindy.Core.API.CameraAPI.IsZoomed*"></a>
+  <h4 id="ShanghaiWindy_Core_API_CameraAPI_IsZoomed" data-uid="ShanghaiWindy.Core.API.CameraAPI.IsZoomed">IsZoomed()</h4>
+  <div class="markdown level1 summary">玩家是否开镜（地面载具的放大状态）。玩家不在地面载具上时返回 false。
+Whether the player is zoomed in (a ground vehicle's zoom). False when the player is not in a ground vehicle.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsZoomed()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否开镜 Whether zoomed in</td>
       </tr>
     </tbody>
   </table>

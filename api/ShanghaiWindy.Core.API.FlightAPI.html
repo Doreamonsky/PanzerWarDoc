@@ -101,10 +101,108 @@ public static class FlightAPI</code></pre>
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_GetAirspeedKmh_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.GetAirspeedKmh(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L64">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_GetAirspeedKmh_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetAirspeedKmh*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_GetAirspeedKmh_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetAirspeedKmh(ShanghaiWindy.Core.BaseInitSystem)">GetAirspeedKmh(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取空速（公里/小时），沿机头方向，与飞行界面显示的一致。
+Get the airspeed in km/h along the nose, as the flight HUD shows it.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetAirspeedKmh(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>空速（公里/小时） Airspeed in km/h</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_GetAltitude_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.GetAltitude(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L77">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_GetAltitude_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetAltitude*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_GetAltitude_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetAltitude(ShanghaiWindy.Core.BaseInitSystem)">GetAltitude(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取高度（米），即世界坐标的 Y 值，不是离地高度。
+Get the altitude in metres: the world Y coordinate, not the height above the ground.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetAltitude(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>高度（米） Altitude in metres</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_GetFlightFireList_ShanghaiWindy_Core_FlightInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.GetFlightFireList(ShanghaiWindy.Core.FlightInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L20">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L23">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_FlightAPI_GetFlightFireList_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetFlightFireList*"></a>
   <h4 id="ShanghaiWindy_Core_API_FlightAPI_GetFlightFireList_ShanghaiWindy_Core_FlightInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetFlightFireList(ShanghaiWindy.Core.FlightInitSystem)">GetFlightFireList(FlightInitSystem)</h4>
@@ -148,6 +246,264 @@ public static List&lt;FlightFireSystem&gt; GetFlightFireList(FlightInitSystem ve
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_GetThrottle_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.GetThrottle(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L90">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_GetThrottle_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetThrottle*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_GetThrottle_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.GetThrottle(ShanghaiWindy.Core.BaseInitSystem)">GetThrottle(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取油门，0 到 120，超过 100 为加力。
+Get the throttle, 0 to 120; above 100 is boost.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetThrottle(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>油门 Throttle</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_IsEngineRunning_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.IsEngineRunning(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L103">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_IsEngineRunning_" data-uid="ShanghaiWindy.Core.API.FlightAPI.IsEngineRunning*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_IsEngineRunning_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.IsEngineRunning(ShanghaiWindy.Core.BaseInitSystem)">IsEngineRunning(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">发动机是否在运转。
+Whether the engine is running.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsEngineRunning(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>发动机是否运转 Whether the engine runs</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_IsGearDown_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.IsGearDown(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L51">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_IsGearDown_" data-uid="ShanghaiWindy.Core.API.FlightAPI.IsGearDown*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_IsGearDown_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.IsGearDown(ShanghaiWindy.Core.BaseInitSystem)">IsGearDown(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">起落架是否放下。
+Whether the landing gear is down.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsGearDown(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>起落架是否放下 Whether the gear is down</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_IsOnGround_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.IsOnGround(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L38">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_IsOnGround_" data-uid="ShanghaiWindy.Core.API.FlightAPI.IsOnGround*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_IsOnGround_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.FlightAPI.IsOnGround(ShanghaiWindy.Core.BaseInitSystem)">IsOnGround(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">飞机是否着地，与游戏自己的起降判定相同：任一机轮接地；起落架放下时机轮附近有地面或建筑也算。
+起落架放下且离地时，每次调用会为每个机轮做一次物理重叠检测（不分配内存），不需要每帧调用时请降低调用频率。
+Whether the aircraft is on the ground, the same test the game uses for take-off and landing: any wheel touching
+down, or, with the gear down, ground or a building right at a wheel. With the gear down in the air each call runs
+one physics overlap per wheel (no allocation); call it less often than every frame where you can.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsOnGround(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否着地；不是飞机时为 false Whether it is on the ground; false for a vehicle that is not an aircraft</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI_OnGearChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnLuaBoolEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI.OnGearChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.BaseInitSystem%2CShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L118">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_FlightAPI_OnGearChanged_" data-uid="ShanghaiWindy.Core.API.FlightAPI.OnGearChanged*"></a>
+  <h4 id="ShanghaiWindy_Core_API_FlightAPI_OnGearChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnLuaBoolEventDelegate_" data-uid="ShanghaiWindy.Core.API.FlightAPI.OnGearChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate)">OnGearChanged(LuaBehaviorProxy, BaseInitSystem, OnLuaBoolEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅起落架收放，回调参数为起落架是否放下。
+Subscribe to the landing gear going up or down; the callback gets whether it is down.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnGearChanged(LuaBehaviorProxy owner, BaseInitSystem vehicle, OnLuaBoolEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者，传 self.script，行为销毁时自动退订；可为 nil Subscriber, pass self.script to end it with the behaviour; may be nil</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>飞机 Aircraft</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate.html">OnLuaBoolEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调 (isDown) Callback (isDown)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅，失败时为 nil The subscription, nil on failure</td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>
@@ -160,7 +516,7 @@ public static List&lt;FlightFireSystem&gt; GetFlightFireList(FlightInitSystem ve
                     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_FlightAPI.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.FlightAPI%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L10" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/FlightAPI.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

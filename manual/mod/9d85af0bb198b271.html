@@ -81,6 +81,17 @@
 
 <p>如果 Lua 脚本直接挂载在载具上，请勿在 OnStarted 中直接运行初始化代码。</p>
 <p>If your Lua script is attached directly to a vehicle, do not run initialization code directly in OnStarted.</p>
+<h2 id="客户端-api-2-起-from-api-2">客户端 API 2 起 From API 2</h2>
+<p>客户端 API 2 起（见 <a href="lua-api2-overview.html">22.7 Lua API 2 概览</a>），把初始化代码写进 <code>OnVehicleReady</code> 即可。游戏会在载具装配完成后调用它一次；如果脚本运行时载具已经装好，它会紧接在 <code>OnStarted</code> 之后调用。</p>
+<p>From client API 2 on (see <a href="lua-api2-overview.html">22.7 Lua API 2 Overview</a>), write your initialisation code into <code>OnVehicleReady</code>. The game calls it once after the vehicle has been assembled; if the vehicle is already assembled when the script runs, it is called immediately after <code>OnStarted</code>.</p>
+<pre><code class="lang-lua">function MyBehavior:OnVehicleReady(vehicle)
+  -- 这里填写原本的初始化逻辑
+  -- Your initialization code goes here
+end
+</code></pre>
+<h2 id="老客户端-older-clients">老客户端 Older Clients</h2>
+<p>下面的写法适用于没有 API 2 的老客户端。</p>
+<p>The following approach applies to older clients without API 2.</p>
 <p>请先注册一个加载回调，如下方式：</p>
 <p>Register a loaded callback first, like this:</p>
 <pre><code class="lang-lua">local ret, vehicle = self.script:TryGetTankInitSystem()
