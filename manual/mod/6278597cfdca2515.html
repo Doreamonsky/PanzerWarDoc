@@ -80,23 +80,23 @@
 <h1 id="41-mod-mirror-site-setup-guide-模组镜像站点搭建指南">41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南</h1>
 
 <h1 id="source-源">Source 源</h1>
-<p>We have compiled all the mods, their update dates, and download links in the following JSON file: We will refresh this JSON file every 12 hours.</p>
+<p>We have compiled all the Mods, their update dates, and download links in the following JSON file: We will refresh this JSON file every 12 hours.</p>
 <p><a href="https://dl-workshop.windyverse.net/packages/files_list.json">https://dl-workshop.windyverse.net/packages/files_list.json</a></p>
-<p>我们将所有的模组，更新日期与其下载链接，放在了如下 json 文件中。</p>
-<p>我们会每12小时刷新一次本 json。</p>
+<p>我们将所有的模组、更新日期及其下载链接整理在如下 JSON 文件中。</p>
+<p>我们会每 12 小时刷新一次该 JSON 文件。</p>
 <p><a href="https://dl-workshop.windyverse.net/packages/files_list.json">https://dl-workshop.windyverse.net/packages/files_list.json</a></p>
 <h1 id="run-script-一键下载脚本">Run script 一键下载脚本</h1>
-<p>We have thoughtfully prepared a Python script for you that allows one-click downloading of all mods. You can use it directly.</p>
-<p>我们贴心的为各位准备了一键下载所有模组的 python 脚本，可供各位直接使用。</p>
+<p>We have thoughtfully prepared a Python script for you that allows one-click downloading of all Mods. You can use it directly.</p>
+<p>我们贴心地为你准备了一键下载所有模组的 Python 脚本，你可以直接使用。</p>
 <h2 id="dependence-脚本依赖">Dependence 脚本依赖</h2>
 <p>Before running the script, please ensure that the following dependencies are installed in your Python environment:</p>
-<p>在运行脚本之前，请确保您的 Python 环境中已安装以下依赖项：</p>
+<p>在运行脚本之前，请确保你的 Python 环境中已安装以下依赖项：</p>
 <ul>
 <li><code>requests</code>: for handling HTTP requests. 用于处理 HTTP 请求。</li>
 <li><code>tqdm</code>: for displaying progress bars. 用于显示进度条。</li>
 </ul>
 <p>You can install the dependencies using the following command:</p>
-<p>您可以通过以下命令安装依赖：</p>
+<p>你可以通过以下命令安装依赖：</p>
 <pre><code class="lang-bash">pip install requests tqdm
 </code></pre>
 <h2 id="run-script-运行脚本">Run Script 运行脚本</h2>
@@ -269,12 +269,12 @@ if __name__ == &quot;__main__&quot;:
 </code></pre>
 <h1 id="file-synchronization-to-netdisk-文件同步至网盘">File synchronization to NetDisk 文件同步至网盘</h1>
 <p>Using UC NetDisk as an example, automatically back up the <code>packages</code> folder and wait for the synchronization to complete. Once the synchronization is finished, share this folder with the players. This completes the setup of the NetDisk mirror site.</p>
-<p>以 UC 网盘为例，自动备份选择 packages 文件夹，等待其同步完成。然后将此文件夹共享给玩家，即完成网盘镜像站的搭建。</p>
+<p>以 UC 网盘为例，自动备份 <code>packages</code> 文件夹，并等待同步完成。同步结束后，将此文件夹共享给玩家，即完成网盘镜像站的搭建。</p>
 <p><img src="imgs/293de657d324_1725217181171-1208c7b7-7f26-45f4-b3ea-039f5b037c9a.png" alt=""></p>
 <p><img src="imgs/0240a1426da4_1725217230799-9e1b20f8-34f6-4e79-8ef6-374e4627303d.png" alt=""></p>
-<h2 id="alternative-mirror-site-setup-solutions--其他镜像站搭建方案">Alternative Mirror Site Setup Solutions  其他镜像站搭建方案</h2>
-<p>You can use tools like Nginx to set up a dedicated mod download site. This helps to offload the traffic from the official downloader and improves download speeds.</p>
-<p>可使用 nginx 等工具，搭建专属的模组下载站点，以分流官方下载器的压力，并提高下载速度。</p>
+<h2 id="alternative-mirror-site-setup-solutions-其他镜像站搭建方案">Alternative Mirror Site Setup Solutions 其他镜像站搭建方案</h2>
+<p>You can use tools like Nginx to set up a dedicated Mod download site. This helps to offload the traffic from the official downloader and improves download speeds.</p>
+<p>可使用 Nginx 等工具搭建专属的模组下载站点，以分流官方下载器的流量压力，并提高下载速度。</p>
 
 </article>
           </div>
