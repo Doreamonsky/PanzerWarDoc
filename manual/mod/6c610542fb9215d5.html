@@ -85,25 +85,25 @@
 <p>多炮塔（旧）系统被设计用于对应一个炮塔（Turret）与一门主炮（Gun）。</p>
 <h1 id="child-parent-relation-父子关系">Child-Parent Relation 父子关系</h1>
 <p>Suppose we have an ATGM on the turret. We should SubTurret under Turret. Also you need to put SubGun under SubTurret and SubDym under SubTurret.</p>
-<p>假设我们在炮塔下面有 ATGM，则我们需要将 SubTurret 放置于 Turret。此外，我们需要将 SubGun  放置于 SubTurret ，将 SubDym 放置于 SubTurret。</p>
+<p>假设我们在炮塔上装备了 ATGM，则需要将 SubTurret 置于 Turret 之下。此外，需要将 SubGun 和 SubDym 均置于 SubTurret 之下。</p>
 <p><img src="imgs/b11b4769b8fd_1647607782289-4385d419-0af3-4687-aa4a-0aba3e505e6c.png" alt=""></p>
 <h1 id="property-属性">Property 属性</h1>
 <h2 id="relative-path-相对路径">Relative Path 相对路径</h2>
 <p>You need to set the relative path of turret ,gun and dym.</p>
-<p>你需要针对炮塔（Turret）、主炮（Gun）、炮管（Dym）分别设置各自的相对路径。</p>
+<p>你需要分别设置炮塔（Turret）、主炮（Gun）和炮管（Dym）的相对路径。</p>
 <h1 id="section"><img src="imgs/c7d52613f809_1647607724903-f76fa47a-7a52-47e1-b3d1-4083469992bd.png" alt=""></h1>
 <h2 id="ffpoint--effect-start-offset-开火位置偏移">FFPoint / Effect Start Offset 开火位置偏移</h2>
 <p>The offset will decide where ffpoint and effect start are. In the generated prefab, you can see the dummy points indicating these positions.</p>
-<p>偏移值会决定开火位置。 在创建出来的预制体中，你可以看到这些虚节点。</p>
+<p>偏移量将决定开火点（ffpoint）和特效起始点（effect start）的位置。在生成的预制体中，可以看到指示这些位置的虚节点。</p>
 <p><img src="imgs/b8fac1aec081_1647608307261-bdb72e3b-0a15-40dc-8327-b4d3aa80a800.png" alt=""></p>
 <p><img src="imgs/d269eb7066ea_1647608351642-29f790c3-da03-4358-abbe-f131a0ec542e.png" alt=""></p>
 <h2 id="tank-fire-param-开火设置">Tank Fire Param 开火设置</h2>
 <p>The structure is same as the ordinary one.</p>
-<p>结构与普通的开火设置一样。</p>
+<p>结构与普通的开火设置相同。</p>
 <p><img src="imgs/4d2db4b2cd6c_1647608099719-cd47bb84-cd40-45fe-a333-cd4dc8a6080a.png" alt=""></p>
 <h2 id="turret-param-炮塔设置">Turret Param 炮塔设置</h2>
 <p>The structure is same as the ordinary one.</p>
-<p>结构与普通的炮塔设置一样。</p>
+<p>结构与普通的炮塔设置相同。</p>
 <p><img src="imgs/cf04c92488ad_1647608145787-31779669-8a61-41db-8c9b-8f8f6a5fc798.png" alt=""></p>
 
 </article>
