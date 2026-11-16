@@ -1,25 +1,26 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>3. Gun Tutorial 火炮教程 | Panzer War Document </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="3. Gun Tutorial 火炮教程 | Panzer War Document ">
-    <meta name="generator" content="docfx ">
-  
-    <link rel="shortcut icon" href="../../favicon.ico">
-    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../../styles/docfx.css">
-    <link rel="stylesheet" href="../../styles/main.css">
-    <meta property="docfx:navrel" content="../../toc.html">
-    <meta property="docfx:tocrel" content="../toc.html">
-  
-  <meta property="docfx:rel" content="../../">
-  
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>3. Gun Tutorial 火炮教程 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="3. Gun Tutorial 火炮教程 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -62,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -109,31 +110,31 @@
 <h1 id="demarre-formula-德马尔公式">Demarre Formula 德马尔公式</h1>
 <p>In our game, the penetration mechanics are based on the De Marre formula, which is used to estimate the penetration of a shell against armor. Here is an explanation of the formula and its parameters.</p>
 <p>在我们的游戏中，穿甲弹机制基于德马尔公式，用于估算穿甲弹对装甲的穿透能力。以下是公式及其参数的解释。</p>
-<p>$ \text{Penetration 穿深} = \left( \frac{m \cdot v_{\text{rel}}^2}{d^3 \cdot D_{\text{term}}} \right)^{\frac{1}{C_{\text{armor}}}} \cdot d \cdot K_{\text{nap}} \cdot 100 $</p>
+<p><span class="math">\(\text{Penetration 穿深} = \left( \frac{m \cdot v_{\text{rel}}^2}{d^3 \cdot D_{\text{term}}} \right)^{\frac{1}{C_{\text{armor}}}} \cdot d \cdot K_{\text{nap}} \cdot 100\)</span></p>
 <ul>
-<li><p>$ m  $ is the shell mass (kg)</p>
+<li><p><span class="math">\(m\)</span> is the shell mass (kg)</p>
 <p>是炮弹的质量 （千克）；</p>
 </li>
-<li><p>$ v_{\text{rel}} $ is the shell velocity component in the direction of the plate, calculated as:</p>
+<li><p><span class="math">\(v_{\text{rel}}\)</span> is the shell velocity component in the direction of the plate, calculated as:</p>
 <p>是炮弹命中装甲板的速度，如下计算：</p>
-<p>$  v_{\text{rel}} = v_d \cdot \cos(\theta \cdot 0.85 \cdot C_{\text{angle}}) $</p>
-<p>$  v_d  = v_0 \left( 1 - \frac{\lambda d}{v_0} \right) $</p>
-<p>where $ C_{\text{angle}} $ is the penetration vs angle coefficient, $ \lambda $ is the drag, and $ v_0 $ is the initial velocity;</p>
-<p>其中 $ C_{\text{angle}} $ 是斜穿系数，$ \lambda $ 是阻力，$ v_0 $ 是炮弹初速度；</p>
+<p><span class="math">\(v_{\text{rel}} = v_d \cdot \cos(\theta \cdot 0.85 \cdot C_{\text{angle}})\)</span></p>
+<p><span class="math">\(v_d  = v_0 \left( 1 - \frac{\lambda d}{v_0} \right)\)</span></p>
+<p>where <span class="math">\(C_{\text{angle}}\)</span> is the penetration vs angle coefficient, <span class="math">\(\lambda\)</span> is the drag, and <span class="math">\(v_0\)</span> is the initial velocity;</p>
+<p>其中 <span class="math">\(C_{\text{angle}}\)</span> 是斜穿系数，<span class="math">\(\lambda\)</span> 是阻力，<span class="math">\(v_0\)</span> 是炮弹初速度；</p>
 </li>
-<li><p>$ d $ is the shell diameter (m)</p>
+<li><p><span class="math">\(d\)</span> is the shell diameter (m)</p>
 <p>是炮弹直径 （单位米）；</p>
 </li>
-<li><p>$ D_{\text{term}} $ is the De Marre term, calculated as:</p>
+<li><p><span class="math">\(D_{\text{term}}\)</span> is the De Marre term, calculated as:</p>
 <p>是德马尔项，计算如下：</p>
-<p>$ D_{\text{term}} = \left( D_{\text{const}} \right)^2 \cdot d^{-0.1} $</p>
-<p>where $ D_{\text{const}}  $ is the De Marre constant;</p>
-<p>其中 $ D_{\text{const}}  $ 是德马尔常数；</p>
+<p><span class="math">\(D_{\text{term}} = \left( D_{\text{const}} \right)^2 \cdot d^{-0.1}\)</span></p>
+<p>where <span class="math">\(D_{\text{const}}\)</span> is the De Marre constant;</p>
+<p>其中 <span class="math">\(D_{\text{const}}\)</span> 是德马尔常数；</p>
 </li>
-<li><p>$ C_{\text{armor}} $ is the armor material coefficient</p>
+<li><p><span class="math">\(C_{\text{armor}}\)</span> is the armor material coefficient</p>
 <p>是命中装甲板的材料系数；</p>
 </li>
-<li><p>$ K_{\text{nap}} $ is the adjustment factor based on the TNT ratio, calculated as follows:</p>
+<li><p><span class="math">\(K_{\text{nap}}\)</span> is the adjustment factor based on the TNT ratio, calculated as follows:</p>
 <p>是基于 TNT 比例的调整系数，计算如下：</p>
 <p>$   K_{\text{nap}} = \begin{cases}
 1 &amp; \text{if } \frac{\text{TNT}}{m} &lt; 0.65 \
@@ -147,6 +148,7 @@
 </ul>
 <p>This formula combines all the terms to calculate the penetration of the shell against armor, taking into account the mass, velocity, diameter, material properties, impact angle, and explosive charge of the shell.</p>
 <p>该公式结合所有参数来计算炮弹对装甲的穿透力，考虑了炮弹的质量、速度、直径、材料特性、入射角度和装药量。</p>
+
 </article>
           </div>
 
@@ -154,25 +156,14 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/workshop/ad317e8a749c8ea2.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
                 </ul>
               </div>
-              <div class="toggle-mode">
-                <div class="icon">
-                  <i aria-hidden="true">☀</i>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="switch-style">
-                  <span class="slider round"></span>
-                </label>
-                <div class="icon">
-                  <i aria-hidden="true">☾</i>
-                </div>
-              </div>
-
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <h5>In This Article</h5>
-              <div></div>
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In this article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -186,28 +177,14 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <div class="pull-left">
-        Panzer War Document
-        
-            </div>
-            <div class="toggle-mode pull-right visible-sm visible-xs">
-              <div class="icon">
-                <i aria-hidden="true">☀</i>
-              </div>
-              <label class="switch">
-                <input type="checkbox" id="switch-style-m">
-                <span class="slider round"></span>
-              </label>
-              <div class="icon">
-                <i aria-hidden="true">☾</i>
-              </div>
-            </div>
+      Panzer War Document
+      
           </div>
         </div>
-        <script type="text/javascript" src="../../styles/toggle-theme.js"></script>
-      </footer>    </div>
+      </footer>
+    </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>
