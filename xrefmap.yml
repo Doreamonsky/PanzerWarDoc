@@ -212,12 +212,31 @@ references:
   isSpec: "True"
   fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.ReplayNetGameMode.IsShowBan
   nameWithType: ReplayNetGameMode.IsShowBan
+- uid: Frontend.Runtime.Impl.GameImpl.Battle.Mode.RtsNetGameMode
+  name: RtsNetGameMode
+  href: api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.RtsNetGameMode.html
+  commentId: T:Frontend.Runtime.Impl.GameImpl.Battle.Mode.RtsNetGameMode
+  fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.RtsNetGameMode
+  nameWithType: RtsNetGameMode
 - uid: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode
   name: StandardWarNetGameMode
   href: api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.html
   commentId: T:Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode
   fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode
   nameWithType: StandardWarNetGameMode
+- uid: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetAvailableVehicles
+  name: GetAvailableVehicles()
+  href: api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.html#Frontend_Runtime_Impl_GameImpl_Battle_Mode_StandardWarNetGameMode_GetAvailableVehicles
+  commentId: M:Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetAvailableVehicles
+  fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetAvailableVehicles()
+  nameWithType: StandardWarNetGameMode.GetAvailableVehicles()
+- uid: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetAvailableVehicles*
+  name: GetAvailableVehicles
+  href: api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.html#Frontend_Runtime_Impl_GameImpl_Battle_Mode_StandardWarNetGameMode_GetAvailableVehicles_
+  commentId: Overload:Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetAvailableVehicles
+  isSpec: "True"
+  fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetAvailableVehicles
+  nameWithType: StandardWarNetGameMode.GetAvailableVehicles
 - uid: Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.GetPlayerVehicleQueue
   name: GetPlayerVehicleQueue()
   href: api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.html#Frontend_Runtime_Impl_GameImpl_Battle_Mode_StandardWarNetGameMode_GetPlayerVehicleQueue
@@ -253,184 +272,18 @@ references:
   commentId: T:Frontend.Runtime.Impl.GameImpl.Battle.Mode.TotalWarNetGameMode
   fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.TotalWarNetGameMode
   nameWithType: TotalWarNetGameMode
+- uid: Frontend.Runtime.Impl.GameImpl.Battle.Mode.WarZoneNetGameMode
+  name: WarZoneNetGameMode
+  href: api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.WarZoneNetGameMode.html
+  commentId: T:Frontend.Runtime.Impl.GameImpl.Battle.Mode.WarZoneNetGameMode
+  fullName: Frontend.Runtime.Impl.GameImpl.Battle.Mode.WarZoneNetGameMode
+  nameWithType: WarZoneNetGameMode
 - uid: ShanghaiWindy.Core
   name: ShanghaiWindy.Core
   href: api/ShanghaiWindy.Core.html
   commentId: N:ShanghaiWindy.Core
   fullName: ShanghaiWindy.Core
   nameWithType: ShanghaiWindy.Core
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer
-  name: AbstractBattlePlayer
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html
-  commentId: T:ShanghaiWindy.Core.AbstractBattlePlayer
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer
-  nameWithType: AbstractBattlePlayer
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.AvatarInfo
-  name: AvatarInfo
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_AvatarInfo
-  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.AvatarInfo
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.AvatarInfo
-  nameWithType: AbstractBattlePlayer.AvatarInfo
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo,Vector3,Quaternion)
-  name: CreateVehicle(VehicleInfo, Vector3, Quaternion)
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_CreateVehicle_ShanghaiWindy_Core_VehicleInfo_Vector3_Quaternion_
-  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo,Vector3,Quaternion)
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo, Vector3, Quaternion)
-  nameWithType: AbstractBattlePlayer.CreateVehicle(VehicleInfo, Vector3, Quaternion)
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle*
-  name: CreateVehicle
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_CreateVehicle_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle
-  nameWithType: AbstractBattlePlayer.CreateVehicle
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
-  name: GetTeam()
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTeam
-  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam()
-  nameWithType: AbstractBattlePlayer.GetTeam()
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam*
-  name: GetTeam
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTeam_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
-  nameWithType: AbstractBattlePlayer.GetTeam
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
-  name: GetTotalDamage()
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDamage
-  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage()
-  nameWithType: AbstractBattlePlayer.GetTotalDamage()
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage*
-  name: GetTotalDamage
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDamage_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
-  nameWithType: AbstractBattlePlayer.GetTotalDamage
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
-  name: GetTotalDestroyed()
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDestroyed
-  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed()
-  nameWithType: AbstractBattlePlayer.GetTotalDestroyed()
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed*
-  name: GetTotalDestroyed
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDestroyed_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
-  nameWithType: AbstractBattlePlayer.GetTotalDestroyed
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
-  name: GetVehicleName()
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetVehicleName
-  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName()
-  nameWithType: AbstractBattlePlayer.GetVehicleName()
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName*
-  name: GetVehicleName
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetVehicleName_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
-  nameWithType: AbstractBattlePlayer.GetVehicleName
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.Info
-  name: Info
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_Info
-  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.Info
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.Info
-  nameWithType: AbstractBattlePlayer.Info
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
-  name: IsAlive
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsAlive
-  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
-  nameWithType: AbstractBattlePlayer.IsAlive
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive*
-  name: IsAlive
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsAlive_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
-  nameWithType: AbstractBattlePlayer.IsAlive
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
-  name: IsLocalPlayer()
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsLocalPlayer
-  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer()
-  nameWithType: AbstractBattlePlayer.IsLocalPlayer()
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer*
-  name: IsLocalPlayer
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsLocalPlayer_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
-  nameWithType: AbstractBattlePlayer.IsLocalPlayer
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.NickName
-  name: NickName
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_NickName
-  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.NickName
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.NickName
-  nameWithType: AbstractBattlePlayer.NickName
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
-  name: OnGameObjectDestroyed
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnGameObjectDestroyed
-  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
-  nameWithType: AbstractBattlePlayer.OnGameObjectDestroyed
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed*
-  name: OnGameObjectDestroyed
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnGameObjectDestroyed_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
-  nameWithType: AbstractBattlePlayer.OnGameObjectDestroyed
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
-  name: OnVehicleDestroyed
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleDestroyed
-  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
-  nameWithType: AbstractBattlePlayer.OnVehicleDestroyed
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed*
-  name: OnVehicleDestroyed
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleDestroyed_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
-  nameWithType: AbstractBattlePlayer.OnVehicleDestroyed
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
-  name: OnVehicleLoaded
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleLoaded
-  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
-  nameWithType: AbstractBattlePlayer.OnVehicleLoaded
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded*
-  name: OnVehicleLoaded
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleLoaded_
-  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
-  nameWithType: AbstractBattlePlayer.OnVehicleLoaded
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.Uid
-  name: Uid
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_Uid
-  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.Uid
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.Uid
-  nameWithType: AbstractBattlePlayer.Uid
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.Vehicle
-  name: Vehicle
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_Vehicle
-  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.Vehicle
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.Vehicle
-  nameWithType: AbstractBattlePlayer.Vehicle
-- uid: ShanghaiWindy.Core.AbstractBattlePlayer.VehicleInfo
-  name: VehicleInfo
-  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_VehicleInfo
-  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.VehicleInfo
-  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.VehicleInfo
-  nameWithType: AbstractBattlePlayer.VehicleInfo
 - uid: ShanghaiWindy.Core.API
   name: ShanghaiWindy.Core.API
   href: api/ShanghaiWindy.Core.API.html
@@ -443,45 +296,45 @@ references:
   commentId: T:ShanghaiWindy.Core.API.ArmyAPI
   fullName: ShanghaiWindy.Core.API.ArmyAPI
   nameWithType: ArmyAPI
-- uid: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponConrollerList(ArmyInitSystem)
-  name: GetWeaponConrollerList(ArmyInitSystem)
-  href: api/ShanghaiWindy.Core.API.ArmyAPI.html#ShanghaiWindy_Core_API_ArmyAPI_GetWeaponConrollerList_ArmyInitSystem_
-  commentId: M:ShanghaiWindy.Core.API.ArmyAPI.GetWeaponConrollerList(ArmyInitSystem)
-  fullName: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponConrollerList(ArmyInitSystem)
-  nameWithType: ArmyAPI.GetWeaponConrollerList(ArmyInitSystem)
-- uid: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponConrollerList*
-  name: GetWeaponConrollerList
-  href: api/ShanghaiWindy.Core.API.ArmyAPI.html#ShanghaiWindy_Core_API_ArmyAPI_GetWeaponConrollerList_
-  commentId: Overload:ShanghaiWindy.Core.API.ArmyAPI.GetWeaponConrollerList
+- uid: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponList(ShanghaiWindy.Core.FPS.ArmyInitSystem)
+  name: GetWeaponList(ArmyInitSystem)
+  href: api/ShanghaiWindy.Core.API.ArmyAPI.html#ShanghaiWindy_Core_API_ArmyAPI_GetWeaponList_ShanghaiWindy_Core_FPS_ArmyInitSystem_
+  commentId: M:ShanghaiWindy.Core.API.ArmyAPI.GetWeaponList(ShanghaiWindy.Core.FPS.ArmyInitSystem)
+  fullName: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponList(ShanghaiWindy.Core.FPS.ArmyInitSystem)
+  nameWithType: ArmyAPI.GetWeaponList(ArmyInitSystem)
+- uid: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponList*
+  name: GetWeaponList
+  href: api/ShanghaiWindy.Core.API.ArmyAPI.html#ShanghaiWindy_Core_API_ArmyAPI_GetWeaponList_
+  commentId: Overload:ShanghaiWindy.Core.API.ArmyAPI.GetWeaponList
   isSpec: "True"
-  fullName: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponConrollerList
-  nameWithType: ArmyAPI.GetWeaponConrollerList
+  fullName: ShanghaiWindy.Core.API.ArmyAPI.GetWeaponList
+  nameWithType: ArmyAPI.GetWeaponList
 - uid: ShanghaiWindy.Core.API.AssetAPI
   name: AssetAPI
   href: api/ShanghaiWindy.Core.API.AssetAPI.html
   commentId: T:ShanghaiWindy.Core.API.AssetAPI
   fullName: ShanghaiWindy.Core.API.AssetAPI
   nameWithType: AssetAPI
-- uid: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackage
-  name: ForceResolvePackage()
-  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_ForceResolvePackage
-  commentId: M:ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackage
-  fullName: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackage()
-  nameWithType: AssetAPI.ForceResolvePackage()
-- uid: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackage*
-  name: ForceResolvePackage
-  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_ForceResolvePackage_
-  commentId: Overload:ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackage
+- uid: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackageAsync
+  name: ForceResolvePackageAsync()
+  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_ForceResolvePackageAsync
+  commentId: M:ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackageAsync
+  fullName: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackageAsync()
+  nameWithType: AssetAPI.ForceResolvePackageAsync()
+- uid: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackageAsync*
+  name: ForceResolvePackageAsync
+  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_ForceResolvePackageAsync_
+  commentId: Overload:ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackageAsync
   isSpec: "True"
-  fullName: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackage
-  nameWithType: AssetAPI.ForceResolvePackage
-- uid: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(System.String,System.String,InstantiateNonPoolObjectDelegate)
+  fullName: ShanghaiWindy.Core.API.AssetAPI.ForceResolvePackageAsync
+  nameWithType: AssetAPI.ForceResolvePackageAsync
+- uid: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(System.String,System.String,ShanghaiWindy.Core.Delegate.InstantiateNonPoolObjectDelegate)
   name: InstantiateNonPoolObject(string, string, InstantiateNonPoolObjectDelegate)
-  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_InstantiateNonPoolObject_System_String_System_String_InstantiateNonPoolObjectDelegate_
-  commentId: M:ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(System.String,System.String,InstantiateNonPoolObjectDelegate)
+  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_InstantiateNonPoolObject_System_String_System_String_ShanghaiWindy_Core_Delegate_InstantiateNonPoolObjectDelegate_
+  commentId: M:ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(System.String,System.String,ShanghaiWindy.Core.Delegate.InstantiateNonPoolObjectDelegate)
   name.vb: InstantiateNonPoolObject(String, String, InstantiateNonPoolObjectDelegate)
-  fullName: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(string, string, InstantiateNonPoolObjectDelegate)
-  fullName.vb: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(String, String, InstantiateNonPoolObjectDelegate)
+  fullName: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(string, string, ShanghaiWindy.Core.Delegate.InstantiateNonPoolObjectDelegate)
+  fullName.vb: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject(String, String, ShanghaiWindy.Core.Delegate.InstantiateNonPoolObjectDelegate)
   nameWithType: AssetAPI.InstantiateNonPoolObject(string, string, InstantiateNonPoolObjectDelegate)
   nameWithType.vb: AssetAPI.InstantiateNonPoolObject(String, String, InstantiateNonPoolObjectDelegate)
 - uid: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject*
@@ -491,13 +344,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.AssetAPI.InstantiateNonPoolObject
   nameWithType: AssetAPI.InstantiateNonPoolObject
-- uid: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(System.String,System.String,LoadPoolAssetDelegate)
+- uid: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(System.String,System.String,ShanghaiWindy.Core.Delegate.LoadPoolAssetDelegate)
   name: LoadPoolAsset(string, string, LoadPoolAssetDelegate)
-  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_LoadPoolAsset_System_String_System_String_LoadPoolAssetDelegate_
-  commentId: M:ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(System.String,System.String,LoadPoolAssetDelegate)
+  href: api/ShanghaiWindy.Core.API.AssetAPI.html#ShanghaiWindy_Core_API_AssetAPI_LoadPoolAsset_System_String_System_String_ShanghaiWindy_Core_Delegate_LoadPoolAssetDelegate_
+  commentId: M:ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(System.String,System.String,ShanghaiWindy.Core.Delegate.LoadPoolAssetDelegate)
   name.vb: LoadPoolAsset(String, String, LoadPoolAssetDelegate)
-  fullName: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(string, string, LoadPoolAssetDelegate)
-  fullName.vb: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(String, String, LoadPoolAssetDelegate)
+  fullName: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(string, string, ShanghaiWindy.Core.Delegate.LoadPoolAssetDelegate)
+  fullName.vb: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset(String, String, ShanghaiWindy.Core.Delegate.LoadPoolAssetDelegate)
   nameWithType: AssetAPI.LoadPoolAsset(string, string, LoadPoolAssetDelegate)
   nameWithType.vb: AssetAPI.LoadPoolAsset(String, String, LoadPoolAssetDelegate)
 - uid: ShanghaiWindy.Core.API.AssetAPI.LoadPoolAsset*
@@ -539,6 +392,22 @@ references:
   commentId: T:ShanghaiWindy.Core.API.BattlePlayerAPI
   fullName: ShanghaiWindy.Core.API.BattlePlayerAPI
   nameWithType: BattlePlayerAPI
+- uid: ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer(System.Int32,Vector3,Quaternion,System.Action{ShanghaiWindy.Core.FreeCameraInitSystem})
+  name: CreateFreeCameraPlayer(int, Vector3, Quaternion, Action<FreeCameraInitSystem>)
+  href: api/ShanghaiWindy.Core.API.BattlePlayerAPI.html#ShanghaiWindy_Core_API_BattlePlayerAPI_CreateFreeCameraPlayer_System_Int32_Vector3_Quaternion_System_Action_ShanghaiWindy_Core_FreeCameraInitSystem__
+  commentId: M:ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer(System.Int32,Vector3,Quaternion,System.Action{ShanghaiWindy.Core.FreeCameraInitSystem})
+  name.vb: CreateFreeCameraPlayer(Integer, Vector3, Quaternion, Action(Of FreeCameraInitSystem))
+  fullName: ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer(int, Vector3, Quaternion, System.Action<ShanghaiWindy.Core.FreeCameraInitSystem>)
+  fullName.vb: ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer(Integer, Vector3, Quaternion, System.Action(Of ShanghaiWindy.Core.FreeCameraInitSystem))
+  nameWithType: BattlePlayerAPI.CreateFreeCameraPlayer(int, Vector3, Quaternion, Action<FreeCameraInitSystem>)
+  nameWithType.vb: BattlePlayerAPI.CreateFreeCameraPlayer(Integer, Vector3, Quaternion, Action(Of FreeCameraInitSystem))
+- uid: ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer*
+  name: CreateFreeCameraPlayer
+  href: api/ShanghaiWindy.Core.API.BattlePlayerAPI.html#ShanghaiWindy_Core_API_BattlePlayerAPI_CreateFreeCameraPlayer_
+  commentId: Overload:ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.BattlePlayerAPI.CreateFreeCameraPlayer
+  nameWithType: BattlePlayerAPI.CreateFreeCameraPlayer
 - uid: ShanghaiWindy.Core.API.BattlePlayerAPI.CreateOfflineBotPlayer(System.Int32,System.String,System.Object)
   name: CreateOfflineBotPlayer(int, string, object)
   href: api/ShanghaiWindy.Core.API.BattlePlayerAPI.html#ShanghaiWindy_Core_API_BattlePlayerAPI_CreateOfflineBotPlayer_System_Int32_System_String_System_Object_
@@ -622,11 +491,11 @@ references:
   commentId: T:ShanghaiWindy.Core.API.BuffAPI
   fullName: ShanghaiWindy.Core.API.BuffAPI
   nameWithType: BuffAPI
-- uid: ShanghaiWindy.Core.API.BuffAPI.AddBuff(ShanghaiWindy.Core.BaseInitSystem,ILuaBuffCaster)
+- uid: ShanghaiWindy.Core.API.BuffAPI.AddBuff(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Lua.ILuaBuffCaster)
   name: AddBuff(BaseInitSystem, ILuaBuffCaster)
-  href: api/ShanghaiWindy.Core.API.BuffAPI.html#ShanghaiWindy_Core_API_BuffAPI_AddBuff_ShanghaiWindy_Core_BaseInitSystem_ILuaBuffCaster_
-  commentId: M:ShanghaiWindy.Core.API.BuffAPI.AddBuff(ShanghaiWindy.Core.BaseInitSystem,ILuaBuffCaster)
-  fullName: ShanghaiWindy.Core.API.BuffAPI.AddBuff(ShanghaiWindy.Core.BaseInitSystem, ILuaBuffCaster)
+  href: api/ShanghaiWindy.Core.API.BuffAPI.html#ShanghaiWindy_Core_API_BuffAPI_AddBuff_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Lua_ILuaBuffCaster_
+  commentId: M:ShanghaiWindy.Core.API.BuffAPI.AddBuff(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Lua.ILuaBuffCaster)
+  fullName: ShanghaiWindy.Core.API.BuffAPI.AddBuff(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Lua.ILuaBuffCaster)
   nameWithType: BuffAPI.AddBuff(BaseInitSystem, ILuaBuffCaster)
 - uid: ShanghaiWindy.Core.API.BuffAPI.AddBuff*
   name: AddBuff
@@ -635,13 +504,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.BuffAPI.AddBuff
   nameWithType: BuffAPI.AddBuff
-- uid: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem,ILuaBuffCaster,System.Boolean)
+- uid: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Lua.ILuaBuffCaster,System.Boolean)
   name: RemoveBuff(BaseInitSystem, ILuaBuffCaster, bool)
-  href: api/ShanghaiWindy.Core.API.BuffAPI.html#ShanghaiWindy_Core_API_BuffAPI_RemoveBuff_ShanghaiWindy_Core_BaseInitSystem_ILuaBuffCaster_System_Boolean_
-  commentId: M:ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem,ILuaBuffCaster,System.Boolean)
+  href: api/ShanghaiWindy.Core.API.BuffAPI.html#ShanghaiWindy_Core_API_BuffAPI_RemoveBuff_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Lua_ILuaBuffCaster_System_Boolean_
+  commentId: M:ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Lua.ILuaBuffCaster,System.Boolean)
   name.vb: RemoveBuff(BaseInitSystem, ILuaBuffCaster, Boolean)
-  fullName: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem, ILuaBuffCaster, bool)
-  fullName.vb: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem, ILuaBuffCaster, Boolean)
+  fullName: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Lua.ILuaBuffCaster, bool)
+  fullName.vb: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Lua.ILuaBuffCaster, Boolean)
   nameWithType: BuffAPI.RemoveBuff(BaseInitSystem, ILuaBuffCaster, bool)
   nameWithType.vb: BuffAPI.RemoveBuff(BaseInitSystem, ILuaBuffCaster, Boolean)
 - uid: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff*
@@ -651,13 +520,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.BuffAPI.RemoveBuff
   nameWithType: BuffAPI.RemoveBuff
-- uid: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver,ArmyInitSystem@)
+- uid: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver,ShanghaiWindy.Core.FPS.ArmyInitSystem@)
   name: TryGetBuffReceiverAsArmy(IBuffReceiver, out ArmyInitSystem)
-  href: api/ShanghaiWindy.Core.API.BuffAPI.html#ShanghaiWindy_Core_API_BuffAPI_TryGetBuffReceiverAsArmy_ShanghaiWindy_Core_IBuffReceiver_ArmyInitSystem__
-  commentId: M:ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver,ArmyInitSystem@)
+  href: api/ShanghaiWindy.Core.API.BuffAPI.html#ShanghaiWindy_Core_API_BuffAPI_TryGetBuffReceiverAsArmy_ShanghaiWindy_Core_IBuffReceiver_ShanghaiWindy_Core_FPS_ArmyInitSystem__
+  commentId: M:ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver,ShanghaiWindy.Core.FPS.ArmyInitSystem@)
   name.vb: TryGetBuffReceiverAsArmy(IBuffReceiver, ArmyInitSystem)
-  fullName: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver, out ArmyInitSystem)
-  fullName.vb: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver, ArmyInitSystem)
+  fullName: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver, out ShanghaiWindy.Core.FPS.ArmyInitSystem)
+  fullName.vb: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy(ShanghaiWindy.Core.IBuffReceiver, ShanghaiWindy.Core.FPS.ArmyInitSystem)
   nameWithType: BuffAPI.TryGetBuffReceiverAsArmy(IBuffReceiver, out ArmyInitSystem)
   nameWithType.vb: BuffAPI.TryGetBuffReceiverAsArmy(IBuffReceiver, ArmyInitSystem)
 - uid: ShanghaiWindy.Core.API.BuffAPI.TryGetBuffReceiverAsArmy*
@@ -834,6 +703,19 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.CaptureZoneAPI.AddCaptureZone
   nameWithType: CaptureZoneAPI.AddCaptureZone
+- uid: ShanghaiWindy.Core.API.CaptureZoneAPI.ApplyZoneMaterial(GameObject)
+  name: ApplyZoneMaterial(GameObject)
+  href: api/ShanghaiWindy.Core.API.CaptureZoneAPI.html#ShanghaiWindy_Core_API_CaptureZoneAPI_ApplyZoneMaterial_GameObject_
+  commentId: M:ShanghaiWindy.Core.API.CaptureZoneAPI.ApplyZoneMaterial(GameObject)
+  fullName: ShanghaiWindy.Core.API.CaptureZoneAPI.ApplyZoneMaterial(GameObject)
+  nameWithType: CaptureZoneAPI.ApplyZoneMaterial(GameObject)
+- uid: ShanghaiWindy.Core.API.CaptureZoneAPI.ApplyZoneMaterial*
+  name: ApplyZoneMaterial
+  href: api/ShanghaiWindy.Core.API.CaptureZoneAPI.html#ShanghaiWindy_Core_API_CaptureZoneAPI_ApplyZoneMaterial_
+  commentId: Overload:ShanghaiWindy.Core.API.CaptureZoneAPI.ApplyZoneMaterial
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.CaptureZoneAPI.ApplyZoneMaterial
+  nameWithType: CaptureZoneAPI.ApplyZoneMaterial
 - uid: ShanghaiWindy.Core.API.CaptureZoneAPI.CapturingZone(System.Int32,ShanghaiWindy.Core.TeamManager.Team,System.Single)
   name: CapturingZone(int, Team, float)
   href: api/ShanghaiWindy.Core.API.CaptureZoneAPI.html#ShanghaiWindy_Core_API_CaptureZoneAPI_CapturingZone_System_Int32_ShanghaiWindy_Core_TeamManager_Team_System_Single_
@@ -850,6 +732,22 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.CaptureZoneAPI.CapturingZone
   nameWithType: CaptureZoneAPI.CapturingZone
+- uid: ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle(Vector3,System.Single)
+  name: DrawZoneCircle(Vector3, float)
+  href: api/ShanghaiWindy.Core.API.CaptureZoneAPI.html#ShanghaiWindy_Core_API_CaptureZoneAPI_DrawZoneCircle_Vector3_System_Single_
+  commentId: M:ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle(Vector3,System.Single)
+  name.vb: DrawZoneCircle(Vector3, Single)
+  fullName: ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle(Vector3, float)
+  fullName.vb: ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle(Vector3, Single)
+  nameWithType: CaptureZoneAPI.DrawZoneCircle(Vector3, float)
+  nameWithType.vb: CaptureZoneAPI.DrawZoneCircle(Vector3, Single)
+- uid: ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle*
+  name: DrawZoneCircle
+  href: api/ShanghaiWindy.Core.API.CaptureZoneAPI.html#ShanghaiWindy_Core_API_CaptureZoneAPI_DrawZoneCircle_
+  commentId: Overload:ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.CaptureZoneAPI.DrawZoneCircle
+  nameWithType: CaptureZoneAPI.DrawZoneCircle
 - uid: ShanghaiWindy.Core.API.CaptureZoneAPI.GetCaptureZone(System.Int64)
   name: GetCaptureZone(long)
   href: api/ShanghaiWindy.Core.API.CaptureZoneAPI.html#ShanghaiWindy_Core_API_CaptureZoneAPI_GetCaptureZone_System_Int64_
@@ -1182,11 +1080,11 @@ references:
   commentId: T:ShanghaiWindy.Core.API.ConvertAPI
   fullName: ShanghaiWindy.Core.API.ConvertAPI
   nameWithType: ConvertAPI
-- uid: ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster(LuaTable)
+- uid: ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster(XLua.LuaTable)
   name: CovertToBuffCaster(LuaTable)
-  href: api/ShanghaiWindy.Core.API.ConvertAPI.html#ShanghaiWindy_Core_API_ConvertAPI_CovertToBuffCaster_LuaTable_
-  commentId: M:ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster(LuaTable)
-  fullName: ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster(LuaTable)
+  href: api/ShanghaiWindy.Core.API.ConvertAPI.html#ShanghaiWindy_Core_API_ConvertAPI_CovertToBuffCaster_XLua_LuaTable_
+  commentId: M:ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster(XLua.LuaTable)
+  fullName: ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster(XLua.LuaTable)
   nameWithType: ConvertAPI.CovertToBuffCaster(LuaTable)
 - uid: ShanghaiWindy.Core.API.ConvertAPI.CovertToBuffCaster*
   name: CovertToBuffCaster
@@ -1326,18 +1224,6 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.CustomOptionUIAPI.ToggleUI
   nameWithType: CustomOptionUIAPI.ToggleUI
-- uid: ShanghaiWindy.Core.API.eDefaultButtonInputType
-  name: eDefaultButtonInputType
-  href: api/ShanghaiWindy.Core.API.eDefaultButtonInputType.html
-  commentId: T:ShanghaiWindy.Core.API.eDefaultButtonInputType
-  fullName: ShanghaiWindy.Core.API.eDefaultButtonInputType
-  nameWithType: eDefaultButtonInputType
-- uid: ShanghaiWindy.Core.API.eDefaultValueInputType
-  name: eDefaultValueInputType
-  href: api/ShanghaiWindy.Core.API.eDefaultValueInputType.html
-  commentId: T:ShanghaiWindy.Core.API.eDefaultValueInputType
-  fullName: ShanghaiWindy.Core.API.eDefaultValueInputType
-  nameWithType: eDefaultValueInputType
 - uid: ShanghaiWindy.Core.API.FlightAPI
   name: FlightAPI
   href: api/ShanghaiWindy.Core.API.FlightAPI.html
@@ -1382,11 +1268,11 @@ references:
   commentId: T:ShanghaiWindy.Core.API.GameAPI
   fullName: ShanghaiWindy.Core.API.GameAPI
   nameWithType: GameAPI
-- uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
+- uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)
   name: RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
-  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_RegisterVehicleDestroyedEvent_OnGameVehicleDestroyedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
-  fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
+  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_RegisterVehicleDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleDestroyedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)
+  fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)
   nameWithType: GameAPI.RegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
 - uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent*
   name: RegisterVehicleDestroyedEvent
@@ -1395,11 +1281,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleDestroyedEvent
   nameWithType: GameAPI.RegisterVehicleDestroyedEvent
-- uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
+- uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)
   name: RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
-  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_RegisterVehicleGameObjectDestroyedEvent_OnGameVehicleGameObjectRemovedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
-  fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
+  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_RegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleGameObjectRemovedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)
+  fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)
   nameWithType: GameAPI.RegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
 - uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent*
   name: RegisterVehicleGameObjectDestroyedEvent
@@ -1408,11 +1294,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleGameObjectDestroyedEvent
   nameWithType: GameAPI.RegisterVehicleGameObjectDestroyedEvent
-- uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)
   name: RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_RegisterVehicleLoadedEvent_OnGameVehicleLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_RegisterVehicleLoadedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)
   nameWithType: GameAPI.RegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent*
   name: RegisterVehicleLoadedEvent
@@ -1421,11 +1307,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.GameAPI.RegisterVehicleLoadedEvent
   nameWithType: GameAPI.RegisterVehicleLoadedEvent
-- uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
+- uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)
   name: UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
-  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleDestroyedEvent_OnGameVehicleDestroyedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
-  fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
+  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleDestroyedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)
+  fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate)
   nameWithType: GameAPI.UnRegisterVehicleDestroyedEvent(OnGameVehicleDestroyedDelegate)
 - uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent*
   name: UnRegisterVehicleDestroyedEvent
@@ -1434,11 +1320,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleDestroyedEvent
   nameWithType: GameAPI.UnRegisterVehicleDestroyedEvent
-- uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
+- uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)
   name: UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
-  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleGameObjectDestroyedEvent_OnGameVehicleGameObjectRemovedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
-  fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
+  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleGameObjectRemovedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)
+  fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate)
   nameWithType: GameAPI.UnRegisterVehicleGameObjectDestroyedEvent(OnGameVehicleGameObjectRemovedDelegate)
 - uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent*
   name: UnRegisterVehicleGameObjectDestroyedEvent
@@ -1447,11 +1333,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleGameObjectDestroyedEvent
   nameWithType: GameAPI.UnRegisterVehicleGameObjectDestroyedEvent
-- uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)
   name: UnRegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleLoadedEvent_OnGameVehicleLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.GameAPI.html#ShanghaiWindy_Core_API_GameAPI_UnRegisterVehicleLoadedEvent_ShanghaiWindy_Core_Delegate_OnGameVehicleLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent(ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate)
   nameWithType: GameAPI.UnRegisterVehicleLoadedEvent(OnGameVehicleLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.GameAPI.UnRegisterVehicleLoadedEvent*
   name: UnRegisterVehicleLoadedEvent
@@ -1553,6 +1439,77 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.GameObjectAPI.SetVisible
   nameWithType: GameObjectAPI.SetVisible
+- uid: ShanghaiWindy.Core.API.HitBoxAPI
+  name: HitBoxAPI
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html
+  commentId: T:ShanghaiWindy.Core.API.HitBoxAPI
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI
+  nameWithType: HitBoxAPI
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetAllHitBoxes(ShanghaiWindy.Core.BaseInitSystem)
+  name: GetAllHitBoxes(BaseInitSystem)
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetAllHitBoxes_ShanghaiWindy_Core_BaseInitSystem_
+  commentId: M:ShanghaiWindy.Core.API.HitBoxAPI.GetAllHitBoxes(ShanghaiWindy.Core.BaseInitSystem)
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetAllHitBoxes(ShanghaiWindy.Core.BaseInitSystem)
+  nameWithType: HitBoxAPI.GetAllHitBoxes(BaseInitSystem)
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetAllHitBoxes*
+  name: GetAllHitBoxes
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetAllHitBoxes_
+  commentId: Overload:ShanghaiWindy.Core.API.HitBoxAPI.GetAllHitBoxes
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetAllHitBoxes
+  nameWithType: HitBoxAPI.GetAllHitBoxes
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetArmor(ShanghaiWindy.Core.HitBoxComponent)
+  name: GetArmor(HitBoxComponent)
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetArmor_ShanghaiWindy_Core_HitBoxComponent_
+  commentId: M:ShanghaiWindy.Core.API.HitBoxAPI.GetArmor(ShanghaiWindy.Core.HitBoxComponent)
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetArmor(ShanghaiWindy.Core.HitBoxComponent)
+  nameWithType: HitBoxAPI.GetArmor(HitBoxComponent)
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetArmor*
+  name: GetArmor
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetArmor_
+  commentId: Overload:ShanghaiWindy.Core.API.HitBoxAPI.GetArmor
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetArmor
+  nameWithType: HitBoxAPI.GetArmor
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBox(GameObject)
+  name: GetHitBox(GameObject)
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetHitBox_GameObject_
+  commentId: M:ShanghaiWindy.Core.API.HitBoxAPI.GetHitBox(GameObject)
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBox(GameObject)
+  nameWithType: HitBoxAPI.GetHitBox(GameObject)
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBox*
+  name: GetHitBox
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetHitBox_
+  commentId: Overload:ShanghaiWindy.Core.API.HitBoxAPI.GetHitBox
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBox
+  nameWithType: HitBoxAPI.GetHitBox
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBoxFromCollider(Collider)
+  name: GetHitBoxFromCollider(Collider)
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetHitBoxFromCollider_Collider_
+  commentId: M:ShanghaiWindy.Core.API.HitBoxAPI.GetHitBoxFromCollider(Collider)
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBoxFromCollider(Collider)
+  nameWithType: HitBoxAPI.GetHitBoxFromCollider(Collider)
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBoxFromCollider*
+  name: GetHitBoxFromCollider
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetHitBoxFromCollider_
+  commentId: Overload:ShanghaiWindy.Core.API.HitBoxAPI.GetHitBoxFromCollider
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetHitBoxFromCollider
+  nameWithType: HitBoxAPI.GetHitBoxFromCollider
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetOwner(ShanghaiWindy.Core.HitBoxComponent)
+  name: GetOwner(HitBoxComponent)
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetOwner_ShanghaiWindy_Core_HitBoxComponent_
+  commentId: M:ShanghaiWindy.Core.API.HitBoxAPI.GetOwner(ShanghaiWindy.Core.HitBoxComponent)
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetOwner(ShanghaiWindy.Core.HitBoxComponent)
+  nameWithType: HitBoxAPI.GetOwner(HitBoxComponent)
+- uid: ShanghaiWindy.Core.API.HitBoxAPI.GetOwner*
+  name: GetOwner
+  href: api/ShanghaiWindy.Core.API.HitBoxAPI.html#ShanghaiWindy_Core_API_HitBoxAPI_GetOwner_
+  commentId: Overload:ShanghaiWindy.Core.API.HitBoxAPI.GetOwner
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.HitBoxAPI.GetOwner
+  nameWithType: HitBoxAPI.GetOwner
 - uid: ShanghaiWindy.Core.API.InputAPI
   name: InputAPI
   href: api/ShanghaiWindy.Core.API.InputAPI.html
@@ -1598,11 +1555,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.InputAPI.IsDefaultPressed
   nameWithType: InputAPI.IsDefaultPressed
-- uid: ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput(OnKeyRegistered)
+- uid: ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput(ShanghaiWindy.Core.Delegate.OnKeyRegistered)
   name: RegisterAddKeyInput(OnKeyRegistered)
-  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_RegisterAddKeyInput_OnKeyRegistered_
-  commentId: M:ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput(OnKeyRegistered)
-  fullName: ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput(OnKeyRegistered)
+  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_RegisterAddKeyInput_ShanghaiWindy_Core_Delegate_OnKeyRegistered_
+  commentId: M:ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput(ShanghaiWindy.Core.Delegate.OnKeyRegistered)
+  fullName: ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput(ShanghaiWindy.Core.Delegate.OnKeyRegistered)
   nameWithType: InputAPI.RegisterAddKeyInput(OnKeyRegistered)
 - uid: ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput*
   name: RegisterAddKeyInput
@@ -1611,13 +1568,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.InputAPI.RegisterAddKeyInput
   nameWithType: InputAPI.RegisterAddKeyInput
-- uid: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(System.String,System.String,OnKeyPerformed,OnKeyCanceled)
+- uid: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(System.String,System.String,ShanghaiWindy.Core.Delegate.OnKeyPerformed,ShanghaiWindy.Core.Delegate.OnKeyCanceled)
   name: RegisterKeyInput(string, string, OnKeyPerformed, OnKeyCanceled)
-  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_RegisterKeyInput_System_String_System_String_OnKeyPerformed_OnKeyCanceled_
-  commentId: M:ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(System.String,System.String,OnKeyPerformed,OnKeyCanceled)
+  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_RegisterKeyInput_System_String_System_String_ShanghaiWindy_Core_Delegate_OnKeyPerformed_ShanghaiWindy_Core_Delegate_OnKeyCanceled_
+  commentId: M:ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(System.String,System.String,ShanghaiWindy.Core.Delegate.OnKeyPerformed,ShanghaiWindy.Core.Delegate.OnKeyCanceled)
   name.vb: RegisterKeyInput(String, String, OnKeyPerformed, OnKeyCanceled)
-  fullName: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(string, string, OnKeyPerformed, OnKeyCanceled)
-  fullName.vb: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(String, String, OnKeyPerformed, OnKeyCanceled)
+  fullName: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(string, string, ShanghaiWindy.Core.Delegate.OnKeyPerformed, ShanghaiWindy.Core.Delegate.OnKeyCanceled)
+  fullName.vb: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput(String, String, ShanghaiWindy.Core.Delegate.OnKeyPerformed, ShanghaiWindy.Core.Delegate.OnKeyCanceled)
   nameWithType: InputAPI.RegisterKeyInput(string, string, OnKeyPerformed, OnKeyCanceled)
   nameWithType.vb: InputAPI.RegisterKeyInput(String, String, OnKeyPerformed, OnKeyCanceled)
 - uid: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput*
@@ -1627,11 +1584,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.InputAPI.RegisterKeyInput
   nameWithType: InputAPI.RegisterKeyInput
-- uid: ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput(OnKeyUnregistered)
+- uid: ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput(ShanghaiWindy.Core.Delegate.OnKeyUnregistered)
   name: RegisterRemoveKeyInput(OnKeyUnregistered)
-  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_RegisterRemoveKeyInput_OnKeyUnregistered_
-  commentId: M:ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput(OnKeyUnregistered)
-  fullName: ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput(OnKeyUnregistered)
+  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_RegisterRemoveKeyInput_ShanghaiWindy_Core_Delegate_OnKeyUnregistered_
+  commentId: M:ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput(ShanghaiWindy.Core.Delegate.OnKeyUnregistered)
+  fullName: ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput(ShanghaiWindy.Core.Delegate.OnKeyUnregistered)
   nameWithType: InputAPI.RegisterRemoveKeyInput(OnKeyUnregistered)
 - uid: ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput*
   name: RegisterRemoveKeyInput
@@ -1640,11 +1597,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.InputAPI.RegisterRemoveKeyInput
   nameWithType: InputAPI.RegisterRemoveKeyInput
-- uid: ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput(OnKeyRegistered)
+- uid: ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput(ShanghaiWindy.Core.Delegate.OnKeyRegistered)
   name: UnregisterAddKeyInput(OnKeyRegistered)
-  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_UnregisterAddKeyInput_OnKeyRegistered_
-  commentId: M:ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput(OnKeyRegistered)
-  fullName: ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput(OnKeyRegistered)
+  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_UnregisterAddKeyInput_ShanghaiWindy_Core_Delegate_OnKeyRegistered_
+  commentId: M:ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput(ShanghaiWindy.Core.Delegate.OnKeyRegistered)
+  fullName: ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput(ShanghaiWindy.Core.Delegate.OnKeyRegistered)
   nameWithType: InputAPI.UnregisterAddKeyInput(OnKeyRegistered)
 - uid: ShanghaiWindy.Core.API.InputAPI.UnregisterAddKeyInput*
   name: UnregisterAddKeyInput
@@ -1669,11 +1626,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.InputAPI.UnregisterKeyInput
   nameWithType: InputAPI.UnregisterKeyInput
-- uid: ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput(OnKeyUnregistered)
+- uid: ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput(ShanghaiWindy.Core.Delegate.OnKeyUnregistered)
   name: UnregisterRemoveKeyInput(OnKeyUnregistered)
-  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_UnregisterRemoveKeyInput_OnKeyUnregistered_
-  commentId: M:ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput(OnKeyUnregistered)
-  fullName: ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput(OnKeyUnregistered)
+  href: api/ShanghaiWindy.Core.API.InputAPI.html#ShanghaiWindy_Core_API_InputAPI_UnregisterRemoveKeyInput_ShanghaiWindy_Core_Delegate_OnKeyUnregistered_
+  commentId: M:ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput(ShanghaiWindy.Core.Delegate.OnKeyUnregistered)
+  fullName: ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput(ShanghaiWindy.Core.Delegate.OnKeyUnregistered)
   nameWithType: InputAPI.UnregisterRemoveKeyInput(OnKeyUnregistered)
 - uid: ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput*
   name: UnregisterRemoveKeyInput
@@ -1682,6 +1639,116 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.InputAPI.UnregisterRemoveKeyInput
   nameWithType: InputAPI.UnregisterRemoveKeyInput
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI
+  name: InternalModuleAPI
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html
+  commentId: T:ShanghaiWindy.Core.API.InternalModuleAPI
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI
+  nameWithType: InternalModuleAPI
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules(ShanghaiWindy.Core.BaseInitSystem)
+  name: GetAllInternalModules(BaseInitSystem)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetAllInternalModules_ShanghaiWindy_Core_BaseInitSystem_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules(ShanghaiWindy.Core.BaseInitSystem)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules(ShanghaiWindy.Core.BaseInitSystem)
+  nameWithType: InternalModuleAPI.GetAllInternalModules(BaseInitSystem)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules*
+  name: GetAllInternalModules
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetAllInternalModules_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules
+  nameWithType: InternalModuleAPI.GetAllInternalModules
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint(ShanghaiWindy.Core.InternalModuleComponent)
+  name: GetCurrentHitPoint(InternalModuleComponent)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetCurrentHitPoint_ShanghaiWindy_Core_InternalModuleComponent_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint(ShanghaiWindy.Core.InternalModuleComponent)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint(ShanghaiWindy.Core.InternalModuleComponent)
+  nameWithType: InternalModuleAPI.GetCurrentHitPoint(InternalModuleComponent)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint*
+  name: GetCurrentHitPoint
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetCurrentHitPoint_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint
+  nameWithType: InternalModuleAPI.GetCurrentHitPoint
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule(GameObject)
+  name: GetInternalModule(GameObject)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModule_GameObject_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule(GameObject)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule(GameObject)
+  nameWithType: InternalModuleAPI.GetInternalModule(GameObject)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule*
+  name: GetInternalModule
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModule_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule
+  nameWithType: InternalModuleAPI.GetInternalModule
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider(Collider)
+  name: GetInternalModuleFromCollider(Collider)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModuleFromCollider_Collider_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider(Collider)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider(Collider)
+  nameWithType: InternalModuleAPI.GetInternalModuleFromCollider(Collider)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider*
+  name: GetInternalModuleFromCollider
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModuleFromCollider_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider
+  nameWithType: InternalModuleAPI.GetInternalModuleFromCollider
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint(ShanghaiWindy.Core.InternalModuleComponent)
+  name: GetMaxHitPoint(InternalModuleComponent)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetMaxHitPoint_ShanghaiWindy_Core_InternalModuleComponent_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint(ShanghaiWindy.Core.InternalModuleComponent)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint(ShanghaiWindy.Core.InternalModuleComponent)
+  nameWithType: InternalModuleAPI.GetMaxHitPoint(InternalModuleComponent)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint*
+  name: GetMaxHitPoint
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetMaxHitPoint_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint
+  nameWithType: InternalModuleAPI.GetMaxHitPoint
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState(ShanghaiWindy.Core.InternalModuleComponent)
+  name: GetModuleState(InternalModuleComponent)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleState_ShanghaiWindy_Core_InternalModuleComponent_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState(ShanghaiWindy.Core.InternalModuleComponent)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState(ShanghaiWindy.Core.InternalModuleComponent)
+  nameWithType: InternalModuleAPI.GetModuleState(InternalModuleComponent)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState*
+  name: GetModuleState
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleState_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState
+  nameWithType: InternalModuleAPI.GetModuleState
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType(ShanghaiWindy.Core.InternalModuleComponent)
+  name: GetModuleType(InternalModuleComponent)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleType_ShanghaiWindy_Core_InternalModuleComponent_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType(ShanghaiWindy.Core.InternalModuleComponent)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType(ShanghaiWindy.Core.InternalModuleComponent)
+  nameWithType: InternalModuleAPI.GetModuleType(InternalModuleComponent)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType*
+  name: GetModuleType
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleType_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType
+  nameWithType: InternalModuleAPI.GetModuleType
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner(ShanghaiWindy.Core.InternalModuleComponent)
+  name: GetOwner(InternalModuleComponent)
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetOwner_ShanghaiWindy_Core_InternalModuleComponent_
+  commentId: M:ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner(ShanghaiWindy.Core.InternalModuleComponent)
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner(ShanghaiWindy.Core.InternalModuleComponent)
+  nameWithType: InternalModuleAPI.GetOwner(InternalModuleComponent)
+- uid: ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner*
+  name: GetOwner
+  href: api/ShanghaiWindy.Core.API.InternalModuleAPI.html#ShanghaiWindy_Core_API_InternalModuleAPI_GetOwner_
+  commentId: Overload:ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner
+  nameWithType: InternalModuleAPI.GetOwner
 - uid: ShanghaiWindy.Core.API.MapAPI
   name: MapAPI
   href: api/ShanghaiWindy.Core.API.MapAPI.html
@@ -1915,19 +1982,6 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.ExitMode
   nameWithType: ModeAPI.ExitMode
-- uid: ShanghaiWindy.Core.API.ModeAPI.GetModeInstance
-  name: GetModeInstance()
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_GetModeInstance
-  commentId: M:ShanghaiWindy.Core.API.ModeAPI.GetModeInstance
-  fullName: ShanghaiWindy.Core.API.ModeAPI.GetModeInstance()
-  nameWithType: ModeAPI.GetModeInstance()
-- uid: ShanghaiWindy.Core.API.ModeAPI.GetModeInstance*
-  name: GetModeInstance
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_GetModeInstance_
-  commentId: Overload:ShanghaiWindy.Core.API.ModeAPI.GetModeInstance
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.API.ModeAPI.GetModeInstance
-  nameWithType: ModeAPI.GetModeInstance
 - uid: ShanghaiWindy.Core.API.ModeAPI.GetNativeMode
   name: GetNativeMode()
   href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_GetNativeMode
@@ -1941,11 +1995,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.GetNativeMode
   nameWithType: ModeAPI.GetNativeMode
-- uid: ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene(ShanghaiWindy.Core.MapData,OnBattleSceneLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene(ShanghaiWindy.Core.MapData,ShanghaiWindy.Core.Delegate.OnBattleSceneLoadedDelegate)
   name: LoadBattleScene(MapData, OnBattleSceneLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_LoadBattleScene_ShanghaiWindy_Core_MapData_OnBattleSceneLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene(ShanghaiWindy.Core.MapData,OnBattleSceneLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene(ShanghaiWindy.Core.MapData, OnBattleSceneLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_LoadBattleScene_ShanghaiWindy_Core_MapData_ShanghaiWindy_Core_Delegate_OnBattleSceneLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene(ShanghaiWindy.Core.MapData,ShanghaiWindy.Core.Delegate.OnBattleSceneLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene(ShanghaiWindy.Core.MapData, ShanghaiWindy.Core.Delegate.OnBattleSceneLoadedDelegate)
   nameWithType: ModeAPI.LoadBattleScene(MapData, OnBattleSceneLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene*
   name: LoadBattleScene
@@ -1954,11 +2008,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.LoadBattleScene
   nameWithType: ModeAPI.LoadBattleScene
-- uid: ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI(OnBattleUILoadedDelegate)
+- uid: ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI(ShanghaiWindy.Core.Delegate.OnBattleUILoadedDelegate)
   name: LoadBattleUI(OnBattleUILoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_LoadBattleUI_OnBattleUILoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI(OnBattleUILoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI(OnBattleUILoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_LoadBattleUI_ShanghaiWindy_Core_Delegate_OnBattleUILoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI(ShanghaiWindy.Core.Delegate.OnBattleUILoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI(ShanghaiWindy.Core.Delegate.OnBattleUILoadedDelegate)
   nameWithType: ModeAPI.LoadBattleUI(OnBattleUILoadedDelegate)
 - uid: ShanghaiWindy.Core.API.ModeAPI.LoadBattleUI*
   name: LoadBattleUI
@@ -2079,15 +2133,15 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUI
   nameWithType: ModeAPI.ShowPickVehicleUI
-- uid: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(System.Boolean,System.Collections.Generic.List{ShanghaiWindy.Core.VehicleInfo})
-  name: ShowPickVehicleUIWithList(bool, List<VehicleInfo>)
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowPickVehicleUIWithList_System_Boolean_System_Collections_Generic_List_ShanghaiWindy_Core_VehicleInfo__
-  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(System.Boolean,System.Collections.Generic.List{ShanghaiWindy.Core.VehicleInfo})
-  name.vb: ShowPickVehicleUIWithList(Boolean, List(Of VehicleInfo))
-  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(bool, System.Collections.Generic.List<ShanghaiWindy.Core.VehicleInfo>)
-  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(Boolean, System.Collections.Generic.List(Of ShanghaiWindy.Core.VehicleInfo))
-  nameWithType: ModeAPI.ShowPickVehicleUIWithList(bool, List<VehicleInfo>)
-  nameWithType.vb: ModeAPI.ShowPickVehicleUIWithList(Boolean, List(Of VehicleInfo))
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(System.Boolean,ShanghaiWindy.Core.DriveableList)
+  name: ShowPickVehicleUIWithList(bool, DriveableList)
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowPickVehicleUIWithList_System_Boolean_ShanghaiWindy_Core_DriveableList_
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(System.Boolean,ShanghaiWindy.Core.DriveableList)
+  name.vb: ShowPickVehicleUIWithList(Boolean, DriveableList)
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(bool, ShanghaiWindy.Core.DriveableList)
+  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList(Boolean, ShanghaiWindy.Core.DriveableList)
+  nameWithType: ModeAPI.ShowPickVehicleUIWithList(bool, DriveableList)
+  nameWithType.vb: ModeAPI.ShowPickVehicleUIWithList(Boolean, DriveableList)
 - uid: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList*
   name: ShowPickVehicleUIWithList
   href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowPickVehicleUIWithList_
@@ -2095,13 +2149,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.ShowPickVehicleUIWithList
   nameWithType: ModeAPI.ShowPickVehicleUIWithList
-- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,Action{ShanghaiWindy.Core.VehicleInfo})
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,System.Action{ShanghaiWindy.Core.VehicleInfo})
   name: ShowVehiclePicker(string, Action<VehicleInfo>)
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehiclePicker_System_String_Action_ShanghaiWindy_Core_VehicleInfo__
-  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,Action{ShanghaiWindy.Core.VehicleInfo})
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehiclePicker_System_String_System_Action_ShanghaiWindy_Core_VehicleInfo__
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(System.String,System.Action{ShanghaiWindy.Core.VehicleInfo})
   name.vb: ShowVehiclePicker(String, Action(Of VehicleInfo))
-  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(string, Action<ShanghaiWindy.Core.VehicleInfo>)
-  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(String, Action(Of ShanghaiWindy.Core.VehicleInfo))
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(string, System.Action<ShanghaiWindy.Core.VehicleInfo>)
+  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker(String, System.Action(Of ShanghaiWindy.Core.VehicleInfo))
   nameWithType: ModeAPI.ShowVehiclePicker(string, Action<VehicleInfo>)
   nameWithType.vb: ModeAPI.ShowVehiclePicker(String, Action(Of VehicleInfo))
 - uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker*
@@ -2111,13 +2165,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehiclePicker
   nameWithType: ModeAPI.ShowVehiclePicker
-- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,Action{ShanghaiWindy.Core.ClientUserVehicleQueue})
+- uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,System.Action{ShanghaiWindy.Core.ClientUserVehicleQueue})
   name: ShowVehicleQueuePicker(string, ClientUserVehicleQueue, int, Action<ClientUserVehicleQueue>)
-  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehicleQueuePicker_System_String_ShanghaiWindy_Core_ClientUserVehicleQueue_System_Int32_Action_ShanghaiWindy_Core_ClientUserVehicleQueue__
-  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,Action{ShanghaiWindy.Core.ClientUserVehicleQueue})
+  href: api/ShanghaiWindy.Core.API.ModeAPI.html#ShanghaiWindy_Core_API_ModeAPI_ShowVehicleQueuePicker_System_String_ShanghaiWindy_Core_ClientUserVehicleQueue_System_Int32_System_Action_ShanghaiWindy_Core_ClientUserVehicleQueue__
+  commentId: M:ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(System.String,ShanghaiWindy.Core.ClientUserVehicleQueue,System.Int32,System.Action{ShanghaiWindy.Core.ClientUserVehicleQueue})
   name.vb: ShowVehicleQueuePicker(String, ClientUserVehicleQueue, Integer, Action(Of ClientUserVehicleQueue))
-  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(string, ShanghaiWindy.Core.ClientUserVehicleQueue, int, Action<ShanghaiWindy.Core.ClientUserVehicleQueue>)
-  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(String, ShanghaiWindy.Core.ClientUserVehicleQueue, Integer, Action(Of ShanghaiWindy.Core.ClientUserVehicleQueue))
+  fullName: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(string, ShanghaiWindy.Core.ClientUserVehicleQueue, int, System.Action<ShanghaiWindy.Core.ClientUserVehicleQueue>)
+  fullName.vb: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker(String, ShanghaiWindy.Core.ClientUserVehicleQueue, Integer, System.Action(Of ShanghaiWindy.Core.ClientUserVehicleQueue))
   nameWithType: ModeAPI.ShowVehicleQueuePicker(string, ClientUserVehicleQueue, int, Action<ClientUserVehicleQueue>)
   nameWithType.vb: ModeAPI.ShowVehicleQueuePicker(String, ClientUserVehicleQueue, Integer, Action(Of ClientUserVehicleQueue))
 - uid: ShanghaiWindy.Core.API.ModeAPI.ShowVehicleQueuePicker*
@@ -2341,13 +2395,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.SoundAPI.PlayOneShot
   nameWithType: SoundAPI.PlayOneShot
-- uid: ShanghaiWindy.Core.API.SoundAPI.PostEvent(System.String,Vector3,PostEventLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.SoundAPI.PostEvent(System.String,Vector3,ShanghaiWindy.Core.Delegate.PostEventLoadedDelegate)
   name: PostEvent(string, Vector3, PostEventLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.SoundAPI.html#ShanghaiWindy_Core_API_SoundAPI_PostEvent_System_String_Vector3_PostEventLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.SoundAPI.PostEvent(System.String,Vector3,PostEventLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.SoundAPI.html#ShanghaiWindy_Core_API_SoundAPI_PostEvent_System_String_Vector3_ShanghaiWindy_Core_Delegate_PostEventLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.SoundAPI.PostEvent(System.String,Vector3,ShanghaiWindy.Core.Delegate.PostEventLoadedDelegate)
   name.vb: PostEvent(String, Vector3, PostEventLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.SoundAPI.PostEvent(string, Vector3, PostEventLoadedDelegate)
-  fullName.vb: ShanghaiWindy.Core.API.SoundAPI.PostEvent(String, Vector3, PostEventLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.SoundAPI.PostEvent(string, Vector3, ShanghaiWindy.Core.Delegate.PostEventLoadedDelegate)
+  fullName.vb: ShanghaiWindy.Core.API.SoundAPI.PostEvent(String, Vector3, ShanghaiWindy.Core.Delegate.PostEventLoadedDelegate)
   nameWithType: SoundAPI.PostEvent(string, Vector3, PostEventLoadedDelegate)
   nameWithType.vb: SoundAPI.PostEvent(String, Vector3, PostEventLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.SoundAPI.PostEvent*
@@ -2793,11 +2847,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.TimeAPI.GetTime
   nameWithType: TimeAPI.GetTime
-- uid: ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick(OnTickDelegate)
+- uid: ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   name: RegisterFixedFrameTick(OnTickDelegate)
-  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_RegisterFixedFrameTick_OnTickDelegate_
-  commentId: M:ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick(OnTickDelegate)
-  fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick(OnTickDelegate)
+  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_RegisterFixedFrameTick_ShanghaiWindy_Core_Delegate_OnTickDelegate_
+  commentId: M:ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
+  fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   nameWithType: TimeAPI.RegisterFixedFrameTick(OnTickDelegate)
 - uid: ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick*
   name: RegisterFixedFrameTick
@@ -2806,11 +2860,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterFixedFrameTick
   nameWithType: TimeAPI.RegisterFixedFrameTick
-- uid: ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick(OnTickDelegate)
+- uid: ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   name: RegisterLateFrameTick(OnTickDelegate)
-  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_RegisterLateFrameTick_OnTickDelegate_
-  commentId: M:ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick(OnTickDelegate)
-  fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick(OnTickDelegate)
+  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_RegisterLateFrameTick_ShanghaiWindy_Core_Delegate_OnTickDelegate_
+  commentId: M:ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
+  fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   nameWithType: TimeAPI.RegisterLateFrameTick(OnTickDelegate)
 - uid: ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick*
   name: RegisterLateFrameTick
@@ -2819,11 +2873,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterLateFrameTick
   nameWithType: TimeAPI.RegisterLateFrameTick
-- uid: ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick(OnQuarterTickDelegate)
+- uid: ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick(ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate)
   name: RegisterQuarterTick(OnQuarterTickDelegate)
-  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_RegisterQuarterTick_OnQuarterTickDelegate_
-  commentId: M:ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick(OnQuarterTickDelegate)
-  fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick(OnQuarterTickDelegate)
+  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_RegisterQuarterTick_ShanghaiWindy_Core_Delegate_OnQuarterTickDelegate_
+  commentId: M:ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick(ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate)
+  fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick(ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate)
   nameWithType: TimeAPI.RegisterQuarterTick(OnQuarterTickDelegate)
 - uid: ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick*
   name: RegisterQuarterTick
@@ -2832,11 +2886,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.TimeAPI.RegisterQuarterTick
   nameWithType: TimeAPI.RegisterQuarterTick
-- uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick(OnTickDelegate)
+- uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   name: UnRegisterFixedFrameTick(OnTickDelegate)
-  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_UnRegisterFixedFrameTick_OnTickDelegate_
-  commentId: M:ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick(OnTickDelegate)
-  fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick(OnTickDelegate)
+  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_UnRegisterFixedFrameTick_ShanghaiWindy_Core_Delegate_OnTickDelegate_
+  commentId: M:ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
+  fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   nameWithType: TimeAPI.UnRegisterFixedFrameTick(OnTickDelegate)
 - uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick*
   name: UnRegisterFixedFrameTick
@@ -2845,11 +2899,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterFixedFrameTick
   nameWithType: TimeAPI.UnRegisterFixedFrameTick
-- uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick(OnTickDelegate)
+- uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   name: UnRegisterLateFrameTick(OnTickDelegate)
-  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_UnRegisterLateFrameTick_OnTickDelegate_
-  commentId: M:ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick(OnTickDelegate)
-  fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick(OnTickDelegate)
+  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_UnRegisterLateFrameTick_ShanghaiWindy_Core_Delegate_OnTickDelegate_
+  commentId: M:ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
+  fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick(ShanghaiWindy.Core.Delegate.OnTickDelegate)
   nameWithType: TimeAPI.UnRegisterLateFrameTick(OnTickDelegate)
 - uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick*
   name: UnRegisterLateFrameTick
@@ -2858,11 +2912,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterLateFrameTick
   nameWithType: TimeAPI.UnRegisterLateFrameTick
-- uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick(OnQuarterTickDelegate)
+- uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick(ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate)
   name: UnRegisterQuarterTick(OnQuarterTickDelegate)
-  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_UnRegisterQuarterTick_OnQuarterTickDelegate_
-  commentId: M:ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick(OnQuarterTickDelegate)
-  fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick(OnQuarterTickDelegate)
+  href: api/ShanghaiWindy.Core.API.TimeAPI.html#ShanghaiWindy_Core_API_TimeAPI_UnRegisterQuarterTick_ShanghaiWindy_Core_Delegate_OnQuarterTickDelegate_
+  commentId: M:ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick(ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate)
+  fullName: ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick(ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate)
   nameWithType: TimeAPI.UnRegisterQuarterTick(OnQuarterTickDelegate)
 - uid: ShanghaiWindy.Core.API.TimeAPI.UnRegisterQuarterTick*
   name: UnRegisterQuarterTick
@@ -2986,13 +3040,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.UIAPI.RemoveUI
   nameWithType: UIAPI.RemoveUI
-- uid: ShanghaiWindy.Core.API.UIAPI.ShowPopup(System.String,System.Boolean,UIAPIDelegate.OnPopupClick)
+- uid: ShanghaiWindy.Core.API.UIAPI.ShowPopup(System.String,System.Boolean,ShanghaiWindy.Core.Delegate.UIAPIDelegate.OnPopupClick)
   name: ShowPopup(string, bool, OnPopupClick)
-  href: api/ShanghaiWindy.Core.API.UIAPI.html#ShanghaiWindy_Core_API_UIAPI_ShowPopup_System_String_System_Boolean_UIAPIDelegate_OnPopupClick_
-  commentId: M:ShanghaiWindy.Core.API.UIAPI.ShowPopup(System.String,System.Boolean,UIAPIDelegate.OnPopupClick)
+  href: api/ShanghaiWindy.Core.API.UIAPI.html#ShanghaiWindy_Core_API_UIAPI_ShowPopup_System_String_System_Boolean_ShanghaiWindy_Core_Delegate_UIAPIDelegate_OnPopupClick_
+  commentId: M:ShanghaiWindy.Core.API.UIAPI.ShowPopup(System.String,System.Boolean,ShanghaiWindy.Core.Delegate.UIAPIDelegate.OnPopupClick)
   name.vb: ShowPopup(String, Boolean, OnPopupClick)
-  fullName: ShanghaiWindy.Core.API.UIAPI.ShowPopup(string, bool, UIAPIDelegate.OnPopupClick)
-  fullName.vb: ShanghaiWindy.Core.API.UIAPI.ShowPopup(String, Boolean, UIAPIDelegate.OnPopupClick)
+  fullName: ShanghaiWindy.Core.API.UIAPI.ShowPopup(string, bool, ShanghaiWindy.Core.Delegate.UIAPIDelegate.OnPopupClick)
+  fullName.vb: ShanghaiWindy.Core.API.UIAPI.ShowPopup(String, Boolean, ShanghaiWindy.Core.Delegate.UIAPIDelegate.OnPopupClick)
   nameWithType: UIAPI.ShowPopup(string, bool, UIAPIDelegate.OnPopupClick)
   nameWithType.vb: UIAPI.ShowPopup(String, Boolean, UIAPIDelegate.OnPopupClick)
 - uid: ShanghaiWindy.Core.API.UIAPI.ShowPopup*
@@ -3166,11 +3220,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.IsTankVehicle
   nameWithType: VehicleAPI.IsTankVehicle
-- uid: ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo,OnVehicleThumbnailLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo,ShanghaiWindy.Core.Delegate.OnVehicleThumbnailLoadedDelegate)
   name: LoadVehicleThumbnail(VehicleInfo, OnVehicleThumbnailLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_LoadVehicleThumbnail_ShanghaiWindy_Core_VehicleInfo_OnVehicleThumbnailLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo,OnVehicleThumbnailLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo, OnVehicleThumbnailLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_LoadVehicleThumbnail_ShanghaiWindy_Core_VehicleInfo_ShanghaiWindy_Core_Delegate_OnVehicleThumbnailLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo,ShanghaiWindy.Core.Delegate.OnVehicleThumbnailLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail(ShanghaiWindy.Core.VehicleInfo, ShanghaiWindy.Core.Delegate.OnVehicleThumbnailLoadedDelegate)
   nameWithType: VehicleAPI.LoadVehicleThumbnail(VehicleInfo, OnVehicleThumbnailLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.LoadVehicleThumbnail*
   name: LoadVehicleThumbnail
@@ -3195,13 +3249,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.RandomPickVehicleFromList
   nameWithType: VehicleAPI.RandomPickVehicleFromList
-- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,OnFiredDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,ShanghaiWindy.Core.Delegate.OnFiredDelegate)
   name: RegisterBulletFiredEvent(BaseInitSystem, int, OnFiredDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterBulletFiredEvent_ShanghaiWindy_Core_BaseInitSystem_System_Int32_OnFiredDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,OnFiredDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterBulletFiredEvent_ShanghaiWindy_Core_BaseInitSystem_System_Int32_ShanghaiWindy_Core_Delegate_OnFiredDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,ShanghaiWindy.Core.Delegate.OnFiredDelegate)
   name.vb: RegisterBulletFiredEvent(BaseInitSystem, Integer, OnFiredDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, int, OnFiredDelegate)
-  fullName.vb: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, Integer, OnFiredDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, int, ShanghaiWindy.Core.Delegate.OnFiredDelegate)
+  fullName.vb: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, Integer, ShanghaiWindy.Core.Delegate.OnFiredDelegate)
   nameWithType: VehicleAPI.RegisterBulletFiredEvent(BaseInitSystem, int, OnFiredDelegate)
   nameWithType.vb: VehicleAPI.RegisterBulletFiredEvent(BaseInitSystem, Integer, OnFiredDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent*
@@ -3211,11 +3265,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterBulletFiredEvent
   nameWithType: VehicleAPI.RegisterBulletFiredEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleDestroyedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate)
   name: RegisterVehicleDestroyedEvent(BaseInitSystem, OnVehicleDestroyedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleDestroyedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleDestroyedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, OnVehicleDestroyedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnVehicleDestroyedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate)
   nameWithType: VehicleAPI.RegisterVehicleDestroyedEvent(BaseInitSystem, OnVehicleDestroyedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent*
   name: RegisterVehicleDestroyedEvent
@@ -3224,11 +3278,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleDestroyedEvent
   nameWithType: VehicleAPI.RegisterVehicleDestroyedEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleRemovedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate)
   name: RegisterVehicleGameObjectDestroyedEvent(BaseInitSystem, OnVehicleRemovedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleRemovedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleRemovedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, OnVehicleRemovedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnVehicleRemovedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate)
   nameWithType: VehicleAPI.RegisterVehicleGameObjectDestroyedEvent(BaseInitSystem, OnVehicleRemovedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent*
   name: RegisterVehicleGameObjectDestroyedEvent
@@ -3237,11 +3291,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleGameObjectDestroyedEvent
   nameWithType: VehicleAPI.RegisterVehicleGameObjectDestroyedEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate)
   name: RegisterVehicleLoadedEvent(BaseInitSystem, OnVehicleLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleLoadedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem, OnVehicleLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_RegisterVehicleLoadedEvent_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnVehicleLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate)
   nameWithType: VehicleAPI.RegisterVehicleLoadedEvent(BaseInitSystem, OnVehicleLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent*
   name: RegisterVehicleLoadedEvent
@@ -3250,13 +3304,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.RegisterVehicleLoadedEvent
   nameWithType: VehicleAPI.RegisterVehicleLoadedEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject,ArmyInitSystem@)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject,ShanghaiWindy.Core.FPS.ArmyInitSystem@)
   name: TryGetArmyInitSystemFromGameObject(GameObject, out ArmyInitSystem)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_TryGetArmyInitSystemFromGameObject_GameObject_ArmyInitSystem__
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject,ArmyInitSystem@)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_TryGetArmyInitSystemFromGameObject_GameObject_ShanghaiWindy_Core_FPS_ArmyInitSystem__
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject,ShanghaiWindy.Core.FPS.ArmyInitSystem@)
   name.vb: TryGetArmyInitSystemFromGameObject(GameObject, ArmyInitSystem)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject, out ArmyInitSystem)
-  fullName.vb: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject, ArmyInitSystem)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject, out ShanghaiWindy.Core.FPS.ArmyInitSystem)
+  fullName.vb: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject, ShanghaiWindy.Core.FPS.ArmyInitSystem)
   nameWithType: VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject, out ArmyInitSystem)
   nameWithType.vb: VehicleAPI.TryGetArmyInitSystemFromGameObject(GameObject, ArmyInitSystem)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.TryGetArmyInitSystemFromGameObject*
@@ -3314,13 +3368,13 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.TryGetTankInitSystemFromGameObject
   nameWithType: VehicleAPI.TryGetTankInitSystemFromGameObject
-- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,OnFiredDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,ShanghaiWindy.Core.Delegate.OnFiredDelegate)
   name: UnRegisterBulletFiredEvent(BaseInitSystem, int, OnFiredDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterBulletFiredEvent_ShanghaiWindy_Core_BaseInitSystem_System_Int32_OnFiredDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,OnFiredDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterBulletFiredEvent_ShanghaiWindy_Core_BaseInitSystem_System_Int32_ShanghaiWindy_Core_Delegate_OnFiredDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem,System.Int32,ShanghaiWindy.Core.Delegate.OnFiredDelegate)
   name.vb: UnRegisterBulletFiredEvent(BaseInitSystem, Integer, OnFiredDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, int, OnFiredDelegate)
-  fullName.vb: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, Integer, OnFiredDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, int, ShanghaiWindy.Core.Delegate.OnFiredDelegate)
+  fullName.vb: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent(ShanghaiWindy.Core.BaseInitSystem, Integer, ShanghaiWindy.Core.Delegate.OnFiredDelegate)
   nameWithType: VehicleAPI.UnRegisterBulletFiredEvent(BaseInitSystem, int, OnFiredDelegate)
   nameWithType.vb: VehicleAPI.UnRegisterBulletFiredEvent(BaseInitSystem, Integer, OnFiredDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent*
@@ -3330,11 +3384,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterBulletFiredEvent
   nameWithType: VehicleAPI.UnRegisterBulletFiredEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleDestroyedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate)
   name: UnRegisterVehicleDestroyedEvent(BaseInitSystem, OnVehicleDestroyedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleDestroyedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleDestroyedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, OnVehicleDestroyedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnVehicleDestroyedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate)
   nameWithType: VehicleAPI.UnRegisterVehicleDestroyedEvent(BaseInitSystem, OnVehicleDestroyedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent*
   name: UnRegisterVehicleDestroyedEvent
@@ -3343,11 +3397,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleDestroyedEvent
   nameWithType: VehicleAPI.UnRegisterVehicleDestroyedEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleRemovedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate)
   name: UnRegisterVehicleGameObjectDestroyedEvent(BaseInitSystem, OnVehicleRemovedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleRemovedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleRemovedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, OnVehicleRemovedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleGameObjectDestroyedEvent_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnVehicleRemovedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate)
   nameWithType: VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent(BaseInitSystem, OnVehicleRemovedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent*
   name: UnRegisterVehicleGameObjectDestroyedEvent
@@ -3356,11 +3410,11 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent
   nameWithType: VehicleAPI.UnRegisterVehicleGameObjectDestroyedEvent
-- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleLoadedDelegate)
+- uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate)
   name: UnRegisterVehicleLoaedEvent(BaseInitSystem, OnVehicleLoadedDelegate)
-  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleLoaedEvent_ShanghaiWindy_Core_BaseInitSystem_OnVehicleLoadedDelegate_
-  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem,OnVehicleLoadedDelegate)
-  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem, OnVehicleLoadedDelegate)
+  href: api/ShanghaiWindy.Core.API.VehicleAPI.html#ShanghaiWindy_Core_API_VehicleAPI_UnRegisterVehicleLoaedEvent_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_Delegate_OnVehicleLoadedDelegate_
+  commentId: M:ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate)
+  fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent(ShanghaiWindy.Core.BaseInitSystem, ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate)
   nameWithType: VehicleAPI.UnRegisterVehicleLoaedEvent(BaseInitSystem, OnVehicleLoadedDelegate)
 - uid: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent*
   name: UnRegisterVehicleLoaedEvent
@@ -3369,30 +3423,208 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.API.VehicleAPI.UnRegisterVehicleLoaedEvent
   nameWithType: VehicleAPI.UnRegisterVehicleLoaedEvent
-- uid: ShanghaiWindy.Core.BaseFireSystem
-  name: BaseFireSystem
-  href: api/ShanghaiWindy.Core.BaseFireSystem.html
-  commentId: T:ShanghaiWindy.Core.BaseFireSystem
-  fullName: ShanghaiWindy.Core.BaseFireSystem
-  nameWithType: BaseFireSystem
+- uid: ShanghaiWindy.Core.API.eDefaultButtonInputType
+  name: eDefaultButtonInputType
+  href: api/ShanghaiWindy.Core.API.eDefaultButtonInputType.html
+  commentId: T:ShanghaiWindy.Core.API.eDefaultButtonInputType
+  fullName: ShanghaiWindy.Core.API.eDefaultButtonInputType
+  nameWithType: eDefaultButtonInputType
+- uid: ShanghaiWindy.Core.API.eDefaultValueInputType
+  name: eDefaultValueInputType
+  href: api/ShanghaiWindy.Core.API.eDefaultValueInputType.html
+  commentId: T:ShanghaiWindy.Core.API.eDefaultValueInputType
+  fullName: ShanghaiWindy.Core.API.eDefaultValueInputType
+  nameWithType: eDefaultValueInputType
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer
+  name: AbstractBattlePlayer
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html
+  commentId: T:ShanghaiWindy.Core.AbstractBattlePlayer
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer
+  nameWithType: AbstractBattlePlayer
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.AvatarInfo
+  name: AvatarInfo
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_AvatarInfo
+  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.AvatarInfo
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.AvatarInfo
+  nameWithType: AbstractBattlePlayer.AvatarInfo
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo,Vector3,Quaternion,System.Action{ShanghaiWindy.Core.BaseInitSystem})
+  name: CreateVehicle(VehicleInfo, Vector3, Quaternion, Action<BaseInitSystem>)
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_CreateVehicle_ShanghaiWindy_Core_VehicleInfo_Vector3_Quaternion_System_Action_ShanghaiWindy_Core_BaseInitSystem__
+  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo,Vector3,Quaternion,System.Action{ShanghaiWindy.Core.BaseInitSystem})
+  name.vb: CreateVehicle(VehicleInfo, Vector3, Quaternion, Action(Of BaseInitSystem))
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo, Vector3, Quaternion, System.Action<ShanghaiWindy.Core.BaseInitSystem>)
+  fullName.vb: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle(ShanghaiWindy.Core.VehicleInfo, Vector3, Quaternion, System.Action(Of ShanghaiWindy.Core.BaseInitSystem))
+  nameWithType: AbstractBattlePlayer.CreateVehicle(VehicleInfo, Vector3, Quaternion, Action<BaseInitSystem>)
+  nameWithType.vb: AbstractBattlePlayer.CreateVehicle(VehicleInfo, Vector3, Quaternion, Action(Of BaseInitSystem))
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle*
+  name: CreateVehicle
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_CreateVehicle_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.CreateVehicle
+  nameWithType: AbstractBattlePlayer.CreateVehicle
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
+  name: GetTeam()
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTeam
+  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam()
+  nameWithType: AbstractBattlePlayer.GetTeam()
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam*
+  name: GetTeam
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTeam_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTeam
+  nameWithType: AbstractBattlePlayer.GetTeam
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
+  name: GetTotalDamage()
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDamage
+  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage()
+  nameWithType: AbstractBattlePlayer.GetTotalDamage()
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage*
+  name: GetTotalDamage
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDamage_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDamage
+  nameWithType: AbstractBattlePlayer.GetTotalDamage
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
+  name: GetTotalDestroyed()
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDestroyed
+  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed()
+  nameWithType: AbstractBattlePlayer.GetTotalDestroyed()
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed*
+  name: GetTotalDestroyed
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetTotalDestroyed_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetTotalDestroyed
+  nameWithType: AbstractBattlePlayer.GetTotalDestroyed
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
+  name: GetVehicleName()
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetVehicleName
+  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName()
+  nameWithType: AbstractBattlePlayer.GetVehicleName()
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName*
+  name: GetVehicleName
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_GetVehicleName_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.GetVehicleName
+  nameWithType: AbstractBattlePlayer.GetVehicleName
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.Info
+  name: Info
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_Info
+  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.Info
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.Info
+  nameWithType: AbstractBattlePlayer.Info
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
+  name: IsAlive
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsAlive
+  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
+  nameWithType: AbstractBattlePlayer.IsAlive
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive*
+  name: IsAlive
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsAlive_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsAlive
+  nameWithType: AbstractBattlePlayer.IsAlive
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
+  name: IsLocalPlayer()
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsLocalPlayer
+  commentId: M:ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer()
+  nameWithType: AbstractBattlePlayer.IsLocalPlayer()
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer*
+  name: IsLocalPlayer
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_IsLocalPlayer_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.IsLocalPlayer
+  nameWithType: AbstractBattlePlayer.IsLocalPlayer
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.NickName
+  name: NickName
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_NickName
+  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.NickName
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.NickName
+  nameWithType: AbstractBattlePlayer.NickName
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
+  name: OnGameObjectDestroyed
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnGameObjectDestroyed
+  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
+  nameWithType: AbstractBattlePlayer.OnGameObjectDestroyed
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed*
+  name: OnGameObjectDestroyed
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnGameObjectDestroyed_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnGameObjectDestroyed
+  nameWithType: AbstractBattlePlayer.OnGameObjectDestroyed
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
+  name: OnVehicleDestroyed
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleDestroyed
+  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
+  nameWithType: AbstractBattlePlayer.OnVehicleDestroyed
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed*
+  name: OnVehicleDestroyed
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleDestroyed_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleDestroyed
+  nameWithType: AbstractBattlePlayer.OnVehicleDestroyed
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
+  name: OnVehicleLoaded
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleLoaded
+  commentId: P:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
+  nameWithType: AbstractBattlePlayer.OnVehicleLoaded
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded*
+  name: OnVehicleLoaded
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_OnVehicleLoaded_
+  commentId: Overload:ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.OnVehicleLoaded
+  nameWithType: AbstractBattlePlayer.OnVehicleLoaded
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.Uid
+  name: Uid
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_Uid
+  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.Uid
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.Uid
+  nameWithType: AbstractBattlePlayer.Uid
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.Vehicle
+  name: Vehicle
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_Vehicle
+  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.Vehicle
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.Vehicle
+  nameWithType: AbstractBattlePlayer.Vehicle
+- uid: ShanghaiWindy.Core.AbstractBattlePlayer.VehicleInfo
+  name: VehicleInfo
+  href: api/ShanghaiWindy.Core.AbstractBattlePlayer.html#ShanghaiWindy_Core_AbstractBattlePlayer_VehicleInfo
+  commentId: F:ShanghaiWindy.Core.AbstractBattlePlayer.VehicleInfo
+  fullName: ShanghaiWindy.Core.AbstractBattlePlayer.VehicleInfo
+  nameWithType: AbstractBattlePlayer.VehicleInfo
+- uid: ShanghaiWindy.Core.BaseFireSystem`1
+  name: BaseFireSystem<TConfig>
+  href: api/ShanghaiWindy.Core.BaseFireSystem-1.html
+  commentId: T:ShanghaiWindy.Core.BaseFireSystem`1
+  name.vb: BaseFireSystem(Of TConfig)
+  fullName: ShanghaiWindy.Core.BaseFireSystem<TConfig>
+  fullName.vb: ShanghaiWindy.Core.BaseFireSystem(Of TConfig)
+  nameWithType: BaseFireSystem<TConfig>
+  nameWithType.vb: BaseFireSystem(Of TConfig)
 - uid: ShanghaiWindy.Core.BaseInitSystem
   name: BaseInitSystem
   href: api/ShanghaiWindy.Core.BaseInitSystem.html
   commentId: T:ShanghaiWindy.Core.BaseInitSystem
   fullName: ShanghaiWindy.Core.BaseInitSystem
   nameWithType: BaseInitSystem
-- uid: ShanghaiWindy.Core.BaseInitSystem.basePawn
-  name: basePawn
-  href: api/ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_basePawn
-  commentId: F:ShanghaiWindy.Core.BaseInitSystem.basePawn
-  fullName: ShanghaiWindy.Core.BaseInitSystem.basePawn
-  nameWithType: BaseInitSystem.basePawn
-- uid: ShanghaiWindy.Core.BaseInitSystem.equipmentBuffDataList
-  name: equipmentBuffDataList
-  href: api/ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_equipmentBuffDataList
-  commentId: F:ShanghaiWindy.Core.BaseInitSystem.equipmentBuffDataList
-  fullName: ShanghaiWindy.Core.BaseInitSystem.equipmentBuffDataList
-  nameWithType: BaseInitSystem.equipmentBuffDataList
 - uid: ShanghaiWindy.Core.BaseInitSystem.IsDestroyed
   name: IsDestroyed
   href: api/ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_IsDestroyed
@@ -3549,144 +3781,297 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.BaseInitSystem.VehicleName
   nameWithType: BaseInitSystem.VehicleName
-- uid: ShanghaiWindy.Core.BasePawn
-  name: BasePawn
-  href: api/ShanghaiWindy.Core.BasePawn.html
-  commentId: T:ShanghaiWindy.Core.BasePawn
-  fullName: ShanghaiWindy.Core.BasePawn
-  nameWithType: BasePawn
-- uid: ShanghaiWindy.Core.BasePawn.DamageResistanceBuffedCoff
-  name: DamageResistanceBuffedCoff
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_DamageResistanceBuffedCoff
-  commentId: F:ShanghaiWindy.Core.BasePawn.DamageResistanceBuffedCoff
-  fullName: ShanghaiWindy.Core.BasePawn.DamageResistanceBuffedCoff
-  nameWithType: BasePawn.DamageResistanceBuffedCoff
-- uid: ShanghaiWindy.Core.BasePawn.defaultHP
+- uid: ShanghaiWindy.Core.BaseInitSystem.basePawn
+  name: basePawn
+  href: api/ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_basePawn
+  commentId: F:ShanghaiWindy.Core.BaseInitSystem.basePawn
+  fullName: ShanghaiWindy.Core.BaseInitSystem.basePawn
+  nameWithType: BaseInitSystem.basePawn
+- uid: ShanghaiWindy.Core.BaseInitSystem.equipmentBuffDataList
+  name: equipmentBuffDataList
+  href: api/ShanghaiWindy.Core.BaseInitSystem.html#ShanghaiWindy_Core_BaseInitSystem_equipmentBuffDataList
+  commentId: F:ShanghaiWindy.Core.BaseInitSystem.equipmentBuffDataList
+  fullName: ShanghaiWindy.Core.BaseInitSystem.equipmentBuffDataList
+  nameWithType: BaseInitSystem.equipmentBuffDataList
+- uid: ShanghaiWindy.Core.BasePawn`1
+  name: BasePawn<TConfig>
+  href: api/ShanghaiWindy.Core.BasePawn-1.html
+  commentId: T:ShanghaiWindy.Core.BasePawn`1
+  name.vb: BasePawn(Of TConfig)
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig)
+  nameWithType: BasePawn<TConfig>
+  nameWithType.vb: BasePawn(Of TConfig)
+- uid: ShanghaiWindy.Core.BasePawn`1.DamageTakenBuffedCoff
+  name: DamageTakenBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_DamageTakenBuffedCoff
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.DamageTakenBuffedCoff
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.DamageTakenBuffedCoff
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).DamageTakenBuffedCoff
+  nameWithType: BasePawn<TConfig>.DamageTakenBuffedCoff
+  nameWithType.vb: BasePawn(Of TConfig).DamageTakenBuffedCoff
+- uid: ShanghaiWindy.Core.BasePawn`1.DamageTakenBuffedCoff*
+  name: DamageTakenBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_DamageTakenBuffedCoff_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.DamageTakenBuffedCoff
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.DamageTakenBuffedCoff
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).DamageTakenBuffedCoff
+  nameWithType: BasePawn<TConfig>.DamageTakenBuffedCoff
+  nameWithType.vb: BasePawn(Of TConfig).DamageTakenBuffedCoff
+- uid: ShanghaiWindy.Core.BasePawn`1.OnDamaged
+  name: OnDamaged
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_OnDamaged
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.OnDamaged
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.OnDamaged
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).OnDamaged
+  nameWithType: BasePawn<TConfig>.OnDamaged
+  nameWithType.vb: BasePawn(Of TConfig).OnDamaged
+- uid: ShanghaiWindy.Core.BasePawn`1.OnDamaged*
+  name: OnDamaged
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_OnDamaged_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.OnDamaged
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.OnDamaged
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).OnDamaged
+  nameWithType: BasePawn<TConfig>.OnDamaged
+  nameWithType.vb: BasePawn(Of TConfig).OnDamaged
+- uid: ShanghaiWindy.Core.BasePawn`1.OnNotBreakDowned
+  name: OnNotBreakDowned
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_OnNotBreakDowned
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.OnNotBreakDowned
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.OnNotBreakDowned
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).OnNotBreakDowned
+  nameWithType: BasePawn<TConfig>.OnNotBreakDowned
+  nameWithType.vb: BasePawn(Of TConfig).OnNotBreakDowned
+- uid: ShanghaiWindy.Core.BasePawn`1.OnNotBreakDowned*
+  name: OnNotBreakDowned
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_OnNotBreakDowned_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.OnNotBreakDowned
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.OnNotBreakDowned
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).OnNotBreakDowned
+  nameWithType: BasePawn<TConfig>.OnNotBreakDowned
+  nameWithType.vb: BasePawn(Of TConfig).OnNotBreakDowned
+- uid: ShanghaiWindy.Core.BasePawn`1.OnRicocheted
+  name: OnRicocheted
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_OnRicocheted
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.OnRicocheted
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.OnRicocheted
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).OnRicocheted
+  nameWithType: BasePawn<TConfig>.OnRicocheted
+  nameWithType.vb: BasePawn(Of TConfig).OnRicocheted
+- uid: ShanghaiWindy.Core.BasePawn`1.OnRicocheted*
+  name: OnRicocheted
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_OnRicocheted_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.OnRicocheted
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.OnRicocheted
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).OnRicocheted
+  nameWithType: BasePawn<TConfig>.OnRicocheted
+  nameWithType.vb: BasePawn(Of TConfig).OnRicocheted
+- uid: ShanghaiWindy.Core.BasePawn`1.RepairTimeBuffedCoff
+  name: RepairTimeBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_RepairTimeBuffedCoff
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.RepairTimeBuffedCoff
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.RepairTimeBuffedCoff
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).RepairTimeBuffedCoff
+  nameWithType: BasePawn<TConfig>.RepairTimeBuffedCoff
+  nameWithType.vb: BasePawn(Of TConfig).RepairTimeBuffedCoff
+- uid: ShanghaiWindy.Core.BasePawn`1.RepairTimeBuffedCoff*
+  name: RepairTimeBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_RepairTimeBuffedCoff_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.RepairTimeBuffedCoff
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.RepairTimeBuffedCoff
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).RepairTimeBuffedCoff
+  nameWithType: BasePawn<TConfig>.RepairTimeBuffedCoff
+  nameWithType.vb: BasePawn(Of TConfig).RepairTimeBuffedCoff
+- uid: ShanghaiWindy.Core.BasePawn`1.ViewRangeBuffedCoff
+  name: ViewRangeBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_ViewRangeBuffedCoff
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.ViewRangeBuffedCoff
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.ViewRangeBuffedCoff
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).ViewRangeBuffedCoff
+  nameWithType: BasePawn<TConfig>.ViewRangeBuffedCoff
+  nameWithType.vb: BasePawn(Of TConfig).ViewRangeBuffedCoff
+- uid: ShanghaiWindy.Core.BasePawn`1.ViewRangeBuffedCoff*
+  name: ViewRangeBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_ViewRangeBuffedCoff_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.ViewRangeBuffedCoff
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.ViewRangeBuffedCoff
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).ViewRangeBuffedCoff
+  nameWithType: BasePawn<TConfig>.ViewRangeBuffedCoff
+  nameWithType.vb: BasePawn(Of TConfig).ViewRangeBuffedCoff
+- uid: ShanghaiWindy.Core.BasePawn`1.defaultHP
   name: defaultHP
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_defaultHP
-  commentId: F:ShanghaiWindy.Core.BasePawn.defaultHP
-  fullName: ShanghaiWindy.Core.BasePawn.defaultHP
-  nameWithType: BasePawn.defaultHP
-- uid: ShanghaiWindy.Core.BasePawn.hp
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_defaultHP
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.defaultHP
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.defaultHP
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).defaultHP
+  nameWithType: BasePawn<TConfig>.defaultHP
+  nameWithType.vb: BasePawn(Of TConfig).defaultHP
+- uid: ShanghaiWindy.Core.BasePawn`1.defaultHP*
+  name: defaultHP
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_defaultHP_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.defaultHP
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.defaultHP
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).defaultHP
+  nameWithType: BasePawn<TConfig>.defaultHP
+  nameWithType.vb: BasePawn(Of TConfig).defaultHP
+- uid: ShanghaiWindy.Core.BasePawn`1.hp
   name: hp
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_hp
-  commentId: F:ShanghaiWindy.Core.BasePawn.hp
-  fullName: ShanghaiWindy.Core.BasePawn.hp
-  nameWithType: BasePawn.hp
-- uid: ShanghaiWindy.Core.BasePawn.isDestroyed
-  name: isDestroyed
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_isDestroyed
-  commentId: P:ShanghaiWindy.Core.BasePawn.isDestroyed
-  fullName: ShanghaiWindy.Core.BasePawn.isDestroyed
-  nameWithType: BasePawn.isDestroyed
-- uid: ShanghaiWindy.Core.BasePawn.isDestroyed*
-  name: isDestroyed
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_isDestroyed_
-  commentId: Overload:ShanghaiWindy.Core.BasePawn.isDestroyed
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_hp
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.hp
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.hp
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).hp
+  nameWithType: BasePawn<TConfig>.hp
+  nameWithType.vb: BasePawn(Of TConfig).hp
+- uid: ShanghaiWindy.Core.BasePawn`1.hp*
+  name: hp
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_hp_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.hp
   isSpec: "True"
-  fullName: ShanghaiWindy.Core.BasePawn.isDestroyed
-  nameWithType: BasePawn.isDestroyed
-- uid: ShanghaiWindy.Core.BasePawn.isFakeHP
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.hp
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).hp
+  nameWithType: BasePawn<TConfig>.hp
+  nameWithType.vb: BasePawn(Of TConfig).hp
+- uid: ShanghaiWindy.Core.BasePawn`1.isDestroyed
+  name: isDestroyed
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_isDestroyed
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.isDestroyed
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.isDestroyed
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).isDestroyed
+  nameWithType: BasePawn<TConfig>.isDestroyed
+  nameWithType.vb: BasePawn(Of TConfig).isDestroyed
+- uid: ShanghaiWindy.Core.BasePawn`1.isDestroyed*
+  name: isDestroyed
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_isDestroyed_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.isDestroyed
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.isDestroyed
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).isDestroyed
+  nameWithType: BasePawn<TConfig>.isDestroyed
+  nameWithType.vb: BasePawn(Of TConfig).isDestroyed
+- uid: ShanghaiWindy.Core.BasePawn`1.isFakeHP
   name: isFakeHP
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_isFakeHP
-  commentId: F:ShanghaiWindy.Core.BasePawn.isFakeHP
-  fullName: ShanghaiWindy.Core.BasePawn.isFakeHP
-  nameWithType: BasePawn.isFakeHP
-- uid: ShanghaiWindy.Core.BasePawn.OnDamaged
-  name: OnDamaged
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnDamaged
-  commentId: P:ShanghaiWindy.Core.BasePawn.OnDamaged
-  fullName: ShanghaiWindy.Core.BasePawn.OnDamaged
-  nameWithType: BasePawn.OnDamaged
-- uid: ShanghaiWindy.Core.BasePawn.OnDamaged*
-  name: OnDamaged
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnDamaged_
-  commentId: Overload:ShanghaiWindy.Core.BasePawn.OnDamaged
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_isFakeHP
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.isFakeHP
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.isFakeHP
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).isFakeHP
+  nameWithType: BasePawn<TConfig>.isFakeHP
+  nameWithType.vb: BasePawn(Of TConfig).isFakeHP
+- uid: ShanghaiWindy.Core.BasePawn`1.isFakeHP*
+  name: isFakeHP
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_isFakeHP_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.isFakeHP
   isSpec: "True"
-  fullName: ShanghaiWindy.Core.BasePawn.OnDamaged
-  nameWithType: BasePawn.OnDamaged
-- uid: ShanghaiWindy.Core.BasePawn.OnNotBreakDowned
-  name: OnNotBreakDowned
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnNotBreakDowned
-  commentId: P:ShanghaiWindy.Core.BasePawn.OnNotBreakDowned
-  fullName: ShanghaiWindy.Core.BasePawn.OnNotBreakDowned
-  nameWithType: BasePawn.OnNotBreakDowned
-- uid: ShanghaiWindy.Core.BasePawn.OnNotBreakDowned*
-  name: OnNotBreakDowned
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnNotBreakDowned_
-  commentId: Overload:ShanghaiWindy.Core.BasePawn.OnNotBreakDowned
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.BasePawn.OnNotBreakDowned
-  nameWithType: BasePawn.OnNotBreakDowned
-- uid: ShanghaiWindy.Core.BasePawn.OnRicocheted
-  name: OnRicocheted
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnRicocheted
-  commentId: P:ShanghaiWindy.Core.BasePawn.OnRicocheted
-  fullName: ShanghaiWindy.Core.BasePawn.OnRicocheted
-  nameWithType: BasePawn.OnRicocheted
-- uid: ShanghaiWindy.Core.BasePawn.OnRicocheted*
-  name: OnRicocheted
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_OnRicocheted_
-  commentId: Overload:ShanghaiWindy.Core.BasePawn.OnRicocheted
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.BasePawn.OnRicocheted
-  nameWithType: BasePawn.OnRicocheted
-- uid: ShanghaiWindy.Core.BasePawn.RepairSpeedBuffedCoff
-  name: RepairSpeedBuffedCoff
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_RepairSpeedBuffedCoff
-  commentId: P:ShanghaiWindy.Core.BasePawn.RepairSpeedBuffedCoff
-  fullName: ShanghaiWindy.Core.BasePawn.RepairSpeedBuffedCoff
-  nameWithType: BasePawn.RepairSpeedBuffedCoff
-- uid: ShanghaiWindy.Core.BasePawn.RepairSpeedBuffedCoff*
-  name: RepairSpeedBuffedCoff
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_RepairSpeedBuffedCoff_
-  commentId: Overload:ShanghaiWindy.Core.BasePawn.RepairSpeedBuffedCoff
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.BasePawn.RepairSpeedBuffedCoff
-  nameWithType: BasePawn.RepairSpeedBuffedCoff
-- uid: ShanghaiWindy.Core.BasePawn.totalBlockDamage
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.isFakeHP
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).isFakeHP
+  nameWithType: BasePawn<TConfig>.isFakeHP
+  nameWithType.vb: BasePawn(Of TConfig).isFakeHP
+- uid: ShanghaiWindy.Core.BasePawn`1.totalBlockDamage
   name: totalBlockDamage
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_totalBlockDamage
-  commentId: F:ShanghaiWindy.Core.BasePawn.totalBlockDamage
-  fullName: ShanghaiWindy.Core.BasePawn.totalBlockDamage
-  nameWithType: BasePawn.totalBlockDamage
-- uid: ShanghaiWindy.Core.BasePawn.totalDamage
-  name: totalDamage
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_totalDamage
-  commentId: F:ShanghaiWindy.Core.BasePawn.totalDamage
-  fullName: ShanghaiWindy.Core.BasePawn.totalDamage
-  nameWithType: BasePawn.totalDamage
-- uid: ShanghaiWindy.Core.BasePawn.totalDestroyed
-  name: totalDestroyed
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_totalDestroyed
-  commentId: F:ShanghaiWindy.Core.BasePawn.totalDestroyed
-  fullName: ShanghaiWindy.Core.BasePawn.totalDestroyed
-  nameWithType: BasePawn.totalDestroyed
-- uid: ShanghaiWindy.Core.BasePawn.vehicleName
-  name: vehicleName
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_vehicleName
-  commentId: F:ShanghaiWindy.Core.BasePawn.vehicleName
-  fullName: ShanghaiWindy.Core.BasePawn.vehicleName
-  nameWithType: BasePawn.vehicleName
-- uid: ShanghaiWindy.Core.BasePawn.ViewRangeBuffedCoff
-  name: ViewRangeBuffedCoff
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_ViewRangeBuffedCoff
-  commentId: P:ShanghaiWindy.Core.BasePawn.ViewRangeBuffedCoff
-  fullName: ShanghaiWindy.Core.BasePawn.ViewRangeBuffedCoff
-  nameWithType: BasePawn.ViewRangeBuffedCoff
-- uid: ShanghaiWindy.Core.BasePawn.ViewRangeBuffedCoff*
-  name: ViewRangeBuffedCoff
-  href: api/ShanghaiWindy.Core.BasePawn.html#ShanghaiWindy_Core_BasePawn_ViewRangeBuffedCoff_
-  commentId: Overload:ShanghaiWindy.Core.BasePawn.ViewRangeBuffedCoff
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_totalBlockDamage
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.totalBlockDamage
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.totalBlockDamage
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).totalBlockDamage
+  nameWithType: BasePawn<TConfig>.totalBlockDamage
+  nameWithType.vb: BasePawn(Of TConfig).totalBlockDamage
+- uid: ShanghaiWindy.Core.BasePawn`1.totalBlockDamage*
+  name: totalBlockDamage
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_totalBlockDamage_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.totalBlockDamage
   isSpec: "True"
-  fullName: ShanghaiWindy.Core.BasePawn.ViewRangeBuffedCoff
-  nameWithType: BasePawn.ViewRangeBuffedCoff
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.totalBlockDamage
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).totalBlockDamage
+  nameWithType: BasePawn<TConfig>.totalBlockDamage
+  nameWithType.vb: BasePawn(Of TConfig).totalBlockDamage
+- uid: ShanghaiWindy.Core.BasePawn`1.totalDamage
+  name: totalDamage
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_totalDamage
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.totalDamage
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.totalDamage
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).totalDamage
+  nameWithType: BasePawn<TConfig>.totalDamage
+  nameWithType.vb: BasePawn(Of TConfig).totalDamage
+- uid: ShanghaiWindy.Core.BasePawn`1.totalDamage*
+  name: totalDamage
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_totalDamage_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.totalDamage
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.totalDamage
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).totalDamage
+  nameWithType: BasePawn<TConfig>.totalDamage
+  nameWithType.vb: BasePawn(Of TConfig).totalDamage
+- uid: ShanghaiWindy.Core.BasePawn`1.totalDestroyed
+  name: totalDestroyed
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_totalDestroyed
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.totalDestroyed
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.totalDestroyed
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).totalDestroyed
+  nameWithType: BasePawn<TConfig>.totalDestroyed
+  nameWithType.vb: BasePawn(Of TConfig).totalDestroyed
+- uid: ShanghaiWindy.Core.BasePawn`1.totalDestroyed*
+  name: totalDestroyed
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_totalDestroyed_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.totalDestroyed
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.totalDestroyed
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).totalDestroyed
+  nameWithType: BasePawn<TConfig>.totalDestroyed
+  nameWithType.vb: BasePawn(Of TConfig).totalDestroyed
+- uid: ShanghaiWindy.Core.BasePawn`1.vehicleName
+  name: vehicleName
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_vehicleName
+  commentId: P:ShanghaiWindy.Core.BasePawn`1.vehicleName
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.vehicleName
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).vehicleName
+  nameWithType: BasePawn<TConfig>.vehicleName
+  nameWithType.vb: BasePawn(Of TConfig).vehicleName
+- uid: ShanghaiWindy.Core.BasePawn`1.vehicleName*
+  name: vehicleName
+  href: api/ShanghaiWindy.Core.BasePawn-1.html#ShanghaiWindy_Core_BasePawn_1_vehicleName_
+  commentId: Overload:ShanghaiWindy.Core.BasePawn`1.vehicleName
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.BasePawn<TConfig>.vehicleName
+  fullName.vb: ShanghaiWindy.Core.BasePawn(Of TConfig).vehicleName
+  nameWithType: BasePawn<TConfig>.vehicleName
+  nameWithType.vb: BasePawn(Of TConfig).vehicleName
 - uid: ShanghaiWindy.Core.CaptureZoneInfo
   name: CaptureZoneInfo
   href: api/ShanghaiWindy.Core.CaptureZoneInfo.html
   commentId: T:ShanghaiWindy.Core.CaptureZoneInfo
   fullName: ShanghaiWindy.Core.CaptureZoneInfo
   nameWithType: CaptureZoneInfo
+- uid: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
+  name: GetIndex()
+  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_GetIndex
+  commentId: M:ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
+  fullName: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex()
+  nameWithType: CaptureZoneInfo.GetIndex()
+- uid: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex*
+  name: GetIndex
+  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_GetIndex_
+  commentId: Overload:ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
+  nameWithType: CaptureZoneInfo.GetIndex
+- uid: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
+  name: IsComplete()
+  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_IsComplete
+  commentId: M:ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
+  fullName: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete()
+  nameWithType: CaptureZoneInfo.IsComplete()
+- uid: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete*
+  name: IsComplete
+  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_IsComplete_
+  commentId: Overload:ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
+  nameWithType: CaptureZoneInfo.IsComplete
 - uid: ShanghaiWindy.Core.CaptureZoneInfo.captureStage
   name: captureStage
   href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_captureStage
@@ -3726,32 +4111,6 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.CaptureZoneInfo.currentCaptureProgress
   nameWithType: CaptureZoneInfo.currentCaptureProgress
-- uid: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
-  name: GetIndex()
-  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_GetIndex
-  commentId: M:ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
-  fullName: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex()
-  nameWithType: CaptureZoneInfo.GetIndex()
-- uid: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex*
-  name: GetIndex
-  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_GetIndex_
-  commentId: Overload:ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.CaptureZoneInfo.GetIndex
-  nameWithType: CaptureZoneInfo.GetIndex
-- uid: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
-  name: IsComplete()
-  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_IsComplete
-  commentId: M:ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
-  fullName: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete()
-  nameWithType: CaptureZoneInfo.IsComplete()
-- uid: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete*
-  name: IsComplete
-  href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_IsComplete_
-  commentId: Overload:ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.CaptureZoneInfo.IsComplete
-  nameWithType: CaptureZoneInfo.IsComplete
 - uid: ShanghaiWindy.Core.CaptureZoneInfo.point
   name: point
   href: api/ShanghaiWindy.Core.CaptureZoneInfo.html#ShanghaiWindy_Core_CaptureZoneInfo_point
@@ -4048,232 +4407,6 @@ references:
   commentId: T:ShanghaiWindy.Core.Lua.ILuaBuffCaster
   fullName: ShanghaiWindy.Core.Lua.ILuaBuffCaster
   nameWithType: ILuaBuffCaster
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon
-  name: ILuaCommon
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html
-  commentId: T:ShanghaiWindy.Core.Lua.ILuaCommon
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon
-  nameWithType: ILuaCommon
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnDispose
-  name: OnDispose()
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnDispose
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnDispose
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnDispose()
-  nameWithType: ILuaCommon.OnDispose()
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnDispose*
-  name: OnDispose
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnDispose_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnDispose
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnDispose
-  nameWithType: ILuaCommon.OnDispose
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnFixedUpdated
-  name: OnFixedUpdated()
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnFixedUpdated
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnFixedUpdated
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnFixedUpdated()
-  nameWithType: ILuaCommon.OnFixedUpdated()
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnFixedUpdated*
-  name: OnFixedUpdated
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnFixedUpdated_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnFixedUpdated
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnFixedUpdated
-  nameWithType: ILuaCommon.OnFixedUpdated
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnGUI
-  name: OnGUI()
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnGUI
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnGUI
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnGUI()
-  nameWithType: ILuaCommon.OnGUI()
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnGUI*
-  name: OnGUI
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnGUI_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnGUI
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnGUI
-  nameWithType: ILuaCommon.OnGUI
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnLateUpdated
-  name: OnLateUpdated()
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnLateUpdated
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnLateUpdated
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnLateUpdated()
-  nameWithType: ILuaCommon.OnLateUpdated()
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnLateUpdated*
-  name: OnLateUpdated
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnLateUpdated_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnLateUpdated
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnLateUpdated
-  nameWithType: ILuaCommon.OnLateUpdated
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded(System.String)
-  name: OnSceneLoaded(string)
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnSceneLoaded_System_String_
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded(System.String)
-  name.vb: OnSceneLoaded(String)
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded(string)
-  fullName.vb: ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded(String)
-  nameWithType: ILuaCommon.OnSceneLoaded(string)
-  nameWithType.vb: ILuaCommon.OnSceneLoaded(String)
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded*
-  name: OnSceneLoaded
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnSceneLoaded_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnSceneLoaded
-  nameWithType: ILuaCommon.OnSceneLoaded
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnStarted
-  name: OnStarted()
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnStarted
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnStarted
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnStarted()
-  nameWithType: ILuaCommon.OnStarted()
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnStarted*
-  name: OnStarted
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnStarted_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnStarted
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnStarted
-  nameWithType: ILuaCommon.OnStarted
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnUpdated
-  name: OnUpdated()
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnUpdated
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaCommon.OnUpdated
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnUpdated()
-  nameWithType: ILuaCommon.OnUpdated()
-- uid: ShanghaiWindy.Core.Lua.ILuaCommon.OnUpdated*
-  name: OnUpdated
-  href: api/ShanghaiWindy.Core.Lua.ILuaCommon.html#ShanghaiWindy_Core_Lua_ILuaCommon_OnUpdated_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaCommon.OnUpdated
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaCommon.OnUpdated
-  nameWithType: ILuaCommon.OnUpdated
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode
-  name: ILuaGameMode
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html
-  commentId: T:ShanghaiWindy.Core.Lua.ILuaGameMode
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode
-  nameWithType: ILuaGameMode
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName(System.String)
-  name: GetGameModeName(string)
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_GetGameModeName_System_String_
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName(System.String)
-  name.vb: GetGameModeName(String)
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName(string)
-  fullName.vb: ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName(String)
-  nameWithType: ILuaGameMode.GetGameModeName(string)
-  nameWithType.vb: ILuaGameMode.GetGameModeName(String)
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName*
-  name: GetGameModeName
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_GetGameModeName_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.GetGameModeName
-  nameWithType: ILuaGameMode.GetGameModeName
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.GetMapMode
-  name: GetMapMode()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_GetMapMode
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.GetMapMode
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.GetMapMode()
-  nameWithType: ILuaGameMode.GetMapMode()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.GetMapMode*
-  name: GetMapMode
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_GetMapMode_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.GetMapMode
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.GetMapMode
-  nameWithType: ILuaGameMode.GetMapMode
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint
-  name: IsEnableCapturePoint()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsEnableCapturePoint
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint()
-  nameWithType: ILuaGameMode.IsEnableCapturePoint()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint*
-  name: IsEnableCapturePoint
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsEnableCapturePoint_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableCapturePoint
-  nameWithType: ILuaGameMode.IsEnableCapturePoint
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
-  name: IsEnableMinimap()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsEnableMinimap
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap()
-  nameWithType: ILuaGameMode.IsEnableMinimap()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap*
-  name: IsEnableMinimap
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsEnableMinimap_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsEnableMinimap
-  nameWithType: ILuaGameMode.IsEnableMinimap
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle
-  name: IsProxyBattle()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsProxyBattle
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle()
-  nameWithType: ILuaGameMode.IsProxyBattle()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle*
-  name: IsProxyBattle
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_IsProxyBattle_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.IsProxyBattle
-  nameWithType: ILuaGameMode.IsProxyBattle
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.luaClass
-  name: luaClass
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_luaClass
-  commentId: P:ShanghaiWindy.Core.Lua.ILuaGameMode.luaClass
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.luaClass
-  nameWithType: ILuaGameMode.luaClass
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.luaClass*
-  name: luaClass
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_luaClass_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.luaClass
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.luaClass
-  nameWithType: ILuaGameMode.luaClass
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.OnExitMode
-  name: OnExitMode()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_OnExitMode
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.OnExitMode
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.OnExitMode()
-  nameWithType: ILuaGameMode.OnExitMode()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.OnExitMode*
-  name: OnExitMode
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_OnExitMode_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.OnExitMode
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.OnExitMode
-  nameWithType: ILuaGameMode.OnExitMode
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.OnStartMode
-  name: OnStartMode()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_OnStartMode
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.OnStartMode
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.OnStartMode()
-  nameWithType: ILuaGameMode.OnStartMode()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.OnStartMode*
-  name: OnStartMode
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_OnStartMode_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.OnStartMode
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.OnStartMode
-  nameWithType: ILuaGameMode.OnStartMode
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.OnUpdated
-  name: OnUpdated()
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_OnUpdated
-  commentId: M:ShanghaiWindy.Core.Lua.ILuaGameMode.OnUpdated
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.OnUpdated()
-  nameWithType: ILuaGameMode.OnUpdated()
-- uid: ShanghaiWindy.Core.Lua.ILuaGameMode.OnUpdated*
-  name: OnUpdated
-  href: api/ShanghaiWindy.Core.Lua.ILuaGameMode.html#ShanghaiWindy_Core_Lua_ILuaGameMode_OnUpdated_
-  commentId: Overload:ShanghaiWindy.Core.Lua.ILuaGameMode.OnUpdated
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.ILuaGameMode.OnUpdated
-  nameWithType: ILuaGameMode.OnUpdated
 - uid: ShanghaiWindy.Core.Lua.ILuaVehicleController
   name: ILuaVehicleController
   href: api/ShanghaiWindy.Core.Lua.ILuaVehicleController.html
@@ -4286,67 +4419,6 @@ references:
   commentId: T:ShanghaiWindy.Core.Lua.LuaBehaviorMono
   fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono
   nameWithType: LuaBehaviorMono
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.ClassName
-  name: ClassName
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_ClassName
-  commentId: P:ShanghaiWindy.Core.Lua.LuaBehaviorMono.ClassName
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.ClassName
-  nameWithType: LuaBehaviorMono.ClassName
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.ClassName*
-  name: ClassName
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_ClassName_
-  commentId: Overload:ShanghaiWindy.Core.Lua.LuaBehaviorMono.ClassName
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.ClassName
-  nameWithType: LuaBehaviorMono.ClassName
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem(ArmyInitSystem@)
-  name: TryGetArmyInitSystem(out ArmyInitSystem)
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_TryGetArmyInitSystem_ArmyInitSystem__
-  commentId: M:ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem(ArmyInitSystem@)
-  name.vb: TryGetArmyInitSystem(ArmyInitSystem)
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem(out ArmyInitSystem)
-  fullName.vb: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem(ArmyInitSystem)
-  nameWithType: LuaBehaviorMono.TryGetArmyInitSystem(out ArmyInitSystem)
-  nameWithType.vb: LuaBehaviorMono.TryGetArmyInitSystem(ArmyInitSystem)
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem*
-  name: TryGetArmyInitSystem
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_TryGetArmyInitSystem_
-  commentId: Overload:ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetArmyInitSystem
-  nameWithType: LuaBehaviorMono.TryGetArmyInitSystem
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem(ShanghaiWindy.Core.FlightInitSystem@)
-  name: TryGetFlightInitSystem(out FlightInitSystem)
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_TryGetFlightInitSystem_ShanghaiWindy_Core_FlightInitSystem__
-  commentId: M:ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem(ShanghaiWindy.Core.FlightInitSystem@)
-  name.vb: TryGetFlightInitSystem(FlightInitSystem)
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem(out ShanghaiWindy.Core.FlightInitSystem)
-  fullName.vb: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem(ShanghaiWindy.Core.FlightInitSystem)
-  nameWithType: LuaBehaviorMono.TryGetFlightInitSystem(out FlightInitSystem)
-  nameWithType.vb: LuaBehaviorMono.TryGetFlightInitSystem(FlightInitSystem)
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem*
-  name: TryGetFlightInitSystem
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_TryGetFlightInitSystem_
-  commentId: Overload:ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetFlightInitSystem
-  nameWithType: LuaBehaviorMono.TryGetFlightInitSystem
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem(ShanghaiWindy.Core.VehicleInitSystem@)
-  name: TryGetTankInitSystem(out VehicleInitSystem)
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_TryGetTankInitSystem_ShanghaiWindy_Core_VehicleInitSystem__
-  commentId: M:ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem(ShanghaiWindy.Core.VehicleInitSystem@)
-  name.vb: TryGetTankInitSystem(VehicleInitSystem)
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem(out ShanghaiWindy.Core.VehicleInitSystem)
-  fullName.vb: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem(ShanghaiWindy.Core.VehicleInitSystem)
-  nameWithType: LuaBehaviorMono.TryGetTankInitSystem(out VehicleInitSystem)
-  nameWithType.vb: LuaBehaviorMono.TryGetTankInitSystem(VehicleInitSystem)
-- uid: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem*
-  name: TryGetTankInitSystem
-  href: api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html#ShanghaiWindy_Core_Lua_LuaBehaviorMono_TryGetTankInitSystem_
-  commentId: Overload:ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.Lua.LuaBehaviorMono.TryGetTankInitSystem
-  nameWithType: LuaBehaviorMono.TryGetTankInitSystem
 - uid: ShanghaiWindy.Core.MultiInputWrapperManageComponent
   name: MultiInputWrapperManageComponent
   href: api/ShanghaiWindy.Core.MultiInputWrapperManageComponent.html
@@ -4611,7 +4683,14 @@ references:
 - uid: ShanghaiWindy.Core.TankFire.isExtraTurret
   name: isExtraTurret
   href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_isExtraTurret
-  commentId: F:ShanghaiWindy.Core.TankFire.isExtraTurret
+  commentId: P:ShanghaiWindy.Core.TankFire.isExtraTurret
+  fullName: ShanghaiWindy.Core.TankFire.isExtraTurret
+  nameWithType: TankFire.isExtraTurret
+- uid: ShanghaiWindy.Core.TankFire.isExtraTurret*
+  name: isExtraTurret
+  href: api/ShanghaiWindy.Core.TankFire.html#ShanghaiWindy_Core_TankFire_isExtraTurret_
+  commentId: Overload:ShanghaiWindy.Core.TankFire.isExtraTurret
+  isSpec: "True"
   fullName: ShanghaiWindy.Core.TankFire.isExtraTurret
   nameWithType: TankFire.isExtraTurret
 - uid: ShanghaiWindy.Core.TankFire.mainBody
@@ -4657,10 +4736,49 @@ references:
   commentId: T:ShanghaiWindy.Core.TurretController
   fullName: ShanghaiWindy.Core.TurretController
   nameWithType: TurretController
+- uid: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
+  name: GunSpeedBuffedCoff
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_GunSpeedBuffedCoff
+  commentId: P:ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
+  fullName: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
+  nameWithType: TurretController.GunSpeedBuffedCoff
+- uid: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff*
+  name: GunSpeedBuffedCoff
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_GunSpeedBuffedCoff_
+  commentId: Overload:ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
+  nameWithType: TurretController.GunSpeedBuffedCoff
+- uid: ShanghaiWindy.Core.TurretController.InitialTrans
+  name: InitialTrans
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_InitialTrans
+  commentId: F:ShanghaiWindy.Core.TurretController.InitialTrans
+  fullName: ShanghaiWindy.Core.TurretController.InitialTrans
+  nameWithType: TurretController.InitialTrans
+- uid: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
+  name: TurretSpeedBuffedCoff
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_TurretSpeedBuffedCoff
+  commentId: P:ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
+  fullName: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
+  nameWithType: TurretController.TurretSpeedBuffedCoff
+- uid: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff*
+  name: TurretSpeedBuffedCoff
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_TurretSpeedBuffedCoff_
+  commentId: Overload:ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
+  nameWithType: TurretController.TurretSpeedBuffedCoff
 - uid: ShanghaiWindy.Core.TurretController.dymTransform
   name: dymTransform
   href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_dymTransform
-  commentId: F:ShanghaiWindy.Core.TurretController.dymTransform
+  commentId: P:ShanghaiWindy.Core.TurretController.dymTransform
+  fullName: ShanghaiWindy.Core.TurretController.dymTransform
+  nameWithType: TurretController.dymTransform
+- uid: ShanghaiWindy.Core.TurretController.dymTransform*
+  name: dymTransform
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_dymTransform_
+  commentId: Overload:ShanghaiWindy.Core.TurretController.dymTransform
+  isSpec: "True"
   fullName: ShanghaiWindy.Core.TurretController.dymTransform
   nameWithType: TurretController.dymTransform
 - uid: ShanghaiWindy.Core.TurretController.elevationAngle
@@ -4682,31 +4800,19 @@ references:
   commentId: F:ShanghaiWindy.Core.TurretController.fireAngle
   fullName: ShanghaiWindy.Core.TurretController.fireAngle
   nameWithType: TurretController.fireAngle
-- uid: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
-  name: GunSpeedBuffedCoff
-  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_GunSpeedBuffedCoff
-  commentId: P:ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
-  fullName: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
-  nameWithType: TurretController.GunSpeedBuffedCoff
-- uid: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff*
-  name: GunSpeedBuffedCoff
-  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_GunSpeedBuffedCoff_
-  commentId: Overload:ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.TurretController.GunSpeedBuffedCoff
-  nameWithType: TurretController.GunSpeedBuffedCoff
 - uid: ShanghaiWindy.Core.TurretController.gunTransform
   name: gunTransform
   href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_gunTransform
-  commentId: F:ShanghaiWindy.Core.TurretController.gunTransform
+  commentId: P:ShanghaiWindy.Core.TurretController.gunTransform
   fullName: ShanghaiWindy.Core.TurretController.gunTransform
   nameWithType: TurretController.gunTransform
-- uid: ShanghaiWindy.Core.TurretController.InitialTrans
-  name: InitialTrans
-  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_InitialTrans
-  commentId: F:ShanghaiWindy.Core.TurretController.InitialTrans
-  fullName: ShanghaiWindy.Core.TurretController.InitialTrans
-  nameWithType: TurretController.InitialTrans
+- uid: ShanghaiWindy.Core.TurretController.gunTransform*
+  name: gunTransform
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_gunTransform_
+  commentId: Overload:ShanghaiWindy.Core.TurretController.gunTransform
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.TurretController.gunTransform
+  nameWithType: TurretController.gunTransform
 - uid: ShanghaiWindy.Core.TurretController.isLocalPlayer
   name: isLocalPlayer
   href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_isLocalPlayer
@@ -4784,23 +4890,17 @@ references:
   commentId: F:ShanghaiWindy.Core.TurretController.turretParams
   fullName: ShanghaiWindy.Core.TurretController.turretParams
   nameWithType: TurretController.turretParams
-- uid: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
-  name: TurretSpeedBuffedCoff
-  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_TurretSpeedBuffedCoff
-  commentId: P:ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
-  fullName: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
-  nameWithType: TurretController.TurretSpeedBuffedCoff
-- uid: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff*
-  name: TurretSpeedBuffedCoff
-  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_TurretSpeedBuffedCoff_
-  commentId: Overload:ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
-  isSpec: "True"
-  fullName: ShanghaiWindy.Core.TurretController.TurretSpeedBuffedCoff
-  nameWithType: TurretController.TurretSpeedBuffedCoff
 - uid: ShanghaiWindy.Core.TurretController.turretTransform
   name: turretTransform
   href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_turretTransform
-  commentId: F:ShanghaiWindy.Core.TurretController.turretTransform
+  commentId: P:ShanghaiWindy.Core.TurretController.turretTransform
+  fullName: ShanghaiWindy.Core.TurretController.turretTransform
+  nameWithType: TurretController.turretTransform
+- uid: ShanghaiWindy.Core.TurretController.turretTransform*
+  name: turretTransform
+  href: api/ShanghaiWindy.Core.TurretController.html#ShanghaiWindy_Core_TurretController_turretTransform_
+  commentId: Overload:ShanghaiWindy.Core.TurretController.turretTransform
+  isSpec: "True"
   fullName: ShanghaiWindy.Core.TurretController.turretTransform
   nameWithType: TurretController.turretTransform
 - uid: ShanghaiWindy.Core.TurretController.turretTraverseAngle
@@ -4902,12 +5002,12 @@ references:
   commentId: T:ShanghaiWindy.Core.VehicleComponents
   fullName: ShanghaiWindy.Core.VehicleComponents
   nameWithType: VehicleComponents
-- uid: ShanghaiWindy.Core.VehicleComponents.attachmentMonos
-  name: attachmentMonos
-  href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_attachmentMonos
-  commentId: F:ShanghaiWindy.Core.VehicleComponents.attachmentMonos
-  fullName: ShanghaiWindy.Core.VehicleComponents.attachmentMonos
-  nameWithType: VehicleComponents.attachmentMonos
+- uid: ShanghaiWindy.Core.VehicleComponents.HitBoxes
+  name: HitBoxes
+  href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_HitBoxes
+  commentId: F:ShanghaiWindy.Core.VehicleComponents.HitBoxes
+  fullName: ShanghaiWindy.Core.VehicleComponents.HitBoxes
+  nameWithType: VehicleComponents.HitBoxes
 - uid: ShanghaiWindy.Core.VehicleComponents.attachments
   name: attachments
   href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_attachments
@@ -4944,30 +5044,12 @@ references:
   commentId: F:ShanghaiWindy.Core.VehicleComponents.engineFmodSoundModules
   fullName: ShanghaiWindy.Core.VehicleComponents.engineFmodSoundModules
   nameWithType: VehicleComponents.engineFmodSoundModules
-- uid: ShanghaiWindy.Core.VehicleComponents.fireAssistComponent
-  name: fireAssistComponent
-  href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_fireAssistComponent
-  commentId: F:ShanghaiWindy.Core.VehicleComponents.fireAssistComponent
-  fullName: ShanghaiWindy.Core.VehicleComponents.fireAssistComponent
-  nameWithType: VehicleComponents.fireAssistComponent
-- uid: ShanghaiWindy.Core.VehicleComponents.fireLockComponent
-  name: fireLockComponent
-  href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_fireLockComponent
-  commentId: F:ShanghaiWindy.Core.VehicleComponents.fireLockComponent
-  fullName: ShanghaiWindy.Core.VehicleComponents.fireLockComponent
-  nameWithType: VehicleComponents.fireLockComponent
 - uid: ShanghaiWindy.Core.VehicleComponents.groundAARadarSystem
   name: groundAARadarSystem
   href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_groundAARadarSystem
   commentId: F:ShanghaiWindy.Core.VehicleComponents.groundAARadarSystem
   fullName: ShanghaiWindy.Core.VehicleComponents.groundAARadarSystem
   nameWithType: VehicleComponents.groundAARadarSystem
-- uid: ShanghaiWindy.Core.VehicleComponents.HitBoxes
-  name: HitBoxes
-  href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_HitBoxes
-  commentId: F:ShanghaiWindy.Core.VehicleComponents.HitBoxes
-  fullName: ShanghaiWindy.Core.VehicleComponents.HitBoxes
-  nameWithType: VehicleComponents.HitBoxes
 - uid: ShanghaiWindy.Core.VehicleComponents.identity
   name: identity
   href: api/ShanghaiWindy.Core.VehicleComponents.html#ShanghaiWindy_Core_VehicleComponents_identity
@@ -5221,6 +5303,19 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.VehicleInfo.GetVehicleName
   nameWithType: VehicleInfo.GetVehicleName
+- uid: ShanghaiWindy.Core.VehicleInfo.GetVehicleProduceYear
+  name: GetVehicleProduceYear()
+  href: api/ShanghaiWindy.Core.VehicleInfo.html#ShanghaiWindy_Core_VehicleInfo_GetVehicleProduceYear
+  commentId: M:ShanghaiWindy.Core.VehicleInfo.GetVehicleProduceYear
+  fullName: ShanghaiWindy.Core.VehicleInfo.GetVehicleProduceYear()
+  nameWithType: VehicleInfo.GetVehicleProduceYear()
+- uid: ShanghaiWindy.Core.VehicleInfo.GetVehicleProduceYear*
+  name: GetVehicleProduceYear
+  href: api/ShanghaiWindy.Core.VehicleInfo.html#ShanghaiWindy_Core_VehicleInfo_GetVehicleProduceYear_
+  commentId: Overload:ShanghaiWindy.Core.VehicleInfo.GetVehicleProduceYear
+  isSpec: "True"
+  fullName: ShanghaiWindy.Core.VehicleInfo.GetVehicleProduceYear
+  nameWithType: VehicleInfo.GetVehicleProduceYear
 - uid: ShanghaiWindy.Core.VehicleInfo.IsSupportModuleMode
   name: IsSupportModuleMode()
   href: api/ShanghaiWindy.Core.VehicleInfo.html#ShanghaiWindy_Core_VehicleInfo_IsSupportModuleMode
@@ -5305,6 +5400,12 @@ references:
   isSpec: "True"
   fullName: ShanghaiWindy.Core.VehicleInitSystem.CurWaterPassiveParam
   nameWithType: VehicleInitSystem.CurWaterPassiveParam
+- uid: ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh
+  name: InstanceMesh
+  href: api/ShanghaiWindy.Core.VehicleInitSystem.html#ShanghaiWindy_Core_VehicleInitSystem_InstanceMesh
+  commentId: F:ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh
+  fullName: ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh
+  nameWithType: VehicleInitSystem.InstanceMesh
 - uid: ShanghaiWindy.Core.VehicleInitSystem.diyReferenceManager
   name: diyReferenceManager
   href: api/ShanghaiWindy.Core.VehicleInitSystem.html#ShanghaiWindy_Core_VehicleInitSystem_diyReferenceManager
@@ -5317,12 +5418,6 @@ references:
   commentId: F:ShanghaiWindy.Core.VehicleInitSystem.groundType
   fullName: ShanghaiWindy.Core.VehicleInitSystem.groundType
   nameWithType: VehicleInitSystem.groundType
-- uid: ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh
-  name: InstanceMesh
-  href: api/ShanghaiWindy.Core.VehicleInitSystem.html#ShanghaiWindy_Core_VehicleInitSystem_InstanceMesh
-  commentId: F:ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh
-  fullName: ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh
-  nameWithType: VehicleInitSystem.InstanceMesh
 - uid: ShanghaiWindy.Core.VehicleInitSystem.referenceManager
   name: referenceManager
   href: api/ShanghaiWindy.Core.VehicleInitSystem.html#ShanghaiWindy_Core_VehicleInitSystem_referenceManager
@@ -5491,12 +5586,24 @@ references:
   commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.mapGuid
   fullName: ShanghaiWindy.Data.WarZoneModeConfig.mapGuid
   nameWithType: WarZoneModeConfig.mapGuid
+- uid: ShanghaiWindy.Data.WarZoneModeConfig.spRule
+  name: spRule
+  href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_spRule
+  commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.spRule
+  fullName: ShanghaiWindy.Data.WarZoneModeConfig.spRule
+  nameWithType: WarZoneModeConfig.spRule
 - uid: ShanghaiWindy.Data.WarZoneModeConfig.warZoneName
   name: warZoneName
   href: api/ShanghaiWindy.Data.WarZoneModeConfig.html#ShanghaiWindy_Data_WarZoneModeConfig_warZoneName
   commentId: F:ShanghaiWindy.Data.WarZoneModeConfig.warZoneName
   fullName: ShanghaiWindy.Data.WarZoneModeConfig.warZoneName
   nameWithType: WarZoneModeConfig.warZoneName
+- uid: ShanghaiWindy.Data.WarZoneSPRule
+  name: WarZoneSPRule
+  href: api/ShanghaiWindy.Data.WarZoneSPRule.html
+  commentId: T:ShanghaiWindy.Data.WarZoneSPRule
+  fullName: ShanghaiWindy.Data.WarZoneSPRule
+  nameWithType: WarZoneSPRule
 - uid: ShanghaiWindy.Data.WaveAttackInfo
   name: WaveAttackInfo
   href: api/ShanghaiWindy.Data.WaveAttackInfo.html

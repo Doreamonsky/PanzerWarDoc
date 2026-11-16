@@ -1,27 +1,26 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class TankFire
- | Panzer War Document </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class TankFire
- | Panzer War Document ">
-    <meta name="generator" content="docfx ">
-  
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class TankFire | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class TankFire | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -64,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -80,48 +79,46 @@
             <article class="content wrap" id="_content" data-uid="ShanghaiWindy.Core.TankFire">
 
 
-  <h1 id="ShanghaiWindy_Core_TankFire" data-uid="ShanghaiWindy.Core.TankFire" class="text-break">Class TankFire
-</h1>
+
+  <h1 id="ShanghaiWindy_Core_TankFire" data-uid="ShanghaiWindy.Core.TankFire" class="text-break">Class TankFire</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">object</span></div>
-    <div class="level1"><span class="xref">ShanghaiWindy.Core.BaseVehicleMonoComponent&lt;T&gt;</span>&lt;<a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a>&gt;</div>
-    <div class="level2"><span class="xref">ShanghaiWindy.Core.GenericVehicleMonoComponent</span></div>
-    <div class="level3"><a class="xref" href="ShanghaiWindy.Core.BaseFireSystem.html">BaseFireSystem</a></div>
-    <div class="level4"><span class="xref">ShanghaiWindy.Core.ReloadableFireSystem</span></div>
+    <div class="level1"><span class="xref">GameComponent</span></div>
+    <div class="level2"><span class="xref">GameComponent</span>&lt;<span class="xref">TankFireConfig</span>&gt;</div>
+    <div class="level3"><a class="xref" href="ShanghaiWindy.Core.BaseFireSystem-1.html">BaseFireSystem</a>&lt;<span class="xref">TankFireConfig</span>&gt;</div>
+    <div class="level4"><span class="xref">ReloadableFireSystem</span>&lt;<span class="xref">TankFireConfig</span>&gt;</div>
     <div class="level5"><span class="xref">TankFire</span></div>
   </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><span class="xref">IIndex</span></div>
-    <div><span class="xref">IPawnControlledComponent</span></div>
-  </div>
   <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a></h6>
-  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="ShanghaiWindy_Core_TankFire_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public class TankFire : ReloadableFireSystem, IIndex, IPawnControlledComponent</code></pre>
+    <pre><code class="lang-csharp hljs">[DocGen]
+public class TankFire : ReloadableFireSystem&lt;TankFireConfig&gt;</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_canControl.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.canControl%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L68">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_TankFire_canControl" data-uid="ShanghaiWindy.Core.TankFire.canControl">canControl</h4>
-  <div class="markdown level1 summary">
-是否可控制
-Can Control
-</div>
+  <div class="markdown level1 summary">是否可控制
+Can Control</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public bool canControl</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -135,21 +132,24 @@ public bool canControl</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_fireTransforms.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.fireTransforms%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L86">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_TankFire_fireTransforms" data-uid="ShanghaiWindy.Core.TankFire.fireTransforms">fireTransforms</h4>
-  <div class="markdown level1 summary">
-开火位置
-Tank Fire Transforms
-</div>
+  <div class="markdown level1 summary">开火位置
+Tank Fire Transforms</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public readonly List&lt;TankFireTransformInstance&gt; fireTransforms</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -158,54 +158,29 @@ public readonly List&lt;TankFireTransformInstance&gt; fireTransforms</code></pre
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<span class="xref">TankFireTransformInstance</span>&gt;</td>
+        <td><span class="xref">List</span>&lt;<span class="xref">TankFireTransformInstance</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
-  <h4 id="ShanghaiWindy_Core_TankFire_isExtraTurret" data-uid="ShanghaiWindy.Core.TankFire.isExtraTurret">isExtraTurret</h4>
-  <div class="markdown level1 summary">
-是否为额外炮塔
-Is Extra Turret
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public bool isExtraTurret</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_projectile.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.projectile%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L80">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_TankFire_projectile" data-uid="ShanghaiWindy.Core.TankFire.projectile">projectile</h4>
-  <div class="markdown level1 summary">
-投射物管理器
-Projectile Manager
-</div>
+  <div class="markdown level1 summary">投射物管理器
+Projectile Manager</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public ProjectileManager projectile</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -214,26 +189,29 @@ public ProjectileManager projectile</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.ProjectileManager</span></td>
+        <td><span class="xref">ProjectileManager</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_useGravity.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.useGravity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L74">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_TankFire_useGravity" data-uid="ShanghaiWindy.Core.TankFire.useGravity">useGravity</h4>
-  <div class="markdown level1 summary">
-使用重力
-Use Gravity
-</div>
+  <div class="markdown level1 summary">使用重力
+Use Gravity</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public bool useGravity</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -249,22 +227,24 @@ public bool useGravity</code></pre>
   </table>
   <h3 id="properties">Properties
 </h3>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_attachedRigidbody.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.attachedRigidbody%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L51">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_TankFire_attachedRigidbody_" data-uid="ShanghaiWindy.Core.TankFire.attachedRigidbody*"></a>
   <h4 id="ShanghaiWindy_Core_TankFire_attachedRigidbody" data-uid="ShanghaiWindy.Core.TankFire.attachedRigidbody">attachedRigidbody</h4>
-  <div class="markdown level1 summary">
-附加刚体
-Attached Rigidbody
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public Rigidbody attachedRigidbody { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[DocGen]
+public Rigidbody attachedRigidbody { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -278,22 +258,25 @@ public Rigidbody attachedRigidbody { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_ffPoint.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.ffPoint%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L95">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_TankFire_ffPoint_" data-uid="ShanghaiWindy.Core.TankFire.ffPoint*"></a>
   <h4 id="ShanghaiWindy_Core_TankFire_ffPoint" data-uid="ShanghaiWindy.Core.TankFire.ffPoint">ffPoint</h4>
-  <div class="markdown level1 summary">
-炮弹生成点 Transform
-FF Point Transform
-</div>
+  <div class="markdown level1 summary">炮弹生成点 Transform
+FF Point Transform</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public Transform ffPoint { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -307,22 +290,25 @@ public Transform ffPoint { get; }</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_fireEffectPoint.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.fireEffectPoint%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L102">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_TankFire_fireEffectPoint_" data-uid="ShanghaiWindy.Core.TankFire.fireEffectPoint*"></a>
   <h4 id="ShanghaiWindy_Core_TankFire_fireEffectPoint" data-uid="ShanghaiWindy.Core.TankFire.fireEffectPoint">fireEffectPoint</h4>
-  <div class="markdown level1 summary">
-射击特效点 Transform
-Fire Effect Point Transform
-</div>
+  <div class="markdown level1 summary">射击特效点 Transform
+Fire Effect Point Transform</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public Transform fireEffectPoint { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -336,22 +322,24 @@ public Transform fireEffectPoint { get; }</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_fireRecoilPoint.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.fireRecoilPoint%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L48">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_TankFire_fireRecoilPoint_" data-uid="ShanghaiWindy.Core.TankFire.fireRecoilPoint*"></a>
   <h4 id="ShanghaiWindy_Core_TankFire_fireRecoilPoint" data-uid="ShanghaiWindy.Core.TankFire.fireRecoilPoint">fireRecoilPoint</h4>
-  <div class="markdown level1 summary">
-射击后坐力点 Transform
-Fire Recoil Point Transform
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public Transform fireRecoilPoint { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[DocGen]
+public Transform fireRecoilPoint { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -365,21 +353,24 @@ public Transform fireRecoilPoint { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_gunDym.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.gunDym%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L108">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_TankFire_gunDym_" data-uid="ShanghaiWindy.Core.TankFire.gunDym*"></a>
   <h4 id="ShanghaiWindy_Core_TankFire_gunDym" data-uid="ShanghaiWindy.Core.TankFire.gunDym">gunDym</h4>
-  <div class="markdown level1 summary">
-Gun Transform
-</div>
+  <div class="markdown level1 summary">Gun Transform</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public Transform gunDym { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -393,22 +384,24 @@ public Transform gunDym { get; }</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_isAutoCalculateGravity.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.isAutoCalculateGravity%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L58">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_TankFire_isAutoCalculateGravity_" data-uid="ShanghaiWindy.Core.TankFire.isAutoCalculateGravity*"></a>
   <h4 id="ShanghaiWindy_Core_TankFire_isAutoCalculateGravity" data-uid="ShanghaiWindy.Core.TankFire.isAutoCalculateGravity">isAutoCalculateGravity</h4>
-  <div class="markdown level1 summary">
-是否自动计算重力
-Is Auto Calculate Gravity
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public bool isAutoCalculateGravity { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[DocGen]
+public bool isAutoCalculateGravity { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -422,22 +415,55 @@ public bool isAutoCalculateGravity { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
-
-
-  <a id="ShanghaiWindy_Core_TankFire_mainBody_" data-uid="ShanghaiWindy.Core.TankFire.mainBody*"></a>
-  <h4 id="ShanghaiWindy_Core_TankFire_mainBody" data-uid="ShanghaiWindy.Core.TankFire.mainBody">mainBody</h4>
-  <div class="markdown level1 summary">
-车体 Transform
-Main Body Transform
-</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_isExtraTurret.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.isExtraTurret%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L61">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_TankFire_isExtraTurret_" data-uid="ShanghaiWindy.Core.TankFire.isExtraTurret*"></a>
+  <h4 id="ShanghaiWindy_Core_TankFire_isExtraTurret" data-uid="ShanghaiWindy.Core.TankFire.isExtraTurret">isExtraTurret</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public Transform mainBody { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[DocGen]
+public bool isExtraTurret { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire_mainBody.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire.mainBody%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.cs/#L45">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_TankFire_mainBody_" data-uid="ShanghaiWindy.Core.TankFire.mainBody*"></a>
+  <h4 id="ShanghaiWindy_Core_TankFire_mainBody" data-uid="ShanghaiWindy.Core.TankFire.mainBody">mainBody</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public Transform mainBody { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -451,13 +477,7 @@ public Transform mainBody { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">IIndex</span>
-  </div>
-  <div>
-      <span class="xref">IPawnControlledComponent</span>
-  </div>
+
 </article>
           </div>
 
@@ -465,25 +485,17 @@ public Transform mainBody { get; set; }</code></pre>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_TankFire.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.TankFire%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankFire/TankFire.Spread.cs/#L5" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
-              <div class="toggle-mode">
-                <div class="icon">
-                  <i aria-hidden="true">☀</i>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="switch-style">
-                  <span class="slider round"></span>
-                </label>
-                <div class="icon">
-                  <i aria-hidden="true">☾</i>
-                </div>
-              </div>
-
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <h5>In This Article</h5>
-              <div></div>
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In this article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -497,28 +509,14 @@ public Transform mainBody { get; set; }</code></pre>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <div class="pull-left">
-        Panzer War Document
-        
-            </div>
-            <div class="toggle-mode pull-right visible-sm visible-xs">
-              <div class="icon">
-                <i aria-hidden="true">☀</i>
-              </div>
-              <label class="switch">
-                <input type="checkbox" id="switch-style-m">
-                <span class="slider round"></span>
-              </label>
-              <div class="icon">
-                <i aria-hidden="true">☾</i>
-              </div>
-            </div>
+      Panzer War Document
+      
           </div>
         </div>
-        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
-      </footer>    </div>
+      </footer>
+    </div>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>

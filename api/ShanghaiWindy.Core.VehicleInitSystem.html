@@ -1,27 +1,26 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
 
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class VehicleInitSystem
- | Panzer War Document </title>
-    <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class VehicleInitSystem
- | Panzer War Document ">
-    <meta name="generator" content="docfx ">
-  
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
-  
-  <meta property="docfx:rel" content="../">
-  
-  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class VehicleInitSystem | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class VehicleInitSystem | Panzer War Document ">
+    
+    <meta name="description" content="坦克初始化系统 Tank Initialization System">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
 
@@ -64,7 +63,7 @@
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
@@ -80,23 +79,16 @@
             <article class="content wrap" id="_content" data-uid="ShanghaiWindy.Core.VehicleInitSystem">
 
 
-  <h1 id="ShanghaiWindy_Core_VehicleInitSystem" data-uid="ShanghaiWindy.Core.VehicleInitSystem" class="text-break">Class VehicleInitSystem
-</h1>
-  <div class="markdown level0 summary">
-坦克初始化系统
-Tank Initialization System
-</div>
+
+  <h1 id="ShanghaiWindy_Core_VehicleInitSystem" data-uid="ShanghaiWindy.Core.VehicleInitSystem" class="text-break">Class VehicleInitSystem</h1>
+  <div class="markdown level0 summary">坦克初始化系统
+Tank Initialization System</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">object</span></div>
     <div class="level1"><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></div>
     <div class="level2"><span class="xref">VehicleInitSystem</span></div>
-  </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><span class="xref">IDynamicDataPatchable</span></div>
-    <div><span class="xref">IIndex</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -144,84 +136,33 @@ Tank Initialization System
     </div>
   </div>
   <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a></h6>
-  <h6><strong>Assembly</strong>: cs.temp.dll.dll</h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
   <h5 id="ShanghaiWindy_Core_VehicleInitSystem_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public class VehicleInitSystem : BaseInitSystem, IDynamicDataPatchable, IIndex</code></pre>
+    <pre><code class="lang-csharp hljs">[DocGen]
+[LuaCallCSharp(GenFlag.No)]
+public class VehicleInitSystem : BaseInitSystem</code></pre>
   </div>
   <h3 id="fields">Fields
 </h3>
-
-
-  <h4 id="ShanghaiWindy_Core_VehicleInitSystem_diyReferenceManager" data-uid="ShanghaiWindy.Core.VehicleInitSystem.diyReferenceManager">diyReferenceManager</h4>
-  <div class="markdown level1 summary">
-DIY 车辆组件引用管理器
-DIY Vehicle Components Reference Manager
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public DIYVehicleComponentsReferenceManager diyReferenceManager</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ShanghaiWindy.Core.DIYVehicleComponentsReferenceManager</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <h4 id="ShanghaiWindy_Core_VehicleInitSystem_groundType" data-uid="ShanghaiWindy.Core.VehicleInitSystem.groundType">groundType</h4>
-  <div class="markdown level1 summary">
-载具类型
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
-public EGroundControlType groundType</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ShanghaiWindy.Core.EGroundControlType</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_InstanceMesh.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L50">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_InstanceMesh" data-uid="ShanghaiWindy.Core.VehicleInitSystem.InstanceMesh">InstanceMesh</h4>
-  <div class="markdown level1 summary">
-实例网格
-Instance Mesh
-</div>
+  <div class="markdown level1 summary">实例网格
+Instance Mesh</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public GameObject InstanceMesh</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -235,21 +176,85 @@ public GameObject InstanceMesh</code></pre>
       </tr>
     </tbody>
   </table>
-
-
-  <h4 id="ShanghaiWindy_Core_VehicleInitSystem_referenceManager" data-uid="ShanghaiWindy.Core.VehicleInitSystem.referenceManager">referenceManager</h4>
-  <div class="markdown level1 summary">
-车辆组件引用管理器
-Vehicle Components Reference Manager
-</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_diyReferenceManager.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.diyReferenceManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L119">View Source</a>
+  </span>
+  <h4 id="ShanghaiWindy_Core_VehicleInitSystem_diyReferenceManager" data-uid="ShanghaiWindy.Core.VehicleInitSystem.diyReferenceManager">diyReferenceManager</h4>
+  <div class="markdown level1 summary">DIY 车辆组件引用管理器
+DIY Vehicle Components Reference Manager</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
+public DIYVehicleComponentsReferenceManager diyReferenceManager</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DIYVehicleComponentsReferenceManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_groundType.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.groundType%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L44">View Source</a>
+  </span>
+  <h4 id="ShanghaiWindy_Core_VehicleInitSystem_groundType" data-uid="ShanghaiWindy.Core.VehicleInitSystem.groundType">groundType</h4>
+  <div class="markdown level1 summary">载具类型</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public EGroundControlType groundType</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EGroundControlType</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_referenceManager.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.referenceManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L113">View Source</a>
+  </span>
+  <h4 id="ShanghaiWindy_Core_VehicleInitSystem_referenceManager" data-uid="ShanghaiWindy.Core.VehicleInitSystem.referenceManager">referenceManager</h4>
+  <div class="markdown level1 summary">车辆组件引用管理器
+Vehicle Components Reference Manager</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
 public VehicleComponentsReferenceManager referenceManager</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -258,26 +263,29 @@ public VehicleComponentsReferenceManager referenceManager</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.VehicleComponentsReferenceManager</span></td>
+        <td><span class="xref">VehicleComponentsReferenceManager</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_thinkLogic.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.thinkLogic%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L146">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_thinkLogic" data-uid="ShanghaiWindy.Core.VehicleInitSystem.thinkLogic">thinkLogic</h4>
-  <div class="markdown level1 summary">
-机器人逻辑
-Bot Logic
-</div>
+  <div class="markdown level1 summary">机器人逻辑
+Bot Logic</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public BotLogic thinkLogic</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -286,26 +294,29 @@ public BotLogic thinkLogic</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.BotLogic</span></td>
+        <td><span class="xref">BotLogic</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_vehicleComponents.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.vehicleComponents%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L125">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_vehicleComponents" data-uid="ShanghaiWindy.Core.VehicleInitSystem.vehicleComponents">vehicleComponents</h4>
-  <div class="markdown level1 summary">
-车辆组件集合
-Vehicle Components Collection
-</div>
+  <div class="markdown level1 summary">车辆组件集合
+Vehicle Components Collection</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public VehicleComponents vehicleComponents</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -319,21 +330,24 @@ public VehicleComponents vehicleComponents</code></pre>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_vehicleRemoveManagerModule.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.vehicleRemoveManagerModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L152">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_vehicleRemoveManagerModule" data-uid="ShanghaiWindy.Core.VehicleInitSystem.vehicleRemoveManagerModule">vehicleRemoveManagerModule</h4>
-  <div class="markdown level1 summary">
-车辆移除管理模块
-Vehicle Remove Manager Module
-</div>
+  <div class="markdown level1 summary">车辆移除管理模块
+Vehicle Remove Manager Module</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public VehicleRemoveManagerModule vehicleRemoveManagerModule</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -342,26 +356,29 @@ public VehicleRemoveManagerModule vehicleRemoveManagerModule</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.VehicleRemoveManagerModule</span></td>
+        <td><span class="xref">VehicleRemoveManagerModule</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_vehicleTextData.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.vehicleTextData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L56">View Source</a>
+  </span>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_vehicleTextData" data-uid="ShanghaiWindy.Core.VehicleInitSystem.vehicleTextData">vehicleTextData</h4>
-  <div class="markdown level1 summary">
-车辆文本数据
-Vehicle Text Data
-</div>
+  <div class="markdown level1 summary">车辆文本数据
+Vehicle Text Data</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public VehicleTextData vehicleTextData</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -370,29 +387,32 @@ public VehicleTextData vehicleTextData</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.VehicleTextData</span></td>
+        <td><span class="xref">VehicleTextData</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h3 id="properties">Properties
 </h3>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_CurEngineParam.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.CurEngineParam%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L74">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_VehicleInitSystem_CurEngineParam_" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurEngineParam*"></a>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_CurEngineParam" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurEngineParam">CurEngineParam</h4>
-  <div class="markdown level1 summary">
-当前引擎参数
-Current Engine Parameter
-</div>
+  <div class="markdown level1 summary">当前引擎参数
+Current Engine Parameter</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public TankControllerParameter CurEngineParam { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -401,27 +421,30 @@ public TankControllerParameter CurEngineParam { get; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.TankControllerParameter</span></td>
+        <td><span class="xref">TankControllerParameter</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_CurMainTankFireParam.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.CurMainTankFireParam%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L81">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_VehicleInitSystem_CurMainTankFireParam_" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurMainTankFireParam*"></a>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_CurMainTankFireParam" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurMainTankFireParam">CurMainTankFireParam</h4>
-  <div class="markdown level1 summary">
-当前主坦克火力参数
-Current Main Tank Fire Parameter
-</div>
+  <div class="markdown level1 summary">当前主坦克火力参数
+Current Main Tank Fire Parameter</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public TankFireParameter CurMainTankFireParam { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -430,27 +453,30 @@ public TankFireParameter CurMainTankFireParam { get; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.TankFireParameter</span></td>
+        <td><span class="xref">TankFireParameter</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_CurMainTurretParam.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.CurMainTurretParam%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L88">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_VehicleInitSystem_CurMainTurretParam_" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurMainTurretParam*"></a>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_CurMainTurretParam" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurMainTurretParam">CurMainTurretParam</h4>
-  <div class="markdown level1 summary">
-当前主炮塔参数
-Current Main Turret Parameter
-</div>
+  <div class="markdown level1 summary">当前主炮塔参数
+Current Main Turret Parameter</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public TurretParameter CurMainTurretParam { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -459,27 +485,30 @@ public TurretParameter CurMainTurretParam { get; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.TurretParameter</span></td>
+        <td><span class="xref">TurretParameter</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_CurPlayerStateParam.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.CurPlayerStateParam%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L95">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_VehicleInitSystem_CurPlayerStateParam_" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurPlayerStateParam*"></a>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_CurPlayerStateParam" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurPlayerStateParam">CurPlayerStateParam</h4>
-  <div class="markdown level1 summary">
-当前玩家状态参数
-Current Player State Parameter
-</div>
+  <div class="markdown level1 summary">当前玩家状态参数
+Current Player State Parameter</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public PlayerStateParameter CurPlayerStateParam { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -488,27 +517,30 @@ public PlayerStateParameter CurPlayerStateParam { get; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ShanghaiWindy.Core.PlayerStateParameter</span></td>
+        <td><span class="xref">PlayerStateParameter</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem_CurWaterPassiveParam.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem.CurWaterPassiveParam%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.cs/#L105">View Source</a>
+  </span>
   <a id="ShanghaiWindy_Core_VehicleInitSystem_CurWaterPassiveParam_" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurWaterPassiveParam*"></a>
   <h4 id="ShanghaiWindy_Core_VehicleInitSystem_CurWaterPassiveParam" data-uid="ShanghaiWindy.Core.VehicleInitSystem.CurWaterPassiveParam">CurWaterPassiveParam</h4>
-  <div class="markdown level1 summary">
-水体被动交互参数
-Water Passive Interact Parameter
-</div>
+  <div class="markdown level1 summary">水体被动交互参数
+Water Passive Interact Parameter</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[DocGenAttribute]
+    <pre><code class="lang-csharp hljs">[DocGen]
 public PassiveWaterInteractParameter CurWaterPassiveParam { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
+  <table class="table table-bordered table-condensed">
     <thead>
       <tr>
         <th>Type</th>
@@ -522,13 +554,7 @@ public PassiveWaterInteractParameter CurWaterPassiveParam { get; }</code></pre>
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">IDynamicDataPatchable</span>
-  </div>
-  <div>
-      <span class="xref">IIndex</span>
-  </div>
+
 </article>
           </div>
 
@@ -536,25 +562,17 @@ public PassiveWaterInteractParameter CurWaterPassiveParam { get; }</code></pre>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_VehicleInitSystem.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.VehicleInitSystem%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/GamePlay/Runtime/Vehicles/Component/Controller/TankInitSystem/VehicleInitSystem.Trailers.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
-              <div class="toggle-mode">
-                <div class="icon">
-                  <i aria-hidden="true">☀</i>
-                </div>
-                <label class="switch">
-                  <input type="checkbox" id="switch-style">
-                  <span class="slider round"></span>
-                </label>
-                <div class="icon">
-                  <i aria-hidden="true">☾</i>
-                </div>
-              </div>
-
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <h5>In This Article</h5>
-              <div></div>
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In this article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -568,28 +586,14 @@ public PassiveWaterInteractParameter CurWaterPassiveParam { get; }</code></pre>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <div class="pull-left">
-        Panzer War Document
-        
-            </div>
-            <div class="toggle-mode pull-right visible-sm visible-xs">
-              <div class="icon">
-                <i aria-hidden="true">☀</i>
-              </div>
-              <label class="switch">
-                <input type="checkbox" id="switch-style-m">
-                <span class="slider round"></span>
-              </label>
-              <div class="icon">
-                <i aria-hidden="true">☾</i>
-              </div>
-            </div>
+      Panzer War Document
+      
           </div>
         </div>
-        <script type="text/javascript" src="../styles/toggle-theme.js"></script>
-      </footer>    </div>
+      </footer>
+    </div>
 
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>
     <script type="text/javascript" src="../styles/main.js"></script>
   </body>
