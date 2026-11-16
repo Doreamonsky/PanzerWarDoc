@@ -1876,30 +1876,20 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/component/3e45a5de5caae20b.md",
+      "source_relative_path": "manual/component/built-in-components.md",
       "output": {
         ".html": {
-          "relative_path": "manual/component/3e45a5de5caae20b.html"
+          "relative_path": "manual/component/built-in-components.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/component/9475c7e7918e3da8.md",
+      "source_relative_path": "manual/component/fmod-play-component.md",
       "output": {
         ".html": {
-          "relative_path": "manual/component/9475c7e7918e3da8.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/component/ba144e39cddbd72f.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/component/ba144e39cddbd72f.html"
+          "relative_path": "manual/component/fmod-play-component.html"
         }
       },
       "version": ""
@@ -1916,90 +1906,50 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/0336be5a9f2cd38b.md",
+      "source_relative_path": "manual/component/vehicle-text-data.md",
       "output": {
         ".html": {
-          "relative_path": "manual/gameplay/0336be5a9f2cd38b.html"
+          "relative_path": "manual/component/vehicle-text-data.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/06ea9874b540cd88.md",
+      "source_relative_path": "manual/gameplay/config-files.md",
       "output": {
         ".html": {
-          "relative_path": "manual/gameplay/06ea9874b540cd88.html"
+          "relative_path": "manual/gameplay/config-files.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/2150ee54dfdb5c9b.md",
+      "source_relative_path": "manual/gameplay/crash-and-launch-problems.md",
       "output": {
         ".html": {
-          "relative_path": "manual/gameplay/2150ee54dfdb5c9b.html"
+          "relative_path": "manual/gameplay/crash-and-launch-problems.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/496598d08ff34f0e.md",
+      "source_relative_path": "manual/gameplay/definitive-edition-troubleshooting.md",
       "output": {
         ".html": {
-          "relative_path": "manual/gameplay/496598d08ff34f0e.html"
+          "relative_path": "manual/gameplay/definitive-edition-troubleshooting.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/64310317e9947d97.md",
+      "source_relative_path": "manual/gameplay/game-debugging-tools.md",
       "output": {
         ".html": {
-          "relative_path": "manual/gameplay/64310317e9947d97.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/8e3d48cceb02af47.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/gameplay/8e3d48cceb02af47.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/a455bddb1c32a23e.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/gameplay/a455bddb1c32a23e.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/a8295f493b3a416d.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/gameplay/a8295f493b3a416d.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/gameplay/d6a9cad84ae716c9.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/gameplay/d6a9cad84ae716c9.html"
+          "relative_path": "manual/gameplay/game-debugging-tools.html"
         }
       },
       "version": ""
@@ -2146,6 +2096,56 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/gameplay/install-mods.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/gameplay/install-mods.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/gameplay/map-editor-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/gameplay/map-editor-tutorial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/gameplay/mod-changelog.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/gameplay/mod-changelog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/gameplay/ravenfield-map-support.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/gameplay/ravenfield-map-support.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/gameplay/runtime-log.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/gameplay/runtime-log.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/intro.md",
       "output": {
         ".html": {
@@ -2156,1010 +2156,260 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/00272430e1b9e389.md",
+      "source_relative_path": "manual/mod/3d-decals-and-items.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/00272430e1b9e389.html"
+          "relative_path": "manual/mod/3d-decals-and-items.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/00b64988931fef7f.md",
+      "source_relative_path": "manual/mod/amphibious-vehicles.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/00b64988931fef7f.html"
+          "relative_path": "manual/mod/amphibious-vehicles.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/085a5d4e1ab4e379.md",
+      "source_relative_path": "manual/mod/artillery-skill.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/085a5d4e1ab4e379.html"
+          "relative_path": "manual/mod/artillery-skill.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/08961bd59740aef0.md",
+      "source_relative_path": "manual/mod/blender-axis-fix.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/08961bd59740aef0.html"
+          "relative_path": "manual/mod/blender-axis-fix.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/13a9f33c65e8d68b.md",
+      "source_relative_path": "manual/mod/capture-mode-config.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/13a9f33c65e8d68b.html"
+          "relative_path": "manual/mod/capture-mode-config.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/13d3af6e3865035e.md",
+      "source_relative_path": "manual/mod/continuous-build.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/13d3af6e3865035e.html"
+          "relative_path": "manual/mod/continuous-build.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/17a542b97dac9aa8.md",
+      "source_relative_path": "manual/mod/convert-to-diy-equipment.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/17a542b97dac9aa8.html"
+          "relative_path": "manual/mod/convert-to-diy-equipment.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/1d06694e6aa21c6e.md",
+      "source_relative_path": "manual/mod/create-mech.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/1d06694e6aa21c6e.html"
+          "relative_path": "manual/mod/create-mech.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/2072fa5f90838aa5.md",
+      "source_relative_path": "manual/mod/crew-data.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/2072fa5f90838aa5.html"
+          "relative_path": "manual/mod/crew-data.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/2139fadf2be78d26.md",
+      "source_relative_path": "manual/mod/custom-shader-data.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/2139fadf2be78d26.html"
+          "relative_path": "manual/mod/custom-shader-data.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/26792c7bc7a611b8.md",
+      "source_relative_path": "manual/mod/decals.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/26792c7bc7a611b8.html"
+          "relative_path": "manual/mod/decals.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/26cce7681110c2c5.md",
+      "source_relative_path": "manual/mod/destructible-object-creation.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/26cce7681110c2c5.html"
+          "relative_path": "manual/mod/destructible-object-creation.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/27104d0d58a6f8d3.md",
+      "source_relative_path": "manual/mod/destructible-objects.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/27104d0d58a6f8d3.html"
+          "relative_path": "manual/mod/destructible-objects.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/29f4d1d48dfe948c.md",
+      "source_relative_path": "manual/mod/diy-equipment-build.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/29f4d1d48dfe948c.html"
+          "relative_path": "manual/mod/diy-equipment-build.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/312f7e0ffd6cf2df.md",
+      "source_relative_path": "manual/mod/diy-map-project-import.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/312f7e0ffd6cf2df.html"
+          "relative_path": "manual/mod/diy-map-project-import.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/32a999a46c34fee8.md",
+      "source_relative_path": "manual/mod/diy-to-mod.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/32a999a46c34fee8.html"
+          "relative_path": "manual/mod/diy-to-mod.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/35715086fc6d738b.md",
+      "source_relative_path": "manual/mod/editor-configs.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/35715086fc6d738b.html"
+          "relative_path": "manual/mod/editor-configs.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/36b19c3331f341ee.md",
+      "source_relative_path": "manual/mod/encrypted-mods.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/36b19c3331f341ee.html"
+          "relative_path": "manual/mod/encrypted-mods.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/3b56b0adc2818536.md",
+      "source_relative_path": "manual/mod/fixed-angle-reload.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/3b56b0adc2818536.html"
+          "relative_path": "manual/mod/fixed-angle-reload.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/3e869c43f14fbf8c.md",
+      "source_relative_path": "manual/mod/flight-vehicles.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/3e869c43f14fbf8c.html"
+          "relative_path": "manual/mod/flight-vehicles.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/42e97528430fd654.md",
+      "source_relative_path": "manual/mod/fmod-installation.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/42e97528430fd654.html"
+          "relative_path": "manual/mod/fmod-installation.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/45a87e91f1ad0d4a.md",
+      "source_relative_path": "manual/mod/fmod-profiler.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/45a87e91f1ad0d4a.html"
+          "relative_path": "manual/mod/fmod-profiler.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/465e27a410e58b2e.md",
+      "source_relative_path": "manual/mod/fmod-project-setup.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/465e27a410e58b2e.html"
+          "relative_path": "manual/mod/fmod-project-setup.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/47362e48e59bf46c.md",
+      "source_relative_path": "manual/mod/fmod-sound-debugging.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/47362e48e59bf46c.html"
+          "relative_path": "manual/mod/fmod-sound-debugging.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/4a166082d623eb97.md",
+      "source_relative_path": "manual/mod/get-started.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/4a166082d623eb97.html"
+          "relative_path": "manual/mod/get-started.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/mod/4c6d614fa068bac1.md",
+      "source_relative_path": "manual/mod/hitbox-naming-conventions.md",
       "output": {
         ".html": {
-          "relative_path": "manual/mod/4c6d614fa068bac1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/4f72a64906a43e48.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/4f72a64906a43e48.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/52f54ce3f2318952.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/52f54ce3f2318952.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/556d0a551bc74ebb.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/556d0a551bc74ebb.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/5853a029b1c97a76.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/5853a029b1c97a76.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/5adac4dcbe5786e4.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/5adac4dcbe5786e4.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/5f628ff1cab88a0d.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/5f628ff1cab88a0d.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/60e8039a091d030e.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/60e8039a091d030e.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/61ca6c0aacaa150e.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/61ca6c0aacaa150e.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/6278597cfdca2515.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/6278597cfdca2515.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/64fc2390b90a1976.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/64fc2390b90a1976.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/67a6346d70965e4c.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/67a6346d70965e4c.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/6c610542fb9215d5.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/6c610542fb9215d5.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/6d41a3de6ba6f399.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/6d41a3de6ba6f399.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/6fae435b5d6e6fde.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/6fae435b5d6e6fde.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/7022bcf65e82f2c0.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/7022bcf65e82f2c0.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/71adc4a4e438a8c5.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/71adc4a4e438a8c5.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/72f32f79b7b38a7c.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/72f32f79b7b38a7c.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/735e20d07aa8f472.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/735e20d07aa8f472.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/7528cd260a094da5.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/7528cd260a094da5.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/768e06e7222daf75.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/768e06e7222daf75.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/77f7e3f4195f1ad5.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/77f7e3f4195f1ad5.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/7b23656edfd67293.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/7b23656edfd67293.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/7c9ac8781161ee4c.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/7c9ac8781161ee4c.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/80484eb82955b342.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/80484eb82955b342.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/83df87276cb1b4c8.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/83df87276cb1b4c8.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/83e315d044b2f11a.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/83e315d044b2f11a.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/85164c2f1e018edb.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/85164c2f1e018edb.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/86d1bf3f408d3fa5.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/86d1bf3f408d3fa5.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/8760c62594b551ee.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/8760c62594b551ee.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/880596c53781331d.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/880596c53781331d.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/88ea0135490df698.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/88ea0135490df698.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/88eb2ca113e79bbe.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/88eb2ca113e79bbe.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/89fd89167132d0d7.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/89fd89167132d0d7.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/8a69a23e41177950.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/8a69a23e41177950.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/8e10046bf076af08.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/8e10046bf076af08.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/905c966e33c0018b.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/905c966e33c0018b.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/9270a2607dfcd0fb.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/9270a2607dfcd0fb.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/972d05e5d981a6f3.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/972d05e5d981a6f3.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/9d85af0bb198b271.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/9d85af0bb198b271.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/9e0068ac7dd64296.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/9e0068ac7dd64296.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/a5df73e102445888.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/a5df73e102445888.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/a698afe3c462e558.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/a698afe3c462e558.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/a93ede07c7bb3630.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/a93ede07c7bb3630.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/a959935529849dd1.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/a959935529849dd1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b21819709556a786.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b21819709556a786.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b25a13dd41a84254.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b25a13dd41a84254.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b33bc6d77927cd2d.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b33bc6d77927cd2d.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b37e68c80b985b4f.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b37e68c80b985b4f.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b4f113dfe8851d79.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b4f113dfe8851d79.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b5cc68cc5b7b3489.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b5cc68cc5b7b3489.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/b6d36feef2ca522b.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/b6d36feef2ca522b.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/bed09175dc073522.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/bed09175dc073522.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/bfbcc81a144e2a3c.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/bfbcc81a144e2a3c.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/c858152ca4d591b3.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/c858152ca4d591b3.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/c86b8d4ff44b3b41.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/c86b8d4ff44b3b41.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/c978003cde04b6db.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/c978003cde04b6db.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d15671ce8921f1a4.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d15671ce8921f1a4.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d22100f1f1f8249f.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d22100f1f1f8249f.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d4519d736b0deb1e.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d4519d736b0deb1e.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d45bcf99f58d4c32.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d45bcf99f58d4c32.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d7d6f34c18998a79.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d7d6f34c18998a79.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d7dff01fe74c5335.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d7dff01fe74c5335.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d817f9a14bccce9f.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d817f9a14bccce9f.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/d8b1706905b10c8a.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/d8b1706905b10c8a.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/dd8098fae563809d.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/dd8098fae563809d.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/dfc05ad490e72208.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/dfc05ad490e72208.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/e172be39c09bbdc0.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/e172be39c09bbdc0.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/e9f1d047ac45c03b.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/e9f1d047ac45c03b.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/ed198a30066ef2ec.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/ed198a30066ef2ec.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/ef72909286442a91.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/ef72909286442a91.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/ef7cf6656af06912.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/ef7cf6656af06912.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/f4e040506f378c99.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/f4e040506f378c99.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/fa8374a57d6df73e.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/fa8374a57d6df73e.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/fb4fe863fb427ada.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/fb4fe863fb427ada.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/fe7409804d64bb6e.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/fe7409804d64bb6e.html"
+          "relative_path": "manual/mod/hitbox-naming-conventions.html"
         }
       },
       "version": ""
@@ -9346,6 +8596,66 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/mod/install-git.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/install-git.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/install-tortoisegit.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/install-tortoisegit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/install-vs-code-emmylua.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/install-vs-code-emmylua.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/instalod-plugin.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/instalod-plugin.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/instalod-studio.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/instalod-studio.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/jenkins-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/jenkins-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/mod/lua-api2-air-warning.md",
       "output": {
         ".html": {
@@ -9415,6 +8725,696 @@
       "version": ""
     },
     {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-behavior-mono.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-behavior-mono.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-breakpoint-debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-breakpoint-debugging.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-callbacks-and-self.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-callbacks-and-self.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-callbacks.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-callbacks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-custom-buff.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-custom-buff.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-custom-ui.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-custom-ui.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-hello-world.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-hello-world.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-knowledge-base.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-knowledge-base.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-lessons.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-lessons.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-profiler.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-profiler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-properties.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-properties.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-random-meteors.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-random-meteors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-self-dot-vs-colon.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-self-dot-vs-colon.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-vehicle-init-timing.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-vehicle-init-timing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/map-asset-download.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/map-asset-download.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/map-wizard-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/map-wizard-tutorial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/map-workshop-asset-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/map-workshop-asset-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/mask-texture-preview.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/mask-texture-preview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/material-component.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/material-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/merge-texture-channels.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/merge-texture-channels.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/migrate-old-project.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/migrate-old-project.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/mod-env-setup-hub.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/mod-env-setup-hub.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/mod-env-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/mod-env-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/mod-mirror-site-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/mod-mirror-site-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/mod-texture-group.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/mod-texture-group.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/mod-tools-changelog.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/mod-tools-changelog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/modding-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/modding-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/modding-issue-archive.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/modding-issue-archive.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/model-not-displaying.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/model-not-displaying.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/multi-platform-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/multi-platform-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/multi-turret-legacy.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/multi-turret-legacy.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/native-vehicle-components.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/native-vehicle-components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/new-water-integration.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/new-water-integration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/official-art-assets.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/official-art-assets.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/physics-wheels.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/physics-wheels.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/preset-vehicle-queue.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/preset-vehicle-queue.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/project-download-links.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/project-download-links.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/reactive-armor.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/reactive-armor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/reference-third-party-fmod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/reference-third-party-fmod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/send-mod-for-debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/send-mod-for-debugging.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/set-steam-game-folder.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/set-steam-game-folder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/shader-variant-collection.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/shader-variant-collection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/shared-resources-folder.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/shared-resources-folder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/shield-skill.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/shield-skill.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/sight-mod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/sight-mod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/spg-td-hydraulic-suspension.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/spg-td-hydraulic-suspension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-shell-ejection-animation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-shell-ejection-animation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/texture-channel-conversion-tools.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/texture-channel-conversion-tools.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/track-ik-suspension.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/track-ik-suspension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/umodpack-upgrade-notice.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/umodpack-upgrade-notice.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/unity-engine-requirements.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/unity-engine-requirements.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/upload-naming-art-standards.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/upload-naming-art-standards.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/upload-to-modhub.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/upload-to-modhub.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/upload-to-steam-workshop.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/upload-to-steam-workshop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/uv-automation-tool.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/uv-automation-tool.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-basics.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-basics.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-buff-config.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-buff-config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-dev-qa.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-dev-qa.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-hatches.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-hatches.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-light-component.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-light-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-modding-notes.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-modding-notes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-playground.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-playground.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vehicle-thumbnail.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vehicle-thumbnail.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vfx-mod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vfx-mod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/voice-pack-practice.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/voice-pack-practice.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/voice-pack.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/voice-pack.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/vrm-model.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/vrm-model.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/weapon-support-skill.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/weapon-support-skill.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/zoom-ratio-config.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/zoom-ratio-config.html"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "manual/toc.yml",
       "output": {
@@ -9429,50 +9429,20 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/workshop/172bf5ae0acd47d6.md",
+      "source_relative_path": "manual/workshop/glb-model-import-specs.md",
       "output": {
         ".html": {
-          "relative_path": "manual/workshop/172bf5ae0acd47d6.html"
+          "relative_path": "manual/workshop/glb-model-import-specs.html"
         }
       },
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/workshop/372b86228b5f482e.md",
+      "source_relative_path": "manual/workshop/gun-tutorial.md",
       "output": {
         ".html": {
-          "relative_path": "manual/workshop/372b86228b5f482e.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/workshop/5d500c46cd72aa96.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/workshop/5d500c46cd72aa96.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/workshop/60dbefcbf723d053.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/workshop/60dbefcbf723d053.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/workshop/ad317e8a749c8ea2.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/workshop/ad317e8a749c8ea2.html"
+          "relative_path": "manual/workshop/gun-tutorial.html"
         }
       },
       "version": ""
@@ -9873,6 +9843,36 @@
       "output": {
         "resource": {
           "relative_path": "manual/workshop/imgs/ff5bdfbe6af2_1719496060091-1cb4dfd0-ba8e-42a0-aad6-42a2add1a914.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/workshop/poly-edit-tool.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/workshop/poly-edit-tool.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/workshop/tank-workshop-basics.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/workshop/tank-workshop-basics.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/workshop/track-editor-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/workshop/track-editor-tutorial.html"
         }
       },
       "version": ""

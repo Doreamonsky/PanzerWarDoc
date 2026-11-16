@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>22.6.1 Lua 回调函数与 self Lua Callbacks and self | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="22.6.1 Lua 回调函数与 self Lua Callbacks and self | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2261-lua-回调函数与-self-lua-callbacks-and-self">22.6.1 Lua 回调函数与 self Lua Callbacks and self</h1>
+
+<p>本文旨在为 Lua 编程新手提供一个关于回调函数与 <strong>self</strong> 的简要教程。我们将通过示例说明如何在 Lua 中正确使用回调函数和 <strong>self</strong>。</p>
+<p>This article is a short tutorial on callback functions and <strong>self</strong> for newcomers to Lua programming. We will use an example to show how to correctly use callbacks and <strong>self</strong> in Lua.</p>
+<h2 id="示例代码-example-code">示例代码 Example Code</h2>
+<p>以下是演示如何在 Lua 中使用回调函数和 <strong>self</strong> 的示例代码：</p>
+<p>The following example code demonstrates how to use callback functions and <strong>self</strong> in Lua:</p>
+<pre><code class="lang-lua">Behavior()
+
+-- 定义属性
+-- Define properties
+Propery = {
+  keycode = {
+    type = &quot;string&quot;, -- 类型：字符串 Type: string
+    value = &quot;w&quot;      -- 键码值：W键 Key code value: W key
+  }
+}
+
+
+-- 定义一个名为 InputTest 的类
+-- Define a class called InputTest
+local InputTutorial = class(&quot;InputTutorial&quot;)
+
+function InputTutorial:ctor()
+  self.actionName = &quot;TestAPI&quot;
+end
+
+-- 当 InputTest 开始时调用此函数
+-- Call this function when InputTest starts
+function InputTutorial:OnStarted()
+  -- 定义键按下的回调函数
+  -- Define the key press callback function
+  self.OnKeyPerformedCb = function(context)
+    self:OnKeyPerformed(context)
+  end
+  -- 定义键取消的回调函数
+  -- Define the key cancel callback function
+  self.OnKeyCanceledCb = function(context)
+    self:OnKeyCanceled(context)
+  end
+
+  -- 注册键输入事件
+  -- Register key input event
+  InputAPI.RegisterKeyInput(self.actionName, self.keycode, self.OnKeyPerformedCb, self.OnKeyCanceledCb)
+end
+
+-- 当 InputTest 被销毁时调用此函数
+-- Call this function when InputTest is destroyed
+function InputTutorial:OnDestroyed()
+  print(&quot;On Destroyed&quot;)
+  -- 注销键输入事件
+  -- Unregister key input event
+  InputAPI.UnregisterKeyInput(self.actionName, self.keycode, self.OnKeyPerformedCb, self.OnKeyCanceledCb)
+end
+
+-- 键按下事件处理函数
+-- Key press event handler
+function InputTutorial:OnKeyPerformed(context)
+  print(&quot;on key pressed&quot;) -- 输出“按键按下”
+end
+
+-- 键取消事件处理函数
+-- Key cancel event handler
+function InputTutorial:OnKeyCanceled(context)
+  print(&quot;on key canceled&quot;) -- 输出“按键取消”
+end
+
+-- 返回 InputTest 类
+-- Return InputTest class
+return InputTutorial
+
+</code></pre>
+<h2 id="关键概念-key-concepts">关键概念 Key Concepts</h2>
+<h3 id="回调函数-callback-functions">回调函数 Callback Functions</h3>
+<p>在本示例中，我们使用了两个回调函数：<strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong>。这两个函数作为参数传递给 <strong>InputAPI.RegisterKeyInput</strong> 函数，以便在按键被按下或取消时执行相应操作。</p>
+<p>In this example we use two callback functions: <strong>self.OnKeyPerformedCb</strong> and <strong>self.OnKeyCanceledCb</strong>. Both are passed as arguments to <strong>InputAPI.RegisterKeyInput</strong>, so that the corresponding action is performed when a key is pressed or canceled.</p>
+<h3 id="self"><strong>self</strong></h3>
+<p>在本示例中，<strong>self</strong> 用于将回调函数与 <strong>InputTutorial</strong> 表的实例关联起来。在函数 <strong>InputTutorial:OnStarted()</strong> 中，我们使用 <strong>self</strong> 定义回调函数，并将它们存储在实例变量中。这样，当调用 <strong>InputTutorial:OnKeyPerformed(context)</strong> 和 <strong>InputTutorial:OnKeyCanceled(context)</strong> 时，这些函数即可访问并操作 <strong>InputTutorial</strong> 表的实例。</p>
+<p>In this example, <strong>self</strong> is used to associate the callback functions with the instance of the <strong>InputTutorial</strong> table. Inside <strong>InputTutorial:OnStarted()</strong> we use <strong>self</strong> to define the callbacks and store them in instance variables. That way, when <strong>InputTutorial:OnKeyPerformed(context)</strong> and <strong>InputTutorial:OnKeyCanceled(context)</strong> are called, these functions can access and operate on the instance of the <strong>InputTutorial</strong> table.</p>
+<h2 id="优点-advantages">优点 Advantages</h2>
+<p>将回调函数与实例关联起来具有以下优点：</p>
+<p>Associating the callback functions with the instance has the following benefits:</p>
+<ol>
+<li><strong>可读性</strong>：这种写法明确表明回调函数属于 <strong>InputTutorial</strong> 表的实例，使代码更加清晰易懂。<br>
+<strong>Readability</strong>: this style makes it explicit that the callbacks belong to the instance of the <strong>InputTutorial</strong> table, which makes the code clearer and easier to understand.</li>
+<li><strong>重用性</strong>：将回调函数存储在实例变量中，意味着你可以在其他地方重用这些回调函数，而无需再次创建匿名函数。<br>
+<strong>Reusability</strong>: storing the callbacks in instance variables means you can reuse them elsewhere instead of creating another anonymous function.</li>
+<li><strong>维护性</strong>：这种写法提高了代码的可维护性，因为当需要修改回调函数行为时，你只需修改 <strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong> 的定义。<br>
+<strong>Maintainability</strong>: this style improves maintainability, because when you need to change the behavior of a callback you only have to modify the definitions of <strong>self.OnKeyPerformedCb</strong> and <strong>self.OnKeyCanceledCb</strong>.</li>
+</ol>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-callbacks-and-self.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

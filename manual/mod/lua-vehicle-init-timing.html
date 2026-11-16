@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>22.5.6 载具时序 Vehicle Initialization Timing | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="22.5.6 载具时序 Vehicle Initialization Timing | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2256-载具时序-vehicle-initialization-timing">22.5.6 载具时序 Vehicle Initialization Timing</h1>
+
+<p>如果 Lua 脚本直接挂载在载具上，请勿在 OnStarted 中直接运行初始化代码。</p>
+<p>If your Lua script is attached directly to a vehicle, do not run initialization code directly in OnStarted.</p>
+<h2 id="客户端-api-2-起-from-api-2">客户端 API 2 起 From API 2</h2>
+<p>客户端 API 2 起（见 <a href="lua-api2-overview.html">22.7 Lua API 2 概览</a>），把初始化代码写进 <code>OnVehicleReady</code> 即可。游戏会在载具装配完成后调用它一次；如果脚本运行时载具已经装好，它会紧接在 <code>OnStarted</code> 之后调用。</p>
+<p>From client API 2 on (see <a href="lua-api2-overview.html">22.7 Lua API 2 Overview</a>), write your initialisation code into <code>OnVehicleReady</code>. The game calls it once after the vehicle has been assembled; if the vehicle is already assembled when the script runs, it is called immediately after <code>OnStarted</code>.</p>
+<pre><code class="lang-lua">function MyBehavior:OnVehicleReady(vehicle)
+  -- 这里填写原本的初始化逻辑
+  -- Your initialization code goes here
+end
+</code></pre>
+<h2 id="老客户端-older-clients">老客户端 Older Clients</h2>
+<p>下面的写法适用于没有 API 2 的老客户端。</p>
+<p>The following approach applies to older clients without API 2.</p>
+<p>请先注册一个加载回调，如下方式：</p>
+<p>Register a loaded callback first, like this:</p>
+<pre><code class="lang-lua">local ret, vehicle = self.script:TryGetTankInitSystem()
+if not ret then
+  return
+end
+
+VehicleAPI.RegisterVehicleLoadedEvent(vehicle, function()
+    -- 这里填写原本的初始化逻辑
+  end)
+</code></pre>
+<p><strong>修改前：</strong></p>
+<p><strong>Before:</strong></p>
+<p><img src="imgs/bbc90c1393fe_1752983057481-80b134ce-80c3-4e56-836f-4768d75776d0.png" alt=""></p>
+<p><strong>修改后：</strong></p>
+<p><strong>After:</strong></p>
+<p><img src="imgs/aed88e6aa8f3_1752983061841-f593990d-891f-4c95-b7b5-beb7798820ec.png" alt=""></p>
+<p>这样可以确保在载具完全加载完成后，再执行你的代码。</p>
+<p>This guarantees that your code only runs after the vehicle has fully finished loading.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-vehicle-init-timing.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
