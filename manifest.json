@@ -415,6 +415,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.LuaSubscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.LuaSubscription.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.LuaSubscription",
+      "Summary": "一次事件订阅。订阅时传入 owner（self.script）的，行为销毁时自动退订；目标载具被移除时也自动退订。也可以随时调用 Dispose 提前退订。\nOne event subscription. With an owner (self.script) it ends when the behaviour is destroyed; it also ends when the target vehicle\nis removed. Call Dispose to end it earlier."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.LuaValueBuff.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.LuaValueBuff.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.LuaValueBuff",
+      "Summary": "数值可变的 buff，由 BuffAPI.CreateValueBuff 创建。挂到属性上之后调用 SetValue，属性会原地刷新。\nA buff whose value can change, made by BuffAPI.CreateValueBuff. Once it is on a stat, SetValue refreshes that stat in place."
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/ShanghaiWindy.Core.API.MapAPI.yml",
       "output": {
         ".html": {
@@ -482,6 +510,20 @@
       "IsMRef": true,
       "Title": "ShanghaiWindy.Core.API.PointAPI",
       "Summary": "位置点 API\nPoint API"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.RadarAPI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.RadarAPI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.RadarAPI",
+      "Summary": "雷达 API：读取载具雷达（地面防空雷达或机载雷达）的状态、目标与告警，并控制本地玩家自己的雷达。雷达参数在载具数据的 groundAARadarData（飞机为 radarData）里配置。联机远程副本的雷达不在本机扫描：没有目标，扫描方位不动，锁定目标与工作模式来自网络，锁定 / 模式事件不触发。\nRadar API: read a vehicle's radar (ground air-defence or airborne): status, contacts and warnings, and control the local player's own radar. Radar parameters are set in the vehicle data's groundAARadarData (radarData for aircraft). A remote copy's radar does not scan on this client: no contacts, a still scan azimuth, lock target and work mode from the network, and no lock / mode events."
     },
     {
       "type": "ManagedReference",
@@ -636,6 +678,76 @@
       "IsMRef": true,
       "Title": "ShanghaiWindy.Core.API.VehicleAPI",
       "Summary": "载具通用 API\nVehicle Common APIs"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.VehicleContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.VehicleContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.VehicleContext",
+      "Summary": "载具实例所处的场合。\nWhere a vehicle instance lives."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.VehicleKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.VehicleKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.VehicleKind",
+      "Summary": "载具大类，用于查询过滤。\nVehicle kind, used to filter queries."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.VehicleQuery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.VehicleQuery.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.VehicleQuery",
+      "Summary": "战场载具查询：按类型、敌友、距离筛选场上存活的载具（含联机远程玩家、召唤和部署的单位），可按距离排序并限量。用 VehicleAPI.CreateQuery 建一次，反复 Run；Run 之后用 Count / Get / GetDistance 读结果。联机时只返回本队当前看得到的敌方。\nBattlefield vehicle query: filters the live vehicles in the battle (remote players online, summoned and deployed units included) by kind, relation and distance, optionally sorted by distance and capped. Create it once with VehicleAPI.CreateQuery and Run it again and again; read the results with Count / Get / GetDistance after Run. Online it only returns enemies your team can currently see."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.VehicleRelation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.VehicleRelation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.VehicleRelation",
+      "Summary": "相对于某辆载具的敌友关系，用于查询过滤。\nRelation to a vehicle, used to filter queries."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.API.WeaponAPI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.API.WeaponAPI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.API.WeaponAPI",
+      "Summary": "武器 API。坦克、飞机和步兵的武器通用。\nWeapon API, shared by tank, aircraft and infantry weapons."
     },
     {
       "type": "ManagedReference",
@@ -961,6 +1073,146 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate",
+      "Summary": "带一个布尔值的事件回调。\nEvent callback with a boolean."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaEventDelegate",
+      "Summary": "无参数的事件回调。\nEvent callback without arguments."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate",
+      "Summary": "带一个浮点数的事件回调。\nEvent callback with a number."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaHitEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaHitEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaHitEventDelegate",
+      "Summary": "武器命中造成伤害时的回调。\nCallback when a weapon's hit deals damage."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaIntEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaIntEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaIntEventDelegate",
+      "Summary": "带一个整数的事件回调。\nEvent callback with an integer."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate",
+      "Summary": "内部模块状态变化的回调。\nCallback when an internal module changes state."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate",
+      "Summary": "雷达锁定变化的回调。\nCallback when a radar lock changes."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate",
+      "Summary": "雷达工作模式变化的回调。\nCallback when a radar's work mode changes."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate",
+      "Summary": "雷达告警（RWR）收到威胁时的回调。\nCallback when the radar warning receiver gets a threat."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate",
+      "Summary": "带一辆载具的事件回调。\nEvent callback with a vehicle."
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate.yml",
       "output": {
         ".html": {
@@ -1098,6 +1350,34 @@
       "IsMRef": true,
       "Title": "ShanghaiWindy.Core.EIconPosition",
       "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.ERWRThreatType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.ERWRThreatType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.ERWRThreatType",
+      "Summary": "雷达告警（RWR）收到的威胁类型：被搜索扫到、被锁定跟踪、有导弹来袭。\nThreat a radar warning receiver reports: painted by a search, locked by a track, a missile inbound."
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ShanghaiWindy.Core.ERadarWorkMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ShanghaiWindy.Core.ERadarWorkMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ShanghaiWindy.Core.ERadarWorkMode",
+      "Summary": "雷达工作模式：关机、搜索、单目标跟踪、格斗、边扫边跟。\nRadar work mode: off, search, single-target track, dogfight (auto-lock), track while scan."
     },
     {
       "type": "ManagedReference",
@@ -9060,6 +9340,76 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/ff0e9f57bfc2_1731904871128-0e6ec8df-4a64-4f2a-995e-32e8f549b1cc.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-air-warning.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-air-warning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-charged-shot.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-charged-shot.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-engine-gear.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-engine-gear.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-missile-rack.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-missile-rack.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-module-trigger.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-module-trigger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-overview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/lua-api2-radar-screen.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/lua-api2-radar-screen.html"
         }
       },
       "version": ""

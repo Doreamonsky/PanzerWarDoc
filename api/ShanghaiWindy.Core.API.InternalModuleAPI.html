@@ -104,12 +104,12 @@ public static class InternalModuleAPI</code></pre>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetAllInternalModules_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L107">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L153">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetAllInternalModules_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetAllInternalModules_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetAllInternalModules(ShanghaiWindy.Core.BaseInitSystem)">GetAllInternalModules(BaseInitSystem)</h4>
-  <div class="markdown level1 summary">获取载具上所有内部模块组件。
-Get all InternalModuleComponents on a vehicle.</div>
+  <div class="markdown level1 summary">获取载具上所有内部模块组件。每次调用都会新建列表，只在初始化时调用。
+Get all InternalModuleComponents on a vehicle. Each call builds a new list; call it once at set-up.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -153,7 +153,7 @@ public static List&lt;InternalModuleComponent&gt; GetAllInternalModules(BaseInit
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetCurrentHitPoint_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L71">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L88">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetCurrentHitPoint_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetCurrentHitPoint_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetCurrentHitPoint(ShanghaiWindy.Core.InternalModuleComponent)">GetCurrentHitPoint(InternalModuleComponent)</h4>
@@ -199,15 +199,67 @@ public static int GetCurrentHitPoint(InternalModuleComponent module)</code></pre
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetHitPointRatio_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetHitPointRatio(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L112">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetHitPointRatio_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetHitPointRatio*"></a>
+  <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetHitPointRatio_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetHitPointRatio(ShanghaiWindy.Core.InternalModuleComponent)">GetHitPointRatio(InternalModuleComponent)</h4>
+  <div class="markdown level1 summary">获取当前血量占最大血量的比例，0 到 1。
+Get the current hit points as a share of the maximum, 0 to 1.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetHitPointRatio(InternalModuleComponent module)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">InternalModuleComponent</span></td>
+        <td><span class="parametername">module</span></td>
+        <td>目标模块 Target module</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>血量比例 Hit point ratio</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModule_GameObject_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule(GameObject)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L21">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L27">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModule_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModule_GameObject_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModule(GameObject)">GetInternalModule(GameObject)</h4>
-  <div class="markdown level1 summary">从 GameObject 获取内部模块组件。
-Get InternalModuleComponent from a GameObject.</div>
+  <div class="markdown level1 summary">从模块所在的 GameObject 获取内部模块组件（不是 InternalModule 脚本本身），挂在模块物体上的脚本传 self.gameObject 即可。
+模块组件在载具装配时创建：在 OnVehicleReady 里或之后调用；装配前、物体上没有模块时返回 nil。
+Get the InternalModuleComponent (not the InternalModule script itself) from the module's GameObject; a script on
+the module object passes self.gameObject. The component is created when the vehicle is assembled: call this in
+OnVehicleReady or later. nil before that, or when the object has no module.</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -242,7 +294,7 @@ public static InternalModuleComponent GetInternalModule(GameObject gameObject)</
     <tbody>
       <tr>
         <td><span class="xref">InternalModuleComponent</span></td>
-        <td>InternalModuleComponent，不存在则返回 null</td>
+        <td>InternalModuleComponent，不存在则返回 nil InternalModuleComponent, nil when there is none</td>
       </tr>
     </tbody>
   </table>
@@ -251,7 +303,7 @@ public static InternalModuleComponent GetInternalModule(GameObject gameObject)</
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModuleFromCollider_Collider_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider(Collider)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L34">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L45">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModuleFromCollider_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetInternalModuleFromCollider_Collider_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetInternalModuleFromCollider(Collider)">GetInternalModuleFromCollider(Collider)</h4>
@@ -291,7 +343,7 @@ public static InternalModuleComponent GetInternalModuleFromCollider(Collider col
     <tbody>
       <tr>
         <td><span class="xref">InternalModuleComponent</span></td>
-        <td>InternalModuleComponent，不存在则返回 null</td>
+        <td>InternalModuleComponent，不存在则返回 nil InternalModuleComponent, nil when there is none</td>
       </tr>
     </tbody>
   </table>
@@ -300,7 +352,7 @@ public static InternalModuleComponent GetInternalModuleFromCollider(Collider col
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetMaxHitPoint_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L83">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L100">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetMaxHitPoint_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetMaxHitPoint_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetMaxHitPoint(ShanghaiWindy.Core.InternalModuleComponent)">GetMaxHitPoint(InternalModuleComponent)</h4>
@@ -349,7 +401,7 @@ public static int GetMaxHitPoint(InternalModuleComponent module)</code></pre>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleState_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L59">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L76">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleState_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleState_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleState(ShanghaiWindy.Core.InternalModuleComponent)">GetModuleState(InternalModuleComponent)</h4>
@@ -398,7 +450,7 @@ public static InternalModuleState GetModuleState(InternalModuleComponent module)
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleType_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L47">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L63">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleType_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetModuleType_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetModuleType(ShanghaiWindy.Core.InternalModuleComponent)">GetModuleType(InternalModuleComponent)</h4>
@@ -447,7 +499,7 @@ public static EInternalModuleType GetModuleType(InternalModuleComponent module)<
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_GetOwner_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L95">View Source</a>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L141">View Source</a>
   </span>
   <a id="ShanghaiWindy_Core_API_InternalModuleAPI_GetOwner_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner*"></a>
   <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_GetOwner_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.GetOwner(ShanghaiWindy.Core.InternalModuleComponent)">GetOwner(InternalModuleComponent)</h4>
@@ -491,6 +543,234 @@ public static BaseInitSystem GetOwner(InternalModuleComponent module)</code></pr
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_IsDestroyed_ShanghaiWindy_Core_InternalModuleComponent_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.IsDestroyed(ShanghaiWindy.Core.InternalModuleComponent)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L129">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_InternalModuleAPI_IsDestroyed_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.IsDestroyed*"></a>
+  <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_IsDestroyed_ShanghaiWindy_Core_InternalModuleComponent_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.IsDestroyed(ShanghaiWindy.Core.InternalModuleComponent)">IsDestroyed(InternalModuleComponent)</h4>
+  <div class="markdown level1 summary">模块是否已被摧毁。
+Whether the module is destroyed.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsDestroyed(InternalModuleComponent module)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">InternalModuleComponent</span></td>
+        <td><span class="parametername">module</span></td>
+        <td>目标模块 Target module</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否已摧毁 Whether it is destroyed</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_OnDamaged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_InternalModuleComponent_ShanghaiWindy_Core_Delegate_OnLuaFloatEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.OnDamaged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.InternalModuleComponent%2CShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L213">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_InternalModuleAPI_OnDamaged_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.OnDamaged*"></a>
+  <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_OnDamaged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_InternalModuleComponent_ShanghaiWindy_Core_Delegate_OnLuaFloatEventDelegate_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.OnDamaged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.InternalModuleComponent,ShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate)">OnDamaged(LuaBehaviorProxy, InternalModuleComponent, OnLuaFloatEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅模块受到伤害，回调参数为这次扣除的血量（回放中为 0）。模块已毁、伤害转给替补模块时由替补模块发出。
+Subscribe to the module taking damage; the callback gets the hit points this hit took (0 in a replay). Once the
+module is destroyed and a substitute takes the damage, the substitute raises it.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnDamaged(LuaBehaviorProxy owner, InternalModuleComponent module, OnLuaFloatEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者，传 self.script，行为销毁时自动退订；可为 nil Subscriber, pass self.script to end it with the behaviour; may be nil</td>
+      </tr>
+      <tr>
+        <td><span class="xref">InternalModuleComponent</span></td>
+        <td><span class="parametername">module</span></td>
+        <td>目标模块 Target module</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate.html">OnLuaFloatEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调 (damage) Callback (damage)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅，失败时为 nil The subscription, nil on failure</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_OnRepaired_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_InternalModuleComponent_ShanghaiWindy_Core_Delegate_OnLuaEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.OnRepaired(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.InternalModuleComponent%2CShanghaiWindy.Core.Delegate.OnLuaEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L242">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_InternalModuleAPI_OnRepaired_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.OnRepaired*"></a>
+  <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_OnRepaired_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_InternalModuleComponent_ShanghaiWindy_Core_Delegate_OnLuaEventDelegate_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.OnRepaired(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.InternalModuleComponent,ShanghaiWindy.Core.Delegate.OnLuaEventDelegate)">OnRepaired(LuaBehaviorProxy, InternalModuleComponent, OnLuaEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅模块被修复（自动修复、手动修复或维修点）。
+Subscribe to the module being repaired (auto repair, manual repair or a repair point).</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnRepaired(LuaBehaviorProxy owner, InternalModuleComponent module, OnLuaEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者，传 self.script，行为销毁时自动退订；可为 nil Subscriber, pass self.script to end it with the behaviour; may be nil</td>
+      </tr>
+      <tr>
+        <td><span class="xref">InternalModuleComponent</span></td>
+        <td><span class="parametername">module</span></td>
+        <td>目标模块 Target module</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaEventDelegate.html">OnLuaEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调 Callback</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅，失败时为 nil The subscription, nil on failure</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI_OnStateChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_InternalModuleComponent_ShanghaiWindy_Core_Delegate_OnLuaModuleStateEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI.OnStateChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.InternalModuleComponent%2CShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L182">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_InternalModuleAPI_OnStateChanged_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.OnStateChanged*"></a>
+  <h4 id="ShanghaiWindy_Core_API_InternalModuleAPI_OnStateChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_InternalModuleComponent_ShanghaiWindy_Core_Delegate_OnLuaModuleStateEventDelegate_" data-uid="ShanghaiWindy.Core.API.InternalModuleAPI.OnStateChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.InternalModuleComponent,ShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate)">OnStateChanged(LuaBehaviorProxy, InternalModuleComponent, OnLuaModuleStateEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅模块状态变化（Good / Slight / Middle / Critical / Serious / Destroyed 之间切换），回调参数为旧状态和新状态。
+Subscribe to the module changing state (Good / Slight / Middle / Critical / Serious / Destroyed); the callback gets
+the old and the new state.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnStateChanged(LuaBehaviorProxy owner, InternalModuleComponent module, OnLuaModuleStateEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者，传 self.script，行为销毁时自动退订；可为 nil Subscriber, pass self.script to end it with the behaviour; may be nil</td>
+      </tr>
+      <tr>
+        <td><span class="xref">InternalModuleComponent</span></td>
+        <td><span class="parametername">module</span></td>
+        <td>目标模块 Target module</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate.html">OnLuaModuleStateEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调 (oldState, newState) Callback (oldState, newState)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅，失败时为 nil The subscription, nil on failure</td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>
@@ -503,7 +783,7 @@ public static BaseInitSystem GetOwner(InternalModuleComponent module)</code></pr
                     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_InternalModuleAPI.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.InternalModuleAPI%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L11" class="contribution-link">View Source</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/InternalModuleAPI.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

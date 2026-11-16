@@ -101,6 +101,138 @@ public static class TankAPI</code></pre>
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TankAPI_GetEngineState_ShanghaiWindy_Core_BaseInitSystem_System_Single__System_Single__System_Int32__System_Single__System_Boolean__.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TankAPI.GetEngineState(ShanghaiWindy.Core.BaseInitSystem%2CSystem.Single%40%2CSystem.Single%40%2CSystem.Int32%40%2CSystem.Single%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/TankAPI.cs/#L82">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_TankAPI_GetEngineState_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetEngineState*"></a>
+  <h4 id="ShanghaiWindy_Core_API_TankAPI_GetEngineState_ShanghaiWindy_Core_BaseInitSystem_System_Single__System_Single__System_Int32__System_Single__System_Boolean__" data-uid="ShanghaiWindy.Core.API.TankAPI.GetEngineState(ShanghaiWindy.Core.BaseInitSystem,System.Single@,System.Single@,System.Int32@,System.Single@,System.Boolean@)">GetEngineState(BaseInitSystem, out float, out float, out int, out float, out bool)</h4>
+  <div class="markdown level1 summary">一次读取发动机和传动状态，数值与游戏的引擎声音、驾驶界面用的相同，来自本机的物理模拟。
+履带车：全部有值。轮式车：开启了变速箱才有转速和档位变化，否则转速为 0、档位为 1。舰船：有转速和速度，档位为 1、倒车为 false。
+固定式载具（炮台等）：转速、速度为 0，档位为 1。
+Read the engine and drivetrain state in one call; the same values the game's engine sound and driving HUD use, from
+this machine's physics. Tracked: all values. Wheeled: rpm and gear change only with a gearbox enabled, else rpm 0 and
+gear 1. Ships: rpm and speed; gear 1 and reversing false. Fixed emplacements: rpm and speed 0, gear 1.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool GetEngineState(BaseInitSystem vehicle, out float rpm, out float rpmPercent, out int gear, out float speedKmh, out bool reversing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>载具 Vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">rpm</span></td>
+        <td>发动机转速 Engine rpm</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">rpmPercent</span></td>
+        <td>转速百分比，0 到 100 Rpm as a percentage, 0 to 100</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">gear</span></td>
+        <td>档位，与驾驶界面显示的相同：1 为一档，履带车倒挡为 0 Gear as the driving HUD shows it: 1 is first gear, a tracked vehicle's reverse is 0</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">speedKmh</span></td>
+        <td>速度（公里/小时）；履带车和轮式车为车头方向的速度，倒车为负 Speed in km/h; for tracked and wheeled vehicles along the hull, negative when reversing</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">reversing</span></td>
+        <td>是否在倒车 Whether it is reversing</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否读到（不是地面载具或尚未装配好时为 false） Whether the state was read (false for a vehicle that is not a ground vehicle or not assembled yet)</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TankAPI_GetGunTransform_ShanghaiWindy_Core_BaseInitSystem_System_Int32_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TankAPI.GetGunTransform(ShanghaiWindy.Core.BaseInitSystem%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/TankAPI.cs/#L60">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_TankAPI_GetGunTransform_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetGunTransform*"></a>
+  <h4 id="ShanghaiWindy_Core_API_TankAPI_GetGunTransform_ShanghaiWindy_Core_BaseInitSystem_System_Int32_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetGunTransform(ShanghaiWindy.Core.BaseInitSystem,System.Int32)">GetGunTransform(BaseInitSystem, int)</h4>
+  <div class="markdown level1 summary">获取炮塔的俯仰（炮管）节点。序号从 0 开始，0 是主炮塔。
+Get a turret's elevation (gun) transform. Index from 0; 0 is the main turret.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static Transform GetGunTransform(BaseInitSystem vehicle, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>载具 Vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>炮塔序号 Turret index</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td>炮管节点，没有时为 nil Gun transform, nil when there is none</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TankAPI_GetTankFireList_ShanghaiWindy_Core_VehicleInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TankAPI.GetTankFireList(ShanghaiWindy.Core.VehicleInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -145,6 +277,109 @@ public static List&lt;TankFire&gt; GetTankFireList(VehicleInitSystem vehicle)</c
       <tr>
         <td><span class="xref">List</span>&lt;<a class="xref" href="ShanghaiWindy.Core.TankFire.html">TankFire</a>&gt;</td>
         <td>坦克火力系统列表 List of tank fire systems</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TankAPI_GetTurretCount_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TankAPI.GetTurretCount(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/TankAPI.cs/#L33">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_TankAPI_GetTurretCount_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetTurretCount*"></a>
+  <h4 id="ShanghaiWindy_Core_API_TankAPI_GetTurretCount_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetTurretCount(ShanghaiWindy.Core.BaseInitSystem)">GetTurretCount(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取炮塔数量（主炮塔和附加炮塔）。不是地面载具时为 0。
+Get how many turrets the vehicle has (main and extra turrets). 0 for a vehicle that is not a ground vehicle.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static int GetTurretCount(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>载具 Vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td>炮塔数量 Turret count</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TankAPI_GetTurretTransform_ShanghaiWindy_Core_BaseInitSystem_System_Int32_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TankAPI.GetTurretTransform(ShanghaiWindy.Core.BaseInitSystem%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/TankAPI.cs/#L46">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_TankAPI_GetTurretTransform_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetTurretTransform*"></a>
+  <h4 id="ShanghaiWindy_Core_API_TankAPI_GetTurretTransform_ShanghaiWindy_Core_BaseInitSystem_System_Int32_" data-uid="ShanghaiWindy.Core.API.TankAPI.GetTurretTransform(ShanghaiWindy.Core.BaseInitSystem,System.Int32)">GetTurretTransform(BaseInitSystem, int)</h4>
+  <div class="markdown level1 summary">获取炮塔的水平旋转节点。序号从 0 开始，0 是主炮塔。
+Get a turret's traverse transform. Index from 0; 0 is the main turret.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static Transform GetTurretTransform(BaseInitSystem vehicle, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>载具 Vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>炮塔序号 Turret index</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td>炮塔节点，没有时为 nil Turret transform, nil when there is none</td>
       </tr>
     </tbody>
   </table>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>22.7.1 用例：导弹挂架随弹药显示 Example: A Missile Rack That Follows the Ammo | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="22.7.1 用例：导弹挂架随弹药显示 Example: A Missile Rack That Follows the Ammo | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2271-用例导弹挂架随弹药显示-example-a-missile-rack-that-follows-the-ammo">22.7.1 用例：导弹挂架随弹药显示 Example: A Missile Rack That Follows the Ammo</h1>
+
+<p>每发射一枚导弹，挂架上就少一枚模型；补给后模型重新出现。弹药数量由游戏提供，脚本不用自己统计发射次数，也不需要判断是否在车库：车库里弹药是满的，模型自然全部显示。</p>
+<p>Each time a missile is fired, one model is removed from the rack; the models reappear after resupply. The ammunition count is provided by the game, so the script does not need to track the number of shots fired itself, nor does it need to check whether the vehicle is in the garage: in the garage, the ammunition is full, so all models are naturally displayed.</p>
+<p>把脚本挂在载具模型上，把导弹模型命名为同一个前缀加序号（例如 <code>Missile_1</code>、<code>Missile_2</code>……），在属性里填写武器序号和前缀。</p>
+<p>Attach the script to the vehicle model, name the missile models with the same prefix followed by a sequence number (for example <code>Missile_1</code>, <code>Missile_2</code>...), and fill in the weapon index and prefix in the properties.</p>
+<pre><code class="lang-lua">Behavior()
+Property = {
+  weaponIndex = { type = &quot;number&quot;, value = 1 },   -- 第几件武器（0 开始） / Weapon index, from 0
+  modelPrefix = { type = &quot;string&quot;, value = &quot;Missile_&quot; },
+}
+
+local MissileRack = class(&quot;MissileRack&quot;)
+
+function MissileRack:OnVehicleReady(vehicle)
+  self.weapon = WeaponAPI.GetWeapon(vehicle, self.weaponIndex)
+  if self.weapon == nil then
+    print(&quot;[MissileRack] weapon &quot; .. tostring(self.weaponIndex) .. &quot; not found&quot;)
+    return
+  end
+
+  -- 只在这里找一次，按层级顺序；空数组说明模型上没有这些节点
+  -- Look them up once, in hierarchy order; an empty array means the model has none
+  self.models = TransformAPI.FindAllDeep(self.transform, self.modelPrefix)
+
+  -- 每发一枚、每次补给都会触发；行为销毁时自动退订
+  -- Fires on every shot and every resupply; ends with the behaviour
+  WeaponAPI.OnAmmoChanged(self.script, self.weapon, function()
+    self:Refresh()
+  end)
+
+  self:Refresh()
+end
+
+function MissileRack:Refresh()
+  local left = WeaponAPI.GetTotalAmmo(self.weapon)
+  for i = 0, self.models.Length - 1 do
+    self.models[i].gameObject:SetActive(i &lt; left)
+  end
+end
+
+return MissileRack
+</code></pre>
+<p>要点：</p>
+<p>Key points:</p>
+<ul>
+<li><p><code>TransformAPI.FindAllDeep</code> 只在 <code>OnVehicleReady</code> 里调用一次。返回的数组按层级顺序排列，所以模型在层级里的顺序就是消耗的顺序。</p>
+</li>
+<li><p><code>WeaponAPI.OnAmmoChanged</code> 在每次开火和每次补给时触发；传入 <code>self.script</code> 后，行为销毁时自动退订。</p>
+</li>
+<li><p>这个脚本没有 <code>OnUpdated</code>，完全由事件驱动，平时没有任何每帧开销。</p>
+</li>
+<li><p><code>TransformAPI.FindAllDeep</code> should only be called once in <code>OnVehicleReady</code>. The returned array is arranged in hierarchy order, so the order of the models in the hierarchy is the order in which they are consumed.</p>
+</li>
+<li><p><code>WeaponAPI.OnAmmoChanged</code> is triggered on every shot and every resupply; passing <code>self.script</code> ensures that the subscription is automatically unsubscribed when the behaviour is destroyed.</p>
+</li>
+<li><p>This script has no <code>OnUpdated</code>, is entirely event-driven, and has no per-frame overhead during normal operation.</p>
+</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-api2-missile-rack.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

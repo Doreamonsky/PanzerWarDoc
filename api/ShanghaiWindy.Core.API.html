@@ -140,6 +140,13 @@ Input Handler API</section>
       <h4><a class="xref" href="ShanghaiWindy.Core.API.InternalModuleAPI.html">InternalModuleAPI</a></h4>
       <section>内部模块 API
 Internal Module API</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></h4>
+      <section>一次事件订阅。订阅时传入 owner（self.script）的，行为销毁时自动退订；目标载具被移除时也自动退订。也可以随时调用 Dispose 提前退订。
+One event subscription. With an owner (self.script) it ends when the behaviour is destroyed; it also ends when the target vehicle
+is removed. Call Dispose to end it earlier.</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.LuaValueBuff.html">LuaValueBuff</a></h4>
+      <section>数值可变的 buff，由 BuffAPI.CreateValueBuff 创建。挂到属性上之后调用 SetValue，属性会原地刷新。
+A buff whose value can change, made by BuffAPI.CreateValueBuff. Once it is on a stat, SetValue refreshes that stat in place.</section>
       <h4><a class="xref" href="ShanghaiWindy.Core.API.MapAPI.html">MapAPI</a></h4>
       <section>地图 API
 Map API</section>
@@ -155,6 +162,9 @@ Mode API</section>
       <h4><a class="xref" href="ShanghaiWindy.Core.API.PointAPI.html">PointAPI</a></h4>
       <section>位置点 API
 Point API</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.RadarAPI.html">RadarAPI</a></h4>
+      <section>雷达 API：读取载具雷达（地面防空雷达或机载雷达）的状态、目标与告警，并控制本地玩家自己的雷达。雷达参数在载具数据的 groundAARadarData（飞机为 radarData）里配置。联机远程副本的雷达不在本机扫描：没有目标，扫描方位不动，锁定目标与工作模式来自网络，锁定 / 模式事件不触发。
+Radar API: read a vehicle's radar (ground air-defence or airborne): status, contacts and warnings, and control the local player's own radar. Radar parameters are set in the vehicle data's groundAARadarData (radarData for aircraft). A remote copy's radar does not scan on this client: no contacts, a still scan azimuth, lock target and work mode from the network, and no lock / mode events.</section>
       <h4><a class="xref" href="ShanghaiWindy.Core.API.RandomAPI.html">RandomAPI</a></h4>
       <section>随机 API
 Random API</section>
@@ -188,9 +198,24 @@ Mode UI API</section>
       <h4><a class="xref" href="ShanghaiWindy.Core.API.VehicleAPI.html">VehicleAPI</a></h4>
       <section>载具通用 API
 Vehicle Common APIs</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.VehicleQuery.html">VehicleQuery</a></h4>
+      <section>战场载具查询：按类型、敌友、距离筛选场上存活的载具（含联机远程玩家、召唤和部署的单位），可按距离排序并限量。用 VehicleAPI.CreateQuery 建一次，反复 Run；Run 之后用 Count / Get / GetDistance 读结果。联机时只返回本队当前看得到的敌方。
+Battlefield vehicle query: filters the live vehicles in the battle (remote players online, summoned and deployed units included) by kind, relation and distance, optionally sorted by distance and capped. Create it once with VehicleAPI.CreateQuery and Run it again and again; read the results with Count / Get / GetDistance after Run. Online it only returns enemies your team can currently see.</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.WeaponAPI.html">WeaponAPI</a></h4>
+      <section>武器 API。坦克、飞机和步兵的武器通用。
+Weapon API, shared by tank, aircraft and infantry weapons.</section>
     <h3 id="enums">
 Enums
 </h3>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.VehicleContext.html">VehicleContext</a></h4>
+      <section>载具实例所处的场合。
+Where a vehicle instance lives.</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.VehicleKind.html">VehicleKind</a></h4>
+      <section>载具大类，用于查询过滤。
+Vehicle kind, used to filter queries.</section>
+      <h4><a class="xref" href="ShanghaiWindy.Core.API.VehicleRelation.html">VehicleRelation</a></h4>
+      <section>相对于某辆载具的敌友关系，用于查询过滤。
+Relation to a vehicle, used to filter queries.</section>
       <h4><a class="xref" href="ShanghaiWindy.Core.API.eDefaultButtonInputType.html">eDefaultButtonInputType</a></h4>
       <section>默认按键输入
 Default button input</section>

@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class RadarAPI | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class RadarAPI | Panzer War Document ">
+    
+    <meta name="description" content="雷达 API：读取载具雷达（地面防空雷达或机载雷达）的状态、目标与告警，并控制本地玩家自己的雷达。雷达参数在载具数据的 groundAARadarData（飞机为 radarData）里配置。联机远程副本的雷达不在本机扫描：没有目标，扫描方位不动，锁定目标与工作模式来自网络，锁定 / 模式事件不触发。 Radar API: read a vehicle&#39;s radar (ground air-defence or airborne): status, contacts and warnings, and control the local player&#39;s own radar. Radar parameters are set in the vehicle data&#39;s groundAARadarData (radarData for aircraft). A remote copy&#39;s radar does not scan on this client: no contacts, a still scan azimuth, lock target and work mode from the network, and no lock / mode events.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ShanghaiWindy.Core.API.RadarAPI">
+
+
+
+  <h1 id="ShanghaiWindy_Core_API_RadarAPI" data-uid="ShanghaiWindy.Core.API.RadarAPI" class="text-break">Class RadarAPI</h1>
+  <div class="markdown level0 summary">雷达 API：读取载具雷达（地面防空雷达或机载雷达）的状态、目标与告警，并控制本地玩家自己的雷达。雷达参数在载具数据的 groundAARadarData（飞机为 radarData）里配置。联机远程副本的雷达不在本机扫描：没有目标，扫描方位不动，锁定目标与工作模式来自网络，锁定 / 模式事件不触发。
+Radar API: read a vehicle's radar (ground air-defence or airborne): status, contacts and warnings, and control the local player's own radar. Radar parameters are set in the vehicle data's groundAARadarData (radarData for aircraft). A remote copy's radar does not scan on this client: no contacts, a still scan azimuth, lock target and work mode from the network, and no lock / mode events.</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">RadarAPI</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a>.<a class="xref" href="ShanghaiWindy.Core.API.html">API</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="ShanghaiWindy_Core_API_RadarAPI_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+[LuaCallCSharp(GenFlag.No)]
+public static class RadarAPI</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_CycleTarget_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.CycleTarget(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L258">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_CycleTarget_" data-uid="ShanghaiWindy.Core.API.RadarAPI.CycleTarget*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_CycleTarget_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.CycleTarget(ShanghaiWindy.Core.BaseRadarSystem)">CycleTarget(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">切换目标，与玩家的选择键相同：搜索时依次指定下一个目标（最后一次清除指定），跟踪时直接换锁下一个。只对本地玩家正在控制的载具的雷达有效。
+Cycle targets, like the player's select key: in search it designates the next target (the last press clears it), in TRK it locks the next one at once. Only works on the radar of the vehicle the local player controls.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool CycleTarget(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否执行 Whether it ran</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetContact_ShanghaiWindy_Core_BaseRadarSystem_System_Int32_ShanghaiWindy_Core_BaseInitSystem__System_Single__System_Single__System_Single__System_Single__System_Single__System_Boolean__.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetContact(ShanghaiWindy.Core.BaseRadarSystem%2CSystem.Int32%2CShanghaiWindy.Core.BaseInitSystem%40%2CSystem.Single%40%2CSystem.Single%40%2CSystem.Single%40%2CSystem.Single%40%2CSystem.Single%40%2CSystem.Boolean%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L130">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetContact_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetContact*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetContact_ShanghaiWindy_Core_BaseRadarSystem_System_Int32_ShanghaiWindy_Core_BaseInitSystem__System_Single__System_Single__System_Single__System_Single__System_Single__System_Boolean__" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetContact(ShanghaiWindy.Core.BaseRadarSystem,System.Int32,ShanghaiWindy.Core.BaseInitSystem@,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@,System.Boolean@)">GetContact(BaseRadarSystem, int, out BaseInitSystem, out float, out float, out float, out float, out float, out bool)</h4>
+  <div class="markdown level1 summary">读取第 index 个目标（从 0 开始）。数据是波束上次扫过它时的，两次扫过之间不变。方位角、俯仰角是雷达坐标系下的（度，0 为正前方，方位向右为正，俯仰向上为正）：地面防空雷达以炮塔为准；水平稳定的机载雷达方位从机头航向量起、俯仰从地平线量起。
+Read contact number index (0-based). Values are from the last time the beam swept it and stay put between sweeps. Azimuth and elevation are in the radar's frame, in degrees (0 straight ahead, azimuth positive to the right, elevation positive up): the turret for ground air defence; a horizon-stabilized airborne radar measures azimuth from the nose heading and elevation from the horizon.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool GetContact(BaseRadarSystem radar, int index, out BaseInitSystem target, out float distance, out float azimuth, out float elevation, out float altitude, out float radialSpeed, out bool isFriendly)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>序号 Index</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">target</span></td>
+        <td>目标载具；箔条假回波为 nil Target vehicle; nil for a chaff false echo</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">distance</span></td>
+        <td>距离（米）Distance in metres</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">azimuth</span></td>
+        <td>方位角（度，-180~180）Azimuth in degrees, -180 to 180</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">elevation</span></td>
+        <td>俯仰角（度）Elevation in degrees</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">altitude</span></td>
+        <td>目标高度（世界 Y，米）Target height (world Y) in metres</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">radialSpeed</span></td>
+        <td>相对径向速度（米/秒，远离为正）；任一方没有刚体时为 0 Range rate in m/s, positive opening; 0 when either side has no rigid body</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isFriendly</span></td>
+        <td>是否友方。友方只在雷达有 IFF（hasIFF）时出现，没有 IFF 的雷达不显示友方 Is friendly. Friends only appear on a radar with IFF (hasIFF); a radar without IFF leaves them out</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否读到；越界或不可读时为 false Whether it was read; false when out of range or unreadable</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetContactCount_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetContactCount(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L110">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetContactCount_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetContactCount*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetContactCount_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetContactCount(ShanghaiWindy.Core.BaseRadarSystem)">GetContactCount(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取雷达画面上的目标数量（含箔条假回波）。远程副本为 0；联机时敌方的雷达为 0。
+Get the number of contacts on the radar picture (chaff false echoes included). 0 for a remote copy, and online 0 for an enemy's radar.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static int GetContactCount(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td>目标数量 Number of contacts</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetContactWorldAzimuth_ShanghaiWindy_Core_BaseRadarSystem_System_Int32_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetContactWorldAzimuth(ShanghaiWindy.Core.BaseRadarSystem%2CSystem.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L164">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetContactWorldAzimuth_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetContactWorldAzimuth*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetContactWorldAzimuth_ShanghaiWindy_Core_BaseRadarSystem_System_Int32_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetContactWorldAzimuth(ShanghaiWindy.Core.BaseRadarSystem,System.Int32)">GetContactWorldAzimuth(BaseRadarSystem, int)</h4>
+  <div class="markdown level1 summary">获取第 index 个目标的世界方位（度，-180~180，从世界 +Z 顺时针），为波束扫过时的快照，画正北朝上的 PPI 用。
+Get the world bearing of contact number index in degrees, -180 to 180, clockwise from world +Z, as of the beam's sweep; for a north-up PPI.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetContactWorldAzimuth(BaseRadarSystem radar, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>序号 Index</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>世界方位（度）；越界时为 0 World bearing in degrees; 0 when out of range</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetLockedTarget_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetLockedTarget(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L177">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetLockedTarget_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetLockedTarget*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetLockedTarget_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetLockedTarget(ShanghaiWindy.Core.BaseRadarSystem)">GetLockedTarget(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取当前锁定（TRK）的目标。远程副本为网络同步的锁定目标。
+Get the target locked in TRK. For a remote copy, the lock target synced over the network.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static BaseInitSystem GetLockedTarget(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td>锁定的载具；未锁定时为 nil Locked vehicle; nil when nothing is locked</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetMaxRange_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetMaxRange(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L86">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetMaxRange_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetMaxRange*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetMaxRange_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetMaxRange(ShanghaiWindy.Core.BaseRadarSystem)">GetMaxRange(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取当前信号模式下的最大探测距离（米），以 5 平方米雷达截面的目标为准；截面更大的目标看得更远（按截面的四次方根），IRST 用自己的距离。
+Get the maximum detection range in metres in the current signal mode, for a target of 5 m² radar cross-section; larger targets are seen farther (by the fourth root of the cross-section), IRST uses its own range.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetMaxRange(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>距离（米）；无效时为 0 Range in metres; 0 when invalid</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetOwner_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetOwner(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L98">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetOwner_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetOwner*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetOwner_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetOwner(ShanghaiWindy.Core.BaseRadarSystem)">GetOwner(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取雷达所属载具。
+Get the vehicle the radar belongs to.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static BaseInitSystem GetOwner(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td>载具；已移除时为 nil Vehicle; nil once removed</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetScanAzimuth_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetScanAzimuth(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L62">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetScanAzimuth_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetScanAzimuth*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetScanAzimuth_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetScanAzimuth(ShanghaiWindy.Core.BaseRadarSystem)">GetScanAzimuth(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取天线当前方位角（度，-180~180，0 为正前方，向右为正）。正前方指雷达安装处的朝向：地面防空雷达是炮塔，机载雷达是机头（水平稳定的雷达取机头在水平面上的朝向）。扇扫雷达在 ±扇区半角之间往返，全向旋转雷达一圈圈转，跟踪（TRK）时指向锁定目标。把它作为天线模型相对安装处的偏航角即可让模型跟着转。
+Get the antenna's current azimuth in degrees, -180 to 180, 0 straight ahead, positive to the right. Ahead is where the radar is mounted: the turret for ground air defence, the nose for aircraft (a horizon-stabilized radar uses the nose heading in the horizontal plane). A sector radar sweeps back and forth within its half-angle, a full-rotation radar spins, and in TRK it points at the locked target. Use it as your antenna model's yaw relative to its mount to turn the model with it.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetScanAzimuth(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>方位角（度）；无效时为 0 Azimuth in degrees; 0 when invalid</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetWorkMode_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetWorkMode(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L50">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetWorkMode_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetWorkMode*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetWorkMode_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetWorkMode(ShanghaiWindy.Core.BaseRadarSystem)">GetWorkMode(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取雷达工作模式。
+Get the radar's work mode.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static ERadarWorkMode GetWorkMode(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.ERadarWorkMode.html">ERadarWorkMode</a></td>
+        <td>工作模式；无效时为 Off Work mode; Off when invalid</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_GetWorldHeading_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.GetWorldHeading(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L74">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_GetWorldHeading_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetWorldHeading*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_GetWorldHeading_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.GetWorldHeading(ShanghaiWindy.Core.BaseRadarSystem)">GetWorldHeading(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">获取雷达安装处朝向的世界航向（度，-180~180，从世界 +Z 顺时针）。航向 + 方位角 = 世界方位，用来画正北朝上的 PPI。
+Get the world heading of the radar's mount in degrees, -180 to 180, clockwise from world +Z. Heading + azimuth = world bearing, for a north-up PPI.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetWorldHeading(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>航向（度）；无效时为 0 Heading in degrees; 0 when invalid</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_IsActive_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.IsActive(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L38">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_IsActive_" data-uid="ShanghaiWindy.Core.API.RadarAPI.IsActive*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_IsActive_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.IsActive(ShanghaiWindy.Core.BaseRadarSystem)">IsActive(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">雷达是否开机。
+Whether the radar is on.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsActive(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否开机 Is on</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_IsLockDegraded_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.IsLockDegraded(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L195">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_IsLockDegraded_" data-uid="ShanghaiWindy.Core.API.RadarAPI.IsLockDegraded*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_IsLockDegraded_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.IsLockDegraded(ShanghaiWindy.Core.BaseRadarSystem)">IsLockDegraded(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">锁定是否处于丢失信号的重捕宽限中（游戏界面上锁定框会闪烁）。
+Whether the lock is in its reacquire grace after losing the signal (the game's lock box blinks).</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsLockDegraded(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否信号不稳 Is degraded</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_OnLockChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_Delegate_OnLuaRadarLockEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.OnLockChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.BaseRadarSystem%2CShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L296">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_OnLockChanged_" data-uid="ShanghaiWindy.Core.API.RadarAPI.OnLockChanged*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_OnLockChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_Delegate_OnLuaRadarLockEventDelegate_" data-uid="ShanghaiWindy.Core.API.RadarAPI.OnLockChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.BaseRadarSystem,ShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate)">OnLockChanged(LuaBehaviorProxy, BaseRadarSystem, OnLuaRadarLockEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅锁定变化（锁上、换锁、解锁或丢失）。远程副本不触发。
+Subscribe to lock changes (locked, switched, released or lost). Does not fire for a remote copy.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnLockChanged(LuaBehaviorProxy owner, BaseRadarSystem radar, OnLuaRadarLockEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者（self.script），销毁时自动退订；可为 nil Subscriber (self.script), unsubscribed when destroyed; may be nil</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate.html">OnLuaRadarLockEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调 (isLocked, target)，解锁时 target 为 nil Callback (isLocked, target); target is nil when unlocked</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅；参数无效时为 nil Subscription; nil for invalid arguments</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_OnModeChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_Delegate_OnLuaRadarModeEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.OnModeChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.BaseRadarSystem%2CShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L326">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_OnModeChanged_" data-uid="ShanghaiWindy.Core.API.RadarAPI.OnModeChanged*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_OnModeChanged_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_Delegate_OnLuaRadarModeEventDelegate_" data-uid="ShanghaiWindy.Core.API.RadarAPI.OnModeChanged(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.BaseRadarSystem,ShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate)">OnModeChanged(LuaBehaviorProxy, BaseRadarSystem, OnLuaRadarModeEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅工作模式变化（只在模式真的变了时触发，切换信号模式不触发）。远程副本不触发。
+Subscribe to work mode changes (fires only when the mode really changes; a signal mode switch does not count). Does not fire for a remote copy.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnModeChanged(LuaBehaviorProxy owner, BaseRadarSystem radar, OnLuaRadarModeEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者（self.script），销毁时自动退订；可为 nil Subscriber (self.script), unsubscribed when destroyed; may be nil</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate.html">OnLuaRadarModeEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调，参数为新模式 Callback taking the new mode</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅；参数无效时为 nil Subscription; nil for invalid arguments</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_OnThreat_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_Delegate_OnLuaRadarThreatEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.OnThreat(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.BaseRadarSystem%2CShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L366">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_OnThreat_" data-uid="ShanghaiWindy.Core.API.RadarAPI.OnThreat*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_OnThreat_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_Delegate_OnLuaRadarThreatEventDelegate_" data-uid="ShanghaiWindy.Core.API.RadarAPI.OnThreat(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.BaseRadarSystem,ShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate)">OnThreat(LuaBehaviorProxy, BaseRadarSystem, OnLuaRadarThreatEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅雷达告警（RWR）：出现新威胁时触发（同一来源、同一类型的威胁还在告警列表里时，约 5 秒内，再次出现只刷新、不再触发）。联机时本队看不到的来源传 nil。
+Subscribe to the radar warning receiver: fires when a new threat appears (the same source and type again while it is still listed, about 5 s, only refreshes it). Online, a source your team cannot see is passed as nil.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnThreat(LuaBehaviorProxy owner, BaseRadarSystem radar, OnLuaRadarThreatEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者（self.script），销毁时自动退订；可为 nil Subscriber (self.script), unsubscribed when destroyed; may be nil</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate.html">OnLuaRadarThreatEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调 (threatType, source) Callback (threatType, source)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅；参数无效时为 nil Subscription; nil for invalid arguments</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_SwitchMode_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.SwitchMode(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L276">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_SwitchMode_" data-uid="ShanghaiWindy.Core.API.RadarAPI.SwitchMode*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_SwitchMode_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.SwitchMode(ShanghaiWindy.Core.BaseRadarSystem)">SwitchMode(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">切换工作模式，与玩家的模式键相同：关机时开机，搜索（SRC）与边扫边跟（TWS）之间切换（雷达支持 TWS 时），跟踪或格斗时回到搜索。只对本地玩家正在控制的载具的雷达有效。
+Switch the work mode, like the player's mode key: turns the radar on when off, toggles search (SRC) and track-while-scan (TWS) when the radar has TWS, and returns to search from TRK or ACM. Only works on the radar of the vehicle the local player controls.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool SwitchMode(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否执行 Whether it ran</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_TryGetRadar_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_BaseRadarSystem__.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.TryGetRadar(ShanghaiWindy.Core.BaseInitSystem%2CShanghaiWindy.Core.BaseRadarSystem%40)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L25">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_TryGetRadar_" data-uid="ShanghaiWindy.Core.API.RadarAPI.TryGetRadar*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_TryGetRadar_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_BaseRadarSystem__" data-uid="ShanghaiWindy.Core.API.RadarAPI.TryGetRadar(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.BaseRadarSystem@)">TryGetRadar(BaseInitSystem, out BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">尝试获取载具的雷达。没有配置雷达或关闭了雷达玩法的载具没有。
+Try to get a vehicle's radar. A vehicle without a configured radar, or with radar gameplay off, has none.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool TryGetRadar(BaseInitSystem vehicle, out BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否有雷达 Has a radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_TryLock_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.TryLock(ShanghaiWindy.Core.BaseRadarSystem%2CShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L208">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_TryLock_" data-uid="ShanghaiWindy.Core.API.RadarAPI.TryLock*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_TryLock_ShanghaiWindy_Core_BaseRadarSystem_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.TryLock(ShanghaiWindy.Core.BaseRadarSystem,ShanghaiWindy.Core.BaseInitSystem)">TryLock(BaseRadarSystem, BaseInitSystem)</h4>
+  <div class="markdown level1 summary">锁定雷达画面上的一个目标，与玩家在雷达列表里选中锁定相同：要先经过锁定捕获时间，锁上后触发 OnLockChanged；跟踪中会直接换锁。只对本地玩家正在控制的载具的雷达有效。
+Lock a target on the radar picture, the same as the player locking it from the radar list: it goes through the lock acquisition time and OnLockChanged fires once locked; while tracking, the lock switches at once. Only works on the radar of the vehicle the local player controls.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool TryLock(BaseRadarSystem radar, BaseInitSystem target)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">target</span></td>
+        <td>目标载具，须为画面上的非友方目标 Target vehicle, a non-friendly contact on the picture</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>已锁定或正在锁定时为 true；不允许、雷达关机或目标不在画面上时为 false True when locked or locking; false when not allowed, the radar is off, or the target is not on the picture</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI_Unlock_ShanghaiWindy_Core_BaseRadarSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI.Unlock(ShanghaiWindy.Core.BaseRadarSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L239">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_RadarAPI_Unlock_" data-uid="ShanghaiWindy.Core.API.RadarAPI.Unlock*"></a>
+  <h4 id="ShanghaiWindy_Core_API_RadarAPI_Unlock_ShanghaiWindy_Core_BaseRadarSystem_" data-uid="ShanghaiWindy.Core.API.RadarAPI.Unlock(ShanghaiWindy.Core.BaseRadarSystem)">Unlock(BaseRadarSystem)</h4>
+  <div class="markdown level1 summary">解除锁定或取消正在进行的锁定，雷达回到搜索模式。只对本地玩家正在控制的载具的雷达有效。
+Release the lock, or cancel a lock in progress; the radar returns to search. Only works on the radar of the vehicle the local player controls.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool Unlock(BaseRadarSystem radar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">BaseRadarSystem</span></td>
+        <td><span class="parametername">radar</span></td>
+        <td>雷达 Radar</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否有锁定被解除 Whether a lock was released</td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_RadarAPI.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.RadarAPI%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/RadarAPI.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

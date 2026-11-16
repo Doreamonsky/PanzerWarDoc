@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class VehicleQuery | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class VehicleQuery | Panzer War Document ">
+    
+    <meta name="description" content="战场载具查询：按类型、敌友、距离筛选场上存活的载具（含联机远程玩家、召唤和部署的单位），可按距离排序并限量。用 VehicleAPI.CreateQuery 建一次，反复 Run；Run 之后用 Count / Get / GetDistance 读结果。联机时只返回本队当前看得到的敌方。 Battlefield vehicle query: filters the live vehicles in the battle (remote players online, summoned and deployed units included) by kind, relation and distance, optionally sorted by distance and capped. Create it once with VehicleAPI.CreateQuery and Run it again and again; read the results with Count / Get / GetDistance after Run. Online it only returns enemies your team can currently see.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ShanghaiWindy.Core.API.VehicleQuery">
+
+
+
+  <h1 id="ShanghaiWindy_Core_API_VehicleQuery" data-uid="ShanghaiWindy.Core.API.VehicleQuery" class="text-break">Class VehicleQuery</h1>
+  <div class="markdown level0 summary">战场载具查询：按类型、敌友、距离筛选场上存活的载具（含联机远程玩家、召唤和部署的单位），可按距离排序并限量。用 VehicleAPI.CreateQuery 建一次，反复 Run；Run 之后用 Count / Get / GetDistance 读结果。联机时只返回本队当前看得到的敌方。
+Battlefield vehicle query: filters the live vehicles in the battle (remote players online, summoned and deployed units included) by kind, relation and distance, optionally sorted by distance and capped. Create it once with VehicleAPI.CreateQuery and Run it again and again; read the results with Count / Get / GetDistance after Run. Online it only returns enemies your team can currently see.</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">object</span></div>
+    <div class="level1"><span class="xref">VehicleQuery</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <span class="xref">ShanghaiWindy</span>.<a class="xref" href="ShanghaiWindy.Core.html">Core</a>.<a class="xref" href="ShanghaiWindy.Core.API.html">API</a></h6>
+  <h6><strong>Assembly</strong>: .dll</h6>
+  <h5 id="ShanghaiWindy_Core_API_VehicleQuery_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+[LuaCallCSharp(GenFlag.No)]
+public sealed class VehicleQuery</code></pre>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_Count.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.Count%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L84">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_Count_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Count*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_Count" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Count">Count</h4>
+  <div class="markdown level1 summary">上一次 Run / RunAt 的结果数量。
+Number of results of the last Run / RunAt.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_Kind.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.Kind%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L31">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_Kind_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Kind*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_Kind" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Kind">Kind</h4>
+  <div class="markdown level1 summary">载具类型过滤，默认 Any（坦克等地面载具、飞机、步兵都算）。
+Kind filter, Any by default (ground vehicles, aircraft and infantry).</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public VehicleKind Kind { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.VehicleKind.html">VehicleKind</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_MaxCount.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.MaxCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L52">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_MaxCount_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.MaxCount*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_MaxCount" data-uid="ShanghaiWindy.Core.API.VehicleQuery.MaxCount">MaxCount</h4>
+  <div class="markdown level1 summary">最多返回多少辆，默认 32，范围 1–256。排序时保留最近的那些。
+How many vehicles to return at most, 32 by default, 1–256. When sorting, the nearest ones are kept.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public int MaxCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_MaxDistance.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.MaxDistance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L45">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_MaxDistance_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.MaxDistance*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_MaxDistance" data-uid="ShanghaiWindy.Core.API.VehicleQuery.MaxDistance">MaxDistance</h4>
+  <div class="markdown level1 summary">最大距离（米），0 表示不限。
+Maximum distance in metres; 0 means unlimited.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public float MaxDistance { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_Relation.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.Relation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L38">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_Relation_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Relation*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_Relation" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Relation">Relation</h4>
+  <div class="markdown level1 summary">敌友过滤，相对于 Run 传入的载具或 RunAt 传入的队伍，默认 Any。
+Relation filter, relative to the vehicle given to Run or the team given to RunAt; Any by default.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public VehicleRelation Relation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.VehicleRelation.html">VehicleRelation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_SortByDistance.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.SortByDistance%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L77">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_SortByDistance_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.SortByDistance*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_SortByDistance" data-uid="ShanghaiWindy.Core.API.VehicleQuery.SortByDistance">SortByDistance</h4>
+  <div class="markdown level1 summary">是否按距离由近到远排序，默认 true。为 false 时按场上顺序取前 MaxCount 辆。
+Whether to sort nearest first, true by default. When false, the first MaxCount vehicles in battle order are kept.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public bool SortByDistance { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_Get_System_Int32_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.Get(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L123">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_Get_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Get*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_Get_System_Int32_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Get(System.Int32)">Get(int)</h4>
+  <div class="markdown level1 summary">获取第 index 个结果（从 0 开始）。结果是 Run 那一刻的；之后被移除的载具返回 nil。
+Get result number index (0-based). Results are as of the Run; a vehicle removed since returns nil.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public BaseInitSystem Get(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>序号 Index</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td>载具；越界时为 nil Vehicle; nil when out of range</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_GetDistance_System_Int32_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.GetDistance(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L141">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_GetDistance_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.GetDistance*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_GetDistance_System_Int32_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.GetDistance(System.Int32)">GetDistance(int)</h4>
+  <div class="markdown level1 summary">获取第 index 个结果在 Run 那一刻与中心的距离（米）。
+Get the distance in metres of result number index from the centre, as of the Run.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public float GetDistance(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td>序号 Index</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>距离；越界时为 0 Distance; 0 when out of range</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_Run_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.Run(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L93">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_Run_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Run*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_Run_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.Run(ShanghaiWindy.Core.BaseInitSystem)">Run(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">以某辆载具为中心查询：距离从它的位置量起，敌友相对它的队伍，不含它自己。
+Query around a vehicle: distances from its position, relation relative to its team, the vehicle itself left out.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public int Run(BaseInitSystem self)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">self</span></td>
+        <td>中心载具 Centre vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td>结果数量；nil、不在战斗中时为 0 Number of results; 0 for nil or outside a battle</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery_RunAt_Vector3_ShanghaiWindy_Core_TeamManager_Team_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery.RunAt(Vector3%2CShanghaiWindy.Core.TeamManager.Team)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L111">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleQuery_RunAt_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.RunAt*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleQuery_RunAt_Vector3_ShanghaiWindy_Core_TeamManager_Team_" data-uid="ShanghaiWindy.Core.API.VehicleQuery.RunAt(Vector3,ShanghaiWindy.Core.TeamManager.Team)">RunAt(Vector3, Team)</h4>
+  <div class="markdown level1 summary">以某个位置为中心查询，敌友相对给定队伍。给地图和模式脚本用。
+Query around a position, relation relative to the given team. For map and game-mode scripts.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public int RunAt(Vector3 position, TeamManager.Team team)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td><span class="parametername">position</span></td>
+        <td>中心位置（世界坐标）Centre position in world space</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.TeamManager.html">TeamManager</a>.<a class="xref" href="ShanghaiWindy.Core.TeamManager.Team.html">Team</a></td>
+        <td><span class="parametername">team</span></td>
+        <td>敌友判断用的队伍 Team the relation is judged from</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td>结果数量；不在战斗中时为 0 Number of results; 0 outside a battle</td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleQuery.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleQuery%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleQuery.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

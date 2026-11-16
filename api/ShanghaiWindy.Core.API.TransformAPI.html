@@ -251,6 +251,119 @@ public static Transform Find(Transform trans, string path)</code></pre>
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TransformAPI_FindAllDeep_Transform_System_String_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TransformAPI.FindAllDeep(Transform%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/TransformAPI.cs/#L127">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_TransformAPI_FindAllDeep_" data-uid="ShanghaiWindy.Core.API.TransformAPI.FindAllDeep*"></a>
+  <h4 id="ShanghaiWindy_Core_API_TransformAPI_FindAllDeep_Transform_System_String_" data-uid="ShanghaiWindy.Core.API.TransformAPI.FindAllDeep(Transform,System.String)">FindAllDeep(Transform, string)</h4>
+  <div class="markdown level1 summary">找出所有名字包含某段文字的子物体（任意层级，含未激活物体，不含 root 自身），按层级顺序返回数组，没有时返回空数组。
+会分配一个数组：只在初始化时调用一次。
+Find every descendant whose name contains the given text (any depth, inactive ones included, root excluded), in hierarchy
+order; an empty array when there are none. Allocates an array: call it once while initialising.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static Transform[] FindAllDeep(Transform root, string namePart)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td><span class="parametername">root</span></td>
+        <td>搜索起点 Root to search under</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">namePart</span></td>
+        <td>名字里包含的文字（区分大小写）Text the name contains (case-sensitive)</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span>[]</td>
+        <td>找到的 Transform 数组 Array of the transforms found</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_TransformAPI_FindDeep_Transform_System_String_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.TransformAPI.FindDeep(Transform%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/TransformAPI.cs/#L61">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_TransformAPI_FindDeep_" data-uid="ShanghaiWindy.Core.API.TransformAPI.FindDeep*"></a>
+  <h4 id="ShanghaiWindy_Core_API_TransformAPI_FindDeep_Transform_System_String_" data-uid="ShanghaiWindy.Core.API.TransformAPI.FindDeep(Transform,System.String)">FindDeep(Transform, string)</h4>
+  <div class="markdown level1 summary">在所有层级的子物体里按名字查找（含未激活物体，不含 root 自身），没有时返回 nil。在 C# 里一次完成，名字里不含 / 时不产生垃圾；
+每一层先找直接子物体，再往下找。请在 OnVehicleReady 里查一次并缓存，返回 nil 就说明模型上没有这个节点，不要每帧重试。
+Find a descendant by exact name at any depth (inactive ones included, root excluded); nil when there is none. Done in one
+C# call, without garbage unless the name contains '/'; each level checks its direct children before going deeper. Look it
+up once in OnVehicleReady and cache it: nil means the model has no such node, so do not retry every frame.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static Transform FindDeep(Transform root, string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td><span class="parametername">root</span></td>
+        <td>搜索起点 Root to search under</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td>完整名字 Exact name</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Transform</span></td>
+        <td>找到的 Transform，没有时为 nil The transform found, or nil</td>
+      </tr>
+    </tbody>
+  </table>
 
 </article>
           </div>

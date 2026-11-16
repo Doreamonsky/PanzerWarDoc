@@ -101,6 +101,87 @@ public static class VehicleAPI</code></pre>
 </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_CreateQuery.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.CreateQuery%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L228">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_CreateQuery_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.CreateQuery*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_CreateQuery" data-uid="ShanghaiWindy.Core.API.VehicleAPI.CreateQuery">CreateQuery()</h4>
+  <div class="markdown level1 summary">创建一个战场载具查询。建一次，之后反复调用 Run：查询本身不再分配内存。
+Create a battlefield vehicle query. Create it once and call Run again and again: the query allocates nothing after that.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static VehicleQuery CreateQuery()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.VehicleQuery.html">VehicleQuery</a></td>
+        <td>新查询 New query</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetAimPoint_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetAimPoint(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L202">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetAimPoint_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetAimPoint*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetAimPoint_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetAimPoint(ShanghaiWindy.Core.BaseInitSystem)">GetAimPoint(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取 AI 瞄准这辆载具时用的点（世界坐标）。未加载完时为载具位置。
+Get the point AI aims at on this vehicle, in world space. The vehicle's position while it is still loading.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static Vector3 GetAimPoint(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td>瞄准点；nil 时为零向量 Aim point; zero for nil</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetAllDriveableVehicleList_System_Boolean_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetAllDriveableVehicleList(System.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -145,6 +226,104 @@ public static DriveableList GetAllDriveableVehicleList(bool ignoreModule)</code>
       <tr>
         <td><span class="xref">DriveableList</span></td>
         <td>可驾驶载具列表 Driveable Vehicle List</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetContext_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetContext(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L19">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetContext_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetContext*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetContext_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetContext(ShanghaiWindy.Core.BaseInitSystem)">GetContext(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">载具实例所处的场合：车库、本地玩家正在控制、本地 AI、联机远程副本、结算展示。每辆载具只得到一个结果；本地玩家拥有但此刻没在驾驶的单位（召唤、编组里的其他车）算 Bot。
+Where a vehicle instance lives: garage, controlled by the local player, local AI, a remote copy online, or a reward showcase. Each vehicle gets exactly one answer; a unit the local player owns but is not driving right now (a summon, another vehicle of a group) is Bot.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static VehicleContext GetContext(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.VehicleContext.html">VehicleContext</a></td>
+        <td>场合；nil 或已销毁时为 None Context; None for nil or a destroyed vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetDisplayName_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetDisplayName(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L144">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetDisplayName_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetDisplayName*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetDisplayName_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetDisplayName(ShanghaiWindy.Core.BaseInitSystem)">GetDisplayName(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取游戏里显示给玩家的载具名称（按当前语言）。
+Get the vehicle name the game shows players, in the current language.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static string GetDisplayName(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td>显示名；未知时为空字符串 Display name; an empty string when unknown</td>
       </tr>
     </tbody>
   </table>
@@ -317,6 +496,55 @@ public static List&lt;IBaseFireSystem&gt; GetFireList(BaseInitSystem vehicle)</c
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetGuid_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetGuid(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L161">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetGuid_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetGuid*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetGuid_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetGuid(ShanghaiWindy.Core.BaseInitSystem)">GetGuid(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取载具资源 GUID，与模组包里该载具的 GUID 相同，可用来认出自己的配套载具。
+Get the vehicle's asset GUID, the same as the vehicle's GUID in its mod package; use it to recognise your own companion vehicles.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static string GetGuid(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td>GUID；未知时为空字符串 GUID; an empty string when unknown</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetPlayerVehicle.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetPlayerVehicle%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -344,6 +572,104 @@ public static BaseInitSystem GetPlayerVehicle()</code></pre>
       <tr>
         <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
         <td>一个已存在的本地玩家 A exist local player</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetSpeedKmh_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetSpeedKmh(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L190">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetSpeedKmh_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetSpeedKmh*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetSpeedKmh_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetSpeedKmh(ShanghaiWindy.Core.BaseInitSystem)">GetSpeedKmh(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取载具速度（千米/小时）。
+Get the vehicle's speed in km/h.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static float GetSpeedKmh(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td>速度；nil 时为 0 Speed; 0 for nil</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetTeam_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetTeam(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L119">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetTeam_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetTeam*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetTeam_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetTeam(ShanghaiWindy.Core.BaseInitSystem)">GetTeam(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取载具所属队伍。
+Get the vehicle's team.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static TeamManager.Team GetTeam(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.TeamManager.html">TeamManager</a>.<a class="xref" href="ShanghaiWindy.Core.TeamManager.Team.html">Team</a></td>
+        <td>队伍；nil 时为 none Team; none for nil</td>
       </tr>
     </tbody>
   </table>
@@ -447,6 +773,104 @@ public static VehicleInfo GetVehicleInfoByName(string vehicleName)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_GetVelocity_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.GetVelocity(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L178">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_GetVelocity_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetVelocity*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_GetVelocity_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.GetVelocity(ShanghaiWindy.Core.BaseInitSystem)">GetVelocity(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">获取载具的世界速度（米/秒）。步兵也有效。
+Get the vehicle's world velocity in metres per second. Works for infantry too.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static Vector3 GetVelocity(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector3</span></td>
+        <td>速度；nil 时为零向量 Velocity; zero for nil</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsAlive_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsAlive(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L107">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsAlive_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsAlive*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsAlive_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsAlive(ShanghaiWindy.Core.BaseInitSystem)">IsAlive(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">载具是否已加载完毕且未被击毁。
+Whether the vehicle has finished loading and is not destroyed.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsAlive(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否存活 Is alive</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsArmyVehicle_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsArmyVehicle(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -495,6 +919,109 @@ public static bool IsArmyVehicle(BaseInitSystem vehicle)</code></pre>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsBot_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsBot(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L83">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsBot_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsBot*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsBot_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsBot(ShanghaiWindy.Core.BaseInitSystem)">IsBot(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">是否由本机 AI 驾驶。
+Whether AI on this client drives the vehicle.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsBot(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>GetContext 为 Bot 时为 true True when GetContext is Bot</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsEnemy_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsEnemy(ShanghaiWindy.Core.BaseInitSystem%2CShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L132">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsEnemy_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsEnemy*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsEnemy_ShanghaiWindy_Core_BaseInitSystem_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsEnemy(ShanghaiWindy.Core.BaseInitSystem,ShanghaiWindy.Core.BaseInitSystem)">IsEnemy(BaseInitSystem, BaseInitSystem)</h4>
+  <div class="markdown level1 summary">两辆载具是否互为敌方。没有队伍（none）的载具与谁都不是敌方。
+Whether two vehicles are enemies. A vehicle without a team (none) is nobody's enemy.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsEnemy(BaseInitSystem a, BaseInitSystem b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">a</span></td>
+        <td>载具 A Vehicle A</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">b</span></td>
+        <td>载具 B Vehicle B</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>是否敌对 Are enemies</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsFlightVehicle_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsFlightVehicle(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
@@ -538,6 +1065,153 @@ public static bool IsFlightVehicle(BaseInitSystem vehicle)</code></pre>
       <tr>
         <td><span class="xref">bool</span></td>
         <td>返回载具是否为飞行器类型 true if FlightVehicle, false otherwise</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsGarage_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsGarage(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L59">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsGarage_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsGarage*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsGarage_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsGarage(ShanghaiWindy.Core.BaseInitSystem)">IsGarage(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">是否为车库里的展示载具。
+Whether the vehicle is shown in the garage.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsGarage(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>GetContext 为 Garage 时为 true True when GetContext is Garage</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsLocalPlayer_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsLocalPlayer(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L71">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsLocalPlayer_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsLocalPlayer*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsLocalPlayer_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsLocalPlayer(ShanghaiWindy.Core.BaseInitSystem)">IsLocalPlayer(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">是否为本地玩家此刻正在控制的载具（包括玩家接管的 AI 载具）。
+Whether the local player controls the vehicle right now (a bot vehicle the player took over included).</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsLocalPlayer(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>GetContext 为 LocalPlayer 时为 true True when GetContext is LocalPlayer</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_IsRemote_ShanghaiWindy_Core_BaseInitSystem_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.IsRemote(ShanghaiWindy.Core.BaseInitSystem)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L95">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_IsRemote_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsRemote*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_IsRemote_ShanghaiWindy_Core_BaseInitSystem_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.IsRemote(ShanghaiWindy.Core.BaseInitSystem)">IsRemote(BaseInitSystem)</h4>
+  <div class="markdown level1 summary">是否为联机中由其他客户端或服务器驱动的副本。副本不在本机跑模拟（例如雷达不扫描），状态来自网络。
+Whether the vehicle is a copy driven by another client or the server online. A copy runs no local simulation (its radar does not scan, for example); its state comes from the network.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static bool IsRemote(BaseInitSystem vehicle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.BaseInitSystem.html">BaseInitSystem</a></td>
+        <td><span class="parametername">vehicle</span></td>
+        <td>目标载具 Target vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td>GetContext 为 Remote 时为 true True when GetContext is Remote</td>
       </tr>
     </tbody>
   </table>
@@ -624,6 +1298,114 @@ public static void LoadVehicleThumbnail(VehicleInfo vehicleInfo, OnVehicleThumbn
         <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnVehicleThumbnailLoadedDelegate.html">OnVehicleThumbnailLoadedDelegate</a></td>
         <td><span class="parametername">callback</span></td>
         <td>缩略图加载完毕回调 Thumbnail loaded callback</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_OnVehicleKilled_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_Delegate_OnLuaVehicleEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.OnVehicleKilled(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L262">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_OnVehicleKilled_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.OnVehicleKilled*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_OnVehicleKilled_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_Delegate_OnLuaVehicleEventDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.OnVehicleKilled(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate)">OnVehicleKilled(LuaBehaviorProxy, OnLuaVehicleEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅全场载具被击毁事件。联机时本队看不到的敌方不会通知。
+Subscribe to any vehicle in the battle being destroyed. Online, an enemy your team cannot see is not reported.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnVehicleKilled(LuaBehaviorProxy owner, OnLuaVehicleEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者（self.script），销毁时自动退订；可为 nil Subscriber (self.script), unsubscribed when destroyed; may be nil</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate.html">OnLuaVehicleEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调，参数为被击毁的载具 Callback taking the destroyed vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅；参数无效时为 nil Subscription; nil for invalid arguments</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/new/main/apiSpec/new?filename=ShanghaiWindy_Core_API_VehicleAPI_OnVehicleSpawned_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_Delegate_OnLuaVehicleEventDelegate_.md&amp;value=---%0Auid%3A%20ShanghaiWindy.Core.API.VehicleAPI.OnVehicleSpawned(ShanghaiWindy.Core.Lua.LuaBehaviorProxy%2CShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Packages/com.shanghaiwindy.gameframework/Core/Main/API/VehicleAPI.Battle.cs/#L241">View Source</a>
+  </span>
+  <a id="ShanghaiWindy_Core_API_VehicleAPI_OnVehicleSpawned_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.OnVehicleSpawned*"></a>
+  <h4 id="ShanghaiWindy_Core_API_VehicleAPI_OnVehicleSpawned_ShanghaiWindy_Core_Lua_LuaBehaviorProxy_ShanghaiWindy_Core_Delegate_OnLuaVehicleEventDelegate_" data-uid="ShanghaiWindy.Core.API.VehicleAPI.OnVehicleSpawned(ShanghaiWindy.Core.Lua.LuaBehaviorProxy,ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate)">OnVehicleSpawned(LuaBehaviorProxy, OnLuaVehicleEventDelegate)</h4>
+  <div class="markdown level1 summary">订阅全场载具加载完毕事件（任意载具，含车库里的）。联机时本队看不到的敌方不会通知。
+Subscribe to any vehicle in the battle finishing loading (garage vehicles included). Online, an enemy your team cannot see is not reported.</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[DocGen]
+public static LuaSubscription OnVehicleSpawned(LuaBehaviorProxy owner, OnLuaVehicleEventDelegate callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LuaBehaviorProxy</span></td>
+        <td><span class="parametername">owner</span></td>
+        <td>订阅者（self.script），销毁时自动退订；可为 nil Subscriber (self.script), unsubscribed when destroyed; may be nil</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate.html">OnLuaVehicleEventDelegate</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td>回调，参数为载具 Callback taking the vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ShanghaiWindy.Core.API.LuaSubscription.html">LuaSubscription</a></td>
+        <td>订阅；参数无效时为 nil Subscription; nil for invalid arguments</td>
       </tr>
     </tbody>
   </table>

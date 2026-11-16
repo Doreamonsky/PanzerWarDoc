@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="2274-用例敌机接近告警-example-enemy-aircraft-warning">22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning</h1>
+
+<p>敌方飞机进入 3 公里内时，播放一次告警音效并打印最近一架的名字；飞机离开后重新开始监视。</p>
+<p>When an enemy aircraft comes within 3 km, play an alert sound once and print the name of the nearest one; resume monitoring once the aircraft leaves.</p>
+<p>以前常见的写法是每秒取出场景里的所有刚体，再逐个判断是不是飞机、是不是敌人。<code>VehicleAPI.CreateQuery()</code> 在游戏内部完成筛选和排序，Lua 只拿到结果；它的数据来自战场玩家列表，联机时也包含其他玩家。</p>
+<p>A common approach in the past was to retrieve all rigid bodies in the scene every second and then check each one to see if it was an aircraft and an enemy. <code>VehicleAPI.CreateQuery()</code> performs the filtering and sorting internally within the game, so Lua only receives the results; its data comes from the battle player list and includes other players during online battles.</p>
+<pre><code class="lang-lua">Behavior()
+Property = {
+  warnDistance = { type = &quot;number&quot;, value = 3000 },   -- 米 / Metres
+  soundGuid = { type = &quot;string&quot;, value = &quot;&quot; },        -- 告警音效的 FMOD 事件 guid / FMOD event guid of the warning sound
+}
+
+local AirThreatWarning = class(&quot;AirThreatWarning&quot;)
+
+function AirThreatWarning:OnVehicleReady(vehicle)
+  self.vehicle = vehicle
+
+  -- 查询对象只建一次，之后反复使用 / Create the query once and reuse it
+  self.query = VehicleAPI.CreateQuery()
+  self.query.Kind = VehicleKind.Flight
+  self.query.Relation = VehicleRelation.Enemy
+  self.query.MaxDistance = self.warnDistance
+  self.query.MaxCount = 1                 -- 只要最近的一架 / Only the nearest one
+  self.query.SortByDistance = true
+
+  self.warned = false
+  self.script:SetUpdateInterval(0.5)
+end
+
+function AirThreatWarning:OnUpdated(dt)
+  if not VehicleAPI.IsLocalPlayer(self.vehicle) then
+    return
+  end
+
+  local count = self.query:Run(self.vehicle)
+  if count &gt; 0 and not self.warned then
+    self.warned = true
+    local nearest = self.query:Get(0)
+    print(string.format(&quot;[AirWarning] %s at %.0f m&quot;, VehicleAPI.GetDisplayName(nearest), self.query:GetDistance(0)))
+    if self.soundGuid ~= &quot;&quot; then
+      SoundAPI.PlayOneShot(self.soundGuid, self.transform.position)
+    end
+  elseif count == 0 then
+    self.warned = false
+  end
+end
+
+return AirThreatWarning
+</code></pre>
+<p>查询对象的属性：</p>
+<p>Properties of the query object:</p>
+<table>
+<thead>
+<tr>
+<th>属性 Property</th>
+<th>含义 Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Kind</code></td>
+<td><code>VehicleKind.Any</code> / <code>Ground</code> / <code>Flight</code> / <code>Army</code>，单选<br>Pick one</td>
+</tr>
+<tr>
+<td><code>Relation</code></td>
+<td><code>VehicleRelation.Any</code> / <code>Enemy</code> / <code>Friendly</code>，相对于 <code>Run</code> 传入的载具<br>Relative to the vehicle passed to <code>Run</code></td>
+</tr>
+<tr>
+<td><code>MaxDistance</code></td>
+<td>最大距离（米），0 为不限<br>Maximum distance in metres, 0 for no limit</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td>最多返回几辆，默认 32<br>At most this many results, 32 by default</td>
+</tr>
+<tr>
+<td><code>SortByDistance</code></td>
+<td>按距离从近到远排序，默认开启<br>Nearest first, on by default</td>
+</tr>
+</tbody>
+</table>
+<p>要点：</p>
+<p>Key points:</p>
+<ul>
+<li><p>查询对象在 <code>OnVehicleReady</code> 里建一次，之后反复调用 <code>Run</code>，不会产生垃圾。</p>
+</li>
+<li><p><code>Run(vehicle)</code> 以这辆载具的位置和队伍为准，结果里不包含它自己；地图和模式脚本可以用 <code>RunAt(position, team)</code>。</p>
+</li>
+<li><p>结果按序号读取：<code>Get(i)</code> 返回载具，<code>GetDistance(i)</code> 返回距离，序号从 0 开始。</p>
+</li>
+<li><p>联机对战中，只会返回你的队伍当前看得见的敌人。</p>
+</li>
+<li><p>Create the query object once in <code>OnVehicleReady</code>, then call <code>Run</code> repeatedly; this will not generate garbage.</p>
+</li>
+<li><p><code>Run(vehicle)</code> uses the position and team of this vehicle as the reference, and the results do not include the vehicle itself; map and mode scripts can use <code>RunAt(position, team)</code>.</p>
+</li>
+<li><p>Read the results by index: <code>Get(i)</code> returns the vehicle, <code>GetDistance(i)</code> returns the distance, with indices starting from 0.</p>
+</li>
+<li><p>In online battles, only enemies currently visible to your team are returned.</p>
+</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-api2-air-warning.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
