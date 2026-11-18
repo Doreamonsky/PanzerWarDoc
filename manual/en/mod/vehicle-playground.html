@@ -85,11 +85,32 @@
 <p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-playground
 </code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;debugPrefab&quot;: &quot;../../../Panzer-War-Mod-SDK/Packages/Sdk/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/Prefab/RuntimeDebugTool.prefab&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<p>The playground loads mods in the Unity Editor so you can test a vehicle before installing it in the game. The project is for debugging only. Do not repackage it for distribution. Copyright belongs to WINDYVERSE PTE. LTD.</p>
+<h2 id="1-launch-the-playground">1. Launch the playground</h2>
 <ol>
-<li><a href="set-steam-game-folder.html">Set the Steam LuaProject path</a> in the SDK project. Open <strong>Framework - 框架 → 0. Home Page</strong> and click <strong>Open Test Field</strong>. You can also double-click <code>Packages/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/VehiclePlayground.unity</code> in the Project window.</li>
-<li>Save your scene before opening the test field. Enter Play mode and choose the vehicle and test mode. Use module damage mode to check individual components. Use HP mode to check overall durability or to start testing a vehicle whose module data is still incomplete.</li>
-<li>Click <strong>Play</strong> again in Unity's toolbar to exit Play mode when finished.</li>
+<li><a href="set-steam-game-folder.html">Set the Steam LuaProject path</a> in the SDK project and save your current scene.</li>
+<li>Select the target <strong>VehicleData</strong> in Project and click <strong>Drive</strong> near the bottom of its Inspector. After changing the model, HitBox, or key data, choose <strong>Drive (Repack)</strong> and confirm. Unity builds temporary assets for the vehicle, opens the playground, and enters Play mode.</li>
+<li>To open the field directly, use <strong>Framework - 框架 → 0. Home Page → Open Test Field</strong>. You can also double-click <code>Packages/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/VehiclePlayground.unity</code>, check the damage-mode setting below, and enter <strong>Play</strong>.</li>
 </ol>
+<h2 id="2-choose-module-or-hp-damage">2. Choose module or HP damage</h2>
+<ol>
+<li>In Edit mode, expand <strong>RuntimeDebugTool</strong> in Hierarchy and select <strong>Scripts</strong>.</li>
+<li>Find <strong>Damage Mode</strong> on <strong>Editor Mode Startup</strong>. Leave it on <strong>Module Based</strong> to test armor and damaged components. Choose <strong>Health Based</strong> when a vehicle's internal modules are still incomplete.</li>
+<li>Enter <strong>Play</strong> and choose the vehicle. Check its steering, movement, turret and gun, then check that damage affects the expected part.</li>
+</ol>
+<h2 id="3-exit-and-test-again">3. Exit and test again</h2>
+<p>Return to the Unity toolbar and click the active <strong>Play</strong> button. The old guide used Alt to release focus from Game view. Save your changes and use <strong>Drive (Repack)</strong> to test the latest build.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -101,11 +122,22 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;Packages/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/VehiclePlayground.unity&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;(?s)m_Name: Scripts.*?DamageMode: 0&quot;
+    },
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${debugPrefab}&quot;
+      ]
+    }
   }
 ]
 </code></pre>
 </details>
-<p>The menu and scene path were checked. Running the test field, loading a vehicle, and checking its controls require the SDK scene and resources. The test field is for debugging. Obtain the applicable permissions before distributing assets used with it.</p>
 
 </article>
           </div>
@@ -115,7 +147,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/vehicle-playground.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/vehicle-playground.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

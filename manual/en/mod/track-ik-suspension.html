@@ -165,6 +165,7 @@
 <h2 id="2-configure-trackik">2. Configure TrackIK</h2>
 <p>Add <strong>TrackIK</strong> to <code>SuspensionArm</code>. Set <strong>Target Wheel</strong> to <code>RoadWheel</code> and <strong>Standard UCS</strong> to <code>StandardUCS</code>. The example uses a <strong>Height</strong> of <code>0.1</code> and a <strong>Flip Sign</strong> of <code>1</code>.</p>
 <p>Leave <strong>Use Transform Wrapper</strong> enabled. In game, the wrapper at the pivot points its local Z+ toward the target direction while preserving the mesh's initial placement relative to the wrapper. With the wrapper disabled, the script rotates the arm directly, so the arm model's Z+ should point forward along the arm.</p>
+<p>Repeat on every arm on both sides. In the original KV-2 example, <code>MainBody/TrackIK_011</code> points to the sixth left road wheel, <code>L6</code>. Its reference is <code>StandardUCS</code> at the model root. Give each arm the wheel that matches its position. The original screenshot used a Height of <code>0</code>. This tutorial uses <code>0.1</code> to illustrate the offset.</p>
 <p><img src="../../mod/imgs/track-ik-suspension-ik.en.png" alt="Target wheel, reference frame and wrapper option on the suspension arm"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -206,7 +207,7 @@
 </code></pre>
 </details>
 <h2 id="3-save-and-verify">3. Save and verify</h2>
-<p>Save the prefab and check both Transform references. Select the arm in the Scene view and use its guide line to confirm that it points to the intended road wheel. This example verifies the prefab references and settings. Check the rotation and height offset while driving the complete vehicle.</p>
+<p>Save the collision prefab in Prefab Mode, then recheck both Transform references on each arm. Select an arm in Scene view and check that its guide line points to the intended road wheel. Pack again and check the rotation and height offset in the <a href="vehicle-playground.html">Vehicle Playground</a>.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -267,7 +268,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/track-ik-suspension.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/track-ik-suspension.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

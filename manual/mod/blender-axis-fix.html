@@ -112,7 +112,12 @@
 </details>
 <p>这组操作适用于需要重设物体局部旋转基准的模型。先复制模型，用副本做以下调整。</p>
 <h2 id="1-调整旋转并导出">1. 调整旋转并导出</h2>
-<p>在 Blender 的<strong>物体模式</strong>选中对象。按 <code>R</code>、<code>X</code>、<code>-90</code> 后确认。按 <code>Ctrl+A</code>，选择<strong>应用旋转</strong>。再按 <code>R</code>、<code>X</code>、<code>90</code> 后确认。导出 FBX 并导入 Unity。</p>
+<ol>
+<li>在 Unity 的 Scene 视图选择要排查的对象，把工具方向切为 <strong>Local</strong>，枢轴模式切为 <strong>Pivot</strong>。记录车体的已知长度，观察 Z 轴是否沿车头、Y 轴是否朝上。</li>
+<li>在 Blender 中用模型副本，进入<strong>物体模式</strong>，选中需要修正局部旋转基准的对象。按 <code>R</code>、<code>X</code>、<code>-90</code>，按 Enter。</li>
+<li>按 <strong>Ctrl+A</strong>，选择<strong>旋转（Rotation）</strong>。应用后检查对象的旋转值已经归零。</li>
+<li>再按 <code>R</code>、<code>X</code>、<code>90</code>，按 Enter。选择 <strong>File → Export → FBX</strong>。设置 <strong>Scale 1.00</strong>、<strong>Apply Scalings → FBX Units Scale</strong>、<strong>Forward → −Z Forward</strong>、<strong>Up → Y Up</strong>。把导出的 FBX 导入 Unity 的测试目录。</li>
+</ol>
 <p>Blender 后台脚本可重做本页示例。下方 Unity MCP 配方导入由它生成的教学 FBX。</p>
 <pre><code class="lang-sh">blender --background --factory-startup --python-exit-code 1 --python Tools/ManualMcp/BlenderAxisFix/build_model.py -- Tutorial_AxisCheck.fbx
 </code></pre>
@@ -149,7 +154,7 @@
 </code></pre>
 </details>
 <h2 id="2-检查模型前方和上方">2. 检查模型前方和上方</h2>
-<p>在 Unity 里检查模型的前方沿 <code>+Z</code>，上方沿 <code>+Y</code>。分别核对炮塔旋转轴和炮管朝向。示例的 <code>NoseMarker</code> 在 <code>(0, 0, 1)</code>，<code>RoofMarker</code> 在 <code>(0, 1, 0)</code>。</p>
+<p>在 Unity 里检查模型的前方沿 <code>+Z</code>，上方沿 <code>+Y</code>，并对照之前记录的车体长度。在副本中分别旋转炮塔和主炮，确认各自围绕正确的枢轴转动。示例的 <code>NoseMarker</code> 在 <code>(0, 0, 1)</code>，<code>RoofMarker</code> 在 <code>(0, 1, 0)</code>。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -184,7 +189,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/blender-axis-fix.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/blender-axis-fix.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

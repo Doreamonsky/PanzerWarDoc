@@ -112,7 +112,12 @@
 </details>
 <p>Use these steps when a model needs a different local rotation basis. Work on a copy.</p>
 <h2 id="1-adjust-the-rotation-and-export">1. Adjust the rotation and export</h2>
-<p>Select the object in Blender <strong>Object Mode</strong>. Press <code>R</code>, <code>X</code>, <code>-90</code>, then confirm. Press <code>Ctrl+A</code> and choose <strong>Rotation</strong>. Press <code>R</code>, <code>X</code>, <code>90</code>, then confirm. Export an FBX and import it into Unity.</p>
+<ol>
+<li>Select the affected object in Unity's Scene view. Set the tool orientation to <strong>Local</strong> and the handle position to <strong>Pivot</strong>. Record a known hull dimension and check whether Z points forward and Y points up.</li>
+<li>Work on a copy in Blender <strong>Object Mode</strong>. Select the object whose local rotation basis needs fixing. Press <code>R</code>, <code>X</code>, <code>-90</code>, then Enter.</li>
+<li>Press <strong>Ctrl+A</strong> and choose <strong>Rotation</strong>. Check that the rotation values read zero after applying it.</li>
+<li>Press <code>R</code>, <code>X</code>, <code>90</code>, then Enter. Choose <strong>File → Export → FBX</strong>. Use <strong>Scale 1.00</strong>, <strong>Apply Scalings → FBX Units Scale</strong>, <strong>Forward → −Z Forward</strong>, and <strong>Up → Y Up</strong>. Import the FBX into a test folder in Unity.</li>
+</ol>
 <p>The Blender script regenerates the teaching example. The Unity MCP recipe below imports the resulting sample FBX.</p>
 <pre><code class="lang-sh">blender --background --factory-startup --python-exit-code 1 --python Tools/ManualMcp/BlenderAxisFix/build_model.py -- Tutorial_AxisCheck.fbx
 </code></pre>
@@ -149,7 +154,7 @@
 </code></pre>
 </details>
 <h2 id="2-check-the-models-forward-and-up-directions">2. Check the model's forward and up directions</h2>
-<p>In Unity, verify that the front points along <code>+Z</code> and the top along <code>+Y</code>. Also check the turret's rotation axis and the gun's direction. The sample puts <code>NoseMarker</code> at <code>(0, 0, 1)</code> and <code>RoofMarker</code> at <code>(0, 1, 0)</code>.</p>
+<p>In Unity, verify that the front points along <code>+Z</code> and the top along <code>+Y</code>. Compare the dimensions with the original hull, then rotate the turret and gun separately on the copy to verify their pivots. The sample puts <code>NoseMarker</code> at <code>(0, 0, 1)</code> and <code>RoofMarker</code> at <code>(0, 1, 0)</code>.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -184,7 +189,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/blender-axis-fix.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/blender-axis-fix.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

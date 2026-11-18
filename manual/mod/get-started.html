@@ -86,7 +86,7 @@
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run get-started
 </code></pre>
 <h2 id="1-下载并解压-sdk">1. 下载并解压 SDK</h2>
-<p>从 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a> 下载 <code>Panzer-War-Mod-SDK-sdk-*.zip</code>。完整解压后保留 <code>UnityProject</code> 和旁边的 <code>Packages</code>，工程引用了其中的本地依赖。已有工程可直接从下一步开始。也可以参照 <a href="mod-env-setup-hub.html">GameHub 环境配置</a> 创建工程。</p>
+<p>打开 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>，展开 <strong>Assets</strong>，下载名称为 <code>Panzer-War-Mod-SDK-sdk-*.zip</code> 的发行包。它包含可用的 DLL 和本地依赖。用压缩工具选择<strong>全部解压</strong>，保留 <code>UnityProject</code> 和同级 <code>Packages</code>。单独复制工程目录会使引用失效。已有工程可从下一步开始，也可以参照 <a href="mod-env-setup-hub.html">GameHub 环境配置</a> 创建工程。</p>
 <h2 id="2-确认工程根目录和版本">2. 确认工程根目录和版本</h2>
 <p>打开 <code>UnityProject</code>，确认包含 <code>Assets/</code>、<code>Packages/manifest.json</code> 和 <code>ProjectSettings/ProjectVersion.txt</code>。按 <a href="unity-engine-requirements.html">Unity 引擎版本要求</a> 安装工程声明的版本。</p>
 <details class="tutorial-mcp">
@@ -132,8 +132,12 @@
 </code></pre>
 </details>
 <h2 id="3-在-unity-hub-打开工程">3. 在 Unity Hub 打开工程</h2>
-<p>在 Unity Hub 的 <strong>Projects → Add → Add project from disk</strong> 中选择 <code>UnityProject</code>。打开工程后，等待导入和编译结束，再按需 <a href="set-steam-game-folder.html">设置 Steam 游戏目录</a>。</p>
-<p>MCP 配方读取已打开工程的目录。下载、解压、安装引擎和在 Hub 中打开工程由读者完成。</p>
+<ol>
+<li>在 Unity Hub 的 <strong>Projects → Add → Add project from disk</strong> 中选择 <code>UnityProject</code>。选到正确目录时，应能看到本教程第 2 节列出的三个位置。</li>
+<li>在项目列表打开刚添加的工程。如果 Hub 提示缺少版本，先安装 <code>ProjectVersion.txt</code> 声明的编辑器，再重新打开。第一次打开需要导入包和编译。</li>
+<li>等进度结束后查看 Console。编译通过时，顶部会出现 <strong>Framework - 框架</strong> 菜单。找不到菜单时，先确认选择的是内层 <code>UnityProject</code>，再检查相邻的 <code>Packages</code> 是否完整解压。</li>
+</ol>
+<p>接着按需<a href="set-steam-game-folder.html">设置 Steam 游戏目录</a>，或开始<a href="vehicle-basics.html">从零制作第一辆坦克</a>。</p>
 
 </article>
           </div>
@@ -143,7 +147,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/get-started.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/get-started.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

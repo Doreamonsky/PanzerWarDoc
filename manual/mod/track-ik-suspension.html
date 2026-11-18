@@ -165,6 +165,7 @@
 <h2 id="2-配置-trackik">2. 配置 TrackIK</h2>
 <p>在 <code>SuspensionArm</code> 上添加 <strong>TrackIK</strong>，将「目标负重轮」设为 <code>RoadWheel</code>，将「参考坐标系」设为 <code>StandardUCS</code>。本例将高度设为 <code>0.1</code>，翻转符号设为 <code>1</code>。</p>
 <p>保持「使用旋转包装节点」开启。运行时会在转轴处创建包装节点，用它的局部 Z+ 对准目标方向，同时保留网格相对于包装节点的初始摆放。关闭时脚本直接旋转悬挂臂，因此模型自身的 Z+ 要沿悬挂臂前向。</p>
+<p>对左右两侧的所有悬挂臂重复配置。以旧版 KV-2 示例为例，<code>MainBody/TrackIK_011</code> 指向左侧第六个负重轮 <code>L6</code>，参考坐标系使用模型根节点下的 <code>StandardUCS</code>。每根臂应按实际位置绑定对应轮子。旧图的 Height 为 <code>0</code>，本页教学值 <code>0.1</code> 用于演示高度偏移。</p>
 <p><img src="imgs/track-ik-suspension-ik.zh-CN.png" alt="悬挂臂的目标轮、参考坐标与包装节点选项"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -206,7 +207,7 @@
 </code></pre>
 </details>
 <h2 id="3-保存并核对">3. 保存并核对</h2>
-<p>保存 prefab 并重新检查两个 Transform 引用。在场景视图选中悬挂臂可借助它指向负重轮的连线核对绑定。真实悬挂臂的旋转方向和高度偏移应在完整载具移动时检查。本例验证了 prefab 中的引用和设置。</p>
+<p>在碰撞预制体的 Prefab Mode 保存并退出，重新检查每根臂的两个 Transform 引用。Scene 视图选中悬挂臂时，可用它指向负重轮的连线核对绑定。修改后重新打包，开进<a href="vehicle-playground.html">测试场</a>观察悬挂转向和高度偏移。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -267,7 +268,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/track-ik-suspension.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/track-ik-suspension.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

@@ -112,6 +112,7 @@
 </details>
 <h2 id="载具无法加载">载具无法加载</h2>
 <p>检查 <a href="../gameplay/install-mods.html">模组安装</a> 的目录和目标平台。在 <a href="../gameplay/runtime-log.html">运行日志</a> 查第一条报错，确认模组包关联了正确的构建管线。载具能加载但行为异常时，先对照 <a href="../component/vehicle-text-data.html">VehicleTextData</a> 检查载具配置、伤害模型、履带、炮弹、发动机和开火音效引用。</p>
+<p>旧工程曾遇到模组包与载具同名时加载错误。若载具内部名为 <code>T-72</code>，可把模组包改为 <code>Vehicle-T-72</code> 后重新构建，检查是否能加载。车辆已出现但无法进入时，在 <strong>VehicleData</strong> 依次打开主模型、伤害预制体、<strong>VehicleTextData</strong> 的移动和开火引用，和 SDK 中可运行的模板做对照。</p>
 <h2 id="炮管无法抬升或下压">炮管无法抬升或下压</h2>
 <p>普通炮管填写正值作为 <strong>仰角</strong>和<strong>俯角</strong>的幅度。例如 <code>UpMaxDegree = 20</code>、<code>DownMaxDegree = 8</code> 对应 <code>-8°</code> 到 <code>20°</code>。检查共享炮塔配置和按方向覆盖的限制。炮塔横向旋转的 <code>maxTurretPositiveAngle</code> 与 <code>maxTurretNegativeAngle</code> 是另一组字段。</p>
 <p><img src="imgs/vehicle-dev-qa-elevation-angles.zh-CN.png" alt="炮塔配置中高亮的仰角和俯角"></p>
@@ -182,10 +183,19 @@
 ]
 </code></pre>
 </details>
-<h2 id="行驶悬挂与渲染">行驶、悬挂与渲染</h2>
-<p>行驶异常时，先用 <a href="physics-wheels.html">轮式载具配置</a> 核对质量、轮碰撞体和悬挂配置。模型不显示时按 <a href="model-not-displaying.html">模型显示排查</a> 检查材质、Renderer 和层级。法线贴图在 Unity 中选 <strong>Normal Map</strong> 类型。需要检查网格正反面时，可在 Blender 开启 <strong>Face Orientation</strong>。</p>
+<h2 id="坦克行驶或悬挂异常">坦克行驶或悬挂异常</h2>
+<ol>
+<li>在 <strong>VehicleTextData → 移动</strong>核对整车质量，单位为 kg。旧图里的 T-72 是 <code>44100 kg</code>。用符合你模型的质量，检查有没有把吨数直接填进 kg 字段。</li>
+<li>打开移动页引用的 <strong>WheelCollider</strong> 预制体。组件的 <strong>Mass</strong> 是车轮质量。旧图示例为 <code>320 kg</code>、Radius <code>0.5</code>、Wheel Damping Rate <code>0.25</code> 和 Suspension Distance <code>0.2</code>。旧指南把轮质量不超过 <code>1000 kg</code> 作为调参建议。</li>
+<li><strong>Suspension Spring</strong> 可先用当前模板的 Spring <code>205000</code>、Damper <code>14500</code>、Target Position <code>0.5</code>，再按轮径和整车质量试车调整。<a href="physics-wheels.html">轮组与摩擦配置</a></li>
+</ol>
+<h2 id="模型明暗或正反面异常">模型明暗或正反面异常</h2>
+<ol>
+<li>选中法线贴图，在导入 Inspector 把 <strong>Texture Type</strong> 设为 <strong>Normal Map</strong> 并点击 <strong>Apply</strong>，确认材质的法线槽使用这张贴图。</li>
+<li>在 Blender 的视图叠加菜单开启 <strong>Face Orientation</strong>。对于封闭网格，选中外侧显示红色的面，在 Edit Mode 用 <strong>Mesh → Normals → Recalculate Outside</strong> 或翻转选中的法线。对有意做成双面的网格，核对它的材质。其他不可见部件按 <a href="model-not-displaying.html">模型显示排查</a> 检查。</li>
+</ol>
 <h2 id="副炮切换时出现数组越界">副炮切换时出现数组越界</h2>
-<p>从日志确认报错指向炮弹数据，再逐个检查副炮实际使用的 <code>bulletData</code> 引用和选中索引。对照 <a href="vehicle-modding-notes.html">载具开发笔记</a> 和模板载具。</p>
+<p>从日志确认报错指向炮弹数据，再逐个打开副炮实际使用的 <code>bulletData</code>。检查每个列表至少有一发有效炮弹，并确认当前选中索引小于列表长度。对照 <a href="vehicle-modding-notes.html">载具开发笔记</a> 和模板载具。</p>
 
 </article>
           </div>
@@ -195,7 +205,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

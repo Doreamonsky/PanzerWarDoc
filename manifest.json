@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -10569,6 +10569,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-armor.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-armor.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-armor.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-armor.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/vehicle-basics-bindings.en.png",
       "output": {
         "resource": {
@@ -10583,6 +10603,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vehicle-basics-bindings.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-track.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-track.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-track.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-track.zh-CN.png"
         }
       },
       "version": ""

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>地面载具制作基础 | Panzer War Document </title>
+      <title>从零制作你的第一辆坦克 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="地面载具制作基础 | Panzer War Document ">
+      <meta name="title" content="从零制作你的第一辆坦克 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -80,7 +80,7 @@
 
 <!-- Generated from tutorials/vehicle-basics/zh-CN.md and steps.json; edit those sources. -->
 <link rel="stylesheet" href="../tools/tutorials.css">
-<h1 id="地面载具制作基础">地面载具制作基础</h1>
+<h1 id="从零制作你的第一辆坦克">从零制作你的第一辆坦克</h1>
 <p><strong>中文</strong> | <a href="../en/mod/vehicle-basics.html">English</a></p>
 <p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-basics --capture
@@ -100,7 +100,13 @@
     &quot;cooked&quot;: &quot;${fixture}/2a1fb39dea694fdab732${runId}_pre.prefab&quot;,
     &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
     &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
-    &quot;packageGuid&quot;: &quot;f2f8a67f-7edd-5f4d-9bc4-a53463120f09&quot;
+    &quot;packageGuid&quot;: &quot;f2f8a67f-7edd-5f4d-9bc4-a53463120f09&quot;,
+    &quot;wheel&quot;: &quot;${fixture}/Tutorial_WheelCollider.prefab&quot;,
+    &quot;track&quot;: &quot;${fixture}/Tutorial_Track.asset&quot;,
+    &quot;link&quot;: &quot;${fixture}/Tutorial_TrackLink.prefab&quot;,
+    &quot;armor&quot;: &quot;${fixture}/Tutorial_TankHitBox.asset&quot;,
+    &quot;armorSource&quot;: &quot;${fixture}/Tutorial_ArmorSource.prefab&quot;,
+    &quot;armorPrefab&quot;: &quot;${fixture}/Tutorial_Armor.prefab&quot;
   },
   &quot;calls&quot;: [
     {
@@ -214,25 +220,72 @@
 }
 </code></pre>
 </details>
-<h2 id="准备模型">准备模型</h2>
+<p>本教程从 Blender 模型开始，完成一辆可安装的单炮塔履带坦克。每一节都给出要操作的窗口、要绑定的资产和检查结果。首次制作可以用简单几何体练习，跑通流程后再换成正式模型。</p>
+<h2 id="1-准备工程模型和声音">1. 准备工程、模型和声音</h2>
 <ol>
-<li>按 <a href="mod-env-setup.html">SDK 环境配置</a>准备项目。建模时使用米作为长度单位，Unity 中保持 <strong>+Z 朝前、+Y 朝上</strong>。预留车体、炮塔、主炮和炮管的转轴。履带车还需要设置两侧车轮与履带。准备贴图、引擎和开火音效。参见 <a href="blender-axis-fix.html">Blender 轴向修正</a>。</li>
-<li>单独制作伤害模型，并按<a href="hitbox-naming-conventions.html">伤害模型命名</a>配置装甲和模块节点。导入后检查模型材质与碰撞体。</li>
+<li>按 <a href="get-started.html">项目初始化</a> 安装并打开 SDK 工程。使用 <a href="unity-engine-requirements.html">SDK 要求的 Unity 版本</a>，等待 Console 中的编译错误解决后再打开模组工具。找不到工具菜单时先检查这一项。</li>
+<li>在 <a href="https://www.blender.org/download/">Blender</a> 中准备显示模型和独立的伤害模型。贴图可用 Substance 3D Painter、Photoshop 等工具制作。准备基本色和法线等贴图，以及引擎启动、怠速、运行与开火近声、远声。首次测试可以引用 SDK 中兼容的 FMOD 配置。</li>
+<li>为这辆车在 Project 窗口建一个文件夹，再为模型、材质和碰撞预制体建立子目录。保留源文件，后续更新原有 FBX 时沿用原路径和 <code>.meta</code>，以保留 Unity 引用。</li>
+</ol>
+<h2 id="2-整理-blender-模型并导出">2. 整理 Blender 模型并导出</h2>
+<p>在 Blender 的 Outliner 中为载具保留一个根对象。选择子对象，再按住 Shift 选择它的父对象，通过 <strong>Ctrl+P → Object (Keep Transform)</strong> 建立父子关系。分离部件时可在 Edit Mode 选中该部件的面，再按 <strong>P → Selection</strong>。将部件原点放在实际转轴处，避免旋转时围绕车体原点公转。</p>
+<table>
+<thead>
+<tr>
+<th>根对象下的节点</th>
+<th>放入的对象与检查项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MainBody</code></td>
+<td>车体网格。</td>
+</tr>
+<tr>
+<td><code>Turret → Gun → Dym</code></td>
+<td>炮塔、主炮俯仰节点、炮管后坐节点。炮塔原点在座圈中心，主炮原点在俯仰轴，炮管向车头伸出。三个节点逐层嵌套。</td>
+</tr>
+<tr>
+<td><code>LeftWheel</code>、<code>RightWheel</code></td>
+<td>空的分组对象。负重轮分别命名 <code>l_1</code>、<code>l_2</code>…和 <code>r_1</code>、<code>r_2</code>…，原点在轮轴中心。</td>
+</tr>
+<tr>
+<td><code>LeftUpperWheel</code>、<code>RightUpperWheel</code></td>
+<td>空的托带轮分组。将两侧托带轮放到各自分组，可分别用 <code>lu_1</code>、<code>ru_1</code> 编号。当前打包器会按前后位置重新排序轮子。</td>
+</tr>
+<tr>
+<td><code>LeftTrack</code>、<code>RightTrack</code></td>
+<td>静态履带网格或对应的占位节点。后面还会为动态履带设置履带节和路径。</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>在 Blender 按实际尺寸建模，以米为单位。选中前述对象，点 <strong>File → Export → FBX</strong>。旧教程图中使用 <strong>Scale 1.00</strong>、<strong>Apply Scalings → FBX Units Scale</strong>、<strong>Forward → −Z Forward</strong> 和 <strong>Up → Y Up</strong>。导入 Unity 后确认 <strong>+Z 朝前、+Y 朝上</strong>，再用已知长度测量车体。轴向问题参见 <a href="blender-axis-fix.html">Blender 轴向修正</a>。</li>
+<li>另存一份低面数的伤害模型。按装甲厚度、材质类型和活动部位拆开板件。在引擎中每块独立设置厚度，随炮塔、主炮或炮管转动的板件后续要挂在相应父节点。内部模块也要独立拆分。按<a href="hitbox-naming-conventions.html">伤害模型命名规范</a>命名后导出。</li>
+<li>小型入门载具可沿用旧指南的预算作为起点，显示模型约 2 万面以内、约 4 个材质、贴图 2048 × 2048 或更低，伤害模型约 5000 面以内。先合并重复材质、简化看不见的面和碰撞轮廓，保留可辨识的车体、炮塔与轮组。</li>
+</ol>
+<h2 id="3-在-unity-中绑定材质和物理碰撞">3. 在 Unity 中绑定材质和物理碰撞</h2>
+<ol>
+<li>将显示 FBX、伤害 FBX 和贴图拖进 Project 窗口的载具目录。选中显示 FBX 查看预览。创建或选用与当前工程渲染管线兼容的材质，分别绑定基本色和法线。把材质放到相应网格的 <strong>Mesh Renderer → Materials</strong>，核对模型上颜色和朝向。</li>
+<li>把显示 FBX 从 Project 拖进 Hierarchy，在场景中展开模型。分别选中 <strong>MainBody</strong> 和 <strong>Turret</strong>，用 <strong>Add Component → Box Collider</strong> 添加物理碰撞。点 <strong>Edit Collider</strong> 调整大小和中心。前后侧视检查车体盒体，底边要留离地间隙，避免底盘碰到地面卡住。</li>
+<li>把设置好的模型根对象从 Hierarchy 拖回 Project 的 <strong>Collision</strong> 文件夹，保存为预制体。后续 <strong>MainModel</strong> 引用这个预制体。用于击穿判定的板件仍由独立的伤害模型提供。</li>
 </ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>用简单几何体重做完整的履带车层级。在保存碰撞预制体前检查车体碰撞、炮塔父子关系、前方和上方。</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
-      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
       &quot;args&quot;: [
-        &quot;${source}_Model.prefab&quot;,
-        &quot;${packModel}&quot;
+        &quot;local U = CS.UnityEngine\nlocal E = CS.UnityEditor\nlocal function empty(name, parent, x, y, z)\n    local obj = U.GameObject(name)\n    if parent then obj.transform:SetParent(parent.transform, false) end\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    return obj\nend\nlocal function cube(name, parent, x, y, z, sx, sy, sz)\n    local obj = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\n    obj.name = name\n    obj.transform:SetParent(parent.transform, false)\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    obj.transform.localScale = U.Vector3(sx, sy, sz)\n    return obj\nend\n\nlocal root = empty('TutorialTank', nil, 0, 0, 0)\ncube('MainBody', root, 0, 0.9, 0, 2.6, 0.75, 5)\nlocal turret = empty('Turret', root, 0, 1.55, 0)\ncube('TurretMesh', turret, 0, 0, 0, 1.8, 0.65, 1.6)\nlocal gun = empty('Gun', turret, 0, 0, 0.75)\ncube('GunMesh', gun, 0, 0, 0, 0.6, 0.34, 0.35)\nempty('GunSight', gun, 0.24, 0.2, 0.15)\nlocal barrel = empty('Dym', gun, 0, 0, 0)\ncube('BarrelMesh', barrel, 0, 0, 1.2, 0.17, 0.17, 2.4)\nfor _, side in ipairs({{'Left', 'l', -1.42}, {'Right', 'r', 1.42}}) do\n    local sideName, prefix, x = side[1], side[2], side[3]\n    local wheel = empty(sideName .. 'Wheel', root, 0, 0, 0)\n    local upperWheel = empty(sideName .. 'UpperWheel', root, 0, 0, 0)\n    for index, z in ipairs({1.8, 0.6, -0.6, -1.8}) do\n        local axis = empty(prefix .. '_' .. index, wheel, x, 0.43, z)\n        local mesh = U.GameObject.CreatePrimitive(U.PrimitiveType.Cylinder)\n        mesh.name = 'WheelMesh'\n        mesh.transform:SetParent(axis.transform, false)\n        mesh.transform.localRotation = U.Quaternion.Euler(0, 0, 90)\n        mesh.transform.localScale = U.Vector3(0.86, 0.17, 0.86)\n        U.Object.DestroyImmediate(mesh:GetComponent(typeof(U.Collider)))\n    end\n    empty(prefix .. 'u_1', upperWheel, x, 0.91, 0)\n    local track = cube(sideName .. 'Track', root, x, 0.45, 0, 0.34, 0.14, 4.6)\n    U.Object.DestroyImmediate(track:GetComponent(typeof(U.Collider)))\nend\nfor _, path in ipairs({'Turret/Gun/GunMesh', 'Turret/Gun/Dym/BarrelMesh'}) do\n    U.Object.DestroyImmediate(root.transform:Find(path):GetComponent(typeof(U.Collider)))\nend\nassert(root.transform:Find('MainBody'):GetComponent(typeof(U.BoxCollider)) ~= nil)\nassert(root.transform:Find('Turret/Gun/Dym') ~= nil)\nlocal target = E.PrefabUtility.SaveAsPrefabAsset(root, '${packModel}')\nU.Object.DestroyImmediate(root)\nassert(target ~= nil)\nreturn 'Ground-model hierarchy and physical hull created'\n&quot;,
+        &quot;tank-geometry&quot;,
+        &quot;null&quot;
       ]
     },
     &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;(Boolean) True&quot;
+      &quot;contains&quot;: &quot;Ground-model&quot;
     }
   },
   {
@@ -256,15 +309,97 @@
 ]
 </code></pre>
 </details>
-<h2 id="配置资产">配置资产</h2>
-<ol start="3">
-<li>在 <strong>Framework - 框架 → 0. Home Page</strong> 打开<strong>载具制作引导</strong>，再打开<strong>载具创建工具</strong>。输入新名称，按 <strong>Ground</strong> 创建。</li>
-<li>在 <strong>VehicleInfo</strong> 填写载具信息。在 <strong>VehicleHitBox</strong> 绑定伤害模型和模块配置。在 <strong>VehicleData</strong> 绑定主模型、VehicleHitBox 和 <a href="../component/vehicle-text-data.html">VehicleTextData</a>。按载具配置武器、音效、<a href="physics-wheels.html">车轮参数</a>和履带资源。模型节点和开火位置可从 VehicleData Inspector 打开载具工具检查。</li>
+<h2 id="4-创建并核对载具数据">4. 创建并核对载具数据</h2>
+<ol>
+<li>在 Unity 顶部打开 <strong>Framework - 框架 → 0. Home Page</strong>，点击<strong>载具制作引导</strong>。在引导的创建步骤点击<strong>打开</strong>，进入 GM 编辑器的<strong>载具 → 载具创建</strong>。也可直接在 GM 编辑器选择这个分类。</li>
+<li>类型选择 <strong>Ground</strong>，输入唯一内部名，例如 <code>Tutorial-Tank</code>。当前创建工具接受英文大小写、数字和短横线。前缀可选，显示名稍后单独设置。点击<strong>创建载具</strong>，确认创建。</li>
+<li>在 Project 打开 <code>Assets/Res/Vehicles/Ground/Data/Vehicle/Tutorial-Tank/</code>。对照下表核对生成的资产。把内部名填回制作向导可跳转到相应文件。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>生成的资产</th>
+<th>在哪里使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tutorial-Tank.asset</code>（<strong>VehicleInfo</strong>）</td>
+<td>设置显示名称、等级、国家、缩略图。最后把它拖入模组构建管线。</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_VehicleHitBox.asset</code></td>
+<td>绑定外部装甲、内部模块和生成的伤害预制体。</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_VehicleTextData.asset</code></td>
+<td>配置基础、移动、开火和炮塔参数。</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_VehicleData.asset</code></td>
+<td>汇总模型与数据，编辑关键节点，并生成载具预制体。</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_WheelCollider.prefab</code> 与 <code>Tutorial-Tank_VehicleTrack.asset</code></td>
+<td>给 <strong>移动</strong>参数提供轮碰撞与动态履带配置。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-生成并编辑伤害模型">5. 生成并编辑伤害模型</h2>
+<ol>
+<li>在 Project 选中 <strong>VehicleHitBox</strong>。把外部装甲 FBX 拖入 <strong>外部装甲模型（External Armor Model）</strong>。有单独制作的模块模型时，同时填入 <strong>Internal Module Model</strong>。可给 <strong>Refer Model</strong> 绑定显示模型作为定位参考。</li>
+<li>点击 <strong>生成预制</strong>，再点击 <strong>编辑模式</strong>。确认 Unity 进入这辆车的 Prefab Mode，编辑窗口显示相同的预制体。点击 <strong>外部装甲模型 - Generate External Armor</strong> 生成板件。已有内部模块模型时，使用 <strong>内部模块模型 - Generate Internal Armor</strong>。</li>
+<li>在 Hierarchy 选中一个板件，在其 <strong>HitBox</strong> 组件中核对装甲厚度和类型。把板件拖到 <code>HitBox/Main</code>、<code>HitBox/Turret</code>、<code>HitBox/Gun</code> 或 <code>HitBox/Dym</code> 对应组。上下移动或转动某部件时，它的板件应跟着对应部件。命名解析和数据图见 <a href="hitbox-naming-conventions.html">伤害模型命名与导入</a>。</li>
+<li>在编辑窗口选择模块类型和预设，点击放置后移动到实际位置。在 <code>InternalModule</code> 下用相同的四组关系整理模块。通过 <strong>InternalModule</strong> 组件可逐个给模块设置 HP。批量调整时，在 <strong>VehicleHitBox</strong> 里填写总血量并设置需要的按类型覆盖，然后点击 <strong>自动设置模块血量</strong>。</li>
+<li>对乘员勾选其岗位。准备支持模块模式的履带载具时，检查车长、驾驶员、炮手和通讯员，还需要装填手或自动装填模块。第一轮只验证基础车时可先保留模块模式关闭，完成内部配置后再开启。</li>
+<li>选中弹药架节点的 <strong>InternalModule</strong>。为它添加边界并调整到覆盖相应的弹药区域，再点击 <strong>创建弹药架模型缓存 - Create Ammo Cache</strong>。可以在伤害编辑窗口用<strong>批量更新弹药架模型缓存</strong>处理多个弹药架。检查边界与生成的网格缓存一一对应。</li>
+<li>在 Prefab Mode 按 <strong>Ctrl+S</strong> 保存并退出。回到 <strong>VehicleHitBox</strong> 检查已绑定生成的预制体。</li>
+</ol>
+<p><img src="imgs/vehicle-basics-armor.zh-CN.png" alt="外部装甲模型与已生成的伤害预制体"></p>
+<h2 id="6-设置载具信息炮弹音效和参数">6. 设置载具信息、炮弹、音效和参数</h2>
+<ol>
+<li>打开 <strong>VehicleInfo</strong>，填写显示名称和等级。将国家与 <strong>VehicleTextData</strong> 中基础数据的国家保持一致，打包时会从详细参数同步国家。需要在列表中显示正确图片时，按 <a href="vehicle-thumbnail.html">载具缩略图</a> 绑定缩略图。</li>
+<li>项目中已有适用音效时，先用现成的 <strong>VehicleEngineFmodSoundData</strong> 和 <strong>BulletFmodSound</strong>。自制音效时，将录音导入匹配的 FMOD 工程，给引擎的启动和运行事件安排怠速与加速声音，并配置开火的近、远听感以及相应事件。构建并刷新 Bank 后，用事件选择器绑定资源。旧教程中的 <code>Fire Near</code>、<code>Fire Far</code> 是旧音频资产的字段。<a href="fmod-project-setup.html">FMOD 工程配置</a></li>
+<li>打开 <strong>VehicleTextData</strong>，从 Inspector 底部打开炮弹编辑器，创建一种炮弹，或引用项目中合适的炮弹资产。为炮弹选择与其类型匹配的 <strong>Bullet VFX</strong>，再加入 <strong>开火</strong>页的炮弹列表。检查列表没有空项，并设置开火音效。</li>
+<li>在 <strong>VehicleTextData</strong> 按表完成最小配置。先用一种主炮、一种炮弹和普通装填测试，之后再加特殊武器。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>标签页</th>
+<th>要完成的操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基础</strong></td>
+<td>展开基础数据，设置载具 HP、国家和观察范围。首轮测试可保留默认值，避免同时调整过多变量。</td>
+</tr>
+<tr>
+<td><strong>移动</strong></td>
+<td>保持履带控制器，展开 <code>PTCParameter</code>。设置质量（kg）、最大扭矩、前进和倒车速度与引擎音效。确认已引用生成的 <strong>TankWheelCollider</strong> 和 <strong>Track Data</strong>。</td>
+</tr>
+<tr>
+<td><strong>开火</strong></td>
+<td>本地炮参数在 <code>TFParameter</code>。设置主炮口径（mm）、标准装填时间、射击间隔、弹药量、后坐比例、开火音效、炮弹列表和散布信息。绑定共享主炮时，在共享资产中编辑。</td>
+</tr>
+<tr>
+<td><strong>炮塔</strong></td>
+<td>在 <code>MTParameter</code> 设置炮塔回转范围、回转与俯仰速度，以及最大仰角和俯角。绑定共享炮塔时，在共享资产中编辑。</td>
+</tr>
+</tbody>
+</table>
+<p>可选的 Tanks.gg 入口仍在 <strong>VehicleTextData</strong>。填写 <code>tanksGGName</code> 后可尝试<strong>导入三扩数据</strong>。另一个按钮会覆盖多项现有参数，先把资产保存在 Git 或备份里。外部响应依赖第三方，导入后仍须补齐并检查其余字段。<a href="../component/vehicle-text-data.html">详细参数字段与图示</a></p>
+<h2 id="7-绑定主模型并定位开火节点">7. 绑定主模型并定位开火节点</h2>
+<ol>
+<li>选中 <strong>VehicleData</strong>。将第 3 节的碰撞预制体拖进 <strong>Model Data → MainModel</strong>。确认 <strong>VehicleTextData</strong> 和 <strong>HitBox</strong> 分别指向这辆车的详细数据和伤害资产。</li>
+<li>点击 <strong>编辑</strong>进入变换编辑。Scene 视图中会出现带橙色图标的位置节点。将开火点移到炮口，将特效点对准炮口，并检查相机、重心、引擎声与排烟位置。炮口朝前。每次移完，在 Scene 视图按 <strong>K</strong> 保存节点位置和旋转。</li>
+<li>点击 <strong>解锁视图（Unlock Inspector）</strong>。回到 Project 核对选中的仍是这辆车，重开编辑模式时节点应保留刚保存的位置。</li>
 </ol>
 <p><img src="imgs/vehicle-basics-bindings.zh-CN.png" alt="载具数据中的主模型与详细参数资产"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
-<p>用现有的 SDK 样例复制出独立资源，避免覆盖你已有的模型和参数。</p>
+<p>从现有样例复制参数作为起点，再绑定本次生成的可视模型与两块外部装甲。</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
@@ -392,15 +527,227 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;${vehicleName}&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleHitBox)&quot;,
+        &quot;${armor}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal function empty(name, parent)\n    local obj = U.GameObject(name)\n    if parent then obj.transform:SetParent(parent.transform, false) end\n    return obj\nend\nlocal function plate(name, parent, x, y, z, sx, sy, sz)\n    local obj = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\n    obj.name = name\n    obj.transform:SetParent(parent.transform, false)\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    obj.transform.localScale = U.Vector3(sx, sy, sz)\n    U.Object.DestroyImmediate(obj:GetComponent(typeof(U.Collider)))\nend\nlocal root = empty('Tutorial Tank Armor', nil)\nlocal external = empty('HitBox', root)\nlocal modules = empty('InternalModule', root)\nfor _, group in ipairs({'Main','Turret','Gun','Dym'}) do\n    empty(group, external)\n    empty(group, modules)\nend\nlocal hull = external.transform:Find('Main').gameObject\nlocal turret = external.transform:Find('Turret').gameObject\nplate('HullFront_65', hull, 0, 0.9, 2.48, 2.5, 0.65, 0.04)\nplate('TurretFront_45', turret, 0, 1.55, 0.78, 1.7, 0.55, 0.04)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorSource}'))\nCS.ShanghaiWindy.Editor.VehicleHitBoxModelImport.ConfigureExternal(external, nil)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorPrefab}'))\nU.Object.DestroyImmediate(root)\nreturn 'External armor prepared'\n&quot;,
+        &quot;tank-armor&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;External armor prepared&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/ExternalArmorModel&quot;,
+      &quot;value&quot;: &quot;@asset:${armorSource}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/HitBoxPrefab&quot;,
+      &quot;value&quot;: &quot;@asset:${armorPrefab}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armorPrefab}/HitBox/Main/HullFront_65/HitBox/Armor&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;65&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/modelData/HitBox&quot;,
+      &quot;value&quot;: &quot;@asset:${armor}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/isModuleReady&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/isGenLOD&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
   }
 ]
 </code></pre>
 </details>
+<h2 id="8-调整负重轮与履带">8. 调整负重轮与履带</h2>
+<ol>
+<li>把显示预制体和 <strong>WheelCollider</strong> 预制体拖进场景，按轮子对照轮碰撞的半径与悬挂行程。修改场景实例后，通过 <strong>Overrides → Apply</strong> 或右键值选择 <strong>Apply to Prefab</strong> 把修改写回正确的资产。也可以直接在 Prefab Mode 修改并保存。</li>
+<li>首次可沿用生成模板的值。当前模板的 Suspension Distance 为 <code>0.2</code>，Spring 为 <code>205000</code>，Damper 为 <code>14500</code>，Target Position 为 <code>0.5</code>。Forward Friction 的四个滑移/值项为 <code>1</code>，Stiffness 为 <code>1.7</code>。Sideways Friction 的 Extremum Slip/Value 为 <code>1.2</code>，Asymptote Slip/Value 为 <code>1</code>，Stiffness 为 <code>4</code>。按你的车重与轮径试车后再调。<a href="physics-wheels.html">车轮设置与图示</a></li>
+<li>选中 <strong>VehicleTrackData</strong>，为**履带模型（TrackMesh）**绑定单节履带预制体。左右形状不同时还可设置左履带模型。**履带长度（手动设置）**对应字段 <code>TrackDistance</code>，可先从默认 <code>0.12</code> 开始，按实际履带节长度调整。保留编辑器生成的悬挂数据。</li>
+<li>在 <strong>VehicleData</strong> 点击**编辑悬挂（Edit Track）**打开编辑器。若直接从履带资产进入编辑模式，把已有的载具编辑对象填给 <strong>Target Edit Object</strong> 后点击 <strong>读取悬挂信息</strong>。编辑对象还未生成时，回到 VehicleData 进入编辑模式，生成后再来编辑履带。</li>
+<li>从侧面观察轮组，按绕履带一圈的顺序点击 <strong>创建节点</strong>并放置节点。把路径放到负重轮下方、托带轮上方和前后转折处，检查每一侧形成闭环。可以临时隐藏伤害模型或静态履带，便于观察。</li>
+<li>点击 <strong>预览悬挂（Preview Track）</strong>，检查履带节的方向、转角与间距。调整后使用 <strong>更新预览</strong>，完成后点击 <strong>保存数据</strong>与<strong>解锁视图</strong>。检查履带数据仍绑定在这辆车。<a href="track-ik-suspension.html">履带 IK 与悬挂图示</a></li>
+</ol>
+<p><img src="imgs/vehicle-basics-track.zh-CN.png" alt="履带节资源与间距"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.WheelUtil/CreateWheelPrefab&quot;,
+      &quot;args&quot;: [
+        &quot;${wheel}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GameObject&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleTrackData)&quot;,
+        &quot;${track}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/isStationary&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/PTCParameter/TankWheelCollider&quot;,
+      &quot;value&quot;: &quot;@asset:${wheel}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/PTCParameter/TrackData&quot;,
+      &quot;value&quot;: &quot;@asset:${track}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal link = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\nlink.name = 'Tutorial Track Link'\nlink.transform.localScale = U.Vector3(0.36, 0.07, 0.12)\nU.Object.DestroyImmediate(link:GetComponent(typeof(U.Collider)))\nassert(E.PrefabUtility.SaveAsPrefabAsset(link, '${link}'))\nU.Object.DestroyImmediate(link)\nlocal data = E.AssetDatabase.LoadMainAssetAtPath('${track}')\ndata.trackNodes:Clear()\nfor _, point in ipairs({{0.02, 1.85}, {0.02, -1.85}, {0.48, -2.29}, {0.95, -1.85},\n    {0.95, 1.85}, {0.48, 2.29}}) do\n    local node = CS.ShanghaiWindy.Core.TrackNode()\n    node.leftNode = U.Vector3(-1.42, point[1], point[2])\n    node.rightNode = U.Vector3(1.42, point[1], point[2])\n    data.trackNodes:Add(node)\nend\nE.EditorUtility.SetDirty(data)\nE.AssetDatabase.SaveAssets()\nreturn 'Six track nodes per side'\n&quot;,
+        &quot;tank-track-nodes&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Six track nodes per side&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${track}/TrackMesh&quot;,
+      &quot;value&quot;: &quot;@asset:${link}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${track}/trackNodes&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Count=6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${track}/TrackDistance&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.12&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/GetGroundType()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="9-生成载具预制体">9. 生成载具预制体</h2>
+<p>选中 <strong>VehicleData</strong>，点击 <strong>打包（Pack）</strong>，确认生成载具预制体。<strong>烘焙输出位置</strong>决定使用共享 Cooked 目录，还是保存到 VehicleData 同目录。检查 <strong>VehicleInfo</strong> 能定位到生成物。修改显示模型、物理碰撞、伤害模型、轮组或关键节点后，再打包一次。成功生成预制体后再继续构建模组。</p>
 <p><a id="create-mod-package-打包模组"></a></p>
-<h2 id="构建和试车">构建和试车</h2>
-<ol start="5">
-<li>在 <strong>VehicleData</strong> 的 Inspector 点击<strong>打包</strong>生成载具预制体。修改伤害模型或节点后重新打包。</li>
-<li>用模组构建工具创建与目标平台匹配的包，将 <strong>VehicleInfo</strong> 加入构建管线。安装后进入<a href="vehicle-playground.html">载具测试场</a>，检查移动、瞄准、开火和受损表现。</li>
+<h2 id="10-构建安装和验收你的模组">10. 构建、安装和验收你的模组</h2>
+<ol>
+<li>在 GM 编辑器打开<strong>模组打包 → 创建模组包</strong>，用清楚的包名，例如 <code>Vehicle-Tutorial-Tank</code>。打开创建的 <strong>ModPackageBuildPiplineData</strong>，将这辆车的 <strong>VehicleInfo</strong> 拖入 <strong>Linked Objects</strong>。检查 <strong>Linked Mod Package</strong> 已引用相应的 <strong>ModPackageData</strong>。</li>
+<li>在 <strong>File → Build Settings</strong> 或 <strong>Ctrl+Shift+B</strong> 选定目标平台，并完成平台切换。检查当前活动平台，再在构建管线里构建链接的资源。在 <strong>ModPackageData</strong> 填写名称、简介、作者和版本，执行 <strong>Package Now</strong>。每次更换平台都重新构建资源并打包。</li>
+<li>在工程的 <code>Build/Mod-Package/&lt;平台&gt;/</code> 下找到生成的 <code>.modpack</code>，核对平台后按<a href="../gameplay/install-mods.html">安装模组</a>导入。Windows 产物用于 Windows 试车。以实际输出路径和文件扩展名为准。</li>
+<li>进入<a href="vehicle-playground.html">载具测试场</a>，先检查能找到载具、外观正常且底盘未卡地。再测试前进、倒车、转向、履带动画、炮塔回转、俯仰、主炮开火和装填。最后用伤害测试核对装甲及模块与模型对齐。逐项检查可以确定问题出在模型、数据还是打包。</li>
 </ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -425,6 +772,16 @@
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/VehicleComponentsReferenceManager/LeftWheels&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Count=4&quot;
     },
     &quot;phase&quot;: &quot;build&quot;
   },
@@ -474,8 +831,7 @@
       &quot;equals&quot;: {
         &quot;ok&quot;: true,
         &quot;built&quot;: false
-      },
-      &quot;contains&quot;: &quot;clientextramesh&quot;
+      }
     },
     &quot;phase&quot;: &quot;build&quot;
   },
@@ -533,6 +889,42 @@
 ]
 </code></pre>
 </details>
+<h2 id="11-完成基础车后尝试变体">11. 完成基础车后尝试变体</h2>
+<table>
+<thead>
+<tr>
+<th>变体</th>
+<th>如何在基础车上继续</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轮式载具</td>
+<td>对沿用履带控制器的轮式车，保留 <code>LeftTrack</code> 和 <code>RightTrack</code> 占位节点，按原流程调整轮碰撞，并配置<a href="physics-wheels.html">轮式和履带控制差异</a>。</td>
+</tr>
+<tr>
+<td>机炮（旧教程的 M3 Stuart 示例）</td>
+<td>在主炮开火数据选标准模式，勾选 <strong>Has Slot</strong>，设 <strong>Slot Count</strong> 与 <strong>Slot Duration</strong>。旧图示例为 5 与 3.35，试车时检查连发和随后装填的节奏。</td>
+</tr>
+<tr>
+<td>弹鼓炮（Progetto 65 示例）</td>
+<td>将 <strong>Fire State</strong> 设为 <strong>Drum</strong>，填写 <strong>Fire Duration</strong> 与 <strong>Reload Times</strong>。旧图示例为 2 秒与 <code>[12.4, 10.3, 8.6, 6.8]</code>，逐档核对装填。</td>
+</tr>
+<tr>
+<td>弹夹炮（Bat 25t 风格示例）</td>
+<td>选 <strong>Advance</strong>，在 <strong>Advance Fire Class</strong> 填短装填、长装填与每夹弹数。旧图演示短装填 2 秒、长装填 33 秒、每夹 4 发。</td>
+</tr>
+<tr>
+<td>多炮塔（BMD-1、T-35）</td>
+<td>BMD-1 示例将副武器配置为导弹。T-35 示例在模型根节点下增加 <code>SubTurret01 → SubGun01 → SubDym01</code>，其余三个副炮塔用 02、03、04 编号。设置从模型根到炮塔、从炮塔到炮根、从炮根到炮管的路径，核对发射点与特效偏移。</td>
+</tr>
+<tr>
+<td>双管（ST-II）</td>
+<td>旧示例把 <code>SubTurret → SubGun → SubDym</code> 放在 <code>Turret/Gun</code> 下。把第二根炮管的支点设在其炮尾回转位置。旧配置中的炮塔路径为 <code>Turret/Gun/SubTurret</code>，枪和炮管路径分别为 <code>SubGun</code>、<code>SubDym</code>。按<a href="multi-turret-legacy.html">旧版多炮塔复现</a>核对它与主炮的瞄准方向。</td>
+</tr>
+</tbody>
+</table>
+<p>以上旧图读数用于理解界面，可按你的模组重新调校。新载具的多炮塔优先看 <a href="../component/vehicle-text-data.html">VehicleTextData 的多炮塔配置</a>。遇到模型不显示、开火方向错误或打包后找不到载具时，先查看<a href="vehicle-dev-qa.html">载具开发排查</a>。</p>
 
 </article>
           </div>
@@ -542,7 +934,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/vehicle-basics.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/vehicle-basics.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

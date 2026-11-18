@@ -112,9 +112,12 @@
 }
 </code></pre>
 </details>
-<p>Current vehicles use the wheeled mode of <strong>TrackController</strong>. The legacy NPhysicCarController selection branch is disabled. When migrating an older model, check its wheel nodes and its current vehicle configuration first.</p>
+<p>Current vehicles use the wheeled mode of <strong>TrackController</strong>. The old guide used <code>NPhysicCarController</code>, <code>Rigidbody</code>, <code>CenterOfMass</code>, and <code>NPhysic</code> on the hull root, with <code>WheelController</code> and a friction preset on each wheel. These names help identify an older setup during migration. The current mode and wheel settings use <code>PTCParameter</code> and the collider templates below.</p>
 <h2 id="1-prepare-the-hull-and-wheel-nodes">1. Prepare the hull and wheel nodes</h2>
-<p>Start from the <a href="vehicle-basics.html">vehicle setup guide</a> and place <code>VehicleDynamics</code> and <code>Wheels</code> under the same parent. The teaching prefab has a Rigidbody and four children under <code>Wheels</code>: <code>FrontLeft</code>, <code>FrontRight</code>, <code>RearLeft</code> and <code>RearRight</code>. On your model, place them at the corresponding axle positions.</p>
+<ol>
+<li>Start from the <a href="vehicle-basics.html">vehicle setup guide</a>. Under the visual model root, create <code>Wheels</code> with <code>FrontLeft</code>, <code>FrontRight</code>, <code>RearLeft</code>, and <code>RearRight</code> as its children. Check the wheel origins from the side and front and make sure they are centered on their axles. In the cooked prefab, the builder creates <code>VehicleDynamics</code> as a sibling of <code>Wheels</code>.</li>
+<li>The builder uses an existing <strong>Rigidbody</strong> on the model root or creates one from the vehicle parameters. To adjust the center of gravity, open <strong>VehicleData → Edit</strong>, move the orange <strong>Center Of Gravity</strong> node, and press <strong>K</strong> in Scene view to save it.</li>
+</ol>
 <p>The picture shows the finished Mobility configuration. <code>TankWheelCollider</code> supplies the tire collider parameters and <code>isWheelVehicle</code> enables wheeled mode.</p>
 <p><img src="../../mod/imgs/physics-wheels-root.en.png" alt="Wheel mode and collider template on the Mobility tab with numbered highlights"></p>
 <details class="tutorial-mcp">
@@ -267,7 +270,7 @@
 </code></pre>
 </details>
 <h2 id="4-save-and-check">4. Save and check</h2>
-<p>Save the hull and configuration, then check the mode, collider template, wheel paths and front steering angle. The recipe verifies the editor assets with teaching nodes. Test suspension, grip and steering after assembling a complete vehicle.</p>
+<p>Save the hull and configuration, then pack again. Check that each configured path points to one axle node. Drive on flat ground in the <a href="vehicle-playground.html">Vehicle Playground</a> to check tire contact, front-wheel steering, and rear-wheel alignment, then try a slope. Check model axes and steering groups if a wheel faces the wrong way. Check the group's actual collider template if the tires lose grip unexpectedly.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -355,7 +358,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
