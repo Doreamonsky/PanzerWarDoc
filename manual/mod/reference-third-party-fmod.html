@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>26.6 Refer ThirdParty FMod 引用第三方 Fmod | Panzer War Document </title>
+      <title>在 Unity 引用第三方 FMOD Bank | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="26.6 Refer ThirdParty FMod 引用第三方 Fmod | Panzer War Document ">
-    
-    
+      <meta name="title" content="在 Unity 引用第三方 FMOD Bank | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,12 +77,40 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="266-refer-thirdparty-fmod-引用第三方-fmod">26.6 Refer ThirdParty FMod 引用第三方 Fmod</h1>
 
-<p><img src="imgs/5b50a3b1a3de_1757748704500-86446155-4732-4672-89af-7be90a93d467.png" alt=""></p>
-<p>选择他人打包好的 Banks 文件。请注意，必须提供 master.bank 文件，Fmod 才能正常解析其他所有 Banks 文件。</p>
-<p>Select the Banks files packaged by others. Note that the master.bank file must be provided for Fmod to correctly parse all other Banks files.</p>
-<p><img src="imgs/25db97b86632_1757746362200-fa999c87-7db3-49f7-8c41-98d466f1a868.png" alt=""></p>
+<!-- Generated from tutorials/reference-third-party-fmod/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="在-unity-引用第三方-fmod-bank">在 Unity 引用第三方 FMOD Bank</h1>
+<p><strong>中文</strong> | <a href="../en/mod/reference-third-party-fmod.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run reference-third-party-fmod
+</code></pre>
+<ol>
+<li>准备同一次构建生成的主 Bank、对应的 <code>.strings.bank</code> 和内容 Bank。使用与项目兼容的 FMOD 版本。</li>
+<li>打开 <strong>FMOD → Edit Settings → Bank Import</strong>。单平台选择 <strong>Single Platform Build</strong>，指向该平台的输出目录。多平台选择 <strong>Multiple Platform Build</strong>，指向含 <strong>Desktop</strong>、<strong>Mobile</strong> 等实际平台子目录的父目录。</li>
+<li>导入完成后打开事件选择器，检查要用的事件路径是否存在。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>以无声的独立 FMOD 实例加载同一构建的三个示例 Bank，再用事件路径查询。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local F = CS.FMOD\nlocal ST = F.Studio\nlocal result, system = ST.System.create()\nassert(result == F.RESULT.OK)\nlocal ok, failure = pcall(function()\n    local coreResult, core = system:getCoreSystem()\n    assert(coreResult == F.RESULT.OK)\n    assert(core:setOutput(F.OUTPUTTYPE.NOSOUND) == F.RESULT.OK)\n    assert(system:initialize(16, ST.INITFLAGS.NORMAL, F.INITFLAGS.NORMAL, CS.System.IntPtr.Zero) == F.RESULT.OK)\n    for _, name in ipairs({'Master', 'Master.strings', 'tanks_crews_cn'}) do\n        local status = system:loadBankFile('../Fmod/Build/Desktop/' .. name .. '.bank', ST.LOAD_BANK_FLAGS.NORMAL)\n        assert(status == F.RESULT.OK, tostring(status))\n    end\n    local countResult, count = system:getBankCount()\n    assert(countResult == F.RESULT.OK and count == 3)\n    local eventResult = system:getEvent('event:/crew/ground/cn/start_battle_cn')\n    assert(eventResult == F.RESULT.OK)\nend)\nsystem:release()\nassert(ok, failure)\nreturn 'Master, strings, and content bank loaded'\n&quot;,
+        &quot;read-fmod-bank-set&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Master, strings, and content bank loaded&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -110,7 +138,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

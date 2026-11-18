@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>20. 地图工坊素材构建 Map Workshop Asset Build | Panzer War Document </title>
+      <title>为地图工坊构建道具 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="20. 地图工坊素材构建 Map Workshop Asset Build | Panzer War Document ">
-    
-    
+      <meta name="title" content="为地图工坊构建道具 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,39 +77,515 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="20-地图工坊素材构建-map-workshop-asset-build">20. 地图工坊素材构建 Map Workshop Asset Build</h1>
 
-<h1 id="1-暂时只支持-urp-currently-urp-only">1. 暂时只支持 URP Currently URP Only</h1>
-<p>建议新建一个模组工程，然后打开 Package Manager 安装 Universal RP。</p>
-<p>It is recommended to create a new Mod project, then open the Package Manager and install Universal RP.</p>
-<p><img src="imgs/9a9e639048ce_1653838547148-0dedc81d-8424-4c10-8bf4-49aaa6586ace.png" alt=""></p>
-<p><img src="imgs/27de268166ec_1653838649023-a0fe9bfe-8e59-4516-a8c5-a5e1e647f5e8.png" alt=""></p>
-<p><img src="imgs/30e8b0eb89e3_1653838672084-3d3e20d8-98b1-454f-ab4b-9933a84b0ad2.png" alt=""></p>
-<p><img src="imgs/3cf45f3193bf_1653838705692-3791586a-3068-4a14-a6a6-ade13316d8ac.png" alt=""></p>
-<h1 id="2-素材准备-asset-preparation">2. 素材准备 Asset Preparation</h1>
-<p>将模型拖入场景，设置坐标为 0, 0, 0，旋转为 0, 0, 0。</p>
-<p>Drag the model into the scene, then set its position to 0, 0, 0 and its rotation to 0, 0, 0.</p>
-<p>添加碰撞体（Box Collider / Mesh Collider）。</p>
-<p>Add a collider (Box Collider / Mesh Collider).</p>
-<p>将模型的图层全部设置为 Building（在父物体上设置图层时，可勾选选项以应用于所有子物体）。</p>
-<p>Set the layer of the whole model to Building. (When you set the layer on the parent object, a dialog lets you apply it to all child objects as well.)</p>
-<p>将此模型拖回 Project 窗口，使其变为 Prefab（预制体）。</p>
-<p>Drag the model back into the Project window and it becomes a prefab.</p>
-<p><img src="imgs/ae84a3e292a1_1653838879848-0bdf231e-4025-446b-96b7-980cf808318e.png" alt=""></p>
-<h1 id="3-创建数据文件-create-the-data-asset">3. 创建数据文件 Create the Data Asset</h1>
-<p>在已创建的 Prefab 上右键，选择 PropFromSelection，并选择保存路径（请选择项目内的路径）。</p>
-<p>Right click the prefab you just created and choose PropFromSelection, then pick a save path (the path must be inside the project).</p>
-<p>找到创建出的数据文件，将渲染类型修改为 URP，然后点击更新预制体与更新缩略图。</p>
-<p>Open the generated data asset, change the render type to URP, then click update prefab and update thumbnail.</p>
-<h1 id="section"><img src="imgs/bab2a6f583ca_1653838926065-f10c4123-ee10-4768-8ec4-bb5fe5270fc5.png" alt=""></h1>
-<p><img src="imgs/781cc59bcdad_1653839007293-f3076bc4-2240-45d3-871f-cc7a971533a9.png" alt=""></p>
-<p><img src="imgs/54f5cb0bb52f_1653839058913-b15f73fe-945a-4f0e-8d56-5f69796fa5ae.png" alt=""></p>
-<h1 id="4-打包-build">4. 打包 Build</h1>
-<p>创建 DIYMapDataBuildAssemble，点击自动设置所有打包，将创建的 DIYMapDataBuildAssemble 添加到 ModBuildPipline 中，即可正常打包。同时，可以将重复的资源加入到 LinkedObject，勾选加载依赖资源、共享相同材质球、共享相同模型，以减小模组包体大小。</p>
-<p>Create a DIYMapDataBuildAssemble and click the button that sets up all build entries automatically, then add the DIYMapDataBuildAssemble to the ModBuildPipline. It can then be built as usual. You can also add duplicated assets to LinkedObject and enable load dependent assets, share identical materials and share identical models, which reduces the size of the mod package.</p>
-<p><img src="imgs/2abf3b3c8b0b_1653839159409-46d08e5e-73d3-4b40-a4d7-761e4fc5e4a0.png" alt=""></p>
-<p><img src="imgs/4acaf585cc4d_1653839210322-e0d8cec0-bb6e-4554-a0b8-f2da07f0397a.png" alt=""></p>
-<p><img src="imgs/d07e174159fe_1653839281592-e51d42f8-ef1c-4f89-931b-81a49324a9cf.png" alt=""></p>
+<!-- Generated from tutorials/map-workshop-asset-build/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="为地图工坊构建道具">为地图工坊构建道具</h1>
+<p><strong>中文</strong> | <a href="../en/mod/map-workshop-asset-build.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run map-workshop-asset-build --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;assemble&quot;: &quot;${fixture}/TutorialBuildAssemble.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;prop&quot;: &quot;${fixture}/TutorialMapProp.asset&quot;,
+    &quot;visual&quot;: &quot;${fixture}/TutorialMapVisual.prefab&quot;,
+    &quot;cooked&quot;: &quot;${fixture}/8939c2be1b3c48b78ba${runId}_pre.prefab&quot;,
+    &quot;itemGuid&quot;: &quot;8939c2be1b3c48b78ba${runId}&quot;,
+    &quot;packageGuid&quot;: &quot;5e3b765f-192a-5693-8d18-9fe6acba5f7f&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>在 URP 工程中把道具模型放到原点，添加 <strong>Box Collider</strong> 或 <strong>Mesh Collider</strong>。将根对象和子对象设为 <strong>Building</strong> 层，保存为预制体。</li>
+<li>在 Project 中右键预制体，选择 <strong>ShanghaiWindy → DIYMap → PropFromSelection</strong>。选择 <code>Assets</code> 下的输出目录，检查生成的 <strong>DIYMapPropData</strong> 已引用显示模型。</li>
+<li>在 <strong>DIYMapPropData</strong> 把 <strong>渲染类型</strong> 设为 <strong>URP</strong>。点 <strong>创建预制体</strong>，再点 <strong>创建缩略图</strong>。Unity 还在生成预览时，等预览出现后再点一次。已有资源时对应按钮显示 <strong>更新预制体</strong> 和 <strong>更新缩略图</strong>。</li>
+</ol>
+<p><img src="imgs/map-workshop-asset-build-render.zh-CN.png" alt="地图道具的渲染类型"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.RenderUtil/GetCurrentPipType&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;URP&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U = CS.UnityEngine\nlocal E = CS.UnityEditor\nlocal model = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\nlocal layer = U.LayerMask.NameToLayer('Building')\nassert(layer &gt;= 0)\nmodel.layer = layer\nmodel.name = 'Tutorial Map Visual'\nlocal prefab = E.PrefabUtility.SaveAsPrefabAsset(model, '${visual}')\nassert(prefab ~= nil)\nU.Object.DestroyImmediate(model)\nE.AssetPreview.GetAssetPreview(prefab)\nreturn E.AssetDatabase.AssetPathToGUID('${visual}')\n&quot;,
+        &quot;create-map-prop-visual&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Count=1&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;visualGuid&quot;: {
+        &quot;regex&quot;: &quot;\\[([a-f0-9]{32})\\]&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.Data.DIYMapPropData)&quot;,
+        &quot;${prop}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/itemGUID&quot;,
+      &quot;value&quot;: &quot;${itemGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/displayName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Map Prop&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/renderType&quot;,
+      &quot;value&quot;: &quot;URP&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/visualModelFilePath/assetGUID&quot;,
+      &quot;value&quot;: &quot;${visualGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/visualModelFilePath/extra&quot;,
+      &quot;value&quot;: &quot;${visual}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/isGenLOD&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${prop}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = CS.UnityEditor\nlocal data = E.AssetDatabase.LoadMainAssetAtPath('${prop}')\nlocal model = E.AssetDatabase.LoadMainAssetAtPath('${visual}')\nassert(model.layer == CS.UnityEngine.LayerMask.NameToLayer('Building'))\nCS.ShanghaiWindy.Editor.DIYMapBaseDataPacker.GetPacker(data):CreatePrefab()\nE.AssetDatabase.SaveAssets()\nassert(E.AssetDatabase.LoadMainAssetAtPath('${cooked}'))\nreturn 'Map prop cooked'\n&quot;,
+        &quot;cook-map-prop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Map prop cooked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prop}/prefabFilePath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;/${itemGuid}_pre.prefab&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = CS.UnityEditor\nlocal model = E.AssetDatabase.LoadMainAssetAtPath('${visual}')\nlocal prop = E.AssetDatabase.LoadMainAssetAtPath('${prop}')\nlocal preview = E.AssetPreview.GetAssetPreview(model)\nif preview == nil then return 'Preview is pending' end\nCS.ShanghaiWindy.Editor.DIYMapBaseDataPacker.GetPacker(prop):CreateIcon()\nE.EditorUtility.SetDirty(prop)\nE.AssetDatabase.SaveAssets()\nassert(prop.icon ~= nil)\nreturn 'Map prop icon created'\n&quot;,
+        &quot;create-map-prop-icon&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;Map prop icon created|Preview is pending&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>创建 <strong>DIYMapDataBuildAssemble</strong>，把要发布的道具添加到 <strong>BuildMap</strong>。按目录收集时，设置 <strong>Pack Folder</strong> 后点击 <strong>设置文件夹下的文件打包</strong>，并检查填充结果。</li>
+<li>将构建组拖入 <strong>ModPackageBuildPiplineData</strong> 的 <strong>Linked Objects</strong>，对目标平台构建。归档应包含 <code>.diymapassemble</code> 构建组和对应的 <code>.mapdiy</code> 道具。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.Data.DIYMapDataBuildAssemble)&quot;,
+        &quot;${assemble}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${assemble}/buildGuid&quot;,
+      &quot;value&quot;: &quot;00f0220bdd57446ab29${runId}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${assemble}/buildMap/Clear&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${assemble}/buildMap/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${prop}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${assemble}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${assemble}/buildMap/0/displayName/defaultName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial Map Prop&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${assemble}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;diymapassemble\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = CS.UnityEditor\nlocal model = E.AssetDatabase.LoadMainAssetAtPath('${visual}')\nlocal prop = E.AssetDatabase.LoadMainAssetAtPath('${prop}')\nlocal preview = E.AssetPreview.GetAssetPreview(model)\nif preview == nil then return 'Preview is pending' end\nCS.ShanghaiWindy.Editor.DIYMapBaseDataPacker.GetPacker(prop):CreateIcon()\nE.EditorUtility.SetDirty(prop)\nE.AssetDatabase.SaveAssets()\nassert(prop.icon ~= nil)\nreturn 'Map prop icon created'\n&quot;,
+        &quot;create-map-prop-icon&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;Map prop icon created|Preview is pending&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -137,7 +613,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

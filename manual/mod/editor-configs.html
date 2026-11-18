@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>33. Editor Configs 编辑器配置 | Panzer War Document </title>
+      <title>自定义内构模块预设 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="33. Editor Configs 编辑器配置 | Panzer War Document ">
-    
-    
+      <meta name="title" content="自定义内构模块预设 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,25 +77,175 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="33-editor-configs-编辑器配置">33. Editor Configs 编辑器配置</h1>
 
-<p><img src="imgs/b358d14e709f_1703143695776-2ad1ac40-7e87-47d3-850e-32ee8fe0cebe.png" alt=""></p>
-<p><img src="imgs/df5164cb41b9_1703143705789-5ce626e3-528b-4f17-be2a-5d09115c7aaf.png" alt=""></p>
-<h2 id="custom-module-presets-自定义模块预设">Custom Module Presets 自定义模块预设</h2>
-<h3 id="create-module-folder-创建你的模块文件夹">Create module folder 创建你的模块文件夹</h3>
-<p>Create a folder and create a sub folder (named after the internal module type). Then import your fbx model.</p>
-<p>创建一个文件夹，并创建一个子文件夹（命名为模块类型）。然后导入你的模型的 fbx 文件。</p>
-<p><img src="imgs/abe9d8e5effb_1703155370249-c877075c-8f99-40f7-a8cc-3f05382615d7.png" alt=""></p>
-<p>Subfolders are named after their internal module type. The following are some of the options, and you can refer to the preset files in the Packages/com.shanghaiwindy.middlesharedresources/SharedInternalDamage/Preset folder.</p>
-<p>子文件夹的名称以模块类型命名，有如下几种选项。也可参考位于 Packages/com.shanghaiwindy.middlesharedresources/SharedInternalDamage/Preset 文件夹中的预设文件。</p>
-<p><img src="imgs/dcbcdcc36c1f_1703155441750-a01ba1c2-9d95-42a3-9b60-42de69942e29.png" alt=""></p>
-<p>Fill in the path of the folder you created. It usually starts with Assets/.</p>
-<p>填入你创建的文件夹路径，通常以 Assets/ 开头。</p>
-<p><img src="imgs/1234b68f53f0_1703155604611-d126c9a8-2664-4f47-af5f-b299c2f50785.png" alt=""></p>
-<h3 id="use-your-internal-modules-使用你的内构模型">Use your internal modules 使用你的内构模型</h3>
-<p>Under the Vehicle HitBox Editor, click on refresh button and select the correct model type. You can use your own internal modules.</p>
-<p>在伤害模型编辑器中，点击刷新按钮并选择正确的模块类型，即可使用你导入的内构模型。</p>
-<p><img src="imgs/8318f6df50ce_1703155928125-091f9ea5-2c1a-4f0f-8f2e-cc87e0aaae14.png" alt=""></p>
+<!-- Generated from tutorials/editor-configs/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="自定义内构模块预设">自定义内构模块预设</h1>
+<p><strong>中文</strong> | <a href="../en/mod/editor-configs.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run editor-configs
+</code></pre>
+<p>伤害模型编辑器里的模块预设列表来自两个内置目录和一个本地配置数组。按下面的顺序放好模型并登记根目录，就能在编辑器里直接选到自己的内构模型。</p>
+<h2 id="1-建立模块目录">1. 建立模块目录</h2>
+<p>在 SDK 工程里建立根目录和模块类型子目录，把模型直接放在子目录中：</p>
+<pre><code>Assets/MyModulePresets/
+  Engine/
+    EngineA.fbx
+  Crew/
+    CrewA.fbx
+</code></pre>
+<p>当前扫描逻辑只读取 <code>&lt;根目录&gt;/&lt;类型&gt;</code> 下的直接 <code>*.fbx</code> 和 <code>*.prefab</code> 文件，不递归子目录。类型目录名必须是 <code>EInternalModuleType</code> 的枚举成员名，区分大小写，例如 <code>Engine</code>、<code>Crew</code>、<code>AmmoShell</code>、<code>Breech</code>、<code>Transmission</code>；不是 Inspector 里显示的中文或 <code>E 引擎 (Engine)</code> 这类标题。</p>
+<table>
+<thead>
+<tr>
+<th>目录名</th>
+<th>模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Transmission</code></td>
+<td>传动</td>
+</tr>
+<tr>
+<td><code>Engine</code></td>
+<td>引擎</td>
+</tr>
+<tr>
+<td><code>HeatSink</code></td>
+<td>散热器</td>
+</tr>
+<tr>
+<td><code>OilTank</code></td>
+<td>油箱</td>
+</tr>
+<tr>
+<td><code>Traversing</code></td>
+<td>方向机</td>
+</tr>
+<tr>
+<td><code>Breech</code></td>
+<td>炮闩</td>
+</tr>
+<tr>
+<td><code>Elevator</code></td>
+<td>高低机</td>
+</tr>
+<tr>
+<td><code>Sighting</code></td>
+<td>观察镜</td>
+</tr>
+<tr>
+<td><code>AmmoShell</code></td>
+<td>弹药架</td>
+</tr>
+<tr>
+<td><code>Crew</code></td>
+<td>成员</td>
+</tr>
+<tr>
+<td><code>InternalArmor</code></td>
+<td>内部装甲</td>
+</tr>
+<tr>
+<td><code>Radiator</code></td>
+<td>雷达</td>
+</tr>
+<tr>
+<td><code>AutoReloader</code></td>
+<td>自动装弹机</td>
+</tr>
+<tr>
+<td><code>OilPipline</code></td>
+<td>滑油系统</td>
+</tr>
+<tr>
+<td><code>SurfaceControlRope</code></td>
+<td>舵面控制钢索</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-准备模型">2. 准备模型</h2>
+<p>模型根节点需要有可用的 <strong>MeshFilter</strong> 和共享网格。选中预设时，如果模型没有碰撞体，<code>ModulePresetUtil.SetupModule</code> 会在根节点添加 <code>MeshCollider</code> 并引用该共享网格，同时添加运动学刚体。网格为空时碰撞体也无法生成。</p>
+<p>也可以把模块做成预制体，以 <code>.prefab</code> 放在同一类型目录下。文件名只用于显示，不影响分类。</p>
+<h2 id="3-把根目录写进本地配置">3. 把根目录写进本地配置</h2>
+<ol>
+<li>打开 <strong>Framework → 1. Editor Tools</strong>，在 <strong>01. ♥ Core Tools</strong> 中打开 <strong>Editor Config</strong>。</li>
+<li>在 <strong>模块预设文件夹</strong> 添加 <code>Assets/MyModulePresets</code>，只填写根目录。</li>
+<li>点击 <strong>Save</strong>，保存到当前 Unity 工程的 <code>Assets/EditorStorage.json</code>。</li>
+</ol>
+<p>需要离线配置时，先退出 Unity，再备份并编辑这个文件。公开 SDK 中的路径是 <code>UnityProject/Assets/EditorStorage.json</code>。保留其他键，把根目录加到现有的 <code>modulePresetFolders</code> 数组：</p>
+<pre><code class="lang-json">{
+  &quot;modulePresetFolders&quot;: [
+    &quot;Assets/MyModulePresets&quot;
+  ]
+}
+</code></pre>
+<ul>
+<li>只写根目录，不要带上 <code>/Engine</code>，结尾也不要加斜杠。</li>
+<li>保留文件中的其他键，不要用最小对象覆盖已有配置。</li>
+<li>如果还没有这个文件，先在 <strong>Editor Config</strong> 中保存一次。</li>
+<li>不要在 Unity 打开时改这个文件：<code>EditorStorage.Save</code> 会把内存里的整个对象写回，旧值可能覆盖你的编辑。</li>
+</ul>
+<h2 id="4-在伤害模型编辑器中使用">4. 在伤害模型编辑器中使用</h2>
+<ol>
+<li>用 <strong>伤害模型编辑器 - HitBox Editor</strong>（<code>VehicleHitBoxEditorWindow</code>）打开目标载具，并进入该伤害模型预制体的预制体编辑模式；窗口不在预制体模式时只显示提示。</li>
+<li>点 <strong>刷新预设 - Refresh</strong>，让扫描重新读取目录。</li>
+<li>在 <strong>选择的模块类型 - Pick Module Type</strong> 里选目标类型。</li>
+<li>找到对应缩略图。点缩略图只会定位资源；点缩略图下方的 <strong>选择 - Pick</strong> 才会实例化到当前预制体。</li>
+<li>调整位置和尺寸，按 <strong>Ctrl + S</strong> 保存预制体。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>临时添加一个预设根目录，验证能扫描直属 prefab 并初始化 Breech 组件。回放结束会恢复内存设置。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local u, e = CS.UnityEngine, CS.UnityEditor\nlocal database = e.AssetDatabase\nlocal scratch = \&quot;Assets/__DocsPresetScan\&quot;\nassert(not database.IsValidFolder(scratch), \&quot;Scratch folder already exists\&quot;)\nlocal presets = CS.ShanghaiWindy.Editor.EditorStorage.Info.modulePresetFolders\nlocal moduleType = CS.ShanghaiWindy.Core.EInternalModuleType\nlocal block\nlocal added = false\nlocal ok, result = pcall(function()\n    database.CreateFolder(\&quot;Assets\&quot;, \&quot;__DocsPresetScan\&quot;)\n    database.CreateFolder(scratch, \&quot;Breech\&quot;)\n    database.CreateFolder(scratch .. \&quot;/Breech\&quot;, \&quot;Nested\&quot;)\n    block = u.GameObject.CreatePrimitive(u.PrimitiveType.Cube)\n    u.Object.DestroyImmediate(block:GetComponent(typeof(u.Collider)))\n    local path = scratch .. \&quot;/Breech/Sample.prefab\&quot;\n    assert(e.PrefabUtility.SaveAsPrefabAsset(block, path))\n    assert(e.PrefabUtility.SaveAsPrefabAsset(block, scratch .. \&quot;/Breech/Nested/Hidden.prefab\&quot;))\n    presets:Add(scratch)\n    added = true\n    local mapping = CS.System.Collections.Generic.Dictionary(CS.System.String, moduleType)()\n    local util = CS.ShanghaiWindy.Editor.ModulePresetUtil\n    util.RefreshModuleMapping(mapping)\n    assert(mapping:ContainsKey(path), \&quot;Direct prefab was not scanned\&quot;)\n    local entries = mapping:GetEnumerator()\n    local found\n    while entries:MoveNext() do\n        if entries.Current.Key == path then found = entries.Current.Value end\n    end\n    assert(found and found:ToString() == \&quot;Breech\&quot;, \&quot;Wrong scanned type: \&quot; .. tostring(found))\n    assert(not mapping:ContainsKey(scratch .. \&quot;/Breech/Nested/Hidden.prefab\&quot;), \&quot;Nested prefab was scanned\&quot;)\n    local module = util.SetupModule(block, moduleType.Breech)\n    assert(module.moduleType:ToString() == \&quot;Breech\&quot;, \&quot;Wrong placed module type: \&quot; .. tostring(module.moduleType))\nend)\nif added then presets:RemoveAt(presets.Count - 1) end\nif block then u.Object.DestroyImmediate(block) end\nif database.IsValidFolder(scratch) then database.DeleteAsset(scratch) end\nassert(ok, result)\nreturn \&quot;Module prefab preset scan and placement passed\&quot;&quot;,
+        &quot;manual-preset&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Module prefab preset scan and placement passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-排查">5. 排查</h2>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>列表里没有自定义模型</td>
+<td>根目录是否已写入数组；类型目录名是否与枚举名完全一致；模型是否是目录下的直接 <code>.fbx</code> 或 <code>.prefab</code>；改完后是否点了刷新</td>
+</tr>
+<tr>
+<td>有缩略图但选中后没有碰撞</td>
+<td>模型根节点是否带 MeshFilter 和有效共享网格</td>
+</tr>
+<tr>
+<td>换了模型仍显示旧的</td>
+<td>先按刷新预设，再重新选择；确认没有把文件放到子目录</td>
+</tr>
+<tr>
+<td>分类不对</td>
+<td>文件所在的类型目录与 <code>EInternalModuleType</code> 成员不一致</td>
+</tr>
+</tbody>
+</table>
+<h2 id="现成的示例目录">现成的示例目录</h2>
+<p>当前代码还会扫描两个内置位置：<code>Assets/Res/InternalDamage/Preset/&lt;类型&gt;</code> 和 <code>Packages/com.shanghaiwindy.middlesharedresources/SharedInternalDamage/Preset/&lt;类型&gt;</code>（包名常量 <code>PackageConst.MIDDLE_SHARED_RESOURCES</code>）。可以按其中的文件了解命名和结构；中间共享资源包是依赖包，本地 <code>Packages</code> 目录里不一定有它的源码。</p>
+<p>相关源码：<code>ModulePresetUtil.RefreshModuleMapping</code>、<code>ModulePresetUtil.AddModule</code>、<code>ModulePresetUtil.SetupModule</code>、<code>ModulePresetUtil.DrawModulePreset</code>、<code>EditorStorageInfo.modulePresetFolders</code>、<code>VehicleHitBoxEditorWindow.RefreshPresets</code>、<code>EInternalModuleType</code>。</p>
 
 </article>
           </div>
@@ -123,7 +273,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

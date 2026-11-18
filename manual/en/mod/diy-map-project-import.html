@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Import a DIY map into the Unity project | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Import a DIY map into the Unity project | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/diy-map-project-import/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="import-a-diy-map-into-the-unity-project">Import a DIY map into the Unity project</h1>
+<p><a href="../../mod/diy-map-project-import.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run diy-map-project-import
+</code></pre>
+<h2 id="1-prepare-the-assets-and-the-yaml-file">1. Prepare the assets and the YAML file</h2>
+<ol>
+<li>Open the public SDK's <code>UnityProject</code> using <a href="get-started.html">project setup</a>. Maintainers with access to official production assets use <code>Panzer-War-Mods/Projects/Maps</code>. <a href="map-asset-download.html">Map asset sources</a></li>
+<li>A DIY save finds objects by <code>itemGuid</code>. The official Maps project already declares the DIY packages in its manifest. For the public SDK, if you have the corresponding local UPM packages, use <strong>Window → Package Manager → + → Add package from disk</strong> and select each <code>package.json</code>. Check that their assets and configuration appear under <strong>Packages</strong> in Project.</li>
+<li>Find the <code>.yaml</code> in the game's save directory and make a copy for editing. The source assets need the same GUIDs used by the save.</li>
+</ol>
+<h2 id="2-load-the-base-scene-and-import-the-map">2. Load the base scene and import the map</h2>
+<ol>
+<li>Open <strong>Framework → 1. Editor Tools → 05. DIY Workshop → DIY Map Edit</strong>. Choose <strong>Load Base Asset</strong> and confirm to enter Play in the base playground.</li>
+<li>Wait for the game environment to finish loading. Select the file in the YAML picker, then click <strong>Load DIY Map from Yaml</strong>. Inspect the scene and <code>DIYMapConfig</code> after the import finishes.</li>
+<li>If an object is missing, find the reported <code>itemGuid</code> in the Console. Check that the package containing that GUID is available before continuing. Keep existing GUIDs so saves can resolve their objects.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Round-trip the map name and itemGuid through the editor's YAML parser. Scene import requires the loaded base assets.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local typed = CS.ShanghaiWindy.Core.Data.DIYMapUserDefined\nlocal util = CS.ShanghaiWindy.Core.Utils.YamlUtil\nlocal decode = xlua.get_generic_method(util, \&quot;DeserializeYaml\&quot;)(typed)\nlocal encode = xlua.get_generic_method(util, \&quot;SerializeYaml\&quot;)(typed)\nlocal input = [[\nguid: 2f7d6e7d-b518-4f6f-9c2d-1d2c728f82da\ndefinedName: Tutorial Town\nrules:\n- ruleGuid: 167798a3-6d87-4ec8-a701-ae59775eb7ce\n  itemGuid: 08951884-e54b-4c7e-a449-9f2ef826cbc1\n  itemJson: '{}'\n]]\nlocal map = decode(input)\nlocal restored = decode(encode(map))\nassert(restored.definedName == \&quot;Tutorial Town\&quot; and restored.rules.Count == 1)\nassert(restored.rules[0].itemGuid == \&quot;08951884-e54b-4c7e-a449-9f2ef826cbc1\&quot;)\nreturn \&quot;DIY YAML round-trip passed\&quot;&quot;,
+        &quot;manual-validate&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DIY YAML round-trip passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-save-or-package-your-changes">3. Save or package your changes</h2>
+<p>If you only changed positions, set the output name and folder and click <strong>Save Map as Yaml</strong>. Enter the name without an extension. The tool writes <code>&lt;name&gt;.yaml</code>. To publish a full mod scene, follow the <a href="map-wizard-tutorial.html">map wizard</a> to prepare its scene, preview, and build.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

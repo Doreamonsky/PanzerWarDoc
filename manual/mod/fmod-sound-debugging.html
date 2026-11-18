@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>26.5. Fmod Sound Debugging Tool Fmod 音效调试工具 | Panzer War Document </title>
+      <title>比较不同距离的开火音效 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="26.5. Fmod Sound Debugging Tool Fmod 音效调试工具 | Panzer War Document ">
-    
-    
+      <meta name="title" content="比较不同距离的开火音效 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,19 +77,49 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="265-fmod-sound-debugging-tool-fmod-音效调试工具">26.5. Fmod Sound Debugging Tool Fmod 音效调试工具</h1>
 
-<p>在 <code>Packages/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/FmodPlayground.unity</code> 目录下，</p>
-<p>提供了一个 Fmod 音效调试场景，该环境与游戏真实环境逻辑保持一致。可用于快速调试不同距离下的 Fmod 音效。</p>
-<p>The path above holds a scene for debugging Fmod audio. Its logic is kept consistent with the real in-game environment, so you can quickly test how an Fmod sound behaves at different distances.</p>
-<p><img src="imgs/e5c89fd99339_1681228712536-d18ad5f6-41f3-4e50-bd9c-b36331022524.png" alt=""></p>
-<h1 id="firing-sound-debugging-开火音效调试">Firing Sound Debugging 开火音效调试</h1>
-<p>找到 <code>FmodSoundDebugger</code> 物体，选择 <code>Bullet Sound</code>，拖入自己的开火音效，然后点击运行。</p>
-<p>Find the FmodSoundDebugger object, select Bullet Sound, drag in your own firing sound, and then click Play.</p>
-<p><img src="imgs/ed0d595020b3_1681228780644-15e273f3-40fb-4897-b27f-6af1bc0fc653.png" alt=""></p>
-<p><img src="imgs/60953f17d92d_1681228829614-0bbba1f8-7171-4545-9b68-a212788c518a.png" alt=""></p>
-<p>随后即可听到开火音效的循环播放。进入 Scene 窗口拖动该物体以改变其距离（例如 Z 值），即可测试不同距离下的音效强度。</p>
-<p>You will then hear the firing sound play on a loop. Go into the Scene window and drag this object to change its distance — its z value, for example — to test how loud the sound is at different distances.</p>
+<!-- Generated from tutorials/fmod-sound-debugging/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="比较不同距离的开火音效">比较不同距离的开火音效</h1>
+<p><strong>中文</strong> | <a href="../en/mod/fmod-sound-debugging.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run fmod-sound-debugging
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;scene&quot;: &quot;../../../Panzer-War-Mod-SDK/Packages/Sdk/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/FmodPlayground.unity&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<ol>
+<li>在 SDK 中打开 <code>Packages/com.shanghaiwindy.middlelayer/Tools/RuntimeDebugger/FmodPlayground.unity</code>。</li>
+<li>选中 <strong>FmodSoundDebugger</strong>，将音效资源填入 <strong>Bullet Sound</strong>。需要调整播放间隔时修改 <strong>Fire Interval</strong>。</li>
+<li>进入 Play Mode，在 Scene 视图移动声源，比较不同监听距离下的声音。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>读取 SDK 调试场景中的对象与音效引用。请在 SDK 工程中试听并比较距离。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${scene}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;(?s)m_Name: FmodSoundDebugger.*?bulletSound: \\{fileID: 11400000, guid: [a-f0-9]{32}.*?fireInterval: 5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -117,7 +147,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

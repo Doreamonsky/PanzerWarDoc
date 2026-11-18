@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>28.2. DIY 地图工程导入 DIY Map Project Import | Panzer War Document </title>
+      <title>将 DIY 地图导入 Unity 工程 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="28.2. DIY 地图工程导入 DIY Map Project Import | Panzer War Document ">
-    
-    
+      <meta name="title" content="将 DIY 地图导入 Unity 工程 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,34 +77,49 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="282-diy-地图工程导入-diy-map-project-import">28.2. DIY 地图工程导入 DIY Map Project Import</h1>
 
-<h1 id="拉取-diy-素材-pull-the-diy-assets">拉取 DIY 素材 Pull the DIY Assets</h1>
-<p>本仓库包含 DIY 地图的美术素材及配置文件。导入 Yaml 配置是必需的。</p>
-<p>This repository contains the art assets and the configuration files for DIY maps. Importing the Yaml configuration is required.</p>
-<p>使用 git 拉取项目 Pull the project with git： <a href="https://gitlab.waroftanks.cn/modder/ShanghaiWindyMaps">https://gitlab.waroftanks.cn/modder/ShanghaiWindyMaps</a></p>
-<h1 id="打开-urp-工程场景-open-the-urp-project-scene">打开 URP 工程场景 Open the URP Project Scene</h1>
-<p>确保已拉取默认的模组工程，然后使用 Unity 打开 UnityURPProject 文件夹。</p>
-<p>Make sure you have pulled the default Mod project, then open the UnityURPProject folder with Unity.</p>
-<p><img src="imgs/9ddba1ec3bbf_1676304775153-df32e578-cf73-4205-85f6-a60b44fbe748.png" alt=""></p>
-<h1 id="导入包-import-the-package">导入包 Import the Package</h1>
-<p>打开 Package Manager，导入本地的 DIY 素材包。</p>
-<p>Open Package Manager and import the local DIY asset package.</p>
-<p><img src="imgs/203054a6162f_1676304851290-79df6677-b0ac-435b-af47-edff54b32a95.png" alt=""></p>
-<p>选中这两个文件夹下的 package.json。</p>
-<p>Select the package.json under each of these two folders.</p>
-<p><img src="imgs/5facb97554ea_1676304886024-13ff7e7b-0829-4768-b2b7-e352f484fab2.png" alt=""></p>
-<p>正确安装后，素材和配置都会显示已装配至工程。</p>
-<p>Once installed correctly, both the assets and the configuration will show as added to the project.</p>
-<p><img src="imgs/8e3c5877fba4_1676304914092-fa16e993-2d62-4b96-965c-e96d9b9ede2f.png" alt=""></p>
-<p>导入 DIY 地图的 Yaml，该文件位于游戏的 saves 文件夹下。</p>
-<p>Import the Yaml of the DIY map, which is located in the game's saves folder.</p>
-<p><img src="imgs/43ede325491e_1676304960442-026f786e-5fe6-4ee3-9b86-d20eac67a5e3.png" alt=""></p>
-<p>导入后，即可对场景进行编辑与修改。可通过打包成模组场景的方式发布此地图。</p>
-<p>After importing, you can edit and modify the scene. You can publish the map by building it as a Mod scene.</p>
-<p>若仅修改了位置，也可以选择导出地图的 Yaml。</p>
-<p>If you only changed positions, you can also choose to export the Yaml of the map.</p>
-<p><img src="imgs/44bd29259c2c_1676305005176-6c1342d7-babf-44ca-9129-80561b18cecd.png" alt=""></p>
+<!-- Generated from tutorials/diy-map-project-import/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="将-diy-地图导入-unity-工程">将 DIY 地图导入 Unity 工程</h1>
+<p><strong>中文</strong> | <a href="../en/mod/diy-map-project-import.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run diy-map-project-import
+</code></pre>
+<h2 id="1-准备资源与-yaml">1. 准备资源与 YAML</h2>
+<ol>
+<li>从<a href="get-started.html">项目初始化</a>打开公开 SDK 的 <code>UnityProject</code>。需要官方地图的生产资源时，有访问权限的维护者使用 <code>Panzer-War-Mods/Projects/Maps</code>。<a href="map-asset-download.html">地图资源入口</a></li>
+<li>DIY 存档按物件的 <code>itemGuid</code> 查找资源。官方 <code>Projects/Maps</code> 已在 manifest 中列出 DIY 本地包。用公开 SDK 时，如已有权使用相应的本地 UPM 包，可在 <strong>Window → Package Manager → + → Add package from disk</strong> 逐个选择它们的 <code>package.json</code>。确认资源和配置都已出现在 Project 的 <strong>Packages</strong> 下。</li>
+<li>在游戏的保存目录中找到对应的 <code>.yaml</code>，先复制一份供编辑。地图引用的资源须和写出存档时的 GUID 一致。</li>
+</ol>
+<h2 id="2-载入基础场景再导入">2. 载入基础场景再导入</h2>
+<ol>
+<li>打开 <strong>Framework → 1. Editor Tools → 05. DIY 工坊 → DIY 地图编辑</strong>。点击 <strong>加载基础资源（Load Base Asset）</strong>，确认后进入基础 Playground 的 Play 模式。</li>
+<li>等待游戏环境就绪，在 <strong>选择 DIY 地图 YAML</strong> 指向文件，再点击 <strong>Load DIY Map from Yaml</strong>。构建结束后检查场景和 <code>DIYMapConfig</code>。</li>
+<li>有物件缺失时，在 Console 找报出的 <code>itemGuid</code>。先核对引用的包和资源是否已装配，再继续调整位置。保留 GUID，避免旧存档引用断开。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>用编辑器所用的 YAML 解析器回读地图名称和 itemGuid。完整场景导入需要已加载的基础资产。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local typed = CS.ShanghaiWindy.Core.Data.DIYMapUserDefined\nlocal util = CS.ShanghaiWindy.Core.Utils.YamlUtil\nlocal decode = xlua.get_generic_method(util, \&quot;DeserializeYaml\&quot;)(typed)\nlocal encode = xlua.get_generic_method(util, \&quot;SerializeYaml\&quot;)(typed)\nlocal input = [[\nguid: 2f7d6e7d-b518-4f6f-9c2d-1d2c728f82da\ndefinedName: Tutorial Town\nrules:\n- ruleGuid: 167798a3-6d87-4ec8-a701-ae59775eb7ce\n  itemGuid: 08951884-e54b-4c7e-a449-9f2ef826cbc1\n  itemJson: '{}'\n]]\nlocal map = decode(input)\nlocal restored = decode(encode(map))\nassert(restored.definedName == \&quot;Tutorial Town\&quot; and restored.rules.Count == 1)\nassert(restored.rules[0].itemGuid == \&quot;08951884-e54b-4c7e-a449-9f2ef826cbc1\&quot;)\nreturn \&quot;DIY YAML round-trip passed\&quot;&quot;,
+        &quot;manual-validate&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DIY YAML round-trip passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-保存或打包">3. 保存或打包</h2>
+<p>如果只调整物件位置，填写输出文件名和文件夹，再点 <strong>Save Map as Yaml</strong>。名称不加扩展名，工具会写入 <code>&lt;名称&gt;.yaml</code>。要作为完整模组场景发布，则按<a href="map-wizard-tutorial.html">地图向导</a>处理场景、预览和构建。</p>
 
 </article>
           </div>
@@ -132,7 +147,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

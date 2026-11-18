@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南 | Panzer War Document </title>
+      <title>模组镜像站点搭建 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南 | Panzer War Document ">
-    
-    
+      <meta name="title" content="模组镜像站点搭建 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,204 +77,41 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="41-mod-mirror-site-setup-guide-模组镜像站点搭建指南">41. Mod Mirror Site Setup Guide 模组镜像站点搭建指南</h1>
 
-<h1 id="source-源">Source 源</h1>
-<p>We have compiled all the Mods, their update dates, and download links in the following JSON file: We will refresh this JSON file every 12 hours.</p>
-<p><a href="https://dl-workshop.windyverse.net/packages/files_list.json">https://dl-workshop.windyverse.net/packages/files_list.json</a></p>
-<p>我们将所有的模组、更新日期及其下载链接整理在如下 JSON 文件中。</p>
-<p>我们会每 12 小时刷新一次该 JSON 文件。</p>
-<p><a href="https://dl-workshop.windyverse.net/packages/files_list.json">https://dl-workshop.windyverse.net/packages/files_list.json</a></p>
-<h1 id="run-script-一键下载脚本">Run script 一键下载脚本</h1>
-<p>We have thoughtfully prepared a Python script for you that allows one-click downloading of all Mods. You can use it directly.</p>
-<p>我们贴心地为你准备了一键下载所有模组的 Python 脚本，你可以直接使用。</p>
-<h2 id="dependence-脚本依赖">Dependence 脚本依赖</h2>
-<p>Before running the script, please ensure that the following dependencies are installed in your Python environment:</p>
-<p>在运行脚本之前，请确保你的 Python 环境中已安装以下依赖项：</p>
-<ul>
-<li><code>requests</code>: for handling HTTP requests. 用于处理 HTTP 请求。</li>
-<li><code>tqdm</code>: for displaying progress bars. 用于显示进度条。</li>
-</ul>
-<p>You can install the dependencies using the following command:</p>
-<p>你可以通过以下命令安装依赖：</p>
-<pre><code class="lang-bash">pip install requests tqdm
+<!-- Generated from tutorials/mod-mirror-site-setup/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="模组镜像站点搭建">模组镜像站点搭建</h1>
+<p><strong>中文</strong> | <a href="../en/mod/mod-mirror-site-setup.html">English</a></p>
+<p>镜像站把允许转发的工坊存档放成一份可以直接下载的目录，减轻官方下载器的流量压力，也让玩家在官方站点不稳定时仍能取得同样的包。存档的完整性、平台归属和文件名都要保持原样。</p>
+<h2 id="历史旧的-json-列表">历史：旧的 JSON 列表</h2>
+<p>早期方案以上述公开列表作为镜像的索引：</p>
+<pre><code>https://dl-workshop.windyverse.net/packages/files_list.json
 </code></pre>
-<h2 id="run-script-运行脚本">Run Script 运行脚本</h2>
-<pre><code class="lang-python">import os
-import json
-import requests
-import zipfile
-import re
-from datetime import datetime
-from tqdm import tqdm
-
-# Path to the JSON file that tracks downloaded files
-TRACKING_FILE = 'downloaded_files.json'
-TEMP_DIR = 'tmp'  # Temporary directory for incomplete downloads
-SAVE_DIR = 'packages'  # Base directory where all files will be saved
-
-PLATFORM_FOLDERS = {
-    'PlatformAndroid': 'android',
-    'PlatformWin64': 'win64',
-    'PlatformIos': 'ios'
-}
-
-def load_downloaded_files():
-    &quot;&quot;&quot;Load the list of downloaded files from the tracking JSON file.&quot;&quot;&quot;
-    if os.path.exists(TRACKING_FILE):
-        with open(TRACKING_FILE, 'r') as file:
-            return json.load(file)
-    return {}
-
-def save_downloaded_file(downloaded_files, url, local_path):
-    &quot;&quot;&quot;Save the downloaded file information to the tracking JSON file.&quot;&quot;&quot;
-    downloaded_files[url] = local_path
-    with open(TRACKING_FILE, 'w') as file:
-        json.dump(downloaded_files, file, indent=4)
-
-def sanitize_mod_name(mod_name):
-    # Remove only special characters that are not allowed in file names
-    return re.sub(r'[&lt;&gt;:&quot;/\\|?*]', '', mod_name)
-
-def download_file(url, temp_path):
-    try:
-        response = requests.get(url, stream=True)
-        response.raise_for_status()
-
-        total_size = int(response.headers.get('content-length', 0))
-        block_size = 8192  # 8KB
-        progress_bar = tqdm(total=total_size, unit='iB', unit_scale=True, desc=os.path.basename(temp_path), leave=False)
-
-        with open(temp_path, 'wb') as file:
-            for chunk in response.iter_content(chunk_size=block_size):
-                progress_bar.update(len(chunk))
-                file.write(chunk)
-        
-        progress_bar.close()
-
-        if total_size != 0 and progress_bar.n != total_size:
-            print(f&quot;Warning: Downloaded file size mismatch for {temp_path}&quot;)
-        else:
-            print(f&quot;Downloaded: {temp_path}&quot;)
-    except requests.exceptions.RequestException as e:
-        print(f&quot;Failed to download {url}: {e}&quot;)
-
-def extract_mod_name_from_zip(zip_path):
-    if os.path.exists(zip_path):  # Check if the file exists before attempting to open it
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            if 'package.json' in zip_ref.namelist():
-                with zip_ref.open('package.json') as package_file:
-                    package_data = json.load(package_file)
-
-                    # Check for defaultName in localizedModName
-                    mod_name = package_data.get('modName', 'default')
-                    localized_mod_name = package_data.get('localizedModName', {})
-                    default_name = localized_mod_name.get('defaultName', '').strip()
-
-                    # Prioritize defaultName if it exists and is not empty
-                    if default_name:
-                        mod_name = default_name
-                    
-                    return sanitize_mod_name(mod_name)
-    return None
-
-def validate_downloaded_files(downloaded_files):
-    &quot;&quot;&quot;Check if the files recorded in the tracking JSON exist locally, and remove any entries that don't.&quot;&quot;&quot;
-    missing_files = []
-    for url, path in list(downloaded_files.items()):
-        if not os.path.exists(path):
-            print(f&quot;File missing: {path}. Removing from tracking.&quot;)
-            missing_files.append(url)
-    
-    for url in missing_files:
-        del downloaded_files[url]
-
-    # Save the updated tracking list
-    if missing_files:
-        with open(TRACKING_FILE, 'w') as file:
-            json.dump(downloaded_files, file, indent=4)
-
-def download_files_from_json(json_data, downloaded_files):
-    if not os.path.exists(TEMP_DIR):
-        os.makedirs(TEMP_DIR)
-    if not os.path.exists(SAVE_DIR):
-        os.makedirs(SAVE_DIR)
-
-    with tqdm(total=len(json_data), desc=&quot;Overall Progress&quot;, unit=&quot;file&quot;) as overall_progress:
-        for file_info in json_data:
-            file_name = file_info['file_name']
-            download_link = file_info['download_link']
-
-            # Skip if the file is already recorded as downloaded
-            if download_link in downloaded_files:
-                if os.path.exists(downloaded_files[download_link]):
-                    print(f&quot;File already downloaded, skipping: {downloaded_files[download_link]}&quot;)
-                    overall_progress.update(1)
-                    continue
-                else:
-                    print(f&quot;File {downloaded_files[download_link]} is missing. Redownloading.&quot;)
-                    del downloaded_files[download_link]
-
-            # Define the temporary download path
-            temp_file_path = os.path.join(TEMP_DIR, file_name)
-
-            # Download the file to the temporary location
-            download_file(download_link, temp_file_path)
-
-            # Extract modName and rename the file with the prefix
-            mod_name = extract_mod_name_from_zip(temp_file_path)
-            if mod_name:
-                new_file_name = f&quot;{mod_name}-#-#-{file_name}&quot;
-            else:
-                new_file_name = file_name
-
-            # Determine the platform folder based on the filename
-            for platform, folder in PLATFORM_FOLDERS.items():
-                if platform in file_name:
-                    final_dir = os.path.join(SAVE_DIR, folder)
-                    break
-            else:
-                final_dir = SAVE_DIR  # Default to base save directory if no platform is found
-
-            if not os.path.exists(final_dir):
-                os.makedirs(final_dir)
-
-            final_file_path = os.path.join(final_dir, new_file_name)
-
-            # Move the file from the temporary location to the final directory
-            os.rename(temp_file_path, final_file_path)
-            print(f&quot;Moved to: {final_file_path}&quot;)
-
-            # Update the tracking dictionary
-            save_downloaded_file(downloaded_files, download_link, final_file_path)
-            
-            overall_progress.update(1)
-
-if __name__ == &quot;__main__&quot;:
-    json_url = 'https://dl-workshop.windyverse.net/packages/files_list.json'
-
-    try:
-        response = requests.get(json_url)
-        response.raise_for_status()
-        json_data = response.json()
-    except requests.exceptions.RequestException as e:
-        print(f&quot;Failed to retrieve JSON file from {json_url}: {e}&quot;)
-        json_data = []
-
-    if json_data:
-        downloaded_files = load_downloaded_files()
-        validate_downloaded_files(downloaded_files)  # Ensure the tracked files exist
-        download_files_from_json(json_data, downloaded_files)
-
+<p>该 JSON 记录模组名称、更新日期和下载链接，服务端每 12 小时刷新一次。配套的 Python 辅助脚本按列表批量下载全部模组，并依赖 <code>requests</code> 与 <code>tqdm</code>，另外用 <code>downloaded_files.json</code> 记录已下载的地址、用 <code>tmp</code> 暂存未完成的文件。这些都是当时的描述，不必照搬脚本：现在可以直接取用存档，索引只作背景。</p>
+<p>2026-11-18 对该地址的 GET 返回 HTTP 404。此后它只说明旧方案的形状，不再是镜像内容的来源或权威清单。</p>
+<h2 id="归档允许转发的工坊存档">归档允许转发的工坊存档</h2>
+<p>只放你有权再分发的工坊存档。下载后原样保存，不改名、不重新打包压缩包，也不要为了凑目录而复制其它平台的包。</p>
+<pre><code>packages/
+  android/
+  win64/
+  ios/
 </code></pre>
-<h1 id="file-synchronization-to-netdisk-文件同步至网盘">File synchronization to NetDisk 文件同步至网盘</h1>
-<p>Using UC NetDisk as an example, automatically back up the <code>packages</code> folder and wait for the synchronization to complete. Once the synchronization is finished, share this folder with the players. This completes the setup of the NetDisk mirror site.</p>
-<p>以 UC 网盘为例，自动备份 <code>packages</code> 文件夹，并等待同步完成。同步结束后，将此文件夹共享给玩家，即完成网盘镜像站的搭建。</p>
-<p><img src="imgs/293de657d324_1725217181171-1208c7b7-7f26-45f4-b3ea-039f5b037c9a.png" alt=""></p>
-<p><img src="imgs/0240a1426da4_1725217230799-9e1b20f8-34f6-4e79-8ef6-374e4627303d.png" alt=""></p>
-<h2 id="alternative-mirror-site-setup-solutions-其他镜像站搭建方案">Alternative Mirror Site Setup Solutions 其他镜像站搭建方案</h2>
-<p>You can use tools like Nginx to set up a dedicated Mod download site. This helps to offload the traffic from the official downloader and improves download speeds.</p>
-<p>可使用 Nginx 等工具搭建专属的模组下载站点，以分流官方下载器的流量压力，并提高下载速度。</p>
+<p>每个平台一个文件夹，放入对应平台构建的 <code>.modpack</code>。文件名保持发布时的原名。有同名 <code>.modpack.json</code> 时一并保留，方便核对平台、版本、GUID 和内容元数据。完整文件清单在归档内的 <code>package.json</code> 中。每个平台使用自己的构建。</p>
+<h2 id="用网盘做镜像">用网盘做镜像</h2>
+<p>以 UC 网盘为例，让客户端自动同步 <code>packages</code> 文件夹到云端。同步完成后再共享该文件夹，并设为只读分享，避免读者误删或改动原目录。共享链接只指向 <code>packages</code>，不要混入生成过程中的临时目录。</p>
+<h2 id="静态托管替代方案">静态托管替代方案</h2>
+<p>也可以通过 Nginx 或其他静态托管提供下载。先在包含 <code>packages</code> 的上级目录做本机预演：</p>
+<pre><code class="lang-sh">python -m http.server 8080 --bind 127.0.0.1
+</code></pre>
+<p>打开 <code>http://127.0.0.1:8080/packages/win64/</code>，下载一个实际文件，确认文件名和目录正确。预演完成后按 <strong>Ctrl+C</strong> 停止。正式托管使用相同的目录结构，给玩家提供可直接下载的只读链接。</p>
+<h2 id="同步后验收">同步后验收</h2>
+<ol>
+<li>等待同步或部署结束，不要在同步途中就把链接发出去。</li>
+<li>用普通读者身份打开分享链接，下载一个样例 <code>.modpack</code>，确认不需要登录或特殊权限。</li>
+<li>分别对源文件和下载副本运行 PowerShell 的 <code>Get-FileHash -Algorithm SHA256 -LiteralPath &quot;&lt;文件路径&gt;&quot;</code>。两份哈希应相同。有 <code>.modpack.json</code> 时一并核对平台、版本和 GUID。</li>
+<li>确认无误后，让玩家按<a href="../gameplay/install-mods.html">安装模组</a>把包放进游戏的安装队列。</li>
+</ol>
+<p>镜像只提供安装包，不含开发工具。公开 SDK 是开发工程，其下载方式见<a href="project-download-links.html">项目下载参考</a>。</p>
 
 </article>
           </div>
@@ -302,7 +139,7 @@ if __name__ == &quot;__main__&quot;:
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
