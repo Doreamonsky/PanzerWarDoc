@@ -110,7 +110,8 @@
     &quot;bullet&quot;: &quot;${fixture}/Tutorial-76mm-AP.asset&quot;,
     &quot;gunSound&quot;: &quot;Packages/com.shanghaiwindy.coreresources/FMod/Tank/Gun/76mm_zis5.asset&quot;,
     &quot;engine&quot;: &quot;Packages/com.shanghaiwindy.coreresources/FMod/Tank/Engine/kv220.asset&quot;,
-    &quot;bulletVfx&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BulletVFX/宝马鸽特效/AP-BulletVFX-M.asset&quot;
+    &quot;bulletVfx&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BulletVFX/宝马鸽特效/AP-BulletVFX-M.asset&quot;,
+    &quot;moduleSource&quot;: &quot;${fixture}/Tutorial_InternalSource.prefab&quot;
   },
   &quot;calls&quot;: [
     {
@@ -360,76 +361,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="5-生成并编辑伤害模型">5. 生成并编辑伤害模型</h2>
-<ol>
-<li>在 Project 选中 <strong>VehicleHitBox</strong>。把外部装甲 FBX 拖入 <strong>外部装甲模型（External Armor Model）</strong>。有单独制作的模块模型时，同时填入 <strong>Internal Module Model</strong>。可给 <strong>Refer Model</strong> 绑定显示模型作为定位参考。</li>
-<li>点击 <strong>生成预制</strong>，再点击 <strong>编辑模式</strong>。确认 Unity 进入这辆车的 Prefab Mode，编辑窗口显示相同的预制体。点击 <strong>外部装甲模型 - Generate External Armor</strong> 生成板件。已有内部模块模型时，使用 <strong>内部模块模型 - Generate Internal Armor</strong>。</li>
-<li>在 Hierarchy 选中一个板件，在其 <strong>HitBox</strong> 组件中核对装甲厚度和类型。把板件拖到 <code>HitBox/Main</code>、<code>HitBox/Turret</code>、<code>HitBox/Gun</code> 或 <code>HitBox/Dym</code> 对应组。上下移动或转动某部件时，它的板件应跟着对应部件。命名解析和数据图见 <a href="hitbox-naming-conventions.html">伤害模型命名与导入</a>。</li>
-<li>在编辑窗口选择模块类型和预设，点击放置后移动到实际位置。在 <code>InternalModule</code> 下用相同的四组关系整理模块。通过 <strong>InternalModule</strong> 组件可逐个给模块设置 HP。批量调整时，在 <strong>VehicleHitBox</strong> 里填写总血量并设置需要的按类型覆盖，然后点击 <strong>自动设置模块血量</strong>。</li>
-<li>对乘员勾选其岗位。准备支持模块模式的履带载具时，检查车长、驾驶员、炮手和通讯员，还需要装填手或自动装填模块。第一轮只验证基础车时可先保留模块模式关闭，完成内部配置后再开启。</li>
-<li>选中弹药架节点的 <strong>InternalModule</strong>。为它添加边界并调整到覆盖相应的弹药区域，再点击 <strong>创建弹药架模型缓存 - Create Ammo Cache</strong>。可以在伤害编辑窗口用<strong>批量更新弹药架模型缓存</strong>处理多个弹药架。检查边界与生成的网格缓存一一对应。</li>
-<li>在 Prefab Mode 按 <strong>Ctrl+S</strong> 保存并退出。回到 <strong>VehicleHitBox</strong> 检查已绑定生成的预制体。</li>
-</ol>
-<p>在 Scene View 比较两份模型。KV-2 的显示模型保留材质和细节，橙色伤害模型按装甲区域拆分，供伤害和装甲检查使用。两份模型在示意图里并排摆放。配置时应保持它们的原点和方向一致。</p>
-<p><img src="imgs/vehicle-basics-kv2-armor.zh-CN.png" alt="Unity 中并排展示 KV-2 的伤害模型与显示模型"></p>
-<p><img src="imgs/vehicle-basics-armor.zh-CN.png" alt="外部装甲模型与已生成的伤害预制体"></p>
-<h2 id="6-设置载具信息炮弹音效和参数">6. 设置载具信息、炮弹、音效和参数</h2>
-<ol>
-<li>打开 <strong>VehicleInfo</strong>，显示名称填 <code>Tutorial Tank</code>、等级填 <code>3</code>。找到 <strong>出生方式 - Spawn Policy</strong>，设为 <strong>玩家选择（Player Pick）</strong>。如果从雷达或召唤物复制，尤其要检查这个字段。将国家与 <strong>VehicleTextData → 基础</strong>保持一致，打包会同步国家。用 <a href="vehicle-thumbnail.html">载具缩略图</a> 设置列表图片。</li>
-<li>项目中已有适用音效时，先用现成的 <strong>VehicleEngineFmodSoundData</strong> 和 <strong>BulletFmodSound</strong>。自制音效时，将录音导入匹配的 FMOD 工程，给引擎的启动和运行事件安排怠速与加速声音，并配置开火的近、远听感以及相应事件。构建并刷新 Bank 后，用事件选择器绑定资源。旧教程中的 <code>Fire Near</code>、<code>Fire Far</code> 是旧音频资产的字段。<a href="fmod-project-setup.html">FMOD 工程配置</a></li>
-<li>打开 <strong>VehicleTextData</strong>，从 Inspector 底部点<strong>打开炮弹编辑器</strong>，新建穿甲弹 <code>Tutorial-76mm-AP</code>。首轮填 <strong>Caliber = 76 mm</strong>、<strong>Velocity = 650 m/s</strong>、<strong>Penetration = 90 mm</strong>、<strong>Damage = 100</strong>，弹头选 <strong>AP</strong>。在 <strong>模块</strong>中填入弹体质量 <strong>6.5 kg</strong>。这发实心弹的引信延迟和 TNT 当量均为 <code>0</code>。选择匹配的 AP <strong>Bullet VFX</strong>，再把资产拖入 <strong>开火 → 炮弹列表</strong>。第一轮只留这一项。</li>
-<li>按表配置 <strong>VehicleTextData</strong>。修改后保存并重新选中，确认字段和引用都保留。教学车使用本地炮和炮塔设置。若栏位被共享资产隐藏，先清空 <strong>Shared Gun Data</strong> 或 <strong>Shared Turret Data</strong>，再编辑本地值。</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>标签页</th>
-<th>要完成的操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>基础</strong> · <code>PSParameter</code></td>
-<td><strong>Health 600</strong>、<strong>View Range 360 m</strong>。先关闭自定义瞄准点，待前向和开火点通过试车后再配置。</td>
-</tr>
-<tr>
-<td><strong>移动</strong> · <code>PTCParameter</code></td>
-<td>保持履带控制器。质量 <strong>30,000 kg</strong>，前进／倒车限速 <strong>35／10 km/h</strong>，正向／倒车扭矩 <strong>3500／2600</strong>、制动扭矩 <strong>5000</strong>。扭矩曲线的示例点是 <code>(0, 1)</code>、<code>(35, 0.35)</code>，先关闭模拟挡位。绑定有效的引擎音效，在下一节检查 <strong>TankWheelCollider</strong> 与 <strong>Track Data</strong>。</td>
-</tr>
-<tr>
-<td><strong>开火</strong> · <code>TFParameter</code></td>
-<td><strong>标准（Standard）</strong>，装填 <strong>6 秒</strong>，主炮总弹数 <strong>30</strong>，关闭 <strong>Has Slot</strong>。射击间隔 <code>0</code>，后坐比例 <code>1</code>，保留一项 AP 弹和有效开火音效。基础 <code>dispersion</code> 用 <code>0.003</code>。展开 <strong>Spread</strong>，按 76 mm 的默认值填下段参数。口径从炮弹资产读取。</td>
-</tr>
-<tr>
-<td><strong>炮塔</strong> · <code>MTParameter</code></td>
-<td>对称回转半角 <strong>180°</strong>，炮塔 <strong>18°/s</strong>，炮管俯仰 <strong>12°/s</strong>，最大仰角 <strong>20°</strong>、最大俯角 <strong>6°</strong>。俯角这里填正数。先留空各方向的覆盖范围。</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Spread</strong> 中的缩圈数据和基础 <code>dispersion</code> 是两组设置。76 mm 的默认缩圈数据为散布 <code>0.35</code>、瞄准时间 <code>1.92</code> 秒、移动／炮塔转向系数各 <code>0.14</code>、炮管移动系数 <code>0.11</code>，开火后系数 <code>3</code>、损毁系数 <code>2</code>。保存后检查 Inspector 已消除散布和炮弹后效提示。</p>
-<p>下面四张 Inspector 图来自同一辆教学车，依次对应移动、开火、炮塔和炮弹资产。</p>
-<p><img src="imgs/vehicle-basics-mobility.zh-CN.png" alt="教学车的质量、轮碰撞器和履带引用"></p>
-<p><img src="imgs/vehicle-basics-fire.zh-CN.png" alt="教学车的 6 秒装填和 30 发总弹量"></p>
-<p><img src="imgs/vehicle-basics-turret.zh-CN.png" alt="炮塔回转速度与炮管的俯仰范围"></p>
-<p><img src="imgs/vehicle-basics-projectile.zh-CN.png" alt="教学穿甲弹的口径、初速与伤害"></p>
-<p>KV-2 的资产可用来对照重车参数。其源配置质量为 <strong>52,850 kg</strong>，限速 <strong>37／7 km/h</strong>，共享炮塔回转速度 <strong>14°/s</strong>，最大仰角 <strong>12°</strong>、俯角 <strong>5°</strong>，履带节距 <strong>0.275 m</strong>。它的主炮弹由共享火炮资产提供。试车场读取到的第一发为 <strong>OF-530</strong>，口径 <strong>152 mm</strong>、初速 <strong>530 m/s</strong>。</p>
-<p>可选的 Tanks.gg 入口仍在 <strong>VehicleTextData</strong>。填写 <code>tanksGGName</code> 后可尝试<strong>导入三扩数据</strong>。另一个按钮会覆盖多项现有参数，先把资产保存在 Git 或备份里。外部响应依赖第三方，导入后仍须补齐并检查其余字段。<a href="../component/vehicle-text-data.html">详细参数字段与图示</a></p>
-<h2 id="7-绑定主模型并定位开火节点">7. 绑定主模型并定位开火节点</h2>
-<ol>
-<li>选中 <strong>VehicleData</strong>。将第 3 节的碰撞预制体拖进 <strong>Model Data → MainModel</strong>。确认 <strong>VehicleTextData</strong> 和 <strong>HitBox</strong> 分别指向这辆车的详细数据和伤害资产。</li>
-<li>点击 <strong>编辑</strong>进入变换编辑。Scene 视图中会出现橙色节点。每改好一组，在 Scene 视图按 <strong>K</strong> 保存。用前视核对横向，侧视核对高度，再从斜前方检查节点朝向。</li>
-</ol>
-<p>| 节点 | 应放的位置 |
-| --- | --- |
-| <code>FFPoint</code>、<code>EffectStart</code> | 炮口正中、朝 +Z，略出炮口避免与炮管相交。教学车以 Gun 为父节点，局部坐标 <code>(0, 0, 2.45)</code>。 |
-| <code>CenterOfGravity</code> | 车体内、左右轮之间。教学车局部坐标 <code>(0, 0.78, 0)</code>。悬挂下沉与起步点头异常时回查。 |
-| <code>MainCameraFollowTarget</code>、<code>MainCameraGunner</code> | 前者给第三人称相机追随，放在车体上方。后者给炮手视角，放在炮口方向的瞄准装置。 |
-| <code>EngineSound</code>、<code>EngineSmoke</code> | 分别放在发动机舱和排烟口。每次调整后回到编辑模式检查位置已保存。 |
-3. 点击 <strong>解锁视图（Unlock Inspector）</strong>。回到 Project 核对选中的仍是这辆车，重开编辑模式时节点应保留刚保存的位置。</p>
-<p><img src="imgs/vehicle-basics-bindings.zh-CN.png" alt="载具数据中的主模型与详细参数资产"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
-<p>以可运行的数据结构作为起点，覆盖出生角色、移动、主炮、炮塔和开火节点，验证教学车参数与正文一致。</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
@@ -557,7 +490,84 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;${vehicleName}&quot;
     }
-  },
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-生成并编辑伤害模型">5. 生成并编辑伤害模型</h2>
+<ol>
+<li>在 Project 选中 <strong>VehicleHitBox</strong>。把外部装甲 FBX 拖入 <strong>外部装甲模型（External Armor Model）</strong>。有单独制作的模块模型时，同时填入 <strong>Internal Module Model</strong>。可给 <strong>Refer Model</strong> 绑定显示模型作为定位参考。</li>
+<li>点击 <strong>生成预制</strong>，再点击 <strong>编辑模式</strong>。确认 Unity 进入这辆车的 Prefab Mode，编辑窗口显示相同的预制体。点击 <strong>外部装甲模型 - Generate External Armor</strong> 生成板件。已有内部模块模型时，使用 <strong>内部模块模型 - Generate Internal Armor</strong>。</li>
+<li>在 Hierarchy 选中一个板件，在其 <strong>HitBox</strong> 组件中核对装甲厚度和类型。把板件拖到 <code>HitBox/Main</code>、<code>HitBox/Turret</code>、<code>HitBox/Gun</code> 或 <code>HitBox/Dym</code> 对应组。上下移动或转动某部件时，它的板件应跟着对应部件。命名解析和数据图见 <a href="hitbox-naming-conventions.html">伤害模型命名与导入</a>。</li>
+<li>在编辑窗口选择模块类型和预设，点击放置后移动到实际位置。在 <code>InternalModule</code> 下用相同的四组关系整理模块。通过 <strong>InternalModule</strong> 组件可逐个给模块设置 HP。批量调整时，在 <strong>VehicleHitBox</strong> 里填写总血量并设置需要的按类型覆盖，然后点击 <strong>自动设置模块血量</strong>。</li>
+<li>对乘员勾选其岗位。准备支持模块模式的履带载具时，检查车长、驾驶员、炮手和通讯员，还需要装填手或自动装填模块。第一轮只验证基础车时可先保留模块模式关闭，完成内部配置后再开启。</li>
+<li>选中弹药架节点的 <strong>InternalModule</strong>。为它添加边界并调整到覆盖相应的弹药区域，再点击 <strong>创建弹药架模型缓存 - Create Ammo Cache</strong>。可以在伤害编辑窗口用<strong>批量更新弹药架模型缓存</strong>处理多个弹药架。检查边界与生成的网格缓存一一对应。</li>
+<li>在 Prefab Mode 按 <strong>Ctrl+S</strong> 保存并退出。回到 <strong>VehicleHitBox</strong> 检查已绑定生成的预制体。</li>
+</ol>
+<p>在 Scene View 比较两份模型。KV-2 的显示模型保留材质和细节，橙色伤害模型按装甲区域拆分，供伤害和装甲检查使用。两份模型在示意图里并排摆放。配置时应保持它们的原点和方向一致。</p>
+<p><img src="imgs/vehicle-basics-kv2-armor.zh-CN.png" alt="Unity 中并排展示 KV-2 的伤害模型与显示模型"></p>
+<p><img src="imgs/vehicle-basics-armor.zh-CN.png" alt="外部装甲模型与已生成的伤害预制体"></p>
+<h3 id="内构模块怎么填">内构模块怎么填</h3>
+<ol>
+<li>打开生成的伤害预制体。选中 <code>InternalModule</code> 下的网格，在它的 <strong>InternalModule</strong> 组件里确认 <strong>模块类型</strong>、<strong>模块装甲</strong>（mm）和<strong>伤害点数</strong>（模块 HP）。用 FBX 导入时可直接采用第一列的名字，手动放预设时需要自己填写数值与岗位。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>教学节点</th>
+<th>放在 <code>InternalModule</code> 下的组</th>
+<th>HP / 装甲</th>
+<th>位置或岗位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Engine_40_10</code></td>
+<td><code>Main</code></td>
+<td>40 / 10 mm</td>
+<td>发动机舱内</td>
+</tr>
+<tr>
+<td><code>Crew_10_0_Driver_Radioer</code></td>
+<td><code>Main</code></td>
+<td>10 / 0 mm</td>
+<td>车体前部，驾驶员与通讯员</td>
+</tr>
+<tr>
+<td><code>Crew_10_0_Commander_Gunner</code></td>
+<td><code>Turret</code></td>
+<td>10 / 0 mm</td>
+<td>炮塔内，车长与炮手</td>
+</tr>
+<tr>
+<td><code>Crew_10_0_Reloader</code></td>
+<td><code>Turret</code></td>
+<td>10 / 0 mm</td>
+<td>炮塔内，装填手</td>
+</tr>
+<tr>
+<td><code>Breech_12_5</code></td>
+<td><code>Gun</code></td>
+<td>12 / 5 mm</td>
+<td>主炮后部，随炮俯仰</td>
+</tr>
+<tr>
+<td><code>AmmoShell_25_5</code></td>
+<td><code>Main</code></td>
+<td>25 / 5 mm</td>
+<td>车体一侧的弹药架</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>用本例的弹药架先做一个整组边界。把 <strong>最大可携带炮弹数量</strong>填为 <strong>30</strong>，关闭<strong>是否待发弹</strong>。导入器可能已经建立一个边界，先检查 <strong>当前编辑 ID = 1</strong> 和 Scene 视图中边框的位置。没有边界时点<strong>增加新边界</strong>，用 Scene 手柄围住弹药网格。改边界后点<strong>创建弹药架模型缓存</strong>。这个例子应显示 <strong>缓存模型数 1</strong>。制作分段弹药架时，每段单独圈出，再重建并检查每段都有网格。</li>
+<li>若要让内构损坏联动指定的火炮或炮塔，可在组件底部查看<strong>可相连载具模块</strong>，再从 <strong>VehicleTextData → 模块标识</strong>复制对应主炮或炮塔的 GUID，填入 <strong>Connected Vehicle Module Guids</strong> 列表。节点路径决定模块跟谁移动，GUID 决定损坏后关联哪个系统。</li>
+<li>按 <strong>Ctrl+S</strong> 保存伤害预制体。回到 <strong>VehicleInfo</strong> 打开 <strong>Is Module Ready</strong>，重打包，在测试场选 <strong>Module Based</strong>。检查发动车体、瞄准和开火；再切换内构视图，确认驾驶员在车体、炮手随炮塔走。用对方车辆射击一个已知模块，检查对应模块的 HP 或损坏状态。</li>
+</ol>
+<p><img src="imgs/vehicle-basics-module.zh-CN.png" alt="教学弹药架的耐久、装甲和容量"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
@@ -576,13 +586,13 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
       &quot;args&quot;: [
-        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal function empty(name, parent)\n    local obj = U.GameObject(name)\n    if parent then obj.transform:SetParent(parent.transform, false) end\n    return obj\nend\nlocal function plate(name, parent, x, y, z, sx, sy, sz)\n    local obj = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\n    obj.name = name\n    obj.transform:SetParent(parent.transform, false)\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    obj.transform.localScale = U.Vector3(sx, sy, sz)\n    U.Object.DestroyImmediate(obj:GetComponent(typeof(U.Collider)))\nend\nlocal root = empty('Tutorial Tank Armor', nil)\nlocal external = empty('HitBox', root)\nlocal modules = empty('InternalModule', root)\nfor _, group in ipairs({'Main','Turret','Gun','Dym'}) do\n    empty(group, external)\n    empty(group, modules)\nend\nlocal hull = external.transform:Find('Main').gameObject\nlocal turret = external.transform:Find('Turret').gameObject\nplate('HullFront_65', hull, 0, 0.9, 2.48, 2.5, 0.65, 0.04)\nplate('TurretFront_45', turret, 0, 1.55, 0.78, 1.7, 0.55, 0.04)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorSource}'))\nCS.ShanghaiWindy.Editor.VehicleHitBoxModelImport.ConfigureExternal(external, nil)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorPrefab}'))\nU.Object.DestroyImmediate(root)\nreturn 'External armor prepared'\n&quot;,
+        &quot;local run = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/armor.lua\&quot;))()\nreturn run({armorSource = \&quot;${armorSource}\&quot;, moduleSource = \&quot;${moduleSource}\&quot;, armorPrefab = \&quot;${armorPrefab}\&quot;})\n&quot;,
         &quot;tank-armor&quot;,
         &quot;null&quot;
       ]
     },
     &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;External armor prepared&quot;
+      &quot;contains&quot;: &quot;six internal modules saved&quot;
     }
   },
   {
@@ -590,6 +600,16 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;asset:${armor}/ExternalArmorModel&quot;,
       &quot;value&quot;: &quot;@asset:${armorSource}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/InternalModuleModel&quot;,
+      &quot;value&quot;: &quot;@asset:${moduleSource}&quot;
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;OK:&quot;
@@ -628,12 +648,67 @@
     &quot;tool&quot;: &quot;inspect_set&quot;,
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;asset:${vehicleInfo}/isModuleReady&quot;,
-      &quot;value&quot;: &quot;false&quot;
+      &quot;value&quot;: &quot;true&quot;
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;OK:&quot;
     }
   },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armorPrefab}/InternalModule/Main/AmmoShell_25_5/InternalModule/maxAmmoCapacity&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;30&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="6-设置载具信息炮弹音效和参数">6. 设置载具信息、炮弹、音效和参数</h2>
+<ol>
+<li>打开 <strong>VehicleInfo</strong>，显示名称填 <code>Tutorial Tank</code>、等级填 <code>3</code>。找到 <strong>出生方式 - Spawn Policy</strong>，设为 <strong>玩家选择（Player Pick）</strong>。如果从雷达或召唤物复制，尤其要检查这个字段。将国家与 <strong>VehicleTextData → 基础</strong>保持一致，打包会同步国家。用 <a href="vehicle-thumbnail.html">载具缩略图</a> 设置列表图片。</li>
+<li>项目中已有适用音效时，先用现成的 <strong>VehicleEngineFmodSoundData</strong> 和 <strong>BulletFmodSound</strong>。自制音效时，将录音导入匹配的 FMOD 工程，给引擎的启动和运行事件安排怠速与加速声音，并配置开火的近、远听感以及相应事件。构建并刷新 Bank 后，用事件选择器绑定资源。旧教程中的 <code>Fire Near</code>、<code>Fire Far</code> 是旧音频资产的字段。<a href="fmod-project-setup.html">FMOD 工程配置</a></li>
+<li>打开 <strong>VehicleTextData</strong>，从 Inspector 底部点<strong>打开炮弹编辑器</strong>，新建穿甲弹 <code>Tutorial-76mm-AP</code>。首轮填 <strong>Caliber = 76 mm</strong>、<strong>Velocity = 650 m/s</strong>、<strong>Penetration = 90 mm</strong>、<strong>Damage = 100</strong>，弹头选 <strong>AP</strong>。在 <strong>模块</strong>中填入弹体质量 <strong>6.5 kg</strong>。这发实心弹的引信延迟和 TNT 当量均为 <code>0</code>。选择匹配的 AP <strong>Bullet VFX</strong>，再把资产拖入 <strong>开火 → 炮弹列表</strong>。第一轮只留这一项。</li>
+<li>按表配置 <strong>VehicleTextData</strong>。修改后保存并重新选中，确认字段和引用都保留。教学车使用本地炮和炮塔设置。若栏位被共享资产隐藏，先清空 <strong>Shared Gun Data</strong> 或 <strong>Shared Turret Data</strong>，再编辑本地值。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>标签页</th>
+<th>要完成的操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基础</strong> · <code>PSParameter</code></td>
+<td><strong>Health 600</strong>、<strong>View Range 360 m</strong>。先关闭自定义瞄准点，待前向和开火点通过试车后再配置。</td>
+</tr>
+<tr>
+<td><strong>移动</strong> · <code>PTCParameter</code></td>
+<td>保持履带控制器。质量 <strong>30,000 kg</strong>，前进／倒车限速 <strong>35／10 km/h</strong>，正向／倒车扭矩 <strong>3500／2600</strong>、制动扭矩 <strong>5000</strong>。扭矩曲线的示例点是 <code>(0, 1)</code>、<code>(35, 0.35)</code>，先关闭模拟挡位。绑定有效的引擎音效，在下一节检查 <strong>TankWheelCollider</strong> 与 <strong>Track Data</strong>。</td>
+</tr>
+<tr>
+<td><strong>开火</strong> · <code>TFParameter</code></td>
+<td><strong>标准（Standard）</strong>，装填 <strong>6 秒</strong>，主炮总弹数 <strong>30</strong>，关闭 <strong>Has Slot</strong>。射击间隔 <code>0</code>，后坐比例 <code>1</code>，保留一项 AP 弹和有效开火音效。基础 <code>dispersion</code> 用 <code>0.003</code>。展开 <strong>Spread</strong>，按 76 mm 的默认值填下段参数。口径从炮弹资产读取。</td>
+</tr>
+<tr>
+<td><strong>炮塔</strong> · <code>MTParameter</code></td>
+<td>对称回转半角 <strong>180°</strong>，炮塔 <strong>18°/s</strong>，炮管俯仰 <strong>12°/s</strong>，最大仰角 <strong>20°</strong>、最大俯角 <strong>6°</strong>。俯角这里填正数。先留空各方向的覆盖范围。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Spread</strong> 中的缩圈数据和基础 <code>dispersion</code> 是两组设置。76 mm 的默认缩圈数据为散布 <code>0.35</code>、瞄准时间 <code>1.92</code> 秒、移动／炮塔转向系数各 <code>0.14</code>、炮管移动系数 <code>0.11</code>，开火后系数 <code>3</code>、损毁系数 <code>2</code>。保存后检查 Inspector 已消除散布和炮弹后效提示。</p>
+<p>下面四张 Inspector 图来自同一辆教学车，依次对应移动、开火、炮塔和炮弹资产。</p>
+<p><img src="imgs/vehicle-basics-mobility.zh-CN.png" alt="教学车的质量、轮碰撞器和履带引用"></p>
+<p><img src="imgs/vehicle-basics-fire.zh-CN.png" alt="教学车的 6 秒装填和 30 发总弹量"></p>
+<p><img src="imgs/vehicle-basics-turret.zh-CN.png" alt="炮塔回转速度与炮管的俯仰范围"></p>
+<p><img src="imgs/vehicle-basics-projectile.zh-CN.png" alt="教学穿甲弹的口径、初速与伤害"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>以可运行的数据结构作为起点，覆盖出生角色、移动、主炮、炮塔和开火节点，验证教学车参数与正文一致。</p>
+<pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;inspect_set&quot;,
     &quot;arguments&quot;: {
@@ -697,10 +772,127 @@
 ]
 </code></pre>
 </details>
+<h3 id="配置炮口弹道和命中特效">配置炮口、弹道和命中特效</h3>
+<ol>
+<li>在 <strong>VehicleTextData → 开火 → 开火效果</strong>将 <strong>Muzzle Fire</strong> 选为<strong>中 (Muzzle Middle)</strong>。它在第 7 节的 <code>EffectStart</code> 生成炮口火焰。先留空 <strong>Override Muzzle Fires</strong>。转动炮塔后火焰仍应出现在炮口前方。</li>
+<li>选中 <code>Tutorial-76mm-AP</code>，在 <strong>Bullet VFX</strong> 选中 SDK 的 <code>AP-BulletVFX-M</code>，点击引用定位到该资产。下面是教学弹读回的特效键。命中覆盖列表按顺序选择第一个已注册的键，找不到覆盖时使用同一行的基础键。这个预设未指定跳弹键，需要专门的跳弹效果时再填写 <strong>击中装甲跳弹</strong>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>BulletVFX 字段</th>
+<th>基础键</th>
+<th>教学覆盖键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>弹道</td>
+<td><code>WeaponProjectile</code></td>
+<td>留空</td>
+</tr>
+<tr>
+<td>击中地面</td>
+<td><code>FireExplosionHitOnGround</code></td>
+<td><code>AP-HitOnGround-M</code></td>
+</tr>
+<tr>
+<td>击中装甲</td>
+<td><code>FirePenetrateHitOnArmor</code></td>
+<td><code>AP-HitOnArmor-M</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>要改成自己的特效时，复制一份 <strong>BulletVFX</strong>，将粒子 prefab 注册到 <strong>Pool Resource</strong> 的独立特效名，再从复制品的字段下拉框选择相同名字。把 Pool Resource 加入构建管线。如果特效单独打包，给载具包添加该特效包的 GUID 依赖。保留<strong>是否用物品重载弹道</strong>为关闭，使用当前对象池路径。<a href="vfx-mod.html">特效资源与依赖配置</a></li>
+<li>在试车场分别对空地和靶车射击。只有炮口位置错时先查 <code>EffectStart</code>。有炮口火焰但没有弹道时查 <strong>弹道</strong>键。弹道可见但命中无效果时，核对命中分支、覆盖键与包的加载状态。</li>
+</ol>
+<p><img src="imgs/vehicle-basics-muzzle.zh-CN.png" alt="开火页签里的中型炮口火焰"></p>
+<p><img src="imgs/vehicle-basics-bullet-vfx.zh-CN.png" alt="教学穿甲弹的弹道和命中特效键"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local verify = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/check_details.lua\&quot;))()\nreturn verify.effects(\&quot;${vehicleText}\&quot;, \&quot;${bulletVfx}\&quot;)\n&quot;,
+        &quot;tank-effects&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Muzzle preset and AP effect keys verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>KV-2 的资产可用来对照重车参数。其源配置质量为 <strong>52,850 kg</strong>，限速 <strong>37／7 km/h</strong>，共享炮塔回转速度 <strong>14°/s</strong>，最大仰角 <strong>12°</strong>、俯角 <strong>5°</strong>，履带节距 <strong>0.275 m</strong>。它的主炮弹由共享火炮资产提供。试车场读取到的第一发为 <strong>OF-530</strong>，口径 <strong>152 mm</strong>、初速 <strong>530 m/s</strong>。</p>
+<p>可选的 Tanks.gg 入口仍在 <strong>VehicleTextData</strong>。填写 <code>tanksGGName</code> 后可尝试<strong>导入三扩数据</strong>。另一个按钮会覆盖多项现有参数，先把资产保存在 Git 或备份里。外部响应依赖第三方，导入后仍须补齐并检查其余字段。<a href="../component/vehicle-text-data.html">详细参数字段与图示</a></p>
+<h2 id="7-绑定主模型并定位开火节点">7. 绑定主模型并定位开火节点</h2>
+<ol>
+<li>选中 <strong>VehicleData</strong>。将第 3 节的碰撞预制体拖进 <strong>Model Data → MainModel</strong>。确认 <strong>VehicleTextData</strong> 和 <strong>HitBox</strong> 分别指向这辆车的详细数据和伤害资产。</li>
+<li>点击 <strong>编辑</strong>进入变换编辑。Scene 视图中会出现橙色节点。每改好一组，在 Scene 视图按 <strong>K</strong> 保存。用前视核对横向，侧视核对高度，再从斜前方检查节点朝向。</li>
+</ol>
+<p>| 节点 | 应放的位置 |
+| --- | --- |
+| <code>FFPoint</code>、<code>EffectStart</code> | 炮口正中、朝 +Z，略出炮口避免与炮管相交。教学车以 Gun 为父节点，局部坐标 <code>(0, 0, 2.45)</code>。 |
+| <code>CenterOfGravity</code> | 车体内、左右轮之间。教学车局部坐标 <code>(0, 0.78, 0)</code>。悬挂下沉与起步点头异常时回查。 |
+| <code>MainCameraFollowTarget</code>、<code>MainCameraGunner</code> | 前者给第三人称相机追随，放在车体上方。后者给炮手视角，放在炮口方向的瞄准装置。 |
+| <code>EngineSound</code>、<code>EngineSmoke</code> | 分别放在发动机舱和排烟口。每次调整后回到编辑模式检查位置已保存。 |
+3. 点击 <strong>解锁视图（Unlock Inspector）</strong>。回到 Project 核对选中的仍是这辆车，重开编辑模式时节点应保留刚保存的位置。</p>
+<p><img src="imgs/vehicle-basics-bindings.zh-CN.png" alt="载具数据中的主模型与详细参数资产"></p>
 <h2 id="8-调整负重轮与履带">8. 调整负重轮与履带</h2>
 <ol>
-<li>把显示预制体和 <strong>WheelCollider</strong> 预制体拖进场景，按轮子对照轮碰撞的半径与悬挂行程。修改场景实例后，通过 <strong>Overrides → Apply</strong> 或右键值选择 <strong>Apply to Prefab</strong> 把修改写回正确的资产。也可以直接在 Prefab Mode 修改并保存。</li>
-<li>教学车轮半径 <strong>0.43 m</strong>、轮质量 <strong>320 kg</strong>。当前模板的 Suspension Distance 为 <code>0.2</code>，Spring 为 <code>205000</code>，Damper 为 <code>14500</code>，Target Position 为 <code>0.5</code>。Forward Friction 的四个滑移/值项为 <code>1</code>，Stiffness 为 <code>1.7</code>。Sideways Friction 的 Extremum Slip/Value 为 <code>1.2</code>，Asymptote Slip/Value 为 <code>1</code>，Stiffness 为 <code>4</code>。按你的车重与轮径试车后再调。<a href="physics-wheels.html">车轮设置与图示</a></li>
+<li>在 <strong>VehicleTextData → 移动 → TankWheelCollider</strong> 点击引用找到预制体。双击它进入 Prefab Mode，选中带 <strong>Wheel Collider</strong> 的根节点。在场景副本里可同时对照显示模型的轮轴。若改的是场景实例，通过 <strong>Overrides → Apply</strong> 把值写回同一份预制体。</li>
+<li>按下表录入。展开 <strong>Suspension Spring</strong>、<strong>Forward Friction</strong> 和 <strong>Sideways Friction</strong> 查看子字段。切回载具，确认仍引用刚保存的模板。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>WheelCollider 字段</th>
+<th>教学车值</th>
+<th>检查方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Radius / Mass</td>
+<td><code>0.43 m</code> / <code>320 kg</code></td>
+<td>半径对齐实际负重轮。Mass 是单个轮模板质量，整车质量在第 6 节。</td>
+</tr>
+<tr>
+<td>Center</td>
+<td><code>(0, 0, 0)</code></td>
+<td>轮轴原点居中。履带组还要核对 TrackData 的悬挂 Y 偏移。</td>
+</tr>
+<tr>
+<td>Suspension Distance / Force App Point Distance</td>
+<td><code>0.2 m</code> / <code>0.4 m</code></td>
+<td>分别是悬挂行程与静止轮底上方的受力点距离。</td>
+</tr>
+<tr>
+<td>Suspension Spring</td>
+<td>Spring <code>205000</code>、Damper <code>14500</code>、Target Position <code>0.5</code></td>
+<td>控制回弹力、缓和振荡和静止目标在行程中的位置。</td>
+</tr>
+<tr>
+<td>Forward Friction</td>
+<td>Extremum Slip / Value <code>1 / 1</code>，Asymptote Slip / Value <code>1 / 1</code>，Stiffness <code>1.7</code></td>
+<td>平地起步、直线刹车，看轮子是否持续打滑。</td>
+</tr>
+<tr>
+<td>Sideways Friction</td>
+<td>Extremum Slip / Value <code>1.2 / 1.2</code>，Asymptote Slip / Value <code>1 / 1</code>，Stiffness <code>4</code></td>
+<td>同样速度转向，比较横向滑移与侧倾。</td>
+</tr>
+</tbody>
+</table>
+<p>模板里的 <strong>Wheel Damping Rate</strong> 与 <strong>Layer Overrides</strong> 可先保留默认，履带控制器会设置运行时阻尼和碰撞层。试车时先对齐轮轴、半径和履带节点，再分别改弹簧、阻尼或摩擦。每次改变一个字段，重打包后走同一段平地和小坡对比。<a href="https://docs.unity3d.com/cn/2022.3/Manual/class-WheelCollider.html">Unity WheelCollider 字段说明</a> · <a href="physics-wheels.html">轮式载具设置</a></p>
+<p><img src="imgs/vehicle-basics-wheel.zh-CN.png" alt="负重轮模板的 Unity WheelCollider 属性"></p>
+<ol start="3">
 <li>选中 <strong>VehicleTrackData</strong>，为**履带模型（TrackMesh）**绑定单节履带预制体。左右形状不同时还可设置左履带模型。**履带长度（手动设置）**对应字段 <code>TrackDistance</code>，可先从默认 <code>0.12</code> 开始，按实际履带节长度调整。保留编辑器生成的悬挂数据。</li>
 <li>在 <strong>VehicleData</strong> 点击**编辑悬挂（Edit Track）**打开编辑器。若直接从履带资产进入编辑模式，把已有的载具编辑对象填给 <strong>Target Edit Object</strong> 后点击 <strong>读取悬挂信息</strong>。编辑对象还未生成时，回到 VehicleData 进入编辑模式，生成后再来编辑履带。</li>
 <li>从侧面观察轮组，按绕履带一圈的顺序点击 <strong>创建节点</strong>并放置节点。把路径放到负重轮下方、托带轮上方和前后转折处，检查每一侧形成闭环。可以临时隐藏伤害模型或静态履带，便于观察。</li>
@@ -858,6 +1050,20 @@
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local verify = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/check_details.lua\&quot;))()\nreturn verify.wheel(\&quot;${wheel}\&quot;, \&quot;${vehicleText}\&quot;)\n&quot;,
+        &quot;tank-wheel&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Wheel template and suspension values verified&quot;
     }
   }
 ]
@@ -1020,7 +1226,7 @@
 <p>在能启动游戏环境、已加载地图资源的本地 DE 编辑器中，先用上方配方构建 Windows 包。将生成的 <code>run.json</code> 路径作为第一个参数传给试车脚本。</p>
 <pre><code class="lang-sh">python Tools/ManualMcp/TankTutorial/test_drive.py &quot;&lt;构建回执 run.json&gt;&quot; Temp/ManualMcp/TankFirstDrive
 </code></pre>
-<p>脚本通过 MCP 安装构建产物并在 PlayField 生成载具。随后输入前进、倒车和转向，装入教学穿甲弹并发射实弹，检查目标扣血。回放会退出 Play，测试读数保存在输出目录。</p>
+<p>脚本通过 MCP 安装构建产物并在 PlayField 生成载具，验证前进、倒车、转向和教学穿甲弹的弹道命中。它会切到模块模式回读已加载的内构和运行时对象池中的特效键。回放会退出 Play，测试读数保存在输出目录。玩家输入触发的扣弹、装填节奏和特效外观，按本节手动试车步骤核对。</p>
 </details>
 <h2 id="11-完成基础车后尝试变体">11. 完成基础车后尝试变体</h2>
 <table>

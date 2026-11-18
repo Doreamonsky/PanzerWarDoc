@@ -110,7 +110,8 @@
     &quot;bullet&quot;: &quot;${fixture}/Tutorial-76mm-AP.asset&quot;,
     &quot;gunSound&quot;: &quot;Packages/com.shanghaiwindy.coreresources/FMod/Tank/Gun/76mm_zis5.asset&quot;,
     &quot;engine&quot;: &quot;Packages/com.shanghaiwindy.coreresources/FMod/Tank/Engine/kv220.asset&quot;,
-    &quot;bulletVfx&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BulletVFX/宝马鸽特效/AP-BulletVFX-M.asset&quot;
+    &quot;bulletVfx&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BulletVFX/宝马鸽特效/AP-BulletVFX-M.asset&quot;,
+    &quot;moduleSource&quot;: &quot;${fixture}/Tutorial_InternalSource.prefab&quot;
   },
   &quot;calls&quot;: [
     {
@@ -360,76 +361,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="5-generate-and-configure-the-damage-model">5. Generate and configure the damage model</h2>
-<ol>
-<li>Select <strong>VehicleHitBox</strong> in Project. Drag the damage FBX into <strong>External Armor Model</strong>. If you made a separate model for the internal modules, assign it to <strong>Internal Module Model</strong>. You can assign the visual prefab to <strong>Refer Model</strong> as a positioning reference.</li>
-<li>Click <strong>Create Prefab</strong>, then <strong>Open Edit Mode</strong>. Check that Unity opened the correct prefab. Click <strong>Generate External Armor</strong> to generate the plates. If you assigned an internal model, click <strong>Generate Internal Armor</strong> to generate its modules.</li>
-<li>Select a plate in Hierarchy and inspect the thickness and armor type in its <strong>HitBox</strong> component. Move the plate under <code>HitBox/Main</code>, <code>HitBox/Turret</code>, <code>HitBox/Gun</code>, or <code>HitBox/Dym</code> to match the part it moves with. See <a href="hitbox-naming-conventions.html">damage-model naming and import</a> for the supported names and examples.</li>
-<li>Select a module type and preset in the editor, spawn it, and move it into position. Use the same four groups under <code>InternalModule</code> to attach it to the correct part. You can set each module's HP in its <strong>InternalModule</strong> component. To assign HP in bulk, set the total and any per-type overrides on <strong>VehicleHitBox</strong>, then use <strong>Auto Assign Internal Module Hit Points</strong>.</li>
-<li>Tick the roles on crew modules. To support module mode on a tracked vehicle, check for commander, driver, gunner, radio operator, and either loader or autoloader. You can leave module mode off for the first basic drive test and enable it after configuring the interior.</li>
-<li>Select the ammo rack's <strong>InternalModule</strong>. Add bounds and resize them to cover the corresponding ammo volume. Click <strong>Create Ammo Cache</strong>, or use <strong>Multi-Update Ammo Model Cache</strong> in the HitBox editor for several racks. Verify that every bound has a cached mesh.</li>
-<li>Save the prefab with <strong>Ctrl+S</strong> and leave Prefab Mode. Check that <strong>VehicleHitBox</strong> still references the generated prefab.</li>
-</ol>
-<p>Compare the two models in Scene View. The KV-2 visual model keeps the paint and details. The orange damage model is split into armor regions for damage and armor inspection. The two meshes are spaced apart in the illustration. Keep their origins and orientations aligned when setting up the vehicle.</p>
-<p><img src="../../mod/imgs/vehicle-basics-kv2-armor.en.png" alt="KV-2 damage and visual models side by side in Unity"></p>
-<p><img src="../../mod/imgs/vehicle-basics-armor.en.png" alt="External armor model and its generated HitBox prefab"></p>
-<h2 id="6-set-vehicle-information-shells-audio-and-parameters">6. Set vehicle information, shells, audio, and parameters</h2>
-<ol>
-<li>In <strong>VehicleInfo</strong>, set the display name to <code>Tutorial Tank</code> and the rank to <code>3</code>. Under <strong>Spawn Policy</strong>, choose <strong>Player Pick</strong>. Check this when copying a radar or summoned unit. Match the nation in <strong>VehicleTextData → Base</strong>. Packing copies the nation from the detailed parameters. Add a picture with <a href="vehicle-thumbnail.html">Vehicle thumbnails</a>.</li>
-<li>For the first test, assign compatible <strong>VehicleEngineFmodSoundData</strong> and <strong>BulletFmodSound</strong> assets. To make your own, import the recordings into a compatible FMOD project. Author engine start and running events with idle and acceleration sounds, and configure the firing event for near and distant sounds. Build and refresh the banks, then bind events with the picker. <strong>Fire Near</strong> and <strong>Fire Far</strong> were fields on the old audio assets. <a href="fmod-project-setup.html">FMOD project setup</a></li>
-<li>Open the bullet editor at the bottom of <strong>VehicleTextData</strong>. Create a penetrating shell named <code>Tutorial-76mm-AP</code>, choose warhead <strong>AP</strong>, and set <strong>Caliber = 76 mm</strong>, <strong>Velocity = 650 m/s</strong>, <strong>Penetration = 90 mm</strong>, and <strong>Damage = 100</strong>. Under <strong>Module</strong>, enter a projectile mass of <strong>6.5 kg</strong>. This solid shot uses <code>0</code> for fuse delay and TNT equivalent. Assign a matching AP <strong>Bullet VFX</strong>, then add this shell as the only entry in the <strong>Fire</strong> tab's ammo list.</li>
-<li>Set the <strong>VehicleTextData</strong> values below. Save, reselect the asset, and check the values and references. This sample uses local gun and turret parameters. If a shared asset hides those settings, clear <strong>Shared Gun Data</strong> or <strong>Shared Turret Data</strong> first.</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>Tab</th>
-<th>What to configure</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Base</strong> · <code>PSParameter</code></td>
-<td><strong>Health 600</strong> and <strong>View Range 360 m</strong>. Leave the custom sight point off until the orientation and muzzle position pass your test.</td>
-</tr>
-<tr>
-<td><strong>Movement</strong> · <code>PTCParameter</code></td>
-<td>Use the track controller. Set mass to <strong>30,000 kg</strong>, forward and reverse caps to <strong>35 and 10 km/h</strong>, forward and reverse torque to <strong>3500 and 2600</strong>, and brake torque to <strong>5000</strong>. Use example torque-curve points <code>(0, 1)</code> and <code>(35, 0.35)</code>; leave simulated gears off for the first test. Assign working engine audio; check <strong>TankWheelCollider</strong> and <strong>Track Data</strong> in the next section.</td>
-</tr>
-<tr>
-<td><strong>Fire</strong> · <code>TFParameter</code></td>
-<td>Choose <strong>Standard</strong>, reload time <strong>6 s</strong>, total ammo <strong>30</strong>, and leave <strong>Has Slot</strong> off. Use a shot interval of <code>0</code>, recoil scale <code>1</code>, one AP shell, and a firing sound. Set base <code>dispersion</code> to <code>0.003</code>. Expand <strong>Spread</strong> and enter the default settings below for 76 mm. The caliber comes from the shell asset.</td>
-</tr>
-<tr>
-<td><strong>Turret</strong> · <code>MTParameter</code></td>
-<td>Set the symmetric traverse limit to <strong>180°</strong>, turret speed to <strong>18°/s</strong>, and gun elevation speed to <strong>12°/s</strong>. Enter <strong>20°</strong> of elevation and <strong>6°</strong> of depression as positive values. Leave direction-specific overrides empty initially.</td>
-</tr>
-</tbody>
-</table>
-<p>The aiming values in <strong>Spread</strong> are separate from base <code>dispersion</code>. The defaults for 76 mm are spread <code>0.35</code>, aim time <code>1.92</code> s, movement and turret traverse coefficients <code>0.14</code> each, gun movement coefficient <code>0.11</code>, after-shot coefficient <code>3</code>, and damaged coefficient <code>2</code>. Save and check that the Inspector has cleared the spread and projectile damage warnings.</p>
-<p>These Inspector screenshots come from the same teaching tank. They show movement, fire, turret, and projectile settings.</p>
-<p><img src="../../mod/imgs/vehicle-basics-mobility.en.png" alt="Teaching tank mass, wheel collider, and track reference"></p>
-<p><img src="../../mod/imgs/vehicle-basics-fire.en.png" alt="Six-second reload and 30 rounds on the teaching tank"></p>
-<p><img src="../../mod/imgs/vehicle-basics-turret.en.png" alt="Turret traversal speed and gun elevation limits"></p>
-<p><img src="../../mod/imgs/vehicle-basics-projectile.en.png" alt="Training AP shell caliber, velocity, and damage"></p>
-<p>For comparison, the KV-2 source sets mass to <strong>52,850 kg</strong>, speed caps to <strong>37 and 7 km/h</strong>, and track-link spacing to <strong>0.275 m</strong>. Its shared turret has a speed of <strong>14°/s</strong>, <strong>12°</strong> of elevation, and <strong>5°</strong> of depression. Its shells come from a shared gun asset. The first shell read in the test range was <strong>OF-530</strong>, at <strong>152 mm</strong> and <strong>530 m/s</strong>.</p>
-<p>The optional Tanks.gg tools are still in <strong>VehicleTextData</strong>. Set <code>tanksGGName</code> and use <strong>Import spread data from tank gg</strong> to retrieve dispersion data. The broader override changes several existing settings, so save the asset in Git or make a backup first. The service may be unavailable. Review the imported values and fill in the remaining fields. <a href="../component/vehicle-text-data.html">VehicleTextData fields and screenshots</a></p>
-<h2 id="7-bind-the-main-model-and-position-the-firing-nodes">7. Bind the main model and position the firing nodes</h2>
-<ol>
-<li>Select <strong>VehicleData</strong>. Assign the collision prefab from section 3 to <strong>Model Data → MainModel</strong>. Check that <strong>VehicleTextData</strong> and <strong>HitBox</strong> refer to this vehicle's assets.</li>
-<li>Click <strong>Edit</strong> to show the orange node icons in Scene View. Press <strong>K</strong> to save each group of adjustments. Check sideways alignment from the front, height from the side, and orientation from a three-quarter view.</li>
-</ol>
-<p>| Node | Position |
-| --- | --- |
-| <code>FFPoint</code>, <code>EffectStart</code> | Centered just beyond the muzzle, pointing along +Z. The teaching model uses Gun as the parent and local position <code>(0, 0, 2.45)</code>. |
-| <code>CenterOfGravity</code> | Inside the hull, centered between the wheel rows. The teaching model uses <code>(0, 0.78, 0)</code>. Recheck this if the suspension sinks or the hull pitches unusually on takeoff. |
-| <code>MainCameraFollowTarget</code>, <code>MainCameraGunner</code> | Put the third-person follow point above the hull. Put the gunner view at the forward-facing sight. |
-| <code>EngineSound</code>, <code>EngineSmoke</code> | Put the first in the engine bay and the second at the exhaust. Reopen the editor to confirm that the positions were saved. |
-3. Click <strong>Unlock Inspector</strong>. Check the selected asset and reopen the editor if needed to confirm that the positions were saved.</p>
-<p><img src="../../mod/imgs/vehicle-basics-bindings.en.png" alt="Main model and vehicle parameters assigned in VehicleData"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
-<p>Set the spawn role, mobility, gun, turret, and firing nodes on the teaching sample, then read back the values.</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
@@ -557,7 +490,84 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;${vehicleName}&quot;
     }
-  },
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-generate-and-configure-the-damage-model">5. Generate and configure the damage model</h2>
+<ol>
+<li>Select <strong>VehicleHitBox</strong> in Project. Drag the damage FBX into <strong>External Armor Model</strong>. If you made a separate model for the internal modules, assign it to <strong>Internal Module Model</strong>. You can assign the visual prefab to <strong>Refer Model</strong> as a positioning reference.</li>
+<li>Click <strong>Create Prefab</strong>, then <strong>Open Edit Mode</strong>. Check that Unity opened the correct prefab. Click <strong>Generate External Armor</strong> to generate the plates. If you assigned an internal model, click <strong>Generate Internal Armor</strong> to generate its modules.</li>
+<li>Select a plate in Hierarchy and inspect the thickness and armor type in its <strong>HitBox</strong> component. Move the plate under <code>HitBox/Main</code>, <code>HitBox/Turret</code>, <code>HitBox/Gun</code>, or <code>HitBox/Dym</code> to match the part it moves with. See <a href="hitbox-naming-conventions.html">damage-model naming and import</a> for the supported names and examples.</li>
+<li>Select a module type and preset in the editor, spawn it, and move it into position. Use the same four groups under <code>InternalModule</code> to attach it to the correct part. You can set each module's HP in its <strong>InternalModule</strong> component. To assign HP in bulk, set the total and any per-type overrides on <strong>VehicleHitBox</strong>, then use <strong>Auto Assign Internal Module Hit Points</strong>.</li>
+<li>Tick the roles on crew modules. To support module mode on a tracked vehicle, check for commander, driver, gunner, radio operator, and either loader or autoloader. You can leave module mode off for the first basic drive test and enable it after configuring the interior.</li>
+<li>Select the ammo rack's <strong>InternalModule</strong>. Add bounds and resize them to cover the corresponding ammo volume. Click <strong>Create Ammo Cache</strong>, or use <strong>Multi-Update Ammo Model Cache</strong> in the HitBox editor for several racks. Verify that every bound has a cached mesh.</li>
+<li>Save the prefab with <strong>Ctrl+S</strong> and leave Prefab Mode. Check that <strong>VehicleHitBox</strong> still references the generated prefab.</li>
+</ol>
+<p>Compare the two models in Scene View. The KV-2 visual model keeps the paint and details. The orange damage model is split into armor regions for damage and armor inspection. The two meshes are spaced apart in the illustration. Keep their origins and orientations aligned when setting up the vehicle.</p>
+<p><img src="../../mod/imgs/vehicle-basics-kv2-armor.en.png" alt="KV-2 damage and visual models side by side in Unity"></p>
+<p><img src="../../mod/imgs/vehicle-basics-armor.en.png" alt="External armor model and its generated HitBox prefab"></p>
+<h3 id="configure-the-internal-modules">Configure the internal modules</h3>
+<ol>
+<li>Open the generated damage prefab and select a mesh under <code>InternalModule</code>. In its <strong>InternalModule</strong> component, check <strong>Module Type</strong>, <strong>Module Armor</strong> (mm), and <strong>Hit Point</strong> (module HP). For FBX import, use the node names in the first column. For a manually placed preset, enter the values and role flags in the Inspector.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Teaching node</th>
+<th>Group under <code>InternalModule</code></th>
+<th>HP / armor</th>
+<th>Position or roles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Engine_40_10</code></td>
+<td><code>Main</code></td>
+<td>40 / 10 mm</td>
+<td>Engine bay</td>
+</tr>
+<tr>
+<td><code>Crew_10_0_Driver_Radioer</code></td>
+<td><code>Main</code></td>
+<td>10 / 0 mm</td>
+<td>Front of the hull, driver and radio operator</td>
+</tr>
+<tr>
+<td><code>Crew_10_0_Commander_Gunner</code></td>
+<td><code>Turret</code></td>
+<td>10 / 0 mm</td>
+<td>In the turret, commander and gunner</td>
+</tr>
+<tr>
+<td><code>Crew_10_0_Reloader</code></td>
+<td><code>Turret</code></td>
+<td>10 / 0 mm</td>
+<td>In the turret, loader</td>
+</tr>
+<tr>
+<td><code>Breech_12_5</code></td>
+<td><code>Gun</code></td>
+<td>12 / 5 mm</td>
+<td>Behind the gun, moving with elevation</td>
+</tr>
+<tr>
+<td><code>AmmoShell_25_5</code></td>
+<td><code>Main</code></td>
+<td>25 / 5 mm</td>
+<td>Ammo storage on one side of the hull</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>Set <strong>Max Ammo Capacity</strong> to <strong>30</strong> and leave <strong>Is Ready Rack</strong> off. The importer may have created the first bound. Check <strong>CurrentID = 1</strong> and look for the box in Scene View. If there is no box, click <strong>Add new bound</strong> and use its Scene handles to enclose the ammo mesh. Click <strong>Create Ammo Cache</strong> after editing. This sample should show <strong>Cached Mesh Count 1</strong>. For a rack with several visual fill steps, set the bounds separately, rebake, and check that each step has mesh geometry.</li>
+<li>To connect a damaged module to a specific gun or turret, check <strong>Connectable Vehicle Module</strong> at the bottom of the component. Copy the corresponding GUID from <strong>VehicleTextData → Module Guid</strong> into <strong>Connected Vehicle Module Guids</strong>. The hierarchy controls where the mesh moves. The GUID identifies the system affected when the module is damaged.</li>
+<li>Save the damage prefab with <strong>Ctrl+S</strong>. Enable <strong>Is Module Ready</strong> on <strong>VehicleInfo</strong>, repack, and choose <strong>Module Based</strong> in the playground. Check that the vehicle can drive, aim, and fire. Switch to the interior view and confirm that the driver stays with the hull and the gunner follows the turret. Shoot a known module with an opposing vehicle and check its HP or damage state.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-basics-module.en.png" alt="Teaching ammo rack armor, HP, and capacity"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
@@ -576,13 +586,13 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
       &quot;args&quot;: [
-        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal function empty(name, parent)\n    local obj = U.GameObject(name)\n    if parent then obj.transform:SetParent(parent.transform, false) end\n    return obj\nend\nlocal function plate(name, parent, x, y, z, sx, sy, sz)\n    local obj = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\n    obj.name = name\n    obj.transform:SetParent(parent.transform, false)\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    obj.transform.localScale = U.Vector3(sx, sy, sz)\n    U.Object.DestroyImmediate(obj:GetComponent(typeof(U.Collider)))\nend\nlocal root = empty('Tutorial Tank Armor', nil)\nlocal external = empty('HitBox', root)\nlocal modules = empty('InternalModule', root)\nfor _, group in ipairs({'Main','Turret','Gun','Dym'}) do\n    empty(group, external)\n    empty(group, modules)\nend\nlocal hull = external.transform:Find('Main').gameObject\nlocal turret = external.transform:Find('Turret').gameObject\nplate('HullFront_65', hull, 0, 0.9, 2.48, 2.5, 0.65, 0.04)\nplate('TurretFront_45', turret, 0, 1.55, 0.78, 1.7, 0.55, 0.04)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorSource}'))\nCS.ShanghaiWindy.Editor.VehicleHitBoxModelImport.ConfigureExternal(external, nil)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorPrefab}'))\nU.Object.DestroyImmediate(root)\nreturn 'External armor prepared'\n&quot;,
+        &quot;local run = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/armor.lua\&quot;))()\nreturn run({armorSource = \&quot;${armorSource}\&quot;, moduleSource = \&quot;${moduleSource}\&quot;, armorPrefab = \&quot;${armorPrefab}\&quot;})\n&quot;,
         &quot;tank-armor&quot;,
         &quot;null&quot;
       ]
     },
     &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;External armor prepared&quot;
+      &quot;contains&quot;: &quot;six internal modules saved&quot;
     }
   },
   {
@@ -590,6 +600,16 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;asset:${armor}/ExternalArmorModel&quot;,
       &quot;value&quot;: &quot;@asset:${armorSource}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/InternalModuleModel&quot;,
+      &quot;value&quot;: &quot;@asset:${moduleSource}&quot;
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;OK:&quot;
@@ -628,12 +648,67 @@
     &quot;tool&quot;: &quot;inspect_set&quot;,
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;asset:${vehicleInfo}/isModuleReady&quot;,
-      &quot;value&quot;: &quot;false&quot;
+      &quot;value&quot;: &quot;true&quot;
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;OK:&quot;
     }
   },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armorPrefab}/InternalModule/Main/AmmoShell_25_5/InternalModule/maxAmmoCapacity&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;30&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="6-set-vehicle-information-shells-audio-and-parameters">6. Set vehicle information, shells, audio, and parameters</h2>
+<ol>
+<li>In <strong>VehicleInfo</strong>, set the display name to <code>Tutorial Tank</code> and the rank to <code>3</code>. Under <strong>Spawn Policy</strong>, choose <strong>Player Pick</strong>. Check this when copying a radar or summoned unit. Match the nation in <strong>VehicleTextData → Base</strong>. Packing copies the nation from the detailed parameters. Add a picture with <a href="vehicle-thumbnail.html">Vehicle thumbnails</a>.</li>
+<li>For the first test, assign compatible <strong>VehicleEngineFmodSoundData</strong> and <strong>BulletFmodSound</strong> assets. To make your own, import the recordings into a compatible FMOD project. Author engine start and running events with idle and acceleration sounds, and configure the firing event for near and distant sounds. Build and refresh the banks, then bind events with the picker. <strong>Fire Near</strong> and <strong>Fire Far</strong> were fields on the old audio assets. <a href="fmod-project-setup.html">FMOD project setup</a></li>
+<li>Open the bullet editor at the bottom of <strong>VehicleTextData</strong>. Create a penetrating shell named <code>Tutorial-76mm-AP</code>, choose warhead <strong>AP</strong>, and set <strong>Caliber = 76 mm</strong>, <strong>Velocity = 650 m/s</strong>, <strong>Penetration = 90 mm</strong>, and <strong>Damage = 100</strong>. Under <strong>Module</strong>, enter a projectile mass of <strong>6.5 kg</strong>. This solid shot uses <code>0</code> for fuse delay and TNT equivalent. Assign a matching AP <strong>Bullet VFX</strong>, then add this shell as the only entry in the <strong>Fire</strong> tab's ammo list.</li>
+<li>Set the <strong>VehicleTextData</strong> values below. Save, reselect the asset, and check the values and references. This sample uses local gun and turret parameters. If a shared asset hides those settings, clear <strong>Shared Gun Data</strong> or <strong>Shared Turret Data</strong> first.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>What to configure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Base</strong> · <code>PSParameter</code></td>
+<td><strong>Health 600</strong> and <strong>View Range 360 m</strong>. Leave the custom sight point off until the orientation and muzzle position pass your test.</td>
+</tr>
+<tr>
+<td><strong>Movement</strong> · <code>PTCParameter</code></td>
+<td>Use the track controller. Set mass to <strong>30,000 kg</strong>, forward and reverse caps to <strong>35 and 10 km/h</strong>, forward and reverse torque to <strong>3500 and 2600</strong>, and brake torque to <strong>5000</strong>. Use example torque-curve points <code>(0, 1)</code> and <code>(35, 0.35)</code>; leave simulated gears off for the first test. Assign working engine audio; check <strong>TankWheelCollider</strong> and <strong>Track Data</strong> in the next section.</td>
+</tr>
+<tr>
+<td><strong>Fire</strong> · <code>TFParameter</code></td>
+<td>Choose <strong>Standard</strong>, reload time <strong>6 s</strong>, total ammo <strong>30</strong>, and leave <strong>Has Slot</strong> off. Use a shot interval of <code>0</code>, recoil scale <code>1</code>, one AP shell, and a firing sound. Set base <code>dispersion</code> to <code>0.003</code>. Expand <strong>Spread</strong> and enter the default settings below for 76 mm. The caliber comes from the shell asset.</td>
+</tr>
+<tr>
+<td><strong>Turret</strong> · <code>MTParameter</code></td>
+<td>Set the symmetric traverse limit to <strong>180°</strong>, turret speed to <strong>18°/s</strong>, and gun elevation speed to <strong>12°/s</strong>. Enter <strong>20°</strong> of elevation and <strong>6°</strong> of depression as positive values. Leave direction-specific overrides empty initially.</td>
+</tr>
+</tbody>
+</table>
+<p>The aiming values in <strong>Spread</strong> are separate from base <code>dispersion</code>. The defaults for 76 mm are spread <code>0.35</code>, aim time <code>1.92</code> s, movement and turret traverse coefficients <code>0.14</code> each, gun movement coefficient <code>0.11</code>, after-shot coefficient <code>3</code>, and damaged coefficient <code>2</code>. Save and check that the Inspector has cleared the spread and projectile damage warnings.</p>
+<p>These Inspector screenshots come from the same teaching tank. They show movement, fire, turret, and projectile settings.</p>
+<p><img src="../../mod/imgs/vehicle-basics-mobility.en.png" alt="Teaching tank mass, wheel collider, and track reference"></p>
+<p><img src="../../mod/imgs/vehicle-basics-fire.en.png" alt="Six-second reload and 30 rounds on the teaching tank"></p>
+<p><img src="../../mod/imgs/vehicle-basics-turret.en.png" alt="Turret traversal speed and gun elevation limits"></p>
+<p><img src="../../mod/imgs/vehicle-basics-projectile.en.png" alt="Training AP shell caliber, velocity, and damage"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Set the spawn role, mobility, gun, turret, and firing nodes on the teaching sample, then read back the values.</p>
+<pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;inspect_set&quot;,
     &quot;arguments&quot;: {
@@ -697,10 +772,127 @@
 ]
 </code></pre>
 </details>
+<h3 id="set-up-muzzle-flash-projectile-and-impact-effects">Set up muzzle flash, projectile, and impact effects</h3>
+<ol>
+<li>In <strong>VehicleTextData → Fire → Muzzle Effects</strong>, set <strong>Muzzle Fire</strong> to <strong>Muzzle Middle</strong>. The flash appears at <code>EffectStart</code>, positioned in section 7. Leave <strong>Override Muzzle Fires</strong> empty to start. The flash should stay in front of the muzzle when the turret turns.</li>
+<li>Select <code>Tutorial-76mm-AP</code>, assign the SDK's <code>AP-BulletVFX-M</code> in <strong>Bullet VFX</strong>, and open the referenced asset. For impact overrides, the game uses the first registered key in the list, then the base key if none is available. This preset leaves the ricochet key empty. Use <strong>Hit Armor Ricochet</strong> to assign a specific ricochet effect.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>BulletVFX field</th>
+<th>Base key</th>
+<th>Teaching override</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projectile</td>
+<td><code>WeaponProjectile</code></td>
+<td>Empty</td>
+</tr>
+<tr>
+<td>Hit Ground</td>
+<td><code>FireExplosionHitOnGround</code></td>
+<td><code>AP-HitOnGround-M</code></td>
+</tr>
+<tr>
+<td>Hit Armor</td>
+<td><code>FirePenetrateHitOnArmor</code></td>
+<td><code>AP-HitOnArmor-M</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>For custom effects, duplicate a <strong>BulletVFX</strong> asset. Register the particle prefab in a <strong>Pool Resource</strong> under a unique name, then pick the same name in the copied asset. Add the Pool Resource to the build pipeline. If the effects are in a separate package, add its GUID to the vehicle package dependencies. Leave the legacy projectile GameObject override off to use the pool. <a href="vfx-mod.html">Effect assets and dependencies</a></li>
+<li>In the playground, shoot a patch of ground and then a target vehicle. If the flash is offset, check <code>EffectStart</code> first. If you see the flash but no visible projectile, check its key. If the effect is missing only on impact, check the hit type, the override key, and whether the effects package loaded.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-basics-muzzle.en.png" alt="Medium muzzle flash in the main gun Fire tab"></p>
+<p><img src="../../mod/imgs/vehicle-basics-bullet-vfx.en.png" alt="Hit and projectile effect keys in the training AP shell"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local verify = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/check_details.lua\&quot;))()\nreturn verify.effects(\&quot;${vehicleText}\&quot;, \&quot;${bulletVfx}\&quot;)\n&quot;,
+        &quot;tank-effects&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Muzzle preset and AP effect keys verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>For comparison, the KV-2 source sets mass to <strong>52,850 kg</strong>, speed caps to <strong>37 and 7 km/h</strong>, and track-link spacing to <strong>0.275 m</strong>. Its shared turret has a speed of <strong>14°/s</strong>, <strong>12°</strong> of elevation, and <strong>5°</strong> of depression. Its shells come from a shared gun asset. The first shell read in the test range was <strong>OF-530</strong>, at <strong>152 mm</strong> and <strong>530 m/s</strong>.</p>
+<p>The optional Tanks.gg tools are still in <strong>VehicleTextData</strong>. Set <code>tanksGGName</code> and use <strong>Import spread data from tank gg</strong> to retrieve dispersion data. The broader override changes several existing settings, so save the asset in Git or make a backup first. The service may be unavailable. Review the imported values and fill in the remaining fields. <a href="../component/vehicle-text-data.html">VehicleTextData fields and screenshots</a></p>
+<h2 id="7-bind-the-main-model-and-position-the-firing-nodes">7. Bind the main model and position the firing nodes</h2>
+<ol>
+<li>Select <strong>VehicleData</strong>. Assign the collision prefab from section 3 to <strong>Model Data → MainModel</strong>. Check that <strong>VehicleTextData</strong> and <strong>HitBox</strong> refer to this vehicle's assets.</li>
+<li>Click <strong>Edit</strong> to show the orange node icons in Scene View. Press <strong>K</strong> to save each group of adjustments. Check sideways alignment from the front, height from the side, and orientation from a three-quarter view.</li>
+</ol>
+<p>| Node | Position |
+| --- | --- |
+| <code>FFPoint</code>, <code>EffectStart</code> | Centered just beyond the muzzle, pointing along +Z. The teaching model uses Gun as the parent and local position <code>(0, 0, 2.45)</code>. |
+| <code>CenterOfGravity</code> | Inside the hull, centered between the wheel rows. The teaching model uses <code>(0, 0.78, 0)</code>. Recheck this if the suspension sinks or the hull pitches unusually on takeoff. |
+| <code>MainCameraFollowTarget</code>, <code>MainCameraGunner</code> | Put the third-person follow point above the hull. Put the gunner view at the forward-facing sight. |
+| <code>EngineSound</code>, <code>EngineSmoke</code> | Put the first in the engine bay and the second at the exhaust. Reopen the editor to confirm that the positions were saved. |
+3. Click <strong>Unlock Inspector</strong>. Check the selected asset and reopen the editor if needed to confirm that the positions were saved.</p>
+<p><img src="../../mod/imgs/vehicle-basics-bindings.en.png" alt="Main model and vehicle parameters assigned in VehicleData"></p>
 <h2 id="8-set-up-wheel-colliders-and-moving-tracks">8. Set up wheel colliders and moving tracks</h2>
 <ol>
-<li>Drag the visual prefab and the <strong>WheelCollider</strong> prefab into the scene. Compare the collider radius and suspension travel with the visible wheels. Save overrides to the correct prefab with <strong>Overrides → Apply</strong> or <strong>Apply to Prefab</strong> on the edited value. You can also edit and save the prefab in Prefab Mode.</li>
-<li>The sample uses a wheel radius of <strong>0.43 m</strong> and wheel mass of <strong>320 kg</strong>. The template uses Suspension Distance <code>0.2</code>, Spring <code>205000</code>, Damper <code>14500</code>, and Target Position <code>0.5</code>. The four Forward Friction slip/value fields are <code>1</code>, with Stiffness <code>1.7</code>. In Sideways Friction, Extremum Slip/Value are <code>1.2</code>, Asymptote Slip/Value are <code>1</code>, and Stiffness is <code>4</code>. Tune after testing your own mass and wheel size. <a href="physics-wheels.html">Wheel settings and screenshots</a></li>
+<li>Find the template at <strong>VehicleTextData → Movement → TankWheelCollider</strong>. Open it in Prefab Mode and select the root with the <strong>Wheel Collider</strong> component. Use a scene instance alongside the visual model to compare the wheel pivots. If you edit that instance, use <strong>Overrides → Apply</strong> to save the values to the same prefab.</li>
+<li>Enter the values in the table. Expand <strong>Suspension Spring</strong>, <strong>Forward Friction</strong>, and <strong>Sideways Friction</strong> to find their child fields. Return to the vehicle and confirm that it still refers to the saved template.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>WheelCollider field</th>
+<th>Sample value</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Radius / Mass</td>
+<td><code>0.43 m</code> / <code>320 kg</code></td>
+<td>Match the radius to the visible road wheel. This is the mass of one wheel. Set the vehicle mass in section 6.</td>
+</tr>
+<tr>
+<td>Center</td>
+<td><code>(0, 0, 0)</code></td>
+<td>Start with the wheel origin at its axle. For tracks, also check the suspension Y offset in TrackData.</td>
+</tr>
+<tr>
+<td>Suspension Distance / Force App Point Distance</td>
+<td><code>0.2 m</code> / <code>0.4 m</code></td>
+<td>Suspension travel and the force application distance above the resting wheel's base.</td>
+</tr>
+<tr>
+<td>Suspension Spring</td>
+<td>Spring <code>205000</code>, Damper <code>14500</code>, Target Position <code>0.5</code></td>
+<td>Restoring force, resistance to oscillation, and the target position along the travel.</td>
+</tr>
+<tr>
+<td>Forward Friction</td>
+<td>Extremum Slip / Value <code>1 / 1</code>, Asymptote Slip / Value <code>1 / 1</code>, Stiffness <code>1.7</code></td>
+<td>Start and brake in a straight line and check for sustained slip.</td>
+</tr>
+<tr>
+<td>Sideways Friction</td>
+<td>Extremum Slip / Value <code>1.2 / 1.2</code>, Asymptote Slip / Value <code>1 / 1</code>, Stiffness <code>4</code></td>
+<td>Turn at the same speed and compare sideways slip and body roll.</td>
+</tr>
+</tbody>
+</table>
+<p>Leave the template's <strong>Wheel Damping Rate</strong> and <strong>Layer Overrides</strong> at their defaults to start. The track controller sets damping and collision layers at runtime. Align the pivots, radius, and track path first. Change one suspension or friction parameter at a time, repack, and compare runs on the same flat ground and gentle slope. <a href="https://docs.unity3d.com/2022.3/Documentation/Manual/class-WheelCollider.html">Unity WheelCollider reference</a> · <a href="physics-wheels.html">Wheeled vehicles</a></p>
+<p><img src="../../mod/imgs/vehicle-basics-wheel.en.png" alt="Unity WheelCollider properties on the road-wheel template"></p>
+<ol start="3">
 <li>Select <strong>VehicleTrackData</strong> and assign one track-link prefab to <strong>TrackMesh</strong>. Use <strong>LeftTrackMesh</strong> if the left side uses a different shape. Start with the default <strong>TrackDistance</strong> of <code>0.12</code> and adjust it against the actual link length. Leave the generated suspension data in place.</li>
 <li>Click <strong>Edit Track</strong> in the <strong>VehicleData</strong> Inspector. If you opened the track asset's editor directly, assign the vehicle edit object to <strong>Target Edit Object</strong>, then click <strong>Load Suspension Data</strong>. If the edit object is missing, return to <strong>VehicleData</strong> and enter edit mode to generate it again.</li>
 <li>View the wheels from the side. Use <strong>Create Node</strong> in order around the loop, under the road wheels, over the return rollers, and around both ends. Temporarily hide damage geometry or static tracks if they obscure the path.</li>
@@ -858,6 +1050,20 @@
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local verify = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/check_details.lua\&quot;))()\nreturn verify.wheel(\&quot;${wheel}\&quot;, \&quot;${vehicleText}\&quot;)\n&quot;,
+        &quot;tank-wheel&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Wheel template and suspension values verified&quot;
     }
   }
 ]
@@ -1020,7 +1226,7 @@
 <p>Use a local DE editor with a configured game environment and map assets. Build the Windows package with the recipe above, then pass its <code>run.json</code> to the test-drive script.</p>
 <pre><code class="lang-sh">python Tools/ManualMcp/TankTutorial/test_drive.py &quot;&lt;build receipt run.json&gt;&quot; Temp/ManualMcp/TankFirstDrive
 </code></pre>
-<p>The script installs the build and spawns the tank in PlayField through MCP. It drives forward, reverses and turns, then fires the teaching AP shell and verifies that the target loses HP. It exits Play and writes the measurements to the output folder.</p>
+<p>The script uses MCP to install the build, spawn the tank, and verify forward driving, reversing, turning, and a ballistic hit. It switches to Module Based to inspect the loaded modules and checks effect keys in the live object pool. The script exits Play and saves measurements in the output folder. Use the manual drive steps above to check ammo consumption from player input, reload timing, and the appearance of the effects.</p>
 </details>
 <h2 id="11-try-variants-after-the-basic-tank-works">11. Try variants after the basic tank works</h2>
 <table>
