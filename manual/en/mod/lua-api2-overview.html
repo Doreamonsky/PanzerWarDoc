@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Lua API 2 overview | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Lua API 2 overview | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/lua-api2-overview/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="lua-api-2-overview">Lua API 2 overview</h1>
+<p><a href="../../mod/lua-api2-overview.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-overview
+</code></pre>
+<h2 id="1-check-the-client-version">1. Check the client version</h2>
+<p>These examples use <code>GAME_API_VERSION</code> 2 or later. To support older clients, check <code>(GAME_API_VERSION or 1) &gt;= 2</code>. The replay reads the client API version and checks the version branches in xLua.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.GameAPI/GetApiVersion&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 2&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local function api2(v) return (v or 1) &gt;= 2 end\nassert(not api2(nil) and not api2(1) and api2(2) and api2(3))\nassert(CS.ShanghaiWindy.Core.API.GameAPI.GetApiVersion() == 2)\nreturn \&quot;API version verified\&quot;\n&quot;,
+        &quot;manual-api-version&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;API version verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-pick-callbacks-and-queries">2. Pick callbacks and queries</h2>
+<ul>
+<li>Handle startup in <code>OnStarted</code> and use <code>OnVehicleReady</code> to access assembled vehicle components. <code>OnVehicleReady</code> can also run in the garage. Use <code>VehicleAPI.IsGarage</code> to check the context. See <a href="lua-vehicle-init-timing.html">vehicle initialization timing</a>.</li>
+<li>Create and reuse a battle query with <code>VehicleAPI.CreateQuery</code>. Cache model nodes found by <code>TransformAPI.FindDeep</code> or <code>FindAllDeep</code> during initialization. Handle missing results according to each API signature. C# arrays and contact indices start at zero.</li>
+<li>Pass <code>self.script</code> to subscriptions so they end when the behaviour is destroyed. Weapons, modules, landing gear and radar expose change events.</li>
+<li>Use <code>self.script:SetUpdateInterval(seconds)</code> for slower updates. Use <code>SetUpdateEnabled(false)</code> for event-driven behaviours. Draw cached results in <code>OnGUI</code>.</li>
+<li>Angles generally use degrees and distances use metres. Check the signature for speed units. For example, <code>GetSpeedKmh</code> returns kilometres per hour.</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.WeaponAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OnAmmoChanged&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.VehicleAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CreateQuery&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.RadarAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetContactWorldAzimuth&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="examples">Examples</h2>
+<ul>
+<li><a href="lua-api2-missile-rack.html">Missile rack</a></li>
+<li><a href="lua-api2-charged-shot.html">Charged shot</a></li>
+<li><a href="lua-api2-radar-screen.html">Radar display</a></li>
+<li><a href="lua-api2-air-warning.html">Aircraft warning</a></li>
+<li><a href="lua-api2-module-trigger.html">Module animation trigger</a></li>
+<li><a href="lua-api2-engine-gear.html">Engine RPM and landing gear</a></li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/lua-api2-overview.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

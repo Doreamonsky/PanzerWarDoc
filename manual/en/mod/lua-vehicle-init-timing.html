@@ -111,7 +111,7 @@
 }
 </code></pre>
 </details>
-<p>On <a href="../../mod/lua-api2-overview.html">Lua API 2</a> or later, put code that needs assembled vehicle components in <code>OnVehicleReady</code>. The script runs <code>OnStarted</code> first. If the vehicle is already assembled, <code>OnVehicleReady</code> follows immediately. Otherwise it runs once after assembly.</p>
+<p>On <a href="lua-api2-overview.html">Lua API 2</a> or later, put code that needs assembled vehicle components in <code>OnVehicleReady</code>. The script runs <code>OnStarted</code> first. If the vehicle is already assembled, <code>OnVehicleReady</code> follows immediately. Otherwise it runs once after assembly.</p>
 <p>Bind the script to a LuaBehaviorMono on the vehicle. Put your component setup in <code>InitVehicleDependencies</code>. On older clients, resolve the vehicle with <code>TryGetTankInitSystem</code>, then check <code>IsLoaded</code> or subscribe to the loaded event. The example removes its legacy subscription when the behaviour is destroyed.</p>
 <pre><code class="lang-lua">Behavior()
 Property = {}
@@ -253,7 +253,7 @@ return VehicleTiming
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/lua-vehicle-init-timing.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/lua-vehicle-init-timing.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

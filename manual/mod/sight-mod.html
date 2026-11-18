@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>09. Sight Mod 瞄具模组 (未汉化) | Panzer War Document </title>
+      <title>制作载具瞄具模组 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="09. Sight Mod 瞄具模组 (未汉化) | Panzer War Document ">
+      <meta name="title" content="制作载具瞄具模组 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,26 +77,390 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="09-sight-mod-瞄具模组-未汉化">09. Sight Mod 瞄具模组 (未汉化)</h1>
 
-<p>打开项目</p>
-<p>Open the project</p>
-<p><img src="imgs/7fca01d3ec01_1637488736841-6f0662c4-607f-4049-b133-6d3a899d19e5.jpeg" alt=""></p>
-<p>在项目窗口中右键单击，然后选择此选项。</p>
-<p>Right click in the project window and click this.</p>
-<p><img src="imgs/c44cf892038a_1637488736788-def2b73f-896a-4aaf-822c-4bcce9d46617.jpeg" alt=""></p>
-<p>你可以参考此设置。Range 是绘制刻线时的目标距离。Number 是放置在刻线旁的文本。Notch Size 是从左侧增加刻线长度的数值。</p>
-<p>You can refer this setting. Range is the distance to the target at which the notch will be drawn. Number is which text will be placed by the notch. Notch Size is how much to increase the length of the notch from the left.</p>
-<p><img src="imgs/923959aefab7_1637488736812-4c12d34f-e072-4b42-9bec-1d52a2e5d840.jpeg" alt=""></p>
-<p>你可以在编辑器中预览瞄具。只需点击 Preview in Editor 按钮，然后点击 Play。</p>
-<p>You can preview the sight in the editor. Just click Preview in Editor Button. And then click Play.</p>
-<p><img src="imgs/d791778a1d32_1637488736807-d6af44e2-a2bf-486a-9a4d-d46b22c472d9.jpeg" alt=""></p>
-<p>如果你想绘制自定义线条，可以关闭 drawCentralLineVert 和 drawCentralLineHorz。</p>
-<p>If you want to draw custom lines,then you can toggle off drawCentralLineVert and drawCentralLineHorz.</p>
-<p>注意！Specific Vehicle 用于设置需要自定义瞄具的车辆名称。</p>
-<p>Attention! Specific Vehicle is for setting the name of your vehicle which needs custom sight.</p>
-<p>要导出，请点击按钮 'export sightdata for players'。</p>
-<p>For exporting,click the button 'export sightdata for players'.</p>
+<!-- Generated from tutorials/sight-mod/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="制作载具瞄具模组">制作载具瞄具模组</h1>
+<p><strong>中文</strong> | <a href="../en/mod/sight-mod.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run sight-mod --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;5cd6ae9b-1231-5334-90e0-87a3974c3d4a&quot;,
+    &quot;sight&quot;: &quot;${fixture}/TutorialSight.asset&quot;,
+    &quot;gun&quot;: &quot;${fixture}/TutorialSightGun.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>在 Unity 的 Create 菜单创建 <strong>UserSightData</strong>，填写显示名并选择密位制。</li>
+<li>在 <strong>Ballistics</strong> 添加一组弹道。在 <code>crosshairDistances</code> 中为每条刻线填写 <code>range</code>（米）、<code>number</code>（旁边的数字）和 <code>notchSize</code>（线长调整值）。横向尺度 <code>crosshairHorRanges</code> 使用 mil。</li>
+<li>需要自定义准星时，关闭对应的水平与垂直中心线，再添加自己的线条。</li>
+</ol>
+<p><img src="imgs/sight-mod-ballistics.zh-CN.png" alt="弹道刻线的距离、数字与长度"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.UserSightData)&quot;,
+        &quot;${sight}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;displayName\&quot;: {\&quot;defaultName\&quot;: \&quot;Tutorial Sight\&quot;}, \&quot;guid\&quot;: \&quot;d326f481-ac40-53f5-8d3c-2051b6713301\&quot;, \&quot;drawCentralLineVert\&quot;: false, \&quot;drawCentralLineHorz\&quot;: false, \&quot;ballistics\&quot;: [{\&quot;defaultVelocity\&quot;: 1430, \&quot;defaultGravity\&quot;: 9.8, \&quot;dynamicGravity\&quot;: true, \&quot;dynamicVelocity\&quot;: true, \&quot;crosshairDistances\&quot;: [{\&quot;range\&quot;: 400, \&quot;number\&quot;: 4, \&quot;notchSize\&quot;: 2}], \&quot;crosshairHorRanges\&quot;: [{\&quot;range\&quot;: 10, \&quot;number\&quot;: 10, \&quot;notchSize\&quot;: 1}]}], \&quot;lines\&quot;: [{\&quot;points\&quot;: [{\&quot;x\&quot;: 0.4, \&quot;y\&quot;: 0.5}, {\&quot;x\&quot;: 0.6, \&quot;y\&quot;: 0.5}], \&quot;thickness\&quot;: 2, \&quot;isRelativeSize\&quot;: true}]}&quot;,
+        &quot;@asset:${sight}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${sight}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sight}/ballistics/0/crosshairDistances/0/range&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 400&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sight}/ballistics/0/crosshairDistances/0/number&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 4&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sight}/ballistics/0/crosshairDistances/0/notchSize&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 2&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>把 <strong>UserSightData</strong> 加入构建管线。要作为载具默认瞄具，将同一资源赋给 <code>TankFireParameter.customSightData</code>。使用共享开火数据的载具在共享数据中设置。</li>
+<li>构建和安装后进游戏检查。游戏依次查找玩家为该载具设置的覆盖、载具自带的瞄具和全局默认瞄具。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.SharedGunData)&quot;,
+        &quot;${gun}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${gun}/tankFireParameter/customSightData&quot;,
+      &quot;value&quot;: &quot;@asset:${sight}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${gun}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${gun}/tankFireParameter/customSightData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) TutorialSight&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${sight}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;usersight\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -106,7 +470,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/sight-mod.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/sight-mod.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

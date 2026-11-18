@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>17.0 Merge Texture 通道合并贴图 | Panzer War Document </title>
+      <title>合并 PBR 遮罩贴图 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="17.0 Merge Texture 通道合并贴图 | Panzer War Document ">
+      <meta name="title" content="合并 PBR 遮罩贴图 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,13 +77,133 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="170-merge-texture-通道合并贴图">17.0 Merge Texture 通道合并贴图</h1>
 
-<p>按 Ctrl + G 打开 GM 编辑器，并打开 Remap PBR Mask 工具。</p>
-<p>Press Ctrl + G to open the GM Editor and open Remap PBR Mask tool.</p>
-<p>你可以将 metallic、ao 和 smoothness 贴图合并为 Panzer War Mask 贴图。</p>
-<p>You can merge metallic, ao and smoothness texture into Panzer War Mask texture.</p>
-<p><img src="imgs/18f20442d0b9_1733118342755-357e983d-df9a-47c2-978b-990c74a906b7.png" alt=""></p>
+<!-- Generated from tutorials/merge-texture-channels/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="合并-pbr-遮罩贴图">合并 PBR 遮罩贴图</h1>
+<p><strong>中文</strong> | <a href="../en/mod/merge-texture-channels.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run merge-texture-channels
+</code></pre>
+<ol>
+<li>在模组 SDK 的 <strong>GM 编辑器 → 合并遮罩贴图</strong> 打开 <strong>Remap PBR Masks</strong>。</li>
+<li>按槽位填入 <strong>metallic</strong>、<strong>occlusion</strong>、<strong>smoothness</strong>。手里只有粗糙度图时，将它放入 smoothness 槽，勾选 <strong>Is Roughness</strong>。</li>
+<li>点击 <strong>Create Mask Map</strong> 并保存 PNG。输出使用 metallic 贴图的尺寸，未指定 metallic 时使用 512 × 512。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>输出通道</th>
+<th>读取内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>metallic 的红色通道</td>
+</tr>
+<tr>
+<td>G</td>
+<td>occlusion 的绿色通道</td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+</tr>
+<tr>
+<td>A</td>
+<td>smoothness 的红色通道，经工具的平滑度转换。使用 roughness 时转换后再反相</td>
+</tr>
+</tbody>
+</table>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.SystemInfo/graphicsDeviceName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>DE 中验证 shader 的独立样例。需有相邻的 Panzer-War-Mod-SDK 工作副本，且工程内的 TutorialMaskTest 目录尚未存在。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+      &quot;args&quot;: [
+        &quot;Assets&quot;,
+        &quot;TutorialMaskTest&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../../Panzer-War-Mod-SDK/Packages/Sdk/com.shanghaiwindy.middlelayer/Tools/TextureMergeTool/Editor/MaskMap.shader&quot;,
+        &quot;Assets/TutorialMaskTest/SDKMask.shader&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Assets/TutorialMaskTest/SDKMask.shader&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U = CS.UnityEngine\nlocal function texture(r, g)\n    local image = U.Texture2D(2, 2, U.TextureFormat.RGBA32, false, true)\n    for x = 0, 1 do\n        for y = 0, 1 do\n            image:SetPixel(x, y, U.Color(r, g, 0, 1))\n        end\n    end\n    image:Apply()\n    return image\nend\nlocal shader = U.Shader.Find(\&quot;Hidden/MaskMap\&quot;)\nassert(shader and shader.isSupported, 'SDK MaskMap shader did not import')\nlocal material = U.Material(shader)\nlocal metal, ao, smooth = texture(0.25, 0.4), texture(0.1, 0.75), texture(0.48, 0.8)\nlocal readout = texture(0, 0)\nlocal target = U.RenderTexture(2, 2, 0, U.RenderTextureFormat.ARGB32, U.RenderTextureReadWrite.Linear)\nlocal active = U.RenderTexture.active\nlocal ok, failure = pcall(function()\n    material:SetTexture(\&quot;_Metallic\&quot;, metal)\n    material:SetTexture(\&quot;_Occlusion\&quot;, ao)\n    material:SetTexture(\&quot;_Smoothness\&quot;, smooth)\n    for useRoughness = 0, 1 do\n        material:SetFloat(\&quot;_UseRoughness\&quot;, useRoughness)\n        U.Graphics.Blit(metal, target, material)\n        U.RenderTexture.active = target\n        readout:ReadPixels(U.Rect(0, 0, 2, 2), 0, 0)\n        local read = readout:GetPixel(0, 0)\n        local expect = smooth:GetPixel(0, 0).r ^ 0.45\n        if useRoughness == 1 then expect = 1 - expect end\n        assert(math.abs(read.r - .25) &lt; .015 and math.abs(read.g - .75) &lt; .015 and read.b &lt; .01)\n        assert(math.abs(read.a - expect) &lt; .015, tostring(read.a) .. ' != ' .. tostring(expect))\n    end\nend)\nU.RenderTexture.active = active\nfor _, asset in ipairs({ material, metal, ao, smooth, readout, target }) do U.Object.DestroyImmediate(asset) end\nassert(ok, failure)\nreturn \&quot;SDK RGBA channels and roughness passed\&quot;\n&quot;,
+        &quot;tutorial-mask&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;SDK RGBA channels and roughness passed&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/DeleteAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Assets/TutorialMaskTest&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>将输出用作材质的遮罩贴图。回放验证了 SDK shader 的数值和粗糙度分支，最终外观在载具材质上检查。</p>
 
 </article>
           </div>
@@ -93,7 +213,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/merge-texture-channels.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/merge-texture-channels.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

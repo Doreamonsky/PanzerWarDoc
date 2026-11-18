@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Create a map in the Map Workshop | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Create a map in the Map Workshop | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/map-editor-tutorial/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="create-a-map-in-the-map-workshop">Create a map in the Map Workshop</h1>
+<p><a href="../../gameplay/map-editor-tutorial.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run map-editor-tutorial
+</code></pre>
+<ol>
+<li>From the garage, enter the <strong>Map Workshop</strong>. Start with a blank map. Place the terrain and use invisible walls to enclose its edges. Separate overlapping surfaces to prevent Z-fighting.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;editor_status&quot;,
+    &quot;arguments&quot;: {}
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Game-session example. Run map_new in a new teaching session. Get asset IDs from the catalog and keep the rule IDs returned by placement. Repeat wall placement and adjust the size to fit your map.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_enter_mode&quot;,
+    &quot;arguments&quot;: {
+      &quot;mode&quot;: &quot;93affaa7-4524-4c55-8a1b-3045a2310e8b&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_state&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;map_new&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;map_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;search&quot;: &quot;${terrainName}&quot;,
+      &quot;detail&quot;: true
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${terrainAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;search&quot;: &quot;${wallName}&quot;,
+      &quot;detail&quot;: true
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${wallAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,100&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_transform&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${wallRule}&quot;,
+      &quot;scale&quot;: &quot;2,1,1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>Place <code>TeamAStartPoint</code> for team A, <code>TeamBStartPoint</code> for team B, and <code>PatorlPoint</code> for patrols. Saving requires at least one of each tag. Keep the two teams' spawn points apart and leave room for their vehicles.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.eTag/TeamAStartPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(eTag) TeamAStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.eTag/TeamBStartPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(eTag) TeamBStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.eTag/PatorlPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(eTag) PatorlPoint&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Game-session example. Get a tag asset ID from the catalog and keep each returned rule ID. The enum values represent team A, team B, and patrol.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;map_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;search&quot;: &quot;${tagAssetName}&quot;,
+      &quot;detail&quot;: true
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${tagAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,-50&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule0}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule0}&quot;,
+      &quot;json&quot;: &quot;{\&quot;tag\&quot;: 0}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${tagAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,50&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule1}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule1}&quot;,
+      &quot;json&quot;: &quot;{\&quot;tag\&quot;: 1}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${tagAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule2}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule2}&quot;,
+      &quot;json&quot;: &quot;{\&quot;tag\&quot;: 2}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_items&quot;,
+    &quot;arguments&quot;: {}
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>Save under a new name. Return to the garage and select the map in a compatible game mode to check both teams' spawn positions and vehicle movement. You can first use the test range to check map and terrain loading. Runtime detail depends on distance and the assets' LOD settings.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Game-session example. Pick a new save name if TutorialMap exists. The test range verifies loading. Check team spawns in a compatible battle mode.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;map_navmesh&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;map_save&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;TutorialMap&quot;,
+      &quot;overwrite&quot;: false
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_maps&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;runtime_exit_mode&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;runtime_enter_mode&quot;,
+    &quot;arguments&quot;: {
+      &quot;mode&quot;: &quot;PlayField&quot;,
+      &quot;map&quot;: &quot;TutorialMap&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/gameplay/map-editor-tutorial.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

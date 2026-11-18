@@ -82,8 +82,8 @@
 <link rel="stylesheet" href="../tools/tutorials.css">
 <h1 id="载具开发疑难排查">载具开发疑难排查</h1>
 <p><strong>中文</strong> | <a href="../en/mod/vehicle-dev-qa.html">English</a></p>
-<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
-<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-dev-qa
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-dev-qa --capture
 </code></pre>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -114,6 +114,7 @@
 <p>检查 <a href="../gameplay/install-mods.html">模组安装</a> 的目录和目标平台。在 <a href="../gameplay/runtime-log.html">运行日志</a> 查第一条报错，确认模组包关联了正确的构建管线。载具能加载但行为异常时，先对照 <a href="../component/vehicle-text-data.html">VehicleTextData</a> 检查载具配置、伤害模型、履带、炮弹、发动机和开火音效引用。</p>
 <h2 id="炮管无法抬升或下压">炮管无法抬升或下压</h2>
 <p>普通炮管填写正值作为 <strong>仰角</strong>和<strong>俯角</strong>的幅度。例如 <code>UpMaxDegree = 20</code>、<code>DownMaxDegree = 8</code> 对应 <code>-8°</code> 到 <code>20°</code>。检查共享炮塔配置和按方向覆盖的限制。炮塔横向旋转的 <code>maxTurretPositiveAngle</code> 与 <code>maxTurretNegativeAngle</code> 是另一组字段。</p>
+<p><img src="imgs/vehicle-dev-qa-elevation-angles.zh-CN.png" alt="炮塔配置中高亮的仰角和俯角"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -194,7 +195,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

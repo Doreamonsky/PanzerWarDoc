@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Match the missile rack models to the ammo count | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Match the missile rack models to the ammo count | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/lua-api2-missile-rack/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="match-the-missile-rack-models-to-the-ammo-count">Match the missile rack models to the ammo count</h1>
+<p><a href="../../mod/lua-api2-missile-rack.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-missile-rack
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/MissileRack.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_MissileRack.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Attach the script to the vehicle model and add children such as <code>Missile_1</code> and <code>Missile_2</code> in hierarchy order. Set the zero-based <code>weaponIndex</code> and the text to match in object names, <code>modelPrefix</code>. Matching is case-sensitive.</p>
+<p>The script caches the models during initialization and shows the first models in the list according to the weapon's current ammo count. An ammo change refreshes the display. When ammo decreases, the models at the end disappear first.</p>
+<pre><code class="lang-lua">Behavior()
+Property = {
+    weaponIndex = { type = &quot;number&quot;, value = 1 },
+    modelPrefix = { type = &quot;string&quot;, value = &quot;Missile_&quot; },
+}
+
+local MissileRack = class(&quot;MissileRack&quot;)
+
+function MissileRack:OnVehicleReady(vehicle)
+    self.weapon = WeaponAPI.GetWeapon(vehicle, self.weaponIndex)
+    if self.weapon == nil then
+        return
+    end
+    self.models = TransformAPI.FindAllDeep(self.transform, self.modelPrefix)
+    self:Refresh()
+    WeaponAPI.OnAmmoChanged(self.script, self.weapon, function()
+        self:Refresh()
+    end)
+end
+
+function MissileRack:Refresh()
+    local left = WeaponAPI.GetTotalAmmo(self.weapon)
+    for index = 0, self.models.Length - 1 do
+        self.models[index].gameObject:SetActive(index &lt; left)
+    end
+end
+
+return MissileRack
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-api2-missile-rack/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [
+          &quot;Missile_1&quot;,
+          &quot;Missile_2&quot;
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;numberProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;weaponIndex&quot;,
+                &quot;value&quot;: 1
+              }
+            ],
+            &quot;stringProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;modelPrefix&quot;,
+                &quot;value&quot;: &quot;Missile_&quot;
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) MissileRack&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>The replay checks the initial count, consumption and resupply logic. Verify actual firing and resupply in game.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal rounds, callback, searches = 2, nil, 0\nlocal weapon = {}\nlocal visible = {}\nlocal function model(index)\n    return { gameObject = { SetActive = function(_, value) visible[index] = value end } }\nend\nE.WeaponAPI = {\n    GetWeapon = function(_, index) if index == 1 then return weapon end end,\n    GetTotalAmmo = function(w) assert(w == weapon); return rounds end,\n    OnAmmoChanged = function(owner, w, cb) assert(owner and w == weapon); callback = cb end,\n}\nE.TransformAPI = { FindAllDeep = function(_, prefix)\n    assert(prefix == \&quot;Missile_\&quot;); searches = searches + 1\n    return { Length = 2, [0] = model(1), [1] = model(2) }\nend }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-api2-missile-rack/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\ninstance({ weaponIndex = 0 }):OnVehicleReady({})\nassert(searches == 0 and callback == nil)\ninstance({ weaponIndex = 1, modelPrefix = \&quot;Missile_\&quot;, script = {} }):OnVehicleReady({})\nassert(visible[1] and visible[2])\nrounds = 1\ncallback()\nassert(visible[1] and not visible[2])\nrounds = 2\ncallback()\nassert(visible[1] and visible[2] and searches == 1)\nlocal go = CS.UnityEditor.AssetDatabase.LoadMainAssetAtPath('${prefab}')\nlocal actual = CS.ShanghaiWindy.Core.API.TransformAPI.FindAllDeep(go.transform, \&quot;Missile_\&quot;)\nassert(actual.Length == 2 and actual[0].name == \&quot;Missile_1\&quot; and actual[1].name == \&quot;Missile_2\&quot;)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-api2-missile-rack&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/lua-api2-missile-rack.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

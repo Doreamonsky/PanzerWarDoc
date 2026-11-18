@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>08. Vehicle Thumbnail 载具缩略图 | Panzer War Document </title>
+      <title>渲染并设置载具缩略图 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="08. Vehicle Thumbnail 载具缩略图 | Panzer War Document ">
+      <meta name="title" content="渲染并设置载具缩略图 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,25 +77,191 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="08-vehicle-thumbnail-载具缩略图">08. Vehicle Thumbnail 载具缩略图</h1>
 
-<h1 id="import-the-thumbnail-tool-导入缩略图工具">Import the Thumbnail Tool 导入缩略图工具</h1>
-<p><img src="imgs/afbe6f704588_1680959061260-63601d23-e5a7-4c68-aa0b-bf06cc468664.png" alt=""></p>
-<p><img src="imgs/1eb03c54f619_1680959110192-b4f546b7-07ea-4bf6-bb95-8dd09f7b2fb3.png" alt=""></p>
-<h1 id="set-the-render-size-设置渲染大小">Set the Render Size 设置渲染大小</h1>
-<p>640 x 360 is recommended, which is the game's standard thumbnail size. An oversized thumbnail causes a serious memory burden.</p>
-<p>推荐设置为 640 x 360，这是游戏的标准缩略图尺寸。过大的缩略图会导致严重的内存负担。</p>
-<p><img src="imgs/47828cfcbf25_1680959170374-32b3708d-a1aa-4976-8445-8e1776bf94ab.png" alt=""></p>
-<h1 id="set-the-vehicle-to-render-设置渲染载具">Set the Vehicle to Render 设置渲染载具</h1>
-<p>Drag the vehicle prefab into the list.</p>
-<p>将载具预制体拖入列表。</p>
-<p><img src="imgs/35bfcc60f816_1680959209969-96d3c242-807b-4d8f-892b-89c2996ad847.png" alt=""></p>
-<p><img src="imgs/e7b6a0919d4e_1680959247283-5db1f559-d6f7-4743-9044-af4ef6a982e3.png" alt=""></p>
-<p>The rendered image can be found at Others\Renderering\Common\KV-1.png, in the folder next to Assets.</p>
-<p>渲染后的图片位于 Assets 同级目录下的 Others\Renderering\Common\KV-1.png。</p>
-<p>Import the image into Unity, then drag it into this field.</p>
-<p>将图片导入 Unity，然后拖入此字段。</p>
-<p><img src="imgs/eb5e9ed12bd9_1680959333533-5039a769-4e17-4cd8-a638-b9a84678d897.png" alt=""></p>
+<!-- Generated from tutorials/vehicle-thumbnail/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="渲染并设置载具缩略图">渲染并设置载具缩略图</h1>
+<p><strong>中文</strong> | <a href="../en/mod/vehicle-thumbnail.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-thumbnail --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;vehicleInfo&quot;: &quot;${fixture}/TutorialThumbnailInfo.asset&quot;,
+    &quot;source&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar&quot;,
+    &quot;thumbnail&quot;: &quot;${fixture}/TutorialThumbnail.png&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>保存手头的场景。在 <strong>VehicleData</strong> 的 Inspector 绑定主模型并设置缩略图的相机范围 <code>thumbnailSize</code>。数值越大，画面包含的范围越广，图像仍固定为 <strong>640 × 360</strong>。</li>
+<li>点击 <strong>渲染缩略图</strong>。Unity 会切换到预览场景，在 VehicleData 同目录输出与主模型同名的透明 PNG，并将它导入为 Sprite。同目录已有的同名 PNG 会被覆盖。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.SystemInfo/graphicsDeviceName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>先保存场景。将变量替换成自己的资产与输出路径。短等待后工具可能报告仍在运行，等待 PNG 导入后再查验。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.VehicleDataEditor/AsyncCreateThumbnail&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${yourVehicleData}&quot;
+      ],
+      &quot;timeout&quot;: 1
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${renderedPng}&quot;
+      ]
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>打开 <strong>VehicleInfo</strong> 的流式缩略图字段，确认已经关联新图。编辑器根据 VehicleTextData 的 <code>AssetName</code> 查找要更新的 VehicleInfo。如果未匹配，手动赋图。也可以导入自己的 640 × 360 图片并赋给该字段。</li>
+</ol>
+<p><img src="imgs/vehicle-thumbnail-binding.zh-CN.png" alt="VehicleInfo 中指定的流式缩略图"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}.asset&quot;,
+        &quot;${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-thumbnail/TutorialThumbnail.png&quot;,
+        &quot;${thumbnail}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${thumbnail}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;imageGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/streamingThumnail/assetGUID&quot;,
+      &quot;value&quot;: &quot;${imageGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/streamingThumnail/extra&quot;,
+      &quot;value&quot;: &quot;${thumbnail}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/streamingThumnail/assetGUID&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${imageGuid}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -105,7 +271,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/vehicle-thumbnail.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/vehicle-thumbnail.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

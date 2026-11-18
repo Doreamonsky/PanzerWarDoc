@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Display radar contacts in a mod | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Display radar contacts in a mod | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/lua-api2-radar-screen/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="display-radar-contacts-in-a-mod">Display radar contacts in a mod</h1>
+<p><a href="../../mod/lua-api2-radar-screen.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-radar-screen
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/RadarScreen.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_RadarScreen.prefab&quot;,
+    &quot;vehicleData&quot;: &quot;${fixture}/Tutorial_RadarData.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<h2 id="1-configure-the-ground-radar">1. Configure the ground radar</h2>
+<p>In <code>VehicleTextData</code>, expand <code>groundAARadarData</code> under <strong>AA Radar</strong> and enable <code>hasRadar</code>. Set the detection range, then adjust the search area and display ranges for the model.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxDetectionRange</code></td>
+<td>Maximum detection range in metres</td>
+</tr>
+<tr>
+<td><code>isFullRotation</code>, <code>fullRotationRate</code></td>
+<td>Full-rotation search and its rate in degrees per second</td>
+</tr>
+<tr>
+<td><code>searchAzimuthHalfAngle</code>, <code>searchElevationHalfAngle</code></td>
+<td>Azimuth and elevation half angles in degrees</td>
+</tr>
+<tr>
+<td><code>minElevationAngle</code>, <code>detectGroundTargets</code></td>
+<td>Ground clutter elevation filter and ground target detection</td>
+</tr>
+<tr>
+<td><code>displayRanges</code></td>
+<td>Selectable display ranges in metres</td>
+</tr>
+<tr>
+<td><code>canUsePD</code>, <code>pdMinDetectableSpeed</code></td>
+<td>Pulse-Doppler mode and its speed threshold</td>
+</tr>
+<tr>
+<td><code>hasIFF</code></td>
+<td>Friendly contact identification</td>
+</tr>
+</tbody>
+</table>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-text-data/Tutorial_VehicleTextData.asset&quot;,
+        &quot;${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/groundAARadarData/hasRadar&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/groundAARadarData/maxDetectionRange&quot;,
+      &quot;value&quot;: &quot;12000&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/groundAARadarData/isFullRotation&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/groundAARadarData/fullRotationRate&quot;,
+      &quot;value&quot;: &quot;60&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/groundAARadarData/hasRadar&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/groundAARadarData/maxDetectionRange&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 12000&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-bind-the-script-and-update-the-list">2. Bind the script and update the list</h2>
+<p>Attach the script to the vehicle, obtain the radar in <code>OnVehicleReady</code> and subscribe to lock changes. The example refreshes the contact text every 0.2 seconds and draws the cached text in <code>OnGUI</code>. Read contacts with a zero-based index. A chaff return can have no vehicle. The list uses <code>GetContactWorldAzimuth</code> for world bearing.</p>
+<pre><code class="lang-lua">Behavior()
+Property = {}
+
+local RadarScreen = class(&quot;RadarScreen&quot;)
+local GUI = CS.UnityEngine.GUI
+local Rect = CS.UnityEngine.Rect
+
+function RadarScreen:OnVehicleReady(vehicle)
+    local ok, radar = RadarAPI.TryGetRadar(vehicle)
+    if not ok then
+        self.script:SetUpdateEnabled(false)
+        return
+    end
+    self.vehicle = vehicle
+    self.radar = radar
+    self.lines = {}
+    self.text = &quot;&quot;
+    RadarAPI.OnLockChanged(self.script, radar, function(locked, target)
+        if locked and target ~= nil then
+            print(&quot;[Radar] locked &quot; .. VehicleAPI.GetDisplayName(target))
+        elseif not locked then
+            print(&quot;[Radar] lock lost&quot;)
+        end
+    end)
+    self.script:SetUpdateInterval(0.2)
+end
+
+function RadarScreen:OnUpdated()
+    self.visible = self.radar ~= nil
+        and VehicleAPI.IsLocalPlayer(self.vehicle)
+        and RadarAPI.IsActive(self.radar)
+    if not self.visible then
+        return
+    end
+    local written = 0
+    for index = 0, RadarAPI.GetContactCount(self.radar) - 1 do
+        local ok, target, distance, azimuth, elevation, altitude, radialSpeed, isFriendly =
+            RadarAPI.GetContact(self.radar, index)
+        if ok then
+            local name = target ~= nil and VehicleAPI.GetDisplayName(target) or &quot;?&quot;
+            local bearing = RadarAPI.GetContactWorldAzimuth(self.radar, index)
+            written = written + 1
+            self.lines[written] = string.format(&quot;%s %s  %.1f km  %03.0f°  %.0f m&quot;,
+                isFriendly and &quot;+&quot; or &quot;!&quot;, name, distance / 1000, bearing, altitude)
+        end
+    end
+    for index = written + 1, #self.lines do
+        self.lines[index] = nil
+    end
+    self.text = table.concat(self.lines, &quot;\n&quot;)
+end
+
+function RadarScreen:OnGUI()
+    if self.visible then
+        GUI.Label(Rect(20, 120, 360, 300), self.text)
+    end
+end
+
+return RadarScreen
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-api2-radar-screen/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) RadarScreen&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>Remote vehicle copies do not scan on the local client. The replay checks the missing-radar path and list formatting. Verify detection and locking in game.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal radar, aircraft = {}, {}\nlocal count, text, updating, active = 2, nil, true, true\nE.CS = { UnityEngine = { GUI = { Label = function(_, value) text = value end },\n                        Rect = function(...) return { ... } end } }\nE.VehicleAPI = { IsLocalPlayer = function(v) return v.localPlayer end,\n                 GetDisplayName = function(_) return \&quot;Example\&quot; end }\nE.RadarAPI = {\n    TryGetRadar = function(v) return v.hasRadar, v.hasRadar and radar or nil end,\n    OnLockChanged = function(owner, r, cb) assert(owner and r == radar and cb) end,\n    IsActive = function(_) return active end,\n    GetContactCount = function(_) return count end,\n    GetContact = function(r, i)\n        assert(r == radar and i &gt;= 0 and i &lt;= 1)\n        if i == 0 then return true, aircraft, 2500, 45, 2, 500, 40, true end\n        return true, nil, 3100, 50, 2, 600, 35, false\n    end,\n    GetContactWorldAzimuth = function(_, i) return i == 0 and 270 or 280 end,\n}\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-api2-radar-screen/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\nlocal script = { SetUpdateEnabled = function(_, enabled) updating = enabled end,\n                 SetUpdateInterval = function(_, interval) assert(interval == 0.2) end }\nlocal unavailable = instance({ script = script })\nunavailable:OnVehicleReady({})\nunavailable:OnUpdated()\nassert(updating == false and not unavailable.visible)\nlocal sample = instance({ script = script })\nsample:OnVehicleReady({ hasRadar = true, localPlayer = true })\nsample:OnUpdated()\nsample:OnGUI()\nassert(string.find(text, \&quot;Example  2.5 km  270\&quot;, 1, true))\nassert(string.find(text, \&quot;?  3.1 km  280\&quot;, 1, true))\ncount = 1\nsample:OnUpdated()\nassert(not string.find(sample.text, \&quot;?\&quot;, 1, true))\nactive = false\nsample:OnUpdated()\nassert(not sample.visible)\nlocal ok = CS.ShanghaiWindy.Core.API.RadarAPI.TryGetRadar(nil)\nassert(ok == false)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-api2-radar-screen&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/lua-api2-radar-screen.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

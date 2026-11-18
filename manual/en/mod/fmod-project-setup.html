@@ -97,7 +97,8 @@
 </code></pre>
 </details>
 <h2 id="1-open-the-project-and-build-banks">1. Open the project and build banks</h2>
-<p><a href="fmod-installation.html">Install FMOD Studio</a> first. In Studio, use <strong>File → Open</strong> to select <code>PanzerWar-FMod-UGC-Project/PanzerWar-FMod-Project.fspackage</code> from the SDK and choose a new extraction directory. If you have a complete <code>.fspro</code> project, open it directly. Build banks for the target platform in Studio. Check the Desktop output for <code>Master.strings.bank</code>.</p>
+<p><a href="fmod-installation.html">Install FMOD Studio</a> first. If you have a complete <code>.fspro</code> project, open it in Studio and build banks for the target platform. Check the Desktop output for <code>Master.strings.bank</code>. If you already have platform banks, go to step 2.</p>
+<p>To unpack <code>PanzerWar-FMod-UGC-Project/PanzerWar-FMod-Project.fspackage</code> from the SDK, use <strong>File → Open</strong> and choose a new directory. In the Studio 2.02.09 test, unpacking succeeded but Studio reported missing Workspace, Mixer and Master Bank data when loading. If you see this warning, use a complete project or existing banks.</p>
 <p>With Studio connected, use FMOD MCP's <code>list_banks</code> to check the project and <code>build_banks</code> to build it. The Unity MCP recipe below checks the SDK archive and an existing Desktop bank.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -175,7 +176,7 @@
 ]
 </code></pre>
 </details>
-<p>The command-line build produced Desktop banks from Studio's bundled example. Opening the SDK package in Studio and exercising the Unity settings UI are pending desktop verification.</p>
+<p>The command-line build produced Desktop banks from Studio's bundled example. Saving and refreshing in the Unity settings UI still need verification.</p>
 
 </article>
           </div>
@@ -185,7 +186,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/fmod-project-setup.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/fmod-project-setup.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

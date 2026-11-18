@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.6 Flight 飞机 | Panzer War Document </title>
+      <title>为飞机设置起落架动画 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.6 Flight 飞机 | Panzer War Document ">
+      <meta name="title" content="为飞机设置起落架动画 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,39 +77,725 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="026-flight-飞机">02.6 Flight 飞机</h1>
 
-<h1 id="起落架动画控制器与动画-landing-gear-animator-controller-and-animations">起落架动画控制器与动画 Landing Gear Animator Controller and Animations</h1>
-<h2 id="动画准备-preparing-the-animations">动画准备 Preparing the Animations</h2>
-<p>需要使用 Animation 或者 Blender 等工具，制作三个飞机状态的动画。</p>
-<p>You need to use Animation, Blender or a similar tool to key three aircraft state animations.</p>
-<p>飞行中动画：起落架收起的常态</p>
-<p>In-flight animation: the steady state with the landing gear retracted.</p>
-<p>降落动画：起落架从收起到展开的过程</p>
-<p>Landing animation: the transition of the landing gear from retracted to extended.</p>
-<p>降落完毕动画：起落架展开的常态</p>
-<p>Landing-complete animation: the steady state with the landing gear extended.</p>
-<p>需要把动画绑定在显示模型上。</p>
-<p>The animations must be keyed on the display model.</p>
-<p><img src="imgs/a18504eb75e1_1675570095807-961adf6d-a8dc-477a-bc23-d561ecd3be21.png" alt=""><img src="imgs/f91244fa0465_1675570108718-0389ae7e-79ae-43c0-8260-15e0c178f3ea.png" alt=""></p>
-<p><img src="imgs/a5e991387021_1675570161946-e82124cc-70f3-4a72-8e19-26ab89ca43cd.png" alt=""></p>
-<h2 id="动画控制器准备-preparing-the-animator-controller">动画控制器准备 Preparing the Animator Controller</h2>
-<p>创建一份 Override 的动画控制器。</p>
-<p>Create an Override animator controller.</p>
-<p><img src="imgs/54a98e72ed68_1675570397903-a17b60ad-f029-4095-9c6e-4cb5dba56c0e.png" alt=""></p>
-<p>Controller 选择项目内自带的 BF-110。</p>
-<p>For Controller, select the BF-110 that comes with the project.</p>
-<p><img src="imgs/a3e49923c208_1675570431959-1844eee4-e049-4c8f-8919-6d8f311074b8.png" alt=""></p>
-<p>右侧的三个动画表示用你的动画去覆盖原本动画控制器的动画。</p>
-<p>The three animations on the right are the ones your own animations will use to override the animations in the original animator controller.</p>
-<p>比如这样：用自己的 landing 动画，覆盖默认的 landing 动画。</p>
-<p>For example: use your own landing animation to override the default landing animation.</p>
-<p>三个都要填上。</p>
-<p>All three must be filled in.</p>
-<p><img src="imgs/e2b156042725_1675570494608-e1f6215a-878d-43a8-b539-1a186425706f.png" alt=""></p>
-<p>在模型上增加 Animator 组件。</p>
-<p>Add an Animator component to the model.</p>
-<p><img src="imgs/2df2ec17089e_1675570565196-afdb5142-53bd-44de-b981-b4d704226d20.png" alt=""></p>
+<!-- Generated from tutorials/flight-vehicles/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="为飞机设置起落架动画">为飞机设置起落架动画</h1>
+<p><strong>中文</strong> | <a href="../en/mod/flight-vehicles.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run flight-vehicles --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;base&quot;: &quot;${fixture}/TutorialGear.controller&quot;,
+    &quot;override&quot;: &quot;${fixture}/TutorialGearOverride.overrideController&quot;,
+    &quot;model&quot;: &quot;${fixture}/TutorialFlight.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>在自己的模型上准备三段动画。<strong>Flying</strong> 保存收起的常态，<strong>Gear</strong> 保存收放过渡，<strong>Landing</strong> 保存展开的常态。动画绑定路径从飞机气动预制体的 <strong>Refer</strong> 节点计算。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimationClip)&quot;,
+        &quot;${fixture}/Flying.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/Flying.anim/name&quot;,
+      &quot;value&quot;: &quot;Flying&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/Flying.anim/SetCurve&quot;,
+      &quot;args&quot;: [
+        &quot;GearDoor&quot;,
+        &quot;UnityEngine.Transform&quot;,
+        &quot;localPosition.y&quot;,
+        &quot;@static:UnityEngine.AnimationCurve/Linear(0, 0, 1, 1)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${fixture}/Flying.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimationClip)&quot;,
+        &quot;${fixture}/Landing.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/Landing.anim/name&quot;,
+      &quot;value&quot;: &quot;Landing&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/Landing.anim/SetCurve&quot;,
+      &quot;args&quot;: [
+        &quot;GearDoor&quot;,
+        &quot;UnityEngine.Transform&quot;,
+        &quot;localPosition.y&quot;,
+        &quot;@static:UnityEngine.AnimationCurve/Linear(0, 0, 1, 1)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${fixture}/Landing.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimationClip)&quot;,
+        &quot;${fixture}/Gear.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/Gear.anim/name&quot;,
+      &quot;value&quot;: &quot;Gear&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/Gear.anim/SetCurve&quot;,
+      &quot;args&quot;: [
+        &quot;GearDoor&quot;,
+        &quot;UnityEngine.Transform&quot;,
+        &quot;localPosition.y&quot;,
+        &quot;@static:UnityEngine.AnimationCurve/Linear(0, 0, 1, 1)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${fixture}/Gear.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimationClip)&quot;,
+        &quot;${fixture}/GearRetracted.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/GearRetracted.anim/name&quot;,
+      &quot;value&quot;: &quot;GearRetracted&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/GearRetracted.anim/SetCurve&quot;,
+      &quot;args&quot;: [
+        &quot;GearDoor&quot;,
+        &quot;UnityEngine.Transform&quot;,
+        &quot;localPosition.y&quot;,
+        &quot;@static:UnityEngine.AnimationCurve/Linear(0, 0, 1, 0)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${fixture}/GearRetracted.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimationClip)&quot;,
+        &quot;${fixture}/GearDeployed.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/GearDeployed.anim/name&quot;,
+      &quot;value&quot;: &quot;GearDeployed&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/GearDeployed.anim/SetCurve&quot;,
+      &quot;args&quot;: [
+        &quot;GearDoor&quot;,
+        &quot;UnityEngine.Transform&quot;,
+        &quot;localPosition.y&quot;,
+        &quot;@static:UnityEngine.AnimationCurve/Linear(0, 1, 1, 1)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${fixture}/GearDeployed.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimationClip)&quot;,
+        &quot;${fixture}/GearTransition.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/GearTransition.anim/name&quot;,
+      &quot;value&quot;: &quot;GearTransition&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${fixture}/GearTransition.anim/SetCurve&quot;,
+      &quot;args&quot;: [
+        &quot;GearDoor&quot;,
+        &quot;UnityEngine.Transform&quot;,
+        &quot;localPosition.y&quot;,
+        &quot;@static:UnityEngine.AnimationCurve/Linear(0, 1, 1, 0)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${fixture}/GearTransition.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>创建 <strong>Animator Override Controller</strong>，将 SDK 的 <code>Assets/Template-Flight/Collision/BF-110.controller</code> 设为基础控制器。给 <strong>BF-110_Flying</strong>、<strong>BF-110_Gear</strong> 和 <strong>BF-110_Landing</strong> 分别绑定刚制作的动画。沿用模板时，Gear 动画正向从展开到收起，倒放时展开。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>回放创建独立的控制器，包含相同的三种动画槽和两个 Trigger。SDK 中可直接复用 BF-110 控制器及其转换。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Animations.AnimatorController/CreateAnimatorControllerAtPath&quot;,
+      &quot;args&quot;: [
+        &quot;${base}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;AnimatorController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/AddParameter&quot;,
+      &quot;args&quot;: [
+        &quot;GearDown&quot;,
+        &quot;Trigger&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/AddParameter&quot;,
+      &quot;args&quot;: [
+        &quot;GearUp&quot;,
+        &quot;Trigger&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/AddState&quot;,
+      &quot;args&quot;: [
+        &quot;Flying&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;AnimatorState&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/states/0/state/motion&quot;,
+      &quot;value&quot;: &quot;@asset:${fixture}/Flying.anim&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${base}/layers/0/stateMachine/states/0/state&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/states/0/state/motion/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Flying&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/AddState&quot;,
+      &quot;args&quot;: [
+        &quot;Landing&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;AnimatorState&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/states/1/state/motion&quot;,
+      &quot;value&quot;: &quot;@asset:${fixture}/Landing.anim&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${base}/layers/0/stateMachine/states/1/state&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/states/1/state/motion/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Landing&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/AddState&quot;,
+      &quot;args&quot;: [
+        &quot;Gear&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;AnimatorState&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/states/2/state/motion&quot;,
+      &quot;value&quot;: &quot;@asset:${fixture}/Gear.anim&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${base}/layers/0/stateMachine/states/2/state&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/layers/0/stateMachine/states/2/state/motion/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Gear&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(UnityEngine.AnimatorOverrideController)&quot;,
+        &quot;${override}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/runtimeAnimatorController&quot;,
+      &quot;value&quot;: &quot;@asset:${base}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/set_Item&quot;,
+      &quot;args&quot;: [
+        &quot;Flying&quot;,
+        &quot;@asset:${fixture}/GearRetracted.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/get_Item(Flying)/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GearRetracted&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/set_Item&quot;,
+      &quot;args&quot;: [
+        &quot;Landing&quot;,
+        &quot;@asset:${fixture}/GearDeployed.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/get_Item(Landing)/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GearDeployed&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/set_Item&quot;,
+      &quot;args&quot;: [
+        &quot;Gear&quot;,
+        &quot;@asset:${fixture}/GearTransition.anim&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${override}/get_Item(Gear)/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GearTransition&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${base}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${override}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>在气动预制体的 <strong>Refer</strong> 上添加 <strong>Animator</strong>，把 Override Controller 拖到 <strong>Controller</strong>。打包时编辑器从该节点读取组件。保留 <code>GearDown</code> 和 <code>GearUp</code> 两个 Trigger，以及 <code>FlightTextData.flyingAnimationName</code> 指向的初始飞行状态。完成后进游戏各试一次收起、放下。</li>
+</ol>
+<p><img src="imgs/flight-vehicles-bind.zh-CN.png" alt="气动预制体 Refer 节点上的 Animator 和 Controller"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Animator&quot;,
+        &quot;children&quot;: [
+          &quot;Refer&quot;,
+          &quot;Refer/GearDoor&quot;
+        ],
+        &quot;child&quot;: &quot;Refer&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Controller&quot;,
+            &quot;asset&quot;: &quot;${override}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.RuntimeAnimatorController&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Refer/GetComponent(Animator)/runtimeAnimatorController/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TutorialGearOverride&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/parameters/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GearDown&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${base}/parameters/1/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GearUp&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>用 Lua 驱动其他机体动画时，可参考<a href="lua-api2-engine-gear.html">起落架事件</a>。</p>
 
 </article>
           </div>
@@ -119,7 +805,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/flight-vehicles.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/flight-vehicles.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

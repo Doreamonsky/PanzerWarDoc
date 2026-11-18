@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Create a map mod with the Unity Map Wizard | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Create a map mod with the Unity Map Wizard | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/map-wizard-tutorial/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="create-a-map-mod-with-the-unity-map-wizard">Create a map mod with the Unity Map Wizard</h1>
+<p><a href="../../mod/map-wizard-tutorial.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run map-wizard-tutorial --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;map&quot;: &quot;${fixture}/TutorialMapData.asset&quot;,
+    &quot;thumbnail&quot;: &quot;Packages/com.shanghaiwindy.urpresources/Main/Maps/DefaultMap/DefaultMap_Thumbnail.png&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>Save other open scenes. In the SDK, open <strong>GM Editor → Map &amp; Scene → Map Creation</strong>, enter an unused map name, and confirm <strong>Create New Map</strong>. The wizard lowercases the name and opens the new scene.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_describe&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CreateMap&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Run in a saved SDK project. Replace tutorialmap with an unused name. The command changes the current scene.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;CreateMap&quot;,
+      &quot;params&quot;: &quot;{\&quot;mapName\&quot;:\&quot;tutorialmap\&quot;}&quot;,
+      &quot;confirm&quot;: true
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>Replace the default terrain and cube with your content. Put terrain on the Terrain layer and buildings on the Building layer. Check the <strong>TeamAStartPoint</strong>, <strong>TeamBStartPoint</strong>, and <strong>PatorlPoint</strong> tags. The wizard can add each kind of point. After your changes, use <strong>Rebuild Path</strong>. Enable <strong>Rebuild Navmesh</strong> if the walkable geometry needs to be baked again. Save the scene.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Open your map scene. Place and arrange the points, then rebuild and save.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;AddTeamAStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;AddTeamBStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;AddPatrolPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;RebuildPath&quot;,
+      &quot;params&quot;: &quot;{\&quot;rebuildNavmesh\&quot;:true}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.SceneManagement.EditorSceneManager/SaveOpenScenes&quot;,
+      &quot;args&quot;: []
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>Open the generated <strong>MapData</strong>. Give the map a display name, select its <strong>Supported Modes</strong>, and assign a <strong>700 × 200 streaming thumbnail</strong>. Add the game modes you intend to test. Use an imported image for the streaming thumbnail.</li>
+</ol>
+<p><img src="../../mod/imgs/map-wizard-tutorial-settings.en.png" alt="Supported modes and streaming thumbnail in MapData"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.MapData)&quot;,
+        &quot;${map}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/guid&quot;,
+      &quot;value&quot;: &quot;a9be4c0a-31a4-44e3-ac12-cf19312d60ec&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${thumbnail}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;thumbnailGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;supportModes\&quot;:[5]}&quot;,
+        &quot;@asset:${map}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/localizedMapName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Map&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/streamingThumbnail/assetGUID&quot;,
+      &quot;value&quot;: &quot;${thumbnailGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/streamingThumbnail/extra&quot;,
+      &quot;value&quot;: &quot;${thumbnail}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${map}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/supportModes/0&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Mode) PlayField&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>Make sure the <strong>MapBuildGroup</strong> references your scene and MapData. Open the corresponding build pipeline and ModPackageData under <code>Assets/ModManager</code>, and fill in the package metadata. Build the assets and <code>.modpack</code> for the target platform, then install the package for testing.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Replace tutorialmap with your map name. Set the ModPackageData name, description, author, and support link before building.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:Assets/MapBuildGroup-tutorialmap.asset/mapDatas/0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;Assets/ModManager/BuildPipline-Map-tutorialmap.asset&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;Assets/ModManager/BuildPipline-Map-tutorialmap.asset&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/map-wizard-tutorial.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

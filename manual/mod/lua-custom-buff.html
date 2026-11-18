@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.5.5 自定义 Lua Buff | Panzer War Document </title>
+      <title>用 Lua 调整装填时间 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.5.5 自定义 Lua Buff | Panzer War Document ">
+      <meta name="title" content="用 Lua 调整装填时间 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,76 +77,184 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2255-自定义-lua-buff">22.5.5 自定义 Lua Buff</h1>
 
-<pre><code class="lang-lua">--- 添加 Buff 测试
-
-local TestAddBuff = class(&quot;TestAddBuff&quot;)
-
-Common()
-
--- 定义装填 Buff
-local ReloadBuff = class(&quot;ReloadBuff&quot;)
-
-function ReloadBuff:GetBuffDisplayName()
-    return &quot;Lua 减少装填时间 Buff&quot;
-end
-
-function ReloadBuff:ctor()
-    self.IsMultipleCoff = false
-    self.IsZeroBuff = false
-    self.CoffValue = -0.5
-    self.ConstValue = 0
-end
-
-function ReloadBuff:ApplyBuff(receiver)
-    local ret, tank = BuffAPI.TryGetBuffReceiverAsTank(receiver)
-    if ret then
-        tank.vehicleComponents.mainTankFire.ReloadSpeedBuffedCoff:AddBuff(self._buffCaster)
-    end
-
-    print(&quot;add buff&quot;)
-end
-
-function ReloadBuff:RemoveBuff(receiver, isInterrupt)
-    local ret, tank = BuffAPI.TryGetBuffReceiverAsTank(receiver)
-    if ret then
-        tank.vehicleComponents.mainTankFire.ReloadSpeedBuffedCoff:RemoveBuff(self._buffCaster)
-    end
-
-    print(&quot;remove buff&quot;)
-end
-
-function TestAddBuff:OnStarted()
-    -- 将 Lua table 转为 C# 对象
-    local buffCaster = ConvertAPI.CovertToBuffCaster(ReloadBuff.new())
-
-    InputAPI.RegisterKeyInput(&quot;add buff&quot;, &quot;F1&quot;, function()
-        BuffAPI.AddBuff(VehicleAPI.GetPlayerVehicle(), buffCaster)
-    end, function() end)
-
-    InputAPI.RegisterKeyInput(&quot;remove buff&quot;, &quot;F2&quot;, function()
-        BuffAPI.RemoveBuff(VehicleAPI.GetPlayerVehicle(), buffCaster)
-    end, function() end)
-end
-
-return TestAddBuff
-
+<!-- Generated from tutorials/lua-custom-buff/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="用-lua-调整装填时间">用 Lua 调整装填时间</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-custom-buff.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-custom-buff
 </code></pre>
-<h2 id="数值会变化的-buff-buffs-whose-value-changes">数值会变化的 Buff Buffs Whose Value Changes</h2>
-<p>如果 buff 的数值需要随时间变化（例如蓄力），不要每次都移除旧 buff 再新建一个。客户端 API 2 起，可以用 <code>BuffAPI.CreateValueBuff</code> 创建一个数值可变的 buff：挂上一次，之后只调用 <code>SetValue</code>，属性会原地刷新。</p>
-<p>If a buff's value needs to change over time (for example, charge), do not remove the old buff and create a new one every time. From client API 2 on, you can use <code>BuffAPI.CreateValueBuff</code> to create a buff with a variable value: attach it once, then only call <code>SetValue</code>, and the stat will refresh in place.</p>
-<pre><code class="lang-lua">-- false：加法系数 / false: additive coefficient
-local buff = BuffAPI.CreateValueBuff(&quot;Charged Shot&quot;, false, 0)
-weapon.DamageBuffedCoff:AddBuff(buff)
-
-buff:SetValue(0.3)   -- 伤害 +30% / +30% damage
-
--- 不再需要时取下 / Take it off when done
-weapon.DamageBuffedCoff:RemoveBuff(buff)
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/ReloadBuffExample.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ReloadBuffExample.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
 </code></pre>
-<p>完整用例见 <a href="lua-api2-charged-shot.html">22.7.2 用例：蓄力伤害加成</a>。</p>
-<p>See <a href="lua-api2-charged-shot.html">22.7.2 Example: Charged shot damage bonus</a> for a complete use case.</p>
+</details>
+<p>把脚本挂到本地玩家载具。API 2 用 <code>BuffAPI.CreateValueBuff</code> 创建可变系数，并把它加到主武器的 <code>ReloadTimeBuffedCoff</code>。示例按 F1 添加，按 F2 移除。没有其他装填时间增益时，<code>-0.5</code> 会把 8 秒缩短到 4 秒。退出行为时会注销按键并移除已添加的 Buff。</p>
+<pre><code class="lang-lua">Behavior()
+Property = {
+    reloadCoefficient = { type = &quot;number&quot;, value = -0.5 },
+}
+
+local ReloadBuffExample = class(&quot;ReloadBuffExample&quot;)
+
+function ReloadBuffExample:OnVehicleReady(vehicle)
+    if not VehicleAPI.IsLocalPlayer(vehicle) then
+        return
+    end
+    local weapon = WeaponAPI.GetWeapon(vehicle, 0)
+    if weapon == nil then
+        return
+    end
+    self.stat = weapon.ReloadTimeBuffedCoff
+    self.buff = BuffAPI.CreateValueBuff(&quot;Example reload time&quot;, false, self.reloadCoefficient)
+    local id = tostring(self.gameObject:GetInstanceID())
+    self.addAction = &quot;ExampleReloadAdd_&quot; .. id
+    self.removeAction = &quot;ExampleReloadRemove_&quot; .. id
+    InputAPI.RegisterKeyInput(self.addAction, &quot;F1&quot;, function() self:Add() end, function() end)
+    InputAPI.RegisterKeyInput(self.removeAction, &quot;F2&quot;, function() self:Remove() end, function() end)
+end
+
+function ReloadBuffExample:Add()
+    if self.buff ~= nil and not self.added then
+        self.stat:AddBuff(self.buff)
+        self.added = true
+    end
+end
+
+function ReloadBuffExample:Remove()
+    if self.added then
+        self.stat:RemoveBuff(self.buff)
+        self.added = false
+    end
+end
+
+function ReloadBuffExample:OnDestroyed()
+    if self.addAction ~= nil then
+        InputAPI.UnregisterKeyInput(self.addAction)
+        InputAPI.UnregisterKeyInput(self.removeAction)
+    end
+    self:Remove()
+end
+
+return ReloadBuffExample
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-custom-buff/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;numberProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;reloadCoefficient&quot;,
+                &quot;value&quot;: -0.5
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) ReloadBuffExample&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>已添加的 Buff 可以调用 <code>SetValue</code> 原地更新系数。完整的连续更新用例见 <a href="lua-api2-charged-shot.html">蓄力伤害</a>。回放用项目的 Buff 计算器检查添加、变值和移除，实际按键与装填仍需在游戏中验证。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal api = CS.ShanghaiWindy.Core.API\nlocal stat = CS.ShanghaiWindy.Core.BuffProperty()\nlocal made, keys = nil, {}\nE.BuffAPI = { CreateValueBuff = function(name, multiply, value)\n    made = api.BuffAPI.CreateValueBuff(name, multiply, value)\n    return made\nend }\nE.WeaponAPI = { GetWeapon = function(_, index) assert(index == 0); return { ReloadTimeBuffedCoff = stat } end }\nE.VehicleAPI = { IsLocalPlayer = function(v) return v.isLocal end }\nE.InputAPI = {\n    RegisterKeyInput = function(name, key, callback) keys[key] = { name = name, callback = callback } end,\n    UnregisterKeyInput = function(name)\n        for key, entry in pairs(keys) do\n            if entry.name == name then keys[key] = nil; return end\n        end\n        error(\&quot;missing key \&quot; .. name)\n    end,\n}\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-custom-buff/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\nlocal sample = instance({ reloadCoefficient = -0.5, gameObject = { GetInstanceID = function() return 123 end } })\nsample:OnVehicleReady({ isLocal = false })\nassert(next(keys) == nil)\nsample:OnVehicleReady({ isLocal = true })\nassert(stat:GetBuffValue(8) == 8)\nkeys.F1.callback()\nkeys.F1.callback()\nassert(stat:GetBuffValue(8) == 4)\nmade:SetValue(-0.25)\nassert(stat:GetBuffValue(8) == 6)\nkeys.F2.callback()\nassert(stat:GetBuffValue(8) == 8)\nkeys.F1.callback()\nsample:OnDestroyed()\nassert(stat:GetBuffValue(8) == 8 and next(keys) == nil)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-custom-buff&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -156,7 +264,7 @@ weapon.DamageBuffedCoff:RemoveBuff(buff)
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-custom-buff.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/lua-custom-buff.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

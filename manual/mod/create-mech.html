@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>05. Create Mech 创建机甲 | Panzer War Document </title>
+      <title>创建机甲 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="05. Create Mech 创建机甲 | Panzer War Document ">
+      <meta name="title" content="创建机甲 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,125 +77,402 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="05-create-mech-创建机甲">05. Create Mech 创建机甲</h1>
 
-<p>在阅读本文档之前，请务必具备普通坦克模组的开发经验。</p>
-<p>Before reading this document, make sure you already have experience developing a normal tank Mod.</p>
-<h2 id="前期准备-preparation">前期准备 Preparation</h2>
-<h3 id="1-模型-model">1. 模型 Model</h3>
-<p><img src="imgs/e0d81d253e24_1637488518723-f6a088f6-396a-4cf5-87be-89f08ddb4a15.jpeg" alt=""></p>
-<p>骨骼模型：一个绑定骨骼的机甲模型。</p>
-<p>Skeletal model: a mech model with a rigged skeleton.</p>
-<p><img src="imgs/7b5b9da4304f_1637488518472-6dfed750-98b6-473d-94a9-f06b6ddfb9f7.jpeg" alt=""></p>
-<p>伤害模型：一个将各个关节分离的简易伤害模型。</p>
-<p>Damage model: a simple damage model with each joint separated.</p>
-<h3 id="2-动画-animation">2. 动画 Animation</h3>
-<p>你至少需要拥有以下动画：</p>
+<!-- Generated from tutorials/create-mech/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="创建机甲">创建机甲</h1>
+<p><strong>中文</strong> | <a href="../en/mod/create-mech.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run create-mech --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;source&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar&quot;,
+    &quot;vehicleData&quot;: &quot;${fixture}/Tutorial_NativeVehicleData.asset&quot;,
+    &quot;vehicleText&quot;: &quot;${fixture}/Tutorial_NativeText.asset&quot;,
+    &quot;vehicleInfo&quot;: &quot;${fixture}/Tutorial_NativeVehicleInfo.asset&quot;,
+    &quot;packModel&quot;: &quot;${fixture}/Tutorial_NativePackModel.prefab&quot;,
+    &quot;vehicleName&quot;: &quot;Docs-Mech-${runId}&quot;,
+    &quot;vehicleGuid&quot;: &quot;749d78fc88ed947278${runId}&quot;,
+    &quot;cooked&quot;: &quot;${fixture}/749d78fc88ed947278${runId}_pre.prefab&quot;,
+    &quot;controller&quot;: &quot;${fixture}/MechRig.controller&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
 <ol>
-<li>待机动画</li>
-<li>走路动画：笔直向前走路动画，向左的走路动画，向右的走路动画，原地左转的动画，和原地向右的动画。</li>
+<li>准备带骨骼的显示模型和分关节的<a href="hitbox-naming-conventions.html">伤害模型</a>。先制作待机、前进、横移和原地转向动画，再调试骨骼与碰撞的对应关系。</li>
+<li>在模型的 <strong>Rig</strong> 节点挂 <strong>Animator</strong>、<strong>CharacterController</strong> 和 <strong>MechAnimatorController</strong>。控制器以 <code>Walk</code>、<code>Turn</code> 两个 Float 接收移动与转向。旧动画中的 <code>WalkSound</code> 事件可继续解析，这个兼容方法当前没有播放逻辑。</li>
 </ol>
-<p>You need at least the following animations:</p>
-<ol>
-<li>Idle animation</li>
-<li>Walking animations: walking straight forward, walking to the left, walking to the right, turning left in place, and turning right in place.</li>
-</ol>
-<p>注：倒退走路动画可以在动画树中，以 -1 倍的速度播放，实现倒退。</p>
-<p>Note: the backward walking animation can be produced by playing the animation at -1x speed in the animator controller.</p>
-<p>你可以额外制作以下动画：</p>
-<ol>
-<li>飞行动画：飞行起步动画，飞行中待机动画，和飞行结束落地动画。</li>
-</ol>
-<p>You can additionally create the following animations:</p>
-<ol>
-<li>Flight animations: the take-off animation, the in-flight idle animation, and the landing animation at the end of the flight.</li>
-</ol>
-<h3 id="3-导入引擎动画的设置-animation-import-settings">3. 导入引擎动画的设置 Animation Import Settings</h3>
-<p>动画导入引擎后，需进行相关设置，才能使机甲符合物理模拟效果。</p>
-<p>After the animations are imported into the engine, a few settings are required so the mech matches the physics simulation.</p>
-<p><img src="imgs/0f72e15b3872_1637488518513-2e3b865c-369a-4d74-9458-442eab5f7e10.jpeg" alt=""></p>
-<ol>
-<li><p>勾选 Root Transform Position (Y) 中的 Bake Into Pose。</p>
-<p>Tick Bake Into Pose under Root Transform Position (Y).</p>
-</li>
-<li><p>在 Curves 中增加 GravityWeight 属性，<strong>并将曲线设置为值为 1 的水平线。</strong></p>
-<p>Add a GravityWeight property under Curves, <strong>and set the curve to a horizontal line with a value of 1.</strong></p>
-</li>
-<li><p>在包含脚步落地帧的动画中，于 Events 中添加 WalkSound 事件。</p>
-<p>On the animation frames where a foot touches the ground, add a WalkSound event under Events.</p>
-</li>
-</ol>
-<h2 id="载具属性设置-vehicle-property-setup">载具属性设置 Vehicle Property Setup</h2>
-<h3 id="机甲预制体制作-building-the-mech-prefab">机甲预制体制作 Building the Mech Prefab</h3>
-<ol>
-<li><p>动画控制器。在含有 Animator 组件的物体上增加 MechAnimatorController 组件和 CharacterController 组件。</p>
-<p>Animator controller. On the object that holds the Animator component, add the MechAnimatorController component and the CharacterController component.</p>
-</li>
-</ol>
-<p><img src="imgs/1031ab2bd67e_1637488518587-9a5db664-de18-4f1f-8ba3-22b26071d636.jpeg" alt=""></p>
-<ol start="2">
-<li><p>物理碰撞。调整 CharacterController 的属性，使胶囊体底部与脚底一致。</p>
-<p>Physics collision. Adjust the CharacterController properties so that the bottom of the capsule lines up with the soles of the feet.</p>
-</li>
-</ol>
-<p><img src="imgs/04e7f7c1dce7_1637488518555-9a6004b9-17f6-46e1-977c-5fe37f8291ea.jpeg" alt=""></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_Model.prefab&quot;,
+        &quot;${packModel}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Animations.AnimatorController/CreateAnimatorControllerAtPath&quot;,
+      &quot;args&quot;: [
+        &quot;${controller}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;AnimatorController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${controller}/AddParameter&quot;,
+      &quot;args&quot;: [
+        &quot;Walk&quot;,
+        &quot;Float&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${controller}/AddParameter&quot;,
+      &quot;args&quot;: [
+        &quot;Turn&quot;,
+        &quot;Float&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${controller}/AddParameter&quot;,
+      &quot;args&quot;: [
+        &quot;JetLand&quot;,
+        &quot;Trigger&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${controller}/layers/0/stateMachine/AddState&quot;,
+      &quot;args&quot;: [
+        &quot;JetStart&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;AnimatorState&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${packModel}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Animator&quot;,
+        &quot;child&quot;: &quot;Rig&quot;,
+        &quot;children&quot;: [
+          &quot;Rig&quot;
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Controller&quot;,
+            &quot;asset&quot;: &quot;${controller}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.RuntimeAnimatorController&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${packModel}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.CharacterController&quot;,
+        &quot;child&quot;: &quot;Rig&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${packModel}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.MechAnimatorController&quot;,
+        &quot;child&quot;: &quot;Rig&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
 <ol start="3">
-<li><p>机甲脚底碰撞。在机甲两个脚底均增加 MechLegEndPoint 组件和 BoxCollider 组件，并勾选 BoxCollider 的 isTrigger 属性。若机甲可以飞行，则增加 MechFireBurst 组件，并调整相应参数。</p>
-<p>Mech foot collision. Add a MechLegEndPoint component and a BoxCollider component to both of the mech's feet, and tick the isTrigger property on the BoxCollider. If the mech can fly, also add the MechFireBurst component and adjust its parameters.</p>
-</li>
+<li>在 <a href="../component/vehicle-text-data.html">VehicleTextData</a> 的<strong>机甲参数</strong>启用<strong>是否为机甲</strong>。飞行机甲再启用 <code>isFlyable</code>。使用飞行动画时，启用 <code>hasFlyAnimation</code>，在 Animator 中配置 <code>JetStart</code> 状态和 <code>JetLand</code> Trigger。</li>
 </ol>
-<p><img src="imgs/4b220b9c6856_1637488519146-43879b8f-8cfd-4e0a-bb6d-65159426a955.jpeg" alt=""></p>
+<p><img src="imgs/create-mech-mech.zh-CN.png" alt="载具参数中的机甲与飞行开关"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleData.asset&quot;,
+        &quot;${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleTextData.asset&quot;,
+        &quot;${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}.asset&quot;,
+        &quot;${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/AssetName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/vehicleName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/assetGuid&quot;,
+      &quot;value&quot;: &quot;${vehicleGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/cookedDirectory&quot;,
+      &quot;value&quot;: &quot;${fixture}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/vehicleTextData&quot;,
+      &quot;value&quot;: &quot;@asset:${vehicleText}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/modelData/MainModel&quot;,
+      &quot;value&quot;: &quot;@asset:${packModel}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/cookedLocation&quot;,
+      &quot;value&quot;: &quot;NextToData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MechParameter/isMech&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MechParameter/isFlyable&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MechParameter/hasFlyAnimation&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/GetGroundType()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Mech&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 <ol start="4">
-<li><p>炮塔同步。增加 Turret/Gun/Dym 的空物体。在机甲模型上，于上半身旋转控制的位置增加 MechTurretSync 组件，以同步相应位置。</p>
-<p>Turret sync. Create empty objects for Turret/Gun/Dym. On the mech model, add the MechTurretSync component at the position that drives the upper-body rotation, so the corresponding positions stay in sync.</p>
-</li>
+<li>将显示模型、伤害模型和参数绑定到 <strong>VehicleData</strong>，按<a href="vehicle-basics.html">地面载具制作基础</a>构建。进游戏检查转向、步态，飞行机甲还要检查起飞和着陆。</li>
 </ol>
-<p><img src="imgs/5eaf3c8c8908_1637488519275-9e3e1d30-0da1-4d28-bf5d-7a62d272f95d.jpeg" alt=""></p>
-<h3 id="动画树制作-building-the-animator-controller">动画树制作 Building the Animator Controller</h3>
-<p><img src="imgs/27aaae6333f1_1637488519322-d6a0be45-246f-4822-a9b5-998a87ccf960.jpeg" alt=""></p>
-<p><img src="imgs/c6aa1683d173_1637488519333-a40e1bc9-21be-4ccc-b50e-14100356435c.jpeg" alt=""></p>
-<p>在 Project 中新增 Animator Controller，并将其拖入机甲预制体含 Animator 的组件上。</p>
-<p>Create a new Animator Controller in the Project window and drag it onto the Animator component of the mech prefab.</p>
-<ol>
-<li><p>增加如下参数。类型一定要与图中一致。</p>
-<p>Add the parameters shown below. The types must match the picture exactly.</p>
-</li>
-</ol>
-<p><img src="imgs/426fe91e45f3_1637488520523-5e993474-7961-44e0-a882-1a732e05cb38.jpeg" alt=""></p>
-<ol start="2">
-<li><p>增加动画状态。若含飞行的三个状态动画，则一定要与图中的三个 Jet 开头的动画命名一致。</p>
-<p>Add the animation states. If you include the three flight state animations, their names must match the three Jet-prefixed animation names in the picture.</p>
-</li>
-</ol>
-<p><img src="imgs/8e1d52206c2e_1637488519711-63f06734-747a-4ee4-a2c4-7105c7e01a99.jpeg" alt=""></p>
-<p>向前走路（Walk）由多个动画的混合组成（Blend Tree）。混合使用的参数为 Turn。0.5 为笔直向前的动画，0 为向左的走路动画，1 为向右的走路动画。可以在中间插入更多动画作补帧，使动画更加自然。</p>
-<p>Walking forward (Walk) is a blend of several animations (a Blend Tree). The blend parameter is Turn: 0.5 is the straight-forward animation, 0 is the walk-left animation, and 1 is the walk-right animation. You can insert more animations in between to fill in the motion and make it look more natural.</p>
-<p>注：倒退动画可以在动画树中，以 -1 倍的速度播放，实现倒退。</p>
-<p>Note: the backward animation can be produced by playing the animation at -1x speed in the animator controller.</p>
-<p><img src="imgs/9a5eba1bd0b6_1637488519911-53e52095-e126-4edd-bcae-4df4eb9b684a.jpeg" alt=""></p>
-<ol start="3">
-<li><p>动画转换条件。在下图出现的连线，需要增加如图的条件。</p>
-<p>Transition conditions. The transitions shown in the pictures below need the conditions shown in those pictures.</p>
-</li>
-</ol>
-<p>向前走路动画条件 Walk forward condition: <img src="imgs/194ac713f7a4_1637488520022-c3369e84-4b8d-4f07-b2ef-a6ec400ca778.jpeg" alt=""></p>
-<p>向后走路动画条件 Walk backward condition: <img src="imgs/6d37a7d22fde_1637488519931-4531b587-dd4f-4762-9095-febf423f73dd.jpeg" alt=""></p>
-<p>向左走路动画条件 Walk left condition: <img src="imgs/c8f97fde4c5c_1637488520287-e0d5e12b-17c7-4948-8b3e-1ffefc4be90c.jpeg" alt=""></p>
-<p>向右走路动画条件 Walk right condition: <img src="imgs/5eb90dc8dd79_1637488520577-46132bb0-dd2b-46bc-b3b6-bb33d3ad3e5d.jpeg" alt=""></p>
-<p>若含飞行动画，则飞行落地动画条件 If you include flight animations, the flight landing condition: <img src="imgs/1636c4c3ee05_1637488520588-2f8f7444-a71f-44b0-8be4-79756b706361.jpeg" alt=""></p>
-<p>从 Idle 转到其他状态，无需设置 Has Exit Time。其他状态转到 Idle，则需要设置 Has Exit Time。</p>
-<p>Transitions from Idle to other states do not need Has Exit Time. Transitions from other states back to Idle do need Has Exit Time.</p>
-<p>注意：游戏的输入为 Walk 与 Turn。Walk 的范围为 -1 到 1，Turn 的范围为 0 到 1。可以根据自己的动画，设置更加复杂的动画切换。动画系统的条件切换可以在引擎内直接进行调试，可访问 Unity 动画教程了解更多详情。</p>
-<p>Note: the game's inputs are Walk and Turn. Walk ranges from -1 to 1, and Turn ranges from 0 to 1. You can set up more complex animation transitions to suit your own animations. Animation transition conditions can be debugged directly inside the engine — see the Unity animation tutorials for more details.</p>
-<h2 id="创建-vehicledata-creating-vehicledata">创建 VehicleData Creating VehicleData</h2>
-<p>像普通坦克一样，创建载具配置参数。然后删除生成的 VehicleTrack 文件。</p>
-<p>Create the vehicle configuration parameters just like you would for a normal tank, then delete the generated VehicleTrack file.</p>
-<p><img src="imgs/7c6bcb773f3c_1637488520673-baa4e2c1-958b-4f15-b1d2-974c1ad915a4.jpeg" alt=""></p>
-<p>其他配置信息和坦克一样进行配置即可。</p>
-<p>All the other configuration can be done exactly the same way as for a tank.</p>
-<p>在 VehicleTextData 中需要额外关注，设置机甲专用参数。</p>
-<p>VehicleTextData needs extra attention: set the mech-specific parameters there.</p>
-<p><img src="imgs/a416dbce3391_1637488520940-ac0d0d8e-7ce0-4e5b-b72f-72911e46d886.jpeg" alt=""></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.PackUtil/Pack&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/VehicleComponentsReferenceManager/mechAnimatorController/gameObject/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) Rig&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -205,7 +482,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/create-mech.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/create-mech.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

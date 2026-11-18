@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.2 Lua Profiler 性能监控 | Panzer War Document </title>
+      <title>为 Lua 脚本采样 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.2 Lua Profiler 性能监控 | Panzer War Document ">
+      <meta name="title" content="为 Lua 脚本采样 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,15 +77,55 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="222-lua-profiler-性能监控">22.2 Lua Profiler 性能监控</h1>
 
-<p><img src="imgs/84cb0119fec1_1681052548206-d92147c8-fab8-436a-89fe-90b43b5fbee7.png" alt=""></p>
-<p>开启 Local mode 以及 Deep Lua</p>
-<p>Enable Local mode and Deep Lua.</p>
-<p><img src="imgs/78e760ef3e63_1681052581969-f544c3df-12c8-4d7c-b5ef-c9a9bc156bf0.png" alt=""></p>
-<p>主要需关注 self 的耗时。耗时超过 0.1 ms 的行为可视为高开销操作，需特别留意，以避免其在 update 中每帧执行。</p>
-<p>Pay attention mainly to the self time. Anything above 0.1 ms counts as an expensive operation and deserves a close look, so that it is not left running every frame in update.</p>
-<p><img src="imgs/169a37a52f58_1681052643140-a2ebd4a1-401b-4cfa-bc1e-66c004050842.png" alt=""></p>
+<!-- Generated from tutorials/lua-profiler/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="为-lua-脚本采样">为 Lua 脚本采样</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-profiler.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-profiler
+</code></pre>
+<p>在包含 Miku LuaProfiler 的 SDK 工程中，打开 <strong>Window → Analysis → Lua Profiler</strong>。选择 <strong>local mode</strong>，需要展开 Lua 调用时启用 <strong>Deep Lua</strong>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;../../../Panzer-War-Mod-SDK/Packages/Sdk/com.shanghaiwindy.middlelayer/ThirdLibs/Miku-LuaProfiler-4.0.2/LuaProfiler/Editor/Window/ProfilerWin/TreeView/LuaProfilerWindow.cs&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;MenuItem(\&quot;Window/Analysis/Lua Profiler&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>在可重复的游戏场景中采一小段样本。查看 <strong>self</strong> 耗时和调用次数，并结合每帧总预算定位常被调用的高耗时函数。旧教程以 0.1 ms 提醒关注高频调用，实际预算取决于设备和场景。</p>
+<p>客户端回放在独立 Lua 协程检查分析器的启停和累计值重置。SDK 的 Profiler 窗口与实机开销仍待采样。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ class = function() return {} end }, { __index = _G })\nlocal P = assert(loadfile(\&quot;../LuaProject/frame/profiler.lua\&quot;, \&quot;t\&quot;, E))()\nlocal p = setmetatable({}, { __index = P })\np:ctor()\nlocal work = coroutine.create(function()\n    p:EnableProfile()\n    assert(p.enableProfiler)\n    local function sample() return 7 end\n    for i = 1, 100 do assert(sample() == 7) end\n    p:DisableProfile()\n    assert(not p.enableProfiler and debug.gethook() == nil)\n    assert(p:OnProfile() &gt;= 0)\n    assert(p:OnProfile() == 0)\nend)\nassert(coroutine.resume(work))\nreturn \&quot;Profiler sample passed\&quot;\n&quot;,
+        &quot;manual-lua-profile&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Profiler sample passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -95,7 +135,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-profiler.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/lua-profiler.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

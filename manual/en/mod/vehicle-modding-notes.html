@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Vehicle modding notes | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Vehicle modding notes | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/vehicle-modding-notes/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="vehicle-modding-notes">Vehicle modding notes</h1>
+<p><a href="../../mod/vehicle-modding-notes.html">中文</a> | <strong>English</strong></p>
+<p>Original notes by @情绪薫.</p>
+<h2 id="models-and-pivots">Models and pivots</h2>
+<p>Check the specific asset's modification and distribution license before buying or downloading it. Place the turret pivot on the traverse axis, the Gun pivot on the elevation axis, and Dym at the barrel's intended origin. Wheel pivots belong on the axles. A turretless vehicle can keep an empty turret node for the gun hierarchy. See <a href="vehicle-basics.html">ground vehicle creation</a> and <a href="blender-axis-fix.html">axis correction</a>.</p>
+<h2 id="visibility-and-collision">Visibility and collision</h2>
+<ul>
+<li>If internal components are missing, check the <code>VehicleInfo</code> module configuration and <a href="hitbox-naming-conventions.html">hitbox naming</a>. If the model is missing, check its visibility, layer, material, and camera mask. See <a href="model-not-displaying.html">model visibility troubleshooting</a>.</li>
+<li>For transparent areas in the armor viewer, check normals, colliders, and armor groups. See <a href="reactive-armor.html">reactive armor</a> for those parts. If impact effects are too large, check shell caliber and effect parameters.</li>
+<li>If a mod is missing, check <a href="vehicle-dev-qa.html">vehicle troubleshooting</a> and the <a href="../gameplay/runtime-log.html">runtime log</a>, then follow the error to the package platform or the asset reference.</li>
+</ul>
+<h2 id="movement-and-detail">Movement and detail</h2>
+<ul>
+<li>If the vehicle flips in the garage or pitches excessively under acceleration or braking, investigate mass, center of gravity, wheel contact, and friction. <a href="physics-wheels.html">Test wheel physics in an appropriate scene</a>.</li>
+<li>For radar rotation and similar animations, put the animated mesh under a separate pivot. <a href="track-ik-suspension.html">Track nodes</a> follow the road wheels and define the track path. Check gun elevation limits across headings in game.</li>
+<li>See <a href="multi-turret-legacy.html">legacy multiple turrets</a> for existing roof and coaxial guns. See <a href="vehicle-thumbnail.html">vehicle thumbnails</a> for preview images.</li>
+</ul>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/vehicle-modding-notes.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>6. 地图编辑器使用教程 Map Editor Tutorial | Panzer War Document </title>
+      <title>在地图工坊制作地图 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="6. 地图编辑器使用教程 Map Editor Tutorial | Panzer War Document ">
+      <meta name="title" content="在地图工坊制作地图 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,38 +77,233 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="6-地图编辑器使用教程-map-editor-tutorial">6. 地图编辑器使用教程 Map Editor Tutorial</h1>
 
-<p><img src="imgs/14b8979688f1_1648381760012-b2d83595-abd6-4832-b7f4-91fe2e166b0e.png" alt=""></p>
-<p>案例地图分享码：</p>
-<p>Share code of the example map:</p>
-<p>c564f128-6d1b-4db5-84a2-953b1de0d52c -[Map]-[simplemap]</p>
-<h1 id="地图制作注意事项-notes-on-making-a-map">地图制作注意事项 Notes on Making a Map</h1>
+<!-- Generated from tutorials/map-editor-tutorial/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="在地图工坊制作地图">在地图工坊制作地图</h1>
+<p><strong>中文</strong> | <a href="../en/gameplay/map-editor-tutorial.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run map-editor-tutorial
+</code></pre>
 <ol>
-<li><p>必须包含 Tag，TeamAStartPoint（A 队出生点）与 TeamBStartPoint（B 队出生点）之间应保持一定距离。</p>
-</li>
-<li><p>使用空气墙组件，拉伸模型以围住地图边缘。</p>
-</li>
-<li><p>警惕 Z-Fighting 引起的抖动，避免模型完全重叠，否则会导致模型闪烁。</p>
-</li>
-<li><p>The map must contain the tags TeamAStartPoint (Team A spawn point) and TeamBStartPoint (Team B spawn point), and they should be placed a certain distance apart from each other.</p>
-</li>
-<li><p>Use the air wall component and stretch its model to enclose the edges of the map.</p>
-</li>
-<li><p>Beware of the flickering caused by Z-Fighting. Do not let models overlap completely, otherwise they will flicker back and forth.</p>
-</li>
+<li>从车库进入<strong>地图工坊</strong>。新建一张空白地图，先铺地形，再用空气墙封住边界。避免平面完全重叠，以免出现 Z-fighting 闪烁。</li>
 </ol>
-<h1 id="运行时可能遇到的问题-possible-issues-at-runtime">运行时可能遇到的问题 Possible Issues at Runtime</h1>
-<ol>
-<li><p>无法出生。设置的 Tag 数量过少或距离过近。</p>
-</li>
-<li><p>远距离看不见自己摆放的小细节物体。出于优化考虑，仅在工坊中显示所有物体，运行时会根据 LOD 策略选择物体的细节等级。</p>
-</li>
-<li><p>Unable to spawn. Too few tags were set, or they are placed too close to each other.</p>
-</li>
-<li><p>Small detail objects you placed are not visible from a distance. For optimization reasons, all objects are displayed only in the workshop; at runtime the level of detail of an object is chosen according to the LOD policy.</p>
-</li>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;editor_status&quot;,
+    &quot;arguments&quot;: {}
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>游戏会话示例。仅在新建的教学地图中运行 map_new。先从目录取得素材 ID，放置后记录返回的规则 ID。重复放置边界并按地图尺寸调整。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_enter_mode&quot;,
+    &quot;arguments&quot;: {
+      &quot;mode&quot;: &quot;93affaa7-4524-4c55-8a1b-3045a2310e8b&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_state&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;map_new&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;map_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;search&quot;: &quot;${terrainName}&quot;,
+      &quot;detail&quot;: true
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${terrainAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;search&quot;: &quot;${wallName}&quot;,
+      &quot;detail&quot;: true
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${wallAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,100&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_transform&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${wallRule}&quot;,
+      &quot;scale&quot;: &quot;2,1,1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>放置 A 队出生点 <code>TeamAStartPoint</code>、B 队出生点 <code>TeamBStartPoint</code> 和巡逻点 <code>PatorlPoint</code>。保存需要三种 Tag 各至少一个。把两队出生点分开，给载具留出足够的空间。</li>
 </ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.eTag/TeamAStartPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(eTag) TeamAStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.eTag/TeamBStartPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(eTag) TeamBStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.eTag/PatorlPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(eTag) PatorlPoint&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>游戏会话示例。先从素材目录取 Tag 的素材 ID，每次放置后记录各自的规则 ID。Tag 枚举顺序为 A 队、B 队、巡逻点。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;map_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;search&quot;: &quot;${tagAssetName}&quot;,
+      &quot;detail&quot;: true
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${tagAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,-50&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule0}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule0}&quot;,
+      &quot;json&quot;: &quot;{\&quot;tag\&quot;: 0}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${tagAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,50&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule1}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule1}&quot;,
+      &quot;json&quot;: &quot;{\&quot;tag\&quot;: 1}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;${tagAsset}&quot;,
+      &quot;pos&quot;: &quot;0,0,0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule2}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${tagRule2}&quot;,
+      &quot;json&quot;: &quot;{\&quot;tag\&quot;: 2}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_items&quot;,
+    &quot;arguments&quot;: {}
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>用新名称保存，返回车库后在适用的游戏模式中选这张图，检查两队出生位置和载具通行。可先在试验场确认地图与地形能正确加载。运行时会按距离和物件的 LOD 设置显示细节。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>游戏会话示例。若 TutorialMap 已存在，挑个新名称。进入试验场可检查加载，两个队伍的出生检查还需进入支持这张图的对战模式。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;map_navmesh&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;map_save&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;TutorialMap&quot;,
+      &quot;overwrite&quot;: false
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;map_maps&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;runtime_exit_mode&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;runtime_enter_mode&quot;,
+    &quot;arguments&quot;: {
+      &quot;mode&quot;: &quot;PlayField&quot;,
+      &quot;map&quot;: &quot;TutorialMap&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -118,7 +313,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/gameplay/map-editor-tutorial.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/gameplay/map-editor-tutorial.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
