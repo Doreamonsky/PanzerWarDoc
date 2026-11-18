@@ -112,7 +112,7 @@
 }
 </code></pre>
 </details>
-<p>使用 Git 克隆模组工程时需要 Git for Windows。使用 <a href="get-started.html">官方 SDK ZIP</a> 可以直接打开工程。</p>
+<p>如果要从 GitHub 克隆公开模组 SDK，先在 Windows 安装 Git 和 Git LFS。使用 <a href="project-download-links.html">GitHub 正式发行 ZIP</a>可直接开始项目初始化。</p>
 <h2 id="步骤">步骤</h2>
 <ol>
 <li><p>从 <a href="https://git-scm.com/install/windows">Git for Windows 官方页</a> 下载适合 Windows 架构的安装包。</p>
@@ -164,10 +164,11 @@
 </code></pre>
 </details>
 <h2 id="如果要用-git-克隆-sdk">如果要用 Git 克隆 SDK</h2>
-<p>用 Git 克隆 SDK 前，先检查 Git LFS。</p>
+<p>在新终端检查 Git LFS 是否可用，再为当前用户启用 LFS。</p>
 <pre><code>git lfs version
+git lfs install
 </code></pre>
-<p>克隆后在 SDK 工程的仓库目录执行以下命令，获取大文件。</p>
+<p>按<a href="project-download-links.html">下载与克隆说明</a>获取 SDK。克隆后，在仓库根目录下载 Git LFS 文件，然后再用 Unity Hub 打开其中的 <code>UnityProject</code>。</p>
 <pre><code>git lfs pull
 </code></pre>
 <p>MCP 检查默认安装位置的程序。下载、安装和克隆由读者执行。</p>

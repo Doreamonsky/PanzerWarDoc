@@ -189,9 +189,9 @@
 </details>
 <p>Extract the complete SDK into a <strong>new directory</strong>, then bring over your own assets and their <code>.meta</code> files.</p>
 <h2 id="1-back-up-the-old-project-and-open-the-new-one">1. Back up the old project and open the new one</h2>
-<p>Copy the whole old project or keep a repository snapshot. Download the SDK as described in <a href="get-started.html">project setup</a> and extract the full archive into a new directory, keeping <code>UnityProject</code> and <code>Packages</code> next to each other. Open the project with the Unity version named in <code>ProjectSettings/ProjectVersion.txt</code> and wait for import and compilation.</p>
+<p>Copy the whole old project or keep a repository snapshot. Download the named <code>Panzer-War-Mod-SDK-sdk-*.zip</code> asset from the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">GitHub release</a> and extract it into a new directory, keeping <code>UnityProject</code> and <code>Packages</code> next to each other. Follow <a href="get-started.html">project setup</a> to open <code>UnityProject</code> in the Unity version it declares, then wait for import and compilation.</p>
 <h2 id="2-copy-your-assets">2. Copy your assets</h2>
-<p>Copy your own subfolders under <code>Assets</code> into the new project. Keep relative paths and the <code>.meta</code> files for both assets and folders. Unity uses their GUIDs to resolve asset references.</p>
+<p>Copy your own <code>Assets</code> subfolders into the new <code>UnityProject/Assets</code>. Keep relative paths and the <code>.meta</code> files for assets and folders. Include your mod package and build-pipeline assets under <code>Assets/ModManager</code>, then check their linked objects and package GUID. Keep the <code>Packages</code> and examples supplied by the new SDK. Re-enter personal settings such as your Steam game directory in the new project.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <p>Copy and back up a scratch subtree, then read the asset and both asset and folder GUIDs back.</p>

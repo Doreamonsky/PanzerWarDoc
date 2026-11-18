@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>28.3. Map Asset Download 地图资产下载 | Panzer War Document </title>
+      <title>地图工程与资源入口 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="28.3. Map Asset Download 地图资产下载 | Panzer War Document ">
+      <meta name="title" content="地图工程与资源入口 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,49 +77,44 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="283-map-asset-download-地图资产下载">28.3. Map Asset Download 地图资产下载</h1>
 
+<!-- Generated from tutorials/map-asset-download/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="地图工程与资源入口">地图工程与资源入口</h1>
+<p><strong>中文</strong> | <a href="../en/mod/map-asset-download.html">English</a></p>
+<h2 id="用公开-sdk-制作自己的地图">用公开 SDK 制作自己的地图</h2>
 <ol>
-<li><p>首先，确保已克隆载具工程。</p>
-<p>First, make sure you have already cloned the vehicle project.</p>
-</li>
+<li>按<a href="get-started.html">项目初始化</a>下载正式 SDK ZIP，用 Unity Hub 打开 <code>UnityProject</code>。</li>
+<li>在 Project 窗口查看 <code>Assets/Template-Scene</code>。按<a href="map-wizard-tutorial.html">地图向导</a>创建自己的场景。</li>
+<li>要先验证打包环境，在 <code>Assets/ModManager</code> 选 <code>BuildPipline-Template-Blank.asset</code> 构建链接资源，再选 <code>Template-Blank-Scene.asset</code> 打包。Windows 和 Android 分别构建，安装与游戏平台相同的 <code>.modpack</code>。 <a href="multi-platform-build.html">多平台打包</a></li>
 </ol>
-<p><a href="https://lab.windyverse.net/modder/panzer-war-community-mods">https://lab.windyverse.net/modder/panzer-war-community-mods</a></p>
-<ol start="2">
-<li><p>此外，请克隆地图仓库及公共资源仓库。</p>
-<p>Then clone the map repository and the public resources repository as well.</p>
-</li>
-</ol>
-<p><a href="https://lab.windyverse.net/modder/ShanghaiWindyMaps">https://lab.windyverse.net/modder/ShanghaiWindyMaps</a></p>
-<p><a href="https://lab.windyverse.net/modder/ShanghaiWindyPublicResources">https://lab.windyverse.net/modder/ShanghaiWindyPublicResources</a></p>
-<ol start="3">
-<li><p>如图所示放置文件夹，将三个项目置于同一父文件夹下。</p>
-<p>Place the folders as shown in the picture: all three projects must sit under the same parent folder.</p>
-</li>
-</ol>
-<p><img src="imgs/fc5b1119dfe8_1679848782674-d2d385dc-894d-48a1-9c3c-cb5cf63f9e87.png" alt=""></p>
-<ol start="4">
-<li><p>使用 Unity 打开位于 Panzer-War-Community-Mods 下的 OfficialURPMaps。</p>
-<p>Use Unity to open OfficialURPMaps, located under Panzer-War-Community-Mods.</p>
-</li>
-</ol>
-<p><img src="imgs/01c897b2dd34_1679849103659-f318ef8d-2d15-4467-b857-1748f84487c1.png" alt=""></p>
-<h1 id="asset-paths-资源路径">Asset Paths 资源路径</h1>
-<h2 id="built-in-maps-内置地图">Built-in Maps 内置地图</h2>
-<p>Packages/com.shanghaiwindy.urpmaps/Scenes</p>
-<p><img src="imgs/3331db52a094_1679849964023-748e9f90-225c-48ac-82af-80cd847c98a5.png" alt=""></p>
-<h2 id="diy-map-parts-diy-地图配件">DIY Map Parts DIY 地图配件</h2>
-<p>Packages/com.shanghaiwindy.diymapconfigs</p>
-<p><img src="imgs/518d628921f7_1679849996573-30fba87f-5582-4c83-bdd4-419077ea0ced.png" alt=""></p>
-<h1 id="upload-your-changes-上传修改">Upload Your Changes 上传修改</h1>
-<ol>
-<li><p>注意：若修改了相关资源，请确认是修改了全部三个文件夹下的资源，还是仅修改了其中一个。务必确保上传时没有遗漏。</p>
-<p>Note: if you modified any of these assets, check whether the change touched all three folders or only one of them. Make sure nothing is left out when you upload.</p>
-</li>
-<li><p>请使用 TortoiseGit 进行上传，不要使用内置的 git 工具。注意创建分支。</p>
-<p>Please upload with TortoiseGit rather than the built-in git tool, and remember to create a branch.</p>
-</li>
-</ol>
+<h2 id="维护官方地图和-diy-配件">维护官方地图和 DIY 配件</h2>
+<p>有权限的维护者从官方模组仓库获取源码，保留 <code>Projects</code> 和 <code>Packages</code> 的相对目录结构。按<a href="official-art-assets.html">官方资源协作流程</a>拉取所需 Git LFS 文件，打开 <code>Projects/Maps</code>。该工程的 <code>Packages/manifest.json</code> 所列本地 UPM 依赖从同一仓库解析。 <a href="https://github.com/WindyVerse/Panzer-War-Mods">官方模组仓库</a></p>
+<table>
+<thead>
+<tr>
+<th>要找的内容</th>
+<th>仓库目录</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>官方地图</td>
+<td><code>Packages/Maps/&lt;地图包&gt;</code>，例如 <code>Packages/Maps/Provisional</code></td>
+</tr>
+<tr>
+<td>DIY 地图物品</td>
+<td><code>Packages/Maps/DIYBuildings</code>、<code>Packages/Maps/DIYJapaneseBuildings</code>、<code>Packages/Maps/DIYOfficial</code></td>
+</tr>
+<tr>
+<td>地图共用依赖</td>
+<td><code>Packages/Maps/Shared</code> 和地图包各自 <code>package.json</code> 声明的依赖</td>
+</tr>
+</tbody>
+</table>
+<p>在 Unity 的 Project 窗口从 <strong>Packages</strong> 展开上述包，编辑场景和其素材时保留 <code>.meta</code>。提交前新建工作分支，用 <code>git status</code> 逐项核对改动的包、依赖和 <code>.meta</code>。涉及共用资源时，也要核对该资源的上游来源，再提交和请求评审。 <a href="official-art-assets.html">官方资源协作流程</a></p>
+<h2 id="查找旧工程中的路径">查找旧工程中的路径</h2>
+<p>旧资料中的 <code>OfficialURPMaps</code>、<code>com.shanghaiwindy.urpmaps/Scenes</code> 和 <code>com.shanghaiwindy.diymapconfigs</code> 属于迁移前布局。旧 GitLab 的载具、地图、公共资源三个仓库曾要放在同一父目录。查找历史资产时可用这些名字定位旧记录。当前官方地图和 DIY 配件都从上面的统一仓库路径查找。</p>
 
 </article>
           </div>

@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T120806Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T123654Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2546,6 +2546,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/map-asset-download.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/map-asset-download.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/map-wizard-tutorial.md",
       "output": {
         ".html": {
@@ -2690,6 +2700,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/new-water-integration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/official-art-assets.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/official-art-assets.html"
         }
       },
       "version": ""

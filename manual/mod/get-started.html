@@ -85,31 +85,31 @@
 <p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run get-started
 </code></pre>
-<h2 id="1-下载并解压-sdk">1. 下载并解压 SDK</h2>
-<p>打开 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>，展开 <strong>Assets</strong>，下载名称为 <code>Panzer-War-Mod-SDK-sdk-*.zip</code> 的发行包。它包含可用的 DLL 和本地依赖。用压缩工具选择<strong>全部解压</strong>，保留 <code>UnityProject</code> 和同级 <code>Packages</code>。单独复制工程目录会使引用失效。已有工程可从下一步开始，也可以参照 <a href="mod-env-setup-hub.html">GameHub 环境配置</a> 创建工程。</p>
-<h2 id="2-确认工程根目录和版本">2. 确认工程根目录和版本</h2>
-<p>打开 <code>UnityProject</code>，确认包含 <code>Assets/</code>、<code>Packages/manifest.json</code> 和 <code>ProjectSettings/ProjectVersion.txt</code>。按 <a href="unity-engine-requirements.html">Unity 引擎版本要求</a> 安装工程声明的版本。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sdkCheckout&quot;: &quot;../../../Panzer-War-Mod-SDK&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<h2 id="1-下载并解压-sdk">1. 下载并解压 SDK</h2>
+<p>打开 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>，展开 <strong>Assets</strong>，下载名称为 <code>Panzer-War-Mod-SDK-sdk-*.zip</code> 的发行包。它包含 DLL 和本地依赖，不需要 Git。自动生成的 <strong>Source code (zip)</strong> 可能只包含 Git LFS 指针。点击<strong>全部解压</strong>，保持 <code>UnityProject</code> 和 <code>Packages</code> 同级。使用 Git 的读者可改走<a href="project-download-links.html">克隆与 LFS 流程</a>。</p>
+<h2 id="2-确认工程根目录和版本">2. 确认工程根目录和版本</h2>
+<p>打开 <code>UnityProject</code>，确认包含 <code>Assets/</code>、<code>Packages/manifest.json</code> 和 <code>ProjectSettings/ProjectVersion.txt</code>。已核验的公开发行版 <code>sdk-2026.11.04.1</code> 声明 Unity <strong>2022.3.62f1</strong>。若下载的是更新版，读取该包的 <code>m_EditorVersion</code>，按<a href="unity-engine-requirements.html">版本要求</a>安装。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>针对并排存放的公开 SDK 验证工程版本、同级资源依赖和首个载具模板。SDK 在其他位置时，调整 sdkCheckout 指向它的外层目录。</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
       &quot;args&quot;: [
-        &quot;Assets&quot;
-      ]
-    },
-    &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;(Boolean) True&quot;
-    }
-  },
-  {
-    &quot;tool&quot;: &quot;invoke&quot;,
-    &quot;arguments&quot;: {
-      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
-      &quot;args&quot;: [
-        &quot;Packages/manifest.json&quot;
+        &quot;${sdkCheckout}/UnityProject/Assets&quot;
       ]
     },
     &quot;expect&quot;: {
@@ -121,11 +121,59 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
       &quot;args&quot;: [
-        &quot;ProjectSettings/ProjectVersion.txt&quot;
+        &quot;${sdkCheckout}/UnityProject/ProjectSettings/ProjectVersion.txt&quot;
       ]
     },
     &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;m_EditorVersion: 2022.3.62f2&quot;
+      &quot;contains&quot;: &quot;m_EditorVersion: 2022.3.62f1&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Packages/manifest.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;file:../../Packages/Sdk/com.shanghaiwindy.middlelayer&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Assets/ModManager/BuildPipline-Template-Vehicle.asset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Assets/ModManager/Template-Blank-Vehicle.asset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlelayer/package.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
     }
   }
 ]
@@ -137,7 +185,14 @@
 <li>在项目列表打开刚添加的工程。如果 Hub 提示缺少版本，先安装 <code>ProjectVersion.txt</code> 声明的编辑器，再重新打开。第一次打开需要导入包和编译。</li>
 <li>等进度结束后查看 Console。编译通过时，顶部会出现 <strong>Framework - 框架</strong> 菜单。找不到菜单时，先确认选择的是内层 <code>UnityProject</code>，再检查相邻的 <code>Packages</code> 是否完整解压。</li>
 </ol>
-<p>接着按需<a href="set-steam-game-folder.html">设置 Steam 游戏目录</a>，或开始<a href="vehicle-basics.html">从零制作第一辆坦克</a>。</p>
+<h2 id="4-先用随包模板验收项目">4. 先用随包模板验收项目</h2>
+<ol>
+<li>在 <strong>File → Build Settings</strong> 选择目标平台。Windows 选 <strong>PC, Mac &amp; Linux Standalone → Windows → x86_64</strong>，Android 选 <strong>Android</strong>，再点击 <strong>Switch Platform</strong>。</li>
+<li>在 Project 选中 <code>Assets/ModManager/BuildPipline-Template-Vehicle.asset</code>，点击 <strong>Build Linked Objects to AssetBundle</strong>，等待资源构建结束。</li>
+<li>选 <code>Assets/ModManager/Template-Blank-Vehicle.asset</code>，点击 <strong>Package Mod Now</strong>。Windows 示例输出在 <code>UnityProject/Build/Mod-Package/StandaloneWindows64/Template-Blank-Vehicle/</code> 下。切平台或改资源后，先重新构建链接资源再打包。</li>
+<li>按<a href="../gameplay/install-mods.html">安装模组</a>导入与游戏平台一致的 <code>.modpack</code>。地图模板在同一目录下，改选 <code>BuildPipline-Template-Blank.asset</code> 与 <code>Template-Blank-Scene.asset</code>。</li>
+</ol>
+<p>接着按需<a href="set-steam-game-folder.html">设置 Steam 游戏目录</a>，或开始<a href="vehicle-basics.html">从零制作第一辆坦克</a>。如果使用能创建项目的 GameHub 版本，可参照<a href="mod-env-setup-hub.html">环境配置</a>打开它生成的工程。</p>
 
 </article>
           </div>
