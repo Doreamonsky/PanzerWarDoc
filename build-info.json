@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T131958Z",
+  "builtAt": "20261118T133839Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -99,16 +99,26 @@
     "mask-texture-preview",
     "continuous-build",
     "jenkins-setup",
+    "map-workshop-asset-build",
+    "diy-to-mod",
+    "uv-automation-tool",
     "fmod-profiler",
     "voice-pack-practice",
+    "fmod-sound-debugging",
+    "reference-third-party-fmod",
+    "send-mod-for-debugging",
     "official-art-assets",
     "map-asset-download",
     "mod-texture-group",
     "instalod-studio",
     "instalod-plugin",
-    "upload-naming-art-standards"
+    "upload-naming-art-standards",
+    "diy-map-project-import",
+    "editor-configs",
+    "destructible-object-creation",
+    "mod-mirror-site-setup"
   ],
-  "reviewedDependenciesSha256": "e85ea267e1ba107397875c6b90b9873c4a51d4095de044ca546a57983f356b82",
+  "reviewedDependenciesSha256": "c115c426e8faf3022512226822c2d6e7a04106ff3af2b1302c14dd9ee943ae37",
   "contentReviewedTutorials": [
     "blender-axis-fix",
     "continuous-build",

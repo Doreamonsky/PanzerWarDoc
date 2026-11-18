@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Setting up a mod mirror site | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Setting up a mod mirror site | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/mod-mirror-site-setup/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="setting-up-a-mod-mirror-site">Setting up a mod mirror site</h1>
+<p><a href="../../mod/mod-mirror-site-setup.html">中文</a> | <strong>English</strong></p>
+<p>A mirror publishes permitted workshop archives as a directly downloadable folder. It reduces load on the official downloader and still gives players the same packages when the official site is unstable. Keep archive integrity, platform ownership and filenames unchanged.</p>
+<h2 id="history-the-old-json-list">History: the old JSON list</h2>
+<p>The earlier setup used a public list as the mirror index:</p>
+<pre><code>https://dl-workshop.windyverse.net/packages/files_list.json
+</code></pre>
+<p>That JSON recorded mod names, update dates and download links, and the service refreshed it every 12 hours. A companion Python helper downloaded every mod from the list; it depended on <code>requests</code> and <code>tqdm</code>, tracked addresses in <code>downloaded_files.json</code>, and staged partial downloads in <code>tmp</code>. Those are descriptions of that period, not something to copy verbatim: today you can take the archives directly and treat the index as background only.</p>
+<p>A GET on that address returned HTTP 404 on 2026-11-18. Since then it describes the shape of the old approach rather than the source or authoritative list of mirror content.</p>
+<h2 id="archive-only-permitted-workshop-archives">Archive only permitted workshop archives</h2>
+<p>Publish only workshop archives you are allowed to redistribute. Keep each download as it is: do not rename or repack the archive, and do not copy packages from another platform to fill a folder.</p>
+<pre><code>packages/
+  android/
+  win64/
+  ios/
+</code></pre>
+<p>Use one folder per platform and keep the original filename of each platform's <code>.modpack</code> build. Keep any matching <code>.modpack.json</code> so readers can check the platform, version, GUID, and content metadata. The full file manifest is in <code>package.json</code> inside the archive.</p>
+<h2 id="use-netdisk-as-a-mirror">Use NetDisk as a mirror</h2>
+<p>With UC NetDisk as an example, let the client sync the <code>packages</code> folder to the cloud automatically. Share that folder only after synchronization finishes, and share it read-only so readers cannot delete or edit the source directory. Point the share at <code>packages</code> alone, not at temporary folders produced during the run.</p>
+<h2 id="static-hosting-alternative">Static hosting alternative</h2>
+<p>You can also serve the <code>packages</code> directory through Nginx or another static host. To preview the layout locally, run this command in the parent directory of <code>packages</code>:</p>
+<pre><code class="lang-sh">python -m http.server 8080 --bind 127.0.0.1
+</code></pre>
+<p>Open <code>http://127.0.0.1:8080/packages/win64/</code>, download a real file, and check the path and filename. Press <strong>Ctrl+C</strong> to stop the preview. Use the same folder layout on the public host and give readers read-only download links.</p>
+<h2 id="verify-after-synchronization">Verify after synchronization</h2>
+<ol>
+<li>Wait for synchronization or deployment to finish; do not publish the link mid-sync.</li>
+<li>Open the share as an ordinary reader and download a sample <code>.modpack</code>, confirming that no login or special permission is needed.</li>
+<li>In PowerShell run <code>Get-FileHash -Algorithm SHA256 -LiteralPath &quot;&lt;file path&gt;&quot;</code> separately on the source and downloaded copy. The hashes should match. If a <code>.modpack.json</code> exists, also check the platform, version, and GUID.</li>
+<li>Once verified, point players to <a href="../gameplay/install-mods.html">Install mods</a> so they can stage the package in the game's install queue.</li>
+</ol>
+<p>A mirror only serves installation packages, not development tools. The public SDK is a development project; see <a href="project-download-links.html">project download links</a> for how to get it.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

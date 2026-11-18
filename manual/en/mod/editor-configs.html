@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Custom internal module presets | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Custom internal module presets | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/editor-configs/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="custom-internal-module-presets">Custom internal module presets</h1>
+<p><a href="../../mod/editor-configs.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run editor-configs
+</code></pre>
+<p>The module preset list in the damage model editor comes from two built-in folders and one local configuration array. Lay out the models and register your root folder in the order below to pick your own internal modules from the editor.</p>
+<h2 id="1-create-the-module-folders">1. Create the module folders</h2>
+<p>Create a root folder and module type subfolders in the SDK project, then put the models directly in the subfolders:</p>
+<pre><code>Assets/MyModulePresets/
+  Engine/
+    EngineA.fbx
+  Crew/
+    CrewA.fbx
+</code></pre>
+<p>The current scanner reads only direct <code>*.fbx</code> and <code>*.prefab</code> files under <code>&lt;root&gt;/&lt;type&gt;</code> and does not recurse into subfolders. A type folder name must be the <code>EInternalModuleType</code> member name, case-sensitive, such as <code>Engine</code>, <code>Crew</code>, <code>AmmoShell</code>, <code>Breech</code>, or <code>Transmission</code>. It is not the displayed caption or a string like <code>E 引擎 (Engine)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Folder name</th>
+<th>Module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Transmission</code></td>
+<td>Transmission</td>
+</tr>
+<tr>
+<td><code>Engine</code></td>
+<td>Engine</td>
+</tr>
+<tr>
+<td><code>HeatSink</code></td>
+<td>Heat sink</td>
+</tr>
+<tr>
+<td><code>OilTank</code></td>
+<td>Oil tank</td>
+</tr>
+<tr>
+<td><code>Traversing</code></td>
+<td>Traversing gear</td>
+</tr>
+<tr>
+<td><code>Breech</code></td>
+<td>Breech</td>
+</tr>
+<tr>
+<td><code>Elevator</code></td>
+<td>Elevator</td>
+</tr>
+<tr>
+<td><code>Sighting</code></td>
+<td>Sighting</td>
+</tr>
+<tr>
+<td><code>AmmoShell</code></td>
+<td>Ammo rack</td>
+</tr>
+<tr>
+<td><code>Crew</code></td>
+<td>Crew</td>
+</tr>
+<tr>
+<td><code>InternalArmor</code></td>
+<td>Internal armor</td>
+</tr>
+<tr>
+<td><code>Radiator</code></td>
+<td>Radar (Inspector: Radiator)</td>
+</tr>
+<tr>
+<td><code>AutoReloader</code></td>
+<td>Auto reloader</td>
+</tr>
+<tr>
+<td><code>OilPipline</code></td>
+<td>Oil pipeline</td>
+</tr>
+<tr>
+<td><code>SurfaceControlRope</code></td>
+<td>Surface control rope</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-prepare-the-models">2. Prepare the models</h2>
+<p>The model root needs a usable <strong>MeshFilter</strong> and shared mesh. When a preset is picked, if the model has no collider, <code>ModulePresetUtil.SetupModule</code> adds a <code>MeshCollider</code> that references that shared mesh, plus a kinematic rigidbody. An empty mesh cannot produce the collider.</p>
+<p>You can also ship modules as prefabs, placed as <code>.prefab</code> in the same type folder. The file name is only used for display and does not affect the category.</p>
+<h2 id="3-register-the-root-folder-in-the-local-config">3. Register the root folder in the local config</h2>
+<ol>
+<li>Open <strong>Framework → 1. Editor Tools</strong> and find <strong>Editor Config</strong> under <strong>01. ♥ Core Tools</strong>.</li>
+<li>Add <code>Assets/MyModulePresets</code> to <strong>Module Preset Folder</strong>. Enter the root folder.</li>
+<li>Click <strong>Save</strong> to write the current Unity project's <code>Assets/EditorStorage.json</code>.</li>
+</ol>
+<p>To edit the file offline, close Unity, then back it up. In the public SDK, the path is <code>UnityProject/Assets/EditorStorage.json</code>. Keep the other keys and add the root to the existing <code>modulePresetFolders</code> array:</p>
+<pre><code class="lang-json">{
+  &quot;modulePresetFolders&quot;: [
+    &quot;Assets/MyModulePresets&quot;
+  ]
+}
+</code></pre>
+<ul>
+<li>Write only the root folder. Do not append <code>/Engine</code> and do not add a trailing slash.</li>
+<li>Keep the other keys in the file; do not replace an existing config with a minimal object.</li>
+<li>If the local <code>Assets/EditorStorage.json</code> file does not exist yet, save once from <strong>Editor Config</strong>.</li>
+<li>Do not edit this file while Unity is open: <code>EditorStorage.Save</code> writes the whole in-memory object back, so stale values can overwrite your edit.</li>
+</ul>
+<h2 id="4-use-the-preset-in-the-damage-model-editor">4. Use the preset in the damage model editor</h2>
+<ol>
+<li>Open the target vehicle with the <strong>伤害模型编辑器 - HitBox Editor</strong> (<code>VehicleHitBoxEditorWindow</code>) and enter prefab edit mode for that damage model prefab. Outside prefab mode the window only shows a hint.</li>
+<li>Press <strong>刷新预设 - Refresh</strong> so the scan re-reads the folders.</li>
+<li>Pick the target type in <strong>选择的模块类型 - Pick Module Type</strong>.</li>
+<li>Find its thumbnail. Clicking the thumbnail only pings the asset; the <strong>选择 - Pick</strong> button below it instantiates the module into the current prefab.</li>
+<li>Adjust position and size, then press <strong>Ctrl + S</strong> to save the prefab.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Add a temporary preset root, verify scanning of a direct prefab and initialize a Breech component. The replay restores the in-memory settings.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local u, e = CS.UnityEngine, CS.UnityEditor\nlocal database = e.AssetDatabase\nlocal scratch = \&quot;Assets/__DocsPresetScan\&quot;\nassert(not database.IsValidFolder(scratch), \&quot;Scratch folder already exists\&quot;)\nlocal presets = CS.ShanghaiWindy.Editor.EditorStorage.Info.modulePresetFolders\nlocal moduleType = CS.ShanghaiWindy.Core.EInternalModuleType\nlocal block\nlocal added = false\nlocal ok, result = pcall(function()\n    database.CreateFolder(\&quot;Assets\&quot;, \&quot;__DocsPresetScan\&quot;)\n    database.CreateFolder(scratch, \&quot;Breech\&quot;)\n    database.CreateFolder(scratch .. \&quot;/Breech\&quot;, \&quot;Nested\&quot;)\n    block = u.GameObject.CreatePrimitive(u.PrimitiveType.Cube)\n    u.Object.DestroyImmediate(block:GetComponent(typeof(u.Collider)))\n    local path = scratch .. \&quot;/Breech/Sample.prefab\&quot;\n    assert(e.PrefabUtility.SaveAsPrefabAsset(block, path))\n    assert(e.PrefabUtility.SaveAsPrefabAsset(block, scratch .. \&quot;/Breech/Nested/Hidden.prefab\&quot;))\n    presets:Add(scratch)\n    added = true\n    local mapping = CS.System.Collections.Generic.Dictionary(CS.System.String, moduleType)()\n    local util = CS.ShanghaiWindy.Editor.ModulePresetUtil\n    util.RefreshModuleMapping(mapping)\n    assert(mapping:ContainsKey(path), \&quot;Direct prefab was not scanned\&quot;)\n    local entries = mapping:GetEnumerator()\n    local found\n    while entries:MoveNext() do\n        if entries.Current.Key == path then found = entries.Current.Value end\n    end\n    assert(found and found:ToString() == \&quot;Breech\&quot;, \&quot;Wrong scanned type: \&quot; .. tostring(found))\n    assert(not mapping:ContainsKey(scratch .. \&quot;/Breech/Nested/Hidden.prefab\&quot;), \&quot;Nested prefab was scanned\&quot;)\n    local module = util.SetupModule(block, moduleType.Breech)\n    assert(module.moduleType:ToString() == \&quot;Breech\&quot;, \&quot;Wrong placed module type: \&quot; .. tostring(module.moduleType))\nend)\nif added then presets:RemoveAt(presets.Count - 1) end\nif block then u.Object.DestroyImmediate(block) end\nif database.IsValidFolder(scratch) then database.DeleteAsset(scratch) end\nassert(ok, result)\nreturn \&quot;Module prefab preset scan and placement passed\&quot;&quot;,
+        &quot;manual-preset&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Module prefab preset scan and placement passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-troubleshooting">5. Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custom models are not listed</td>
+<td>Whether the root is in the array; whether the type folder matches the enum name exactly; whether the file is a direct <code>.fbx</code> or <code>.prefab</code> in that folder; whether you refreshed after the change</td>
+</tr>
+<tr>
+<td>Thumbnail appears but the picked module has no collider</td>
+<td>Whether the model root has a MeshFilter with a valid shared mesh</td>
+</tr>
+<tr>
+<td>An old model still shows after replacing files</td>
+<td>Refresh presets, then pick again; confirm the file is not in a subfolder</td>
+</tr>
+<tr>
+<td>Wrong category</td>
+<td>The file's type folder does not match an <code>EInternalModuleType</code> member</td>
+</tr>
+</tbody>
+</table>
+<h2 id="built-in-example-folders">Built-in example folders</h2>
+<p>The current code also scans <code>Assets/Res/InternalDamage/Preset/&lt;type&gt;</code> and <code>Packages/com.shanghaiwindy.middlesharedresources/SharedInternalDamage/Preset/&lt;type&gt;</code> (package constant <code>PackageConst.MIDDLE_SHARED_RESOURCES</code>). Use their files as examples of naming and structure. The middle shared resources package is a dependency package and its sources are not necessarily present in the local <code>Packages</code> folder.</p>
+<p>Related sources: <code>ModulePresetUtil.RefreshModuleMapping</code>, <code>ModulePresetUtil.AddModule</code>, <code>ModulePresetUtil.SetupModule</code>, <code>ModulePresetUtil.DrawModulePreset</code>, <code>EditorStorageInfo.modulePresetFolders</code>, <code>VehicleHitBoxEditorWindow.RefreshPresets</code>, <code>EInternalModuleType</code>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

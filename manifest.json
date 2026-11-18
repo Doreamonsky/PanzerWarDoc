@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T131958Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T133839Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2196,6 +2196,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/destructible-object-creation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/destructible-object-creation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/destructible-objects.md",
       "output": {
         ".html": {
@@ -2210,6 +2220,36 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/diy-equipment-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/diy-map-project-import.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/diy-map-project-import.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/diy-to-mod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/diy-to-mod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/editor-configs.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/editor-configs.html"
         }
       },
       "version": ""
@@ -2270,6 +2310,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/fmod-project-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/fmod-sound-debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/fmod-sound-debugging.html"
         }
       },
       "version": ""
@@ -2586,6 +2636,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/map-workshop-asset-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/map-workshop-asset-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/mask-texture-preview.md",
       "output": {
         ".html": {
@@ -2640,6 +2700,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/mod-env-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/mod-mirror-site-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/mod-mirror-site-setup.html"
         }
       },
       "version": ""
@@ -2786,6 +2856,26 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/reference-third-party-fmod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/reference-third-party-fmod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/send-mod-for-debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/send-mod-for-debugging.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/set-steam-game-folder.md",
       "output": {
         ".html": {
@@ -2900,6 +2990,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/upload-to-steam-workshop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/uv-automation-tool.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/uv-automation-tool.html"
         }
       },
       "version": ""
@@ -9019,6 +9119,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/destructible-object-creation-rigid.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/destructible-object-creation-rigid.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/destructible-object-creation-rigid.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/destructible-object-creation-rigid.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/destructible-object-creation-shatter.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/destructible-object-creation-shatter.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/destructible-object-creation-shatter.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/destructible-object-creation-shatter.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/destructible-objects-settings.en.png",
       "output": {
         "resource": {
@@ -10173,6 +10313,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/map-wizard-tutorial-settings.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/map-workshop-asset-build-render.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/map-workshop-asset-build-render.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/map-workshop-asset-build-render.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/map-workshop-asset-build-render.zh-CN.png"
         }
       },
       "version": ""

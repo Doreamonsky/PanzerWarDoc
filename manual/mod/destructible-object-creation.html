@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>40. Destructible Object Creation 可破坏物体制作 | Panzer War Document </title>
+      <title>用预制破碎制作可破坏物体 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="40. Destructible Object Creation 可破坏物体制作 | Panzer War Document ">
-    
-    
+      <meta name="title" content="用预制破碎制作可破坏物体 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,24 +77,82 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="40-destructible-object-creation-可破坏物体制作">40. Destructible Object Creation 可破坏物体制作</h1>
 
-<p>在需要破坏的物体上，挂载 Shatter 组件。</p>
-<p>Attach the Shatter component to the object you want to make destructible.</p>
-<p><img src="imgs/58e8d2003b97_1713183537552-be37cafe-1b66-4832-bcdb-b47662249bdf.png" alt=""></p>
-<p>选择合适的参数后，点击 Fragment 进行分割。然后点击 Export Last Fragment 以保存切割后的 Mesh。</p>
-<p>After choosing suitable parameters, click Fragment to split the object, then click Export Last Fragment to save the resulting mesh.</p>
-<p>然后将生成的 Fragment 保存为预制体。</p>
-<p>Then save the generated Fragment as a prefab.</p>
-<p><img src="imgs/ba548052f15f_1713183547339-94717496-e0ee-4629-8a79-63acd061aa62.png" alt=""></p>
-<p>在 xxx_root 上，挂载 RayFire Rigid 组件，将 Object Type 改为 Mesh Root。点击 Editor Setup。</p>
-<p>On xxx_root, attach the RayFire Rigid component, change Object Type to Mesh Root, and then click Editor Setup.</p>
-<p><img src="imgs/1204fcb0aeac_1713183569576-4fead629-56c3-4c02-a505-d4ffbe96b86e.png" alt=""></p>
-<p><img src="imgs/ea25ba889bd7_1713183560752-9a023f01-4427-428a-9a2c-15557d2cb72e.png" alt=""></p>
-<p>将所有子物体的 Layer 改为 Fracture。</p>
-<p>Change the Layer of every child object to Fracture.</p>
-<p><img src="imgs/a4334a97bba9_1713183577280-f17db8aa-575e-4f9a-b210-ac163eaba8fb.png" alt=""></p>
-<p><img src="imgs/465ed61cf667_1713183598079-891b58c1-462f-43f7-a11b-78c67fce7a0e.png" alt=""></p>
+<!-- Generated from tutorials/destructible-object-creation/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="用预制破碎制作可破坏物体">用预制破碎制作可破坏物体</h1>
+<p><strong>中文</strong> | <a href="../en/mod/destructible-object-creation.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run destructible-object-creation --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;intact&quot;: &quot;${fixture}/Tutorial_Fence_Intact.prefab&quot;,
+    &quot;fractured&quot;: &quot;${fixture}/Tutorial_Fence_Fractured.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本流程用 RayFire 的 Shatter 把整块模型切成碎片，再把碎片整理成带 RayFire Rigid 的预制体。适合围栏、墙体等需要整体碎裂的道具。若只需在完好与破损模型之间切换，参见 <a href="destructible-objects.html">可破坏物体：模型替换</a>。</p>
+<h2 id="准备模型与-shatter-组件">准备模型与 Shatter 组件</h2>
+<p>把完整模型拖入场景，选中带网格的实例。在 <strong>Add Component</strong> 搜索 <strong>Rayfire Shatter</strong>。如果资源是已有预制体，先在场景里处理实例，生成完成后再另存碎片预制体。</p>
+<h2 id="设置碎片参数并分割">设置碎片参数并分割</h2>
+<p>在组件的 <strong>Fragments</strong> 区域选择碎片类型，示例使用 <strong>Type=Voronoi</strong>、<strong>Amount=3</strong>。<strong>Inner Surface Material</strong> 可以按需要指定，用于控制断面的外观，示例中的取值仅供参照。</p>
+<p>参数合适后点击 <strong>Fragment</strong> 按钮执行分割。</p>
+<p><img src="imgs/destructible-object-creation-shatter.zh-CN.png" alt="RayFire Shatter 的 Voronoi 分割设置"></p>
+<h2 id="导出碎片网格">导出碎片网格</h2>
+<p>在 <strong>Export</strong> 区域把 <strong>Source</strong> 设为 <strong>Last Fragments</strong>，填写 <strong>Suffix</strong> 为 <code>_frags</code>，然后点击 <strong>Export Last Fragments</strong>，导出切割后的网格。</p>
+<h2 id="整理层级并保存预制体">整理层级并保存预制体</h2>
+<p>分割后选中新增的 <code>*_root</code> 节点。旧围栏示例名为 <code>Prop_Fence_01B_root</code>，其下有多个名为 <code>*_sh_#</code> 的子物体。展开根节点，先核对碎片和网格引用，再把该节点拖入 Project 保存为预制体。保留导出的网格资产，预制体会引用其中的碎片网格。</p>
+<p>在该预制体根节点上挂载 <strong>Rayfire Rigid</strong>。</p>
+<h2 id="配置-rayfire-rigid">配置 RayFire Rigid</h2>
+<p>在 <strong>RayFire Rigid</strong> 上把 <strong>Object Type</strong> 设为 <strong>Mesh Root</strong>，然后点击 <strong>Editor Setup</strong>，让组件按当前层级登记各个碎片。</p>
+<p>示例中其余设置为 <strong>Initialization=By Method</strong>、<strong>Simulation Type=Dynamic</strong>、材质 <strong>Concrete</strong>、碰撞体使用 <strong>Mesh</strong>，可按道具的实际材质与受力方式调整。</p>
+<p><img src="imgs/destructible-object-creation-rigid.zh-CN.png" alt="RayFire Rigid 的 Mesh Root 和 Editor Setup"></p>
+<h2 id="设置-fracture-layer">设置 Fracture Layer</h2>
+<p>在 Hierarchy 选中生成根节点下的碎片子物体，把 <strong>Layer</strong> 设为 <strong>Fracture</strong>。保存预制体，重新打开后核对碎片层与导出网格引用。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在隔离场景用 RayFire 切出三块网格，再导出网格、设置 Mesh Root 和 Fracture 层。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local run = assert(loadfile(\&quot;../../Docs/Manual/tutorials/destructible-object-creation/example.lua\&quot;))()\nreturn run(\&quot;${fixture}\&quot;)&quot;,
+        &quot;docs-rayfire&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;RayFire saved 3 mesh fragments with Mesh Root and Fracture layer&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="测试">测试</h2>
+<p>在单独的测试场景中放入该预制体并触发破坏，确认碎片按预期分离、断面材质正确、碎片层生效。测试场景可以避免地图里其他物体影响判断。保存的网格与预制体应与本流程描述的一致；如果碎片数量或命名不符，先回到导出步骤重新生成。</p>
+<p>模型替换路线见 <a href="destructible-objects.html">可破坏物体</a>。</p>
 
 </article>
           </div>
@@ -122,7 +180,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
