@@ -8,17 +8,17 @@
       <title>Configure an FMOD Playback Component | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Configure an FMOD Playback Component | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -217,6 +217,7 @@
 </details>
 <h2 id="3-parameters">3. Parameters</h2>
 <p>Expand <code>playParams</code>, add one entry and set <code>key = zoom</code>, <code>value = 0.5</code>. The <code>PlayParm</code> fields are a string and a float, passed to <code>setParameterByName</code> before playback. The recipe queries the current event cache to confirm that the example event exists and defines <code>zoom</code>. For another event, use its actual parameter names.</p>
+<p>Add one entry for each parameter you want to change. When the event's bank needs loading, the component waits for it asynchronously. Once an instance is ready, the component applies each configured parameter before starting playback.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -258,6 +259,7 @@
 <h2 id="4-lifetime-and-distance">4. Lifetime and distance</h2>
 <p>Enable <code>isCustomSoundMaxDistance</code>, then set the revealed <code>customSoundMaxDistance</code> to 75. The field is hidden while the override is off. The defaults are false and 50. This is a check before starting playback, rather than a continuously updated attenuation range.</p>
 <p><code>OnEnable</code> calls <code>Play</code>. If the camera is too far away at that point, playback does not start or automatically resume when it gets closer. An empty event, an unavailable pool or a failed bank load also prevents playback. Disabling or destroying the component cancels pending waits. With <code>isStopEventOnDisable = true</code>, an existing instance is returned to the pool; false takes the <code>ReleaseEvent</code> path and does not guarantee immediate silence. Keep it true for this example.</p>
+<p>The older Inspector showed a separate autoplay toggle. In the current component, enabling the GameObject starts the playback attempt.</p>
 <p><img src="../../component/imgs/fmod-play-component-distance.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -322,7 +324,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

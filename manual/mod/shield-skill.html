@@ -8,17 +8,17 @@
       <title>配置能量护盾技能 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="配置能量护盾技能 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -340,6 +340,7 @@
 </details>
 <h2 id="2-设置冷却">2. 设置冷却</h2>
 <p>设置 <code>initialCdType = Ready</code>、<code>coolDownTime = 20</code>。选择 <code>CustomRatio</code> 才显示初始已完成比例 <code>customInitialCdRatio</code>。护盾存在期间不能再次施放，冷却只在没有活动护盾时推进。</p>
+<p>在外层 <strong>CrewSkillBuff</strong> 配置技能名、简介和翻译。需要就绪或释放声音时，启用 <code>hasSkillReadyVoice</code> 或 <code>hasSkillReleaseVoice</code>，分别填写 FMOD 事件 GUID。 <a href="fmod-project-setup.html">FMOD 配置</a></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -432,6 +433,12 @@
 </details>
 <h2 id="4-配置自定义-prefab-与命名">4. 配置自定义 prefab 与命名</h2>
 <p>本例复制官方 <code>EnergyShield.prefab</code> 为 <code>Tutorial_Shield.prefab</code>。保留根节点的 <strong>EnergyShieldMonoComponent</strong>，检查 <code>aabb</code> 引用 <strong>VehicleHitBoxAABBComponent</strong>，<code>hitBoxes</code> 引用有效护盾 HitBox。替换美术时保留这些绑定及相应碰撞体；缺引用不能视为有效护盾。</p>
+<p>替换美术时，按原预制体核对三组子节点：</p>
+<ul>
+<li><code>Visual</code> 的 Mesh Renderer 使用护盾材质。官方参考是 <code>Skill/EnergyShield/Materials/EnergyShield.mat</code>，着色器名为 <code>WindyVerse/Skill/EnergyShield</code>。</li>
+<li><code>HitBox</code> 使用 <strong>HitBox</strong> 标签和层。保留 Mesh Collider、HitBox 和 Kinematic Rigidbody。官方参考的 Mesh Collider 关闭 Convex 与 Trigger，刚体关闭重力。</li>
+<li><code>HitBoxAABB</code> 放在 <strong>HitBoxAABB</strong> 层，用 <strong>VehicleHitBoxAABBComponent</strong> 与覆盖护盾的非 Trigger Box Collider。把该组件拖回根节点的 <code>aabb</code>，再把伤害网格的 HitBox 加回 <code>hitBoxes</code>。</li>
+</ul>
 <p>创建 <strong>ManualNameBuildPiplineData</strong>，在 <code>bundleNameMaps</code> 设置 <code>bundleObject</code> 为该 prefab，<code>bundleName</code> 使用“名称.变体”，例如 <code>tutorial-shield-shared.prefab</code>。将此命名资产加入 <code>ModPackageBuildPiplineData.linkedObjects</code>。当前收集器按点拆分名称与变体，示例只使用一个点。</p>
 <p>将 <code>shieldType</code> 改为 <code>Custom</code>，把同一个完整名称写入 <code>customModel</code>。它是运行时资源键，不是项目文件路径；<code>isCustomModelFacingForward</code> 默认 true。本配方按运行 ID 生成独立资源键，避免教学包互相覆盖。</p>
 <p><img src="imgs/shield-skill-model.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
@@ -694,7 +701,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

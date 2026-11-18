@@ -8,17 +8,17 @@
       <title>指挥官配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="指挥官配置 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -234,6 +234,7 @@
 </details>
 <h2 id="2-身份与名称">2. 身份与名称</h2>
 <p>在 Inspector 填 <code>分类</code>（<code>category</code>）为 Tutorial、<code>年龄</code>（<code>age</code>）为 28，在 <code>名称</code>（<code>crewName</code>）折叠项里填写 <code>默认名称</code>（<code>defaultName</code>）为 Tutorial Commander。<code>唯一标识</code>（<code>guid</code>）在为空时自动生成一次，之后保持稳定，不要改写已发布的标识。下图 <code>guid</code> <code>9a719528-38a2-4fd4-8e70-f8f07dd56f81</code> 仅为教学示例，不是官方 ID，也不要给所有资产复用同一个。</p>
+<p>同时填写<strong>简短介绍</strong>（<code>shortCrewDescription</code>）和<strong>介绍</strong>（<code>crewDescription</code>）。名称和两段介绍各有独立的默认文本与语言条目。先填默认文本，再逐项添加简体中文、英文等译文。</p>
 <p><img src="imgs/crew-data-basic.zh-CN.png" alt="设置成员 GUID、分类和年龄"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -292,6 +293,7 @@
 </details>
 <h2 id="3-解锁与美术">3. 解锁与美术</h2>
 <p>示例勾选 <code>是否已解锁</code>（<code>isUnlock</code>），设置 <code>好感度上限</code>（<code>maxFriendship</code>）为 100、<code>好感度成长系数</code>（<code>friendshipGrowCoff</code>）为 1。为 <code>avatarTex</code>（256x256 头像）与 <code>inGameAvatarTex</code>（360x720 战斗头像）选择实际贴图；需要皮肤时，可在皮肤条目中分别覆盖这两项。</p>
+<p>在 <strong>皮肤</strong>（<code>skinContents</code>）中逐项填写本地化名称 <code>skinName</code>、好感度门槛 <code>friendshipRequirement</code> 和两种头像。可练习配置 50 与 80 两档，进入乘员界面分别验证门槛和切换后使用的战斗头像。</p>
 <p><img src="imgs/crew-data-unlock.zh-CN.png" alt="成员的解锁和好感度字段"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -370,6 +372,7 @@
 </details>
 <h2 id="4-增益与技能">4. 增益与技能</h2>
 <p>在增益分组把引用加入 <code>buffRefs</code>；在可升级技能分组（<code>upgradableSkillContents</code>）的 <code>skills[]</code> 中设置 <code>crewSkillRef</code> 与 <code>friendshipRequirement</code>。技能按槽位选择与好感度门槛生效；弃用的 <code>buffs</code> / <code>skillBuff</code> 不要新填。</p>
+<p>旧示例演示了装填相关系数 <code>-0.1</code> 和伤害相关系数 <code>0.05</code>。复现时在当前增益引用列表中分别选择所需效果，先确认配置采用比例还是固定值，再在同一测试车辆上对比。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>示例复制现有 Aino 的有效 SafeRef 配置，再放入一个友好度门槛为 0 的独立技能槽；不会改动来源成员。技能是否在游戏内生效仍需离线验证。</p>
@@ -634,7 +637,7 @@
 </code></pre>
 </details>
 <h2 id="技能参考">技能参考</h2>
-<p>下列旧页面可能仍展示弃用字段，请以当前 <code>buffRefs</code> 与可升级技能为准。</p>
+<p>这些技能教程给出可升级槽位、引用和打包的完整示例。</p>
 <p><a href="artillery-skill.html">火炮技能配置参考</a></p>
 <p><a href="weapon-support-skill.html">武器支援技能</a></p>
 <p><a href="shield-skill.html">护盾</a></p>
@@ -665,7 +668,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

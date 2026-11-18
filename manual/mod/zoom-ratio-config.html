@@ -8,17 +8,17 @@
       <title>配置载具缩放倍率 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="配置载具缩放倍率 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -244,6 +244,7 @@
 </details>
 <h2 id="4-指派到载具参数">4. 指派到载具参数</h2>
 <p>按用途选择引用槽：双目使用 <code>VehicleTextData.PSParameter.binocularZoomProfileData</code>；瞄具使用实际火炮参数的 <code>zoomProfileData</code>。有 <code>sharedGunData</code> 时在其 <code>tankFireParameter.zoomProfileData</code> 设置；没有共享引用时，在载具的 <code>TFParameter.zoomProfileData</code> 设置。同一个倍率资产可以用于两个槽位。</p>
+<p>Inspector 中，双目入口在 <strong>PSParameter → Zoom → Binocular</strong>。瞄具入口在主炮参数的 <strong>Misc Settings → Sight Zoom</strong>。游戏内先把<strong>倍镜比例</strong>切到非街机模式再验收。街机模式直接使用双目 3–12 倍和瞄具 4–30 倍，跳过这两个引用。非街机模式且没有绑定瞄具资产时，低于 8 级用 1.9–3.5 倍，8 级及以上用 3–12 倍。</p>
 <p>指派完成后保存并读回引用。本配方验证编辑器资产与引用，未验证游戏内视场角、热成像效果或模组加载。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -353,7 +354,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

@@ -8,17 +8,17 @@
       <title>VehicleLightAttachment 使用说明 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="VehicleLightAttachment 使用说明 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -116,6 +116,7 @@
 <li>在载具 prefab 中创建灯光物体，添加 <code>VehicleLightAttachmentMonoComponent</code>。展开 <code>lightAttachmentSlot</code> 和其中的 <code>attachment</code>，将灯光定位节点赋给 <code>lightTransform</code>。本例使用独立的 <code>Tutorial_Light.prefab</code>，节点名为 <code>LightOrigin</code>。</li>
 <li>同一对象上还需要 <code>VehicleAttachmentMonoComponent</code>：<code>attachmentSlotType</code> 设为 <code>Specific</code>，<code>specificAttachmentMonoComponent</code> 指向灯光组件。项目 CustomEditor 显示灯光 Inspector 时会自动补这个伴随组件；配方会显式创建并保存它。</li>
 </ol>
+<p>配置整车时，在 <code>MainBody</code> 下为左右近光、远光、刹车、倒车和转向灯各建定位节点。先校好一侧，再用 <strong>创建镜像 - Create Mirror</strong> 检查另一侧。要添加独立实例时可用 <strong>复制 - Duplicate</strong>。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -228,9 +229,9 @@
 </details>
 <h2 id="3-外观与可见性">3. 外观与可见性</h2>
 <ol>
-<li><code>lightType</code> 用 <code>LowBeam</code>，<code>baseColor</code> 白色，<code>emissionColor</code> 用 HDR 白，强度示例 3.5。</li>
-<li>本例保持 <code>isAlwaysVisible = true</code>、<code>isBlinker = false</code>，关闭 <code>isAutoNaming</code>。勾选 <code>isBlinker</code> 后会显示频率与相位字段；默认示例为 <code>blinkerFrequency = 1</code>、<code>blinkerStep = 0.5</code>，它们不是闪烁的唯一有效取值。</li>
-<li><code>lensEmitters</code> 是镜片眩光采样节点，最多 8 个；<code>beamOrigin</code> 是单独指定的光束原点。本例使用基础 Circle 配置，将这两项留空。它们与 Unity 的 Light 组件并非同一套配置。</li>
+<li><code>lightType</code> 选 <code>LowBeam</code>。点击 <strong>使用预设 - Set From Preset</strong> 可应用近光的基础色和 HDR 自发光。手动配色时分别编辑 <code>baseColor</code> 与 <code>emissionColor</code>。旧 VT-1A 图中的亮度和半径是该车的示例值。</li>
+<li>本例保持 <code>isAlwaysVisible = true</code>、<code>isBlinker = false</code>，关闭 <code>isAutoNaming</code>。勾选 <code>isBlinker</code> 后会显示频率与点亮比例。以 <code>blinkerFrequency = 1</code>、<code>blinkerStep = 0.5</code> 为例，每秒约亮半秒。</li>
+<li><code>lensEmitters</code> 是镜片眩光采样节点，最多 8 个。可在 <code>beamOrigin</code> 指定光束的单独原点，节点的局部 <strong>+Z</strong> 是出光方向。基础 Circle 可将两项留空。使用 <code>CustomShape</code> 时，可用 <strong>预览开灯/关灯</strong> 查看 Renderer 的切换。</li>
 </ol>
 <p><img src="imgs/vehicle-light-component-appearance.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
 <details class="tutorial-mcp">
@@ -349,7 +350,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

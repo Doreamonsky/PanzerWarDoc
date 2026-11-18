@@ -8,17 +8,17 @@
       <title>Fixed-Angle Reload Configuration | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Fixed-Angle Reload Configuration | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -168,7 +168,7 @@
 </code></pre>
 </details>
 <h2 id="2-add-the-fixed-angle-reload-buff">2. Add the fixed-angle reload buff</h2>
-<p>Add an entry to <code>buffRefs</code>, choose <code>TankFireSpecificAngleReloadBuff</code> and expand its configuration. Use these teaching values:</p>
+<p>In the main gun's <strong>Tank Fire Params → Misc Settings → Buffs</strong> (<code>buffRefs</code>), click <strong>+</strong>. Open the entry's <strong>Value</strong> type menu and pick <code>TankFireSpecificAngleReloadBuff</code>. Expand it and enter the sample values:</p>
 <table>
 <thead>
 <tr>
@@ -203,7 +203,7 @@
 </tr>
 </tbody>
 </table>
-<p>Delay, angle and speed-coefficient fields are shown when their respective switches are enabled. When no specific angle is supplied, the code uses the current angle on entering the fixed-angle state. These values illustrate configuration only.</p>
+<p>Each switch controls its corresponding field. With traverse locked, the turret holds the configured angle or the angle at the start of the reload state. With traverse unlocked, the turret continues following the aim point. Elevation independently holds its configured angle or its angle on entry. Click <strong>Save</strong> on the reference entry, then save the gun asset.</p>
 <p>The current list is <code>AbstractTankFireBuffCasterSafeRef[]</code>; the legacy <code>buffs</code> field is deprecated. The MCP recipe creates a real SafeRef entry by supplying both its type and configuration JSON.</p>
 <p><img src="../../mod/imgs/fixed-angle-reload-fields.en.png" alt="Fixed-angle reload traverse, elevation and speed coefficient"></p>
 <details class="tutorial-mcp">
@@ -333,7 +333,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

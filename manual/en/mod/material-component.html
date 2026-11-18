@@ -8,17 +8,17 @@
       <title>Configure Vehicle Material Overrides | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Configure Vehicle Material Overrides | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -112,7 +112,7 @@
 }
 </code></pre>
 </details>
-<p>This example configures transparency in the DE project with Unity 2022.3.62f2. <code>CoreRPMatData</code> stores material parameters. <code>CoreRPMatComponent</code> supplies those parameters when the vehicle's resources load.</p>
+<p>This example configures transparency in the DE client project. In the public SDK, follow <a href="get-started.html">project setup</a> to select the Unity version declared by the SDK. <code>CoreRPMatData</code> stores material parameters. <code>CoreRPMatComponent</code> supplies those parameters when the vehicle's resources load.</p>
 <h2 id="1-prepare-the-source-material">1. Prepare the source material</h2>
 <p>Find the target <code>Mesh Renderer</code> in the model prefab and identify its material slot. The recipe copies an existing propeller material to <code>Tutorial_Prop.mat</code> and assigns it to the first slot of <code>Tutorial_Material.prefab</code>. For your own model, use its mesh and textures.</p>
 <details class="tutorial-mcp">
@@ -169,6 +169,7 @@
 <li>Assign the same Material asset used by the Mesh Renderer slot to <code>linkedMaterial</code>.</li>
 </ol>
 <p>For a camouflage setup, select <code>VehicleCamouflage</code>. The <code>hasMask</code> and <code>maskTex</code> fields in <code>vehicleCamoflageMatParam</code> supply the mask to the selected shader. Consult that shader for its channel meanings.</p>
+<p>On the source material, check the base texture <code>_BaseMap</code>, normal texture <code>_BumpMap</code>, and mask <code>_MaskMap</code>. Vehicle camouflage can inherit the source material's <code>_MaskMap</code>. To override that texture for this configuration, enable <code>hasMask</code> and assign <code>maskTex</code>. Use the <a href="mask-texture-preview.html">mask preview</a> to inspect channels individually.</p>
 <p><img src="../../mod/imgs/material-component-data.en.png" alt="Shader type, color, smoothness and material reference with numbered highlights"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -212,6 +213,7 @@
 <h2 id="3-attach-the-component">3. Attach the component</h2>
 <p>Add <strong>CoreRPMatComponent</strong> to the target object. Leave <code>isComponentBased</code> off and assign <code>Tutorial_MaterialSettings</code> to <code>matData</code>. Multiple renderers can reuse this configuration.</p>
 <p>The component mode instead uses each <code>indexCoreRPMatParams</code> entry's <code>index</code> to select a slot on the same object's Mesh Renderer. Counting starts at zero. Check those indices when reordering material slots.</p>
+<p>The index resolves to the Material asset assigned to the slot. Other renderers that share the same material in the same conversion can inherit the override. To change a single slot, duplicate the material and assign the copy to that slot before setting its index.</p>
 <p><img src="../../mod/imgs/material-component-component.en.png" alt="Shared material configuration on the component with numbered highlights"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -324,7 +326,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

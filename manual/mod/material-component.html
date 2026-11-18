@@ -8,17 +8,17 @@
       <title>配置载具材质组件 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="配置载具材质组件 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -112,7 +112,7 @@
 }
 </code></pre>
 </details>
-<p>下面在 Unity 2022.3.62f2 的 DE 工程中配置透明材质。<code>CoreRPMatData</code> 保存材质参数，<code>CoreRPMatComponent</code> 把配置带入载具的资源加载流程。</p>
+<p>下面在客户端 DE 工程中配置透明材质。使用公开 SDK 时，按<a href="get-started.html">工程初始化</a>选择 SDK 声明的 Unity 版本。<code>CoreRPMatData</code> 保存材质参数，<code>CoreRPMatComponent</code> 把配置带入载具的资源加载流程。</p>
 <h2 id="1-准备原材质">1. 准备原材质</h2>
 <p>在模型 prefab 中找到目标 <code>Mesh Renderer</code>，确认要覆盖的材质槽。教学配方复制现有桨叶材质为 <code>Tutorial_Prop.mat</code>，把它放入 <code>Tutorial_Material.prefab</code> 的第一个材质槽。实际制作时沿用模型自己的贴图和网格。</p>
 <details class="tutorial-mcp">
@@ -169,6 +169,7 @@
 <li>将 <code>linkedMaterial</code> 指向 Mesh Renderer 材质槽实际使用的同一个资产。</li>
 </ol>
 <p>若配置载具涂装，选 <code>VehicleCamouflage</code>。遮罩通过 <code>vehicleCamoflageMatParam</code> 的 <code>hasMask</code> 和 <code>maskTex</code> 传给对应着色器，通道用途以所选着色器为准。</p>
+<p>先在原材质核对基础色贴图 <code>_BaseMap</code>、法线贴图 <code>_BumpMap</code> 和遮罩 <code>_MaskMap</code>。载具涂装默认可沿用原材质的 <code>_MaskMap</code>。要为此配置换遮罩时，再开启 <code>hasMask</code> 并指定 <code>maskTex</code>。可用<a href="mask-texture-preview.html">遮罩预览工具</a>逐通道检查。</p>
 <p><img src="imgs/material-component-data.zh-CN.png" alt="透明材质的类型、颜色、光滑度和材质引用，带编号高亮"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -212,6 +213,7 @@
 <h2 id="3-挂载组件">3. 挂载组件</h2>
 <p>在目标物体上添加 <strong>CoreRPMatComponent</strong>。保持 <code>isComponentBased</code> 关闭，将 <code>matData</code> 设为刚才创建的 <code>Tutorial_MaterialSettings</code>。这条流程允许多个渲染器复用同一份配置。</p>
 <p>另一种模式是开启 <code>isComponentBased</code>，用 <code>indexCoreRPMatParams</code> 的 <code>index</code> 读取同一物体的 Mesh Renderer 材质槽，从 0 开始计数。更换材质槽顺序时需要同步检查索引。</p>
+<p>索引最终解析成槽位引用的 Material 资产。同次转换里的其他渲染器若共用这份材质，也可能套用配置。只调整一个槽时，先复制材质并把副本分配给该槽，再设置索引。</p>
 <p><img src="imgs/material-component-component.zh-CN.png" alt="组件的共享材质配置，带编号高亮"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -324,7 +326,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

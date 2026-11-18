@@ -8,17 +8,17 @@
       <title>预设载具队列 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="预设载具队列 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -324,6 +324,7 @@
 <p>在 <strong>载具标识列表（<code>vehicleGuids</code>）</strong> 点 <strong>+</strong> 添加一条，然后填写两个字符串：<strong>备注（<code>comment</code>）</strong> 为作者备注，<strong>载具唯一标识（<code>vehicleGuid</code>）</strong> 为载具加载标识。</p>
 <p>该标识即 <code>VehicleInfo</code> 对外提供的标识：<code>assetGuid</code>，为空时回退为小写的 <code>vehicleName</code>。请从你自己的可驾驶 <code>VehicleInfo</code> 复制；不要使用 Unity <code>.meta</code> GUID 或 <code>VehicleTextData.editorAssetGuid</code>。</p>
 <p>选中对应的 <code>VehicleInfo</code>，点击 <strong>拷贝资源标识</strong>，再把复制的值粘贴到 <strong><code>vehicleGuid</code></strong>。</p>
+<p>有现成载具时，也可以在游戏车库打开该车的 <strong>载具数据</strong>，在 <strong>Overview</strong> 中点 <strong>Copy</strong>，复制运行时读取的同一个标识。</p>
 <p>示例 <code>comment</code> 为 <code>T-34-85 No.215</code>，<code>vehicleGuid</code> 为 <code>a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c</code>，来自官方 AAA2 内容，仅为演示，不会自动提供到你的工程。</p>
 <p>该列表是可用载具集合，不是数量：条目数就是条目数量，没有出场数量字段。实际出场数量由模式设置决定。</p>
 <p><img src="imgs/preset-vehicle-queue-vehicles.zh-CN.png" alt="队列条目只填写备注和载具加载 ID"></p>
@@ -579,7 +580,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

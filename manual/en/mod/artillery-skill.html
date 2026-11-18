@@ -8,17 +8,17 @@
       <title>Configure Artillery Support | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Configure Artillery Support | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -339,6 +339,7 @@
 </details>
 <h2 id="2-configure-cooldown">2. Configure cooldown</h2>
 <p>Set <code>initialCdType = Ready</code> and <code>coolDownTime = 20</code> seconds. <code>Ready</code> starts fully charged; <code>NotReady</code> starts from zero. <code>CustomRatio</code> reveals <code>customInitialCdRatio</code>, the initially completed fraction of cooldown. A successful release resets the progress.</p>
+<p>Set the title and description on the outer <strong>CrewSkillBuff</strong> and add the translations for each. In the skill config, use <code>hasSkillReadyVoice</code> and <code>hasSkillReleaseVoice</code> if you want sounds. Enter the corresponding FMOD event GUIDs. <a href="fmod-project-setup.html">FMOD setup</a></p>
 <p><img src="../../mod/imgs/artillery-skill-common.en.png" alt="Numbered skill fields in the actual Inspector"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -391,6 +392,7 @@
 <h2 id="3-configure-a-shell-group">3. Configure a shell group</h2>
 <p>Expand <code>spawnInfos</code> and add one entry: <code>dispersion = 10</code>, <code>attackAngle = 45</code>, <code>count = (2,4)</code>, <code>timeDelay = (0,2)</code> and <code>fromDistance = 800</code>. The integer count excludes the upper bound, so this example produces two or three shells. Each independently samples a delay of approximately 0–2 seconds.</p>
 <p>Set <code>artilleryBulletData</code> and add the matching <code>loadName</code> and actual <code>BulletData</code> reference to the same SafeRef's <code>safeRefAssetProvider.assets</code>. This example copies the existing 105-HE ammunition and uses the copied asset's GUID as the lookup key. Runtime matches that key to a reference; it does not automatically convert a display name or file path into ammunition.</p>
+<p>Select the copied ammunition asset. Verify the <strong>HE</strong> warhead and <strong>Bullet VFX</strong> reference in the Inspector, then check <strong>Explosion Range</strong> in the explosion settings. Review those fields for the intended in-game effect before binding a different ammunition asset to the skill.</p>
 <p>The local player's camera ray must hit a target. The spawn point adds an X-axis offset rotated around the global Z axis to that target point. At 45 degrees this changes both horizontal position and height; it is not a horizontal offset along the camera direction. <code>dispersion</code> is passed to the projectile.</p>
 <p><img src="../../mod/imgs/artillery-skill-effect.en.png" alt="Numbered skill fields in the actual Inspector"></p>
 <details class="tutorial-mcp">
@@ -634,7 +636,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

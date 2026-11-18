@@ -8,17 +8,17 @@
       <title>定角装填配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="定角装填配置 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -168,7 +168,7 @@
 </code></pre>
 </details>
 <h2 id="2-添加定角装填增益">2. 添加定角装填增益</h2>
-<p>在 <code>buffRefs</code> 新增一条，选择 <code>TankFireSpecificAngleReloadBuff</code>。展开其配置，按下表设置教学值：</p>
+<p>在主炮的 <strong>Tank Fire Params → Misc Settings → Buffs</strong>（<code>buffRefs</code>）点 <strong>+</strong> 新增一条。打开条目的 <strong>Value</strong> 类型下拉菜单，选 <code>TankFireSpecificAngleReloadBuff</code>。展开配置并设置下表的教学值：</p>
 <table>
 <thead>
 <tr>
@@ -203,7 +203,7 @@
 </tr>
 </tbody>
 </table>
-<p>延迟、角度和速度系数字段分别受对应开关控制。未指定角度时，代码使用进入定角状态时的当前角度。上面的数值只用于演示。</p>
+<p>各开关决定对应字段是否生效。锁定水平旋转后，炮塔保持指定水平角，或在未指定时保持进入装填状态的水平角。保持水平旋转解锁时，炮塔继续跟随瞄点。俯仰独立使用指定角度或进入状态时的俯仰角。填写后点击该引用项内的 <strong>Save</strong>，再保存火炮资产。</p>
 <p>当前列表是 <code>AbstractTankFireBuffCasterSafeRef[]</code>，旧的 <code>buffs</code> 字段已弃用。MCP 配方会同时写入真实类型和配置 JSON，创建安全引用元素。</p>
 <p><img src="imgs/fixed-angle-reload-fields.zh-CN.png" alt="定角装填的水平角度、垂直角度和速度系数"></p>
 <details class="tutorial-mcp">
@@ -333,7 +333,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

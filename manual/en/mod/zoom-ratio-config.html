@@ -8,17 +8,17 @@
       <title>Configure Vehicle Zoom Ratios | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Configure Vehicle Zoom Ratios | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -244,6 +244,7 @@
 </details>
 <h2 id="4-assign-it-to-vehicle-parameters">4. Assign it to vehicle parameters</h2>
 <p>Choose the reference slot by purpose: binoculars use <code>VehicleTextData.PSParameter.binocularZoomProfileData</code>; the sight uses <code>zoomProfileData</code> on the active gun parameters. With <code>sharedGunData</code>, set <code>tankFireParameter.zoomProfileData</code> on that asset. Without a shared reference, set <code>TFParameter.zoomProfileData</code> on the vehicle. The same profile asset can be assigned to both slots.</p>
+<p>In the Inspector, open <strong>PSParameter → Zoom → Binocular</strong> for binoculars, or <strong>Misc Settings → Sight Zoom</strong> on the main gun for the sight. Set <strong>Zoom Ratio</strong> in the game to a mode other than Arcade before testing. Arcade forces 3–12× for binoculars and 4–30× for sights. With Arcade off and no sight profile assigned, the sight defaults to 1.9–3.5× below rank 8 and 3–12× at rank 8 or above.</p>
 <p>Save the parameter assets and read the references back. This recipe verifies editor assets and references; in-game FOV, thermal effects and mod loading remain unverified.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -353,7 +354,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
