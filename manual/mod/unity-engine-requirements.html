@@ -85,11 +85,35 @@
 <p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run unity-engine-requirements
 </code></pre>
-<h2 id="1-确认工程版本">1. 确认工程版本</h2>
-<p>打开工程的 <code>ProjectSettings/ProjectVersion.txt</code>，查找 <code>m_EditorVersion</code>。公开 SDK 发行版 <code>sdk-2026.11.04.1</code> 使用 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1">Unity 2022.3.62f1</a>。客户端 DE、Free 和 FreeCN 源码工程使用 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f2">Unity 2022.3.62f2</a>。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sdkCheckout&quot;: &quot;../../../Panzer-War-Mod-SDK&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<h2 id="1-确认工程版本">1. 确认工程版本</h2>
+<p>公开 SDK 解压后，在 <code>UnityProject/ProjectSettings/ProjectVersion.txt</code> 查看 <code>m_EditorVersion</code>。<a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/tag/sdk-2026.11.04.1">GitHub 发行版 <code>sdk-2026.11.04.1</code></a>声明 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1">Unity 2022.3.62f1</a>。使用新发行版或 GameHub 生成的工程时，以该工程的文件值为准。维护客户端 DE、Free 或 FreeCN 源码时，按客户端工程要求使用 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f2">Unity 2022.3.62f2</a>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>先读取公开 SDK 的 ProjectVersion，再读取当前客户端工程的项目配置和正在运行的编辑器版本。</p>
 <pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/ProjectSettings/ProjectVersion.txt&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;m_EditorVersion: 2022.3.62f1&quot;
+    }
+  },
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
@@ -118,10 +142,10 @@
 <ol>
 <li>从 <a href="https://unity.com/download">Unity 官网</a> 安装 <strong>Unity Hub</strong>。安装公开 SDK 使用的 2022.3.62f1 时，可以在 Windows 按 <strong>Win+R</strong>，输入 <code>unityhub://2022.3.62f1/4af31df58517</code>，按回车交给 Hub。也可以打开<a href="https://unity.com/releases/editor/whats-new/2022.3.62f1#installs">该版本的安装页</a>。</li>
 <li>确认 Hub 显示的安装版本与工程声明一致。如果 Hub 无法下载，在发行页的 <strong>Manual installs</strong> 下载对应系统的编辑器安装包。安装后在 Hub 的 <strong>Installs</strong> 使用 <strong>Locate</strong> 添加已有编辑器。</li>
-<li>在 Hub 的编辑器版本条目选择 <strong>Add modules</strong>。只装需要的目标平台支持。构建 Android 时勾选 <strong>Android Build Support</strong>。需要完整 Android 工具链或构建 Android Player 时，同时安装该版本配套的 <strong>Android SDK &amp; NDK Tools</strong> 与 <strong>OpenJDK</strong>。构建 iOS 模组时安装 <strong>iOS Build Support</strong>。</li>
+<li>在 Hub 的编辑器版本条目选择 <strong>Add modules</strong>。按 SDK 说明，构建 Android 模组时安装 <strong>Android Build Support</strong> 及其配套的 <strong>Android SDK &amp; NDK Tools</strong>、<strong>OpenJDK</strong>。构建 iOS 模组时安装 <strong>iOS Build Support</strong>。</li>
 <li>在 <strong>Installs</strong> 查看编辑器版本与模块，再回到<a href="get-started.html">项目初始化</a>打开 SDK 工程。</li>
 </ol>
-<p>MCP 回放核对已打开工程和编辑器的版本。Unity Hub 安装由读者完成。</p>
+<p>MCP 回放核对公开 SDK 文件中的版本，以及本地打开的客户端工程与编辑器版本。</p>
 
 </article>
           </div>

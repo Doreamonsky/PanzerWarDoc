@@ -112,7 +112,7 @@
 }
 </code></pre>
 </details>
-<p>Install Git for Windows if you plan to clone the mod project. You can open the <a href="get-started.html">official SDK ZIP</a> directly.</p>
+<p>Install Git and Git LFS on Windows if you plan to clone the public Mod SDK from GitHub. The <a href="project-download-links.html">GitHub release ZIP</a> is ready for project setup after extraction.</p>
 <h2 id="steps">Steps</h2>
 <ol>
 <li><p>Download the installer for your Windows architecture from <a href="https://git-scm.com/install/windows">Git for Windows</a>.</p>
@@ -164,10 +164,11 @@
 </code></pre>
 </details>
 <h2 id="if-you-clone-the-sdk-with-git">If you clone the SDK with Git</h2>
-<p>Check Git LFS before cloning the SDK.</p>
+<p>Open a new terminal, check that Git LFS is available, and enable it for your account.</p>
 <pre><code>git lfs version
+git lfs install
 </code></pre>
-<p>After cloning, run the following command in the SDK repository to fetch large files.</p>
+<p>Follow the <a href="project-download-links.html">download and clone guide</a> to get the SDK. Fetch the large files from the repository root before opening <code>UnityProject</code> in Unity Hub.</p>
 <pre><code>git lfs pull
 </code></pre>
 <p>MCP checks the executables at the default installation location. Downloading, installing and cloning are manual steps.</p>

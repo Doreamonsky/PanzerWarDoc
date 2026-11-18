@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Official Art Assets | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Official Art Assets | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/official-art-assets/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="official-art-assets">Official Art Assets</h1>
+<p><a href="../../mod/official-art-assets.html">中文</a> | <strong>English</strong></p>
+<p>Official production assets such as vehicles and maps live in the private repository WindyVerse/Panzer-War-Mods. The old GitLab community, sound, and map repositories are frozen and are kept for reference only. This page describes how authorized contributors work. Downloading and trying the SDK does not need repository access; see &quot;Public SDK and official resources&quot; below.</p>
+<h2 id="access">Access</h2>
+<p>Access to the official asset repository requires authorization. Send your GitHub account to the developers, have them grant repository access, and sign in to Git with the account that received the invitation.</p>
+<p>The public mod SDK needs no application; download it directly.</p>
+<h2 id="public-sdk-and-official-resources">Public SDK and official resources</h2>
+<p>Download the public SDK from GitHub Releases and follow <a href="get-started.html">project setup</a> to open <code>UnityProject</code>. For a Git checkout, use the <a href="project-download-links.html">download and clone guide</a>. <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Public SDK releases</a></p>
+<p>The SDK and the official resources are two different repositories: the SDK is for setting up a project, testing, and packaging, while the official production resources are in the private repository. Being able to download from the SDK release page does not mean the official asset repository is public as well.</p>
+<h2 id="prepare-the-project">Prepare the project</h2>
+<ol>
+<li><p>Set up Git and Git LFS, see <a href="install-git.html">install Git</a>, and add <a href="install-tortoisegit.html">TortoiseGit</a> if you prefer a graphical client.</p>
+</li>
+<li><p>When you work on one package, use Git Bash in a clean checkout to fetch the package and its dependencies. This example uses <code>Vehicles/German</code>.</p>
+<pre><code class="lang-sh">GIT_LFS_SKIP_SMUDGE=1 git clone git@github.com:WindyVerse/Panzer-War-Mods.git
+cd Panzer-War-Mods
+python Tools/ci.py prepare Vehicles/German
+git lfs pull --include=&quot;&lt;the lfs paths printed above&gt;&quot;
+</code></pre>
+<p><code>prepare</code> rewrites the package's project manifest. Before committing, use <code>git diff -- Projects/Vehicles/Packages/manifest.json</code> to confirm the only changes are from that command, then restore that one file.</p>
+<pre><code class="lang-sh">git restore -- Projects/Vehicles/Packages/manifest.json
+</code></pre>
+</li>
+<li><p>Open <code>Projects/&lt;Group&gt;</code> with Unity 2022.3.62f1, then edit and test-build locally as usual.</p>
+</li>
+<li><p>Asset locations: one modpack corresponds to one local UPM package under <code>Packages/&lt;Group&gt;/&lt;Pack&gt;</code>, which holds the BuildPipeline and the resources unique to that package; assets shared by several packages go to <code>Packages/&lt;Group&gt;/Shared</code>. The SDK creation tools still generate new files into the project shell under <code>Assets/Res/...</code> and <code>Assets/ModManager/</code>. After creating them, drag those folders into the owning package in the Unity Project window; moving preserves their GUIDs.</p>
+</li>
+<li><p>Personal editor settings such as the Steam game path live in <code>Assets/EditorStorage.json</code>, which is not committed. When the file is absent, start from <code>Projects/&lt;Group&gt;/EditorStorage.template.json</code>.</p>
+</li>
+</ol>
+<p>Keep existing paths and <code>.meta</code> files when moving or re-exporting assets so GUIDs and references survive. Naming and export requirements are in <a href="../../mod/upload-naming-art-standards.html">art asset naming and upload standards</a>.</p>
+<h2 id="make-one-coherent-change">Make one coherent change</h2>
+<p>Keep one related change per branch so the developers can review and merge it. Do not mix unrelated cleanup, formatting, or re-exports into the same branch.</p>
+<p>A local test build rewrites the build records in the ModPackage asset (file list, <code>createdTime</code>). If you only tested a build locally, do not commit those changes.</p>
+<h2 id="create-a-branch-commit-and-push">Create a branch, commit, and push</h2>
+<p>The full command-line flow:</p>
+<pre><code class="lang-sh">git switch main
+git pull
+git switch -c &lt;topic&gt;-mod
+git status
+git add &lt;the files you changed&gt;
+git commit -m &quot;&lt;what you changed&gt;&quot;
+git push -u origin &lt;topic&gt;-mod
+</code></pre>
+<p>Then open a pull request from that branch to <code>main</code> on GitHub and state which package you changed, what you changed, and how you verified it.</p>
+<p>With TortoiseGit, do the same steps from the context menu of the project folder:</p>
+<ol>
+<li><strong>TortoiseGit → Create branch</strong> to create the branch. Name it <code>&lt;topic&gt;-mod</code>, for example the tank you changed and what you changed on it.</li>
+<li>Switch to that branch before making your edits.</li>
+<li>Right-click <strong>TortoiseGit → Commit</strong>. In the commit dialog, tick only the files you changed. If a file is not yours, leave it unticked instead of adding everything.</li>
+<li>Right-click <strong>TortoiseGit → Push</strong>, confirm the branch name, push, and then open the pull request on GitHub.</li>
+</ol>
+<p>You can keep adding commits to your branch. Including only your own files in the commit is what keeps other people's uncommitted work in the same working tree out of it.</p>
+<h2 id="verification">Verification</h2>
+<p>Run the static check before committing. It fills in undeclared package dependencies and reports the remaining problems:</p>
+<pre><code class="lang-sh">python Tools/check.py --fix
+</code></pre>
+<p>If you changed package contents, build and verify the current platform locally through the same entry CI uses. The artifact lands in <code>Artifacts/local/</code>:</p>
+<pre><code class="lang-sh">python Tools/ci.py build Vehicles/German
+</code></pre>
+<p>Once that passes, run <strong>Build modpack</strong> in the mod repository's GitHub Actions, fill in the affected <code>packs</code> and target <code>platform</code>, and set <code>publish=none</code> for a verification build. The workflow trims dependencies, pulls the matching LFS content, builds, and verifies. See <a href="continuous-build.html">continuous mod builds</a> for the flow and artifact checks, and <a href="multi-platform-build.html">multi-platform build</a> for platform differences.</p>
+<p>After downloading the artifact, check the target platform, GUID, <code>modVersion</code>, manifest files, and the <code>.modpack.json</code> sidecar with the same name, then load the initial vehicles, maps, sounds, materials, and config in the game on that platform. A successful CI build only means the artifact passed its checks; it does not mean it has run in the actual game.</p>
+<p>Publishing to the workshop is a separate flow: <code>publish=sandbox</code> publishes a test build, and <code>publish=production</code> is allowed only from <code>main</code>. Increment <code>modVersion</code> first when the contents of an already published package change.</p>
+<h2 id="update-after-merge">Update after merge</h2>
+<p>Once your branch is merged into <code>main</code>, switch back to <code>main</code> and pull the latest project, which now contains your changes and everyone else's:</p>
+<pre><code class="lang-sh">git switch main
+git pull
+</code></pre>
+<p>For further work, create a new branch from the updated <code>main</code>.</p>
+<p>If the pull fails, stash only your own changes, pull, then restore them:</p>
+<pre><code class="lang-sh">git stash push -m &quot;uncommitted work on my branch&quot; -- &lt;your files&gt;
+git pull
+git stash pop
+</code></pre>
+<p>Stash only your files so other people's work in the same tree is not swept in. Run <code>git status</code> again afterwards and confirm nothing is left with conflict markers.</p>
+<p>When an asset shows as <strong>Missing</strong>, record the exact path or GUID and report it to the developers; do not delete or recreate the asset yourself. Report missing paths from <code>check.py</code> the same way.</p>
+<h2 id="historical-material">Historical material</h2>
+<p>The following comes from the older page. Interface wording, repository addresses, and screenshots may differ from the current version; treat the text above as authoritative.</p>
+<p>Old GitLab repositories (the map ones had to sit under the same parent directory as the community repository):</p>
+<ul>
+<li>Community repository: <a href="https://lab.windyverse.net/modder/panzer-war-community-mods">https://lab.windyverse.net/modder/panzer-war-community-mods</a></li>
+<li>Sound repository: <a href="https://lab.windyverse.net/modder/Panzer-War-Fmod">https://lab.windyverse.net/modder/Panzer-War-Fmod</a></li>
+<li>Map repository: <a href="https://lab.windyverse.net/modder/ShanghaiWindyMaps">https://lab.windyverse.net/modder/ShanghaiWindyMaps</a></li>
+<li>Public resources: <a href="https://lab.windyverse.net/modder/ShanghaiWindyPublicResources">https://lab.windyverse.net/modder/ShanghaiWindyPublicResources</a></li>
+</ul>
+<p>Older video tutorials (recorded against the old interface, background only):</p>
+<ul>
+<li><a href="https://www.bilibili.com/video/BV1Nd4y1W73A/">Downloading, using, and contributing to the mod project</a> (Chinese)</li>
+<li><a href="https://www.bilibili.com/video/BV1ty4y1d75L/">Writing custom scripts and tuning vehicle values in the mod project</a> (Chinese)</li>
+</ul>
+<p>The older page described &quot;the main project files under <code>Assets/Res/Vehicles/Ground/Data</code>&quot; with screenshots; that path refers to assets in the project shell, while package assets now live under <code>Packages/&lt;Group&gt;/&lt;Pack&gt;</code>. The older in-editor Git workflow of creating a branch, committing, and pulling matches the TortoiseGit steps above.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

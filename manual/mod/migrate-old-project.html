@@ -189,9 +189,9 @@
 </details>
 <p>把完整 SDK 解压到<strong>新目录</strong>，再迁入自己的资源及其 <code>.meta</code> 文件。</p>
 <h2 id="1-备份旧工程并打开新工程">1. 备份旧工程并打开新工程</h2>
-<p>复制旧工程的完整目录或保留版本库快照。按 <a href="get-started.html">项目初始化</a> 下载 SDK，完整解压到新目录，保留同级的 <code>UnityProject</code> 和 <code>Packages</code>。按新工程的 <code>ProjectSettings/ProjectVersion.txt</code> 选择 Unity 版本，等待首次导入和编译完成。</p>
+<p>复制旧工程的完整目录或保留版本库快照。从 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">GitHub 正式发行页</a>下载名为 <code>Panzer-War-Mod-SDK-sdk-*.zip</code> 的资产并完整解压到新目录。保留同级的 <code>UnityProject</code> 和 <code>Packages</code>。按<a href="get-started.html">项目初始化</a>在 Unity Hub 打开新 <code>UnityProject</code>，选择它声明的编辑器版本，等待首次导入和编译完成。</p>
 <h2 id="2-复制自己的资源">2. 复制自己的资源</h2>
-<p>把自己创建的 <code>Assets</code> 子目录复制进新工程，保留相对路径，并带上文件和目录对应的 <code>.meta</code>。Unity 用其中的 GUID 识别资源引用。</p>
+<p>把自己创建的 <code>Assets</code> 子目录复制到新工程的 <code>UnityProject/Assets</code>，保留相对路径，并带上文件和目录对应的 <code>.meta</code>。同时找出 <code>Assets/ModManager</code> 下属于自己的模组包与构建管线资产，带上它们的 <code>.meta</code>，核对关联对象和包 GUID。新 SDK 自带的 <code>Packages</code> 和样例留在新工程中。Steam 游戏目录等个人设置在新工程中重新填写。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>在独立目录演示复制和备份，并回读资源、文件 GUID 和目录 GUID。</p>

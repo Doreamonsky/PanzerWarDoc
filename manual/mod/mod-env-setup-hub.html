@@ -85,15 +85,15 @@
 <p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run mod-env-setup-hub
 </code></pre>
-<p>使用 GameHub 创建工程，再通过 Unity Hub 打开它。也可以从 <a href="get-started.html">模组 SDK ZIP</a> 开始。</p>
+<p>公开 SDK 的首次设置见 <a href="get-started.html">GitHub SDK 项目初始化</a>。如果你手上的 GameHub 提供<strong>创建工程</strong>按钮，可以用下面的步骤打开它生成的工程。</p>
 <h2 id="1-用-gamehub-创建工程">1. 用 GameHub 创建工程</h2>
 <ol>
 <li>在 GameHub 中点击 <strong>创建工程</strong>，选择一个空文件夹。</li>
-<li>工程生成后复制路径。</li>
-<li>读取生成工程里 <code>ProjectSettings/ProjectVersion.txt</code> 的 <code>m_EditorVersion</code>，按 <a href="unity-engine-requirements.html">Unity 引擎版本要求</a> 安装。</li>
+<li>工程生成后打开输出目录。找到包含 <code>Assets</code>、<code>Packages/manifest.json</code> 和 <code>ProjectSettings</code> 的目录，复制该路径。如果生成内容多套了一层 <code>UnityProject</code>，使用内层目录，在磁盘上保留同级本地依赖。</li>
+<li>读取生成工程自己的 <code>ProjectSettings/ProjectVersion.txt</code> 中的 <code>m_EditorVersion</code>，按 <a href="unity-engine-requirements.html">Unity 引擎版本要求</a>安装对应版本。GameHub 工程的版本取决于生成时用的模板。</li>
 </ol>
 <h2 id="2-用-unity-hub-打开工程">2. 用 Unity Hub 打开工程</h2>
-<p>在 Unity Hub 的 <strong>Projects → Add → Add project from disk</strong> 中选择复制的路径。打开工程，等待首次导入和编译完成。GameHub 创建工程和 Unity Hub 操作由读者完成。下方 MCP 配方检查已打开的工程。</p>
+<p>在 Unity Hub 的 <strong>Projects → Add → Add project from disk</strong> 中选择复制的路径。打开工程，等待首次导入和编译完成。若当前 GameHub 没有创建入口，可以从<a href="project-download-links.html">正式 SDK ZIP</a>直接初始化。下方 MCP 配方检查已经打开的工程。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

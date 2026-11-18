@@ -82,8 +82,14 @@
 <link rel="stylesheet" href="../tools/tutorials.css">
 <h1 id="项目下载参考">项目下载参考</h1>
 <p><strong>中文</strong> | <a href="../en/mod/project-download-links.html">English</a></p>
-<p>模组工程 ZIP 在 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>。下载后按 <a href="get-started.html">项目初始化</a> 打开工程。也可通过 <a href="mod-env-setup-hub.html">GameHub</a> 创建工程。</p>
-<p><a href="https://doreamonsky-01.coding.net/public/PanzerWar-Mods/PanzerWar-Mods/git/files">旧 Coding 仓库</a> 仍列作历史参考。当前可打开 Coding 入口页，仓库内容和下载状态待核实。</p>
+<p>模组工程 ZIP 在 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>。展开 <strong>Assets</strong>，下载 <code>Panzer-War-Mod-SDK-sdk-*.zip</code>；发行包内含可用的 DLL，使用该 ZIP 不需要 Git 或 LFS。不要使用自动生成的 <strong>Source code</strong> 源码压缩包。下载后按 <a href="get-started.html">项目初始化</a> 打开工程。若 GameHub 提供 <strong>Create Project</strong>（创建工程），也可通过 <a href="mod-env-setup-hub.html">GameHub</a> 创建工程。</p>
+<p>也可以改用 LFS 克隆仓库：</p>
+<pre><code class="lang-shell">git lfs install
+git clone https://github.com/WindyVerse/Panzer-War-Mod-SDK.git
+cd Panzer-War-Mod-SDK
+git lfs pull
+</code></pre>
+<p>SDK 是公开的模组开发包。官方载具、地图等素材在独立的私有仓库 Panzer-War-Mods，游戏本体由 Panzer-War-Client 构建。除修改官方素材或客户端代码外，使用 SDK 即可。</p>
 
 </article>
           </div>

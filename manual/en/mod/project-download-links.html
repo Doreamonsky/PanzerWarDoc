@@ -82,8 +82,14 @@
 <link rel="stylesheet" href="../../tools/tutorials.css">
 <h1 id="project-download-reference">Project download reference</h1>
 <p><a href="../../mod/project-download-links.html">中文</a> | <strong>English</strong></p>
-<p>The project ZIP is available from the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK releases</a>. Follow <a href="get-started.html">project setup</a> to open it, or create a project through <a href="mod-env-setup-hub.html">GameHub</a>.</p>
-<p>The <a href="https://doreamonsky-01.coding.net/public/PanzerWar-Mods/PanzerWar-Mods/git/files">old Coding repository</a> is a historical reference. The Coding landing page opens, but the repository contents and downloads remain unverified.</p>
+<p>The project ZIP is available from the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK releases</a>. Expand <strong>Assets</strong> and download <code>Panzer-War-Mod-SDK-sdk-*.zip</code>; the release includes working DLLs, so this ZIP needs no Git or LFS. Do not use the auto-generated <strong>Source code</strong> archives. Follow <a href="get-started.html">project setup</a> to open it, or create a project through <a href="mod-env-setup-hub.html">GameHub</a> if it offers <strong>Create Project</strong>.</p>
+<p>To download from the repository instead, clone it with LFS:</p>
+<pre><code class="lang-shell">git lfs install
+git clone https://github.com/WindyVerse/Panzer-War-Mod-SDK.git
+cd Panzer-War-Mod-SDK
+git lfs pull
+</code></pre>
+<p>The SDK is the public modding package. Official vehicles, maps and other assets live in the separate private Panzer-War-Mods repository, and the game itself is built from Panzer-War-Client. Use the SDK unless you are changing official assets or client code.</p>
 
 </article>
           </div>

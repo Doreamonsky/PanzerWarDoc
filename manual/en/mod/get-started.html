@@ -85,31 +85,31 @@
 <p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run get-started
 </code></pre>
-<h2 id="1-download-and-extract-the-sdk">1. Download and extract the SDK</h2>
-<p>Open the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK release page</a>, expand <strong>Assets</strong>, and download the release ZIP named <code>Panzer-War-Mod-SDK-sdk-*.zip</code>. It includes the DLLs and local dependencies. Extract the whole archive and keep <code>UnityProject</code> beside <code>Packages</code> so Unity can resolve dependencies. If you already have a project, start with the next step. You can also create one through <a href="mod-env-setup-hub.html">GameHub</a>.</p>
-<h2 id="2-check-the-project-folder-and-version">2. Check the project folder and version</h2>
-<p>Check that <code>UnityProject</code> contains <code>Assets/</code>, <code>Packages/manifest.json</code> and <code>ProjectSettings/ProjectVersion.txt</code>. Install the version declared by the project using the <a href="unity-engine-requirements.html">Unity version guide</a>.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sdkCheckout&quot;: &quot;../../../Panzer-War-Mod-SDK&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<h2 id="1-download-and-extract-the-sdk">1. Download and extract the SDK</h2>
+<p>Open the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK release page</a>, expand <strong>Assets</strong>, and download the release ZIP named <code>Panzer-War-Mod-SDK-sdk-*.zip</code>. It contains the DLLs and local dependencies and opens without Git. GitHub's auto-generated <strong>Source code (zip)</strong> may only contain Git LFS pointers. Extract the whole archive and keep <code>UnityProject</code> next to <code>Packages</code>. For a Git checkout, follow the <a href="project-download-links.html">clone and LFS steps</a>.</p>
+<h2 id="2-check-the-project-folder-and-version">2. Check the project folder and version</h2>
+<p>Check that <code>UnityProject</code> contains <code>Assets/</code>, <code>Packages/manifest.json</code>, and <code>ProjectSettings/ProjectVersion.txt</code>. The verified public release <code>sdk-2026.11.04.1</code> declares Unity <strong>2022.3.62f1</strong>. For a later release, read <code>m_EditorVersion</code> from that download and follow the <a href="unity-engine-requirements.html">Unity version guide</a>.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Check the adjacent public SDK checkout for its declared editor version, sibling package dependency, and vehicle template. Set sdkCheckout to the outer directory if the SDK is elsewhere.</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
       &quot;args&quot;: [
-        &quot;Assets&quot;
-      ]
-    },
-    &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;(Boolean) True&quot;
-    }
-  },
-  {
-    &quot;tool&quot;: &quot;invoke&quot;,
-    &quot;arguments&quot;: {
-      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
-      &quot;args&quot;: [
-        &quot;Packages/manifest.json&quot;
+        &quot;${sdkCheckout}/UnityProject/Assets&quot;
       ]
     },
     &quot;expect&quot;: {
@@ -121,11 +121,59 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
       &quot;args&quot;: [
-        &quot;ProjectSettings/ProjectVersion.txt&quot;
+        &quot;${sdkCheckout}/UnityProject/ProjectSettings/ProjectVersion.txt&quot;
       ]
     },
     &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;m_EditorVersion: 2022.3.62f2&quot;
+      &quot;contains&quot;: &quot;m_EditorVersion: 2022.3.62f1&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Packages/manifest.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;file:../../Packages/Sdk/com.shanghaiwindy.middlelayer&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Assets/ModManager/BuildPipline-Template-Vehicle.asset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Assets/ModManager/Template-Blank-Vehicle.asset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlelayer/package.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
     }
   }
 ]
@@ -137,7 +185,14 @@
 <li>Open the project from the list. If Hub reports a missing editor, install the version declared in <code>ProjectVersion.txt</code>, then open the project again. The first launch imports packages and compiles scripts.</li>
 <li>Once import finishes, check the Console. With compilation complete, look for <strong>Framework - 框架</strong> in the menu bar. If the menu is missing, confirm that you opened the inner <code>UnityProject</code> folder and fully extracted the neighboring <code>Packages</code> folder.</li>
 </ol>
-<p>Next, <a href="set-steam-game-folder.html">set the Steam game folder</a> if needed or <a href="vehicle-basics.html">build your first tank</a>.</p>
+<h2 id="4-verify-your-setup-with-a-bundled-template">4. Verify your setup with a bundled template</h2>
+<ol>
+<li>In <strong>File → Build Settings</strong>, choose the target platform. For Windows, choose <strong>PC, Mac &amp; Linux Standalone → Windows → x86_64</strong>. For Android, choose <strong>Android</strong>. Click <strong>Switch Platform</strong> when needed.</li>
+<li>In Project, select <code>Assets/ModManager/BuildPipline-Template-Vehicle.asset</code>. Click <strong>Build Linked Objects to AssetBundle</strong> and wait for it to finish.</li>
+<li>Select <code>Assets/ModManager/Template-Blank-Vehicle.asset</code> and click <strong>Package Mod Now</strong>. The Windows example outputs to <code>UnityProject/Build/Mod-Package/StandaloneWindows64/Template-Blank-Vehicle/</code>. After changing assets or platform, build the linked objects again before packaging.</li>
+<li>Follow <a href="../gameplay/install-mods.html">Install mods</a> to add the <code>.modpack</code> for your game's platform. For a map template, use <code>BuildPipline-Template-Blank.asset</code> and <code>Template-Blank-Scene.asset</code> in the same Project folder.</li>
+</ol>
+<p>Next, <a href="set-steam-game-folder.html">set the Steam game folder</a> if needed or <a href="vehicle-basics.html">build your first tank</a>. If your GameHub build can create projects, you can use the <a href="mod-env-setup-hub.html">GameHub workflow</a> to open the result.</p>
 
 </article>
           </div>

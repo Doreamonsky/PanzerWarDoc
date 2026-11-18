@@ -85,15 +85,15 @@
 <p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run mod-env-setup-hub
 </code></pre>
-<p>Create a project in GameHub, then open it in Unity Hub. You can also start from the <a href="get-started.html">Mod SDK ZIP</a>.</p>
+<p>For a first project, follow the <a href="get-started.html">GitHub SDK setup guide</a>. If your GameHub build offers <strong>Create Project</strong>, the steps below explain how to open its output.</p>
 <h2 id="1-create-the-project-with-gamehub">1. Create the project with GameHub</h2>
 <ol>
 <li>In GameHub, select <strong>Create Project</strong> and choose an empty folder.</li>
-<li>Copy the path when GameHub finishes creating the project.</li>
-<li>Read <code>m_EditorVersion</code> in the generated project's <code>ProjectSettings/ProjectVersion.txt</code> and follow the <a href="unity-engine-requirements.html">Unity version guide</a>.</li>
+<li>Open the output directory and copy the path to the folder containing <code>Assets</code>, <code>Packages/manifest.json</code>, and <code>ProjectSettings</code>. If there is an outer folder with <code>UnityProject</code> inside, use the inner path and keep its neighboring local dependencies in place.</li>
+<li>Read <code>m_EditorVersion</code> in the generated project's own <code>ProjectSettings/ProjectVersion.txt</code> and follow the <a href="unity-engine-requirements.html">Unity version guide</a>. GameHub uses the editor version declared by its project template.</li>
 </ol>
 <h2 id="2-open-the-project-with-unity-hub">2. Open the project with Unity Hub</h2>
-<p>In Unity Hub, select <strong>Projects → Add → Add project from disk</strong> and choose the path you copied. Open the project and wait for import and compilation to finish. Complete the GameHub and Unity Hub steps manually. The MCP recipe checks the open project.</p>
+<p>In Unity Hub, select <strong>Projects → Add → Add project from disk</strong> and choose the path you copied. Open the project and wait for import and compilation to finish. If your GameHub has no project creation option, use the <a href="project-download-links.html">official SDK ZIP</a>. The MCP recipe checks the open project.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
