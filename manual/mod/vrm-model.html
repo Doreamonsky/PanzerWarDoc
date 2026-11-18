@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>42.1. VRM Model VRM 模型 | Panzer War Document </title>
+      <title>VRM 模型 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="42.1. VRM Model VRM 模型 | Panzer War Document ">
-    
-    
+      <meta name="title" content="VRM 模型 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,36 +77,275 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="421-vrm-model-vrm-模型">42.1. VRM Model VRM 模型</h1>
 
-<h2 id="vrm">VRM</h2>
-<p>Simply drag the VRM file into Unity.</p>
-<p>将 VRM 格式的文件拖入 Unity 即可完成导入。</p>
-<p><img src="imgs/626214e04740_1751723797364-e67320d7-9b11-42a2-b8ab-b1c782d80ec3.png" alt=""></p>
-<p><img src="imgs/00c6642cd58c_1751723789828-491e35e9-d03c-43d8-97ae-79504d3f5a6a.png" alt=""></p>
-<h2 id="adjusted-vrm-bone-reference-points---vrm-骨骼参考点修正">Adjusted VRM bone reference points   VRM 骨骼参考点修正</h2>
-<p><strong>If the VRM model was not created by yourself, you need to correct the bone reference points; otherwise, the physics behavior will be incorrect!</strong></p>
-<p><strong>如果不是自己制作的 VRM 模型，则需要修正骨骼的参考点，否则物理表现会错误！</strong></p>
-<p><img src="imgs/3604394ef303_1752997882704-ff3989c9-a756-406d-8a2d-9ff0a012847c.png" alt=""></p>
-<p>Select VRM Tool</p>
-<p>选择 VRM 工具</p>
-<p><img src="imgs/bb7fd2888b42_1752997857690-48073408-8e9e-49df-a918-79ea78fcf2ef.png" alt=""></p>
-<p>Select the root node of the character in the scene, then click <strong>VRM1 / Export VRM 1.0...</strong> from the top menu bar.</p>
-<p>选中场景中人物的根节点，点击顶部菜单栏的 <strong>VRM1 / Export VRM 1.0...</strong>。</p>
-<p><img src="imgs/d0585367cc81_1752997869570-5773ba35-3b41-4feb-9533-0d2f11053e4e.png" alt=""></p>
-<p>Fill in the author and name, then click Export to overwrite the original VRM model.</p>
-<p>填写作者和名称，点击导出以覆盖原本的 VRM 模型。</p>
-<p><img src="imgs/e7de5e8cd668_1752998027925-b9276e73-4a7f-457b-9b5f-3d751f4e69d5.png" alt=""></p>
-<h2 id="vrm-data">VRM Data</h2>
-<p><img src="imgs/c9c88b3ec744_1751723820093-6794ee7b-d9e2-4263-8b15-189eb0170039.png" alt=""></p>
-<p>Vrm Model Path: Please select a file ending with the .vrm format.
-<strong>Note: Only the original VRM model will be included in the build. Any modifications made to the VRM model within Unity will not take effect!</strong></p>
-<p>Vrm Model Path：请选择以 .vrm 格式结尾的文件。</p>
-<p><strong>注意：打包时只会包含原始的 VRM 模型，在 Unity 中对 VRM 模型进行的任何修改都不会生效！</strong></p>
-<p>In CrewData, fill in the vrm guid.</p>
-<p>在 CrewData 中，填写 VRM 的 Guid。</p>
-<p><img src="imgs/7263368d9b80_1751724028057-dccf257a-7c65-46d4-b02d-2d2a6b0dbde4.png" alt=""></p>
-<p><a href="vehicle-hatches.html">2.16 Hatch Compatible - 载具舱盖适配</a></p>
+<!-- Generated from tutorials/vrm-model/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="vrm-模型">VRM 模型</h1>
+<p><strong>中文</strong> | <a href="../en/mod/vrm-model.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vrm-model --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;character&quot;: &quot;${fixture}/Tutorial_Vrm_Character.asset&quot;,
+    &quot;packageGuid&quot;: &quot;6c0fb9b2-9d61-4ee4-a416-e09b5a1fcb00&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>VRM 角色用 Unity 内的 VRM 插件处理。先准备模型和骨骼参考点，再导出回源文件，最后才配置数据并打包。</p>
+<h2 id="1-导入-vrm-模型">1. 导入 VRM 模型</h2>
+<p>把 <code>.vrm</code> 文件拖入 Unity 的 Project 窗口完成导入，再把导入后的资源拖到 Hierarchy。新实例的角色根节点带有 <code>Vrm10Instance</code>，骨骼和 SpringBone 位于其下。</p>
+<p>使用第三方模型时，先核对现有 Center 引用。如果缺失或指向不合适的对象，再按下文修正。</p>
+<h2 id="2-修正-springbone-中心参考点">2. 修正 SpringBone 中心参考点</h2>
+<ol>
+<li>按 <strong>Ctrl+G</strong> 打开 <strong>Framework → Editor Tools</strong>，在搜索框输入 <strong>VRM Util</strong>，打开 VRM 工具。</li>
+<li>在 Hierarchy 展开角色根节点，把它的 <code>Root</code> 子物体拖到 <strong>Center</strong>。Unity 会绑定该子物体自身的 Transform。</li>
+<li>把带 <code>Vrm10Instance</code> 的角色根（示例名 <code>DemoVrm</code>）拖到 <strong>Vrm 10 Instance</strong>。</li>
+<li>点击 <strong>Set Center Transform</strong>。</li>
+</ol>
+<p>这一步会逐条写入 SpringBone 的 <code>Center</code> 引用，让骨骼物理围绕角色的实际中心计算。之后在场景里移动角色，检查头发和裙摆不会抖动或飞出。</p>
+<h2 id="3-导出-vrm-10">3. 导出 VRM 1.0</h2>
+<ol>
+<li>选中角色根节点，再点顶部菜单的 <strong>VRM1 → Export VRM 1.0...</strong>。</li>
+<li>在导出窗口核对 <strong>ExportRoot</strong> 指向该角色根，Meta 页的 <strong>Name</strong> 和 <strong>Authors</strong> 与授权信息一致。</li>
+<li>导出到源 <code>.vrm</code> 的同一路径以覆盖它；源文件不可写时，另存一个可写的副本，然后在数据里重新绑定这个新路径。副本需要保留原模型的许可。</li>
+</ol>
+<p>不要删改 Meta 里的许可字段。重新导出时应保持原有的作者、许可和允许用途不变，只更新你想更新的内容。</p>
+<h2 id="4-配置-vrm-角色数据">4. 配置 VRM 角色数据</h2>
+<p>在 Project 窗口用 <code>Create &gt; A Panzer War - 装甲纷争 &gt; C Config - 配置 &gt; VRM Character - VRM 人物</code> 新建 <code>VrmCharacterData</code>。</p>
+<ul>
+<li><strong>VRM 模型路径</strong>：指向以 <code>.vrm</code> 结尾的源文件。</li>
+<li><strong>GUID</strong>：该资源自身的标识，生成后保持稳定，发布过的资源不要改动。</li>
+<li><strong>高度</strong>、<strong>半径</strong>、<strong>舱盖起点位置</strong>：当前默认值分别为 <code>1.6</code>、<code>0.25</code>、<code>0.5</code>。旧截图中出现的 <code>1.56</code>、<code>0.15</code>、<code>0.84</code> 只是示例数值，请按模型实测填写。</li>
+<li><strong>桌面端贴图尺寸上限</strong>、<strong>移动端贴图尺寸上限</strong>：当前默认分别为 <code>1024</code> 和 <code>512</code>。选 <strong>None</strong> 会保留源 PNG/JPG；选择具体尺寸会把贴图压到 DXT/ASTC 并限制在该边长内。</li>
+</ul>
+<p>舱盖的开关与乘员上下车位置见<a href="vehicle-hatches.html">载具舱盖适配</a>。</p>
+<p><img src="imgs/vrm-model-profile.zh-CN.png" alt="VRM 文件绑定及桌面与移动贴图尺寸"></p>
+<h2 id="5-打包前的检查">5. 打包前的检查</h2>
+<p>构建时收集器会把<strong>源 <code>.vrm</code> 文件</strong>复制成 <code>&lt;GUID&gt;-model.vrm</code> 放进包内，并按当前打包平台套用贴图上限。Unity 场景内对模型、骨骼和材质的改动不会被打包，除非已经导出回 <code>.vrm</code>。</p>
+<p>因此调整完骨骼参考点或授权信息后，先完成上面的导出，再开始构建。打包前确认模型路径可读、GUID 稳定，以及桌面端和移动端的上限符合本次发布要求。</p>
+<h2 id="6-在-crewdata-中引用">6. 在 CrewData 中引用</h2>
+<p>在 <code>CrewData</code> 的 <strong>VRM 角色GUID</strong> 字段填入第 4 步的 <code>VrmCharacterData</code> GUID。打包后检查角色的高度、半径、舱盖起点和贴图尺寸是否与配置一致。乘员数据的完整字段见<a href="crew-data.html">成员数据</a>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local sample=assert(loadfile(\&quot;../../Docs/Manual/tutorials/vrm-model/example.lua\&quot;))()\nreturn sample(\&quot;${fixture}\&quot;)&quot;,
+        &quot;docs-vrm-model&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;VRM Center and exported model verified&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${character}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssetIfDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -134,7 +373,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>0. Tank Workshop Basic Tutorial 坦克工坊通用教学 | Panzer War Document </title>
+      <title>坦克工坊入门 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="0. Tank Workshop Basic Tutorial 坦克工坊通用教学 | Panzer War Document ">
-    
-    
+      <meta name="title" content="坦克工坊入门 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,35 +77,247 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0-tank-workshop-basic-tutorial-坦克工坊通用教学">0. Tank Workshop Basic Tutorial 坦克工坊通用教学</h1>
 
-<h2 id="shortkey-快捷键">ShortKey 快捷键</h2>
-<p>W, A, S, D to move the camera forward, backward, left, and right 控制摄像机前后左右移动</p>
-<p>Q, E to move the camera up and down 控制摄像机上下移动</p>
-<p>1 - Slot Mode 插槽模式</p>
-<p>2 - Move 移动</p>
-<p>3 - Rotate 旋转</p>
-<p>4 - Scale 缩放</p>
-<p>Ctrl + Z - Undo 撤销</p>
-<p>Ctrl + Y - Redo 重做</p>
-<p>Ctrl + C - Copy 复制</p>
-<p>Ctrl + V - Paste 粘贴</p>
-<p>Ctrl + X - Cut 剪切</p>
-<h2 id="change-vehicle-hull-更换车身">Change Vehicle Hull 更换车身</h2>
-<p>Select the turret you want to use, then click Copy</p>
-<p>选中你要使用的炮塔，然后点击复制</p>
-<p><img src="imgs/ff5bdfbe6af2_1719496060091-1cb4dfd0-ba8e-42a0-aad6-42a2add1a914.png" alt=""></p>
-<p><img src="imgs/91b3df1c50a1_1719496140629-48c0e8f6-96cc-4793-a840-fd2e60ae822c.png" alt=""></p>
-<p>Click Paste</p>
-<p>点击粘贴</p>
-<p><img src="imgs/3c1f7c9ea044_1719496162536-eb6cfe38-4edd-424d-a1af-cc009b1a39e6.png" alt=""></p>
-<h2 id="test-drive-试驾">Test Drive 试驾</h2>
-<p>First, save the vehicle, then click Test Drive</p>
-<p>首先保存载具，然后点击试驾</p>
-<p><img src="imgs/abb799be2bcc_1719496212568-d136b227-f86e-401e-aff8-1c81f9a8284d.png" alt=""></p>
-<p>Click Stop Act to return to the Tank Workshop</p>
-<p>点击停止扮演，返回坦克工坊</p>
-<p><img src="imgs/c524546a9e32_1719496236950-7a3c2bd9-26fb-4553-994f-678b28fb5655.png" alt=""></p>
+<!-- Generated from tutorials/tank-workshop-basics/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克工坊入门">坦克工坊入门</h1>
+<p><strong>中文</strong> | <a href="../en/workshop/tank-workshop-basics.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-workshop-basics
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;testPreset&quot;: &quot;Tutorial ARL-44 (local test)&quot;,
+    &quot;partSet&quot;: &quot;Tutorial ARL-44 Turret (local test)&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<p>从车库进入<strong>坦克工坊</strong>。新建车辆后，放入车体，选中车体的炮塔插槽装炮塔，再在炮塔的火炮槽装炮。把车体、炮塔和火炮分别设为主要部件。可以用同一套 <strong>ARL-44 Hull</strong>、<strong>ARL-44 Turret</strong> 和 <strong>90 MM DCA 45</strong> 练习。SDK 中制作独立载具的流程见<a href="../mod/vehicle-basics.html">坦克制作</a>。</p>
+<p><img src="imgs/tank-workshop-basics-assembly.zh-CN.png" alt="工坊中组装好的 ARL-44 车体、炮塔和火炮"></p>
+<h2 id="1-查看和调整配件">1. 查看和调整配件</h2>
+<p>旧版桌面快捷键如下，若你在游戏里修改过按键，以当前设置为准。触屏可用界面上的对应工具。</p>
+<table>
+<thead>
+<tr>
+<th>默认按键</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>W A S D</code>、<code>Q E</code></td>
+<td>相机前后左右移动、升降</td>
+</tr>
+<tr>
+<td><code>1</code>、<code>2</code>、<code>3</code>、<code>4</code></td>
+<td>插槽、移动、旋转、缩放</td>
+</tr>
+<tr>
+<td><code>Ctrl+Z</code>、<code>Ctrl+Y</code></td>
+<td>撤销、重做</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code>、<code>Ctrl+V</code>、<code>Ctrl+X</code></td>
+<td>复制、粘贴、剪切</td>
+</tr>
+</tbody>
+</table>
+<p>先在槽位模式选中配件，再在需要时用移动、旋转或缩放调整。误操作后可撤销，再从另一角度检查位置。</p>
+<h2 id="2-换车体并保留炮塔">2. 换车体并保留炮塔</h2>
+<p>在原车上选中炮塔，点击<strong>复制</strong>。换到目标车体后选兼容槽位并粘贴。需要重复使用或跨存档转移时，先点<strong>存为部件组</strong>，再在目标车体放置该组。检查炮塔仍带有原来的火炮和子配件。复制出的配件会清除主要标记，分别选中炮塔和火炮，用 <strong>设为主要</strong> 重新指定。</p>
+<h2 id="3-保存和试驾">3. 保存和试驾</h2>
+<p>先保存为独立方案，再点击<strong>试驾</strong>。起步、刹车、转向、瞄准与试射各做一次。点击<strong>停止扮演</strong>可以回到工坊继续调整。没有有效保存或部件未完成时，先补齐车体、炮塔、主炮和槽位。</p>
+<p>工坊的可回放入口包括 <code>vehicle_catalog</code>、<code>vehicle_rules</code>、<code>vehicle_equip</code>、<code>vehicle_part_set_save</code>、<code>vehicle_part_set_place</code> 与 <code>vehicle_save</code>。用它们复现时先确认当前是独立测试方案。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在已解锁的独立工坊测试会话执行。每次用新的测试方案名，并等待试驾状态变化再继续。测试结束在方案列表处理保存的测试方案。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;vehicle_new&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok new vehicle&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;type&quot;: &quot;hull&quot;,
+      &quot;search&quot;: &quot;ARL-44&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6a2ccb5b-c942-4e97-9e68-1ecd5e6d223d&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;6a2ccb5b-c942-4e97-9e68-1ecd5e6d223d&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: true
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;hull&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;689e9029-d4b8-43a6-80d9-cdbcc8f6736d&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: true,
+      &quot;parentRuleGuid&quot;: &quot;${hull}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;turret&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;981e2fc2-43c5-4e52-8d00-817a1b4cd4fc&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: true,
+      &quot;parentRuleGuid&quot;: &quot;${turret}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;gun&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_rules&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;90 MM DCA 45&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_save&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;${testPreset}&quot;,
+      &quot;overwrite&quot;: false,
+      &quot;thumbnail&quot;: false
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok saved&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;ui_click&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;gen_TestDriveButton&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Clicked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_state&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;testDrive: True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;ui_click&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;gen_StopActButton&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Clicked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_state&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;testDrive: False&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_part_set_save&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;${partSet}&quot;,
+      &quot;ruleGuids&quot;: &quot;${turret}&quot;,
+      &quot;overwrite&quot;: false
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;parts=2&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_new&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok new vehicle&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;1dae31c6-7e26-483d-8a88-4dd5ec25b830&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: true
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;track&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_part_set_place&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;${partSet}&quot;,
+      &quot;parentRuleGuid&quot;: &quot;${track}&quot;,
+      &quot;slotIndex&quot;: 0
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;added=2/2&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_rules&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;90 MM DCA 45&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_part_set_delete&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;${partSet}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok deleted&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -133,7 +345,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

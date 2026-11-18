@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Poly Edit Tool | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Poly Edit Tool | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/poly-edit-tool/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="poly-edit-tool">Poly Edit Tool</h1>
+<p><a href="../../workshop/poly-edit-tool.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run poly-edit-tool
+</code></pre>
+<p>Use the Poly Edit tool to change a vehicle's mesh geometry without leaving Tank Workshop. You edit the mesh attached to an item, then save it back into that item.</p>
+<h2 id="get-the-editable-item-ready">Get the Editable item ready</h2>
+<ol>
+<li>Open <strong>Tank Workshop</strong> and go to <strong>Item</strong>.</li>
+<li>Search for <strong>Editable</strong>.</li>
+<li>Attach the Editable item to your vehicle.</li>
+<li>Select that item in the workspace.</li>
+</ol>
+<h2 id="enter-edit-mode">Enter edit mode</h2>
+<ol>
+<li>Click <strong>Edit</strong>. In the old UI this button was called <strong>Edit Polygons</strong>.</li>
+<li>The tool shelf appears. Pick <strong>Face</strong>, <strong>Edge</strong>, or <strong>Vertex</strong> for the part you want to change.</li>
+</ol>
+<h2 id="move-rotate-or-scale-geometry">Move, rotate, or scale geometry</h2>
+<p>Pick the geometry you want to change, then use the <strong>Move</strong>, <strong>Rotate</strong>, or <strong>Scale</strong> gizmo as needed. Switch between Face, Edge, and Vertex whenever the selection you need is easier to grab that way.</p>
+<h2 id="extrude-a-face">Extrude a face</h2>
+<ol>
+<li>Set the shelf to <strong>Face</strong> and select a face.</li>
+<li>Set <strong>Extrude Distance</strong> to the thickness you want.</li>
+<li>Click <strong>Extrude</strong>. The face is pushed out along its own normal, and new side faces are created around it.</li>
+</ol>
+<p><img src="../../workshop/imgs/poly-edit-tool-face.en.png" alt="Face mode on an editable cube in the Tank Workshop"></p>
+<h2 id="bevel-an-edge">Bevel an edge</h2>
+<ol>
+<li>Set the shelf to <strong>Edge</strong> and select an edge.</li>
+<li>Set <strong>Bevel Amount</strong> to the width you want.</li>
+<li>Click <strong>Bevel</strong>. The edge is replaced by a chamfered band of new faces.</li>
+</ol>
+<h2 id="finish-and-verify">Finish and verify</h2>
+<ol>
+<li>Click <strong>End Edit</strong>. You return to object mode and the edited mesh is written into the selected item.</li>
+<li>Save the vehicle.</li>
+<li>Reload the vehicle and confirm the shape is what you intended.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Use a parent ruleGuid with an empty slot on a separate test vehicle. The calls select a face, run the real ProBuilder extrusion, and read back the stored mesh.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;1e8e9f60-3ed6-43b0-aa67-b8bd65f18cae&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: false,
+      &quot;parentRuleGuid&quot;: &quot;${parent}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;poly&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_focus&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${poly}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok focused&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local mode=CS.ShanghaiWindy.Core.GameModeManager.Instance:GetGameMode()\nlocal binding=assert(mode:GetBinding(\&quot;${poly}\&quot;))\nmode:EditMesh(binding.reference.proBuilderMesh)\nreturn mode.CurEditType:Get():ToString()&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ProBuilder&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;ui_click&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;gen_PbFaceButton&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Clicked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local pb=CS.ShanghaiWindy.Core.GameModeManager.Instance:GetGameMode().ProBuilder\nlocal faces=pb.selectedMesh.faces:GetEnumerator()\nassert(faces:MoveNext())\nlocal list=assert(pb:GetSelectedFace())\nlist:Clear()\nlist:Add(faces.Current)\nlocal count=pb.selectedMesh.faceCount\npb:Extrude(0.25)\nassert(pb.selectedMesh.faceCount&gt;count)\nreturn \&quot;Extruded selected face\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Extruded selected face&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;ui_click&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;gen_PbObjectButton&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Clicked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local mode=CS.ShanghaiWindy.Core.GameModeManager.Instance:GetGameMode()\nlocal rule=assert(mode:GetPickedRule())\nlocal got,bytes=rule:TryGetCustomBuffer()\nassert(mode.CurEditType:Get():ToString()==\&quot;Object\&quot; and got and #bytes&gt;0)\nreturn \&quot;Edited mesh stored in rule\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Edited mesh stored in rule&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="mesh-types-and-their-controls">Mesh types and their controls</h2>
+<p>The current mesh types are <strong>Visual</strong>, <strong>VisualHitBox</strong>, <strong>HitBox</strong>, <strong>InternalModule</strong>, and <strong>VisualInternalModule</strong>. Collider enable is set independently from the mesh type. Material and damage controls depend on the mesh type, so a control you see on one item may not apply to another.</p>
+<h2 id="input-formats">Input formats</h2>
+<p>GLB is the supported model format for vehicle meshes; see the <a href="glb-model-import-specs.html">GLB import guide</a> for its requirements. OBJ is not covered by that specification.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

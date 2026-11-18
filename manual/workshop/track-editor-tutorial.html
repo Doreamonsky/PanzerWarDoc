@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>4. Track Tutorial 履带编辑器 | Panzer War Document </title>
+      <title>在坦克工坊配置程序化履带 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="4. Track Tutorial 履带编辑器 | Panzer War Document ">
-    
-    
+      <meta name="title" content="在坦克工坊配置程序化履带 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,30 +77,111 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="4-track-tutorial-履带编辑器">4. Track Tutorial 履带编辑器</h1>
 
-<h1 id="dedicated-equipment-专用配件">Dedicated Equipment 专用配件</h1>
-<p>You can find procedural track at the start.</p>
-<p>你可以在列表开头找到程序化履带。</p>
-<p><img src="imgs/4cd2e97d65ce_1726372549927-66dbd5d8-cedb-42e7-9d7e-192e1c871e91.png" alt=""></p>
-<p><img src="imgs/b8931abfc788_1726372524720-50e84cad-0f7b-4fb9-b2c3-2ead08cb341f.png" alt=""></p>
-<h1 id="attention-注意事项">Attention 注意事项</h1>
-<h2 id="collision-setup-设置碰撞">Collision Setup 设置碰撞</h2>
-<blockquote>
-<p><strong>Configure objects with collision in their slots to ensure the vehicle can move properly.</strong> Different types of colliders can affect the vehicle's physics in various ways.</p>
-<p><strong>在其插槽中配置带有碰撞的物体，以确保载具能够正常移动</strong>。不同类型的碰撞体会以不同方式影响载具的物理效果。</p>
-</blockquote>
-<p>Pick Editable Poly 选择可编辑多边形</p>
-<p>Enable its collider</p>
-<p>启用其碰撞</p>
-<p><img src="imgs/1164c9637876_1726236562957-9ff04220-cc95-47a9-8c69-9160dd45acf7.png" alt=""></p>
-<p><img src="imgs/1f16a748c760_1726236654713-2564b3ff-037c-4d8c-8b42-47a599a1dfb2.png" alt=""></p>
-<h2 id="adjust-center-of-gravity-调整重心">Adjust center of gravity 调整重心</h2>
-<blockquote>
-<p>When creating your custom tank, adjusting the center of gravity is an important step to ensure your tank handles well. A higher center of gravity can cause the tank to tip over easily when turning or driving on uneven terrain, making it hard to control. By lowering the center of gravity or positioning it correctly, you can make your tank more stable and easier to handle, even in tough conditions. Make sure to experiment with different settings to find the perfect balance for your design!</p>
-<p>在创建自定义坦克时，调整重心是确保坦克操控良好的关键步骤。重心过高会导致坦克在转弯或行驶于不平坦地形时容易倾翻，难以控制。通过降低重心或正确定位重心，可以使坦克更加稳定且易于操控，即使在复杂环境中也能轻松驾驭。请尝试不同的设置，以找到适合你设计的最佳平衡！</p>
-</blockquote>
-<p><img src="imgs/80d6b6962974_1726252937230-d181eb0e-3cb9-44a6-9085-0246971420fc.png" alt=""></p>
+<!-- Generated from tutorials/track-editor-tutorial/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="在坦克工坊配置程序化履带">在坦克工坊配置程序化履带</h1>
+<p><strong>中文</strong> | <a href="../en/workshop/track-editor-tutorial.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run track-editor-tutorial
+</code></pre>
+<h2 id="1-选择程序化履带车体">1. 选择程序化履带车体</h2>
+<p>新建车辆后在车体列表搜索 <strong>Procedural Track（程序化履带）</strong>。示例来自 <strong>Vehicle Extension Pack (III)</strong>，它本身是车体，有一个炮塔槽。选中车体，从右侧检查器的<strong>轮子</strong>和<strong>履带</strong>类别调整参数。先让负重轮贴合车体，再核对托带轮、主动轮、诱导轮和履带环路。</p>
+<p><strong>负重轮</strong>可调整数量、半径、宽度、间距和位置。先把数量从 <strong>5</strong> 改为 <strong>6</strong>，转到侧视图检查环路没有穿入车壳，接地部分覆盖轮组。需要轮式车辆时，单独回查轮胎组、驱动和转向设置。</p>
+<p><img src="imgs/track-editor-tutorial-wheels.zh-CN.png" alt="工坊侧视图中的程序化履带与六个负重轮"></p>
+<h2 id="2-检查碰撞">2. 检查碰撞</h2>
+<p>在程序化底盘上制作自己的车壳时，可用 <strong>Editable Poly</strong> 配件补碰撞。选中多边形配件，在它的设置中开启碰撞。观察碰撞轮廓是否贴着车身，避免车底大块碰撞先碰到地面而使负重轮悬空。不同的碰撞形状会改变车辆在坡面和障碍上的行为。 <a href="poly-edit-tool.html">多边形编辑</a></p>
+<h2 id="3-调重心并试驾">3. 调重心并试驾</h2>
+<p>在车体／机动设置里检查重心，把它放在车体和左右负重轮之间。若起步、转向或通过斜坡容易倾翻，可逐次少量下调。保存方案，用同一段平地和坡道测试转向、制动及接地，再决定是否需要改悬挂。</p>
+<p>工坊回放先用 <code>vehicle_rules</code> 找配件，再用 <code>vehicle_props</code> 读当前版的字段结构。用 <code>vehicle_set_props</code> 只改需要的字段并重新读取确认。Unity SDK 的履带和 WheelCollider 单独见<a href="../mod/track-ik-suspension.html">履带 IK</a>与<a href="../mod/vehicle-basics.html">载具制作</a>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在新建的工坊测试载具上回放。该组验证负重轮与重心参数，试驾和多边形碰撞按正文另行核对。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;vehicle_new&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok new vehicle&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_catalog&quot;,
+    &quot;arguments&quot;: {
+      &quot;type&quot;: &quot;hull&quot;,
+      &quot;search&quot;: &quot;Procedural Track&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1dae31c6-7e26-483d-8a88-4dd5ec25b830&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;1dae31c6-7e26-483d-8a88-4dd5ec25b830&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: true
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;track&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${track}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;roadWheelNumber&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${track}&quot;,
+      &quot;json&quot;: &quot;{\&quot;roadWheelNumber\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:6},\&quot;centerOfGravityHeight\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:0.45},\&quot;centerOfGravityForward\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:0.05}}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;rebuilt&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${track}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;roadWheelNumber\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:6}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_focus&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${track}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok focused&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;camera_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;yaw&quot;: 90,
+      &quot;pitch&quot;: 8,
+      &quot;distance&quot;: 8
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;yaw:90&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -128,7 +209,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

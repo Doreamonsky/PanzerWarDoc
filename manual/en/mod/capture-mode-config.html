@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Capture mode config | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Capture mode config | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/capture-mode-config/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="capture-mode-config">Capture mode config</h1>
+<p><a href="../../mod/capture-mode-config.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run capture-mode-config
+</code></pre>
+<p>A capture zone mode config describes the zones, capture points, per-zone spawns and zone connectivity used by a capture-zone battle. It is a <code>CaptureZoneModeConfig</code> JSON stored under the config root and packed into binary config data at build time.</p>
+<h2 id="1-prepare-the-map-scene">1. Prepare the map scene</h2>
+<ol>
+<li>Complete <a href="set-steam-game-folder.html">Set the Steam game folder</a> so the Editor can read the game's <code>LuaProject</code> assets.</li>
+<li>For a DIY map, follow <a href="diy-map-project-import.html">Import a DIY map into the Unity project</a> and load the YAML into the base playground. For an official or other non-DIY map, just open the desired scene in the Editor.</li>
+<li>Keep the scene open while editing. Point placement and the <strong>Refresh Position (NavMesh)</strong> button sample the NavMesh of the open scene, so the map must already have its NavMesh in place.</li>
+</ol>
+<h2 id="2-create-the-config">2. Create the config</h2>
+<ol>
+<li>Open <strong>Framework - 框架 → 2. Config - 配置文件</strong>.</li>
+<li>In the creation form, choose <strong>Config Path</strong>. The dropdown lists the config paths stored in the framework settings; the value also decides which folder tree the config appears in.</li>
+<li>Choose the serialized config type <strong>CaptureZoneModeConfig</strong>.</li>
+<li>Enter a <strong>File Name</strong> and click <strong>Create Config</strong>. An empty file name only shows an error dialog, so fill it first. The file name does not need an extension.</li>
+<li>The tool writes <code>&lt;config root&gt;/CaptureZone/&lt;name&gt;.json</code> and assigns a fresh GUID internally. Do not copy GUIDs from another file.</li>
+</ol>
+<p>The created object has these fields, and they serve different purposes:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>captureZoneName</code></td>
+<td>Internal identifier. Use a distinct, unique ID; do not reuse one across configs.</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td>User-facing localized name shown to players.</td>
+</tr>
+<tr>
+<td><code>mapGuid</code></td>
+<td>Runtime map identifier. Use the MapData GUID for regular maps and the Defined Name for DIY maps.</td>
+</tr>
+<tr>
+<td><code>backgroundCameraTransformInfo</code></td>
+<td>Optional camera position and rotation for the map background view.</td>
+</tr>
+</tbody>
+</table>
+<p>The Editor menu tree lists the file as <code>&lt;config path folder&gt;/CaptureZone/&lt;file name&gt;</code>, and selecting it opens the capture zone editor for that file.</p>
+<h2 id="3-set-the-map-guid-and-background-camera">3. Set the map GUID and background camera</h2>
+<ol>
+<li>In the zone editor, the <strong>Map Guid</strong> row shows the current value (empty shows <code>—</code>). Click <strong>Use Current Scene</strong> to fill it from the map data that is discoverable for the active scene.</li>
+<li>For a regular map, check the saved value against the GUID in MapData. For a DIY map, enter the exact <strong>Defined Name</strong> (<code>definedName</code>) from the imported YAML, including spaces and punctuation. The game registers the DIY map under that name.</li>
+<li>The background camera is optional. Click <strong>Set Bg Camera</strong> while the Scene view is framed the way you want, and it stores that camera position and rotation. Leave it at zero if the mode does not need a background camera.</li>
+</ol>
+<h2 id="4-add-capture-zones">4. Add capture zones</h2>
+<ol>
+<li>Click <strong>+ New Zone</strong> in the editor panel or the scene overlay. The zone is added at the current scene view point with a placeholder <code>pointName</code> (<code>Zone_&lt;n&gt;</code>) and a default radius of 30.</li>
+<li>Click the zone label to select it, then fill in:
+<ul>
+<li><code>pointName</code> — must be unique. Zone chains resolve zones by this string, so renaming a zone means updating the chains too.</li>
+<li><strong>Position</strong> and <strong>Radius</strong> — the capture point and capture circle.</li>
+<li><strong>Default Owner</strong> — initial team owner, or <code>none</code> for neutral.</li>
+</ul>
+</li>
+<li>Build the perimeter with <strong>+Pt</strong> / <strong>-Pt</strong> on the selected zone. <code>zonePoints</code> is the perimeter polygon that defines the zone area; it is separate from the capture point position and radius. Place perimeter points on walkable ground and use <strong>Refresh Position (NavMesh)</strong> and <strong>Merge Nearby Points</strong> to snap and tidy them.</li>
+<li>Repeat for every zone. A small map usually needs 2-3 zones; do not invent extra zones just to fill the array.</li>
+</ol>
+<h2 id="5-add-per-zone-spawns">5. Add per-zone spawns</h2>
+<ol>
+<li>Select the zone and click <strong>Show Spawn</strong> (older builds labelled it <strong>Edit</strong>), then <strong>+</strong> to add a spawn marker.</li>
+<li>A numbered marker appears. Click it to select that spawn and move or rotate it with the scene handles. The values are saved in the zone's <code>spawnTransformInfos</code> and can also be edited in the serialized fields.</li>
+<li>Choose clear drivable poses: on or next to the ground, facing the intended direction, and not inside walls, props or other vehicles. <strong>Refresh Position (NavMesh)</strong> snaps spawn positions to the navmesh and zeroes pitch and roll, which helps but still needs a visual check.</li>
+<li>Click <strong>Hide Spawn</strong> when done to declutter the scene view.</li>
+</ol>
+<h2 id="6-add-zone-chains">6. Add zone chains</h2>
+<ol>
+<li>Add entries to <code>zoneChains</code>, using <strong>A</strong> and <strong>B</strong> with the same <code>pointName</code> strings that exist on the zones.</li>
+<li>Connect only the neighbours that the map design intends to be connected. The runtime <code>CaptureZoneGameMode.Setup.cs</code> reads <code>fromZone</code> as a prerequisite neighbour for <code>toZone</code>, so each entry is directional. Add both directions only when the map design really allows travel both ways.</li>
+<li>Check every link: names must resolve to existing zones. Unresolved names are silently skipped at runtime and are not drawn by the editor, so a typo simply removes the connection.</li>
+</ol>
+<h2 id="7-save-pack-and-test">7. Save, pack and test</h2>
+<ol>
+<li>Save the config.</li>
+<li>Add the saved capture-zone JSON to <strong>Config file</strong> in the map mod's build pipeline. Select the target platform and build the mod package. The pipeline converts the JSON into configuration data and includes it in the <code>.modpack</code>. Use the map build workflow for the scene itself.</li>
+<li>For a local export of the configuration data, click <strong>Pack All Configs</strong>. This rebuilds <code>Build/Config</code> and writes the capture-zone data to <code>Build/Config/capturezone/&lt;config GUID&gt;.bytes</code>.</li>
+<li>Install the built mod and start a capture battle on the target map. Check the zones, their spawn points, and the order in which the teams can advance.</li>
+</ol>
+<p>The example checks the configuration for <strong>Tutorial Town</strong> with two regions, <strong>Depot</strong> and <strong>Ridge</strong>. The chain in the example permits progression from Depot to Ridge. It writes and verifies a local <code>.bytes</code> file.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;return assert(loadfile(\&quot;../../Docs/Manual/tutorials/capture-mode-config/example.lua\&quot;))()&quot;,
+        &quot;docs-capture&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Capture mode JSON and .bytes export verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

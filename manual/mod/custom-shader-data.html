@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>32. Custom Shader Data 自定义着色器 | Panzer War Document </title>
+      <title>载具自定义着色器数据 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="32. Custom Shader Data 自定义着色器 | Panzer War Document ">
-    
-    
+      <meta name="title" content="载具自定义着色器数据 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,142 +77,436 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="32-custom-shader-data-自定义着色器">32. Custom Shader Data 自定义着色器</h1>
 
-<h1 id="32-custom-shader-data-自定义着色器-1">32. Custom Shader Data 自定义着色器</h1>
-<h2 id="create-data-创建数据配置">Create Data 创建数据配置</h2>
-<p>Create the custom shader data from out menu.</p>
-<p>如图所示，创建自定义着色器数据。</p>
-<p><img src="imgs/a385abea0a7e_1703064677417-7cee3536-b2ba-43e7-a54d-80c21bd218d9.png" alt=""></p>
-<p><img src="imgs/3424263d05d8_1703064568072-640047a5-9c0a-49d1-82f0-0469611d8fb2.png" alt="">\</p>
-<p>Pick your custom material. If you do not know about Unity material system, please search about the Unity material and shader graph tutorials.</p>
-<p>选择自定义材质。如果不了解 Unity 的材质系统，请搜索 Unity Material 以及 Shader Graph 相关教程。</p>
-<p><img src="imgs/6445dbb99794_1703064533301-cf14794f-16f4-4ca3-a1de-8a5e5ffe45fc.png" alt=""></p>
-<h2 id="config-component-配置组件">Config Component 配置组件</h2>
-<p>Add CoreRPMatComponent component to your model and toggle on is component based. You need to assign the guid from custom shader data to your component. Ensure the urp and hdrp should be different guids.</p>
-<p>为模型添加 CoreRPMatComponent 组件，勾选“基于组件数据”，并将自定义着色器数据的 GUID 分配给该组件。请注意，URP 与 HDRP 需使用不同的 GUID，且材质文件需在不同的管线下打包。</p>
-<p><img src="imgs/74d0b9d7a371_1703065110654-e43a7a52-a98c-4106-b6a2-7bd1fd2c3743.png" alt=""></p>
-<h2 id="build--打包">Build  打包</h2>
-<p>If the shader is only for one vehicle, you can just put the CustomShaderData with VehicleInfo to pack. If it is for public resource purpose, you should pack it separately.</p>
-<p>如果着色器仅用于单个载具，建议直接将 CustomShaderData 与 VehicleInfo 放在一起打包。如果是作为公共资源，则建议单独打包，并填写包依赖关系。</p>
-<p><img src="imgs/5384e20ff32d_1703072604365-badcbb6c-c348-4d84-b0bb-1ac10a033e10.png" alt=""></p>
-<h2 id="advance-进阶知识">Advance 进阶知识</h2>
-<p>The logic behind custom shader data</p>
-<p>We use the custom material on your custom shader data and copy your material properties to the material you linked on CoreRPMatComponent.</p>
-<p>The material you linked will keep the following properties (They will not be overrided by your custom material). If you want to use the following properties you should keep the same name as the following table.</p>
-<p>此功能原理：</p>
-<p>我们使用自定义着色器数据中指定的自定义材质，并将其材质属性（包括各种勾选项和下拉框的值）覆盖到通过 CoreRPMatComponent 关联的材质上。</p>
-<p>CoreRPMatComponent 关联的材质会保留以下属性（这些属性不会被自定义材质覆盖）。如果希望自定义着色器使用以下属性，请确保自定义着色器中的通道名称与下表保持一致。</p>
+<!-- Generated from tutorials/custom-shader-data/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="载具自定义着色器数据">载具自定义着色器数据</h1>
+<p><strong>中文</strong> | <a href="../en/mod/custom-shader-data.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run custom-shader-data --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;shaderData&quot;: &quot;${fixture}/Tutorial_CustomShader.asset&quot;,
+    &quot;packageGuid&quot;: &quot;4ccfd3f8-eabc-44d6-b599-82486dbd4604&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>当载具需要内置着色器类型无法提供的 Shader 与材质时，使用本教程。<code>CustomShaderData</code> 保存自定义材质与通道名称映射，<code>CoreRPMatComponent</code> 则在运行时按渲染器的材质槽选择它。</p>
+<p>自定义着色器本身是一个独立的 Unity 着色器工程。如果还不熟悉 Unity 材质、Shader Graph 或 URP/HDRP 基础，请先阅读相关教程；本页只说明如何把材质接入载具。</p>
+<h2 id="1-准备材质">1. 准备材质</h2>
+<ol>
+<li>在目标渲染管线（URP 或 HDRP）中制作并测试你的 Shader Graph / Shader，不要在另一条管线上验证后直接套用。</li>
+<li>每条管线各创建一个使用该 Shader 的材质。URP 材质与 HDRP 材质是两个独立资产，且各自需要匹配的管线环境；为 HDRP 打包的材质不能用于 URP。</li>
+<li>车辆原始贴图（漫反射、法线、Mask）和基础色不要写死在自定义材质里。游戏会在运行时按你配置的通道名写回这些数据，因此 Shader 必须暴露对应名称。</li>
+</ol>
+<h2 id="2-创建-custom-shader-data">2. 创建 Custom Shader Data</h2>
+<p>在 Project 窗口选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; C Config - 配置 &gt; Custom Material - 自定义材质</code>，创建 <strong>CustomShaderData</strong> 资产。</p>
+<p>打开该资产后，其 Inspector（<code>CustomShaderDataEditor</code>）会自动生成 <code>guid</code>，并提供：</p>
+<ul>
+<li><strong>复制唯一标识 - Copy Guid</strong>：把生成的 <code>guid</code> 复制到剪贴板。稍后在组件中粘贴的就是这个标识。</li>
+<li><strong>创建新的唯一标识 - Create new guid</strong>：清空 guid 并重新生成。旧 guid 的所有引用都会失效，因此只应在还没有载具或其他模组引用它之前使用。</li>
+</ul>
+<p>在 <strong>Custom Material</strong>（<code>overrideMaterialPath</code>）中从材质下拉列表选择你测试过的材质。运行时会把该材质的属性复制到载具材质上。</p>
+<h3 id="default-与-custom-vehicle-option-的区别">Default 与 Custom Vehicle Option 的区别</h3>
+<p><code>customShaderType</code> 有两种取值：</p>
+<ul>
+<li><strong>默认 - Default</strong>（<code>Default</code>）显示 <code>overrideMaterialPath</code> 和 <code>customKeywords</code>。加载器仍可按默认通道名称回填载具贴图与颜色。</li>
+<li><strong>自定义载具选项 - Custom Vehicle Option</strong>（<code>VehicleOption</code>）：额外显示游戏写回载具自身贴图与颜色时使用的通道名：</li>
+</ul>
 <table>
 <thead>
 <tr>
-<th>Channel Name 通道名称</th>
-<th>Type 类型</th>
-<th>Description 介绍</th>
+<th>字段</th>
+<th>含义</th>
+<th>默认值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>_BaseMap</td>
-<td>Texture2d</td>
-<td>Diffuse map 漫反射贴图</td>
+<td><code>customMainTexName</code></td>
+<td>写入载具漫反射贴图的通道</td>
+<td><code>_BaseMap</code></td>
 </tr>
 <tr>
-<td>_BumpMap</td>
-<td>Texture2d</td>
-<td>Normal map 法线贴图</td>
+<td><code>customNormalTexName</code></td>
+<td>写入载具法线贴图的通道</td>
+<td><code>_BumpMap</code></td>
 </tr>
 <tr>
-<td>_MaskMap</td>
-<td>Texture2d</td>
-<td>Mask map  Unity URP 的 PBR 贴图</td>
+<td><code>customMaskTexName</code></td>
+<td>写入载具 Mask 贴图的通道</td>
+<td><code>_MaskMap</code></td>
 </tr>
 <tr>
-<td>_Smoothness</td>
-<td>float</td>
-<td>Smoothness 光滑度</td>
-</tr>
-<tr>
-<td>_KEYWORDENABLEDIRT</td>
-<td>keyword</td>
-<td>Enable camouflage 是否启用涂装</td>
-</tr>
-<tr>
-<td>_CamoPatternMap</td>
-<td>Texture2d</td>
-<td>Camouflage Pattern Map 涂装的样式图</td>
-</tr>
-<tr>
-<td>_CamoPatternTiling</td>
-<td>Vector4</td>
-<td>Camouflage Pattern Tiling 涂装的样式图的缩放比</td>
-</tr>
-<tr>
-<td>_CamoBlackTint</td>
-<td>Color4</td>
-<td>Color stands for camouflage pattern map back channel<br>黑色通道对应颜色</td>
-</tr>
-<tr>
-<td>_CamoRedTint</td>
-<td>Color4</td>
-<td>Color stands for camouflage pattern map red channel<br>红色通道对应颜色</td>
-</tr>
-<tr>
-<td>_CamoGreenTint</td>
-<td>Color4</td>
-<td>Color stands for camouflage pattern map green channel<br>绿色通道对应颜色</td>
-</tr>
-<tr>
-<td>_CamoBlueTint</td>
-<td>Color4</td>
-<td>Color stands for camouflage pattern map blue channel<br>蓝色通道对应颜色</td>
-</tr>
-<tr>
-<td>_KEYWORD_ENABLE_CAMO_COLOR_TEX</td>
-<td>keyword</td>
-<td>Enable texture camouflage 是否启用贴图的涂装</td>
-</tr>
-<tr>
-<td>_Lerp</td>
-<td>float (Clamp in 0-1)</td>
-<td>Lerp between camouflage 涂装颜色占比</td>
-</tr>
-<tr>
-<td>_DirtRange</td>
-<td>float (Clamp in 0-1)</td>
-<td>Lerp between dirty 污渍占比</td>
-</tr>
-<tr>
-<td>_DirtTex</td>
-<td>Texture2d</td>
-<td>Dirt texture 污渍贴图</td>
-</tr>
-<tr>
-<td>_KEYWORDENABLEDIRT</td>
-<td>keyword</td>
-<td>Enable dirty 启用污渍贴图</td>
+<td><code>customBaseColor</code></td>
+<td>写入载具基础色的通道</td>
+<td><code>_BaseColor</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="some-special-channel-usage-一些特殊通道的用法">Some Special Channel Usage 一些特殊通道的用法</h2>
-<h3 id="_camopatternmap-涂装的样式图">_CamoPatternMap 涂装的样式图</h3>
-<p>Usage Split rgba channel and lerp with tint color</p>
-<p>用法：提取 RGBA 通道，并使用 lerp 与 tint 颜色进行混合。</p>
-<p><img src="imgs/6431fe049d77_1703157643144-bff64d7d-6a9b-43b1-83a3-afb31a53cf4c.png" alt=""></p>
-<p><img src="imgs/4be463bbc25d_1703157598790-671554c5-2921-414c-a6a7-abd0b7c57b83.png" alt=""></p>
-<p><img src="imgs/2dd6f48be3e7_1709471178226-38c986ab-1f93-4c09-9998-18d9357c22ce.png" alt=""></p>
-<p><img src="imgs/8b015b13e080_1709471182149-cbc96956-47f9-480a-b8cf-4b9ff21041ca.png" alt=""></p>
-<p><img src="imgs/b8255cc3b450_1709471185039-5178eb95-c26e-4814-9a1f-f8698801b5ff.png" alt=""></p>
-<p><img src="imgs/338abf6b4fc4_1703157608692-dffde230-e570-414f-b5d1-1e7fea5a3116.png" alt=""></p>
-<h2 id="vehicle-custom-shader-载具自定义着色器">Vehicle Custom Shader 载具自定义着色器</h2>
-<p>Pick custom shader type as Custom Vehicle Option</p>
-<p>着色器类型选择“自定义载具选项”。</p>
-<p>Change the channel name to your name defined in shader.</p>
-<p>将下方的通道名称更改为 Shader 中定义的名称。</p>
-<p><img src="imgs/e17a3a0e49d9_1703503868067-feedd871-edca-4a34-bf81-6f3feccf4db4.png" alt=""></p>
-<h2 id="how-to-support-the-dirt-effect-如何适配污渍效果">How to support the dirt effect? 如何适配污渍效果？</h2>
-<p>When the _KEYWORDENABLEDIRT keyword is enabled, the vehicle's AO map is blended with _DirtTex at the strength given by _DirtRange.</p>
-<p>当 _KEYWORDENABLEDIRT 关键词启用时，载具的 AO 贴图将与 _DirtTex 按照 _DirtRange 指定的强度进行混合。</p>
+<p>只有当你的 Shader 使用不同属性名时才需要修改。名称必须与 Shader 完全一致，包括大小写。</p>
+<h2 id="3-配置-corerpmatcomponent">3. 配置 CoreRPMatComponent</h2>
+<p><img src="imgs/custom-shader-data-channels.zh-CN.png" alt="载具着色器选项与通道名"></p>
+<ol>
+<li>给拥有目标 <code>MeshRenderer</code> 的对象添加 <strong>CoreRPMatComponent</strong>。</li>
+<li>勾选 <strong>基于组件数据 - Component Based</strong>（<code>isComponentBased</code>）。</li>
+<li>在 <code>indexCoreRPMatParams</code> 中为每个要覆盖的材质槽添加一项。<code>index</code> 是该 Mesh Renderer 上的材质槽序号，从 0 开始。</li>
+<li>每一项的 <strong>Shader</strong>（<code>coreRPShaderType</code>）选择 <code>Custom</code>，此时会显示 <code>customNatParam</code>。</li>
+<li>填写 <code>customNatParam</code>：
+<ul>
+<li><code>urpMaterialGuid</code>：目标为 URP 的 CustomShaderData 的 <code>guid</code>。</li>
+<li><code>hdrpMaterialGuid</code>：目标为 HDRP 的 CustomShaderData 的 <code>guid</code>。</li>
+<li>两个 GUID 必须不同，且各自指向对应管线构建的材质数据。不要把 URP 的 GUID 填进 <code>hdrpMaterialGuid</code>。</li>
+</ul>
+</li>
+</ol>
+<p>GUID 在载具资源加载时解析。GUID 为空时使用该渲染器的默认着色器。非空 GUID 解析失败或材质 Bundle 缺失时，加载器会记录回退。需要自定义外观的每条管线都应填入有效且匹配的数据。</p>
+<p><code>customNatParam</code> 还支持按槽位写入通道：</p>
+<ul>
+<li><code>customTextureChannels</code>：<code>channelName</code> 加 <code>channelTex</code>，直接写入材质。</li>
+<li><code>customColorChannel</code>：<code>channelName</code> 加普通颜色；勾选 <code>isHDR</code> 时可填写 HDR 颜色。</li>
+</ul>
+<p>这些适合逐载具的差异（标识、灯具颜色、徽章），无需为每辆车单独制作共享材质。</p>
+<h2 id="4-打包">4. 打包</h2>
+<ul>
+<li><strong>单个载具</strong>：把 CustomShaderData 与该载具的 <code>VehicleInfo</code> 及其他载具资源放在同一个模组包中一起构建。</li>
+<li><strong>跨载具或跨模组共享</strong>：把 CustomShaderData（及其材质）作为独立模组包构建，并在载具模组中按其包 GUID 显式声明依赖。不要依赖加载顺序，也不要假定资产存在于其他包中就能生效。</li>
+</ul>
+<p>发布后的 <code>guid</code> 属于运行时契约。用新 GUID 重建共享着色器模组会静默破坏所有依赖方，因此发布后应把 GUID 视为稳定值。</p>
+<h2 id="5-运行时行为">5. 运行时行为</h2>
+<p>当渲染器某槽位解析为 <code>Custom</code> 时，着色器资产管理器会：</p>
+<ol>
+<li>通过对应管线的 GUID（<code>urpMaterialGuid</code> 或 <code>hdrpMaterialGuid</code>）解析 CustomShaderData。</li>
+<li>加载自定义材质，把其 Shader 赋给载具材质，并复制其属性（包括勾选项和下拉框的值）。</li>
+<li>写回载具自身数据：漫反射、法线和 Mask 贴图以及基础色分别写入 <code>customMainTexName</code>、<code>customNormalTexName</code>、<code>customMaskTexName</code>、<code>customBaseColor</code>。</li>
+<li>按 <code>customKeywords</code> 的 <code>isTextureChannelCondition</code> 条件（即引用的贴图通道已赋值）启用对应关键词，并写入按槽位的贴图与颜色通道。</li>
+</ol>
+<p>属性复制发生在写回载具数据之前，因此自定义材质在这四个映射通道上设置的内容会被载具自身贴图与颜色覆盖。需要保留的值请使用其他属性名。</p>
+<p>并非所有属性都一定保留：复制是按名称通用进行的，而载具贴图与基础色是显式写回的。请在真实游戏构建中核对你依赖的属性。</p>
+<h2 id="6-可选的通道约定">6. 可选的通道约定</h2>
+<p>载具涂装与污渍系统使用一组约定名称。它们是可选的：只有你的 Shader 实现了对应行为时才需要使用。这些是 Shader 侧约定，不是加载器保证填充的属性。</p>
+<table>
+<thead>
+<tr>
+<th>通道名称</th>
+<th>类型</th>
+<th>约定用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_Smoothness</code></td>
+<td>float</td>
+<td>光滑度</td>
+</tr>
+<tr>
+<td><code>_CamoPatternMap</code></td>
+<td>Texture2D</td>
+<td>涂装样式图</td>
+</tr>
+<tr>
+<td><code>_CamoPatternTiling</code></td>
+<td>Vector4</td>
+<td>样式图的缩放比</td>
+</tr>
+<tr>
+<td><code>_CamoBlackTint</code></td>
+<td>Color</td>
+<td>样式图黑色通道对应的颜色</td>
+</tr>
+<tr>
+<td><code>_CamoRedTint</code></td>
+<td>Color</td>
+<td>样式图红色通道对应的颜色</td>
+</tr>
+<tr>
+<td><code>_CamoGreenTint</code></td>
+<td>Color</td>
+<td>样式图绿色通道对应的颜色</td>
+</tr>
+<tr>
+<td><code>_CamoBlueTint</code></td>
+<td>Color</td>
+<td>样式图蓝色通道对应的颜色</td>
+</tr>
+<tr>
+<td><code>_Lerp</code></td>
+<td>float（0-1）</td>
+<td>涂装颜色占比</td>
+</tr>
+<tr>
+<td><code>_DirtTex</code></td>
+<td>Texture2D</td>
+<td>污渍贴图</td>
+</tr>
+<tr>
+<td><code>_DirtRange</code></td>
+<td>float（0-1）</td>
+<td>污渍占比</td>
+</tr>
+<tr>
+<td><code>_KEYWORD_ENABLE_CAMO</code></td>
+<td>keyword</td>
+<td>是否启用涂装（当前由 <code>VehicleCamoManager</code> 使用）</td>
+</tr>
+<tr>
+<td><code>_KEYWORD_ENABLE_CAMO_COLOR_TEX</code></td>
+<td>keyword</td>
+<td>是否启用贴图涂装</td>
+</tr>
+<tr>
+<td><code>_KEYWORDENABLEDIRT</code></td>
+<td>keyword</td>
+<td>是否启用污渍贴图</td>
+</tr>
+</tbody>
+</table>
+<p>说明：</p>
+<ul>
+<li><code>_KEYWORD_ENABLE_CAMO</code> 与 <code>_KEYWORD_ENABLE_CAMO_COLOR_TEX</code> 是当前 <code>VehicleCamoManager</code> 驱动的关键词。旧着色器里可能见到的 <code>_EnableCamo</code> / <code>_EnableCamoColorTex</code> 属性名并不是同一套东西。</li>
+<li><code>_KEYWORDENABLEDIRT</code> 是污渍关键词名。下面的混合逻辑是旧版示例着色器的做法，用来演示通道可以如何组合，并非加载器强制规则。不处理污渍通道的自定义 Shader 只是没有污渍效果。</li>
+</ul>
+<p>旧版示例的污渍行为：启用 <code>_KEYWORDENABLEDIRT</code> 时，载具 AO 贴图会按 <code>_DirtRange</code> 指定的强度与 <code>_DirtTex</code> 混合。若想要该效果，请在 Shader Graph 中自行实现。</p>
+<h2 id="7-rgba-样式图与-tint-技法">7. RGBA 样式图与 tint 技法</h2>
+<p>示例着色器使用的涂装技法：把 <code>_CamoPatternMap</code> 视为四个独立遮罩，拆分 RGBA 通道，用各通道作为遮罩把对应 tint 颜色（<code>_CamoBlackTint</code>、<code>_CamoRedTint</code>、<code>_CamoGreenTint</code>、<code>_CamoBlueTint</code>）lerp 进基础色，最后按 <code>_Lerp</code>（限制在 0-1）把整体结果与基础色混合。用 <code>_KEYWORD_ENABLE_CAMO</code> / <code>_KEYWORD_ENABLE_CAMO_COLOR_TEX</code> 控制该分支，使没有涂装的载具保持原有外观。</p>
+<p>同一思路适用于任意逐载具数据：一张遮罩贴图加若干 tint 颜色即可实现标识、喷绘或磨损样式，无需为每辆车单独提供材质。</p>
+<h2 id="8-shader-编写注意事项">8. Shader 编写注意事项</h2>
+<ul>
+<li>资产 Inspector 建议关键词使用 <code>multi_compile</code>。若使用 <code>shader_feature</code>，请配合 Shader Variants 构建，避免变体被裁剪导致关键词在玩家构建中静默失效。</li>
+<li>在 Shader 中声明所有由 <code>customKeywords</code> 切换的关键词，并保持关键词字符串与资产字段完全一致。</li>
+<li>避免只在编辑器存在的 <code>shader_feature</code> 变体；要检查玩家构建，而不只是在 Play Mode 中观察。</li>
+</ul>
+<h2 id="9-在目标渲染器中验证">9. 在目标渲染器中验证</h2>
+<ol>
+<li>在 URP 工程中打开载具确认自定义外观，然后在 HDRP 工程中用 HDRP 的 GUID 与材质重复检查。两条管线必须分别验证。</li>
+<li>临时修改基础色或替换贴图，确认载具自身的漫反射、法线、Mask 与基础色确实写入了目标通道。</li>
+<li>切换涂装或污渍选项，确认关键词在构建中真正改变效果，而不仅是在编辑器中。</li>
+<li>加载另一辆共用同一着色器模组的载具，确认共享包依赖可以解析。</li>
+<li>检查日志中是否存在 GUID 无法解析或材质 Bundle 缺失的错误；这类错误通常意味着 GUID 错误、管线不匹配，或包未包含该资产。</li>
+</ol>
+<p>MCP 示例用教学材质和数据资产构建 Windows 模组包。实际渲染效果按上述步骤在目标管线中检查。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local sample=assert(loadfile(\&quot;../../Docs/Manual/tutorials/custom-shader-data/example.lua\&quot;))()\nreturn sample(\&quot;${fixture}\&quot;)&quot;,
+        &quot;docs-custom-shader-data&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Vehicle Option and material channel bindings verified&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${shaderData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssetIfDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;csd&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -240,7 +534,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

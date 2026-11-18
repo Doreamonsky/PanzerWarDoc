@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T133839Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T141802Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2166,6 +2166,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/capture-mode-config.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/capture-mode-config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/continuous-build.md",
       "output": {
         ".html": {
@@ -2190,6 +2200,26 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/crew-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/custom-shader-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/custom-shader-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/decals.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/decals.html"
         }
       },
       "version": ""
@@ -2886,6 +2916,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/shader-variant-collection.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/shader-variant-collection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/shared-resources-folder.md",
       "output": {
         ".html": {
@@ -2980,6 +3020,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/upload-naming-art-standards.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/upload-to-modhub.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/upload-to-modhub.html"
         }
       },
       "version": ""
@@ -3116,6 +3166,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vrm-model.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vrm-model.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/weapon-support-skill.md",
       "output": {
         ".html": {
@@ -3143,6 +3203,56 @@
         },
         ".json": {
           "relative_path": "manual/en/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/workshop/glb-model-import-specs.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/workshop/glb-model-import-specs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/workshop/gun-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/workshop/gun-tutorial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/workshop/poly-edit-tool.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/workshop/poly-edit-tool.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/workshop/tank-workshop-basics.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/workshop/tank-workshop-basics.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/workshop/track-editor-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/workshop/track-editor-tutorial.html"
         }
       },
       "version": ""
@@ -8719,6 +8829,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/custom-shader-data-channels.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/custom-shader-data-channels.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/custom-shader-data-channels.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/custom-shader-data-channels.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/d0585367cc81_1752997869570-5773ba35-3b41-4feb-9533-0d2f11053e4e.png",
       "output": {
         "resource": {
@@ -9113,6 +9243,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/ddc4c2e2acc5_1647620885675-29eefdd9-cac3-416f-9f34-d350741ec584.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/decals-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/decals-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/decals-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/decals-binding.zh-CN.png"
         }
       },
       "version": ""
@@ -10579,6 +10729,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/shader-variant-collection-keywords.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/shader-variant-collection-keywords.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/shader-variant-collection-keywords.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/shader-variant-collection-keywords.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/shield-skill-effect.en.png",
       "output": {
         "resource": {
@@ -11293,6 +11463,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/voice-pack-practice-start.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vrm-model-profile.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vrm-model-profile.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vrm-model-profile.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vrm-model-profile.zh-CN.png"
         }
       },
       "version": ""
@@ -12636,6 +12826,86 @@
       "output": {
         "resource": {
           "relative_path": "manual/workshop/imgs/ff5bdfbe6af2_1719496060091-1cb4dfd0-ba8e-42a0-aad6-42a2add1a914.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/gun-tutorial-select-gun.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/gun-tutorial-select-gun.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/gun-tutorial-select-gun.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/gun-tutorial-select-gun.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/poly-edit-tool-face.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/poly-edit-tool-face.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/poly-edit-tool-face.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/poly-edit-tool-face.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/tank-workshop-basics-assembly.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/tank-workshop-basics-assembly.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/tank-workshop-basics-assembly.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/tank-workshop-basics-assembly.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/track-editor-tutorial-wheels.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/track-editor-tutorial-wheels.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/workshop/imgs/track-editor-tutorial-wheels.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/workshop/imgs/track-editor-tutorial-wheels.zh-CN.png"
         }
       },
       "version": ""

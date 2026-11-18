@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>2. GLB Import 工坊 (GLB 格式）模型规范 | Panzer War Document </title>
+      <title>工坊 GLB 模型导入规范 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="2. GLB Import 工坊 (GLB 格式）模型规范 | Panzer War Document ">
-    
-    
+      <meta name="title" content="工坊 GLB 模型导入规范 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,76 +77,111 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2-glb-import-工坊-glb-格式模型规范">2. GLB Import 工坊 (GLB 格式）模型规范</h1>
 
-<p>The tutorial process uses Blender modeling software, and the steps can be referred to for other modeling software as well. Blender can be downloaded for free on Steam.</p>
-<p>本教程流程基于 Blender 建模软件，其他建模软件亦可参考本教程中的规范。Blender 可在 Steam 上免费下载。</p>
-<h1 id="prepare-visual-model-准备外观模型">Prepare Visual Model 准备外观模型</h1>
-<p>If using Blender, please refer to the following documentation. For the PBR workflow, follow the PBR rules outlined in the documentation to create the following textures: 1. Base Color, 2. Metallic and Roughness, 3. Baked Ambient Occlusion, and 4. Normal Map. Other textures mentioned in the documentation are not required. You can use Substance Painter to create the necessary textures. If not following the PBR workflow, you need to create 1. Base Color (mandatory) and 2. Normal Map (optional). However, the model will not achieve realistic physical reflections.</p>
-<p>若使用 Blender，请参考以下文档。</p>
-<p>若采用 PBR 流程，需遵循文档中的 PBR 规则，制作以下贴图：1. 基础色，2. 金属度与粗糙度，3. 烘焙的环境光遮蔽，以及 4. 法线贴图。文档中提及的其他贴图无需制作。可使用 Substance Painter 制作相应贴图。</p>
-<p>若未采用 PBR 流程，则需制作 1. 基础色（必选）和 2. 法线贴图（可选）。但模型将无法呈现真实的物理反光效果。</p>
-<p><a href="https://docs.blender.org/manual/en/dev/addons/import_export/scene_gltf2.html">glTF 2.0 - Blender 4.3 Manual</a></p>
-<p>（中文用户点击此链接打开文档：<a href="https://docs.blender.org/manual/zh-hans/4.3/addons/import_export/scene_gltf2.html">https://docs.blender.org/manual/zh-hans/4.3/addons/import_export/scene_gltf2.html</a>）</p>
-<p>Preview the effect of the completed model in Blender.</p>
-<p>在 Blender 中预览制作完成后的模型效果。</p>
-<p><img src="imgs/59fdc77e3894_1719719819913-afe4675d-77c6-41c8-8826-211df74e4818.png" alt="Visual Model 显示外观模型"></p>
-<p>Additionally, you need to use LOD tools to create corresponding low-polygon models for displaying objects at a distance, reducing rendering performance pressure. You can choose to use the InstaLOD Blender plugin to automatically create LODs:</p>
-<p>此外，需使用 LOD 工具制作对应的低多边形模型，用于物体在远处的显示，以降低渲染性能压力。可选择使用 InstaLOD Blender 插件自动创建 LOD：</p>
-<p>Follow the <a href="https://docs.instalod.io/Products/Integrations/InstaLOD_For_Blender">InstaLOD for Blender official installation guide</a> to sign in to License Management, then download the latest plugin and the InstaLOD Pipeline from <code>Your Files</code>.</p>
-<p>请按照 <a href="https://docs.instalod.io/Products/Integrations/InstaLOD_For_Blender">InstaLOD for Blender 官方安装文档</a>登录 License Management，并从 <code>Your Files</code> 下载最新插件和 InstaLOD Pipeline。</p>
-<p>Or use InstaLOD Studio: follow the <a href="https://docs.instalod.io/Products/InstaLOD_Studio/Installation">InstaLOD Studio official installation guide</a> to download and install the standalone version.</p>
-<p>或者按照 <a href="https://docs.instalod.io/Products/InstaLOD_Studio/Installation">InstaLOD Studio 官方安装文档</a>下载并安装独立版。</p>
-<p>If you do not use InstaLOD, you can also create low-polygon LODs manually with Blender's built-in <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate Modifier</a>.</p>
-<p>不使用 InstaLOD 时，也可使用 Blender 内置的 <a href="https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/decimate.html">Decimate Modifier</a>手动制作低面数 LOD。</p>
-<h1 id="child-parent-父子关系">Child-Parent 父子关系</h1>
-<h2 id="rule-放置规则">Rule 放置规则</h2>
-<p>Create four empty objects (Shift + A and select Empty - Plain Axes) and name them Visual, Collider, HitBox, and Module respectively. Note that the size and spelling must be exactly the same. Visual is used for placing the appearance model and LOD, Collider is used for placing non-concave collision models, HitBox is used for placing external armor, and Module is used for placing internal armor.</p>
-<p>创建四个空物体（Shift + A 选择 Empty - Plain Axes），并分别命名为 Visual、Collider、HitBox 与 Module。注意，大小与拼写必须保持完全一致。Visual 用于放置外观模型与 LOD，Collider 用于放置非凹碰撞模型，HitBox 用于放置外部装甲，Module 用于放置内部装甲。</p>
-<p><img src="imgs/d661713b4f54_1719720424567-71705b3d-b12a-47b1-9193-0b490600e0c3.png" alt="Create Plain Axes 创建空轴"></p>
-<p><img src="imgs/210f725c65cb_1719720506300-fc706d69-6753-46aa-8450-7dbebc801e54.png" alt="Renamed 重命名"></p>
-<h2 id="completed-state-制作完成后状态">Completed State 制作完成后状态</h2>
-<p>After completing the various models, place them according to the rules in section 2.1. The specifications for creating damage models and internal structure models will be introduced in sections 3 and 4. (If this module is an object that can be hit by shells, these two models must be created.) The Collider collision model only needs to be created when making the vehicle hull model.</p>
-<p>在制作完成各类模型后，按照 2.1 节的规则放置各类模型。</p>
-<p>伤害模型与内构模型的制作规范将在第 3、4 节中介绍。（若此模块是可被炮弹击中的物体，则必须制作这两个模型。）</p>
-<p>仅在制作车体模型时，才需要创建 Collider 碰撞模型。</p>
-<p><img src="imgs/3035b92fad7f_1719737643512-c42e6955-0eab-41a3-bf34-9ab1bceb9730.png" alt="Completed 完成后"></p>
-<h2 id="lod-特殊处理">LOD 特殊处理</h2>
-<p>Make the LOD models child objects of the unoptimized model and name them OriginalObjectName_LODNumber (starting from 1, up to a maximum of 3 LOD levels). **The name of the unoptimized original model must end with LOD0.  **</p>
-<p>将 LOD 模型设为未优化模型的子物体，并命名为 原始物体名称_LOD序号（序号从 1 开始，至多可制作 3 层 LOD）。<strong>未优化的原始模型名称必须以 LOD0 结尾。</strong></p>
-<p><img src="imgs/8965747e5c70_1719737716877-925e902e-8dbc-4e5c-a527-d5704816590b.png" alt=""></p>
-<p>LOD 模型</p>
-<h1 id="hitbox-外部装甲">HitBox 外部装甲</h1>
-<p>Reduced-polygon versions of the visual model. Models with different armor thicknesses need to be separated and then set their armor type and armor thickness according to the naming conventions in section 5.</p>
-<p>外观模型的减面版本。不同装甲厚度的模型需分离，然后根据第 5 节的命名规范设置其装甲类型与装甲厚度。</p>
-<p><img src="imgs/d8c230515b66_1719733989735-745bb179-9982-4a1f-aa9a-0b8d36cd72b6.png" alt="Reduced-polygon versions of the visual model 外观模型的减面版本的模型"></p>
-<p><img src="imgs/177568ca9b17_1719734025662-7efe028d-8811-41fb-9279-6c55d2e15928.png" alt="Models with different armor thicknesses need to be separated 不同装甲厚度的模型需要分离开"></p>
-<h1 id="internal-module-内构模型">Internal Module 内构模型</h1>
-<p>Lower-polygon internal module models are used for post-penetration shell damage. Then, set their type, armor thickness, and health according to the naming conventions in section 5.</p>
-<p>较低面数的内部模块模型，用于炮弹穿透后的伤害。随后，根据第 5 节的命名规范设置其类型、装甲厚度与血量。</p>
-<p><img src="imgs/d6e7a01f67e4_1719736060590-ba924d44-4172-45d1-85c6-e090818197b8.png" alt="Lower-polygon internal module models 较低面数的内部模块模型"></p>
-<h1 id="collider-碰撞模型">Collider 碰撞模型</h1>
-<p>A collision model only needs to be created for the vehicle hull model.</p>
-<p>仅当制作车体模型时，才需要创建碰撞模型。</p>
-<p><img src="imgs/7c4c2e62d6a6_1719743677689-340933b6-3064-447a-866d-9d0163975815.png" alt=""></p>
-<h1 id="naming-命名规范">Naming 命名规范</h1>
-<p><a href="../mod/hitbox-naming-conventions.html">2.12 HitBox Naming 伤害模型命名规范</a></p>
-<h1 id="export-导出">Export 导出</h1>
-<p>Select the model you want to export, then click on glTF 2.0, choose the .glb format, check Selected Objects, and click Export.</p>
-<p>选中要导出的模型，点击 glTF 2.0，选择 .glb 格式，勾选 Selected Objects，然后点击 Export。</p>
-<p><img src="imgs/8610f090118a_1719736292489-ab28b9d7-dd75-43cb-bed7-019f9b55af72.png" alt=""></p>
-<p><img src="imgs/33ba5b16f690_1719736334697-135a8b61-30a6-4ef1-b3b0-5c268a6312dc.png" alt=""></p>
-<p><img src="imgs/f96f2176ab0d_1719736357062-5fcd6eed-13f6-4696-aa08-a1ddaa92ad6b.png" alt=""></p>
-<h1 id="using-model-使用模型">Using Model 使用模型</h1>
-<p>Use Model Importer</p>
-<p>使用模型导入工具</p>
-<h2 id="windows-platform-电脑平台">Windows Platform 电脑平台</h2>
-<p><img src="imgs/e852e55c22f7_1719736669692-e624b4e6-bf05-4023-83d5-35f2a261dd7e.png" alt=""></p>
-<p><img src="imgs/5d742bda8f77_1719736699208-3855419f-af4c-46a8-858f-562381a2525c.png" alt=""></p>
-<p><img src="imgs/439bd1b1b332_1719736762542-53056e9d-665c-4239-95ee-4b1d34aab8ff.png" alt=""></p>
-<h2 id="android-platform-安卓平台">Android Platform 安卓平台</h2>
-<p>Click on the glb format file and select Panzer War: Definitive Edition as the opening application. Enter the Tank Workshop, choose Model Import, and enter your glb file name (including the file extension).</p>
-<p>点击 glb 格式文件，选择 装甲纷争：决定版 作为打开方式。进入坦克工坊，选择 模型导入，输入 glb 文件名（包含后缀）。</p>
+<!-- Generated from tutorials/glb-model-import-specs/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="工坊-glb-模型导入规范">工坊 GLB 模型导入规范</h1>
+<p><strong>中文</strong> | <a href="../en/workshop/glb-model-import-specs.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run glb-model-import-specs
+</code></pre>
+<h2 id="1-准备外观和贴图">1. 准备外观和贴图</h2>
+<p>在 Blender 先检查模型外观。PBR 示例使用基础色、金属度与粗糙度、烘焙环境光遮蔽以及法线；基础做法至少要基础色，法线可选。法线贴图走 Normal 输入。先预览，再用 Blender 减面或外部工具准备远景网格。 <a href="https://docs.blender.org/manual/zh-hans/4.3/addons/import_export/scene_gltf2.html">Blender glTF 说明</a> · <a href="../mod/instalod-studio.html">InstaLOD Studio</a></p>
+<h2 id="2-布置导入用的层级">2. 布置导入用的层级</h2>
+<p>在 Blender 用 <strong>Shift+A → Empty → Plain Axes</strong> 建四个空物体。导入器按网格的直接父节点分类，名称区分大小写。</p>
+<table>
+<thead>
+<tr>
+<th>父节点</th>
+<th>直属子网格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Visual</code></td>
+<td>外观网格。若有 LOD，把简化网格放在原网格下方。</td>
+</tr>
+<tr>
+<td><code>Collider</code></td>
+<td>车体物理碰撞块。用简单的凸形块覆盖必要区域。</td>
+</tr>
+<tr>
+<td><code>HitBox</code></td>
+<td>外部装甲。不同装甲厚度或类型分成独立网格。</td>
+</tr>
+<tr>
+<td><code>Module</code></td>
+<td>低面数内构，用于穿透后的损伤。每件独立标明类型、厚度与耐久。</td>
+</tr>
+</tbody>
+</table>
+<p>沿用 <code>Body_LOD0</code>、<code>Body_LOD1</code> 到 <code>Body_LOD3</code> 这样的命名。把 <code>Body_LOD0</code> 直接放在 <code>Visual</code> 下，把其余 LOD 做成它的子物体，并从近到远排序。当前流程识别大写 <code>LOD</code>，按子节点顺序读取层级。会被炮弹击中的部件需要外部装甲和对应的内部结构，车体另配物理碰撞。 <a href="../mod/hitbox-naming-conventions.html">伤害网格命名</a></p>
+<pre><code class="lang-text">Visual
+  Body_LOD0
+    Body_LOD1
+Collider
+  HullCollision
+HitBox
+  HullFront_65
+Module
+  Engine_40_10
+</code></pre>
+<p>如果下载了源码并且终端可以找到 Blender，用下列命令生成这份教学文件：</p>
+<pre><code class="lang-sh">blender --background --factory-startup --python-exit-code 1 --python Docs/Manual/tutorials/glb-model-import-specs/create_sample.py -- Temp/ManualMcp/WorkshopGLB/Tutorial.glb
+</code></pre>
+<h2 id="3-导出并导入工坊">3. 导出并导入工坊</h2>
+<ol>
+<li>在 Blender 选中需要导出的空物体及其子网格。用 <strong>File → Export → glTF 2.0</strong>，选择二进制 <strong>.glb</strong>，勾选 <strong>Selected Objects</strong> 后导出。</li>
+<li>Windows 在坦克工坊打开<strong>模型导入</strong>，选中 GLB 文件。选择器可直接触发导入，也可确认文件后执行 <strong>Import Mesh</strong>。</li>
+<li>Android 通过系统文件管理器用<strong>装甲纷争：决定版</strong>打开 <code>.glb</code>。再进坦克工坊的<strong>模型导入</strong>，填文件名及 <code>.glb</code> 后缀。应用从自己的 <code>Installs</code> 目录找文件。</li>
+<li>导入后预览外观、碰撞和伤害组，检查炮塔等有活动轴的部件在旋转时仍能正确对齐。和已有部件配在一起后再保存和试驾。 <a href="tank-workshop-basics.html">工坊入门</a></li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>生成上方的 GLB，在游戏环境就绪后调用工坊使用的运行时导入器。反复查询状态，等到 Succeeded 再检查生成组件。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local data, u = CS.ShanghaiWindy.Core.Data, CS.UnityEngine\nassert(DocsWorkshopGlb == nil, \&quot;A workshop GLB test is already active\&quot;)\nlocal root = u.GameObject(\&quot;Tutorial GLB Preview\&quot;)\nlocal holder = u.GameObject(\&quot;Model\&quot;)\nholder.transform:SetParent(root.transform, false)\nlocal ref = root:AddComponent(typeof(data.DIYThirdPartyReference))\nref.modelHolder = holder\nlocal bytes = CS.System.IO.File.ReadAllBytes(\&quot;../../Temp/ManualMcp/WorkshopGLB/Tutorial.glb\&quot;)\nDocsWorkshopGlb = {root = root, holder = holder, ref = ref}\nDocsWorkshopGlb.task = ref:AsyncLoadModel(bytes)\nreturn tostring(DocsWorkshopGlb.task.Status)&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;return DocsWorkshopGlb.task.Status:ToString()&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Succeeded&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local t,u=assert(DocsWorkshopGlb), CS.UnityEngine\nlocal core=CS.ShanghaiWindy.Core\nassert(t.task.Status:ToString() == \&quot;Succeeded\&quot;)\nlocal visual=assert(t.holder.transform:Find(\&quot;Scene/Visual/Body_LOD0\&quot;))\nlocal coll=assert(t.holder.transform:Find(\&quot;Scene/Collider/HullCollision\&quot;))\nlocal plate=assert(t.holder.transform:Find(\&quot;Scene/HitBox/HullFront_65\&quot;))\nlocal module=assert(t.holder.transform:Find(\&quot;Scene/Module/Engine_40_10\&quot;))\nassert(visual:GetComponent(typeof(u.LODGroup)).lodCount==2)\nassert(coll:GetComponent(typeof(u.MeshCollider)).convex and not coll:GetComponent(typeof(u.MeshRenderer)).enabled)\nassert(plate:GetComponent(typeof(core.HitBox)).Armor==65)\nlocal component=module:GetComponent(typeof(core.InternalModule))\nassert(component.HitPoint==40 and component.internalArmor==10 and component.moduleType:ToString()==\&quot;Engine\&quot;)\nu.Object.Destroy(t.root)\nDocsWorkshopGlb=nil\nreturn \&quot;GLB imported two LODs, one convex collider, 65 mm plate, and engine module\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GLB imported two LODs&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -174,7 +209,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
