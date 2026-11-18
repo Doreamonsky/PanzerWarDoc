@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>履带坦克的引擎、挡位和 RPM | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="履带坦克的引擎、挡位和 RPM | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-engine-rpm/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="履带坦克的引擎挡位和-rpm">履带坦克的引擎、挡位和 RPM</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-engine-rpm.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-engine-rpm --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;text&quot;: &quot;${fixture}/Tutorial_EngineVehicleText.asset&quot;,
+    &quot;fmod&quot;: &quot;${fixture}/Tutorial_EngineSound.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativeText.asset&quot;,
+          &quot;${text}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/FMod/Tank/Engine/kv220.asset&quot;,
+          &quot;${fmod}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>在<a href="vehicle-basics.html">基础载具</a>能前进和倒车后，再调整动力、换挡和音效。先用一段平路测试，记录原始速度和转速，之后每次只改一组参数。</p>
+<h2 id="1-找到车辆的引擎参数">1. 找到车辆的引擎参数</h2>
+<ol>
+<li>在 Project 选中 <strong>VehicleTextData</strong>，打开 <strong>移动 → 履带参数</strong>（<code>PTCParameter</code>）。核对质量（<code>Mass</code>）、轮碰撞器和履带引用。教学车质量为 30,000 kg。</li>
+<li>查看 <strong>共享引擎数据</strong>（<code>sharedEngineData</code>）。无引用时编辑本页。已有引用时，点对象槽进入 <strong>SharedEngineData</strong>，修改共享动力和音效。要只改一辆车，先复制共享资产并为这辆车绑定副本。</li>
+<li>填写动力和限速。教学样例的 <code>engineTorque</code> 为 3500，<code>maxSpeed</code> 为 35 km/h，<code>minSpeed</code> 为 10 km/h。这里的 <code>minSpeed</code> 是倒车限速的大小，填正数。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>调整方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>engineTorque</code>、<code>reversingEngineTorque</code></td>
+<td>分别控制前进和倒车的驱动力矩基值。起步无力时，先核对轮碰撞器与质量，再逐步增加力矩。</td>
+</tr>
+<tr>
+<td><code>engineTorqueCurve</code></td>
+<td>横轴是车速（km/h），纵轴是驱动输出倍率。低速点影响起步，高速段过早降到零会使车辆达不到最高速度。</td>
+</tr>
+<tr>
+<td><code>enableReverseEngineTorqueCurve</code></td>
+<td>勾选后可以单独填 <code>reverseEngineTorqueCurve</code>。</td>
+</tr>
+<tr>
+<td><code>brakeTorque</code>、<code>steerTorque</code></td>
+<td>分别调制刹车和转向。测试加速时保持直行，调好驱动以后再测试急停和低速转向。</td>
+</tr>
+<tr>
+<td><code>maxSpeed</code>、<code>minSpeed</code></td>
+<td>设置前进和倒车的速度上限。车辆实际速度还取决于动力、地形和阻力。</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/tank-engine-rpm-drive-fields.zh-CN.png" alt="教学坦克的引擎扭矩与限速"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/Mass&quot;,
+      &quot;value&quot;: &quot;30000&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/Mass&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;30000&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/engineTorque&quot;,
+      &quot;value&quot;: &quot;3500&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/engineTorque&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;3500&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/maxSpeed&quot;,
+      &quot;value&quot;: &quot;35&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/maxSpeed&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;35&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/minSpeed&quot;,
+      &quot;value&quot;: &quot;10&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/minSpeed&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;10&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-生成挡位并设置-rpm">2. 生成挡位并设置 RPM</h2>
+<ol>
+<li>展开 <strong>挡位</strong>，把 <strong>挡位数</strong> 设为 5，点击 <strong>初始化挡位</strong>（<code>InitGear()</code>）。按钮会启用挡位并重建挡位列表。履带车本身会使用履带传动，<strong>启用挡位</strong> 在这里还控制这些字段的显示。已经手工调过的挡位先留备份。</li>
+<li>确认 <code>gears</code> 中的 <strong>RPM 比例</strong>为正数并逐挡递减。履带传动读取各挡比例的相对大小。它根据车速上限和扭矩曲线求终传比，轮式挡位的 <code>finalRatio</code> 和 <code>targetSpeedForNextGear</code> 不参与这一推算。</li>
+<li>设置 <code>minEngineRPM = 600</code>、<code>gearShiftDownRPM = 800</code>、<code>gearShiftUpRPM = 1300</code>、<code>maxEngineRPM = 1500</code>。四个值以 RPM 计，保持最低转速、降挡、升挡、最高转速依次增大。履带传动会按节气门与负载调整实际换挡点。调 <code>gearShiftingDelay</code> 和 <code>engineInertia</code> 时分别对照换挡停顿与转速爬升。</li>
+<li>将可用的 <strong>VehicleEngineFmodSoundData</strong> 拖到 <strong>引擎音效</strong>（<code>vehicleEngineFmodSoundData</code>）。绝对 RPM 用于观察转速，FMOD 运行事件的 <code>RPM</code> 参数读取引擎从怠速到红线的 0–100 归一化值。可用 <a href="lua-api2-engine-gear.html">TankAPI 读取引擎状态</a>比较两项读数。前进挡位表为空时，可先初始化默认挡位后再调 RPM。</li>
+</ol>
+<p><img src="imgs/tank-engine-rpm-rpm-fields.zh-CN.png" alt="挡位启用后的升降挡和引擎 RPM"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/InitGear&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/enableGear&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/minEngineRPM&quot;,
+      &quot;value&quot;: &quot;600&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/minEngineRPM&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;600&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/maxEngineRPM&quot;,
+      &quot;value&quot;: &quot;1500&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/maxEngineRPM&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1500&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/gearShiftDownRPM&quot;,
+      &quot;value&quot;: &quot;800&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/gearShiftDownRPM&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;800&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/gearShiftUpRPM&quot;,
+      &quot;value&quot;: &quot;1300&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/gearShiftUpRPM&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1300&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/vehicleEngineFmodSoundData&quot;,
+      &quot;value&quot;: &quot;@asset:${fmod}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-验证驾驶和音效">3. 验证驾驶和音效</h2>
+<p>保存资产并重打包试驾。在平路从停车加速，观察车速与 RPM 逐步上升，升挡时转速回落，在松油门和减速时检查降挡。然后测试倒车和制动。最后检查驾驶视角和外部视角下能否听见随转速变化的引擎声。</p>
+<ul>
+<li>有转速、车不走时，先查轮碰撞体接地和动力是否传给车轮。</li>
+<li>车速上不去时，先看扭矩曲线在该速度的输出。修改上限后，要重新核对高挡表现。</li>
+<li>转速和速度正常但声音无变化时，确认音效数据及 FMOD Bank 已加载，运行事件的 <code>RPM</code> 参数能接收 0–100。</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/vehicleEngineFmodSoundData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_EngineSound&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/PTCParameter/gearParameter/gears/Length&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。将实体 ID 换成靶场教学车。工具提供前进输入，RPM 和音效按正文观察。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_drive&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;${tankEntityId}&quot;,
+      &quot;mode&quot;: &quot;input&quot;,
+      &quot;accel&quot;: 1,
+      &quot;seconds&quot;: 5
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;range_drive&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;${tankEntityId}&quot;,
+      &quot;mode&quot;: &quot;input&quot;,
+      &quot;accel&quot;: -1,
+      &quot;seconds&quot;: 5
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

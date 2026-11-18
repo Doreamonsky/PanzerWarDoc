@@ -1,7 +1,7 @@
 {
-  "builtAt": "20261118T142817Z",
-  "sourceBaseCommit": "9ad163a236267db1afb0b174ac86198b941cdc1a",
-  "sourceHasUncommittedChanges": true,
+  "builtAt": "20261118T155102Z",
+  "sourceBaseCommit": "c0126691e1c6c5db7e376e2c5b523f2ef0d8da24",
+  "sourceHasUncommittedChanges": false,
   "reviewedTutorials": [
     "vehicle-text-data",
     "crew-data",
@@ -127,9 +127,16 @@
     "decals",
     "shader-variant-collection",
     "vrm-model",
-    "upload-to-modhub"
+    "upload-to-modhub",
+    "tank-engine-rpm",
+    "tank-turret-settings",
+    "tank-fire-settings",
+    "tank-ammo-effects",
+    "tank-active-protection",
+    "tank-light-settings",
+    "tank-radar-settings"
   ],
-  "reviewedDependenciesSha256": "30079a8627bcb2e21c0a7c7becf39e77886b016d60f1067765f656a2869adc43",
+  "reviewedDependenciesSha256": "68b3f3e48935abe3ce657d29f9cdd73879fb25ca9a80cf018e786fa6a9d9abe2",
   "contentReviewedTutorials": [
     "artillery-skill",
     "blender-axis-fix",
@@ -172,16 +179,5 @@
     "voice-pack-practice",
     "zoom-ratio-config"
   ],
-  "newContentReviews": [
-    "crew-data",
-    "preset-vehicle-queue",
-    "zoom-ratio-config",
-    "fixed-angle-reload",
-    "fmod-play-component",
-    "vehicle-light-component",
-    "vehicle-hatches",
-    "artillery-skill",
-    "shield-skill",
-    "material-component"
-  ]
+  "newContentReviews": []
 }

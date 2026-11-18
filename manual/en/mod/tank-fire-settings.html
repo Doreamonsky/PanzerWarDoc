@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Tank gun setup, firing and reloading | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Tank gun setup, firing and reloading | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-fire-settings/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="tank-gun-setup-firing-and-reloading">Tank gun setup, firing and reloading</h1>
+<p><a href="../../mod/tank-fire-settings.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-fire-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;text&quot;: &quot;${fixture}/Tutorial_FireVehicleText.asset&quot;,
+    &quot;shared&quot;: &quot;${fixture}/Tutorial_FireSharedGun.asset&quot;,
+    &quot;bullet&quot;: &quot;${fixture}/Tutorial_FireAP.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativeText.asset&quot;,
+          &quot;${text}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar-SharedGun.asset&quot;,
+          &quot;${shared}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial-76mm-AP.asset&quot;,
+          &quot;${bullet}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Once your <a href="vehicle-basics.html">first tank</a> can drive, configure its main gun and firing effects. See <a href="tank-ammo-effects.html">ammunition and effects</a> for projectile flight, penetration and impact effects.</p>
+<h2 id="1-find-the-gun-data-the-vehicle-uses">1. Find the gun data the vehicle uses</h2>
+<ol>
+<li>Select the vehicle's <strong>VehicleTextData</strong> in Project and open the <strong>Fire</strong> tab.</li>
+<li>Check <strong>Shared Gun Data</strong> (<code>sharedGunData</code>). With an empty reference, edit the local <strong>Tank Fire Params</strong> (<code>TFParameter</code>). If a <strong>SharedGunData</strong> asset is assigned, open that asset and expand its <code>tankFireParameter</code>. The game reads the shared asset first. To tune one vehicle, duplicate the asset and assign the copy to that vehicle.</li>
+<li>Click <strong>+</strong> in <strong>Bullet Data</strong> (<code>bulletData</code>) and drag the first test round into slot 0. Assign an existing sound asset to <strong>Bullet Sound</strong> (<code>fmodBulletSound</code>) and select <strong>Muzzle Middle</strong> for <strong>Muzzle Fire</strong> (<code>muzzleFire</code>).</li>
+<li>Check <code>FFPoint</code> and <code>EffectStart</code> in the model. Position them at the muzzle and point their local +Z down the line of fire. Use the <a href="vehicle-basics.html">first-tank model setup</a> as a reference, then check each secondary turret's own firing points.</li>
+</ol>
+<p><img src="../../mod/imgs/tank-fire-settings-gun-fields.en.png" alt="Main gun ammunition and muzzle effect references"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/sharedGunData&quot;,
+      &quot;value&quot;: &quot;null&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/bulletData/0&quot;,
+      &quot;value&quot;: &quot;@asset:${bullet}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/bulletData/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_FireAP&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-set-the-reload-mode-and-dispersion">2. Set the reload mode and dispersion</h2>
+<p>Set <strong>Fire State</strong> (<code>fireState</code>) to <strong>Standard</strong>, <strong>Reload Time</strong> (<code>ReloadTime</code>) to 6 seconds and <strong>Ammo Count</strong> (<code>AmmoCount</code>) to 30 rounds. Ammo Count configures the gun's reserve. If you switch modes, fill in the timing fields for the new mode.</p>
+<table>
+<thead>
+<tr>
+<th>Fire State</th>
+<th>Parameters to configure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard</td>
+<td><code>ReloadTime</code> sets the standard reload time in seconds. <code>hasSlot</code> shows <strong>Slot Count</strong> and <strong>Slot Duration</strong> for weapons with a burst window.</td>
+</tr>
+<tr>
+<td>Advance</td>
+<td><code>SmallReloadTime</code>, <code>LargeReloadTime</code>, and <code>MaxSmallAmmo</code> set the short reload in seconds, the long reload in seconds, and the number of rounds per magazine. Try 2 seconds, 33 seconds, and 4 rounds.</td>
+</tr>
+<tr>
+<td>Drum</td>
+<td><code>drumFire.fireDuration</code> controls shot spacing. Enter times for each replenishment stage in <code>drumFire.reloadTime</code>. Start with the same times to observe individual rounds replenishing before tuning each stage.</td>
+</tr>
+<tr>
+<td>Energy</td>
+<td>Under <code>energyFire</code>, configure the energy per shot (<code>perShotEnergy</code>), capacity (<code>totalEnergy</code>), shot interval (<code>perShotInterval</code>), and effect duration (<code>vfxDuration</code>).</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../mod/imgs/tank-fire-settings-reload-fields.en.png" alt="Reload duration and total ammunition in Simple mode"></p>
+<p>The <strong>Dispersion</strong> area has two sets of controls. The outer <code>dispersion</code> field governs fixed spread, with a standard deviation at 100 m of 100 times that value. Expand <strong>Spread</strong> (<code>fireSpread</code>) for the shrinking reticle mode. The example sets <code>aimTime</code> to 2 seconds and <code>dispersion</code> to 0.35. A larger <code>aimTime</code> slows convergence. A positive value also marks the spread profile as configured.</p>
+<p><code>moveSpreadCoff</code>, <code>traverseSpreadCoff</code>, <code>gunSpreadCoff</code>, <code>afterFiredCoff</code>, and <code>damagedCoff</code> control the effect of motion, hull traverse, gun motion, firing, and damage. Keep the working sample coefficients for the first test, then tune them one at a time. See <a href="fixed-angle-reload.html">fixed-angle reload</a> to return the gun to a set angle during reloading.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireState&quot;,
+      &quot;value&quot;: &quot;Simple&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/ReloadTime&quot;,
+      &quot;value&quot;: &quot;6&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/ReloadTime&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/AmmoCount&quot;,
+      &quot;value&quot;: &quot;30&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/AmmoCount&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;30&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/aimTime&quot;,
+      &quot;value&quot;: &quot;2&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/aimTime&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;2&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/dispersion&quot;,
+      &quot;value&quot;: &quot;0.35&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/dispersion&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.35&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-check-the-gun-in-the-test-range">3. Check the gun in the test range</h2>
+<p>Save the asset and rebuild the test vehicle. Stop on level ground and fire a round from slot 0. Check the projectile leaves the muzzle, the sound and flash line up, the counter drops by one, and the gun can fire again after about 6 seconds. Compare groups of shots while moving, traversing, and stationary. For a magazine gun, time both the short reload inside the magazine and the long reload after it is empty.</p>
+<ul>
+<li>If the changes have no effect, check whether <strong>Shared Gun Data</strong> overrides the local settings and confirm that the range loaded the rebuilt package.</li>
+<li>If the gun aims but cannot fire, check the ammo list, remaining rounds, reload state, and weapon group.</li>
+<li>If the projectile flies correctly and the flash appears in the wrong place, check <code>EffectStart</code>. For custom flashes, check that the object pool contains the key in <code>overrideMuzzleFires</code>.</li>
+</ul>
+<p>The MCP recipe read these parameters back in the editor. The range calls below can help verify ammunition and flight. Check player input, reload timing, and audiovisual effects in game.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/ReloadTime&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Runtime test pending. Bind the shooter and target IDs in the range. Check ammo consumption, reload and visual effects using the guide.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_ammo&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;range_fire&quot;,
+    &quot;arguments&quot;: {
+      &quot;shooter&quot;: &quot;${tankEntityId}&quot;,
+      &quot;target&quot;: &quot;${targetEntityId}&quot;,
+      &quot;gun&quot;: 0,
+      &quot;ammo&quot;: &quot;0&quot;,
+      &quot;mode&quot;: &quot;shell&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

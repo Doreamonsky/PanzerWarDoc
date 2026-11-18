@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T142817Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T155102Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2966,10 +2966,80 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-active-protection.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-active-protection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-ammo-effects.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-ammo-effects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-engine-rpm.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-engine-rpm.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-fire-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-fire-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-light-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-light-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-radar-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-radar-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/tank-shell-ejection-animation.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/tank-shell-ejection-animation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-turret-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-turret-settings.html"
         }
       },
       "version": ""
@@ -10869,6 +10939,186 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-active-protection-aps-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-active-protection-aps-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-active-protection-aps-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-active-protection-aps-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-ammo-effects-bullet-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-ammo-effects-bullet-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-ammo-effects-bullet-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-ammo-effects-bullet-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-ammo-effects-vfx-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-ammo-effects-vfx-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-ammo-effects-vfx-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-ammo-effects-vfx-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-engine-rpm-drive-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-engine-rpm-drive-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-engine-rpm-drive-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-engine-rpm-drive-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-engine-rpm-rpm-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-engine-rpm-rpm-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-engine-rpm-rpm-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-engine-rpm-rpm-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-fire-settings-gun-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-fire-settings-gun-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-fire-settings-gun-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-fire-settings-gun-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-fire-settings-reload-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-fire-settings-reload-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-fire-settings-reload-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-fire-settings-reload-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-light-settings-light-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-light-settings-light-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-light-settings-light-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-light-settings-light-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-radar-settings-radar-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-radar-settings-radar-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-radar-settings-radar-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-radar-settings-radar-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/tank-shell-ejection-animation-animation.en.png",
       "output": {
         "resource": {
@@ -10903,6 +11153,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/tank-shell-ejection-animation-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-turret-settings-turret-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-turret-settings-turret-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-turret-settings-turret-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-turret-settings-turret-fields.zh-CN.png"
         }
       },
       "version": ""
@@ -12159,10 +12429,80 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-active-protection.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-active-protection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-ammo-effects.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-ammo-effects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-engine-rpm.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-engine-rpm.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-fire-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-fire-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-light-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-light-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-radar-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-radar-settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/mod/tank-shell-ejection-animation.md",
       "output": {
         ".html": {
           "relative_path": "manual/mod/tank-shell-ejection-animation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/mod/tank-turret-settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/mod/tank-turret-settings.html"
         }
       },
       "version": ""

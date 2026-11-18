@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>坦克雷达设置 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="坦克雷达设置 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-radar-settings/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克雷达设置">坦克雷达设置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-radar-settings.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-radar-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;text&quot;: &quot;${fixture}/Tutorial_RadarVehicleText.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+          &quot;${text}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本指南面向已经做出<a href="vehicle-basics.html">基础坦克</a>的玩家，说明如何在载具文本数据中打开防空雷达、调整扫描参数，并在游戏中检查探测与锁定表现。</p>
+<h2 id="1-打开雷达">1. 打开雷达</h2>
+<p>选中坦克已分配的 <strong>VehicleTextData</strong>，依次展开 <strong>杂项</strong> / <strong>Misc</strong> 与 <strong>防空雷达</strong> / <strong>AA Radar</strong>，再展开 <strong>防空雷达数据</strong> / <strong>AA Radar Data</strong>（<code>groundAARadarData</code>），开启 <strong>是否有雷达</strong> / <strong>Has Radar</strong>（<code>hasRadar</code>）。该字段默认为 false。</p>
+<p>地面扫描由载具从这份数据加载，瞄准坐标系取自炮塔变换，找不到时退回到车体。若需要独立的装饰旋转天线，可在 <strong>Universal</strong> 挂点添加 <code>VehicleRadarAttachment</code>，它会按 <code>rotateSpeed</code>（度每秒）沿本地轴旋转 <code>radarTransform</code>。这具天线与功能雷达彼此独立。地面雷达开关与飞机雷达以及 Lua 显示集成也各自独立。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/hasRadar&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/hasRadar&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-调整扫描参数">2. 调整扫描参数</h2>
+<p>下表给出单位与默认值，或说明字段的实际行为。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>单位或默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxDetectionRange</code></td>
+<td>米，默认 15000</td>
+<td>以 5 m² 雷达截面积为参考的探测距离</td>
+</tr>
+<tr>
+<td><code>searchAzimuthHalfAngle</code></td>
+<td>度，默认 45</td>
+<td>方位搜索半角</td>
+</tr>
+<tr>
+<td><code>searchElevationHalfAngle</code></td>
+<td>度，默认 30</td>
+<td>仰角搜索半角</td>
+</tr>
+<tr>
+<td><code>scanRate</code></td>
+<td>度每秒，默认 60</td>
+<td>定向模式的扫描速率</td>
+</tr>
+<tr>
+<td><code>isFullRotation</code></td>
+<td>默认 false</td>
+<td>是否全周旋转</td>
+</tr>
+<tr>
+<td><code>fullRotationRate</code></td>
+<td>度每秒，默认 60</td>
+<td>全周旋转速率，约 6 秒一圈，对 SRC 与 TWS 生效，请保持正数</td>
+</tr>
+<tr>
+<td><code>minElevationAngle</code></td>
+<td>度，默认 2</td>
+<td>最低仰角</td>
+</tr>
+<tr>
+<td><code>detectGroundTargets</code></td>
+<td>默认 false</td>
+<td>绕过仰角杂波抑制，仍受覆盖与距离限制</td>
+</tr>
+<tr>
+<td><code>displayRanges</code></td>
+<td>米，默认 2500/5000/10000/20000</td>
+<td>显示刻度档位</td>
+</tr>
+<tr>
+<td><code>canUsePD</code></td>
+<td>默认 true</td>
+<td>是否可用 PD 模式</td>
+</tr>
+<tr>
+<td><code>canUseTWS</code></td>
+<td>默认 true</td>
+<td>是否可用 TWS 模式</td>
+</tr>
+<tr>
+<td><code>pdMinDetectableSpeed</code></td>
+<td>米每秒，默认 30</td>
+<td>径向速度门限</td>
+</tr>
+<tr>
+<td><code>twsMaxTracks</code></td>
+<td>默认 4</td>
+<td>TWS 同时跟踪上限</td>
+</tr>
+<tr>
+<td><code>acmScanHalfAngle</code>、<code>acmMaxRange</code></td>
+<td>15 度，8000 米</td>
+<td>空战格斗模式范围</td>
+</tr>
+<tr>
+<td><code>trackConeHalfAngle</code></td>
+<td>30 度</td>
+<td>跟踪模式范围</td>
+</tr>
+<tr>
+<td><code>lockAcquireTime</code></td>
+<td>秒，默认 0.5</td>
+<td>锁定建立时间</td>
+</tr>
+</tbody>
+</table>
+<p>Patriot 资源中 <code>maxDetectionRange</code> 显示为 16000，可将其视为示例数值，其余字段请以该资源自身配置为准。需要红外搜索时启用 <code>hasIRST</code>，其 <code>irstDetectionRange</code> 默认 10,000 m。还可以设置箔条数量、持续时间和投放间隔，以及抗干扰（ECCM）、敌我识别（IFF）和目标类型识别（NCTR）。</p>
+<p>天线视觉转速与 <code>scanRate</code> 相互独立，因为前者只是装饰旋转的表现速度，后者决定功能雷达每次扫描覆盖扇区的快慢。</p>
+<p><img src="imgs/tank-radar-settings-radar-fields.zh-CN.png" alt="地面防空雷达的启用、距离与搜索半角"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/maxDetectionRange&quot;,
+      &quot;value&quot;: &quot;16000&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/maxDetectionRange&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;16000&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/searchAzimuthHalfAngle&quot;,
+      &quot;value&quot;: &quot;45&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/searchAzimuthHalfAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;45&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/searchElevationHalfAngle&quot;,
+      &quot;value&quot;: &quot;30&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/searchElevationHalfAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;30&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-运行时检查">3. 运行时检查</h2>
+<p>重新打包并在地图中进入载具。用已分配的按键打开雷达，让一架飞机进入扫描区域，然后对比目标距离与方位、锁定过程、量程档位，以及扇区指向或在全周模式下等待单次扫过。若已开启地面目标探测，可再对比一个地面目标。需要在模型上显示真实扫描时，使用 <a href="lua-api2-radar-screen.html">RadarAPI 显示教程</a>中的 <code>GetScanAzimuth</code>。</p>
+<p>编辑器中的图形与数值可用来核对字段引用与取值，探测与锁定则需要实际游戏会话才能验证。排错时依次检查雷达开关与资源链接、控制动作是否已分配、炮塔坐标系是否正确，以及模式与杂波相关设置。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/groundAARadarData/maxDetectionRange&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;16000&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。绑定靶场载具实体 ID 和 VehicleInitSystem 的索引。读回雷达工作模式后再切换，并观察扫描。搜索与锁定需有可探测目标。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${vehicleComponentIndex}/GetRadarSystem()/WorkMode&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${vehicleComponentIndex}/GetRadarSystem()/SwitchWorkMode&quot;,
+      &quot;args&quot;: []
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${vehicleComponentIndex}/GetRadarSystem()/ScanAzimuth&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

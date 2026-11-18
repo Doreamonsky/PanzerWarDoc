@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>坦克炮塔、俯仰和稳定器 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="坦克炮塔、俯仰和稳定器 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-turret-settings/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克炮塔俯仰和稳定器">坦克炮塔、俯仰和稳定器</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-turret-settings.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-turret-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;text&quot;: &quot;${fixture}/Tutorial_TurretVehicleText.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_TurretModel.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativeText.asset&quot;,
+          &quot;${text}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativePackModel.prefab&quot;,
+          &quot;${model}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本篇从<a href="vehicle-basics.html">基础载具</a>的主炮模型出发。先把炮塔和炮管的支点摆对，再在参数页配置回转、俯仰和稳定器。</p>
+<h2 id="1-整理主炮模型层级">1. 整理主炮模型层级</h2>
+<ol>
+<li>在显示模型根节点下建立 <code>Turret → Gun → Dym</code>。把炮塔网格放到 <code>Turret</code> 下，炮管网格放到 <code>Dym</code> 下。<code>Turret</code> 的支点在座圈旋转中心，<code>Gun</code> 的支点在炮管俯仰轴，<code>Dym</code> 随炮管执行后坐。</li>
+<li>检查模型本地 +Z 朝前、+Y 朝上。按<a href="vehicle-basics.html">主模型绑定</a>放置 <code>FFPoint</code>、<code>EffectStart</code> 和炮手相机参考点。手动旋转炮塔、俯仰炮管，确认炮口和参考点都跟随正确部件。</li>
+<li>生成载具预制体后检查对应部件。生成的载具会把主炮节点命名为 <code>TurretTransform</code>、<code>GunTransform</code>、<code>GunDym</code>。源模型保持 <code>Turret/Gun/Dym</code> 路径，便于下一次生成。额外炮塔通过<a href="../component/vehicle-text-data.html">多炮塔数据</a>分别绑定。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Turret/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Turret&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Turret/Gun/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Gun&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Turret/Gun/Dym/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Dym&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置回转稳定器和限位">2. 设置回转、稳定器和限位</h2>
+<p>打开 <strong>VehicleTextData → 炮塔</strong> 页签。未绑定 <strong>共享炮塔数据</strong>（<code>sharedTurretData</code>）时，编辑 <strong>炮塔参数</strong>（<code>MTParameter</code>）。绑定共享资产时，点对象槽打开并编辑其 <code>turretParameter</code>。对单车调校可复制一份共享数据。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>教学值和作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxTurretAngle</code></td>
+<td>180° 表示左右各 180°。有限位炮塔可以填 45°，得到左右各 45°。</td>
+</tr>
+<tr>
+<td><code>isNonSymmetricTurret</code></td>
+<td>启用后分别设置 <code>maxTurretNegativeAngle</code> 和 <code>maxTurretPositiveAngle</code>，例如 −30° 和 +45°。</td>
+</tr>
+<tr>
+<td><code>UpMaxDegree</code>、<code>DownMaxDegree</code></td>
+<td>教学车填 20°、6°。正常配置中俯角填正数大小，表示向下 6°。</td>
+</tr>
+<tr>
+<td><code>turretDegreesPerSecond</code>、<code>gunDegreesPerSecond</code></td>
+<td>教学车填 18°/s、12°/s，分别对应水平回转和炮管俯仰。</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td>炮塔的水平偏移，正前方定位正确时保持 0°。</td>
+</tr>
+<tr>
+<td><code>ffPointAlignType</code></td>
+<td>配置瞄准对齐参照为炮管根（<code>Gun</code>）或运动炮管（<code>Dym</code>）。首次调校沿用现有配置，再用炮口方向核对。</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/tank-turret-settings-turret-fields.zh-CN.png" alt="主炮塔回转限位、俯仰范围和转速"></p>
+<p>需要避开发动机舱或附件时，展开 <strong>特殊的俯角、仰角设置</strong>。对称设置为左右镜像的方位范围。需要左右分别处理时，打开非对称范围，再填写相对车身的起止方位和该区间的仰角、俯角。沿方位边界来回瞄准，确认俯仰限制切换符合预期。</p>
+<p>垂直稳定器有独立的跟随速度、仰角和俯角，水平稳定器有自己的跟随速度与角度。先验证基础限位，再打开稳定器并在行驶时比较。模块模式下可以用 <code>moduleData.hasOverride</code> 单独覆盖水平和垂直转速。无炮塔战斗室、车体辅助转向及液压悬挂见<a href="spg-td-hydraulic-suspension.html">固定炮架与悬挂专题</a>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/maxTurretAngle&quot;,
+      &quot;value&quot;: &quot;180&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/maxTurretAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;180&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/UpMaxDegree&quot;,
+      &quot;value&quot;: &quot;20&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/UpMaxDegree&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;20&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/DownMaxDegree&quot;,
+      &quot;value&quot;: &quot;6&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/DownMaxDegree&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/turretDegreesPerSecond&quot;,
+      &quot;value&quot;: &quot;18&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/turretDegreesPerSecond&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;18&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/gunDegreesPerSecond&quot;,
+      &quot;value&quot;: &quot;12&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/gunDegreesPerSecond&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;12&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-试驾并检查炮口">3. 试驾并检查炮口</h2>
+<p>保存并重打包。在平地停稳，将准星移到左右边界，检查短弧炮塔是否在限制处停止。再对比水平和垂直速度，用高低目标检查炮口方向与俯仰极限。打开稳定器后，在颠簸和转弯时重复。最后射击一发，观察炮管后坐、装甲板件和炮口效果跟随。</p>
+<ul>
+<li>完全不动时，检查主炮层级、有效限位、速度和共享参数。</li>
+<li>模型旋转但视线偏离时，检查支点轴向、水平偏移和 <code>FFPoint</code>。</li>
+<li>出现穿模时，核对角度区间并检查伤害模型对应组。调整显示层级后重新生成预制体。</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/maxTurretAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;180&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。先用实体 ID 查询组件列表，再填写 VehicleInitSystem 的索引。读回有效参数后，按正文观察旋转和炮口。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${vehicleComponentIndex}/CurMainTurretParam&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

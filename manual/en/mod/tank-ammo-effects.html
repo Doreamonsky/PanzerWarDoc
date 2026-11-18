@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Tank ammunition, projectile effects and impacts | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Tank ammunition, projectile effects and impacts | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-ammo-effects/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="tank-ammunition-projectile-effects-and-impacts">Tank ammunition, projectile effects and impacts</h1>
+<p><a href="../../mod/tank-ammo-effects.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-ammo-effects --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;bullet&quot;: &quot;${fixture}/Tutorial_AP_Shell.asset&quot;,
+    &quot;vfx&quot;: &quot;${fixture}/Tutorial_AP_Effects.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial-76mm-AP.asset&quot;,
+          &quot;${bullet}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BulletVFX/宝马鸽特效/AP-BulletVFX-M.asset&quot;,
+          &quot;${vfx}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Start with a <a href="tank-fire-settings.html">configured main gun</a>. This guide uses the SDK teaching tank's 76 mm AP round to inspect the ammunition asset, its flight and its effects separately.</p>
+<h2 id="1-create-and-bind-a-test-round">1. Create and bind a test round</h2>
+<ol>
+<li>Select a working <strong>Penetrate Bullet</strong> in Project and press <strong>Ctrl+D</strong> to duplicate it. You can also create <strong>Penetrate - 穿甲弹</strong> from the Panzer War ammunition menu and compare it with a working asset of the same type. Use a distinct filename and keep <code>warhead</code> set to <strong>AP</strong>.</li>
+<li>Fill in the fields below. Save the asset and drag it into the active main gun's <strong>Bullet Data</strong> list. If a shared gun is assigned, replace the round in its <strong>SharedGunData</strong>. Rebuild and confirm the test range is using the updated package.</li>
+<li>For a gun with multiple ammunition types, create a separate asset for each round and give each a recognizable name and icon.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Teaching values and purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caliber</code></td>
+<td>76 mm, used by caliber-dependent calculations.</td>
+</tr>
+<tr>
+<td><code>velocity</code></td>
+<td>650 m/s, the launch velocity.</td>
+</tr>
+<tr>
+<td><code>gravityDamper</code></td>
+<td>9.8 m/s², the downward acceleration setting.</td>
+</tr>
+<tr>
+<td><code>damage</code></td>
+<td>100, the base value for health-based damage calculations.</td>
+</tr>
+<tr>
+<td><code>penetration</code></td>
+<td>90 mm, the base penetration of this round. Impact angle and distance affect the outcome.</td>
+</tr>
+<tr>
+<td><code>isDeclineByDistance</code></td>
+<td>Set on the teaching round. Establish a baseline at close range, then compare at longer range.</td>
+</tr>
+<tr>
+<td><code>maxCapability</code></td>
+<td>A value of 0 inherits the vehicle limit. Set a positive value when this round needs its own limit.</td>
+</tr>
+</tbody>
+</table>
+<p>Module-based damage uses the same round asset and reads its module, projectile and penetration parameters. Test module damage separately after changing health-based damage values. Keep the working sample's module fields for the first pass.</p>
+<p><img src="../../mod/imgs/tank-ammo-effects-bullet-fields.en.png" alt="Caliber, muzzle velocity and damage of the training AP shell"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/caliber&quot;,
+      &quot;value&quot;: &quot;76&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/caliber&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;76&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/velocity&quot;,
+      &quot;value&quot;: &quot;650&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/velocity&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;650&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/damage&quot;,
+      &quot;value&quot;: &quot;100&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/damage&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;100&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-assign-flight-and-impact-effects">2. Assign flight and impact effects</h2>
+<ol>
+<li>Duplicate a working <strong>BulletVFX</strong> asset in Project, then drag the copy to the projectile's <strong>Bullet VFX</strong> slot (<code>bulletVFX</code>).</li>
+<li>Open <strong>BulletVFX</strong> and choose the keys below from the object-pool dropdowns. Ensure that the named effect resources load with the package.</li>
+<li>Set <code>isOverrideSprite</code> and <code>bulletSprite</code> if the round needs a different HUD icon. Configure the muzzle flash and firing sound in the gun data.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Projectile in flight</td>
+<td><code>weaponProjectileEffect</code> and <code>overrideWeaponProjectileEffects</code></td>
+</tr>
+<tr>
+<td>Ground impact</td>
+<td><code>hitGround</code> and <code>overrideHitGrounds</code></td>
+</tr>
+<tr>
+<td>Armor impact</td>
+<td><code>hitArmor</code> and <code>overrideHitArmors</code></td>
+</tr>
+<tr>
+<td>Armor ricochet</td>
+<td><code>hitArmorRicochet</code> and <code>overrideHitArmorRicochets</code></td>
+</tr>
+<tr>
+<td>Water impact</td>
+<td><code>hitWater</code> and <code>overrideHitWaters</code>, displayed when the water interaction type exposes manual settings.</td>
+</tr>
+</tbody>
+</table>
+<p>Use object-pool keys for new assets. The two fields <code>isOverrideWeaponProjectileEffect</code> and <code>overrideWeaponProjectileEffect</code> reference a GameObject through the legacy Instantiate path.</p>
+<p><img src="../../mod/imgs/tank-ammo-effects-vfx-fields.en.png" alt="Projectile, ground and armor impact effect keys"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/bulletVFX&quot;,
+      &quot;value&quot;: &quot;@asset:${vfx}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/bulletVFX/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_AP_Effects&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vfx}/hitGround&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vfx}/hitArmor&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vfx}/weaponProjectileEffect&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-check-projectile-flight-and-impact-feedback">3. Check projectile flight and impact feedback</h2>
+<p>Open the <a href="vehicle-playground.html">vehicle test range</a> and choose the new round. Fire at the front of a nearby target. Check the projectile, hit result and armor effect. Then try the ground, sloped armor and water to check the corresponding effects. When comparing penetration at different distances, use the same plate and a similar impact angle.</p>
+<ul>
+<li>If the round is missing, check the active gun's <strong>Bullet Data</strong> and rebuild the test package.</li>
+<li>If a hit registers but no effect appears, check the <strong>BulletVFX</strong> reference and the matching pool key.</li>
+<li>In MCP, use <code>range_fire</code> in <code>shell</code> mode to test projectile flight. The <code>impact</code> mode runs the hit pipeline directly so you can isolate a damage test.</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/velocity&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;650&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Runtime test pending. Bind the shooter and target IDs in the range. Check ammo consumption, reload and visual effects using the guide.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_ammo&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;range_fire&quot;,
+    &quot;arguments&quot;: {
+      &quot;shooter&quot;: &quot;${tankEntityId}&quot;,
+      &quot;target&quot;: &quot;${targetEntityId}&quot;,
+      &quot;gun&quot;: 0,
+      &quot;ammo&quot;: &quot;0&quot;,
+      &quot;mode&quot;: &quot;shell&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

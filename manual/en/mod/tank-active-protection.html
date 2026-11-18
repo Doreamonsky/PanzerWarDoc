@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Tank active protection system | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Tank active protection system | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-active-protection/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="tank-active-protection-system">Tank active protection system</h1>
+<p><a href="../../mod/tank-active-protection.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-active-protection --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;aps&quot;: &quot;${fixture}/Tutorial_ApsPart.asset&quot;,
+    &quot;native&quot;: &quot;${fixture}/Tutorial_NativeAps.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/DIY/Function/Aps/Aps.asset&quot;,
+          &quot;${aps}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>This tutorial covers the APS data entry point, how coverage is evaluated, and how to validate one interception setup in the editor.</p>
+<h2 id="1-attach-the-aps-component">1. Attach the APS component</h2>
+<p>Find the visual model using the <a href="vehicle-basics.html">first-tank guide</a> and open it in Prefab Mode, pick the hull or a suitable mount child under it in the Hierarchy, then use Inspector &gt; Add Component &gt; Vehicle Aps Attachment Mono Component (C# type <code>VehicleApsAttachmentMonoComponent</code>).</p>
+<p>On the same node, check that <code>VehicleAttachmentMonoComponent</code> uses <strong>Specific</strong> and points to the APS component. Expand <code>apsAttachmentSlot</code>, then configure the APS Profile. The screenshot example assigns the <code>ApsMount</code> transform under the hull as the mount point and binds at least one <code>FirePoint</code> in <code>Fire Points</code>.</p>
+<p>The blue Z arrow sets forward; when no transform is assigned, the vehicle's own rotation is used for coverage.</p>
+<p>The Visual Profile controls audiovisual feedback, and the Turret Profile is optional, needed only when the launcher rotates.</p>
+<p>The built-in DIY example lives at <code>Packages/com.shanghaiwindy.coreresources/DIY/Function/Aps/Aps.asset</code> and is a <code>DIYApsData</code>; its visual prefab supplies the <code>ApsTurret</code> and <code>ApsTurret/ApsGun</code> paths, and presets may override the base DIY profile. That prefab stores the graphics hierarchy, while the screenshot shows the component configuration.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${native}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleApsAttachmentMonoComponent&quot;,
+        &quot;children&quot;: [
+          &quot;ApsMount&quot;,
+          &quot;ApsMount/FirePoint&quot;
+        ],
+        &quot;values&quot;: {
+          &quot;apsAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;apsProfile&quot;: {
+                &quot;coverageAngle&quot;: 270,
+                &quot;ammoCount&quot;: 4,
+                &quot;cooldown&quot;: 1.5
+              },
+              &quot;firePoints&quot;: [
+                null
+              ]
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;apsAttachmentSlot.attachment.mountTransform&quot;,
+            &quot;child&quot;: &quot;ApsMount&quot;
+          },
+          {
+            &quot;property&quot;: &quot;apsAttachmentSlot.attachment.firePoints.Array.data[0]&quot;,
+            &quot;child&quot;: &quot;ApsMount/FirePoint&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${native}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;attachmentSlotType&quot;: 1
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;specificAttachmentMonoComponent&quot;,
+            &quot;child&quot;: &quot;&quot;,
+            &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleApsAttachmentMonoComponent&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/turretPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ApsTurret&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/gunPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ApsTurret/ApsGun&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${native}/VehicleApsAttachmentMonoComponent/apsAttachmentSlot/attachment/firePoints/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FirePoint&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-understand-coverage-and-interception-conditions">2. Understand coverage and interception conditions</h2>
+<p>The screenshot depicts the native <code>VehicleApsAttachmentMonoComponent</code> configured with an <code>ApsMount</code> and a <code>FirePoint</code>, 4 charges, a 1.5 s cooldown, and 270 degrees of coverage. These are the teaching values.</p>
+<p><code>detectionRadius</code> is the threat detection distance, <code>fireRadius</code> is where a tracked closing projectile can trigger an interception, and <code>minInterceptRadius</code> is the smallest qualifying distance. The 80 m, 40 m, and 8 m figures, along with 0.95 for <code>interceptProbability</code>, are <code>APSProfile</code> source defaults.</p>
+<p>Coverage is evaluated relative to the mounted forward direction. With no <code>useTraverseLimits</code>, coverage is a 3D cone; with it enabled, the check uses local yaw within half the coverage angle plus up/down elevation limits.</p>
+<p>HardKill uses interception and fires, while the other scanning branch detects without firing. Warhead mass and chance relate to whether an interception succeeds, not to detection. Cooldown and remaining charges likewise limit consecutive interceptions.</p>
+<p><img src="../../mod/imgs/tank-active-protection-aps-fields.en.png" alt="APS ammo, cooldown and coverage on the vehicle attachment"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${native}/VehicleApsAttachmentMonoComponent/apsAttachmentSlot/attachment/apsProfile/coverageAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;270&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/apsProfile&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/presets&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/launcherParameter/maxTurretAngle&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-test-the-aps-setup">3. Test the APS setup</h2>
+<p>APS is enabled in the Editor. Packaged builds also check runtime feature availability.</p>
+<ol>
+<li>First open the visual model in Prefab Mode and check that <code>apsAttachmentSlot</code>, the APS Profile, <code>ApsMount</code>, and <code>Fire Points</code> point at the right nodes.</li>
+<li>Save, rebuild and enter the test range. Try a compatible incoming game projectile from within the mounted coverage, then watch whether it is intercepted and whether the status display and charge use match expectations.</li>
+<li>Repeat the shot from outside coverage and confirm nothing is intercepted.</li>
+<li>Run out of charges, fire once more, and confirm no further interception happens.</li>
+</ol>
+<p>Diagnosis: if nothing triggers, confirm the APS runtime feature is enabled in the Editor, then check coverage angle, elevation limits, the warhead allowlist, and the speed and mass thresholds.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/apsProfile&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Runtime test pending. Bind the shooter and the APS-equipped target in the test range and confirm the shooter carries the selected ammunition. Observe the APS ammo count and interception feedback in the HUD.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_fire&quot;,
+    &quot;arguments&quot;: {
+      &quot;shooter&quot;: &quot;${shooterEntityId}&quot;,
+      &quot;target&quot;: &quot;${apsEntityId}&quot;,
+      &quot;gun&quot;: 0,
+      &quot;ammo&quot;: &quot;HEAT&quot;,
+      &quot;mode&quot;: &quot;shell&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

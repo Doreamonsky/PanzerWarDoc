@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>坦克灯光设置 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="坦克灯光设置 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-light-settings/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克灯光设置">坦克灯光设置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-light-settings.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-light-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;light&quot;: &quot;${fixture}/Tutorial_ArrayLights.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Array4.prefab&quot;,
+          &quot;${light}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本指南面向已经做出<a href="vehicle-basics.html">基础坦克</a>的玩家，说明如何在 Unity 中为坦克安装车灯、配置光束与灯光类型，并在游戏中验证效果。</p>
+<h2 id="1-用-customshape-安装灯具">1. 用 CustomShape 安装灯具</h2>
+<p>在 <strong>MainBody</strong> 下为左灯和右灯各建立一个独立的子节点，不要把两盏灯挂在同一个节点上。每盏灯的根节点需要添加 <code>VehicleLightAttachmentMonoComponent</code>，同时添加 <code>VehicleAttachmentMonoComponent</code>，把 <strong>attachmentSlotType</strong> 设为 <strong>Specific</strong>，并将 <strong>specificAttachmentMonoComponent</strong> 指向前面那个组件。自定义编辑器在绘制灯节点时会自动补上配套组件，保存前请确认该链接确实存在。</p>
+<p>接下来配置挂点数据。在 <code>lightAttachmentSlot.attachment.lightTransform</code>（<strong>灯光位置</strong> / <strong>Light Transform</strong>）中指定灯的挂点变换。</p>
+<p>多镜头灯具可以先使用我们提供的 Array4 示例作为教学参考，也可以在 <strong>lightTransform</strong> 下自行创建多个 <strong>LensSurface</strong> 子节点，每个子节点使用 <strong>MeshFilter</strong> 与 <strong>MeshRenderer</strong>，并挂上灯罩材质。单灯的预设、复制和镜像操作见<a href="vehicle-light-component.html">车灯组件</a>。</p>
+<p>然后设置 <code>lightSizeType</code>（<strong>灯光大小类型</strong> / <strong>Light Size Type</strong>）为 <strong>CustomShape</strong>。<strong>Circle</strong> 与 <strong>HalfCircle</strong> 使用 <code>radiusSize</code>，<strong>RectSmall</strong>、<strong>RectMiddle</strong>、<strong>RectLarge</strong> 使用 <code>rectSize</code>，<strong>CustomShape</strong> 使用 <code>customShapeRenderers</code>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleAttachmentMonoComponent)/attachmentSlotType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Specific&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lightSizeType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CustomShape&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-瞄准方向与设置类型">2. 瞄准方向与设置类型</h2>
+<p>Array4 示例使用四个镜头渲染器、四个发光点变换和一个光束起点。<code>lensEmitters</code> 的标签是 <strong>发光点（留空沿用旧配置）</strong> / <strong>Emitters (empty uses legacy placement)</strong>。最多使用 <strong>lightTransform</strong> 下的八个唯一子变换，<code>glareScale</code> 与 <code>glareWeight</code> 必须是有限的非负值，权重总和为正，显式填写发光点时每个镜头需要一个材质与一个子网格。请把发光点放在灯面位置，并使用本地 +Z 作为朝向。</p>
+<p><code>beamOrigin</code> 的标签是 <strong>光束节点（+Z 为最终出光方向）</strong> / <strong>Beam origin (+Z is the final beam direction)</strong>，它是可选的子节点，请在 Scene View 中调整箭头方向以确认最终出光方向。</p>
+<p>若灯具使用自带反光面，可先关闭 <strong>始终显示</strong> 校对熄灯外观，再使用 Inspector 的亮灯预览检查发光材质。</p>
+<p>接着设置 <code>lightType</code>（<strong>灯光类型</strong> / <strong>Light Type</strong>），可选 <strong>LowBeam</strong>、<strong>HighBeam</strong>、<strong>PositionLight</strong>、<strong>BrakeLight</strong>、<strong>ReverseLight</strong>、<strong>LeftBlinker</strong>、<strong>RightBlinker</strong>。颜色可借助 <strong>Set From Preset</strong> 填充（若界面提供该按钮），<code>baseColor</code> 与 <code>emissionColor</code> 请分别设置。<code>isBlinker</code> 会暴露频率与亮起占比，频率 1 与占比 0.5 表示每秒亮半秒。<strong>CustomShape</strong> 提供灯光开启与关闭的预览功能。</p>
+<p><img src="imgs/tank-light-settings-light-fields.zh-CN.png" alt="阵列灯组件的形状、镜片和光束引用"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/beamOrigin&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lensEmitters&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-测试与排错">3. 测试与排错</h2>
+<p>保存并重新打包模组，然后在较暗的测试场景中驾驶坦克，用已分配的按键逐项对比可切换远光与近光、刹车灯与倒车灯以及左右转向灯。若镜头正常发亮但光束方向错误，请检查 <code>beamOrigin</code> 的本地 +Z 方向。若完全没有灯光，请先确认实际模组 prefab 中的挂点、渲染器、材质与子节点引用，再考虑调整 HDR。</p>
+<p>这套流程分为两步：编辑器中的配方用于检查资源连接，玩家实际驾驶用于确认运行时表现。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lightType&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。根据组件列表填入 VehicleLightManagementAttachment 的索引。发出切灯命令后，到夜间场景观察实际照明。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${lightComponentIndex}/ToggleBeam&quot;,
+      &quot;args&quot;: []
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${lightComponentIndex}/IsBeamOn&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
