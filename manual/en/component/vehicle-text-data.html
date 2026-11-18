@@ -432,7 +432,7 @@
 <p><code>sharedGunData</code> and <code>sharedTurretData</code> are shared references: when several vehicles point to the same asset, edits affect every referencing vehicle; use <code>TFParameter</code> or <code>MTParameter</code> only when no shared reference is assigned. The teaching sample keeps a <code>sharedGunData</code> reference, so <code>TFParameter</code> is hidden there; this does not affect the HP and View Range steps above.</p>
 <h3 id="configure-movement-firing-the-turret-and-self-destruction">Configure movement, firing, the turret, and self-destruction</h3>
 <ul>
-<li>For tracks, configure power and forward and reverse speed under <strong>Mobility</strong>. Assign <strong>TankWheelCollider</strong> and <strong>Track Data</strong> before setting up the suspension. For a mech, start with <strong>Mech Params</strong> and bind the required animation and components. <a href="../mod/physics-wheels.html">Wheels</a> · <a href="../mod/track-ik-suspension.html">Track suspension</a> · <a href="../mod/create-mech.html">Mechs</a></li>
+<li>For tracks, configure power and forward and reverse speed under <strong>Mobility</strong>. Assign <strong>TankWheelCollider</strong> and <strong>Track Data</strong> before setting up the suspension. <a href="../mod/physics-wheels.html">Wheels</a> · <a href="../mod/track-ik-suspension.html">Track suspension</a></li>
 <li>Under <strong>Fire</strong>, choose the shells, ammo capacity, reload time, and firing sound. Set muzzle velocity on the selected shell asset. The gun parameters control recoil scale and dispersion. Use a shared gun asset when several vehicles need the same gun settings.</li>
 <li>Under <strong>Turret</strong>, set the traverse range, barrel elevation speed, and maximum elevation and depression. For a new secondary weapon, use <code>simpleVehicleFireSystemParameters</code> in the multi-turret tab to bind model nodes and independent firing data. For existing vehicles, see the <a href="../mod/multi-turret-legacy.html">legacy paths and offsets</a>.</li>
 <li>To configure an in-game self-destruct effect, add an entry under <code>vehicleSelfExplosionParams</code> in the miscellaneous settings. Assign the model's <code>explosionPath</code> and put a <strong>SelfExplodeBullet</strong> in <code>explosionParam.explosionData</code>. The asset provides range and damage, and the script determines when the effect fires.</li>
@@ -615,9 +615,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/component/vehicle-text-data.md/#L1" class="contribution-link">Edit this page</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
