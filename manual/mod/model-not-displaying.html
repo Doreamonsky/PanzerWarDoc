@@ -112,7 +112,7 @@
 </code></pre>
 </details>
 <h2 id="1-检查材质-shader">1. 检查材质 Shader</h2>
-<p>在 Project 窗口选中模型使用的材质。在 Inspector 的 <strong>Shader</strong> 字段检查它是否支持当前渲染管线。示例读回项目载具材质的 Shader 和本机支持情况。</p>
+<p>在 Project 窗口选中模型使用的材质。在 Inspector 的 <strong>Shader</strong> 字段检查它是否支持当前渲染管线。模组 SDK 使用 URP。可在模型副本上换用工程里已能显示的 URP 材质，确认是材质问题后，再把贴图和颜色迁到兼容的 Shader。示例读回项目载具材质的 Shader 和本机支持情况。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -283,6 +283,7 @@
 ]
 </code></pre>
 </details>
+<p>旧工程的 <strong>ShanghaiWindy → Set Rendering LayerMask</strong> 是早期工具入口。排查当前工程时，可以从物体的 <strong>Layer</strong>、实际渲染相机和材质依次缩小范围。若 Scene 视图能看到、游戏相机看不到，优先检查相机遮罩。</p>
 
 </article>
           </div>

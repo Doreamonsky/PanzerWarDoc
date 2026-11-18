@@ -94,7 +94,7 @@
 <li><p>准备 Git 与 Git LFS，见<a href="install-git.html">安装 Git</a>。使用图形界面时再<a href="install-tortoisegit.html">安装 TortoiseGit</a>。</p>
 </li>
 <li><p>只改某个包时，可在干净检出中从 Git Bash 按包拉取依赖。下面以 <code>Vehicles/German</code> 为例。</p>
-<pre><code class="lang-sh">GIT_LFS_SKIP_SMUDGE=1 git clone git@github.com:WindyVerse/Panzer-War-Mods.git
+<pre><code class="lang-sh">GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/WindyVerse/Panzer-War-Mods.git
 cd Panzer-War-Mods
 python Tools/ci.py prepare Vehicles/German
 git lfs pull --include=&quot;&lt;上一步打印的 lfs 路径&gt;&quot;

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>28.1. Upload, Naming and Art Standards 上传、命名与美术规范 | Panzer War Document </title>
+      <title>美术资源命名与上传规范 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="28.1. Upload, Naming and Art Standards 上传、命名与美术规范 | Panzer War Document ">
+      <meta name="title" content="美术资源命名与上传规范 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,57 +77,78 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="281-upload-naming-and-art-standards-上传命名与美术规范">28.1. Upload, Naming and Art Standards 上传、命名与美术规范</h1>
 
-<h1 id="1-upload-standards-上传规范">1. Upload Standards 上传规范</h1>
-<p>每个分支应尽可能减少修改内容。理想情况下，一个分支仅包含一辆坦克或一架飞机的修改。切记，不要在一个分支内提交大量载具修改后再进行合并，<strong>此类合并将无法通过。</strong></p>
-<p>Each branch should contain as few changes as possible — ideally one branch per tank or aircraft. Never commit a large batch of vehicle changes on a single branch and then ask for a merge; <strong>such merges will not be accepted.</strong></p>
-<h1 id="2-naming-standards-命名规范">2. Naming Standards 命名规范</h1>
+<!-- Generated from tutorials/upload-naming-art-standards/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="美术资源命名与上传规范">美术资源命名与上传规范</h1>
+<p><strong>中文</strong> | <a href="../en/mod/upload-naming-art-standards.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run upload-naming-art-standards
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {},
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>一次提交应围绕一项连贯的改动，并为资源使用有明确含义的名称。以下规范适用于官方资源仓库里的载具、地图和共享资源。</p>
+<h2 id="1-分支范围">1. 分支范围</h2>
+<p>每个分支应尽可能减少改动，理想情况下一个分支只改一辆坦克或一架飞机。不要在一个分支里囤积大量载具改动再请求合并，<strong>这样的合并不会被接受</strong>。范围小的分支便于逐个复核、定位问题和回退。</p>
+<h2 id="2-命名规范">2. 命名规范</h2>
 <ol>
-<li><p>任何文件名应以大写字母开头，随后接小写字母，例如：</p>
-<p>Every file name should begin with an uppercase letter followed by lowercase letters, for example:</p>
-</li>
+<li>文件名以大写字母开头，例如 <code>PantherTurret.fbx</code>，而不是 <code>pantherTurret.fbx</code>、<code>panther turret.fbx</code> 或全大写的 <code>PANTHERTURRET.FBX</code>。</li>
+<li>名称要能说明这是什么，避免 <code>asdf.fbx</code>、<code>NewFile2.fbx</code> 这类随手写出的字符串。同一部件的模型、贴图、材质和预制体沿用同一组词。</li>
+<li>注意拼写，例如 <code>Turret</code> 不要写成 <code>Turet</code>，<code>Receiver</code> 不要写成 <code>Reciever</code>。导出前统一检查一遍文件名。</li>
 </ol>
-<p><img src="imgs/ac7b5339869d_1677924244339-8f9b851a-ffdd-4300-b928-a5d4e1f73395.png" alt=""></p>
-<ol start="2">
-<li><p>任何文件都应具有清晰明确的名称，而非一串乱码。</p>
-<p>Every file should have a clear, meaningful name instead of a string of gibberish.</p>
-</li>
-<li><p>尽量避免拼写错误。</p>
-<p>Try not to misspell words.</p>
-</li>
-</ol>
-<h1 id="3-when-modifying-an-existing-model-replace-the-fbx-instead-of-adding-a-new-one-在原本模型上进行修改应替换-fbx-而非新增-fbx">3. When Modifying an Existing Model, Replace the Fbx Instead of Adding a New One 在原本模型上进行修改，应替换 Fbx 而非新增 Fbx</h1>
-<p>导出新的 fbx 并覆盖原本的 fbx 文件。此步骤可在建模软件导出时执行，或在文件夹中通过复制文件进行覆盖。无法在 Unity 编辑器内直接完成。如果在 fbx 内新增了模型，请将新的 fbx 拖入空场景，然后将新增部分复制到原本的旧预制体内。</p>
-<p>Export the new fbx and overwrite the original fbx file. You can overwrite it while exporting from your modelling software, or by copying the file over in the folder. This cannot be done directly inside the Unity editor. If you added new models inside the fbx, drag the new fbx into an empty scene, then copy the newly added parts into the original old prefab.</p>
-<p><img src="imgs/6b8bbf7513c5_1677924311878-9a50ffb9-8e9f-4f59-b9f4-e8894f693fd0.png" alt=""></p>
-<p><strong>切记，不要因为对 fbx 新增一块区域的模型，就只是新增一个 fbx 文件。这会导致出现 XXX_fix.fbx、XXX_fix2.fbx 等文件，造成项目文件混乱。</strong></p>
-<p><strong>Never add a separate fbx file just because you added one more piece of geometry. It leads to XXX_fix.fbx, XXX_fix2.fbx and so on, which turns the project files into a mess.</strong></p>
-<h1 id="4-do-not-reuse-one-texture-for-both-normal-and-rgb-maps-and-do-not-set-normal-strength-法线图与-rgb-图不要用一张不要设置-normal-强度">4. Do Not Reuse One Texture for Both Normal and RGB Maps, and Do Not Set Normal Strength 法线图与 RGB 图不要用一张，不要设置 Normal 强度</h1>
-<p><img src="imgs/ed0cfeaf8a81_1677922679075-c6f95e01-e407-4079-af3e-94e4762e4c27.png" alt=""></p>
-<p>解决方法：</p>
-<p>Solution:</p>
-<p>在建模软件中，不要将 RGB 图引用给 Normal，也不要设置 Normal 强度。</p>
-<p>In your modelling software, do not feed the RGB map into Normal, and do not set the Normal strength.</p>
-<p>例如，在 Blender 中删除以下节点：</p>
-<p>For example, in Blender, delete the following node:</p>
-<p><img src="imgs/dfc3c19d431e_1677922746658-0c4d72ee-e83e-4073-8e15-7623b6d329a2.png" alt=""></p>
-<p>以及删除以下节点：</p>
-<p>And delete the following node as well:</p>
-<p><img src="imgs/45a04dd1d9bf_1677922891268-1001e17b-2a11-4041-a227-824572be3287.png" alt=""></p>
-<h1 id="5-avoid-duplicate-materials-避免重复的材质球">5. Avoid Duplicate Materials 避免重复的材质球</h1>
-<p>重复的材质球指的是使用相同贴图但应用了不同材质球的情况。这会增加渲染压力。</p>
-<p>Duplicate materials means separate materials that use exactly the same textures. This increases the rendering cost.</p>
-<p>重复的材质球通常出现在 Blender 中使用 Ctrl+C 和 Ctrl+V 复制物体时。<strong>我们建议使用 Shift+D 的方式复制物体，以避免创建重复的材质球。</strong></p>
-<p>Duplicate materials usually appear after copying objects in Blender with Ctrl+C and Ctrl+V. <strong>We recommend duplicating objects with Shift+D instead, so that no duplicate material is created.</strong></p>
-<p>对于已经创建的重复材质球，需要在 Blender 中手动将引用的材质球统一替换为相同的材质，以避免重复。</p>
-<p>For duplicates that already exist, you have to switch the referenced materials manually in Blender so that they all point to the same material.</p>
-<p>下拉框可以显示目前还有哪些材质存在重复，通常重复的材质名称会以 .001、.002 结尾。</p>
-<p>The dropdown shows which materials are still duplicated; duplicated ones normally end with .001, .002 and so on.</p>
-<p><img src="imgs/fda33d09fc32_1677925024048-9e7cc9d2-907f-4860-849f-0699ac64de3d.png" alt=""></p>
-<p>可以使用上方的搜索框搜索重复的材质名称。</p>
-<p>You can use the search box above to look up duplicated material names.</p>
-<p><img src="imgs/0d1fcc12ad08_1677926683292-b2361d26-3d05-407c-8e62-891a63b61e60.png" alt=""></p>
+<h2 id="3-修改现有模型时替换-fbx">3. 修改现有模型时替换 FBX</h2>
+<p>在建模软件里导出新的 FBX，直接覆盖原有路径上的 FBX 文件：可以在导出时指定同一个文件名，也可以在文件夹里把新文件复制过去覆盖。这个操作无法在 Unity 编辑器内完成。</p>
+<p>覆盖时保留原来的 <code>.meta</code>，以便 Unity 继续用同一个 GUID 识别 FBX。重命名或重建子网格可能改变子资源的本地 ID。导入后逐项检查 prefab 的网格引用、材质槽和相关节点。若删除 <code>.meta</code> 或另建不同路径的 FBX，Unity 会生成新的 GUID。</p>
+<p>如果在 FBX 里新增了模型，把重新导入的 FBX 拖进一个空场景，再把新增的部分复制进原本的预制体并保存。<strong>不要因为只是多了一块模型就新增一个 FBX 文件</strong>，否则会留下 <code>XXX_fix.fbx</code>、<code>XXX_fix2.fbx</code> 之类的文件，让工程变得混乱。</p>
+<h2 id="4-法线贴图与基础色贴图分开">4. 法线贴图与基础色贴图分开</h2>
+<p>法线贴图和基础色（RGB）贴图必须是两张独立的贴图，不要用一张贴图同时充当两者。在建模软件里，不要让 RGB 贴图接到 Normal 输入上；在 Unity 里把法线贴图的 Texture Type 设为 Normal map，再把基础色贴图接进 Base Color 输入，两个输入各自指向自己的贴图。</p>
+<p>旧指南里的“不要设置 Normal 强度”针对的是导入的材质：保持默认的 Normal 强度即可，不要为单个模型随手改动这个值。Unity 的着色器本身有 Normal strength / Bump scale 参数，规范要求的是不要在导入的模型上做无依据的逐模型覆盖。</p>
+<h2 id="5-避免重复材质">5. 避免重复材质</h2>
+<p>重复材质指使用完全相同贴图的多个材质球，它们会增加渲染开销，也让后续统一修改容易漏掉对象。</p>
+<p>同一 <code>.blend</code> 中用 <code>Shift+D</code> 复制物体。跨文件粘贴后检查材质引用，确认没有多出一份使用相同贴图的材质。</p>
+<p>已经存在的重复材质需要手动统一：把每个对象的材质引用替换为同一个材质，使其指向共享材质。材质下拉框会列出可选的材质，重复的通常以 <code>.001</code>、<code>.002</code> 结尾；也可以在上方的搜索框里按名称查找这些重复项。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在临时目录用两张纹理检查法线导入和覆写后的资产 GUID。FBX 内部子网格的引用另按正文复核。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;\nlocal u, e, io = CS.UnityEngine, CS.UnityEditor, CS.System.IO\nlocal base = \&quot;${fixture}/TutorialTank_BaseColor.png\&quot;\nlocal normal = \&quot;${fixture}/TutorialTank_Normal.png\&quot;\nlocal tex = u.Texture2D(2, 2, u.TextureFormat.RGBA32, false)\nlocal function write(path, r, g, b)\n    for x=0,1 do\n        for y=0,1 do\n            tex:SetPixel(x, y, u.Color(r,g,b,1))\n        end\n    end\n    tex:Apply()\n    io.File.WriteAllBytes(path, u.ImageConversion.EncodeToPNG(tex))\n    e.AssetDatabase.ImportAsset(path, e.ImportAssetOptions.ForceSynchronousImport)\nend\nlocal ok, issue = pcall(function()\n    write(base,0.7,0.6,0.5)\n    write(normal,0.5,0.5,1)\n    local baseGuid = e.AssetDatabase.AssetPathToGUID(base)\n    assert(baseGuid ~= \&quot;\&quot; and baseGuid ~= e.AssetDatabase.AssetPathToGUID(normal))\n    local baseImporter = e.AssetImporter.GetAtPath(base)\n    baseImporter.textureType = e.TextureImporterType.Default\n    baseImporter.sRGBTexture = true\n    baseImporter:SaveAndReimport()\n    local normalImporter = e.AssetImporter.GetAtPath(normal)\n    normalImporter.textureType = e.TextureImporterType.NormalMap\n    normalImporter.sRGBTexture = false\n    normalImporter:SaveAndReimport()\n    write(base,0.2,0.4,0.6)\n    assert(e.AssetDatabase.AssetPathToGUID(base) == baseGuid)\n    assert(e.AssetImporter.GetAtPath(base).sRGBTexture)\n    assert(e.AssetImporter.GetAtPath(normal).textureType == e.TextureImporterType.NormalMap)\n    assert(not e.AssetImporter.GetAtPath(normal).sRGBTexture)\nend)\nu.Object.DestroyImmediate(tex)\nassert(ok,issue)\nreturn \&quot;Independent texture imports verified; overwrite kept original asset GUID\&quot;\n&quot;,
+        &quot;art-import-sample&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;overwrite kept original asset GUID&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>

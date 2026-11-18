@@ -170,7 +170,7 @@
 </details>
 <ol start="2">
 <li>在 <code>MultiFireSystemData</code> 添加一项。<code>turretPath</code> 从模型根节点开始，<code>gunPath</code> 从副炮塔开始，<code>dymPath</code> 从副炮开始。示例依次填 <code>Turret/TutorialSubTurret</code>、<code>TutorialSubGun</code>、<code>TutorialSubDym</code>。</li>
-<li>将 <code>ffPointOffSet</code> 和 <code>effectStartOffSet</code> 设为从炮管原点沿局部 +Z 的距离。为该项配置开火和炮塔参数，可绑定对应的共享参数资产。</li>
+<li>将 <code>ffPointOffSet</code> 和 <code>effectStartOffSet</code> 设为从炮管原点沿局部 +Z 的距离。教学样例分别填 <strong>2.5</strong> 和 <strong>1.25</strong>。为该项配置弹种、装填、射击音效，以及炮塔回转、俯仰速度和角度，也可绑定共享火炮和炮塔参数。以主炮塔上的反坦克导弹为例，发射模型放在 <code>Turret</code> 下，确保其局部前方与发射方向一致。</li>
 </ol>
 <p><img src="imgs/multi-turret-legacy-settings.zh-CN.png" alt="旧版多炮塔中三个逐级解析的节点路径"></p>
 <details class="tutorial-mcp">

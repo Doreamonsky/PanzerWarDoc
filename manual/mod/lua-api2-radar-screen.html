@@ -113,7 +113,7 @@
 </code></pre>
 </details>
 <h2 id="1-配置地面雷达">1. 配置地面雷达</h2>
-<p>在 <code>VehicleTextData</code> 的 <strong>防空雷达</strong> 中展开 <code>groundAARadarData</code>，启用 <code>hasRadar</code>。先填探测距离，再按模型调整搜索范围和显示量程。</p>
+<p>选中载具的 <strong>VehicleTextData</strong>，在<strong>杂项 → 防空雷达</strong>展开 <code>groundAARadarData</code>，启用 <code>hasRadar</code>。回放示例采用 <strong>12,000 m</strong> 最大探测距离、<strong>360° 旋转搜索</strong>和 <strong>60°/s</strong> 转速。定向雷达可关掉旋转搜索，再调方位和俯仰半角。</p>
 <table>
 <thead>
 <tr>
@@ -132,23 +132,23 @@
 </tr>
 <tr>
 <td><code>searchAzimuthHalfAngle</code>、<code>searchElevationHalfAngle</code></td>
-<td>方位与俯仰半角，单位度</td>
+<td>搜索区各自的半角，默认 <strong>45°／30°</strong>。</td>
 </tr>
 <tr>
 <td><code>minElevationAngle</code>、<code>detectGroundTargets</code></td>
-<td>地杂波俯仰过滤与地面目标开关</td>
+<td>俯仰低于 <strong>2°</strong> 的回波默认按地杂波过滤。允许地面目标时绕过这一项过滤，距离和扫描范围仍然生效。</td>
 </tr>
 <tr>
 <td><code>displayRanges</code></td>
-<td>屏幕可切换的量程，单位米</td>
+<td>屏幕可切换的量程，默认 <strong>2,500／5,000／10,000／20,000 m</strong>。</td>
 </tr>
 <tr>
 <td><code>canUsePD</code>、<code>pdMinDetectableSpeed</code></td>
-<td>脉冲多普勒模式与速度门限</td>
+<td>脉冲多普勒模式与速度门限，默认门限 <strong>30 m/s</strong>。</td>
 </tr>
 <tr>
 <td><code>hasIFF</code></td>
-<td>友军标记</td>
+<td>开启时显示并区分友军回波。</td>
 </tr>
 </tbody>
 </table>
@@ -230,7 +230,11 @@
 </code></pre>
 </details>
 <h2 id="2-绑定并更新列表">2. 绑定并更新列表</h2>
-<p>把脚本挂到载具，在 <code>OnVehicleReady</code> 获取雷达并订阅锁定变化。示例每 0.2 秒更新目标文字，<code>OnGUI</code> 只绘制缓存。用从 0 开始的索引读取目标，箔条回波可能没有对应的载具。列表用 <code>GetContactWorldAzimuth</code> 显示世界方位。</p>
+<ol>
+<li>把下方脚本保存为 <code>RadarScreen.lua</code>，导入 SDK 工程。选中载具预制体的子节点，挂上 <strong>LuaBehaviorMono</strong>，把脚本拖进 <strong>Behavior</strong>，然后保存并重打包。<a href="lua-behavior-mono.html">LuaBehaviorMono 用法</a></li>
+<li><code>OnVehicleReady</code> 取得雷达并订阅锁定变化。示例每 <strong>0.2 秒</strong>刷新文字。Unity 每帧可能多次调用 <code>OnGUI</code>，所以绘制时直接用缓存。</li>
+<li>从 <code>0</code> 到 <code>GetContactCount(radar) - 1</code> 读取最近扫描的回波。<code>GetContact</code> 依次返回成功标记、目标、距离、方位、俯仰、高度、径向速度和友军标记。箔条的目标为 <code>nil</code>，距离和高度以米计，径向速度以 m/s 计。方位与俯仰使用雷达参考系。北向朝上的屏幕用 <code>GetContactWorldAzimuth</code>，外观天线可用 <code>GetScanAzimuth</code> 取得相对安装座的 <strong>−180° 至 180°</strong> 偏航。</li>
+</ol>
 <pre><code class="lang-lua">Behavior()
 Property = {}
 
@@ -355,7 +359,12 @@ return RadarScreen
 ]
 </code></pre>
 </details>
-<p>本地玩家的雷达扫描与脚本运行受当前场景影响。远程载具副本不在本地扫描。回放核对空雷达路径和列表格式，游戏内探测与锁定待实测。</p>
+<h2 id="3-在试车场检查探测和锁定">3. 在试车场检查探测和锁定</h2>
+<ol>
+<li>驾驶这辆车并开启雷达，让一架飞机进入实际搜索区，检查列表的方位、距离与高度。关掉雷达，列表应隐藏。远程玩家的载具副本不会在本机扫描。</li>
+<li><code>TryLock</code>、<code>Unlock</code>、<code>CycleTarget</code>、<code>SwitchMode</code> 只对本地控制的载具操作。<code>TryLock</code> 要求从雷达当前可见回波中选目标，仍要等待捕获时间。锁定或丢失后，示例应往 Console 写一条 <code>[Radar]</code> 日志。</li>
+</ol>
+<p>MCP 回放核对配置、脚本绑定以及无雷达、箔条、过期行与非活跃雷达的列表逻辑。实际探测和锁定需要游戏场景。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

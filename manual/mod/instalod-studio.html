@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>31.1 InstaLod Studio | Panzer War Document </title>
+      <title>用 InstaLOD Studio 减少网格面数 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="31.1 InstaLod Studio | Panzer War Document ">
+      <meta name="title" content="用 InstaLOD Studio 减少网格面数 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,14 +77,25 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="311-instalod-studio">31.1 InstaLod Studio</h1>
 
-<p><img src="imgs/b0a3fa0a65f6_1719734207065-81fd5c14-18ea-4e79-b618-491563343744.png" alt=""></p>
-<p><img src="imgs/96e88734cb89_1719734430529-cf771150-5f7c-4ea2-b4b1-2b011ca7ca67.png" alt=""></p>
-<p><img src="imgs/15e21868dd4c_1719734451723-8336bce5-25df-420f-a180-e73e8f3d36e3.png" alt=""><img src="imgs/e7eb1fa91299_1719734502088-cfb391e1-a8fa-4977-b757-9ae8168c011c.png" alt=""></p>
-<p><img src="imgs/53ba0adc87fe_1719734528125-e87ac583-071f-4121-8039-0b80c1e14b03.png" alt=""></p>
-<p><img src="imgs/c93eb54ba77b_1719734522727-4a1a7c32-6369-4182-a80f-8fa2bdd3e941.png" alt=""></p>
-<p><img src="imgs/475711236b6a_1719734571472-7473faf4-c0ca-4395-975b-a66a26609b83.png" alt=""></p>
+<!-- Generated from tutorials/instalod-studio/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="用-instalod-studio-减少网格面数">用 InstaLOD Studio 减少网格面数</h1>
+<p><strong>中文</strong> | <a href="../en/mod/instalod-studio.html">English</a></p>
+<p>InstaLOD Studio 可以在把模型导入 Unity 之前，对它的副本做减面。下面的按钮名来自旧版操作图。当前安装和界面以软件官方指南为准。 <a href="https://docs.instalod.io/Products/InstaLOD_Studio/Getting_Started">InstaLOD Studio 入门</a></p>
+<h2 id="1-建立预设并导入">1. 建立预设并导入</h2>
+<ol>
+<li>点击 <strong>New Profile</strong>，选择 <strong>Optimize (AutoLow)</strong> 模板，再点 <strong>Create Profile</strong>。这套预设已包含网格简化所需的流程。</li>
+<li>在 <strong>File → Import Scene</strong> 导入模型副本。</li>
+</ol>
+<h2 id="2-选择减面幅度">2. 选择减面幅度</h2>
+<p>首次可以先用自动质量设置。要指定目标比例时，关闭 <strong>Automatic Quality</strong>，在 <strong>Percent Triangles</strong> 填一个起始值，例如 <code>20</code>。处理后的面数以实际工具结果为准。</p>
+<h2 id="3-执行并对比">3. 执行并对比</h2>
+<p>点击 <strong>Start</strong> 并等待处理结束。旧图中的具体样例从 <strong>6,340 面降到 758 面</strong>、从 <strong>10,451 个顶点降到 1,415 个顶点</strong>。从玩家可能看到的角度检查薄零件、板件和外形是否保留。</p>
+<h2 id="4-导出为新文件">4. 导出为新文件</h2>
+<p>通过 <strong>File → Export Scene</strong> 另存为新文件，方便在不替换源模型的情况下比较结果。</p>
+<h2 id="5-导回-unity-检查">5. 导回 Unity 检查</h2>
+<p>把输出先放到测试目录内。检查轮廓、材质分配、UV 和轴心。载具还要旋转炮塔、炮管或车轮，确认枢轴和方向仍然正确。有问题时调整减面参数再导出。</p>
 
 </article>
           </div>

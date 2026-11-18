@@ -140,6 +140,7 @@ end
 return InputTutorial
 </code></pre>
 <p>The two functions passed to <code>RegisterKeyInput</code> retain the current <code>self</code>. When the object is destroyed, pass the same action name to <code>UnregisterKeyInput</code>.</p>
+<p><code>RegisterKeyInput</code> receives functions. The engine invokes them when the key is pressed or released. The closure remembers this instance and passes <code>context</code> to the handler. The colon call supplies <code>self</code> as its first argument. A call made during registration runs too early, and a bare class method does not retain the instance.</p>
 <p><img src="../../mod/imgs/lua-callbacks-and-self-binding.en.png" alt="Input behavior and its key setting"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>

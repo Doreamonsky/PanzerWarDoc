@@ -112,7 +112,7 @@
 </code></pre>
 </details>
 <h2 id="1-check-the-material-shader">1. Check the material shader</h2>
-<p>Select the model's material in the Project window. In the Inspector, check that its <strong>Shader</strong> supports the active render pipeline. The example reads the shader from a vehicle material and checks support on this machine.</p>
+<p>Select the model's material in Project and check whether <strong>Shader</strong> supports the active render pipeline. The Mod SDK uses URP. Try a known working URP material on a copy of the model to isolate a material problem, then move the textures and colours to a compatible shader. The example reads the shader from a vehicle material and checks support on this machine.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -283,6 +283,7 @@
 ]
 </code></pre>
 </details>
+<p>Older projects had a <strong>ShanghaiWindy → Set Rendering LayerMask</strong> menu. In the current project, check the object's <strong>Layer</strong>, the camera that renders it, and its material. If the mesh appears in Scene View and disappears only in the game camera, check that camera's mask first.</p>
 
 </article>
           </div>

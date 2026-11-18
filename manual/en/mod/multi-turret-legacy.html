@@ -170,7 +170,7 @@
 </details>
 <ol start="2">
 <li>Add a <code>MultiFireSystemData</code> entry. Resolve <code>turretPath</code> from the model root, <code>gunPath</code> from the secondary turret, and <code>dymPath</code> from the secondary gun. The example uses <code>Turret/TutorialSubTurret</code>, <code>TutorialSubGun</code>, and <code>TutorialSubDym</code> in that order.</li>
-<li>Set <code>ffPointOffSet</code> and <code>effectStartOffSet</code> to distances from the barrel origin along local +Z. Configure firing and turret parameters for the entry, using shared assets where suitable.</li>
+<li>Set <code>ffPointOffSet</code> and <code>effectStartOffSet</code> to distances from the barrel origin along local +Z. The sample uses <strong>2.5</strong> and <strong>1.25</strong>. Configure ammunition, reload and sound along with traverse and elevation parameters, or assign shared gun and turret assets. For a turret-mounted anti-tank missile, put the launcher under <code>Turret</code> and align its local forward direction with the launch direction.</li>
 </ol>
 <p><img src="../../mod/imgs/multi-turret-legacy-settings.en.png" alt="The three relative node paths in the legacy turret entry"></p>
 <details class="tutorial-mcp">

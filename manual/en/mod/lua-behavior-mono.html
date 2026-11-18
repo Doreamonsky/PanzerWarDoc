@@ -154,7 +154,8 @@ return ExampleBehavior
 </code></pre>
 </details>
 <h2 id="2-bind-the-component">2. Bind the component</h2>
-<p>Add <strong>LuaBehaviorMono</strong> and assign the imported <strong>ExampleBehavior</strong> asset to <strong>Behavior</strong>. If the script declares a <code>Property</code> table, use <strong>Sync Variable Property Definition</strong> to add missing instance fields. Existing values for the same names are retained. See <a href="lua-properties.html">Lua properties</a> for instance overrides.</p>
+<p>Open the target prefab, or select the target GameObject in the scene, then use <strong>Inspector &gt; Add Component</strong>, search for <strong>LuaBehaviorMono</strong>, and add it. Drag the imported <strong>ExampleBehavior</strong> asset from the Project window into the <strong>Behavior</strong> field. That field takes the imported behavior asset, not the raw <code>.lua</code> text file.</p>
+<p>If the script declares a <code>Property</code> table, use <strong>Sync Variable Property Definition</strong> to add missing instance fields, then set the value of each field on this instance. Field names must match the declared <code>Property</code> entries. Existing values for the same names are retained. See <a href="lua-properties.html">Lua properties</a> for instance overrides.</p>
 <p><img src="../../mod/imgs/lua-behavior-mono-binding.en.png" alt="Assign the Lua asset to Behavior"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -209,7 +210,7 @@ return ExampleBehavior
 </code></pre>
 </details>
 <h2 id="3-save-and-verify">3. Save and verify</h2>
-<p>Save the prefab and check that <strong>Behavior</strong> still points to <strong>ExampleBehavior</strong>. At runtime, the component on the scene object starts the behavior. See <a href="lua-hello-world.html">Hello World</a> for a startup callback that prints a message.</p>
+<p>Save the prefab and check that <strong>Behavior</strong> still points to <strong>ExampleBehavior</strong>. At runtime, the component on the scene object starts the behavior. From the script, <code>self.script:GetLuaComponent(&quot;ClassName&quot;)</code> and <code>self.script:GetNativeComponent(&quot;ComponentName&quot;)</code> look up Lua components and native components on the same GameObject. See <a href="lua-hello-world.html">Hello World</a> for a startup callback that prints a message.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[

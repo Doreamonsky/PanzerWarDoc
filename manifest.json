@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T123654Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T125109Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2326,6 +2326,26 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/instalod-plugin.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/instalod-plugin.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/instalod-studio.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/instalod-studio.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/jenkins-setup.md",
       "output": {
         ".html": {
@@ -2626,6 +2646,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/mod-texture-group.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/mod-texture-group.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/mod-tools-changelog.md",
       "output": {
         ".html": {
@@ -2856,6 +2886,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/upload-naming-art-standards.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/upload-naming-art-standards.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/upload-to-steam-workshop.md",
       "output": {
         ".html": {
@@ -2950,6 +2990,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/vfx-mod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/voice-pack-practice.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/voice-pack-practice.html"
         }
       },
       "version": ""
@@ -10969,6 +11019,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-identifier.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-identifier.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-identifier.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-identifier.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/vfx-mod-pool.en.png",
       "output": {
         "resource": {
@@ -10983,6 +11073,46 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vfx-mod-pool.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-trail.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-trail.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-trail.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-trail.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/voice-pack-practice-start.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/voice-pack-practice-start.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/voice-pack-practice-start.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/voice-pack-practice-start.zh-CN.png"
         }
       },
       "version": ""

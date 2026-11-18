@@ -210,10 +210,14 @@
 }
 </code></pre>
 </details>
+<p>这个例子将特效注册为 <code>TutorialVFX</code>，再把这个键绑定到炮弹的弹道。第一次制作炮弹时，可以先使用<a href="vehicle-basics.html">坦克教程的原装特效</a>，确认炮口、弹道和命中都能显示，再改成自己的资源。</p>
+<h2 id="1-建立资源标识和特效预制体">1. 建立资源标识和特效预制体</h2>
 <ol>
-<li>在 Project 窗口使用 <strong>Create → A Panzer War → P Pool</strong> 创建 <strong>Pool Resource Identifier</strong>。新建资产会获得自己的 GUID。给已有特效包追加资源时，使用作者提供的原标识资产。</li>
-<li>创建特效预制体，根节点挂 <strong>PoolItemComponent</strong>。如果是炮弹拖尾，在组件的 <strong>Weapon Projectile</strong> 列表中指定拖尾子物体，供回放和展示时隐藏。</li>
+<li>在 Project 右键选 <strong>Create → A Panzer War → P Pool → Pool Resource Identifier</strong>。给标识填显示名。游戏用标识把已安装的特效包列到选择项中，GUID 由 Unity 自动生成。需要给旧「马哥特效包」追加资源时，请向作者取得原标识资产。同名新资产会生成自己的 GUID。</li>
+<li>把粒子效果做成独立 GameObject，将它拖到 Project 保存为 prefab。双击打开，在根节点挂 <strong>PoolItemComponent</strong>。做弹道时，在子节点 <code>Trail</code> 添加 <strong>Trail Renderer</strong>，然后把这个子物体拖进**武器拖尾（Weapon Projectile）**列表。后效回放和炮弹展示会隐藏这份拖尾。保存 prefab，再从根节点打开组件检查引用。</li>
 </ol>
+<p><img src="imgs/vfx-mod-identifier.zh-CN.png" alt="特效资源标识和自动生成的 GUID"></p>
+<p><img src="imgs/vfx-mod-trail.zh-CN.png" alt="将拖尾子物体绑定到 Weapon Projectile"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -275,9 +279,40 @@
 ]
 </code></pre>
 </details>
-<ol start="3">
-<li>创建 <strong>Pool Resource</strong> 并绑定标识。添加资源条目，把 <strong>特效名称</strong>设为脚本或 BulletVFX 使用的键，<strong>特效物体</strong>设为预制体。预加载数量 <code>-1</code> 让资源按需生成。普通一次性特效用正数寿命，<code>0</code> 交由程序回收。</li>
-</ol>
+<h2 id="2-配置对象池资源">2. 配置对象池资源</h2>
+<p>在相同 <strong>P Pool</strong> 菜单创建 <strong>Pool Resource</strong>。将第一步的标识拖入 <strong>Identifier</strong>，再展开 <strong>Spawn Reses</strong>，点击 <code>+</code> 添加一项。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>教学值</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特效名称</td>
+<td><code>TutorialVFX</code></td>
+<td>运行时查找的键。建议为自己的模组取独立名字。</td>
+</tr>
+<tr>
+<td>特效物体</td>
+<td>第一节保存的 prefab</td>
+<td>调用时由对象池生成。</td>
+</tr>
+<tr>
+<td>预加载实例化数量</td>
+<td><code>-1</code></td>
+<td>按需生成。正数会预建实例，可减少首次播放时的卡顿。数量越多，占用的内存和加载时间越大。</td>
+</tr>
+<tr>
+<td>生命时长</td>
+<td><code>3</code> 秒</td>
+<td>普通一次性效果到时回收。<code>0</code> 留给由逻辑主动回收的喷火、激光等效果。</td>
+</tr>
+</tbody>
+</table>
+<p>保存后点击<strong>刷新特效下拉框</strong>。如果选不到新键，检查资源条目是否保存、Prefab 引用是否为空，再刷新一次。</p>
 <p><img src="imgs/vfx-mod-pool.zh-CN.png" alt="对象池特效名称与特效预制体"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -399,9 +434,13 @@
 ]
 </code></pre>
 </details>
-<ol start="4">
-<li>在 <strong>BulletVFX</strong> 的弹道或命中字段中填写相同的键。把 Pool Resource 加入构建管线，构建目标平台的特效包。载具包引用这个外部键时，将特效包的 GUID 加入载具包依赖。</li>
+<h2 id="3-绑定炮弹构建并试用">3. 绑定炮弹、构建并试用</h2>
+<ol>
+<li>选中炮弹并打开引用的 <strong>BulletVFX</strong>。把 <code>TutorialVFX</code> 选到<strong>弹道</strong>。如果想保留原弹道作为回退，在<strong>重载弹道</strong>列表里添加 <code>TutorialVFX</code>，保留原基础键。制作着弹效果时可同样填写<strong>击中地面</strong>或<strong>击中装甲</strong>。回到炮弹确认它仍引用刚编辑的 BulletVFX。</li>
+<li>如果特效与载具同包，把 <strong>Pool Resource</strong> 和载具数据加入同一构建管线。如果分包，把 <strong>Pool Resource</strong> 加进特效包的 <strong>Linked Objects</strong>，构建特效包。把该包的 <strong>ModPackageData GUID</strong> 加到载具包的依赖，再重打包载具。这里的依赖指整个模组包，资源标识的 GUID 用于区分特效选择项。</li>
+<li>用同一平台的包安装并试车，射击空地和装甲目标，观察新弹道是否播放、旧效果是否能回退、短时效果是否能回收。若只显示基础效果，先查键名拼写、依赖是否加载，再核对优先使用的特效包。多个已安装对象池注册同一个键时，游戏优先用当前选中的特效包。</li>
 </ol>
+<p><img src="imgs/vfx-mod-binding.zh-CN.png" alt="教学对象池键绑定到炮弹弹道"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

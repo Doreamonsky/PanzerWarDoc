@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>29. 模组贴图组 Mod Texture Group | Panzer War Document </title>
+      <title>模组贴图组的旧版配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="29. 模组贴图组 Mod Texture Group | Panzer War Document ">
+      <meta name="title" content="模组贴图组的旧版配置 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,16 +77,14 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="29-模组贴图组-mod-texture-group">29. 模组贴图组 Mod Texture Group</h1>
 
-<h1 id="compressedpackagebuildpiplinedata">CompressedPackageBuildPiplineData</h1>
-<p>创建一个 CompressedPackageBuildPiplineData 数据资产。</p>
-<p>Create a CompressedPackageBuildPiplineData data asset.</p>
-<p>设置贴图组的名称（用户界面显示的贴图组名称，以及文件夹名称）。</p>
-<p>Set the name of the texture group (this is both the texture group name shown in the user interface and the folder name).</p>
-<p>在打包文件配置中设置自定义贴图文件，需保持与原坦克的贴图名称及格式后缀一致。</p>
-<p>Configure your custom texture files in the build file. They must keep the same texture names and file extensions as the original tank's textures.</p>
-<p><img src="imgs/6cdf115d6d1e_1677252625058-a75b3e8d-cd01-4dfc-9f0d-de03a0d4f058.png" alt=""></p>
+<!-- Generated from tutorials/mod-texture-group/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="模组贴图组的旧版配置">模组贴图组的旧版配置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/mod-texture-group.html">English</a></p>
+<p>旧版贴图组让玩家为同一辆车切换一套贴图。旧图用 KV-2 的 <code>Cartoon</code> 贴图组示范，组名同时用于游戏界面与输出目录。打包项引用新贴图文件，文件名和扩展名应与原车对应贴图完全一致，例如示例里的 <code>KV_2_D</code> 保留原有文件后缀。</p>
+<p>维护包含旧工具的历史工程时，在 <strong>CompressedPackageBuildPiplineData</strong> 设置组名，选择 <strong>Vehicle Custom Texture</strong>，添加贴图文件，再用 <strong>Pack</strong> 生成包。在同一版本里试用并确认可以切回原贴图。</p>
+<p>公开 SDK <code>sdk-2026.11.04.1</code> 中没有找到该旧构建资产类型。新载具里的贴图请通过自己的材质和载具数据绑定，再按<a href="vehicle-basics.html">载具制作</a>重打包。旧贴图组的运行时兼容范围需要按对应游戏版本验证。</p>
 
 </article>
           </div>

@@ -210,10 +210,14 @@
 }
 </code></pre>
 </details>
+<p>This example registers an effect under <code>TutorialVFX</code> and uses it for a shell projectile. For your first shell, check the muzzle flash, projectile, and impact with the <a href="vehicle-basics.html">built-in effects in the tank tutorial</a> before replacing them.</p>
+<h2 id="1-create-an-identifier-and-an-effect-prefab">1. Create an identifier and an effect prefab</h2>
 <ol>
-<li>In the Project window, choose <strong>Create → A Panzer War → P Pool → Pool Resource Identifier</strong>. A new asset gets its own GUID. To extend an existing effects pack, use the original identifier from its author.</li>
-<li>Create a VFX prefab and add <strong>PoolItemComponent</strong> to its root. For a projectile trail, assign the trail child to the component's <strong>Weapon Projectile</strong> list so replay and projectile previews can hide it.</li>
+<li>In Project, right-click and choose <strong>Create → A Panzer War → P Pool → Pool Resource Identifier</strong>. Set the display name. The game uses the identifier to list the installed effects pack as a choice, and Unity creates its GUID. To extend the old Ma Ge effects pack, obtain the original identifier from its author. An identically named new asset gets its own GUID.</li>
+<li>Put the particle effect on a separate GameObject and drag it into Project to save a prefab. Open it and add <strong>PoolItemComponent</strong> to the root. For a shell trail, add <strong>Trail Renderer</strong> to a child named <code>Trail</code> and assign that child to <strong>Weapon Projectile</strong>. Damage replay and projectile previews hide that trail. Save the prefab and check that the reference remains on the root component.</li>
 </ol>
+<p><img src="../../mod/imgs/vfx-mod-identifier.en.png" alt="Effects resource identifier and its generated GUID"></p>
+<p><img src="../../mod/imgs/vfx-mod-trail.en.png" alt="Trail child assigned to Weapon Projectile"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -275,9 +279,40 @@
 ]
 </code></pre>
 </details>
-<ol start="3">
-<li>Create a <strong>Pool Resource</strong> and link the identifier. Add an entry and set <strong>Spawn Name</strong> to the key used by scripts or BulletVFX. Assign the prefab to <strong>Spawn Object</strong>. Set the instance count to <code>-1</code> for on-demand allocation. Set a positive lifetime for ordinary one-shot effects. A lifetime of <code>0</code> delegates recycling to code.</li>
-</ol>
+<h2 id="2-configure-the-pool-resource">2. Configure the pool resource</h2>
+<p>From the same <strong>P Pool</strong> menu, create a <strong>Pool Resource</strong>. Assign the identifier from step 1. Expand <strong>Spawn Reses</strong> and click <code>+</code> to add an entry.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spawn Name</strong></td>
+<td><code>TutorialVFX</code></td>
+<td>Key used at runtime. Choose a unique name for your own mod.</td>
+</tr>
+<tr>
+<td><strong>Spawn Object</strong></td>
+<td>Prefab from section 1</td>
+<td>The pool instantiates this prefab when requested.</td>
+</tr>
+<tr>
+<td><strong>Instance Count</strong></td>
+<td><code>-1</code></td>
+<td>Create instances on demand. Positive counts preload instances to reduce first-use stutter. Higher counts use more memory and load time.</td>
+</tr>
+<tr>
+<td><strong>Life Time</strong></td>
+<td><code>3</code> seconds</td>
+<td>Recycle ordinary one-shot effects after this delay. Reserve <code>0</code> for effects recycled by code, such as jets of flame or beams.</td>
+</tr>
+</tbody>
+</table>
+<p>Save and click <strong>Refresh Spawn Res for Dropdown</strong>. If the key is missing, check that the entry was saved and has a prefab, then refresh again.</p>
 <p><img src="../../mod/imgs/vfx-mod-pool.en.png" alt="Effect key and prefab in Pool Resource"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -399,9 +434,13 @@
 ]
 </code></pre>
 </details>
-<ol start="4">
-<li>Use the same key in the projectile or hit fields of <strong>BulletVFX</strong>. Add the Pool Resource to the build pipeline and build the effects pack for the target platform. If a vehicle pack uses this external key, add the effects pack's GUID to the vehicle pack's dependencies.</li>
+<h2 id="3-bind-package-and-try-the-effect">3. Bind, package, and try the effect</h2>
+<ol>
+<li>Select the shell and open its <strong>BulletVFX</strong> asset. Select <code>TutorialVFX</code> as the <strong>Weapon Projectile Effect</strong>. To keep the existing projectile appearance as a fallback, add <code>TutorialVFX</code> to the <strong>Override Weapon Projectile Effect</strong> list and leave the base key in place. Use <strong>Hit Ground</strong> or <strong>Hit Armor</strong> for impact effects. Return to the shell and verify its BulletVFX reference.</li>
+<li>If the vehicle and effect are in one pack, add <strong>Pool Resource</strong> and the vehicle to the same build pipeline. For separate packs, add <strong>Pool Resource</strong> to the effects pipeline's <strong>Linked Objects</strong> and build it. Add the effects pack's <strong>ModPackageData GUID</strong> to the vehicle pack's dependencies, then rebuild the vehicle pack. The dependency identifies a mod package. The resource identifier GUID is used for the effects pack selection.</li>
+<li>Install the builds for the same platform and shoot the ground and an armored target. Check the custom projectile, fallback effect, and one-shot effect recycling. If you see the base effect, check the exact spelling, whether the dependency loaded, and which effects pack is selected. When several installed pools have the same key, the selected effects pack has priority.</li>
 </ol>
+<p><img src="../../mod/imgs/vfx-mod-binding.en.png" alt="Teaching pool key assigned to the projectile"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
