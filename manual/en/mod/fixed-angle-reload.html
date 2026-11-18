@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Fixed-Angle Reload Configuration | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Fixed-Angle Reload Configuration | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/fixed-angle-reload/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="fixed-angle-reload-configuration">Fixed-Angle Reload Configuration</h1>
+<p><a href="../../mod/fixed-angle-reload.html">中文</a> | <strong>English</strong></p>
+<p>The MCP examples use separate teaching assets. <code>${variables}</code> come from the shared recipe. Run this command at the repository root to create the sample, execute each group and capture both languages through the same local Unity MCP routes.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run fixed-angle-reload --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Teaching-fixture preparation only; official assets are not modified.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sharedGun&quot;: &quot;${fixture}/Tutorial_FixedAngleReload_SharedGunData.asset&quot;,
+    &quot;vehicle&quot;: &quot;${fixture}/Tutorial_FixedAngleReload_VehicleTextData.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar-SharedGun.asset&quot;,
+          &quot;${sharedGun}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+          &quot;${vehicle}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Fixed-angle reload uses the gun buff <code>TankFireSpecificAngleReloadBuff</code>. After firing or switching shell type, it can wait for a configured delay, constrain turret angles and scale rotation speeds. The constraint is removed after reloading finishes.</p>
+<h2 id="1-prepare-shared-gun-parameters">1. Prepare shared gun parameters</h2>
+<p>In the Project window choose <code>Create &gt; A Panzer War - 装甲纷争 &gt; G Ground Vehicle - 地面载具 &gt; Shared Data - 共享数据 &gt; Gun - 炮管</code> to create <code>SharedGunData</code>. Expand <code>tankFireParameter</code> and find the Buffs reference list, <code>buffRefs</code>.</p>
+<p>This recipe copies an existing gun configuration to preserve its initialization data. Editing shared gun data affects all referencing vehicles. For a change to one vehicle, create a separate shared-data copy, or clear that vehicle's <code>sharedGunData</code> before editing its own <code>TFParameter</code>.</p>
+<p><img src="../../mod/imgs/fixed-angle-reload-gun.en.png" alt="Fixed-angle reload SafeRef on a shared gun"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${sharedGun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TankFireParameter&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-add-the-fixed-angle-reload-buff">2. Add the fixed-angle reload buff</h2>
+<p>Add an entry to <code>buffRefs</code>, choose <code>TankFireSpecificAngleReloadBuff</code> and expand its configuration. Use these teaching values:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Teaching value and meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hasDelay</code> / <code>delay</code></td>
+<td>Enable the delay and set it to 0.5 seconds</td>
+</tr>
+<tr>
+<td><code>isTraverseLocked</code></td>
+<td>Enable Lock Traverse</td>
+</tr>
+<tr>
+<td><code>hasSpecificTraverseAngle</code> / <code>specificTraverseAngle</code></td>
+<td>Enable the specific traverse angle and set 0 degrees</td>
+</tr>
+<tr>
+<td><code>hasSpecificElevationAngle</code> / <code>specificElevationAngle</code></td>
+<td>Enable the specific elevation angle and set 5 degrees</td>
+</tr>
+<tr>
+<td><code>isOverrideTraverseSpeed</code> / <code>overrideTraverseSpeedCoff</code></td>
+<td>Override traverse speed with -0.5, a 50% reduction</td>
+</tr>
+<tr>
+<td><code>isOverrideElevationSpeed</code></td>
+<td>Leave disabled to preserve elevation speed</td>
+</tr>
+</tbody>
+</table>
+<p>Delay, angle and speed-coefficient fields are shown when their respective switches are enabled. When no specific angle is supplied, the code uses the current angle on entering the fixed-angle state. These values illustrate configuration only.</p>
+<p>The current list is <code>AbstractTankFireBuffCasterSafeRef[]</code>; the legacy <code>buffs</code> field is deprecated. The MCP recipe creates a real SafeRef entry by supplying both its type and configuration JSON.</p>
+<p><img src="../../mod/imgs/fixed-angle-reload-fields.en.png" alt="Fixed-angle reload traverse, elevation and speed coefficient"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Whole-array JSON assignment creates real SafeRef entries with the type name and serialized configuration. The recipe verifies persisted data and leaves deprecated buffs untouched.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs&quot;,
+      &quot;value&quot;: &quot;[{\&quot;fullName\&quot;:\&quot;ShanghaiWindy.Core.TankFireSpecificAngleReloadBuff\&quot;,\&quot;className\&quot;:\&quot;ShanghaiWindy.Core.TankFireSpecificAngleReloadBuff, Core\&quot;,\&quot;json\&quot;:\&quot;{\\\&quot;hasDelay\\\&quot;:true,\\\&quot;delay\\\&quot;:0.5,\\\&quot;isTraverseLocked\\\&quot;:true,\\\&quot;hasSpecificTraverseAngle\\\&quot;:true,\\\&quot;specificTraverseAngle\\\&quot;:0,\\\&quot;hasSpecificElevationAngle\\\&quot;:true,\\\&quot;specificElevationAngle\\\&quot;:5,\\\&quot;isOverrideTraverseSpeed\\\&quot;:true,\\\&quot;overrideTraverseSpeedCoff\\\&quot;:-0.5,\\\&quot;isOverrideElevationSpeed\\\&quot;:false}\&quot;,\&quot;safeRefAssetProvider\&quot;:{\&quot;assets\&quot;:[]}}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs/0/fullName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TankFireSpecificAngleReloadBuff&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;specificElevationAngle\&quot;:5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-bind-it-to-a-vehicle">3. Bind it to a vehicle</h2>
+<p>Assign the shared gun asset to <code>VehicleTextData.sharedGunData</code>. When set, <code>GetTankFireParam()</code> reads that asset's <code>tankFireParameter</code>. Without a shared reference, it reads the vehicle's <code>TFParameter</code>.</p>
+<p>Save and read the buff configuration back to confirm the intended asset is used.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/sharedGunData&quot;,
+      &quot;value&quot;: &quot;@asset:${sharedGun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetTankFireParam()/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;overrideTraverseSpeedCoff\&quot;:-0.5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-check">4. Check</h2>
+<p>Verify the type, delay, angles, speed coefficient and shared reference. Runtime code removes the constraint through a periodic check after reloading completes. This tutorial does not verify the in-game constraint or restoration behavior.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>These calls verify editor configuration, shared references and persistence. Fixed angles, speed scaling and restoration after reload still require an in-game check.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;delay\&quot;:0.5&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/sharedGunData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_FixedAngleReload_SharedGunData&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/en/mod/fixed-angle-reload.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

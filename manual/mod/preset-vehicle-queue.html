@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>38. Preset Vehicle Queue 预设队列 | Panzer War Document </title>
+      <title>预设载具队列 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="38. Preset Vehicle Queue 预设队列 | Panzer War Document ">
+      <meta name="title" content="预设载具队列 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,21 +77,481 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="38-preset-vehicle-queue-预设队列">38. Preset Vehicle Queue 预设队列</h1>
 
-<h1 id="create-vehicle-queue-创建预设队列">Create Vehicle Queue 创建预设队列</h1>
-<p><img src="imgs/e8cf34be09e9_1714480552106-10789c93-1a02-4992-be69-030737e79d3e.png" alt=""></p>
-<p><img src="imgs/793d2d443cd5_1714480568235-ec181e8c-f2aa-42d0-85a5-90190fd62673.png" alt=""></p>
-<h1 id="fill-in-data-填写数据">Fill-in data 填写数据</h1>
-<p><img src="imgs/141578e012de_1714480621337-89194853-2bc7-4dff-b1e0-d8ac32702c84.png" alt=""></p>
-<p>For Vehicle guid, fill in the asset ID shown on Vehicle Info
-Vehicle guid 填写 Vehicle Info 上的资源标识</p>
-<p><img src="imgs/1b24455f3661_1714480637660-ef54aefd-951e-4402-a8ad-cca4eda4924d.png" alt=""></p>
-<p>Or you can copy it in the game
-或者也可以在游戏内复制它</p>
-<p><img src="imgs/99bce579dc2d_1714481129917-7a772786-19a8-486e-baea-374b2245596a.png" alt=""></p>
-<h1 id="build-打包">Build 打包</h1>
-<p><img src="imgs/e159ffaef089_1714480597060-aeeb8fef-afca-4630-9337-ccf544934143.png" alt=""></p>
+<!-- Generated from tutorials/preset-vehicle-queue/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="预设载具队列">预设载具队列</h1>
+<p><strong>中文</strong> | <a href="../en/mod/preset-vehicle-queue.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run preset-vehicle-queue --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_VehicleQueue.asset&quot;,
+    &quot;vehicleInfo&quot;: &quot;${fixture}/Tutorial_VehicleInfo.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;66dc2d51-e05e-4e6d-9afd-7cc47e11a002&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleInfo)&quot;,
+          &quot;${vehicleInfo}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${vehicleInfo}/vehicleName&quot;,
+        &quot;value&quot;: &quot;Tutorial T-34-85 ID Metadata&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${vehicleInfo}/assetGuid&quot;,
+        &quot;value&quot;: &quot;a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>内置载具队列是随模组打包的资源资产，列出比赛可提供的载具，游戏内只读，也是战斗配置选车界面的输入。</p>
+<p>不要与 <strong>PresetVehicleQueueConfig</strong> 混淆：后者是玩家存档配置，不是需要打包的资产。</p>
+<h2 id="1-创建资产">1. 创建资产</h2>
+<pre><code>Assets &gt; Create &gt; A Panzer War - 装甲纷争 &gt; G Ground Vehicle - 地面载具 &gt; Base - 载具配置 &gt; Vehicle Queue - 载具队列
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.BuiltInVehicleQueueData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置匹配标识与名称">2. 设置匹配标识与名称</h2>
+<ul>
+<li><strong>唯一标识（<code>guid</code>）</strong> — <code>tutorial-queue-001</code>；普通字符串，非 Unity 资源 GUID</li>
+<li><strong>载具队列类型（<code>vehicleQueueType</code>）</strong> — 选择 <code>匹配 - Match</code> 枚举</li>
+<li><strong>载具队列名称（<code>queueName</code>）</strong> — 展开后把其中的 <code>默认名称</code>（<code>defaultName</code>）设为 <code>Tutorial Queue</code></li>
+</ul>
+<p><code>guid</code> 为空时会自动生成。实际发布时，各队列的标识应保持唯一、稳定；不要给多个队列照抄图中的 <code>tutorial-queue-001</code>。</p>
+<p><img src="imgs/preset-vehicle-queue-identity.zh-CN.png" alt="设置匹配队列的标识、类型与名称"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;,
+      &quot;value&quot;: &quot;tutorial-queue-001&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleQueueType&quot;,
+      &quot;value&quot;: &quot;Match&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/queueName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Queue&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleQueueType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Match&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-添加一个载具条目">3. 添加一个载具条目</h2>
+<p>在 <strong>载具标识列表（<code>vehicleGuids</code>）</strong> 点 <strong>+</strong> 添加一条，然后填写两个字符串：<strong>备注（<code>comment</code>）</strong> 为作者备注，<strong>载具唯一标识（<code>vehicleGuid</code>）</strong> 为载具加载标识。</p>
+<p>该标识即 <code>VehicleInfo</code> 对外提供的标识：<code>assetGuid</code>，为空时回退为小写的 <code>vehicleName</code>。请从你自己的可驾驶 <code>VehicleInfo</code> 复制；不要使用 Unity <code>.meta</code> GUID 或 <code>VehicleTextData.editorAssetGuid</code>。</p>
+<p>选中对应的 <code>VehicleInfo</code>，点击 <strong>拷贝资源标识</strong>，再把复制的值粘贴到 <strong><code>vehicleGuid</code></strong>。</p>
+<p>示例 <code>comment</code> 为 <code>T-34-85 No.215</code>，<code>vehicleGuid</code> 为 <code>a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c</code>，来自官方 AAA2 内容，仅为演示，不会自动提供到你的工程。</p>
+<p>该列表是可用载具集合，不是数量：条目数就是条目数量，没有出场数量字段。实际出场数量由模式设置决定。</p>
+<p><img src="imgs/preset-vehicle-queue-vehicles.zh-CN.png" alt="队列条目只填写备注和载具加载 ID"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>为复现复制 GUID 操作，准备阶段只重建了官方 T-34 的名称/载具 ID 元数据；它不含模型，不加入模组包，也不能驾驶。发布时必须选择真正的可驾驶 VehicleInfo，并包含其内容或依赖。列表整体 JSON 赋值对应添加和填写条目，没有数量字段。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/GetLoadGUID&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;vehicleGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleGuids&quot;,
+      &quot;value&quot;: &quot;[{\&quot;comment\&quot;:\&quot;T-34-85 No.215\&quot;,\&quot;vehicleGuid\&quot;:\&quot;${vehicleGuid}\&quot;}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleGuids/0/vehicleGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${vehicleGuid}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-打包并带上载具内容">4. 打包并带上载具内容</h2>
+<ul>
+<li>资产的 <strong><code>guid</code></strong> 作为包名，variant 为 <code>vehiclequeue</code>，打包为 <code>&lt;guid&gt;.vehiclequeue</code></li>
+<li>把资产加入模组构建管线的资源数组（字段 <code>linkedObjects</code>）</li>
+<li>条目是字符串，<strong>不会</strong>自动带上载具：请把被引用载具的内容放入本包或已安装依赖中</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>这里只构建队列定义的教学包，故意不把重建的 VehicleInfo 元数据打进去。构建成功不代表包内已有 T-34 模型；正式使用必须配置车辆内容或模组依赖。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;vehiclequeue\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-在战斗配置中选用并排查">5. 在战斗配置中选用并排查</h2>
+<p>内置队列在当前选车界面与玩家自建队列一同列出，游戏内只读；修改已发布队列需编辑资产并重新打包。队列查找覆盖房间预设、战区配置与内置 <code>Match</code> 队列，因此本教程保持 <code>Match</code>。</p>
+<p>资产默认类型为 <code>Lobby</code>，但当前战斗配置选车界面不使用该列表，需要手动改为 <code>Match</code>。</p>
+<p>队列不显示条目的常见原因：字符串匹配不到已注册的 <code>VehicleInfo</code>、载具不可驾驶、无法在当前地图出生，或载具内容不在本包及其依赖中。此时应检查标识、依赖内容与载具的可选条件。</p>
+<p>本页的菜单路径、字段名与行为来自源码及资产检视；两张图为真实编辑器截图。共享配方已验证队列定义包的 Windows 构建、ZIP 清单与 sidecar；包内不含 T-34 模型，未执行安装或游戏内运行。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>以下核对构建前的类型与 ID。游戏内的模组安装、队列选择和载具可用性尚未验证；不能将此处通过视为战斗配置已通过。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleQueueType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Match&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;tutorial-queue-001&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleGuids/0/vehicleGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时 MCP 映射（未执行）：先安装包含实际车辆或依赖的包，并打开战斗配置中的队列选择器。用 world_overview 找到 BattleConfigCtrl 的 entity/实体ID/组件索引路径，作为 battleConfigPath；确认 FindQueueByGuid 返回非空后，再调用与“选择”按钮相同的 OnSelectQueue。本配方不自动启动、安装或修改你的游戏会话。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.GameMode.VehicleQueueUtil/FindQueueByGuid&quot;,
+      &quot;args&quot;: [
+        &quot;tutorial-queue-001&quot;
+      ]
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;world_overview&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;${battleConfigPath}/QueuePicker/OnSelectQueue&quot;,
+      &quot;args&quot;: [
+        &quot;@static:ShanghaiWindy.Core.GameMode.VehicleQueueUtil/FindQueueByGuid(tutorial-queue-001)&quot;
+      ]
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>

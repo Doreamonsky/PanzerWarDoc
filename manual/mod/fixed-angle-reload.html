@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.1.1 Fixed Angle Reload - 定角装填 | Panzer War Document </title>
+      <title>定角装填配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.1.1 Fixed Angle Reload - 定角装填 | Panzer War Document ">
+      <meta name="title" content="定角装填配置 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,9 +77,235 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0211-fixed-angle-reload---定角装填">02.1.1 Fixed Angle Reload - 定角装填</h1>
 
-<p><img src="imgs/01b4a4afd1d0_1746586181796-38b9ab84-cff9-44ff-8468-52d08e9d7dfc.png" alt=""><img src="imgs/eaed2b8746d0_1746586183220-a6678b4e-7700-4f1b-9417-4abda6600e1c.png" alt=""><img src="imgs/e5c896c60159_1746586185963-4eba915e-795c-4d7f-bb3b-6ea98d8f4e63.png" alt=""><img src="imgs/620877a52182_1746586188263-856198c5-109e-4fc6-88e9-98ce92881a93.png" alt=""></p>
+<!-- Generated from tutorials/fixed-angle-reload/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="定角装填配置">定角装填配置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/fixed-angle-reload.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run fixed-angle-reload --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sharedGun&quot;: &quot;${fixture}/Tutorial_FixedAngleReload_SharedGunData.asset&quot;,
+    &quot;vehicle&quot;: &quot;${fixture}/Tutorial_FixedAngleReload_VehicleTextData.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar-SharedGun.asset&quot;,
+          &quot;${sharedGun}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+          &quot;${vehicle}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>定角装填使用火控增益 <code>TankFireSpecificAngleReloadBuff</code>。开火或切换弹种后，它可按设定延迟约束炮塔角度、调整转速，并在装填完成后解除约束。</p>
+<h2 id="1-准备共享火炮参数">1. 准备共享火炮参数</h2>
+<p>在 Project 窗口选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; G Ground Vehicle - 地面载具 &gt; Shared Data - 共享数据 &gt; Gun - 炮管</code>，创建 <code>SharedGunData</code>。展开 <code>tankFireParameter</code>，找到增益引用列表 <code>buffRefs</code>。</p>
+<p>本配方复制一个现有火炮配置作为教学样例，保留必要的初始化数据。共享火炮的修改会影响所有引用它的载具；只调整一辆载具时，先创建独立的共享数据副本，或清除该载具的 <code>sharedGunData</code> 后编辑自己的 <code>TFParameter</code>。</p>
+<p><img src="imgs/fixed-angle-reload-gun.zh-CN.png" alt="共享火炮中的定角装填 SafeRef 配置"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${sharedGun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TankFireParameter&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-添加定角装填增益">2. 添加定角装填增益</h2>
+<p>在 <code>buffRefs</code> 新增一条，选择 <code>TankFireSpecificAngleReloadBuff</code>。展开其配置，按下表设置教学值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>教学值与含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hasDelay</code> / <code>delay</code></td>
+<td>勾选启用延迟，填写 0.5 秒</td>
+</tr>
+<tr>
+<td><code>isTraverseLocked</code></td>
+<td>勾选锁定水平旋转</td>
+</tr>
+<tr>
+<td><code>hasSpecificTraverseAngle</code> / <code>specificTraverseAngle</code></td>
+<td>启用特定水平角度，填写 0 度</td>
+</tr>
+<tr>
+<td><code>hasSpecificElevationAngle</code> / <code>specificElevationAngle</code></td>
+<td>启用特定垂直角度，填写 5 度</td>
+</tr>
+<tr>
+<td><code>isOverrideTraverseSpeed</code> / <code>overrideTraverseSpeedCoff</code></td>
+<td>覆盖水平旋转速度，系数填 -0.5，表示降低 50%</td>
+</tr>
+<tr>
+<td><code>isOverrideElevationSpeed</code></td>
+<td>本例关闭，保持原垂直旋转速度</td>
+</tr>
+</tbody>
+</table>
+<p>延迟、角度和速度系数字段分别受对应开关控制。未指定角度时，代码使用进入定角状态时的当前角度。上面的数值只用于演示。</p>
+<p>当前列表是 <code>AbstractTankFireBuffCasterSafeRef[]</code>，旧的 <code>buffs</code> 字段已弃用。MCP 配方会同时写入真实类型和配置 JSON，创建安全引用元素。</p>
+<p><img src="imgs/fixed-angle-reload-fields.zh-CN.png" alt="定角装填的水平角度、垂直角度和速度系数"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>数组 JSON 赋值创建真实 SafeRef，类型名与序列化配置一起写入。本配方验证保存内容；不修改弃用的 buffs。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs&quot;,
+      &quot;value&quot;: &quot;[{\&quot;fullName\&quot;:\&quot;ShanghaiWindy.Core.TankFireSpecificAngleReloadBuff\&quot;,\&quot;className\&quot;:\&quot;ShanghaiWindy.Core.TankFireSpecificAngleReloadBuff, Core\&quot;,\&quot;json\&quot;:\&quot;{\\\&quot;hasDelay\\\&quot;:true,\\\&quot;delay\\\&quot;:0.5,\\\&quot;isTraverseLocked\\\&quot;:true,\\\&quot;hasSpecificTraverseAngle\\\&quot;:true,\\\&quot;specificTraverseAngle\\\&quot;:0,\\\&quot;hasSpecificElevationAngle\\\&quot;:true,\\\&quot;specificElevationAngle\\\&quot;:5,\\\&quot;isOverrideTraverseSpeed\\\&quot;:true,\\\&quot;overrideTraverseSpeedCoff\\\&quot;:-0.5,\\\&quot;isOverrideElevationSpeed\\\&quot;:false}\&quot;,\&quot;safeRefAssetProvider\&quot;:{\&quot;assets\&quot;:[]}}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs/0/fullName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TankFireSpecificAngleReloadBuff&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;specificElevationAngle\&quot;:5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-绑定载具">3. 绑定载具</h2>
+<p>把共享火炮资产赋给目标 <code>VehicleTextData.sharedGunData</code>。非空时，<code>GetTankFireParam()</code> 读取共享资产的 <code>tankFireParameter</code>；为空时才读取该载具的 <code>TFParameter</code>。</p>
+<p>保存后读回增益配置，确认载具使用了预期资产。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/sharedGunData&quot;,
+      &quot;value&quot;: &quot;@asset:${sharedGun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetTankFireParam()/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;overrideTraverseSpeedCoff\&quot;:-0.5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-检查">4. 检查</h2>
+<p>核对类型、延迟、角度、速度系数和共享引用。运行时代码在装填完成后通过周期检查解除约束；本教程没有进入游戏验证定角过程或恢复效果。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>这里验证编辑器配置、共享引用及保存结果。定角、转速和装填完成后的恢复行为仍需游戏内检查。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;delay\&quot;:0.5&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/sharedGunData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_FixedAngleReload_SharedGunData&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>2. VehicleTextData 使用说明 Usage Guide | Panzer War Document </title>
+      <title>VehicleTextData 使用说明 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="2. VehicleTextData 使用说明 Usage Guide | Panzer War Document ">
+      <meta name="title" content="VehicleTextData 使用说明 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,48 +77,492 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2-vehicletextdata-使用说明-usage-guide">2. VehicleTextData 使用说明 Usage Guide</h1>
 
-<p><strong>VehicleTextData</strong> 是一个用于配置载具（如坦克、机甲、汽车等）各类参数的类。本文档将指导你如何在 Unity Inspector 界面上使用它。</p>
-<p><strong>VehicleTextData</strong> is a class used to configure the various parameters of a vehicle (such as a tank, mech, or car). This document explains how to use it in the Unity Inspector.</p>
-<h2 id="基础-basics">基础 Basics</h2>
-<h3 id="玩家状态参数-基础数据-player-state-parameters-basic-data">玩家状态参数 (基础数据) Player State Parameters (Basic Data)</h3>
-<p><strong>PSParameter</strong> - 该属性包含玩家状态的基本参数，例如生命值、国家、载具类型等。</p>
-<p><strong>PSParameter</strong> - This property contains the basic player state parameters, such as health, country, and vehicle type.</p>
-<h2 id="移动-movement">移动 Movement</h2>
-<h3 id="履带参数-track-parameters">履带参数 Track Parameters</h3>
-<p><strong>PTCParameter</strong> - 仅在载具使用履带时显示。该属性包含履带控制器的参数，例如坦克的动力、速度、负重轮参数、独立悬挂履带等。</p>
-<p><strong>PTCParameter</strong> - Shown only when the vehicle uses tracks. This property contains the track controller parameters, such as the tank's power, speed, road wheel parameters, and independently suspended tracks.</p>
-<h3 id="机甲参数-mech-parameters">机甲参数 Mech Parameters</h3>
-<p><strong>MechParameter</strong> - 包含机甲控制器的参数，例如机甲的转向速度、飞行参数等。</p>
-<p><strong>MechParameter</strong> - Contains the mech controller parameters, such as the mech's turning speed and flight parameters.</p>
-<h3 id="汽车参数-car-parameters">汽车参数 Car Parameters</h3>
-<p><strong>CarControllerParameter</strong> - 包含汽车控制器的参数。</p>
-<p><strong>CarControllerParameter</strong> - Contains the car controller parameters.</p>
-<h2 id="开火-firing">开火 Firing</h2>
-<h3 id="共享主炮数据-shared-main-gun-data">共享主炮数据 Shared Main Gun Data</h3>
-<p><strong>SharedGunData</strong> - 该属性用于存储可在多个载具之间共享的主炮数据，包括炮弹类型、射速、弹道、弹药容量等。</p>
-<p><strong>SharedGunData</strong> - This property stores main gun data that can be shared across multiple vehicles, including shell type, rate of fire, ballistics, and ammunition capacity.</p>
-<h3 id="主炮参数-main-gun-parameters">主炮参数 Main Gun Parameters</h3>
-<p><strong>TFParameter</strong> - 当没有共享主炮数据时显示。该属性包含主炮的参数，例如射速、弹道、炮口初速、后坐力等。</p>
-<p><strong>TFParameter</strong> - Shown when there is no shared main gun data. This property contains the main gun parameters, such as rate of fire, ballistics, muzzle velocity, and recoil.</p>
-<h3 id="自爆参数-self-destruct-parameters">自爆参数 Self-Destruct Parameters</h3>
-<p><strong>VehicleSelfExplosionParams</strong> - 包含载具自爆功能的相关参数，例如自爆范围、自爆伤害、自爆延迟等。</p>
-<p><strong>VehicleSelfExplosionParams</strong> - Contains the parameters for the vehicle self-destruct feature, such as blast radius, blast damage, and detonation delay.</p>
-<h2 id="炮塔-turret">炮塔 Turret</h2>
-<h3 id="共享炮塔数据-shared-turret-data">共享炮塔数据 Shared Turret Data</h3>
-<p><strong>SharedTurretData</strong> - 用于存储可在多个载具之间共享的炮塔数据，包括炮塔旋转速度、炮管升降速度、最大仰角等。</p>
-<p><strong>SharedTurretData</strong> - Stores turret data that can be shared across multiple vehicles, including turret rotation speed, gun barrel elevation speed, and maximum elevation angle.</p>
-<h3 id="炮塔参数-turret-parameters">炮塔参数 Turret Parameters</h3>
-<p><strong>MTParameter</strong> - 当没有共享炮塔数据时显示。该属性包含炮塔的参数，例如炮塔旋转角度、炮管升降速度、最大俯角等。</p>
-<p><strong>MTParameter</strong> - Shown when there is no shared turret data. This property contains the turret parameters, such as turret rotation angle, gun barrel elevation speed, and maximum depression angle.</p>
-<h2 id="新多炮塔-new-multi-turret">新多炮塔 New Multi-Turret</h2>
-<h3 id="多炮塔数据-multi-turret-data">多炮塔数据 Multi-Turret Data</h3>
-<p><strong>MultiFireSystemData</strong> - 该属性包含多炮塔系统的数据，例如每个炮塔的炮弹类型、射速、弹道等。</p>
-<p><strong>MultiFireSystemData</strong> - Contains the data for the multi-turret system, such as the shell type, rate of fire, and ballistics of each turret.</p>
-<h3 id="简单多炮塔数据-simple-multi-turret-data">简单多炮塔数据 Simple Multi-Turret Data</h3>
-<p><strong>SimpleVehicleFireSystemParameters</strong> - 该属性包含简单多炮塔系统的参数，例如炮塔旋转速度、炮管升降速度等。</p>
-<p><strong>SimpleVehicleFireSystemParameters</strong> - Contains the parameters for the simple multi-turret system, such as turret rotation speed and gun barrel elevation speed.</p>
+<!-- Generated from tutorials/vehicle-text-data/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="vehicletextdata-使用说明">VehicleTextData 使用说明</h1>
+<p><strong>中文</strong> | <a href="../en/component/vehicle-text-data.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-text-data --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_VehicleTextData.asset&quot;,
+    &quot;sharedGun&quot;: &quot;${fixture}/Tutorial_SharedGunData.asset&quot;,
+    &quot;vehicleData&quot;: &quot;${fixture}/Tutorial_VehicleData.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+          &quot;${asset}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar-SharedGun.asset&quot;,
+          &quot;${sharedGun}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+        &quot;args&quot;: [
+          &quot;${asset}&quot;
+        ]
+      },
+      &quot;capture&quot;: {
+        &quot;editorGuid&quot;: {
+          &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+        }
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${asset}/AssetName&quot;,
+        &quot;value&quot;: &quot;TutorialTank&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${asset}/editorAssetGuid&quot;,
+        &quot;value&quot;: &quot;${editorGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${asset}/sharedGunData&quot;,
+        &quot;value&quot;: &quot;@asset:${sharedGun}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/fireSpread/aimTime&quot;,
+        &quot;value&quot;: &quot;2&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${sharedGun}/tankFireParameter/fireSpread/dispersion&quot;,
+        &quot;value&quot;: &quot;0.35&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p><strong>VehicleTextData</strong> 是载具配置的 ScriptableObject。本页只讲在 Unity Inspector 中选中资产、找到字段、填写值并核对结果。</p>
+<h2 id="1-选择资产">1. 选择资产</h2>
+<ol>
+<li>在 Project 窗口选中主类型为 <code>VehicleTextData</code> 的 <code>.asset</code>。创建菜单位置为 <code>A Panzer War - 装甲纷争/G Ground Vehicle - 地面载具/Base - 载具配置/Vehicle Configuration - 载具配置参数</code>。如果新建资产，将它赋给目标 <code>VehicleData</code> 的 <code>vehicleTextData</code> 引用。下文图片使用独立教学样例 <code>Tutorial_VehicleTextData</code>；在你的工程里请选择实际要制作的载具资产。</li>
+<li>确认 <code>AssetName</code> 和 <code>editorAssetGuid</code> 属于目标载具；两者都是只读的资产标识字段，不能在此编辑。</li>
+<li><code>editorAssetGuid</code> 是 Unity 制作资产的 GUID，不是队列使用的 <code>vehicleGuid</code>。队列载具 ID 由 <code>VehicleInfo.GetLoadGUID()</code> 返回，两者含义不同，不要互相代填。</li>
+</ol>
+<p><img src="imgs/vehicle-text-data-identity.zh-CN.png" alt="选中教学资产，核对默认名称和资产唯一 ID"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p><code>CreateAsset</code> 对应新建资产；<code>inspect_set</code> 的对象引用赋值对应拖放到引用槽。以下把新建的配置赋给独立的 VehicleData；只读字段仅查询。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleTextData)&quot;,
+        &quot;${fixture}/Tutorial_NewVehicleTextData.asset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleData)&quot;,
+        &quot;${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/vehicleTextData&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/AssetName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TutorialTank&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/editorAssetGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${editorGuid}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置生命值与视野">2. 设置生命值与视野</h2>
+<ol>
+<li>在 <code>基础</code> 分组下展开 <code>基础数据</code>（字段 <code>PSParameter</code>）。</li>
+<li>在 <code>摄像机控制</code> 分组中找到 <code>血量</code>（<code>PSParameter.Health</code>，图中标记 1）。代码默认值为 1200，本例教学值也填 1200。</li>
+<li>在 <code>视野</code> 分组中找到 <code>观察范围</code>（<code>PSParameter.viewRange</code>，图中标记 2）。允许范围是 220–5000，代码默认值为 220，本例教学值填 600。</li>
+<li>保存资产，再重新选中该资产，确认 <code>PSParameter.Health</code> 与 <code>PSParameter.viewRange</code> 已写入目标资产，而不是其他资产。</li>
+</ol>
+<p><code>PSParameter.Health</code>=1200 和 <code>PSParameter.viewRange</code>=600 只是教学取值，不是官方平衡建议。</p>
+<p><img src="imgs/vehicle-text-data-basic.zh-CN.png" alt="展开基础数据，填写血量 1200 和观察范围 600"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>路径使用真实代码字段名，不受编辑器语言影响。资产字段写入会保存；随后重新选择并读回断言。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PSParameter/Health&quot;,
+      &quot;value&quot;: &quot;1200&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PSParameter/viewRange&quot;,
+      &quot;value&quot;: &quot;600&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;null&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PSParameter/Health&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1200&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PSParameter/viewRange&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;600&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-高级参数">3. 高级参数</h2>
+<p>点击对应的 <code>移动</code>、<code>开火</code>、<code>炮塔</code> 或 <code>多炮塔</code> 标签页，再按下表寻找字段；<code>杂项</code> 位于标签页下方。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>Inspector 分组与含义</th>
+<th>显示条件与读取行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sharedGunData</code></td>
+<td>共享主炮数据（开火）</td>
+<td>始终显示；非空时 <code>GetTankFireParam()</code> 返回其中的 <code>tankFireParameter</code>。</td>
+</tr>
+<tr>
+<td><code>TFParameter</code></td>
+<td>主炮参数（开火）</td>
+<td>仅当没有 <code>sharedGunData</code> 时显示；此时 <code>GetTankFireParam()</code> 返回它。</td>
+</tr>
+<tr>
+<td><code>sharedTurretData</code></td>
+<td>共享炮塔数据（炮塔）</td>
+<td>始终显示；非空时 <code>GetTurretParam()</code> 返回其中的 <code>turretParameter</code>。</td>
+</tr>
+<tr>
+<td><code>MTParameter</code></td>
+<td>炮塔参数（炮塔）</td>
+<td>仅当没有 <code>sharedTurretData</code> 时显示；此时 <code>GetTurretParam()</code> 返回它。</td>
+</tr>
+<tr>
+<td><code>PTCParameter</code></td>
+<td>履带参数（移动）</td>
+<td>仅在 <code>GetGroundType()</code> 返回 TrackController（<code>IsTrackController()</code> 为真）时显示。</td>
+</tr>
+<tr>
+<td><code>MultiFireSystemData</code></td>
+<td>旧版多炮塔系统（弃用）</td>
+<td>旧版多炮塔列表，新载具不要新增。</td>
+</tr>
+<tr>
+<td><code>simpleVehicleFireSystemParameters</code></td>
+<td>新版多炮塔系统</td>
+<td>当前多炮塔配置列表，元素类型为 <code>SimpleVehicleFireSystemParameter</code>。</td>
+</tr>
+<tr>
+<td><code>vehicleSelfExplosionParams</code></td>
+<td>自爆数据（杂项）</td>
+<td>元素类型为 <code>VehicleSelfExplosionTextParameter</code> 的数组，按数组元素填写。</td>
+</tr>
+</tbody>
+</table>
+<p><code>PTCParameter</code> 的显示由 <code>GetGroundType()</code> 的判定顺序决定：<code>isStationary</code> → Stationary，<code>MechParameter.isMech</code> → MechController，<code>LuaVehicleControllerParameter.isLua</code> → Lua，<code>ShipControllerParameter.isShip</code> → Ship，其余情况才返回 TrackController。因此只把模型做成履带车，并不保证该字段出现。</p>
+<p><code>sharedGunData</code> 和 <code>sharedTurretData</code> 是共享引用：多个载具指向同一资产时，修改会影响所有引用者；没有共享引用时才分别使用 <code>TFParameter</code> 或 <code>MTParameter</code>。教学样例保留了 <code>sharedGunData</code> 引用，所以该样例中 <code>TFParameter</code> 不显示；这对只练习生命值与视野的步骤没有影响。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>MCP 可按路径查询高级参数和显示条件，等价于定位数据。截图窗口目前不能自动选择 Odin 标签页；若新增教程需要标签页截图，应由 Codex 补该能力后再重拍。这里不改高级参数。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/sharedGunData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;SharedGunData&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/noSharedGunData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;False&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/noSharedTurretData&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetTankFireParam&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TankFireParameter&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetTurretParam&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TurretParameter&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetGroundType&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PTCParameter&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/MultiFireSystemData&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/simpleVehicleFireSystemParameters&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleSelfExplosionParams&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-检查">4. 检查</h2>
+<ol>
+<li>确认 <code>AssetName</code> 和 <code>editorAssetGuid</code> 未变，<code>PSParameter.Health</code> 与 <code>PSParameter.viewRange</code> 已写入目标资产。</li>
+<li>Inspector 截图只能证明字段位置与分组，不能证明运行时效果；要确认实际表现，需要在游戏内做一次检查。</li>
+<li>如果后续需要调整高级参数，先确认上表的显示条件，再去对应分组里寻找字段。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>本配方验收资产绑定、标识和保存后的字段。教学样例没有完整可驾驶模型，未进行游戏内效果验证；截图成功不会记为运行时通过。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/vehicleTextData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_VehicleTextData&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/AssetName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TutorialTank&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/editorAssetGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${editorGuid}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PSParameter/Health&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1200&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/PSParameter/viewRange&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;600&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>1. FmodPlayComponent 使用说明 Usage Guide | Panzer War Document </title>
+      <title>配置 FMOD 播放组件 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="1. FmodPlayComponent 使用说明 Usage Guide | Panzer War Document ">
+      <meta name="title" content="配置 FMOD 播放组件 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,29 +77,224 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="1-fmodplaycomponent-使用说明-usage-guide">1. FmodPlayComponent 使用说明 Usage Guide</h1>
 
-<h2 id="简介-introduction">简介 Introduction</h2>
-<p>FmodPlayComponent 是一个 MonoBehaviour 组件，用于异步加载并播放 FMOD 音效。通过关联 <strong>EventReference</strong> 和 <strong>PlayParams</strong>，可实现播放指定 FMOD 事件及其参数的功能。</p>
-<p>FmodPlayComponent is a MonoBehaviour component that asynchronously loads and plays FMOD sound effects. By linking an <strong>EventReference</strong> and <strong>PlayParams</strong>, it plays the specified FMOD event along with its parameters.</p>
-<p><img src="imgs/95a457df0676_1678812587021-4623b234-1888-428c-9a03-ef57464dd79a.png" alt=""></p>
-<h2 id="如何使用-how-to-use">如何使用 How to Use</h2>
-<ol>
-<li><p>将 FmodPlayComponent 挂载到需要播放音效的 GameObject 上。</p>
-</li>
-<li><p>在 Inspector 面板中，找到 EventReference 属性，将需要播放的 FMOD 事件拖拽至该属性中。</p>
-</li>
-<li><p>在 Inspector 面板中，找到 PlayParams 属性，可添加多个参数以控制播放效果。每个参数包含一个 key 和 value，其中 key 为 FMOD 事件中的参数名称，value 为设置的参数值。</p>
-</li>
-<li><p>Attach FmodPlayComponent to the GameObject that needs to play the sound effect.</p>
-</li>
-<li><p>In the Inspector panel, find the EventReference property and drag the FMOD event you want to play onto it.</p>
-</li>
-<li><p>In the Inspector panel, find the PlayParams property, where you can add multiple parameters to control playback. Each parameter consists of a key and a value: the key is the parameter name defined in the FMOD event, and the value is the value to set.</p>
-</li>
-</ol>
-<p>以上是 FmodPlayComponent 的使用说明。如有疑问，请查阅官方文档或联系开发者。</p>
-<p>This concludes the FmodPlayComponent usage guide. If you have any questions, please consult the official documentation or contact the developers.</p>
+<!-- Generated from tutorials/fmod-play-component/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置-fmod-播放组件">配置 FMOD 播放组件</h1>
+<p><strong>中文</strong> | <a href="../en/component/fmod-play-component.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run fmod-play-component --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_Fmod.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本文说明 <code>FmodPlayComponent</code>：一个挂载到 GameObject 后随启用播放 FMOD 事件的 MonoBehaviour。</p>
+<h2 id="1-组件挂载">1. 组件挂载</h2>
+<p>在需要发声的 GameObject 上添加 <strong>FmodPlayComponent</strong>。本例把组件保存在独立的 <code>Tutorial_Fmod.prefab</code> 中，便于复用；实际使用时将该物体放到需要发声的位置。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-事件选择">2. 事件选择</h2>
+<p><code>eventReference</code> 是私有 <code>[SerializeField]</code> 的 <code>EventReference</code> 结构，不是可拖放的 ScriptableObject。请在检视面板的事件选择器中挑选真实事件，例如 <code>event:/aircraft/engines/engine01/engine01_cockpit</code>。</p>
+<p><img src="imgs/fmod-play-component-fields.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;list&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:FMODUnity.EventManager/Events&quot;,
+      &quot;fields&quot;: &quot;Path,Guid/Data1,Guid/Data2,Guid/Data3,Guid/Data4&quot;,
+      &quot;search&quot;: &quot;event:/aircraft/engines/engine01/engine01_cockpit&quot;,
+      &quot;count&quot;: 5
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;Data1&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 1,
+        &quot;as&quot;: &quot;int&quot;
+      },
+      &quot;Data2&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 2,
+        &quot;as&quot;: &quot;int&quot;
+      },
+      &quot;Data3&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 3,
+        &quot;as&quot;: &quot;int&quot;
+      },
+      &quot;Data4&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 4,
+        &quot;as&quot;: &quot;int&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:FMODUnity.EventManager/EventFromPath&quot;,
+      &quot;args&quot;: [
+        &quot;event:/aircraft/engines/engine01/engine01_cockpit&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;parameter:/engine01_cockpit/zoom&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;,
+        &quot;values&quot;: {
+          &quot;eventReference&quot;: {
+            &quot;Path&quot;: &quot;event:/aircraft/engines/engine01/engine01_cockpit&quot;,
+            &quot;Guid&quot;: {
+              &quot;Data1&quot;: &quot;${Data1}&quot;,
+              &quot;Data2&quot;: &quot;${Data2}&quot;,
+              &quot;Data3&quot;: &quot;${Data3}&quot;,
+              &quot;Data4&quot;: &quot;${Data4}&quot;
+            }
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-参数数组">3. 参数数组</h2>
+<p>展开 <code>playParams</code> 并添加一个元素，填写 <code>key = zoom</code>、<code>value = 0.5</code>。<code>PlayParm</code> 的两个字段分别为 string 和 float，组件在播放前逐个调用 <code>setParameterByName</code>。本配方会先查询当前事件缓存，确认示例事件存在并定义了 <code>zoom</code>；换用其他事件时，应填写该事件实际拥有的参数名。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;,
+        &quot;values&quot;: {
+          &quot;playParams&quot;: [
+            {
+              &quot;key&quot;: &quot;zoom&quot;,
+              &quot;value&quot;: 0.5
+            }
+          ]
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.FmodPlayComponent)/playParams/0/key&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;zoom&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-生命周期与距离">4. 生命周期与距离</h2>
+<p>勾选 <code>isCustomSoundMaxDistance</code>，显示 <code>customSoundMaxDistance</code> 后填入 75；关闭覆盖时该字段隐藏。默认覆盖关闭、距离为 50。这里限制的是启用时是否开始播放，不是持续更新的声音衰减范围。</p>
+<p><code>OnEnable</code> 调用 <code>Play</code>。若此时相机距离超过上限，方法直接返回，靠近后不会自动重播；事件为空、音效池未准备好或音效包加载失败时也不会开始播放。禁用或销毁会取消尚未完成的等待：<code>isStopEventOnDisable = true</code> 时归还已有实例到池；设为 false 时走 <code>ReleaseEvent</code> 路径，不能据此保证声音立即停止。本例保持 true。</p>
+<p><img src="imgs/fmod-play-component-distance.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;,
+        &quot;values&quot;: {
+          &quot;isStopEventOnDisable&quot;: true,
+          &quot;isCustomSoundMaxDistance&quot;: true,
+          &quot;customSoundMaxDistance&quot;: 75
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.FmodPlayComponent)/customSoundMaxDistance&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;75&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>配方验证了 prefab、事件引用和参数读回；实际音频输出、音效包加载和游戏内距离行为仍需运行时验证。</p>
 
 </article>
           </div>

@@ -1,0 +1,47 @@
+/* One shared style for the native, keyboard-accessible tutorial disclosure. */
+details.tutorial-mcp {
+  margin: 16px 0;
+}
+
+details.tutorial-mcp > summary {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid #6088a6;
+  border-left: 4px solid #6088a6;
+  border-radius: 5px;
+  background: var(--color-background-subnav, #f3f7fa);
+  color: var(--color-foreground, #2b3f50);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+details.tutorial-mcp > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.tutorial-mcp > summary::before {
+  content: "▸";
+  margin-right: 10px;
+}
+
+details.tutorial-mcp[open] > summary::before {
+  content: "▾";
+}
+
+details.tutorial-mcp > summary:hover,
+details.tutorial-mcp > summary:focus-visible {
+  border-color: #89bee4;
+  outline: 2px solid #89bee4;
+  outline-offset: 2px;
+}
+
+details.tutorial-mcp .tutorial-mcp-open,
+details.tutorial-mcp[open] .tutorial-mcp-closed {
+  display: none;
+}
+
+details.tutorial-mcp[open] .tutorial-mcp-open {
+  display: inline;
+}

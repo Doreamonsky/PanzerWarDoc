@@ -1,0 +1,17 @@
+{
+  "builtAt": "20261118T021140Z",
+  "sourceBaseCommit": "946361d2fc8e0ec10a88d20a20e7fc9bb025ccf1",
+  "sourceHasUncommittedChanges": true,
+  "reviewedTutorials": [
+    "vehicle-text-data",
+    "crew-data",
+    "preset-vehicle-queue",
+    "vehicle-buff-config",
+    "zoom-ratio-config",
+    "fixed-angle-reload",
+    "fmod-play-component",
+    "vehicle-light-component",
+    "vehicle-hatches"
+  ],
+  "reviewedDependenciesSha256": "53fd638c3152bb0e5cf1f35cdc23c6de5620ca3f51564dd554205a61457da31c"
+}

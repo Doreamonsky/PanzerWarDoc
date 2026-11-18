@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Configure an FMOD Playback Component | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Configure an FMOD Playback Component | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/fmod-play-component/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="configure-an-fmod-playback-component">Configure an FMOD Playback Component</h1>
+<p><a href="../../component/fmod-play-component.html">中文</a> | <strong>English</strong></p>
+<p>The MCP examples use separate teaching assets. <code>${variables}</code> come from the shared recipe. Run this command at the repository root to create the sample, execute each group and capture both languages through the same local Unity MCP routes.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run fmod-play-component --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Teaching-fixture preparation only; official assets are not modified.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_Fmod.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>This page describes <code>FmodPlayComponent</code>: a MonoBehaviour that plays a configured FMOD event when its GameObject is enabled.</p>
+<h2 id="1-component">1. Component</h2>
+<p>Add <strong>FmodPlayComponent</strong> to the GameObject that should emit sound. This example saves the component in a separate <code>Tutorial_Fmod.prefab</code> for reuse. Place that object at the required sound origin when using it in a scene.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-event">2. Event</h2>
+<p><code>eventReference</code> is a private <code>[SerializeField]</code> <code>EventReference</code> struct, not a draggable ScriptableObject. Choose a real event in the inspector event picker, for example <code>event:/aircraft/engines/engine01/engine01_cockpit</code>.</p>
+<p><img src="../../component/imgs/fmod-play-component-fields.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;list&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:FMODUnity.EventManager/Events&quot;,
+      &quot;fields&quot;: &quot;Path,Guid/Data1,Guid/Data2,Guid/Data3,Guid/Data4&quot;,
+      &quot;search&quot;: &quot;event:/aircraft/engines/engine01/engine01_cockpit&quot;,
+      &quot;count&quot;: 5
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;Data1&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 1,
+        &quot;as&quot;: &quot;int&quot;
+      },
+      &quot;Data2&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 2,
+        &quot;as&quot;: &quot;int&quot;
+      },
+      &quot;Data3&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 3,
+        &quot;as&quot;: &quot;int&quot;
+      },
+      &quot;Data4&quot;: {
+        &quot;regex&quot;: &quot;\\n\\d+\\tevent:/aircraft/engines/engine01/engine01_cockpit\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)\\t(-?\\d+)&quot;,
+        &quot;group&quot;: 4,
+        &quot;as&quot;: &quot;int&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:FMODUnity.EventManager/EventFromPath&quot;,
+      &quot;args&quot;: [
+        &quot;event:/aircraft/engines/engine01/engine01_cockpit&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;parameter:/engine01_cockpit/zoom&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;,
+        &quot;values&quot;: {
+          &quot;eventReference&quot;: {
+            &quot;Path&quot;: &quot;event:/aircraft/engines/engine01/engine01_cockpit&quot;,
+            &quot;Guid&quot;: {
+              &quot;Data1&quot;: &quot;${Data1}&quot;,
+              &quot;Data2&quot;: &quot;${Data2}&quot;,
+              &quot;Data3&quot;: &quot;${Data3}&quot;,
+              &quot;Data4&quot;: &quot;${Data4}&quot;
+            }
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-parameters">3. Parameters</h2>
+<p>Expand <code>playParams</code>, add one entry and set <code>key = zoom</code>, <code>value = 0.5</code>. The <code>PlayParm</code> fields are a string and a float, passed to <code>setParameterByName</code> before playback. The recipe queries the current event cache to confirm that the example event exists and defines <code>zoom</code>. For another event, use its actual parameter names.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;,
+        &quot;values&quot;: {
+          &quot;playParams&quot;: [
+            {
+              &quot;key&quot;: &quot;zoom&quot;,
+              &quot;value&quot;: 0.5
+            }
+          ]
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.FmodPlayComponent)/playParams/0/key&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;zoom&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-lifetime-and-distance">4. Lifetime and distance</h2>
+<p>Enable <code>isCustomSoundMaxDistance</code>, then set the revealed <code>customSoundMaxDistance</code> to 75. The field is hidden while the override is off. The defaults are false and 50. This is a check before starting playback, rather than a continuously updated attenuation range.</p>
+<p><code>OnEnable</code> calls <code>Play</code>. If the camera is too far away at that point, playback does not start or automatically resume when it gets closer. An empty event, an unavailable pool or a failed bank load also prevents playback. Disabling or destroying the component cancels pending waits. With <code>isStopEventOnDisable = true</code>, an existing instance is returned to the pool; false takes the <code>ReleaseEvent</code> path and does not guarantee immediate silence. Keep it true for this example.</p>
+<p><img src="../../component/imgs/fmod-play-component-distance.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.FmodPlayComponent&quot;,
+        &quot;values&quot;: {
+          &quot;isStopEventOnDisable&quot;: true,
+          &quot;isCustomSoundMaxDistance&quot;: true,
+          &quot;customSoundMaxDistance&quot;: 75
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.FmodPlayComponent)/customSoundMaxDistance&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;75&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>The recipe verifies the prefab, event reference and parameter readback. Audible output, bank loading and in-game distance behavior still require runtime verification.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/en/component/fmod-play-component.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
