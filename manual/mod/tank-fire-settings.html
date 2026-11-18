@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>坦克火炮、开火与装填 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="坦克火炮、开火与装填 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-fire-settings/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克火炮开火与装填">坦克火炮、开火与装填</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-fire-settings.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-fire-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;text&quot;: &quot;${fixture}/Tutorial_FireVehicleText.asset&quot;,
+    &quot;shared&quot;: &quot;${fixture}/Tutorial_FireSharedGun.asset&quot;,
+    &quot;bullet&quot;: &quot;${fixture}/Tutorial_FireAP.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativeText.asset&quot;,
+          &quot;${text}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar-SharedGun.asset&quot;,
+          &quot;${shared}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial-76mm-AP.asset&quot;,
+          &quot;${bullet}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>从<a href="vehicle-basics.html">基础载具</a>做出一辆可试驾的坦克后，用本篇配置主炮和开火表现。炮弹的弹道、穿深和命中特效见<a href="tank-ammo-effects.html">炮弹与特效</a>。</p>
+<h2 id="1-找到主炮实际使用的数据">1. 找到主炮实际使用的数据</h2>
+<ol>
+<li>在 Project 选中这辆车的 <strong>VehicleTextData</strong>，打开 <strong>开火</strong> 页签。</li>
+<li>查看 <strong>共享主炮数据</strong>（<code>sharedGunData</code>）。引用为空时，编辑当前页签下的主炮参数（<code>TFParameter</code>）。如果已引用 <strong>SharedGunData</strong>，点该对象槽打开资产，展开它的 <code>tankFireParameter</code>。游戏会优先读取这份共享数据。只调一辆车时，复制共享资产后给这辆车重新绑定。</li>
+<li>在 <strong>弹药数组</strong>（<code>bulletData</code>）点 <strong>+</strong>，把第一发试验弹拖到列表第 0 项。将 <strong>开火音效</strong>（<code>fmodBulletSound</code>）绑定到已有音效资产，将 <strong>开火效果</strong>（<code>muzzleFire</code>）选为 <strong>中 (Muzzle Middle)</strong>。</li>
+<li>在主模型里检查 <code>FFPoint</code> 与 <code>EffectStart</code>。将它们放在实际炮口附近，局部 +Z 指向射击方向。先看<a href="vehicle-basics.html">基础载具的主模型配置</a>，再对照副炮塔各自的发射点。</li>
+</ol>
+<p><img src="imgs/tank-fire-settings-gun-fields.zh-CN.png" alt="主炮的弹种与炮口特效引用"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/sharedGunData&quot;,
+      &quot;value&quot;: &quot;null&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/bulletData/0&quot;,
+      &quot;value&quot;: &quot;@asset:${bullet}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/bulletData/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_FireAP&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置装填方式和散布">2. 设置装填方式和散布</h2>
+<p>在火炮参数里先把 <strong>开火类型</strong>（<code>fireState</code>）设为 <strong>标准 (Standard)</strong>，<strong>装弹时间</strong>（<code>ReloadTime</code>）填 6 秒，<strong>载弹量</strong>（<code>AmmoCount</code>）填 30 发。载弹量是该武器的备弹配置。切换模式后，按新模式填装填参数。</p>
+<table>
+<thead>
+<tr>
+<th>开火类型</th>
+<th>需要配置的参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准 (Standard)</td>
+<td><code>ReloadTime</code> 为每次标准装填的秒数。<code>hasSlot</code> 会显示 <strong>Slot Count</strong> 和 <strong>Slot Duration</strong>，用于需要连发窗口的武器。</td>
+</tr>
+<tr>
+<td>弹夹炮 (Advance)</td>
+<td><code>SmallReloadTime</code>、<code>LargeReloadTime</code>、<code>MaxSmallAmmo</code> 分别是夹内装填秒数、长装填秒数和每夹弹数。可用 2 秒、33 秒、4 发练习。</td>
+</tr>
+<tr>
+<td>弹鼓炮 (Drum)</td>
+<td><code>drumFire.fireDuration</code> 控制射击间隔，<code>drumFire.reloadTime</code> 是按弹鼓装填阶段填写的秒数列表。先用相同时间验证能逐发补弹，再调各阶段。</td>
+</tr>
+<tr>
+<td>能量武器 (Energy)</td>
+<td><code>energyFire</code> 中填写单发消耗（<code>perShotEnergy</code>）、总能量（<code>totalEnergy</code>）、发射间隔（<code>perShotInterval</code>）和特效持续时间（<code>vfxDuration</code>）。</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/tank-fire-settings-reload-fields.zh-CN.png" alt="简单装填模式的时长和总弹量"></p>
+<p>在 <strong>百米精度</strong> 所在的散布区域可见两组参数。最外层 <code>dispersion</code> 用于固定散布，百米统计散布由该数值乘以 100 得到。展开 <strong>Spread</strong>（<code>fireSpread</code>）配置缩圈模式。教学样例的 <code>aimTime</code> 填 2 秒，<code>dispersion</code> 填 0.35。缩圈逐渐收敛，<code>aimTime</code> 越大，收敛越慢。正的 <code>aimTime</code> 也用来判断这组参数是否已配置。</p>
+<p><code>moveSpreadCoff</code>、<code>traverseSpreadCoff</code>、<code>gunSpreadCoff</code>、<code>afterFiredCoff</code> 和 <code>damagedCoff</code> 分别控制移动、车体转向、炮管动作、开火和受损的散布影响。先保留已知可用样例的系数，再逐项调整。需要装填时让炮管回到指定角度时，另看<a href="fixed-angle-reload.html">定角装填配置</a>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireState&quot;,
+      &quot;value&quot;: &quot;Simple&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/ReloadTime&quot;,
+      &quot;value&quot;: &quot;6&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/ReloadTime&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/AmmoCount&quot;,
+      &quot;value&quot;: &quot;30&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/AmmoCount&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;30&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/aimTime&quot;,
+      &quot;value&quot;: &quot;2&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/aimTime&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;2&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/dispersion&quot;,
+      &quot;value&quot;: &quot;0.35&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/fireSpread/dispersion&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.35&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-在试验场验收">3. 在试验场验收</h2>
+<p>保存资产，重打包试驾。在平地停稳后，用第 0 项弹药发射一发。检查炮弹从炮口飞出、声音和火焰位置对齐、弹数减一，约 6 秒后可以再次发射。再分别行驶、转动炮塔、停稳开火，用多发比较散布和收敛。切到弹夹模式时，对比夹内短装填和打空后的长装填。</p>
+<ul>
+<li>改完没生效时，检查 <strong>Shared Gun Data</strong> 是否覆盖本地配置，并确认试驾载入的是新包。</li>
+<li>能对准但发不出时，检查弹药列表、剩余弹量、装填状态及武器所在的火控组。</li>
+<li>炮弹方向正确但火焰位置异常时，先检查 <code>EffectStart</code>。炮口效果用自定义条目时，确认对象池包含 <code>overrideMuzzleFires</code> 中对应的键。</li>
+</ul>
+<p>MCP 配方已在编辑器回读这些参数。下方的试验场调用可以验证弹种和弹道，玩家输入、装填计时和效果观感需要进入游戏验证。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/TFParameter/ReloadTime&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。绑定靶场的射手和目标实体 ID。扣弹、装填和特效外观按正文另行检查。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_ammo&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;range_fire&quot;,
+    &quot;arguments&quot;: {
+      &quot;shooter&quot;: &quot;${tankEntityId}&quot;,
+      &quot;target&quot;: &quot;${targetEntityId}&quot;,
+      &quot;gun&quot;: 0,
+      &quot;ammo&quot;: &quot;0&quot;,
+      &quot;mode&quot;: &quot;shell&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

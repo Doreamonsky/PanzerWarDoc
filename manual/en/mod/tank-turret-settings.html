@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Tank turret traverse, elevation and stabilizers | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Tank turret traverse, elevation and stabilizers | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-turret-settings/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="tank-turret-traverse-elevation-and-stabilizers">Tank turret traverse, elevation and stabilizers</h1>
+<p><a href="../../mod/tank-turret-settings.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-turret-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;text&quot;: &quot;${fixture}/Tutorial_TurretVehicleText.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_TurretModel.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativeText.asset&quot;,
+          &quot;${text}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial_NativePackModel.prefab&quot;,
+          &quot;${model}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Start with the main gun model from the <a href="vehicle-basics.html">first-tank guide</a>. Set up the turret and gun pivots first, then configure traverse, elevation and stabilizers.</p>
+<h2 id="1-set-up-the-main-gun-hierarchy">1. Set up the main gun hierarchy</h2>
+<ol>
+<li>Create <code>Turret → Gun → Dym</code> below the visual model root. Parent the turret mesh to <code>Turret</code> and the recoiling barrel mesh to <code>Dym</code>. Put the turret pivot on the turret ring and the <code>Gun</code> pivot at the elevation axis. <code>Dym</code> moves with recoil.</li>
+<li>Check model axes, with local +Z forward and +Y up. Place <code>FFPoint</code>, <code>EffectStart</code> and the gunner camera reference as in the <a href="vehicle-basics.html">main model setup</a>. Rotate and elevate the model by hand to check that the muzzle and reference points follow their intended parts.</li>
+<li>Inspect the generated prefab. The assembler names the runtime nodes <code>TurretTransform</code>, <code>GunTransform</code>, and <code>GunDym</code>. Keep <code>Turret/Gun/Dym</code> in the source model for the next build. Bind secondary turrets separately using the <a href="../component/vehicle-text-data.html">multi-turret data</a>.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Turret/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Turret&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Turret/Gun/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Gun&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Turret/Gun/Dym/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Dym&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-set-traverse-stabilization-and-limits">2. Set traverse, stabilization and limits</h2>
+<p>Open the <strong>Turret</strong> tab of <strong>VehicleTextData</strong>. With no <strong>Shared Turret Data</strong> (<code>sharedTurretData</code>) assigned, edit <strong>Turret Params</strong> (<code>MTParameter</code>). With a shared asset assigned, open it and edit <code>turretParameter</code>. Duplicate the shared asset first to tune one vehicle.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Teaching values and purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxTurretAngle</code></td>
+<td>180° allows 180° on either side. A value of 45° allows 45° on either side.</td>
+</tr>
+<tr>
+<td><code>isNonSymmetricTurret</code></td>
+<td>Enables separate <code>maxTurretNegativeAngle</code> and <code>maxTurretPositiveAngle</code>, for example −30° and +45°.</td>
+</tr>
+<tr>
+<td><code>UpMaxDegree</code>, <code>DownMaxDegree</code></td>
+<td>Use 20° and 6° on the teaching tank. For a normal setup, enter depression as a positive magnitude, so 6° permits six degrees down.</td>
+</tr>
+<tr>
+<td><code>turretDegreesPerSecond</code>, <code>gunDegreesPerSecond</code></td>
+<td>Set 18°/s for horizontal traverse and 12°/s for elevation.</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td>Horizontal offset. Keep 0° when the turret's zero pose already faces forward.</td>
+</tr>
+<tr>
+<td><code>ffPointAlignType</code></td>
+<td>Selects the aiming alignment reference, the <code>Gun</code> root or the recoiling <code>Dym</code> barrel. Keep the working setup for the first test and compare the resulting muzzle direction.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../mod/imgs/tank-turret-settings-turret-fields.en.png" alt="Main turret traverse, elevation limits and slew rates"></p>
+<p>To clear the engine deck or another fixture, add an <strong>Override Range</strong> for that sector. Symmetric ranges mirror on both sides. Enable asymmetric override ranges for separate sectors, then fill in their start and end azimuths and the elevation and depression available inside each. Aim across the boundary to test how the limits change.</p>
+<p>The vertical stabilizer has its own speed, elevation and depression limits. The horizontal stabilizer has its own speed and angle. Verify the base limits first. Enable stabilization and compare while moving. In module mode, <code>moduleData.hasOverride</code> can select separate traverse and elevation rates. See the <a href="spg-td-hydraulic-suspension.html">fixed-mount and suspension guide</a> for casemates, hull-assisted traverse and hydraulic suspension.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/maxTurretAngle&quot;,
+      &quot;value&quot;: &quot;180&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/maxTurretAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;180&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/UpMaxDegree&quot;,
+      &quot;value&quot;: &quot;20&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/UpMaxDegree&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;20&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/DownMaxDegree&quot;,
+      &quot;value&quot;: &quot;6&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/DownMaxDegree&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/turretDegreesPerSecond&quot;,
+      &quot;value&quot;: &quot;18&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/turretDegreesPerSecond&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;18&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/gunDegreesPerSecond&quot;,
+      &quot;value&quot;: &quot;12&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/gunDegreesPerSecond&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;12&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-test-the-turret-and-muzzle">3. Test the turret and muzzle</h2>
+<p>Save and rebuild. Stop on level ground and aim at both ends of the travel. A limited turret should stop at its configured bounds. Compare traverse and elevation rates. Use high and low targets to verify the muzzle orientation and elevation limits. Enable stabilization and repeat while turning and driving over rough ground. Fire once and watch the recoil, armor hitboxes and muzzle effect follow their parts.</p>
+<ul>
+<li>If the turret never moves, check the source hierarchy, effective limits and rates, and the shared asset.</li>
+<li>If the model rotates while the sight points elsewhere, check pivot axes, horizontal offset and <code>FFPoint</code>.</li>
+<li>If parts clip, check sector limits and hitbox grouping. Regenerate the prefab after changing the visual hierarchy.</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${text}/MTParameter/maxTurretAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;180&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Runtime test pending. Use the entity ID to discover the index of VehicleInitSystem. Read the effective parameters and observe traverse and muzzle direction in the range.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${vehicleComponentIndex}/CurMainTurretParam&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

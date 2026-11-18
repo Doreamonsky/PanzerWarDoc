@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Tank Light Settings | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Tank Light Settings | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-light-settings/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="tank-light-settings">Tank Light Settings</h1>
+<p><a href="../../mod/tank-light-settings.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-light-settings --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;light&quot;: &quot;${fixture}/Tutorial_ArrayLights.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Array4.prefab&quot;,
+          &quot;${light}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>This guide is for players who already have a <a href="vehicle-basics.html">working tank</a> and want to install lights, configure beams and light types in Unity, then verify the result in game.</p>
+<h2 id="1-attach-lights-with-customshape">1. Attach lights with CustomShape</h2>
+<p>Under <strong>MainBody</strong>, create a separate child node for the left light and another for the right light. Each light root needs <code>VehicleLightAttachmentMonoComponent</code>, plus <code>VehicleAttachmentMonoComponent</code> with <strong>attachmentSlotType</strong> set to <strong>Specific</strong> and <strong>specificAttachmentMonoComponent</strong> pointing at the former. The custom editor adds the companion component while drawing the light node, so confirm the link exists before you save.</p>
+<p>Next, configure the slot data. Assign the light mount transform in <code>lightAttachmentSlot.attachment.lightTransform</code> (<strong>灯光位置</strong> / <strong>Light Transform</strong>).</p>
+<p>For multi-lens lights you can start from our Array4 sample as a teaching reference, or create separate <strong>LensSurface</strong> children under <strong>lightTransform</strong>, each using <strong>MeshFilter</strong> and <strong>MeshRenderer</strong> with the lamp material. See the <a href="vehicle-light-component.html">light component guide</a> for presets, duplication and mirroring.</p>
+<p>Then set <code>lightSizeType</code> (<strong>灯光大小类型</strong> / <strong>Light Size Type</strong>) to <strong>CustomShape</strong>. <strong>Circle</strong> and <strong>HalfCircle</strong> use <code>radiusSize</code>, <strong>RectSmall</strong>, <strong>RectMiddle</strong> and <strong>RectLarge</strong> use <code>rectSize</code>, and <strong>CustomShape</strong> uses <code>customShapeRenderers</code>.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleAttachmentMonoComponent)/attachmentSlotType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Specific&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lightSizeType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CustomShape&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-aim-the-light-and-set-the-type">2. Aim the light and set the type</h2>
+<p>The Array4 sample uses four lens renderers, four emitter transforms and one beam origin. <code>lensEmitters</code> carries the label <strong>发光点（留空沿用旧配置）</strong> / <strong>Emitters (empty uses legacy placement)</strong>. Use up to eight unique child transforms under <strong>lightTransform</strong>, keep <code>glareScale</code> and <code>glareWeight</code> finite and non-negative with a positive total weight, and give each lens one material and one submesh when you fill emitters explicitly. Place emitters at the lamp faces and use local +Z as the forward direction.</p>
+<p><code>beamOrigin</code> carries the label <strong>光束节点（+Z 为最终出光方向）</strong> / <strong>Beam origin (+Z is the final beam direction)</strong>. It is an optional child node, so orient the arrows in Scene View to confirm the final beam direction.</p>
+<p>Set <code>lightType</code> (<strong>灯光类型</strong> / <strong>Light Type</strong>) to <strong>LowBeam</strong>, <strong>HighBeam</strong>, <strong>PositionLight</strong>, <strong>BrakeLight</strong>, <strong>ReverseLight</strong>, <strong>LeftBlinker</strong> or <strong>RightBlinker</strong>. Fill colors with <strong>Set From Preset</strong> when the interface offers it, and keep <code>baseColor</code> and <code>emissionColor</code> separate. <code>isBlinker</code> exposes a frequency and an on fraction, so frequency 1 with fraction 0.5 produces half a second on per second. <strong>CustomShape</strong> offers a preview for lights on and off.</p>
+<p><img src="../../mod/imgs/tank-light-settings-light-fields.en.png" alt="Shape, lens renderers and beam references for the lamp array"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/beamOrigin&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lensEmitters&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-test-and-diagnose">3. Test and diagnose</h2>
+<p>Save and repack the mod, then drive in a dim test scene and compare switchable beams, brake and reverse lights, and the indicators using the assigned controls. If a lens glows but the beam points the wrong way, check the local +Z direction of <code>beamOrigin</code>. If no light appears, check the slot, renderer, material and child references in the actual mod prefab before you adjust HDR.</p>
+<p>This workflow has two stages: the editor recipe checks the asset wiring, and a player session verifies runtime behavior.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${light}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lightType&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Runtime test pending. Use the index of VehicleLightManagementAttachment from the component listing. Toggle the beam, then observe the rendered lighting in a night scene.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${lightComponentIndex}/ToggleBeam&quot;,
+      &quot;args&quot;: []
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;entity/${tankEntityId}/${lightComponentIndex}/IsBeamOn&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

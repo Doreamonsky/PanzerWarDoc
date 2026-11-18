@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>坦克炮弹与弹道、命中特效 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="坦克炮弹与弹道、命中特效 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-ammo-effects/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克炮弹与弹道命中特效">坦克炮弹与弹道、命中特效</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-ammo-effects.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-ammo-effects --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;bullet&quot;: &quot;${fixture}/Tutorial_AP_Shell.asset&quot;,
+    &quot;vfx&quot;: &quot;${fixture}/Tutorial_AP_Effects.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-basics/Tutorial-76mm-AP.asset&quot;,
+          &quot;${bullet}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/BulletVFX/宝马鸽特效/AP-BulletVFX-M.asset&quot;,
+          &quot;${vfx}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>先完成<a href="tank-fire-settings.html">主炮配置</a>。本例用 SDK 内的 76 mm AP 教学弹，把弹种数据、游戏内弹道和效果资源分别核对。</p>
+<h2 id="1-创建并绑定一发可试射的弹药">1. 创建并绑定一发可试射的弹药</h2>
+<ol>
+<li>在 Project 找一份已能开火的 <strong>Penetrate Bullet</strong>，按 <strong>Ctrl+D</strong> 复制。也可在 <strong>Create</strong> 的装甲纷争炮弹分类下选 <strong>Penetrate - 穿甲弹</strong>，然后核对同类型样例。用明确的文件名，保持 <code>warhead</code> 为 <strong>AP</strong>。</li>
+<li>在新资产的 Inspector 填入下表。先保存，再把资产拖入当前主炮实际读取的 <strong>弹药数组</strong>。有共享主炮时在对应的 <strong>SharedGunData</strong> 上替换。弹药切换后重打包，并确认测试车使用最新包。</li>
+<li>准备多种弹药时，为每种弹分别创建资产，给列表中的弹药配置易区分的名称和图标。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>教学弹数值和作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caliber</code></td>
+<td>76 mm，用于口径相关计算。</td>
+</tr>
+<tr>
+<td><code>velocity</code></td>
+<td>650 m/s，决定出膛速度。</td>
+</tr>
+<tr>
+<td><code>gravityDamper</code></td>
+<td>9.8 m/s²，控制弹道下坠。</td>
+</tr>
+<tr>
+<td><code>damage</code></td>
+<td>100，是血条模式中伤害计算的基础值。</td>
+</tr>
+<tr>
+<td><code>penetration</code></td>
+<td>90 mm，是该穿甲弹的基础穿深。实际结果还看命中角度和距离。</td>
+</tr>
+<tr>
+<td><code>isDeclineByDistance</code></td>
+<td>教学弹启用随距离衰减。先做近距离基准测试，再比较远距离表现。</td>
+</tr>
+<tr>
+<td><code>maxCapability</code></td>
+<td>0 表示沿用载具给出的上限。需要单独限制某弹种时填正数。</td>
+</tr>
+</tbody>
+</table>
+<p>模块模式同样使用这份炮弹资产，并读取其中的模块数据、弹体和穿甲相关字段。修改血条伤害后，模块损伤需另测。建议先保留工作样例的模块字段。</p>
+<p><img src="imgs/tank-ammo-effects-bullet-fields.zh-CN.png" alt="教学穿甲弹的口径、初速与伤害"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/caliber&quot;,
+      &quot;value&quot;: &quot;76&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/caliber&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;76&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/velocity&quot;,
+      &quot;value&quot;: &quot;650&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/velocity&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;650&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/damage&quot;,
+      &quot;value&quot;: &quot;100&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/damage&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;100&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-分配飞行和命中特效">2. 分配飞行和命中特效</h2>
+<ol>
+<li>在 Project 复制一份现有 <strong>BulletVFX</strong>，把副本拖到炮弹资产的 <strong>炮弹特效</strong>（<code>bulletVFX</code>）对象槽。</li>
+<li>打开 <strong>BulletVFX</strong>，从对象池键下拉框设置下表中的条目。确认相应特效资源随包加载。</li>
+<li>按需设置 <code>isOverrideSprite</code> 和 <code>bulletSprite</code>，使玩家能在 HUD 中识别该弹。炮口火焰和开火音效仍在火炮参数里配置。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>发生时机</th>
+<th>对应字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出膛后随弹飞行</td>
+<td><code>weaponProjectileEffect</code> 与 <code>overrideWeaponProjectileEffects</code></td>
+</tr>
+<tr>
+<td>打到地形</td>
+<td><code>hitGround</code> 与 <code>overrideHitGrounds</code></td>
+</tr>
+<tr>
+<td>命中装甲</td>
+<td><code>hitArmor</code> 与 <code>overrideHitArmors</code></td>
+</tr>
+<tr>
+<td>装甲跳弹</td>
+<td><code>hitArmorRicochet</code> 与 <code>overrideHitArmorRicochets</code></td>
+</tr>
+<tr>
+<td>入水</td>
+<td><code>hitWater</code> 与 <code>overrideHitWaters</code>，水体交互设为可手动配置的类型时可见。</td>
+</tr>
+</tbody>
+</table>
+<p>新资源用对象池键配置。Inspector 中直接引用 GameObject 的 <code>isOverrideWeaponProjectileEffect</code> 与 <code>overrideWeaponProjectileEffect</code> 属于兼容旧资源的 Instantiate 路径。</p>
+<p><img src="imgs/tank-ammo-effects-vfx-fields.zh-CN.png" alt="弹道、地面与装甲命中特效键"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/bulletVFX&quot;,
+      &quot;value&quot;: &quot;@asset:${vfx}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/bulletVFX/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_AP_Effects&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vfx}/hitGround&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vfx}/hitArmor&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vfx}/weaponProjectileEffect&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-分别检查弹道和命中反馈">3. 分别检查弹道和命中反馈</h2>
+<p>进入<a href="vehicle-playground.html">载具测试场</a>，从弹种栏选择新弹。先向近处靶车正面发射，核对弹道、命中记录和装甲反馈。再打地面、斜角装甲或水面，检查对应效果。比较远近两次穿深时，尽量使用同一块装甲和同一入射角。</p>
+<ul>
+<li>找不到弹种时，查看当前主炮的有效 <strong>Bullet Data</strong>，并核对是否重打包。</li>
+<li>有命中记录、缺少画面时，检查 <strong>BulletVFX</strong> 引用和对应的对象池键。</li>
+<li>想验证飞行表现时，在 MCP 靶场使用 <code>range_fire</code> 的 <code>shell</code> 模式。它会发射弹体。<code>impact</code> 直接执行命中逻辑，适用于单独核对损伤。</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bullet}/velocity&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;650&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。绑定靶场的射手和目标实体 ID。扣弹、装填和特效外观按正文另行检查。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_ammo&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;${tankEntityId}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;range_fire&quot;,
+    &quot;arguments&quot;: {
+      &quot;shooter&quot;: &quot;${tankEntityId}&quot;,
+      &quot;target&quot;: &quot;${targetEntityId}&quot;,
+      &quot;gun&quot;: 0,
+      &quot;ammo&quot;: &quot;0&quot;,
+      &quot;mode&quot;: &quot;shell&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

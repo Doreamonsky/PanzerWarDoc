@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>坦克主动防御系统 | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="坦克主动防御系统 | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../styles/docfx.css">
+      <link rel="stylesheet" href="../../styles/main.css">
+      <meta property="docfx:navrel" content="../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/tank-active-protection/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="坦克主动防御系统">坦克主动防御系统</h1>
+<p><strong>中文</strong> | <a href="../en/mod/tank-active-protection.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run tank-active-protection --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;aps&quot;: &quot;${fixture}/Tutorial_ApsPart.asset&quot;,
+    &quot;native&quot;: &quot;${fixture}/Tutorial_NativeAps.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+        &quot;args&quot;: [
+          &quot;Packages/com.shanghaiwindy.coreresources/DIY/Function/Aps/Aps.asset&quot;,
+          &quot;${aps}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;True&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本教程说明主动防护系统（APS）的数据入口、覆盖范围的判定方式，以及如何在编辑器里验证一次拦截配置。</p>
+<h2 id="1-挂载-aps-组件">1. 挂载 APS 组件</h2>
+<p>按<a href="vehicle-basics.html">基础载具</a>找到显示模型，在 Unity 的 Prefab Mode 中打开它，在 Hierarchy 里选择车体或车体下合适的挂载子节点，然后在 Inspector 中 Add Component &gt; Vehicle Aps Attachment Mono Component（C# 类名 <code>VehicleApsAttachmentMonoComponent</code>）。</p>
+<p>确认同节点的 <code>VehicleAttachmentMonoComponent</code> 已选择 <strong>Specific</strong>，组件引用指向刚添加的 APS。展开 <code>apsAttachmentSlot</code>，配置 APS Profile。截图示例把车体下的 <code>ApsMount</code> transform 指定为挂载点，并在 <code>Fire Points</code> 里至少绑定一个 <code>FirePoint</code>。</p>
+<p>蓝色 Z 轴箭头表示前向；如果不指定，覆盖计算使用载具自身的旋转。</p>
+<p>Visual Profile 控制视听反馈；Turret Profile 是可选项，只在发射器需要转向时配置。</p>
+<p>内置 DIY 示例位于 <code>Packages/com.shanghaiwindy.coreresources/DIY/Function/Aps/Aps.asset</code>，它是一个 <code>DIYApsData</code>，可视 prefab 提供 <code>ApsTurret</code> 与 <code>ApsTurret/ApsGun</code> 路径，预设可能覆盖基础 DIY profile。该 prefab 保存的是图形层级，截图展示的是组件配置。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${native}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleApsAttachmentMonoComponent&quot;,
+        &quot;children&quot;: [
+          &quot;ApsMount&quot;,
+          &quot;ApsMount/FirePoint&quot;
+        ],
+        &quot;values&quot;: {
+          &quot;apsAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;apsProfile&quot;: {
+                &quot;coverageAngle&quot;: 270,
+                &quot;ammoCount&quot;: 4,
+                &quot;cooldown&quot;: 1.5
+              },
+              &quot;firePoints&quot;: [
+                null
+              ]
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;apsAttachmentSlot.attachment.mountTransform&quot;,
+            &quot;child&quot;: &quot;ApsMount&quot;
+          },
+          {
+            &quot;property&quot;: &quot;apsAttachmentSlot.attachment.firePoints.Array.data[0]&quot;,
+            &quot;child&quot;: &quot;ApsMount/FirePoint&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${native}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;attachmentSlotType&quot;: 1
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;specificAttachmentMonoComponent&quot;,
+            &quot;child&quot;: &quot;&quot;,
+            &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleApsAttachmentMonoComponent&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/turretPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ApsTurret&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/gunPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ApsTurret/ApsGun&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${native}/VehicleApsAttachmentMonoComponent/apsAttachmentSlot/attachment/firePoints/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FirePoint&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-理解覆盖范围与拦截条件">2. 理解覆盖范围与拦截条件</h2>
+<p>截图展示的是原生 <code>VehicleApsAttachmentMonoComponent</code> 的配置：<code>ApsMount</code> 与 <code>FirePoint</code> 已指定，装填 4 发、冷却 1.5 秒、<code>coverageAngle</code> 270 度。这些是原生教学样例的取值。</p>
+<p><code>detectionRadius</code> 是威胁探测距离，<code>fireRadius</code> 是跟踪中的接近弹可以触发拦截的距离，<code>minInterceptRadius</code> 是符合条件的最小距离。<code>APSProfile</code> 源码默认值为 80 m、40 m、8 m，<code>interceptProbability</code> 默认 0.95。</p>
+<p>覆盖范围以挂载点前向为基准计算。没有启用 <code>useTraverseLimits</code> 时覆盖是一个三维锥体；启用后按本地偏航在半覆盖角内判定，并额外检查上下仰角限制。</p>
+<p>HardKill 分支执行拦截开火，另一个扫描分支只探测、不开火。弹头质量与概率影响拦截是否成功，不影响探测。冷却与剩余装填数同样限制连续拦截。</p>
+<p><img src="imgs/tank-active-protection-aps-fields.zh-CN.png" alt="载具主动防御组件的弹量、冷却与覆盖角"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${native}/VehicleApsAttachmentMonoComponent/apsAttachmentSlot/attachment/apsProfile/coverageAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;270&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/apsProfile&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/presets&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/launcherParameter/maxTurretAngle&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-测试-aps-配置">3. 测试 APS 配置</h2>
+<p>APS 在编辑器中启用。打包版本还会检查运行时的功能开关。</p>
+<ol>
+<li>先在 Prefab Mode 打开载具模型，检查 <code>apsAttachmentSlot</code>、APS Profile、<code>ApsMount</code> 和 <code>Fire Points</code> 是否指向正确节点。</li>
+<li>保存并重打包，进入测试场。从挂载覆盖范围内发射一枚兼容的游戏来袭弹，观察是否被拦截，以及状态显示和装填消耗是否符合预期。</li>
+<li>再从覆盖范围外发射一次，确认不会被拦截。</li>
+<li>用完装填后再发射一次，确认没有剩余弹药时不会拦截。</li>
+</ol>
+<p>诊断：如果完全不触发，先确认编辑器中的 APS 运行时功能已启用，再检查覆盖角度、仰角限制、弹头允许列表、速度与质量阈值。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${aps}/apsProfile&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时未执行。绑定测试场射手和配有 APS 的目标实体 ID，并确认射手支持该弹种。以 HUD 的 APS 弹量和拦截反馈作为观察项。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;range_fire&quot;,
+    &quot;arguments&quot;: {
+      &quot;shooter&quot;: &quot;${shooterEntityId}&quot;,
+      &quot;target&quot;: &quot;${apsEntityId}&quot;,
+      &quot;gun&quot;: 0,
+      &quot;ammo&quot;: &quot;HEAT&quot;,
+      &quot;mode&quot;: &quot;shell&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
