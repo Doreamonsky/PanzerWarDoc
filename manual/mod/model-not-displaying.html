@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>24. 模型不显示 Model Not Displaying | Panzer War Document </title>
+      <title>模型不显示 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="24. 模型不显示 Model Not Displaying | Panzer War Document ">
+      <meta name="title" content="模型不显示 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,15 +77,211 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="24-模型不显示-model-not-displaying">24. 模型不显示 Model Not Displaying</h1>
 
-<h1 id="1-shader-不兼容-shader-incompatibility">1. Shader 不兼容 Shader Incompatibility</h1>
-<p>该 Material 使用了其他渲染管线的 Shader 进行绘制。</p>
-<p>The material is drawn with a shader that belongs to a different render pipeline.</p>
-<h1 id="2-渲染层级错误-wrong-render-layer">2. 渲染层级错误 Wrong Render Layer</h1>
-<p>通过点击对应的物体，选择如图按钮，修复渲染层级。</p>
-<p>Click the object in question, then use the button shown in the picture to fix the render layer.</p>
-<p><img src="imgs/0945a097ba20_1661014987914-f6aa14d7-9a86-4882-9491-3b8dd05209de.png" alt=""></p>
+<!-- Generated from tutorials/model-not-displaying/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="模型不显示">模型不显示</h1>
+<p><strong>中文</strong> | <a href="../en/mod/model-not-displaying.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run model-not-displaying
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_RenderCheck.prefab&quot;,
+    &quot;material&quot;: &quot;${fixture}/Tutorial_RenderCheck.mat&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<h2 id="1-检查材质-shader">1. 检查材质 Shader</h2>
+<p>在 Project 窗口选中模型使用的材质。在 Inspector 的 <strong>Shader</strong> 字段检查它是否支持当前渲染管线。示例读回项目载具材质的 Shader 和本机支持情况。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/Altius-U/Art/Default-FastProp.mat&quot;,
+        &quot;${material}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/shader/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;WindyVerse/Vehicle/FullPBR&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/shader/isSupported&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-检查-renderer-和材质槽">2. 检查 Renderer 和材质槽</h2>
+<p>选中实际负责绘制的子物体，确认 <strong>Mesh Renderer</strong> 或 <strong>Skinned Mesh Renderer</strong> 标题上的启用复选框已选中。展开 <strong>Materials</strong>，检查各槽引用的材质。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshRenderer&quot;,
+        &quot;child&quot;: &quot;Hull&quot;,
+        &quot;children&quot;: [
+          &quot;Hull&quot;
+        ],
+        &quot;values&quot;: {
+          &quot;m_Enabled&quot;: true
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Materials.Array.data[0]&quot;,
+            &quot;asset&quot;: &quot;${material}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Material&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/Hull/GetComponent(MeshRenderer)/enabled&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/Hull/GetComponent(MeshRenderer)/sharedMaterial/shader/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;WindyVerse/Vehicle/FullPBR&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-检查相机的-culling-mask">3. 检查相机的 Culling Mask</h2>
+<p>记下模型物体顶部的 <strong>Layer</strong>。选中实际渲染当前视图的 <strong>Camera</strong>，在 <strong>Culling Mask</strong> 里确保勾选了该层。示例先排除 Default 层，再把它加回。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Camera&quot;,
+        &quot;values&quot;: {
+          &quot;m_CullingMask&quot;: {
+            &quot;serializedVersion&quot;: 2,
+            &quot;m_Bits&quot;: 0
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(Camera)/cullingMask&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/Hull/layer&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Camera&quot;,
+        &quot;values&quot;: {
+          &quot;m_CullingMask&quot;: {
+            &quot;serializedVersion&quot;: 2,
+            &quot;m_Bits&quot;: 1
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(Camera)/cullingMask&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -95,7 +291,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

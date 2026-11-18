@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.15 水陆两栖 | Panzer War Document </title>
+      <title>配置水陆两栖载具 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.15 水陆两栖 | Panzer War Document ">
+      <meta name="title" content="配置水陆两栖载具 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,12 +77,282 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0215-水陆两栖">02.15 水陆两栖</h1>
 
-<p><img src="imgs/3eb32a4ab50c_1738240368950-3fb785a4-c31f-4dda-afc0-046ac444a677.png" alt=""></p>
-<p><img src="imgs/1ee505bcbda0_1738240377568-5dff71b8-3675-4425-97b7-a9ce0d23f320.png" alt=""></p>
-<p><img src="imgs/c2045631170a_1738240407105-669e5715-d4f1-4716-82de-6357b6f473f7.png" alt=""></p>
-<p><img src="imgs/e38459be4b22_1738240416250-13872831-408d-41a1-b763-008d401afa22.png" alt=""></p>
+<!-- Generated from tutorials/amphibious-vehicles/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置水陆两栖载具">配置水陆两栖载具</h1>
+<p><strong>中文</strong> | <a href="../en/mod/amphibious-vehicles.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run amphibious-vehicles --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;vehicle&quot;: &quot;${fixture}/Tutorial_AmphibiousVehicle.asset&quot;,
+    &quot;engine&quot;: &quot;${fixture}/Tutorial_ShipEngine.asset&quot;,
+    &quot;buoyancy&quot;: &quot;${fixture}/Tutorial_ShipBuoyancy.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_AmphibiousBody.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>从一辆已有地面控制的<a href="vehicle-basics.html">载具</a>开始。下面保留地面控制，并添加船只控制器。</p>
+<h2 id="1-打开两栖控制">1. 打开两栖控制</h2>
+<p>在 <strong>VehicleTextData</strong> 的「移动」页签展开「船只参数」。保持「是否完全由船只控制器接管载具」关闭，勾选「是否启用船只控制器」。将「自动切换船只控制器方式」设为「当重心被淹」。</p>
+<p>该选项会在车轮离地且重心入水时切换到船只控制，恢复接地时切回地面控制。全程使用船只控制的载具可改用 <code>isShip</code>。只需被动水面交互的载具可保持两项关闭，使用单独的 <code>PassiveWaterInteractParameter</code>。</p>
+<p><img src="imgs/amphibious-vehicles-mobility.zh-CN.png" alt="保留地面控制并启用船只控制器"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+        &quot;${vehicle}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/isStationary&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/isShip&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/isShipControllerEnabled&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/autoSwitchShipControllerType&quot;,
+      &quot;value&quot;: &quot;WhenCenterOfGravityDrown&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-准备螺旋桨路径引擎和浮力">2. 准备螺旋桨路径、引擎和浮力</h2>
+<p>在载具模型 prefab 中布置螺旋桨节点，把相对模型根节点的路径添加到「螺旋桨路径」。本例使用 <code>MainBody/Propeller</code>。</p>
+<p>在 Project 窗口打开 <code>Create &gt; A Panzer War - 装甲纷争 &gt; G Ground Vehicle - 地面载具 &gt; Shared Data - 共享数据</code>，创建 <code>Ship Engine - 船舶引擎</code> 和 <code>Ship Buoyancy - 船舶浮力</code> 资产。示例引擎的 <code>maxSpeedInKnots</code> 为 12，示例浮力的 <code>buoyancyObjectLength</code> 为 6。回到「船只参数」，将两个资产分别赋给「引擎数据」和「浮力数据」。</p>
+<p><img src="imgs/amphibious-vehicles-water.zh-CN.png" alt="螺旋桨路径、引擎资产与浮力资产"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Transform&quot;,
+        &quot;children&quot;: [
+          &quot;MainBody&quot;,
+          &quot;MainBody/Propeller&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.SharedShipEngineData)&quot;,
+        &quot;${engine}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.SharedShipBuoyancyData)&quot;,
+        &quot;${buoyancy}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${engine}/maxSpeedInKnots&quot;,
+      &quot;value&quot;: &quot;12&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${buoyancy}/buoyancyObjectLength&quot;,
+      &quot;value&quot;: &quot;6&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/propellerPointPaths&quot;,
+      &quot;value&quot;: &quot;[\&quot;MainBody/Propeller\&quot;]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/sharedShipEngineData&quot;,
+      &quot;value&quot;: &quot;@asset:${engine}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/sharedShipBuoyancyData&quot;,
+      &quot;value&quot;: &quot;@asset:${buoyancy}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-保存并核对">3. 保存并核对</h2>
+<p>保存后核对地面控制仍使用 <code>TrackController</code>、船只控制已启用、两个共享资产均已绑定，并确认螺旋桨路径能在模型中找到。实际水线、推进和离岸切换取决于完整载具及测试地图。本例验证了编辑器中的配置和模型路径。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetGroundType()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/isShipControllerEnabled&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/autoSwitchShipControllerType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;WhenCenterOfGravityDrown&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/maxSpeedInKnots&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;12&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/buoyancyObjectLength&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/ShipControllerParameter/propellerPointPaths/0&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;MainBody/Propeller&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/MainBody/Propeller/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Propeller&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -92,7 +362,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/amphibious-vehicles.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/amphibious-vehicles.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

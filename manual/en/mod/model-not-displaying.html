@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Troubleshoot an invisible model | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Troubleshoot an invisible model | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/model-not-displaying/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="troubleshoot-an-invisible-model">Troubleshoot an invisible model</h1>
+<p><a href="../../mod/model-not-displaying.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run model-not-displaying
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_RenderCheck.prefab&quot;,
+    &quot;material&quot;: &quot;${fixture}/Tutorial_RenderCheck.mat&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<h2 id="1-check-the-material-shader">1. Check the material shader</h2>
+<p>Select the model's material in the Project window. In the Inspector, check that its <strong>Shader</strong> supports the active render pipeline. The example reads the shader from a vehicle material and checks support on this machine.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/Altius-U/Art/Default-FastProp.mat&quot;,
+        &quot;${material}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/shader/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;WindyVerse/Vehicle/FullPBR&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/shader/isSupported&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-check-the-renderer-and-material-slots">2. Check the Renderer and material slots</h2>
+<p>Select the child object that draws the mesh. Check the enable box on its <strong>Mesh Renderer</strong> or <strong>Skinned Mesh Renderer</strong> component. Expand <strong>Materials</strong> and verify the material references.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshRenderer&quot;,
+        &quot;child&quot;: &quot;Hull&quot;,
+        &quot;children&quot;: [
+          &quot;Hull&quot;
+        ],
+        &quot;values&quot;: {
+          &quot;m_Enabled&quot;: true
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Materials.Array.data[0]&quot;,
+            &quot;asset&quot;: &quot;${material}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Material&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/Hull/GetComponent(MeshRenderer)/enabled&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/Hull/GetComponent(MeshRenderer)/sharedMaterial/shader/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;WindyVerse/Vehicle/FullPBR&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-check-the-cameras-culling-mask">3. Check the Camera's Culling Mask</h2>
+<p>Find the model object's <strong>Layer</strong> at the top of the Inspector. Select the <strong>Camera</strong> that renders the view and include that layer in its <strong>Culling Mask</strong>. The example excludes the Default layer and then adds it back.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Camera&quot;,
+        &quot;values&quot;: {
+          &quot;m_CullingMask&quot;: {
+            &quot;serializedVersion&quot;: 2,
+            &quot;m_Bits&quot;: 0
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(Camera)/cullingMask&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/Hull/layer&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Camera&quot;,
+        &quot;values&quot;: {
+          &quot;m_CullingMask&quot;: {
+            &quot;serializedVersion&quot;: 2,
+            &quot;m_Bits&quot;: 1
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(Camera)/cullingMask&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

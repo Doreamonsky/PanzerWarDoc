@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.1.4 Weapon Support Skill - 武器支援技能 | Panzer War Document </title>
+      <title>配置武器支援技能 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.1.4 Weapon Support Skill - 武器支援技能 | Panzer War Document ">
+      <meta name="title" content="配置武器支援技能 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,20 +77,685 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0214-weapon-support-skill---武器支援技能">02.1.4 Weapon Support Skill - 武器支援技能</h1>
 
-<h1 id="base-基础配置">Base 基础配置</h1>
-<p><img src="imgs/786a1c69d1ff_1744521775119-b209b872-2d97-449b-9b0a-eedf77562f6d.png" alt=""></p>
-<h1 id="custom-model-自定义模型">Custom Model 自定义模型</h1>
-<h2 id="asset-资源">Asset 资源</h2>
-<p><img src="imgs/261af0d5ca9e_1744521831925-b1f655e5-bc5e-4374-9b28-68c89ec32bd4.png" alt=""></p>
-<p><img src="imgs/b1721824b03c_1744521863427-db17ada6-cce7-428d-ab85-1985285d568a.png" alt=""></p>
-<h2 id="base-model-基础模型">Base Model 基础模型</h2>
-<p><img src="imgs/45fe0eff3524_1744521912173-1c8c8ba6-7a00-48d4-8c1d-8a93f4a76bfc.png" alt=""></p>
-<h2 id="path-飞行曲线">Path 飞行曲线</h2>
-<p><img src="imgs/f65a59b65ecd_1744521939048-2bcfa578-31d7-40ad-9c2b-c6d107da52a1.png" alt=""></p>
-<h2 id="weapon-武器">Weapon 武器</h2>
-<p><img src="imgs/6ea8667f05ae_1744521952422-bc17701f-0c64-4dcf-8a0c-b32e7c7ce52d.png" alt=""></p>
+<!-- Generated from tutorials/weapon-support-skill/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置武器支援技能">配置武器支援技能</h1>
+<p><strong>中文</strong> | <a href="../en/mod/weapon-support-skill.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run weapon-support-skill --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_SupportCrew.asset&quot;,
+    &quot;title&quot;: &quot;Tutorial Support&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;e38c0288-62ae-4dc9-825b-67df88cce313&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_Support.prefab&quot;,
+    &quot;manual&quot;: &quot;${fixture}/Tutorial_ManualNames.asset&quot;,
+    &quot;modelName&quot;: &quot;tutorial-support-${runId}.prefab&quot;,
+    &quot;sourceCrew&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Crew/AinoKoskinen/AinoKoskinen.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本教程配置离线武器支援，并复制官方 Altius 支援 prefab 演示自定义资源、飞行路径和武器节点。它不是一份从零制作可用无人机模型的教程。</p>
+<h2 id="1-创建技能槽">1. 创建技能槽</h2>
+<p>在 <code>CrewData.upgradableSkillContents</code> 的 <code>skills</code> 中新增条目，设 <code>friendshipRequirement = 0</code>。<code>crewSkillRef</code> 选择 <strong>CrewSkillBuff</strong>，其 <code>crewSkill</code> 选择 <strong>WeaponSupportSkillConfig</strong>。<code>version</code> 必须等于当前 <code>GetVersion()</code>（3）；详细乘员设置见<a href="crew-data.html">指挥官教程</a>。</p>
+<p>教学乘员复用 Aino 的有效头像引用，原始乘员保持不变；正式内容请配置自己的头像。头像引用是后续打包的前提。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.CrewData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;crewGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;,
+      &quot;value&quot;: &quot;${crewGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/inGameAvatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/inGameAvatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/avatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/avatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents&quot;,
+      &quot;value&quot;: &quot;[{\&quot;skills\&quot;:[{\&quot;friendshipRequirement\&quot;:0,\&quot;crewSkillRef\&quot;:{}}]}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(ShanghaiWindy.Core.CrewSkillBuff)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill&quot;,
+      &quot;value&quot;: &quot;@static:System.Activator/CreateInstance(ShanghaiWindy.Core.WeaponSupportSkillConfig)&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/version&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/GetVersion()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置冷却">2. 设置冷却</h2>
+<p>将 <code>initialCdType</code> 设为 <code>Ready</code>、<code>coolDownTime</code> 设为 20 秒。<code>CustomRatio</code> 才显示初始已完成比例 <code>customInitialCdRatio</code>。准备可用模型和冷却完成都是施放的前提。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/initialCdType&quot;,
+      &quot;value&quot;: &quot;Ready&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/coolDownTime&quot;,
+      &quot;value&quot;: &quot;20&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-初始化支援配置">3. 初始化支援配置</h2>
+<p>先创建 <code>weaponSupportInfo</code> 实例，再设置字段；该字段声明时没有默认实例。<code>visualType</code> 可选 <code>None</code>（0）、<code>Altius</code>（1）、<code>Custom</code>（9999）。Altius 使用资源键 <code>Altius-U-Skill.prefab</code>，需要对应资源可加载；None 不加载模型。</p>
+<p>设置 <code>duration = 30</code>、<code>isScouting = false</code>、<code>scoutSpottingDuration = 5</code>、<code>maxScoutingDistance = 1000</code>。开启侦察后才执行距离与视线检查。下面的截图展示后续切到 Custom 后的最终配置。</p>
+<p><img src="imgs/weapon-support-skill-effect.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/weaponSupportInfo&quot;,
+      &quot;value&quot;: &quot;{\&quot;visualType\&quot;:1,\&quot;duration\&quot;:30,\&quot;isScouting\&quot;:false,\&quot;scoutSpottingDuration\&quot;:5,\&quot;maxScoutingDistance\&quot;:1000}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-指定自定义模型">4. 指定自定义模型</h2>
+<p>复制官方 <code>Altius-U-Skill.prefab</code> 为 <code>Tutorial_Support.prefab</code>，保留根节点的 <strong>WeaponSupportMonoComponent</strong> 及其 <code>visualModel</code>、<code>rigidBody</code> 和武器引用。<code>customZoomPoint</code> 是炮手视角点。</p>
+<p>创建 <strong>ManualNameBuildPiplineData</strong>，在 <code>bundleNameMaps</code> 把 prefab 赋给 <code>bundleObject</code>，设置一个完整的“名称.变体”资源键，例如 <code>tutorial-support-shared.prefab</code>。把命名资产加入 <code>ModPackageBuildPiplineData.linkedObjects</code>，再设 <code>visualType = Custom</code>、<code>customVisualModel</code> 为同一个完整资源键。配方按运行 ID 生成独立名称。</p>
+<p><img src="imgs/weapon-support-skill-model.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Skill/Altius-U/Altius-U-Skill.prefab&quot;,
+        &quot;${model}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ManualNameBuildPiplineData)&quot;,
+        &quot;${manual}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${manual}/bundleNameMaps&quot;,
+      &quot;value&quot;: &quot;[{\&quot;bundleName\&quot;:\&quot;${modelName}\&quot;}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${manual}/bundleNameMaps/0/bundleObject&quot;,
+      &quot;value&quot;: &quot;@asset:${model}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${manual}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/weaponSupportInfo/visualType&quot;,
+      &quot;value&quot;: &quot;Custom&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/weaponSupportInfo/customVisualModel&quot;,
+      &quot;value&quot;: &quot;${modelName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)/visualModel/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Altius&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-配置路径并刷新武器节点">5. 配置路径并刷新武器节点</h2>
+<p>选择 <code>moveType = FollowSpine</code>，将 <code>followSpline</code> 指向有长度的 <code>SplineContainer</code>。本例保留模板的航线，把 <code>followSplineVelocity</code> 设为 50，并把 <code>followSplineVelocityCurve</code> 在整个 0–1 区间设为 1。实际推进速度由曲线倍率乘速度决定；新组件默认的单键曲线值为 0，直接保留会不移动。<code>Stationary</code> 不推进路径。</p>
+<p>修改 <code>fireSystemParameters</code> 中的炮管、炮塔和节点路径后，点击“刷新武器节点”。它生成 <code>fireSystemTransforms</code>、<code>simpleFireGunGuids</code> 和 <code>simpleFireTurretGuids</code>。这些引用必须在支援 prefab 内部保持一致，支援火力来自资产本身，不要求套用母载具主炮的 GUID。配方调用同一刷新方法并保存 prefab。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)/moveType&quot;,
+      &quot;value&quot;: &quot;FollowSpine&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)/followSplineVelocity&quot;,
+      &quot;value&quot;: &quot;50&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)/followSplineVelocityCurve&quot;,
+      &quot;value&quot;: &quot;@static:UnityEngine.AnimationCurve/Constant(0,1,1)&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.WeaponSupportMonoComponentEditor/RefreshWeaponTransforms&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.PrefabUtility/SavePrefabAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${model}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;--- GameObject ---&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)/followSplineVelocityCurve/Evaluate(0.5)&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/GetComponent(ShanghaiWindy.Core.WeaponSupportMonoComponent)/simpleFireGunGuids/Length&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="6-保存检查与打包">6. 保存、检查与打包</h2>
+<p>检查技能版本、非零曲线倍率、模板武器的生成节点与 GUID，构建并验证 Windows 教学包。技能仍只面向离线载具；打包成功不代表游戏内模型、开火、冷却或侦察已经通过测试。</p>
+<p>实际运行验证需要离线对局、启用指挥官增益及有效乘员。教学包不安装、不发布。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/version&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;3&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;version\&quot;:3&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;crew\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -100,7 +765,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/weapon-support-skill.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/weapon-support-skill.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

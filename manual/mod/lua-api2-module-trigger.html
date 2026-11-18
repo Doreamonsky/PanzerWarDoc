@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.7.5 用例：模块被毁时播放动画 Example: Animation When a Module Is Destroyed | Panzer War Document </title>
+      <title>模块损毁时播放动画 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.7.5 用例：模块被毁时播放动画 Example: Animation When a Module Is Destroyed | Panzer War Document ">
+      <meta name="title" content="模块损毁时播放动画 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,58 +77,203 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2275-用例模块被毁时播放动画-example-animation-when-a-module-is-destroyed">22.7.5 用例：模块被毁时播放动画 Example: Animation When a Module Is Destroyed</h1>
 
-<p>某个内部模块（例如弹药架、发动机）被击毁时，播放一个 Animator 触发器，例如炸开舱盖或冒出火焰。</p>
-<p>When an internal module (for example, an ammunition rack or engine) is destroyed, play an Animator trigger, such as blowing open a hatch or emitting flames.</p>
-<p>以前的写法是每帧读取模块血量，还要猜测血量字段叫什么名字。<code>InternalModuleAPI.OnStateChanged</code> 在模块状态变化时直接通知脚本。</p>
-<p>The previous approach was to read the module's health every frame and guess the name of the health field. <code>InternalModuleAPI.OnStateChanged</code> notifies the script directly when the module's state changes.</p>
-<p>把脚本挂在内部模块所在的物体上，在属性里关联带 Animator 的物体，并填写触发器名称。</p>
-<p>Attach the script to the object containing the internal module, link the object with the Animator in the properties, and enter the trigger name.</p>
+<!-- Generated from tutorials/lua-api2-module-trigger/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="模块损毁时播放动画">模块损毁时播放动画</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-api2-module-trigger.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-module-trigger
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/ModuleDestroyedTrigger.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ModuleDestroyedTrigger.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>把脚本挂在内部模块所在物体。将带有 <strong>Animator</strong> 的物体分配给 <code>animator</code>，并把 <code>triggerName</code> 设置为控制器中对应的 Trigger。示例使用 <code>Destroyed</code>。</p>
+<p>脚本在 <code>OnVehicleReady</code> 获取模块并订阅状态。模块首次进入损毁状态时触发动画，修复后可以再次触发。用 <code>self.script</code> 订阅，行为销毁时会解除订阅。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
-  animator = { type = &quot;object&quot;, value = nil },           -- 要播放动画的 Animator 所在物体 / Object with the Animator to trigger
-  triggerName = { type = &quot;string&quot;, value = &quot;Destroyed&quot; },
+    animator = { type = &quot;object&quot;, value = nil },
+    triggerName = { type = &quot;string&quot;, value = &quot;Destroyed&quot; },
 }
 
 local ModuleDestroyedTrigger = class(&quot;ModuleDestroyedTrigger&quot;)
 
--- 脚本挂在内部模块所在的物体上 / Attach this script to the internal module's object
 function ModuleDestroyedTrigger:OnVehicleReady(vehicle)
-  -- 模块组件在载具装配完成后才有，所以在 OnVehicleReady 里取
-  -- The module component exists only once the vehicle is assembled, so get it in OnVehicleReady
-  local module = InternalModuleAPI.GetInternalModule(self.gameObject)
-  if module == nil or self.animator == nil then
-    print(&quot;[ModuleTrigger] no module or animator on &quot; .. self.gameObject.name)
-    return
-  end
-
-  local animator = ComponentAPI.GetNativeComponent(self.animator, &quot;Animator&quot;)
-  InternalModuleAPI.OnStateChanged(self.script, module, function(oldState, newState)
-    if InternalModuleAPI.IsDestroyed(module) then
-      animator:SetTrigger(self.triggerName)
+    local module = InternalModuleAPI.GetInternalModule(self.gameObject)
+    if module == nil or self.animator == nil then
+        return
     end
-  end)
+    local animator = ComponentAPI.GetNativeComponent(self.animator, &quot;Animator&quot;)
+    if animator == nil then
+        return
+    end
+    local wasDestroyed = InternalModuleAPI.IsDestroyed(module)
+    InternalModuleAPI.OnStateChanged(self.script, module, function()
+        local destroyed = InternalModuleAPI.IsDestroyed(module)
+        if destroyed and not wasDestroyed then
+            animator:SetTrigger(self.triggerName)
+        end
+        wasDestroyed = destroyed
+    end)
 end
 
 return ModuleDestroyedTrigger
 </code></pre>
-<p>要点：</p>
-<p>Key points:</p>
-<ul>
-<li><p>模块组件在载具装配完成后才创建，所以在 <code>OnVehicleReady</code> 里用 <code>InternalModuleAPI.GetInternalModule(self.gameObject)</code> 获取；在 <code>OnStarted</code> 里可能还取不到。</p>
-</li>
-<li><p>状态变化包括损坏、摧毁和修复。需要区分时，可以读 <code>newState</code>，或者调用 <code>IsDestroyed</code>、<code>GetHitPointRatio</code>。</p>
-</li>
-<li><p>需要知道每次受到的伤害时，用 <code>InternalModuleAPI.OnDamaged</code>。</p>
-</li>
-<li><p>The module component is only created after the vehicle is assembled, so use <code>InternalModuleAPI.GetInternalModule(self.gameObject)</code> in <code>OnVehicleReady</code> to retrieve it; it may not be available in <code>OnStarted</code>.</p>
-</li>
-<li><p>State changes include damage, destruction, and repair. To distinguish between them, you can read <code>newState</code>, or call <code>IsDestroyed</code> and <code>GetHitPointRatio</code>.</p>
-</li>
-<li><p>To know the damage received each time, use <code>InternalModuleAPI.OnDamaged</code>.</p>
-</li>
-</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-api2-module-trigger/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [
+          &quot;ModuleAnimator&quot;
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          },
+          {
+            &quot;property&quot;: &quot;instanceLuaProperty.objectProperties.Array.data[0].value&quot;,
+            &quot;child&quot;: &quot;ModuleAnimator&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;objectProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;animator&quot;
+              }
+            ],
+            &quot;stringProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;triggerName&quot;,
+                &quot;value&quot;: &quot;Destroyed&quot;
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) ModuleDestroyedTrigger&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Animator&quot;,
+        &quot;child&quot;: &quot;ModuleAnimator&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/objectProperties/0/value/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) ModuleAnimator&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>回放检查触发次数和重复通知。实际 Animator 状态过渡在游戏中检查。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal destroyed, notifications, callback = false, 0, nil\nlocal module = {}\nlocal animator = { SetTrigger = function(_, name) assert(name == \&quot;Destroyed\&quot;); notifications = notifications + 1 end }\nE.InternalModuleAPI = {\n    GetInternalModule = function(go) return go.module end,\n    IsDestroyed = function(m) return destroyed end,\n    OnStateChanged = function(owner, m, cb) assert(m == module); callback = cb end\n}\nE.ComponentAPI = { GetNativeComponent = function(target, name) assert(name == \&quot;Animator\&quot;); return target.component end }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-api2-module-trigger/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\ninstance({ gameObject = {}, animator = {} }):OnVehicleReady({})\nassert(callback == nil)\ninstance({ gameObject = { module = module }, animator = {} }):OnVehicleReady({})\nassert(callback == nil)\ninstance({ gameObject = { module = module }, animator = { component = animator },\n           triggerName = \&quot;Destroyed\&quot;, script = {} }):OnVehicleReady({})\ndestroyed = true\ncallback(\&quot;Good\&quot;, \&quot;Destroyed\&quot;)\ncallback(\&quot;Destroyed\&quot;, \&quot;Destroyed\&quot;)\nassert(notifications == 1)\ndestroyed = false\ncallback(\&quot;Destroyed\&quot;, \&quot;Good\&quot;)\ndestroyed = true\ncallback(\&quot;Good\&quot;, \&quot;Destroyed\&quot;)\nassert(notifications == 2)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-api2-module-trigger&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -138,7 +283,7 @@ return ModuleDestroyedTrigger
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-api2-module-trigger.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-api2-module-trigger.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

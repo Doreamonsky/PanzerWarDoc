@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.5.1 第一行代码 Hello World | Panzer War Document </title>
+      <title>第一行 Lua：Hello World | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.5.1 第一行代码 Hello World | Panzer War Document ">
+      <meta name="title" content="第一行 Lua：Hello World | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,15 +77,159 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2251-第一行代码-hello-world">22.5.1 第一行代码 Hello World</h1>
 
-<p>编写第一行 Lua 代码，输出 Hello World。</p>
-<p>Write your first line of Lua code and print Hello World.</p>
-<p>核心代码：<code>print(&quot;Hello World&quot;)</code></p>
-<p>Key code: <code>print(&quot;Hello World&quot;)</code></p>
-<p>效果：在游戏的日志窗口可看到对应输出。</p>
-<p>Result: the output shows up in the game's log window.</p>
-<p><a href="https://www.bilibili.com/video/BV1Dv4y1L7wR/?spm_id_from=333.999.0.0">装甲纷争 lua 开发区第二节课 Hello World_单机游戏热门视频</a></p>
+<!-- Generated from tutorials/lua-hello-world/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="第一行-luahello-world">第一行 Lua：Hello World</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-hello-world.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-hello-world --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/HelloWorld.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_HelloWorld.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>在这个例子里，Lua 行为启动时会调用 <code>OnStarted</code>，输出 <code>Hello World</code>。</p>
+<h2 id="1-创建脚本">1. 创建脚本</h2>
+<p>在 Unity 项目的资源目录中保存 <code>HelloWorld.lua</code>。导入器会将它识别为 Lua 行为资产。</p>
+<pre><code class="lang-lua">Behavior()
+Property = {}
+
+local HelloWorld = class(&quot;HelloWorld&quot;)
+
+function HelloWorld:OnStarted()
+    print(&quot;Hello World&quot;)
+end
+
+return HelloWorld
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;Behavior()\nProperty = {}\n\nlocal HelloWorld = class(\&quot;HelloWorld\&quot;)\n\nfunction HelloWorld:OnStarted()\n    print(\&quot;Hello World\&quot;)\nend\n\nreturn HelloWorld\n&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-绑定组件">2. 绑定组件</h2>
+<p>在目标物体上添加 <strong>LuaBehaviorMono</strong>，将 <strong>HelloWorld</strong> 资产赋给「行为脚本」，然后保存 prefab。这个脚本没有声明实例参数。</p>
+<p><img src="imgs/lua-hello-world-binding.zh-CN.png" alt="绑定 Hello World 行为脚本"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-检查结果">3. 检查结果</h2>
+<p>重新打开 prefab，确认已保存脚本引用与 <code>OnStarted</code> 内容。把该物体加载到游戏后，可以检查启动日志中的 <code>Hello World</code>。教学重放已验证导入和引用，游戏内日志尚未核验。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) HelloWorld&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/lua&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;print(\&quot;Hello World\&quot;)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>游戏内检查（未执行）。先在包含此 prefab 的运行场景中触发行为启动，再查询日志。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;logs&quot;,
+    &quot;arguments&quot;: {
+      &quot;count&quot;: 50
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Hello World&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -95,7 +239,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-hello-world.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-hello-world.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.5 Physic Wheel 物理轮子 | Panzer War Document </title>
+      <title>配置轮式载具 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.5 Physic Wheel 物理轮子 | Panzer War Document ">
+      <meta name="title" content="配置轮式载具 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,37 +77,275 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="025-physic-wheel-物理轮子">02.5 Physic Wheel 物理轮子</h1>
 
-<h1 id="asset-preparation-资源准备">Asset Preparation 资源准备</h1>
-<p>Prefab structure</p>
-<p>模型预制体结构</p>
-<p><img src="imgs/e73a7dd4f4ce_1651078916769-de9f4a70-fc54-4fd8-92f3-b825f2efdc5f.png" alt=""></p>
-<h1 id="一-根节点组件-root-components">一. 根节点组件 Root Components</h1>
-<p>You should add the following components to root. (SUV node in the picture)</p>
-<p>在根节点挂载以下组件（如图中的 SUV 节点）</p>
-<h2 id="1-nphysiccarcontroller">1. NPhysicCarController</h2>
-<p><img src="imgs/9de5ec857b5a_1651078939258-d4eb167e-5390-4bfb-a24e-8cf773942931.png" alt=""></p>
-<h2 id="2-rigidbody">2. RigidBody</h2>
-<p><img src="imgs/9051df333e36_1651078987968-8c1a4f19-18d8-425c-90b3-3ed2f6741755.png" alt=""></p>
-<h2 id="3-centerofmass">3. CenterOfMass</h2>
-<p><img src="imgs/5f11e6175fa3_1651079011800-2af1c639-ed78-453c-8a84-cc7fa1cc9fc4.png" alt=""></p>
-<h2 id="4-nphyisc">4. NPhyisc</h2>
-<p><img src="imgs/f38e79bfed84_1651079027483-43caa3a4-fe62-4b8d-9ebd-c30a6f00bd69.png" alt=""></p>
-<h1 id="二-轮子组件-wheel-components">二. 轮子组件 Wheel Components</h1>
-<p>You should add WheelController to every wheel transform.</p>
-<p>在轮子 Transform 上挂载 WheelController 组件</p>
-<h2 id="wheelcontroller">WheelController</h2>
-<p><img src="imgs/1b6369212475_1651079105722-a89846df-18bf-48f7-8fee-ddb017008f92.png" alt=""></p>
-<p><img src="imgs/fac4f8f39077_1651079116858-429f8ffe-ebfe-4c5e-981a-a94231a74dca.png" alt=""></p>
-<h2 id="摩擦力组件-friction-preset">摩擦力组件 Friction Preset</h2>
-<p><img src="imgs/0b6a041a0549_1651079307586-f580f8a1-0543-4ac6-a5f3-e346b423bc48.png" alt=""></p>
-<h1 id="三-确认组件-confirm-components">三. 确认组件 Confirm Components</h1>
-<p>The prefab should look like the following picture when all the components are attached.</p>
-<p>挂载完所有组件后，3D 视窗应呈现如下效果</p>
-<p><img src="imgs/82430c0a11c4_1651079211668-dcfb0a33-a56a-4837-834b-9e588331d9bf.png" alt=""></p>
-<h1 id="四-vehicletextdata-设置-vehicletextdata-setup">四. VehicleTextData 设置 VehicleTextData Setup</h1>
-<p><img src="imgs/f28f86cbd95d_1651079162766-48f7d165-95a9-4cf1-a9cd-9604436b7ba3.png" alt=""></p>
+<!-- Generated from tutorials/physics-wheels/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置轮式载具">配置轮式载具</h1>
+<p><strong>中文</strong> | <a href="../en/mod/physics-wheels.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run physics-wheels --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;vehicle&quot;: &quot;${fixture}/Tutorial_WheeledVehicle.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_WheeledBody.prefab&quot;,
+    &quot;collider&quot;: &quot;${fixture}/Tutorial_WheelCollider.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>当前载具使用 <strong>TrackController</strong> 的轮式模式。旧工程中的 NPhysicCarController 选择分支已停用，移植时先核对模型的轮子节点和当前载具配置。</p>
+<h2 id="1-准备车体和轮子节点">1. 准备车体和轮子节点</h2>
+<p>以<a href="vehicle-basics.html">载具基础配置</a>为前提，将 <code>VehicleDynamics</code> 和 <code>Wheels</code> 放在同一个父节点下。本例车体 prefab 有刚体，<code>Wheels</code> 下建立 <code>FrontLeft</code>、<code>FrontRight</code>、<code>RearLeft</code>、<code>RearRight</code>。实际模型需要将节点放到对应车轴位置。</p>
+<p>图中展示最终完成后的移动配置。<code>TankWheelCollider</code> 提供轮胎碰撞器参数，<code>isWheelVehicle</code> 打开轮式模式。</p>
+<p><img src="imgs/physics-wheels-root.zh-CN.png" alt="移动页签中的轮式模式和碰撞器模板，带编号高亮"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Rigidbody&quot;,
+        &quot;children&quot;: [
+          &quot;VehicleDynamics&quot;,
+          &quot;Wheels/FrontLeft&quot;,
+          &quot;Wheels/FrontRight&quot;,
+          &quot;Wheels/RearLeft&quot;,
+          &quot;Wheels/RearRight&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+        &quot;${vehicle}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/isStationary&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-按驱动和转向分组">2. 按驱动和转向分组</h2>
+<p>在 <strong>VehicleTextData</strong> 的「移动」页签展开 <code>PTCParameter</code>。把带 Unity <code>WheelCollider</code> 的模板 prefab 指给 <code>TankWheelCollider</code>。模板的半径、悬挂和摩擦参数会复制到运行时轮子。每组可用 <code>steerData.wheelCollider</code> 指定自己的模板，留空则沿用总模板。</p>
+<p>在 <code>steerableWheels</code> 中建两组。<code>wheels</code> 的路径从 <code>VehicleDynamics</code> 的父节点查找。</p>
+<table>
+<thead>
+<tr>
+<th>分组</th>
+<th>路径</th>
+<th><code>isMotor</code></th>
+<th><code>isSteerable</code></th>
+<th><code>maxSteerAngle</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前轮</td>
+<td><code>Wheels/FrontLeft</code>、<code>Wheels/FrontRight</code></td>
+<td>true</td>
+<td>true</td>
+<td>28°</td>
+</tr>
+<tr>
+<td>后轮</td>
+<td><code>Wheels/RearLeft</code>、<code>Wheels/RearRight</code></td>
+<td>true</td>
+<td>false</td>
+<td>0°</td>
+</tr>
+</tbody>
+</table>
+<p><img src="imgs/physics-wheels-wheels.zh-CN.png" alt="前轮路径、驱动、转向和最大转向角，带编号高亮"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_WheelCollider.prefab&quot;,
+        &quot;${collider}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/TankWheelCollider&quot;,
+      &quot;value&quot;: &quot;@asset:${collider}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/steerableWheels&quot;,
+      &quot;value&quot;: &quot;[{\&quot;wheels\&quot;: [\&quot;Wheels/FrontLeft\&quot;, \&quot;Wheels/FrontRight\&quot;], \&quot;steerData\&quot;: {\&quot;isMotor\&quot;: true, \&quot;isSteerable\&quot;: true, \&quot;maxSteerAngle\&quot;: 28}}, {\&quot;wheels\&quot;: [\&quot;Wheels/RearLeft\&quot;, \&quot;Wheels/RearRight\&quot;], \&quot;steerData\&quot;: {\&quot;isMotor\&quot;: true, \&quot;isSteerable\&quot;: false, \&quot;maxSteerAngle\&quot;: 0}}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-启用轮式模式">3. 启用轮式模式</h2>
+<p>在相同的移动配置内勾选 <code>isWheelVehicle</code>。本例不使用履带数据，将 <code>TrackData</code> 留空。确认固定底座开关关闭，载具按普通地面载具进入 TrackController 分支。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/isWheelVehicle&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/TrackData&quot;,
+      &quot;value&quot;: &quot;null&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-保存并核对">4. 保存并核对</h2>
+<p>保存车体与配置，检查模式、模板引用、每个轮子路径和前轮角度。本配方使用纯教学节点验证资产配置。完整车辆的悬挂、抓地力和转向需要在组装后试车。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetGroundType()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetEngineParam()/isWheelVehicle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetEngineParam()/TankWheelCollider/WheelCollider/radius&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single)&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetEngineParam()/steerableWheels/0/steerData/maxSteerAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;28&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/FrontLeft/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FrontLeft&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/FrontRight/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FrontRight&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/RearLeft/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;RearLeft&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/RearRight/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;RearRight&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -117,7 +355,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

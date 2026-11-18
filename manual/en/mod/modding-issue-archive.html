@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Modding issue archive | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Modding issue archive | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/modding-issue-archive/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="modding-issue-archive">Modding issue archive</h1>
+<p><a href="../../mod/modding-issue-archive.html">中文</a> | <strong>English</strong></p>
+<p>These issues and troubleshooting steps come from older versions of the tools. The screenshots show the settings and menu locations from those versions.</p>
+<h2 id="1-map-invisible-collision">1. Map invisible collision</h2>
+<p><strong>Symptom</strong>: An invisible collision exists somewhere on the map, blocking objects or shell trajectories in that area.</p>
+<p><strong>Check used at the time</strong>: Select all objects and look for a green collision box covering that area; check whether an extra Mesh Collider was duplicated, or whether the Mesh Collider was placed somewhere other than the visual model.</p>
+<p><img src="../../mod/imgs/cf614c18ff7d_1676986454097-8247d1d3-2857-43bf-b063-5d7ed65615ad.png" alt="Historical screenshot: green collision box covering a map area after selecting objects"></p>
+<p><img src="../../mod/imgs/3c909b62d678_1676986470416-03bcf121-837b-41fb-a62e-425f2e960ce5.png" alt="Historical screenshot: collider placed apart from the visual model"></p>
+<h2 id="2-slow-suspension-rebound-rolling-over-when-turning">2. Slow suspension rebound, rolling over when turning</h2>
+<p><strong>Symptom</strong>: Suspension rebounds slowly and the vehicle tends to roll over while turning.</p>
+<p><strong>Check used at the time</strong>: Check the Wheel Collider settings. The screenshot below was called the &quot;default suspension configuration&quot; in the old document and is a historical example only.</p>
+<p><img src="../../mod/imgs/c72099904965_1676986574064-f0a9cfdf-0ffe-43b6-a24c-20d12a5eeab8.png" alt="Historical screenshot: Wheel Collider values the old document called the default suspension configuration"></p>
+<h2 id="3-map-shell-collision-and-render-layers">3. Map shell collision and render layers</h2>
+<p>The original guide recorded its map shell collision and render layer settings in this screenshot.</p>
+<p><img src="../../mod/imgs/2a923edaa1f6_1676986861118-9cdda1a6-9418-4116-a27c-6c4b9e81dff4.png" alt="Historical screenshot: old setup for map shell collision and render layers"></p>
+<h2 id="4-duplicate-materials-in-blender">4. Duplicate materials in Blender</h2>
+<p><strong>Symptom</strong>: Duplicate materials appear after duplicating objects in Blender.</p>
+<p>The original guide compared the materials produced by two duplication methods. Check the keymap and resulting materials in your own Blender version.</p>
+<p>Historical screenshot: duplicate materials after using ctrl c and ctrl v.</p>
+<p><img src="../../mod/imgs/529be0deff2e_1677773279263-7cd182b3-ce34-401e-9763-9a703ea2c38b.png" alt="Historical screenshot: duplicate materials after duplicating an object with ctrl c and ctrl v"></p>
+<p>Historical screenshot: result of duplicating an object with shift + d.</p>
+<p><img src="../../mod/imgs/dbdf485a9cc4_1677773276449-687f9e63-fa3d-4aca-a9ae-049c867cffb6.png" alt="Historical screenshot: material state after duplicating an object with shift + d"></p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/modding-issue-archive.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

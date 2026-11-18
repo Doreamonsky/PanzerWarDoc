@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>01.4 设置 Steam 游戏资源路径 - Set Steam Game Folder | Panzer War Document </title>
+      <title>设置 Steam 游戏资源路径 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="01.4 设置 Steam 游戏资源路径 - Set Steam Game Folder | Panzer War Document ">
+      <meta name="title" content="设置 Steam 游戏资源路径 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,14 +77,142 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="014-设置-steam-游戏资源路径---set-steam-game-folder">01.4 设置 Steam 游戏资源路径 - Set Steam Game Folder</h1>
 
-<p>Set the Steam game asset folder to use game assets in the editor runtime.</p>
-<p>设置游戏的 Steam 资源路径，以便在编辑器运行时动态使用游戏资源。</p>
-<p><img src="imgs/9870168fd458_1758817211100-7d128490-26a6-4244-a0cb-06b115dbc5cf.png" alt=""></p>
-<p>Please pick the folder <code>steamapps\common\PanzerWar-DE\dlc\LuaProject</code>, then click <strong>Save</strong>.</p>
-<p>请选择此文件夹：<code>Steam\steamapps\common\PanzerWar-DE\dlc\LuaProject</code>，然后点击<strong>保存</strong>。</p>
-<p><img src="imgs/546c70c1f51a_1758817253764-c72fbfe2-7f75-49c8-a6c0-d2034bfbdc56.png" alt=""></p>
+<!-- Generated from tutorials/set-steam-game-folder/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="设置-steam-游戏资源路径">设置 Steam 游戏资源路径</h1>
+<p><strong>中文</strong> | <a href="../en/mod/set-steam-game-folder.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run set-steam-game-folder --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sampleLuaProject&quot;: &quot;${fixture}/LuaProject&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/LuaProject/resources/windows/default&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/LuaProject/main.lua&quot;,
+          &quot;return {}\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<h2 id="1-找到-steam-安装目录里的-luaproject">1. 找到 Steam 安装目录里的 LuaProject</h2>
+<p>在 Steam 的游戏条目中浏览本地文件。打开游戏安装目录中的 <code>dlc/LuaProject</code>，确认里面有 <code>main.lua</code> 和 <code>resources/windows/default</code>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>用目录标记核对教学样例。Steam 的本地文件菜单由读者打开。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sampleLuaProject}/main.lua&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sampleLuaProject}/resources/windows/default&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-在编辑器里绑定目录">2. 在编辑器里绑定目录</h2>
+<p>打开 <strong>Framework - 框架 → 0. Home Page</strong>。首次绑定时，在 <strong>Steam 游戏路径</strong> 输入找到的 <code>LuaProject</code> 路径，或点击 <strong>浏览</strong> 选中该文件夹并确认。编辑器会把路径写入 <code>Assets/EditorStorage.json</code>。绑定后，首页显示试车场等快捷入口。</p>
+<p><img src="imgs/set-steam-game-folder-steam-path.zh-CN.png" alt="Unity 首页中高亮的 Steam 游戏路径和浏览按钮"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.EditorStorage/Info/luaProjectFolder&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>保存当前工程的设置。将 <code>${steamLuaProject}</code> 替换为实际的 LuaProject 绝对路径；日常回放不写入。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.EditorStorage/Info/luaProjectFolder&quot;,
+      &quot;value&quot;: &quot;${steamLuaProject}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.EditorStorage/Save&quot;,
+      &quot;args&quot;: []
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.EditorStorage/Info/luaProjectFolder&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -94,7 +222,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/set-steam-game-folder.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/set-steam-game-folder.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

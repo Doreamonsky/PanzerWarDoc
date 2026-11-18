@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Shared Resources Package Folder | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Shared Resources Package Folder | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/shared-resources-folder/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="shared-resources-package-folder">Shared Resources Package Folder</h1>
+<p><a href="../../mod/shared-resources-folder.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run shared-resources-folder
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sdkCheckout&quot;: &quot;../../../Panzer-War-Mod-SDK&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<h2 id="current-sdk-layout">Current SDK layout</h2>
+<p>The SDK contains the project in <code>UnityProject</code> and the shared resources package beside it in <code>Packages/Sdk/com.shanghaiwindy.middlesharedresources</code>.</p>
+<p>Extract the complete SDK as described in <a href="get-started.html">project setup</a> and keep those two folders next to each other.</p>
+<p>The package already contains these directories; keep the exact case and spelling:</p>
+<ul>
+<li><code>SharedVFX</code></li>
+<li><code>FMod</code></li>
+<li><code>SharedInternalDamage/Preset</code></li>
+</ul>
+<h2 id="dependency-and-package-inspection">Dependency and package inspection</h2>
+<ol>
+<li>Confirm that <code>UnityProject/Packages/manifest.json</code> references the package ID <code>com.shanghaiwindy.middlesharedresources</code>.</li>
+<li>Confirm that the actual package directory <code>Packages/Sdk/com.shanghaiwindy.middlesharedresources</code> exists.</li>
+<li>Open <strong>Window → Package Manager</strong> in Unity and find <strong>Panzer War Middle Shared Resources</strong>.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Packages/manifest.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;com.shanghaiwindy.middlesharedresources\&quot;: \&quot;file:../../Packages/Sdk/com.shanghaiwindy.middlesharedresources\&quot;&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/package.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;name\&quot;: \&quot;com.shanghaiwindy.middlesharedresources\&quot;&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/SharedVFX&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/FMod&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/SharedInternalDamage/Preset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="migrating-existing-assets-and-historical-context">Migrating existing assets and historical context</h2>
+<p>If assets have missing references, use <a href="migrate-old-project.html">the migration guide</a> to check their files and GUIDs.</p>
+<p>Early tool versions stored these resources under <code>Assets/Res</code>. The current SDK uses the shared package declared in its manifest.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/shared-resources-folder.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

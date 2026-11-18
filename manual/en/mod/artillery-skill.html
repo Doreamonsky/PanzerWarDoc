@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Configure Artillery Support | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Configure Artillery Support | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/artillery-skill/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="configure-artillery-support">Configure Artillery Support</h1>
+<p><a href="../../mod/artillery-skill.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run artillery-skill --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_ArtilleryCrew.asset&quot;,
+    &quot;title&quot;: &quot;Tutorial Artillery&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;e38c0288-62ae-4dc9-825b-67df88cce311&quot;,
+    &quot;bullet&quot;: &quot;${fixture}/Tutorial_105HE.asset&quot;,
+    &quot;sourceCrew&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Crew/AinoKoskinen/AinoKoskinen.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>This tutorial configures artillery support in a separate commander asset. The runtime skill is for offline vehicles. Verification covers editor assets and the teaching package, not an in-game salvo.</p>
+<h2 id="1-create-a-skill-slot">1. Create a skill slot</h2>
+<p>Add a <code>skills</code> group under <code>CrewData.upgradableSkillContents</code> and set the entry's <code>friendshipRequirement</code> to 0. Choose <strong>CrewSkillBuff</strong> for <code>crewSkillRef</code>, then <strong>ArtillerySkillConfig</strong> for its <code>crewSkill</code>. This is nested configuration rather than a standalone ScriptableObject.</p>
+<p>The configuration's <code>version</code> must equal <code>GetVersion()</code>, currently 3, or the skill is treated as incompatible. The recipe queries and writes that version. See the <a href="crew-data.html">commander tutorial</a> for basic setup and unlock conditions.</p>
+<p>The teaching commander reuses Aino's valid portrait references without changing that source commander. Configure your own portraits for production content; valid portrait references are required for packaging.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.CrewData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;crewGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;,
+      &quot;value&quot;: &quot;${crewGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/inGameAvatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/inGameAvatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/avatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/avatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents&quot;,
+      &quot;value&quot;: &quot;[{\&quot;skills\&quot;:[{\&quot;friendshipRequirement\&quot;:0,\&quot;crewSkillRef\&quot;:{}}]}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(ShanghaiWindy.Core.CrewSkillBuff)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill&quot;,
+      &quot;value&quot;: &quot;@static:System.Activator/CreateInstance(ShanghaiWindy.Core.ArtillerySkillConfig)&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/version&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/GetVersion()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-configure-cooldown">2. Configure cooldown</h2>
+<p>Set <code>initialCdType = Ready</code> and <code>coolDownTime = 20</code> seconds. <code>Ready</code> starts fully charged; <code>NotReady</code> starts from zero. <code>CustomRatio</code> reveals <code>customInitialCdRatio</code>, the initially completed fraction of cooldown. A successful release resets the progress.</p>
+<p><img src="../../mod/imgs/artillery-skill-common.en.png" alt="Numbered skill fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/initialCdType&quot;,
+      &quot;value&quot;: &quot;Ready&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/coolDownTime&quot;,
+      &quot;value&quot;: &quot;20&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-configure-a-shell-group">3. Configure a shell group</h2>
+<p>Expand <code>spawnInfos</code> and add one entry: <code>dispersion = 10</code>, <code>attackAngle = 45</code>, <code>count = (2,4)</code>, <code>timeDelay = (0,2)</code> and <code>fromDistance = 800</code>. The integer count excludes the upper bound, so this example produces two or three shells. Each independently samples a delay of approximately 0–2 seconds.</p>
+<p>Set <code>artilleryBulletData</code> and add the matching <code>loadName</code> and actual <code>BulletData</code> reference to the same SafeRef's <code>safeRefAssetProvider.assets</code>. This example copies the existing 105-HE ammunition and uses the copied asset's GUID as the lookup key. Runtime matches that key to a reference; it does not automatically convert a display name or file path into ammunition.</p>
+<p>The local player's camera ray must hit a target. The spawn point adds an X-axis offset rotated around the global Z axis to that target point. At 45 degrees this changes both horizontal position and height; it is not a horizontal offset along the camera direction. <code>dispersion</code> is passed to the projectile.</p>
+<p><img src="../../mod/imgs/artillery-skill-effect.en.png" alt="Numbered skill fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Crew/ErinBlake/105-HE.asset&quot;,
+        &quot;${bullet}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${bullet}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;bulletGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/safeRefAssetProvider/assets&quot;,
+      &quot;value&quot;: &quot;[{\&quot;loadName\&quot;:\&quot;${bulletGuid}\&quot;}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/safeRefAssetProvider/assets/0/instance&quot;,
+      &quot;value&quot;: &quot;@asset:${bullet}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/spawnInfos&quot;,
+      &quot;value&quot;: &quot;[{\&quot;dispersion\&quot;:10,\&quot;attackAngle\&quot;:45,\&quot;count\&quot;:{\&quot;x\&quot;:2,\&quot;y\&quot;:4},\&quot;timeDelay\&quot;:{\&quot;x\&quot;:0,\&quot;y\&quot;:2},\&quot;fromDistance\&quot;:800,\&quot;artilleryBulletData\&quot;:\&quot;${bulletGuid}\&quot;}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-save-check-and-build">4. Save, check and build</h2>
+<p>Save the SafeRef configuration, read back its version and serialized data, and add the commander to the teaching pipeline. The recipe builds a Windows teaching package and checks its ZIP, manifest and sidecar. It neither installs nor publishes the package.</p>
+<p>In-game verification still needs an offline match, enabled commander buffs, a valid commander selection and a target hit. Trajectory, effects and audio have not been tested.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/version&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;3&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;version\&quot;:3&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;crew\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/artillery-skill.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

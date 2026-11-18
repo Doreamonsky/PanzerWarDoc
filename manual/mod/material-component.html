@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.4 Material Component 材质组件 | Panzer War Document </title>
+      <title>配置载具材质组件 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.4 Material Component 材质组件 | Panzer War Document ">
+      <meta name="title" content="配置载具材质组件 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,42 +77,226 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="024-material-component-材质组件">02.4 Material Component 材质组件</h1>
 
-<p>For now, you need to upgrade your editor to the 2021 version to use this new feature.</p>
-<p>目前，你需要将模组工具升级到 2021 版本才能使用此功能。</p>
-<p><a href="unity-engine-requirements.html">15.Upgrade 2021 Editor 升级 2021 编辑器</a></p>
-<h1 id="general-综述">General 综述</h1>
-<p>The game has three versions of the renderer pipeline. To make it possible to build once and run on all versions, we need some components to fix material problems.</p>
-<p>游戏拥有三种渲染管线版本。为了实现一次打包并在所有管线中正常渲染，我们需要一些中间组件来解决材质兼容性问题。</p>
-<h1 id="general-pbr-material-shader-通用-pbr-材质-shader">General PBR Material Shader 通用 PBR 材质 Shader</h1>
-<h2 id="material-that-supports-mask-texture-支持-mask-texture-的材质球">Material that supports Mask Texture 支持 Mask Texture 的材质球</h2>
-<p>Switch the shader to SRP-Vehicle-Camouflage.</p>
-<p>切换 Shader 为 SRP-Vehicle-Camouflage。</p>
-<p><img src="imgs/9d205198b0ab_1675569536761-81d3a283-54e5-4628-ae90-d7e8eb52f3cb.png" alt=""></p>
-<p><img src="imgs/3e119ce19062_1675569798885-9677a422-757b-44e8-9bcc-cc3155306cde.png" alt=""></p>
-<p>A mask for PBR effect. You can refer to the channel from <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html">https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html</a></p>
-<p>一个反光遮罩贴图用于 PBR 效果。贴图通道信息查看 <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html">https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@7.1/manual/Mask-Map-and-Detail-Map.html</a></p>
-<h1 id="render-component-渲染组件">Render component 渲染组件</h1>
-<h2 id="core-rp-matdata">Core RP MatData</h2>
-<p>Right click the project and select the menu in the picture.</p>
-<p>右键点击工程，选择如图所示的菜单项。</p>
-<h1 id="section"><img src="imgs/59fd458d29c3_1647620626988-4a556542-5333-4a6d-86ac-9ba013a05708.png" alt=""></h1>
-<h3 id="linked-material-链接的材质">Linked Material 链接的材质</h3>
-<p>Select the material you want to override.</p>
-<p>选择你要覆盖的材质。</p>
-<p><img src="imgs/e37f0d065466_1647620935457-e995c704-e5e0-4538-9430-12c93f4721a2.png" alt=""></p>
-<h3 id="transparency-透明度">Transparency 透明度</h3>
-<p>Change the alpha of color to make material transparent.</p>
-<p>改变颜色的 Alpha 值，实现透明效果。</p>
-<p><img src="imgs/ddc4c2e2acc5_1647620885675-29eefdd9-cac3-416f-9f34-d350741ec584.png" alt=""></p>
-<p>Add Core RP Mat Component on your mesh renderer.</p>
-<p>在你的 Mesh Renderer 组件上挂载 Core RP Mat 组件。</p>
-<p><img src="imgs/6b586c884288_1647620518810-5ec2c80b-c703-4f46-b4e1-e5bfb0de1896.png" alt=""></p>
-<p>Select the CoreRPMatData you created previously. You need to make sure the linked material on CoreRPMatData is one of the materials of the mesh renderer that contains the same material.</p>
-<p>选择你先前创建的 CoreRPMatData。你需要确保 CoreRPMatData 上的链接材质是包含相同材质的某个 Mesh Renderer 所拥有的材质。</p>
-<p><img src="imgs/ef64daeba65d_1647621003422-156504a6-e5af-43a8-9ee4-47e135a515b3.png" alt=""></p>
-<h2 id="section-1"></h2>
+<!-- Generated from tutorials/material-component/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置载具材质组件">配置载具材质组件</h1>
+<p><strong>中文</strong> | <a href="../en/mod/material-component.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run material-component --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;material&quot;: &quot;${fixture}/Tutorial_Prop.mat&quot;,
+    &quot;settings&quot;: &quot;${fixture}/Tutorial_MaterialSettings.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_Material.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>下面在 Unity 2022.3.62f2 的 DE 工程中配置透明材质。<code>CoreRPMatData</code> 保存材质参数，<code>CoreRPMatComponent</code> 把配置带入载具的资源加载流程。</p>
+<h2 id="1-准备原材质">1. 准备原材质</h2>
+<p>在模型 prefab 中找到目标 <code>Mesh Renderer</code>，确认要覆盖的材质槽。教学配方复制现有桨叶材质为 <code>Tutorial_Prop.mat</code>，把它放入 <code>Tutorial_Material.prefab</code> 的第一个材质槽。实际制作时沿用模型自己的贴图和网格。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/Altius-U/Art/Default-FastProp.mat&quot;,
+        &quot;${material}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshRenderer&quot;,
+        &quot;values&quot;: {
+          &quot;m_Materials&quot;: [
+            {}
+          ]
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Materials.Array.data[0]&quot;,
+            &quot;asset&quot;: &quot;${material}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Material&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-创建材质配置">2. 创建材质配置</h2>
+<p>在 Project 窗口选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; C Config - 配置 &gt; SRP Material Config - SRP 材质配置</code>，创建 <strong>CoreRPMatData</strong>。展开 <code>coreRPMatParams</code>，添加一项并设置：</p>
+<ol>
+<li><code>coreRPShaderType</code> 选 <code>Transparency</code>。</li>
+<li>展开 <code>transparencyMatParam</code>，把颜色的 Alpha 设为 0.35，<code>smoothness</code> 设为 0.4。</li>
+<li>将 <code>linkedMaterial</code> 指向 Mesh Renderer 材质槽实际使用的同一个资产。</li>
+</ol>
+<p>若配置载具涂装，选 <code>VehicleCamouflage</code>。遮罩通过 <code>vehicleCamoflageMatParam</code> 的 <code>hasMask</code> 和 <code>maskTex</code> 传给对应着色器，通道用途以所选着色器为准。</p>
+<p><img src="imgs/material-component-data.zh-CN.png" alt="透明材质的类型、颜色、光滑度和材质引用，带编号高亮"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.Data.CoreRPMatData)&quot;,
+        &quot;${settings}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${settings}/coreRPMatParams&quot;,
+      &quot;value&quot;: &quot;[{\&quot;coreRPShaderType\&quot;: 1, \&quot;transparencyMatParam\&quot;: {\&quot;color\&quot;: {\&quot;r\&quot;: 1, \&quot;g\&quot;: 1, \&quot;b\&quot;: 1, \&quot;a\&quot;: 0.35}, \&quot;smoothness\&quot;: 0.4}}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${settings}/coreRPMatParams/0/linkedMaterial&quot;,
+      &quot;value&quot;: &quot;@asset:${material}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-挂载组件">3. 挂载组件</h2>
+<p>在目标物体上添加 <strong>CoreRPMatComponent</strong>。保持 <code>isComponentBased</code> 关闭，将 <code>matData</code> 设为刚才创建的 <code>Tutorial_MaterialSettings</code>。这条流程允许多个渲染器复用同一份配置。</p>
+<p>另一种模式是开启 <code>isComponentBased</code>，用 <code>indexCoreRPMatParams</code> 的 <code>index</code> 读取同一物体的 Mesh Renderer 材质槽，从 0 开始计数。更换材质槽顺序时需要同步检查索引。</p>
+<p><img src="imgs/material-component-component.zh-CN.png" alt="组件的共享材质配置，带编号高亮"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.CoreRPMatComponent&quot;,
+        &quot;values&quot;: {
+          &quot;isComponentBased&quot;: false
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;matData&quot;,
+            &quot;asset&quot;: &quot;${settings}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Data.CoreRPMatData&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-保存并核对">4. 保存并核对</h2>
+<p>保存 prefab，读回 Mesh Renderer 的材质、<code>linkedMaterial</code> 和组件的 <code>matData</code> 引用。资源加载时按源 Material 对象匹配配置，再把参数应用到材质实例。透明度和光滑度的视觉效果需要在载具加载后查看。本例验收了编辑器资产与参数。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/MeshRenderer/sharedMaterials/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_Prop&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${settings}/coreRPMatParams/0/linkedMaterial/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_Prop&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/CoreRPMatComponent/matData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_MaterialSettings&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${settings}/coreRPMatParams/0/transparencyMatParam/color/a&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.35&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${settings}/coreRPMatParams/0/transparencyMatParam/smoothness&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.4&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -122,7 +306,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/material-component.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/material-component.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

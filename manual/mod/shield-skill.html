@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.1.3 Shield Skill - 护盾技能 | Panzer War Document </title>
+      <title>配置能量护盾技能 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.1.3 Shield Skill - 护盾技能 | Panzer War Document ">
+      <meta name="title" content="配置能量护盾技能 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,29 +77,596 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0213-shield-skill---护盾技能">02.1.3 Shield Skill - 护盾技能</h1>
 
-<p><img src="imgs/7778e244e7cb_1744522050148-05079d69-46ef-48ba-a8df-4f3ba9d56d6d.png" alt=""></p>
-<h2 id="custom-shield-自定义护盾">Custom Shield 自定义护盾</h2>
-<p><strong>Prefab 预制体</strong></p>
-<p><img src="imgs/1e9e35f8d893_1751115642688-88456a0d-27ba-4f62-8f81-dec78ec243ba.png" alt=""></p>
-<p><img src="imgs/012a54afb882_1751115817149-a4714dc4-d6e1-4c49-8c4e-8ea3808f61e5.png" alt=""><img src="imgs/5bd78dc1d1be_1751115720768-77303548-47a1-435c-8e9e-c3daa01e8e6f.png" alt=""></p>
-<p><img src="imgs/d1e9b922d4a7_1751116633645-0bd28c09-daa5-47e4-8185-5f98a32b1f75.png" alt=""></p>
-<p><strong>Manual Name Build Pipline Data 手动命名打包管线数据</strong></p>
-<p>Create this asset and be sure to add it to BuildPiplineData object list.</p>
-<p>创建此资产，并将其添加到 BuildPiplineData 的物体列表中。</p>
-<p><img src="imgs/55442894c697_1751115849066-f7872ac9-1b1b-4a79-b96c-0aa7ece8d5a9.png" alt=""></p>
-<p>Fill-In the bundle name and the prefab of your shield</p>
-<p>填入资源包名称及护盾的预制体。</p>
-<p><img src="imgs/62e20546aaae_1751115506740-863cd93c-8e92-4574-925c-f369f5c2cc62.png" alt=""></p>
-<p><strong>Skill Config 技能配置</strong></p>
-<p>Fill in the bundle name in the Custom Model</p>
-<p>在 Custom Model 中填入资源包名称。</p>
-<p><img src="imgs/da77d7140412_1751115578734-83fa8213-68c6-459c-86ff-7ea8d8c34b73.png" alt=""></p>
-<p>Official Shader for shield</p>
-<p>护盾官方 Shader</p>
-<p>「ShieldShader」</p>
-<p>Link / 🔗：<a href="https://drive.uc.cn/s/cf27c5d2f5934?public=1">https://drive.uc.cn/s/cf27c5d2f5934?public=1</a></p>
+<!-- Generated from tutorials/shield-skill/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置能量护盾技能">配置能量护盾技能</h1>
+<p><strong>中文</strong> | <a href="../en/mod/shield-skill.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run shield-skill --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_ShieldCrew.asset&quot;,
+    &quot;title&quot;: &quot;Tutorial Shield&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;e38c0288-62ae-4dc9-825b-67df88cce312&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_Shield.prefab&quot;,
+    &quot;manual&quot;: &quot;${fixture}/Tutorial_ManualNames.asset&quot;,
+    &quot;modelName&quot;: &quot;tutorial-shield-${runId}.prefab&quot;,
+    &quot;sourceCrew&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Crew/AinoKoskinen/AinoKoskinen.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本教程从基础护盾参数开始，再用独立 prefab 演示自定义模型。<code>armor</code> 会写入护盾碰撞部件的 <code>HitBox.Armor</code>，不是可吸收多少伤害的生命值。</p>
+<h2 id="1-创建技能槽">1. 创建技能槽</h2>
+<p>在 <code>CrewData.upgradableSkillContents</code> 的 <code>skills</code> 中添加条目，<code>friendshipRequirement</code> 设为 0。<code>crewSkillRef</code> 选择 <strong>CrewSkillBuff</strong>，其 <code>crewSkill</code> 选择 <strong>EnergyShieldSkillConfig</strong>。配置 <code>version</code> 必须等于当前 <code>GetVersion()</code>（3）。基础乘员设置见<a href="crew-data.html">指挥官教程</a>。</p>
+<p>教学乘员复用 Aino 的有效头像引用，原始乘员保持不变；正式内容请配置自己的头像。头像引用是后续打包的前提。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.CrewData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;crewGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;,
+      &quot;value&quot;: &quot;${crewGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/inGameAvatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/inGameAvatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/avatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/avatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents&quot;,
+      &quot;value&quot;: &quot;[{\&quot;skills\&quot;:[{\&quot;friendshipRequirement\&quot;:0,\&quot;crewSkillRef\&quot;:{}}]}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@static:System.Activator/CreateInstance(ShanghaiWindy.Core.CrewSkillBuff)&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill&quot;,
+      &quot;value&quot;: &quot;@static:System.Activator/CreateInstance(ShanghaiWindy.Core.EnergyShieldSkillConfig)&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/version&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/GetVersion()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置冷却">2. 设置冷却</h2>
+<p>设置 <code>initialCdType = Ready</code>、<code>coolDownTime = 20</code>。选择 <code>CustomRatio</code> 才显示初始已完成比例 <code>customInitialCdRatio</code>。护盾存在期间不能再次施放，冷却只在没有活动护盾时推进。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/initialCdType&quot;,
+      &quot;value&quot;: &quot;Ready&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/coolDownTime&quot;,
+      &quot;value&quot;: &quot;20&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-设置护盾参数">3. 设置护盾参数</h2>
+<p>展开 <code>energyShieldInfo</code>，填写 <code>duration = 10</code>、<code>armor = 200</code>、<code>distance = 15</code>、<code>sizeScale = (1,1,1)</code>。<code>shieldType</code> 默认 <code>Box</code>，也可选 <code>Sphere</code> 或后续示例的 <code>Custom</code>；下图展示最终自定义配置。</p>
+<p>护盾位置跟随炮塔位置加 <code>forward * distance</code>。Box 会跟随炮塔朝向；Custom 由 <code>isCustomModelFacingForward</code> 决定是否跟随。模型加载后，代码绑定护盾装甲组，把各 <code>hitBoxes</code> 的 Armor 设为配置值并设为间隙装甲。移除时解绑该装甲组并归还资源。</p>
+<p><img src="imgs/shield-skill-effect.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/energyShieldInfo&quot;,
+      &quot;value&quot;: &quot;{\&quot;duration\&quot;:10,\&quot;armor\&quot;:200,\&quot;distance\&quot;:15,\&quot;sizeScale\&quot;:{\&quot;x\&quot;:1,\&quot;y\&quot;:1,\&quot;z\&quot;:1},\&quot;shieldType\&quot;:0}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-配置自定义-prefab-与命名">4. 配置自定义 prefab 与命名</h2>
+<p>本例复制官方 <code>EnergyShield.prefab</code> 为 <code>Tutorial_Shield.prefab</code>。保留根节点的 <strong>EnergyShieldMonoComponent</strong>，检查 <code>aabb</code> 引用 <strong>VehicleHitBoxAABBComponent</strong>，<code>hitBoxes</code> 引用有效护盾 HitBox。替换美术时保留这些绑定及相应碰撞体；缺引用不能视为有效护盾。</p>
+<p>创建 <strong>ManualNameBuildPiplineData</strong>，在 <code>bundleNameMaps</code> 设置 <code>bundleObject</code> 为该 prefab，<code>bundleName</code> 使用“名称.变体”，例如 <code>tutorial-shield-shared.prefab</code>。将此命名资产加入 <code>ModPackageBuildPiplineData.linkedObjects</code>。当前收集器按点拆分名称与变体，示例只使用一个点。</p>
+<p>将 <code>shieldType</code> 改为 <code>Custom</code>，把同一个完整名称写入 <code>customModel</code>。它是运行时资源键，不是项目文件路径；<code>isCustomModelFacingForward</code> 默认 true。本配方按运行 ID 生成独立资源键，避免教学包互相覆盖。</p>
+<p><img src="imgs/shield-skill-model.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Skill/EnergyShield/Prefabs/EnergyShield.prefab&quot;,
+        &quot;${model}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ManualNameBuildPiplineData)&quot;,
+        &quot;${manual}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${manual}/bundleNameMaps&quot;,
+      &quot;value&quot;: &quot;[{\&quot;bundleName\&quot;:\&quot;${modelName}\&quot;}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${manual}/bundleNameMaps/0/bundleObject&quot;,
+      &quot;value&quot;: &quot;@asset:${model}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${manual}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/energyShieldInfo/shieldType&quot;,
+      &quot;value&quot;: &quot;Custom&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/energyShieldInfo/customModel&quot;,
+      &quot;value&quot;: &quot;${modelName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/SetValue&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;${title}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-保存检查与打包">5. 保存、检查与打包</h2>
+<p>保存配置，检查版本、模型引用和命名管线，构建并验证 Windows 教学包。此操作不安装或发布内容。</p>
+<p>技能只向离线 <code>VehicleInitSystem</code> 注册。实际持续时间、穿甲交互和画面效果仍需在启用指挥官增益的离线对局中验证；本配方未执行这些游戏测试。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/displayValue/crewSkill/version&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;3&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;version\&quot;:3&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;crew\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -109,7 +676,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/shield-skill.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/shield-skill.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
