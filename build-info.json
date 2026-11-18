@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T104617Z",
+  "builtAt": "20261118T112725Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -99,7 +99,7 @@
     "mask-texture-preview",
     "continuous-build"
   ],
-  "reviewedDependenciesSha256": "6b602b42c27ef4814192111a040b0821387223e7129b16a46d735195824559c1",
+  "reviewedDependenciesSha256": "a357f58c7d3105c1459586d8143cbbc0afafca503204b3e201fb7a1b6277c389",
   "contentReviewedTutorials": [
     "blender-axis-fix",
     "get-started",
