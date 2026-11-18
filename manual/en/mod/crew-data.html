@@ -8,17 +8,17 @@
       <title>Crew Data Commander Configuration | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Crew Data Commander Configuration | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -234,6 +234,7 @@
 </details>
 <h2 id="2-identity">2. Identity</h2>
 <p>In the Inspector set <code>Category = Tutorial</code> and <code>Age = 28</code>, and fill <code>Default Name</code> inside the <code>Name</code> foldout. <code>GUID</code> is generated once when empty and must stay stable for published assets. The GUID in the image, <code>9a719528-38a2-4fd4-8e70-f8f07dd56f81</code>, is teaching-only: not official, and not an ID to reuse for every asset.</p>
+<p>Fill in <strong>Short Description</strong> (<code>shortCrewDescription</code>) and <strong>Description</strong> (<code>crewDescription</code>) as well. The name and both descriptions have separate default text and language entries. Enter the default text first, then add the translations for each field.</p>
 <p><img src="../../mod/imgs/crew-data-basic.en.png" alt="Set the commander GUID, category and age"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -292,6 +293,7 @@
 </details>
 <h2 id="3-unlock-and-art">3. Unlock and art</h2>
 <p>Example: <code>Is Unlock = true</code>, <code>Max Friendship = 100</code>, <code>Friendship Grow Coff = 1</code>. Assign actual textures to <code>avatarTex</code> (256x256 portrait) and <code>inGameAvatarTex</code> (360x720 in-game avatar). Skin entries can override both when needed.</p>
+<p>For each item in <strong>Skins</strong> (<code>skinContents</code>), fill its localized <code>skinName</code>, <code>friendshipRequirement</code>, and both portraits. Try thresholds of 50 and 80, then check both unlock points and the selected in-game portrait in the crew UI.</p>
 <p><img src="../../mod/imgs/crew-data-unlock.en.png" alt="Commander unlock and friendship fields"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -370,6 +372,7 @@
 </details>
 <h2 id="4-buffs-and-skills">4. Buffs and skills</h2>
 <p>Add references to <code>buffRefs</code>; in <code>upgradableSkillContents[].skills[]</code> set <code>crewSkillRef</code> and <code>friendshipRequirement</code> (labelled Friendship Requirement). Skills use the selected slot choice and friendship thresholds; do not newly fill the deprecated <code>buffs</code> / <code>skillBuff</code>.</p>
+<p>The legacy example shows a reload-related coefficient of <code>-0.1</code> and a damage-related coefficient of <code>0.05</code>. To try those effects, pick the corresponding entries in the current buff reference list, check whether the selected field takes a factor or a fixed value, and compare on the same test vehicle.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <p>The sample copies Aino's existing valid SafeRef configuration into a separate skill slot with a friendship threshold of 0. It does not edit the source commander. Effects still need offline gameplay verification.</p>
@@ -634,7 +637,7 @@
 </code></pre>
 </details>
 <h2 id="skill-references">Skill references</h2>
-<p>Older pages below may still show deprecated fields; current <code>buffRefs</code> / <code>Upgradable Skills</code> take precedence.</p>
+<p>These skill guides include complete examples of upgrade slots, references, and packaging.</p>
 <p><a href="artillery-skill.html">Artillery Skill Config reference</a></p>
 <p><a href="weapon-support-skill.html">Weapon Support Skill</a></p>
 <p><a href="shield-skill.html">Shield Skill</a></p>
@@ -665,7 +668,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

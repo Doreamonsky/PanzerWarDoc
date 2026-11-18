@@ -1,6 +1,6 @@
 {
-  "builtAt": "20261118T141802Z",
-  "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
+  "builtAt": "20261118T142817Z",
+  "sourceBaseCommit": "9ad163a236267db1afb0b174ac86198b941cdc1a",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
     "vehicle-text-data",
@@ -129,10 +129,14 @@
     "vrm-model",
     "upload-to-modhub"
   ],
-  "reviewedDependenciesSha256": "b20520df803045a05916efc739df05d7c23e9475b0ceb45275a73a1917c7b7e7",
+  "reviewedDependenciesSha256": "30079a8627bcb2e21c0a7c7becf39e77886b016d60f1067765f656a2869adc43",
   "contentReviewedTutorials": [
+    "artillery-skill",
     "blender-axis-fix",
     "continuous-build",
+    "crew-data",
+    "fixed-angle-reload",
+    "fmod-play-component",
     "fmod-profiler",
     "get-started",
     "hitbox-naming-conventions",
@@ -147,20 +151,37 @@
     "lua-api2-radar-screen",
     "lua-behavior-mono",
     "lua-callbacks-and-self",
+    "material-component",
     "model-not-displaying",
     "multi-turret-legacy",
     "physics-wheels",
+    "preset-vehicle-queue",
     "ravenfield-map-support",
     "set-steam-game-folder",
+    "shield-skill",
     "track-ik-suspension",
     "unity-engine-requirements",
     "vehicle-basics",
     "vehicle-dev-qa",
+    "vehicle-hatches",
+    "vehicle-light-component",
     "vehicle-modding-notes",
     "vehicle-playground",
     "vehicle-text-data",
     "vfx-mod",
-    "voice-pack-practice"
+    "voice-pack-practice",
+    "zoom-ratio-config"
   ],
-  "newContentReviews": []
+  "newContentReviews": [
+    "crew-data",
+    "preset-vehicle-queue",
+    "zoom-ratio-config",
+    "fixed-angle-reload",
+    "fmod-play-component",
+    "vehicle-light-component",
+    "vehicle-hatches",
+    "artillery-skill",
+    "shield-skill",
+    "material-component"
+  ]
 }

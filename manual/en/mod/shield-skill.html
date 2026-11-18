@@ -8,17 +8,17 @@
       <title>Configure an Energy Shield Skill | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Configure an Energy Shield Skill | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -340,6 +340,7 @@
 </details>
 <h2 id="2-configure-cooldown">2. Configure cooldown</h2>
 <p>Set <code>initialCdType = Ready</code> and <code>coolDownTime = 20</code>. <code>CustomRatio</code> reveals <code>customInitialCdRatio</code>, the initially completed fraction. The skill cannot be released again while its shield is active, and cooldown advances only without an active shield.</p>
+<p>Set the title, description, and translations on the outer <strong>CrewSkillBuff</strong>. For ready or release sounds, enable <code>hasSkillReadyVoice</code> or <code>hasSkillReleaseVoice</code> and enter the corresponding FMOD event GUIDs. <a href="fmod-project-setup.html">FMOD setup</a></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -432,6 +433,12 @@
 </details>
 <h2 id="4-configure-a-custom-prefab-and-resource-name">4. Configure a custom prefab and resource name</h2>
 <p>This example copies the official <code>EnergyShield.prefab</code> to <code>Tutorial_Shield.prefab</code>. Preserve <strong>EnergyShieldMonoComponent</strong> on its root. Check that <code>aabb</code> references <strong>VehicleHitBoxAABBComponent</strong> and <code>hitBoxes</code> references valid shield HitBox components. Preserve those bindings and colliders when replacing the art. Missing references are not a valid shield setup.</p>
+<p>When replacing the art, use these three children in the source prefab as a reference:</p>
+<ul>
+<li><code>Visual</code> uses the shield material on its Mesh Renderer. The project sample is <code>Skill/EnergyShield/Materials/EnergyShield.mat</code> with shader <code>WindyVerse/Skill/EnergyShield</code>.</li>
+<li><code>HitBox</code> uses the <strong>HitBox</strong> tag and layer. Preserve the Mesh Collider, HitBox, and kinematic Rigidbody. The sample has Convex, Trigger, and gravity disabled.</li>
+<li><code>HitBoxAABB</code> is on the <strong>HitBoxAABB</strong> layer. Use <strong>VehicleHitBoxAABBComponent</strong> and a non-trigger Box Collider that encloses the shield. Bind this component to <code>aabb</code> on the root and add the damage mesh's HitBox to <code>hitBoxes</code>.</li>
+</ul>
 <p>Create <strong>ManualNameBuildPiplineData</strong>. In <code>bundleNameMaps</code>, assign the prefab to <code>bundleObject</code> and use a name plus variant for <code>bundleName</code>, such as <code>tutorial-shield-shared.prefab</code>. Add this naming asset to <code>ModPackageBuildPiplineData.linkedObjects</code>. The current collector splits the name at dots; the example uses exactly one dot.</p>
 <p>Set <code>shieldType = Custom</code> and copy the same complete resource name into <code>customModel</code>. It is a runtime resource key, not a project file path. <code>isCustomModelFacingForward</code> defaults to true. The recipe creates a distinct key per run to avoid teaching-package collisions.</p>
 <p><img src="../../mod/imgs/shield-skill-model.en.png" alt="Numbered skill fields in the actual Inspector"></p>
@@ -694,7 +701,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

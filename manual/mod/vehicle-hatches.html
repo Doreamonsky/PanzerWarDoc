@@ -8,17 +8,17 @@
       <title>载具舱门配置教程 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="载具舱门配置教程 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -230,8 +230,9 @@
 <li><code>isSemiOpen=false</code> 时显示 <code>activeParts</code>。</li>
 <li>每个条目：<code>axis=(1,0,0)</code>、<code>activeAngle=90</code>、<code>closeAngle=0</code>、<code>moveSpeed=120</code>。</li>
 <li>运行时按 <code>localRotation=Quaternion.AngleAxis(angle,axis)</code> 设置，直接覆盖原 local rotation，不叠加增量。</li>
-<li><code>isSemiOpen</code> 是状态或显示条件；设置它并不保证运行时代码会禁用已有 <code>activeParts</code> 动画。</li>
+<li><code>isSemiOpen</code> 会隐藏活动字段，并参与运行时的开舱或半开状态判定。需要控制旋转时应检查相应的 <code>activeParts</code>。</li>
 </ul>
+<p>双扇舱盖可为左右盖分别建 <code>Hatch_L</code>、<code>Hatch_R</code> 枢轴。旧示例两项都用局部 Z 轴 <code>(0,0,1)</code>，打开角分别为 <code>+160°</code>、<code>−160°</code>，关闭角为 <code>0°</code>，速度为 <code>120°/s</code>。根据自身模型的局部轴核对打开方向。</p>
 <p>预期检查：枢轴初始旋转为单位值，旋转结果不依赖原始朝向。</p>
 <p><img src="imgs/vehicle-hatches-movement.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
 <details class="tutorial-mcp">
@@ -319,7 +320,7 @@
 </code></pre>
 </details>
 <h2 id="5-按需烘焙双面网格">5. 按需烘焙双面网格</h2>
-<p>打开舱盖后如果需要显示网格背面，将相应 <code>MeshFilter</code> 填入 <code>doubleSidedMeshFilters</code>。在载具附件配置编辑界面点击烘焙双面网格按钮，选择 Assets 内的输出目录；<code>doubleSidedMeshes</code> 是生成结果，不需要手工填写。只为必要的活动区域生成背面，避免整个载具的三角形数量翻倍。</p>
+<p>打开舱盖后如果需要显示网格背面，将相应 <code>MeshFilter</code> 填入 <code>doubleSidedMeshFilters</code>。在同一物体的 <strong>VehicleAttachmentMonoComponent</strong> 面板点 <strong>Bake Double-Side Mesh / 烘培双面模型</strong>，选择 Assets 内的输出目录。<code>doubleSidedMeshes</code> 会自动填入生成结果。只为必要的活动区域生成背面，避免整个载具的三角形数量翻倍。</p>
 <p>配方使用独立复制的方片网格演示输入和输出引用，通过同一个烘焙实现直接指定目录，跳过交互式文件夹对话框。重复烘焙会更新已有生成网格并保留 GUID；源模型临时开启的 Read/Write 会在结束后恢复。此步骤验证网格数据与引用，没有验证最终渲染效果。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -444,7 +445,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

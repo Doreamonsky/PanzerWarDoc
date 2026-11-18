@@ -8,17 +8,17 @@
       <title>配置火炮支援技能 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="配置火炮支援技能 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -339,6 +339,7 @@
 </details>
 <h2 id="2-设置冷却">2. 设置冷却</h2>
 <p>把 <code>initialCdType</code> 设为 <code>Ready</code>、<code>coolDownTime</code> 设为 20 秒。<code>Ready</code> 表示初始就绪，<code>NotReady</code> 从零开始冷却；<code>CustomRatio</code> 才显示 <code>customInitialCdRatio</code>，用于设置已完成的冷却比例。释放成功后冷却进度重置。</p>
+<p>在外层 <strong>CrewSkillBuff</strong> 填技能名与简介，分别添加需要的翻译。在技能配置内，可按需开启 <code>hasSkillReadyVoice</code> 和 <code>hasSkillReleaseVoice</code>，填写对应 FMOD 事件 GUID。 <a href="fmod-project-setup.html">FMOD 配置</a></p>
 <p><img src="imgs/artillery-skill-common.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -391,6 +392,7 @@
 <h2 id="3-配置一组炮弹">3. 配置一组炮弹</h2>
 <p>展开 <code>spawnInfos</code>，添加一项：<code>dispersion = 10</code>、<code>attackAngle = 45</code>、<code>count = (2,4)</code>、<code>timeDelay = (0,2)</code>、<code>fromDistance = 800</code>。发数使用整数随机区间，上界不包含，因此示例产生 2 或 3 发；每发独立抽取约 0–2 秒的延时。</p>
 <p>为这项填写 <code>artilleryBulletData</code>，并在同一个 SafeRef 的 <code>safeRefAssetProvider.assets</code> 中设置相同的 <code>loadName</code> 和实际 <code>BulletData</code> 引用。本例复制现有 105-HE 弹药，用复制资产的 GUID 作查询键。运行时代码按键匹配引用，不会把显示名或文件路径自动转换为弹药。</p>
+<p>选中复制出来的弹药资产。核对弹头是 <strong>HE</strong>，在 Inspector 检查 <strong>Bullet VFX</strong> 引用，再在爆炸参数区核对 <strong>Explosion Range</strong>。复制其他弹药时，先看这些字段是否符合游戏内预期效果，再绑定到技能。</p>
 <p>技能要求本地玩家的相机射线命中目标。生成点由命中点加上绕全局 Z 轴旋转后的 X 向偏移计算，45° 会同时改变水平位置与高度；它不是沿相机朝向的水平偏移。<code>dispersion</code> 随后交给弹体。</p>
 <p><img src="imgs/artillery-skill-effect.zh-CN.png" alt="真实 Inspector 中带编号高亮的技能配置"></p>
 <details class="tutorial-mcp">
@@ -634,7 +636,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

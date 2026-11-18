@@ -8,17 +8,17 @@
       <title>配置 FMOD 播放组件 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="配置 FMOD 播放组件 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -217,6 +217,7 @@
 </details>
 <h2 id="3-参数数组">3. 参数数组</h2>
 <p>展开 <code>playParams</code> 并添加一个元素，填写 <code>key = zoom</code>、<code>value = 0.5</code>。<code>PlayParm</code> 的两个字段分别为 string 和 float，组件在播放前逐个调用 <code>setParameterByName</code>。本配方会先查询当前事件缓存，确认示例事件存在并定义了 <code>zoom</code>；换用其他事件时，应填写该事件实际拥有的参数名。</p>
+<p>每个要修改的参数各加一项。音效包需要加载时，组件会异步等待。实例准备好后，组件会在播放前写入各项参数。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -258,6 +259,7 @@
 <h2 id="4-生命周期与距离">4. 生命周期与距离</h2>
 <p>勾选 <code>isCustomSoundMaxDistance</code>，显示 <code>customSoundMaxDistance</code> 后填入 75；关闭覆盖时该字段隐藏。默认覆盖关闭、距离为 50。这里限制的是启用时是否开始播放，不是持续更新的声音衰减范围。</p>
 <p><code>OnEnable</code> 调用 <code>Play</code>。若此时相机距离超过上限，方法直接返回，靠近后不会自动重播；事件为空、音效池未准备好或音效包加载失败时也不会开始播放。禁用或销毁会取消尚未完成的等待：<code>isStopEventOnDisable = true</code> 时归还已有实例到池；设为 false 时走 <code>ReleaseEvent</code> 路径，不能据此保证声音立即停止。本例保持 true。</p>
+<p>旧截图中的独立自动播放开关已移除。当前版本在对象启用时尝试播放。</p>
 <p><img src="imgs/fmod-play-component-distance.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -322,7 +324,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

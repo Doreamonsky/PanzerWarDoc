@@ -8,17 +8,17 @@
       <title>VehicleLightAttachment Guide | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="VehicleLightAttachment Guide | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -116,6 +116,7 @@
 <li>Create a light object in the vehicle prefab and add <code>VehicleLightAttachmentMonoComponent</code>. Expand <code>lightAttachmentSlot</code>, then <code>attachment</code>, and assign the light origin to <code>lightTransform</code>. This example uses a separate <code>Tutorial_Light.prefab</code> with a node named <code>LightOrigin</code>.</li>
 <li>The same object needs <code>VehicleAttachmentMonoComponent</code> for runtime discovery. Set <code>attachmentSlotType</code> to <code>Specific</code> and assign the light component to <code>specificAttachmentMonoComponent</code>. The project's CustomEditor adds this companion when drawing the light Inspector; the recipe creates and saves it explicitly.</li>
 </ol>
+<p>For a complete vehicle, create separate origin nodes under <code>MainBody</code> for left and right low beams, high beams, brake lights, reverse lights and indicators. Line up one side, then use <strong>Create Mirror</strong> and check the other side. Use <strong>Duplicate</strong> to make another independent light.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -228,9 +229,9 @@
 </details>
 <h2 id="3-appearance-and-visibility">3. Appearance and visibility</h2>
 <ol>
-<li>Set <code>lightType</code> to <code>LowBeam</code>, <code>baseColor</code> to white, and <code>emissionColor</code> to HDR white with intensity 3.5 as in this example.</li>
-<li>Keep <code>isAlwaysVisible = true</code> and <code>isBlinker = false</code>, and turn off <code>isAutoNaming</code>. Enabling <code>isBlinker</code> reveals frequency and phase fields. The defaults, <code>blinkerFrequency = 1</code> and <code>blinkerStep = 0.5</code>, are examples rather than the only working values.</li>
-<li><code>lensEmitters</code> contains lens-glare sampling nodes, up to eight entries; <code>beamOrigin</code> specifies a separate beam origin. Leave both empty for this basic Circle setup. These fields are distinct from Unity Light components.</li>
+<li>Set <code>lightType</code> to <code>LowBeam</code>, then use <strong>Set From Preset</strong> to fill its colors. To tune the light by hand, edit <code>baseColor</code> and HDR <code>emissionColor</code> separately. The brightness and radius in the older VT-1A example suit that vehicle.</li>
+<li>Keep <code>isAlwaysVisible = true</code> and <code>isBlinker = false</code>, and turn off <code>isAutoNaming</code> for this example. Enabling <code>isBlinker</code> reveals frequency and the fraction of each cycle spent on. At <code>blinkerFrequency = 1</code> and <code>blinkerStep = 0.5</code>, the light stays on for about half a second per cycle.</li>
+<li><code>lensEmitters</code> holds up to eight lens-glare sampling nodes. <code>beamOrigin</code> sets a separate beam origin, whose local <strong>+Z</strong> points along the beam. Both are optional for this basic Circle setup. With <code>CustomShape</code>, use <strong>Preview lights on/off</strong> to check the renderers.</li>
 </ol>
 <p><img src="../../mod/imgs/vehicle-light-component-appearance.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
 <details class="tutorial-mcp">
@@ -349,7 +350,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
