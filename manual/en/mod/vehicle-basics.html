@@ -264,6 +264,8 @@
 <li>Export a separate, low-poly damage model. Split plates by armor thickness, material type, and moving part. Each plate gets its own thickness in Unity and belongs under the part it moves with. Separate the internal modules too. Follow the <a href="hitbox-naming-conventions.html">damage-model naming conventions</a>.</li>
 <li>For a small first vehicle, the original art budgets are a useful starting point. Aim for about 20,000 faces or fewer on the visual model, about four materials, textures at 2048 × 2048 or lower, and about 5,000 faces or fewer on the damage model. Consolidate duplicate materials and simplify hidden surfaces and collision shapes.</li>
 </ol>
+<p>Drag the imported FBX into a Unity scene and expand its root. This KV-2 comes from the vehicle project. Locate <code>MainBody</code> and <code>Turret</code> in the Hierarchy, then expand <code>Turret → Gun → Dym</code> and match the hierarchy to the parts in Scene View.</p>
+<p><img src="../../mod/imgs/vehicle-basics-kv2-model.en.png" alt="Imported KV-2 hierarchy and the hull, turret, and gun in Unity Scene View"></p>
 <h2 id="3-set-materials-and-physical-collision-in-unity">3. Set materials and physical collision in Unity</h2>
 <ol>
 <li>Drop the visual FBX, damage FBX, and textures in the vehicle folder. Preview the visual FBX. Create or select materials compatible with your project's render pipeline and assign separate base-color and normal textures. Put the materials on each mesh under <strong>Mesh Renderer → Materials</strong> and check the colors and model orientation.</li>
@@ -355,6 +357,8 @@
 <li>Select the ammo rack's <strong>InternalModule</strong>. Add bounds and resize them to cover the corresponding ammo volume. Click <strong>Create Ammo Cache</strong>, or use <strong>Multi-Update Ammo Model Cache</strong> in the HitBox editor for several racks. Verify that every bound has a cached mesh.</li>
 <li>Save the prefab with <strong>Ctrl+S</strong> and leave Prefab Mode. Check that <strong>VehicleHitBox</strong> still references the generated prefab.</li>
 </ol>
+<p>Compare the two models in Scene View. The KV-2 visual model keeps the paint and details. The orange damage model is split into armor regions for damage and armor inspection. The two meshes are spaced apart in the illustration. Keep their origins and orientations aligned when setting up the vehicle.</p>
+<p><img src="../../mod/imgs/vehicle-basics-kv2-armor.en.png" alt="KV-2 damage and visual models side by side in Unity"></p>
 <p><img src="../../mod/imgs/vehicle-basics-armor.en.png" alt="External armor model and its generated HitBox prefab"></p>
 <h2 id="6-set-vehicle-information-shells-audio-and-parameters">6. Set vehicle information, shells, audio, and parameters</h2>
 <ol>
@@ -626,6 +630,8 @@
 <li>View the wheels from the side. Use <strong>Create Node</strong> in order around the loop, under the road wheels, over the return rollers, and around both ends. Temporarily hide damage geometry or static tracks if they obscure the path.</li>
 <li>Click <strong>Preview Track</strong> and check link orientation, corners, and spacing on both sides. Use <strong>Update Preview</strong> after changes. Finish with <strong>Save</strong> and <strong>Unlock Inspector</strong> and check the track reference on the vehicle. <a href="track-ik-suspension.html">Track IK and suspension guide</a></li>
 </ol>
+<p>The KV-2 example below uses the track data from the vehicle project. Orange dots mark the path nodes and the cyan line connects them into a loop. The guide is shifted slightly outward for visibility. On your own vehicle, run the path along the bottom of the road wheels, around both end wheels, and across the top to close the loop.</p>
+<p><img src="../../mod/imgs/vehicle-basics-kv2-track.en.png" alt="Side view of the KV-2 track nodes and cyan path loop in Unity Scene View"></p>
 <p><img src="../../mod/imgs/vehicle-basics-track.en.png" alt="Track link asset and spacing"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -933,9 +939,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/vehicle-basics.md/#L1" class="contribution-link">Edit this page</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

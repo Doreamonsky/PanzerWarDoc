@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T104617Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2186,16 +2186,6 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "manual/en/mod/create-mech.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/en/mod/create-mech.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/crew-data.md",
       "output": {
         ".html": {
@@ -3273,16 +3263,6 @@
       "output": {
         ".html": {
           "relative_path": "manual/mod/convert-to-diy-equipment.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "manual/mod/create-mech.md",
-      "output": {
-        ".html": {
-          "relative_path": "manual/mod/create-mech.html"
         }
       },
       "version": ""
@@ -8509,26 +8489,6 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "manual/mod/imgs/create-mech-mech.en.png",
-      "output": {
-        "resource": {
-          "relative_path": "manual/mod/imgs/create-mech-mech.en.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "manual/mod/imgs/create-mech-mech.zh-CN.png",
-      "output": {
-        "resource": {
-          "relative_path": "manual/mod/imgs/create-mech-mech.zh-CN.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/crew-data-basic.en.png",
       "output": {
         "resource": {
@@ -10603,6 +10563,66 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vehicle-basics-bindings.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-model.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-model.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-model.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-model.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-track.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-track.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-track.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-track.zh-CN.png"
         }
       },
       "version": ""

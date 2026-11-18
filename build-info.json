@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T100709Z",
+  "builtAt": "20261118T104617Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -85,7 +85,6 @@
     "vehicle-modding-notes",
     "flight-vehicles",
     "vfx-mod",
-    "create-mech",
     "map-wizard-tutorial",
     "sight-mod",
     "encrypted-mods",
@@ -100,7 +99,7 @@
     "mask-texture-preview",
     "continuous-build"
   ],
-  "reviewedDependenciesSha256": "f5f8b389988b3e97cdca12a7420b74e064492e93cc5c8717b8d26009068b6da9",
+  "reviewedDependenciesSha256": "6b602b42c27ef4814192111a040b0821387223e7129b16a46d735195824559c1",
   "contentReviewedTutorials": [
     "blender-axis-fix",
     "get-started",
@@ -113,16 +112,5 @@
     "vehicle-playground",
     "vehicle-text-data"
   ],
-  "newContentReviews": [
-    "vehicle-text-data",
-    "physics-wheels",
-    "track-ik-suspension",
-    "hitbox-naming-conventions",
-    "get-started",
-    "unity-engine-requirements",
-    "blender-axis-fix",
-    "vehicle-dev-qa",
-    "vehicle-playground",
-    "vehicle-basics"
-  ]
+  "newContentReviews": []
 }

@@ -264,6 +264,8 @@
 <li>另存一份低面数的伤害模型。按装甲厚度、材质类型和活动部位拆开板件。在引擎中每块独立设置厚度，随炮塔、主炮或炮管转动的板件后续要挂在相应父节点。内部模块也要独立拆分。按<a href="hitbox-naming-conventions.html">伤害模型命名规范</a>命名后导出。</li>
 <li>小型入门载具可沿用旧指南的预算作为起点，显示模型约 2 万面以内、约 4 个材质、贴图 2048 × 2048 或更低，伤害模型约 5000 面以内。先合并重复材质、简化看不见的面和碰撞轮廓，保留可辨识的车体、炮塔与轮组。</li>
 </ol>
+<p>把 FBX 拖入 Unity 场景，展开模型根节点。下面是载具工程的 KV-2。先在 Hierarchy 找到 <code>MainBody</code> 与 <code>Turret</code>，再逐级展开 <code>Turret → Gun → Dym</code>，对照 Scene View 的部件位置。</p>
+<p><img src="imgs/vehicle-basics-kv2-model.zh-CN.png" alt="KV-2 导入后的 Unity 层级与车体、炮塔和炮管的位置"></p>
 <h2 id="3-在-unity-中绑定材质和物理碰撞">3. 在 Unity 中绑定材质和物理碰撞</h2>
 <ol>
 <li>将显示 FBX、伤害 FBX 和贴图拖进 Project 窗口的载具目录。选中显示 FBX 查看预览。创建或选用与当前工程渲染管线兼容的材质，分别绑定基本色和法线。把材质放到相应网格的 <strong>Mesh Renderer → Materials</strong>，核对模型上颜色和朝向。</li>
@@ -355,6 +357,8 @@
 <li>选中弹药架节点的 <strong>InternalModule</strong>。为它添加边界并调整到覆盖相应的弹药区域，再点击 <strong>创建弹药架模型缓存 - Create Ammo Cache</strong>。可以在伤害编辑窗口用<strong>批量更新弹药架模型缓存</strong>处理多个弹药架。检查边界与生成的网格缓存一一对应。</li>
 <li>在 Prefab Mode 按 <strong>Ctrl+S</strong> 保存并退出。回到 <strong>VehicleHitBox</strong> 检查已绑定生成的预制体。</li>
 </ol>
+<p>在 Scene View 比较两份模型。KV-2 的显示模型保留材质和细节，橙色伤害模型按装甲区域拆分，供伤害和装甲检查使用。两份模型在示意图里并排摆放。配置时应保持它们的原点和方向一致。</p>
+<p><img src="imgs/vehicle-basics-kv2-armor.zh-CN.png" alt="Unity 中并排展示 KV-2 的伤害模型与显示模型"></p>
 <p><img src="imgs/vehicle-basics-armor.zh-CN.png" alt="外部装甲模型与已生成的伤害预制体"></p>
 <h2 id="6-设置载具信息炮弹音效和参数">6. 设置载具信息、炮弹、音效和参数</h2>
 <ol>
@@ -626,6 +630,8 @@
 <li>从侧面观察轮组，按绕履带一圈的顺序点击 <strong>创建节点</strong>并放置节点。把路径放到负重轮下方、托带轮上方和前后转折处，检查每一侧形成闭环。可以临时隐藏伤害模型或静态履带，便于观察。</li>
 <li>点击 <strong>预览悬挂（Preview Track）</strong>，检查履带节的方向、转角与间距。调整后使用 <strong>更新预览</strong>，完成后点击 <strong>保存数据</strong>与<strong>解锁视图</strong>。检查履带数据仍绑定在这辆车。<a href="track-ik-suspension.html">履带 IK 与悬挂图示</a></li>
 </ol>
+<p>下面用载具工程的 KV-2 数据展示履带环路。橙点是路径节点，青线依次把它们连成闭环，整条示意线向外移开一点以便观察。自己的车也应沿负重轮底部绕过两端轮，再从上方闭合。</p>
+<p><img src="imgs/vehicle-basics-kv2-track.zh-CN.png" alt="KV-2 履带节点和青色闭环的 Unity Scene View 侧视图"></p>
 <p><img src="imgs/vehicle-basics-track.zh-CN.png" alt="履带节资源与间距"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -933,9 +939,6 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/vehicle-basics.md/#L1" class="contribution-link">Edit this page</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
