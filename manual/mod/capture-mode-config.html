@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>39. Capture Mode Config 占点模式配置 | Panzer War Document </title>
+      <title>占点模式配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="39. Capture Mode Config 占点模式配置 | Panzer War Document ">
-    
-    
+      <meta name="title" content="占点模式配置 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,41 +77,117 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="39-capture-mode-config-占点模式配置">39. Capture Mode Config 占点模式配置</h1>
 
-<h1 id="set-steam-game-folder---请先设置完毕-steam-游戏路径">Set steam game folder - 请先设置完毕 Steam 游戏路径</h1>
-<p>Complete this step first</p>
-<p>请先完成此步</p>
-<p><a href="set-steam-game-folder.html">1.4 设置 Steam 游戏资源路径 - Set Steam Game Folder</a></p>
-<h1 id="21-import-diy-map-导入-diy-地图">2.1 Import DIY Map 导入 DIY 地图</h1>
-<p><img src="imgs/7a8a170fc99b_1714647577243-cc50250b-3625-470b-b36b-c51d3e94d033.png" alt=""></p>
-<p><img src="imgs/a4dbbbcee0bd_1714647566410-b652b1e4-e27a-4b12-9adb-b5f751dbd032.png" alt=""></p>
-<p><img src="imgs/ceb24fa3745d_1714647779609-5674dd46-3e78-44dc-95e0-54363420e976.png" alt=""></p>
-<h1 id="22-open-non-diy-map-打开非-diy-地图">2.2 Open non-diy map 打开非 DIY 地图</h1>
-<p>Just open the desire scene in the editor</p>
-<p>只需在 Unity 中打开对应场景即可</p>
-<h1 id="create-capture-zone-config-创建占点配置">Create capture zone config 创建占点配置</h1>
-<p><img src="imgs/316358c58217_1714647662023-85675066-2cc6-4edf-a957-48db20c4ba7b.png" alt=""></p>
-<p>Set CaptureZoneModeConfig for config</p>
-<p>Config 类型选择 CaptureZoneModeConfig</p>
-<p><img src="imgs/4bbbf9fdc829_1714647673726-f6df8f9a-4d94-457a-a6c4-50bf348ecd75.png" alt=""></p>
-<p>Input a proper name as the config file name</p>
-<p>输入一个合适的名字作为文件名称</p>
-<p><img src="imgs/222ad5828009_1714647691102-bf0d9122-1018-4a19-a2e6-8d7251b02cd6.png" alt=""></p>
-<p><img src="imgs/da17500e76e2_1714647734925-c3e5c734-b19b-4320-a7e0-8219ff174546.png" alt=""></p>
-<h1 id="set-config-设置配置">Set config 设置配置</h1>
-<p><img src="imgs/59b8962d35cd_1714647895798-1c1d8dce-aebb-4287-a70a-ddae599e1863.png" alt=""></p>
-<p><img src="imgs/14474c36c540_1714647944687-0e04a8ce-aecc-4dc7-8657-64066fff56a6.png" alt=""></p>
-<p>Click edit to add spawn point</p>
-<p>点击 Edit，+号，增加出生点</p>
-<p><img src="imgs/03c37db4796a_1714647963612-08f618f1-aec2-4bf7-9fc4-28d307b20129.png" alt=""></p>
-<p><img src="imgs/65b06ec1e084_1714648059898-e2237deb-2949-42bf-b804-1de406b1f821.png" alt=""></p>
-<p><img src="imgs/971558890a19_1714648189542-b6d006c0-055b-4fb3-86ba-de933a600dc3.png" alt=""></p>
-<p>Be sure to set the zone chain</p>
-<p>请确保设置占点连通区（Zone Chain）</p>
-<p><img src="imgs/47f0381ae9c3_1714648220643-84121c2f-c15a-45e3-962a-ee3f48c4a482.png" alt=""></p>
-<h1 id="build-打包">Build 打包</h1>
-<p><img src="imgs/32c47a2b192b_1714648360852-531ffa34-ca21-4904-a68d-ce39b528c488.png" alt=""></p>
+<!-- Generated from tutorials/capture-mode-config/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="占点模式配置">占点模式配置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/capture-mode-config.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run capture-mode-config
+</code></pre>
+<p>占点模式配置描述占点战斗使用的区域、占领点、每个区域的出生点以及区域连通关系。它是一份 <code>CaptureZoneModeConfig</code> JSON，存放在配置根目录下，出包时被打包成二进制配置数据。</p>
+<h2 id="1-准备地图场景">1. 准备地图场景</h2>
+<ol>
+<li>先完成 <a href="set-steam-game-folder.html">设置 Steam 游戏资源路径</a>，让编辑器能读取游戏侧的 <code>LuaProject</code> 资源。</li>
+<li>DIY 地图按 <a href="diy-map-project-import.html">导入 DIY 地图</a> 把 YAML 导入基础场景；官方或其他非 DIY 地图只需在编辑器中打开对应场景。</li>
+<li>编辑时保持场景打开。点位放置和 <strong>刷新位置 (NavMesh)</strong> 按钮会采样当前场景的 NavMesh，所以地图必须已经烘焙好寻路数据。</li>
+</ol>
+<h2 id="2-创建配置">2. 创建配置</h2>
+<ol>
+<li>打开 <strong>Framework - 框架 → 2. Config - 配置文件</strong>。</li>
+<li>在创建表单中选择 <strong>配置文件</strong>（Config Path）。下拉列表来自框架设置中保存的配置路径，这个值同时决定配置会出现在哪个目录树里。</li>
+<li>配置类型选择 <strong>CaptureZoneModeConfig</strong>。</li>
+<li>填写 <strong>文件名称</strong> 并点击 <strong>创建</strong>（Create Config）。文件名为空只会弹出错误提示，所以要先填好。文件名不需要扩展名。</li>
+<li>工具会写入 <code>&lt;配置根目录&gt;/CaptureZone/&lt;名称&gt;.json</code>，并在内部生成一个新的 GUID。不要从其他文件复制 GUID。</li>
+</ol>
+<p>创建出的对象包含以下字段，用途各不相同：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>captureZoneName</code></td>
+<td>内部标识。请使用独特且唯一的 ID，不要与其他配置重复。</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td>面向玩家的本地化显示名称。</td>
+</tr>
+<tr>
+<td><code>mapGuid</code></td>
+<td>地图的运行时标识。普通地图用 MapData 的 GUID，DIY 地图用 Defined Name。</td>
+</tr>
+<tr>
+<td><code>backgroundCameraTransformInfo</code></td>
+<td>可选的地图背景视角相机位置与旋转。</td>
+</tr>
+</tbody>
+</table>
+<p>编辑器菜单树会把文件显示为 <code>&lt;配置路径目录&gt;/CaptureZone/&lt;文件名&gt;</code>，选中它即可打开该文件的占点编辑器。</p>
+<h2 id="3-设置地图-guid-与背景相机">3. 设置地图 GUID 与背景相机</h2>
+<ol>
+<li>在区域编辑器中，<strong>地图 Guid</strong> 一行显示当前值（为空时显示 <code>—</code>）。点击 <strong>使用当前场景</strong> 可从当前场景可发现的地图数据中填入 GUID。</li>
+<li>普通地图核对写入值与 MapData 的 GUID 一致。DIY 地图填写导入 YAML 中的 <strong>Defined Name</strong>（<code>definedName</code>）原值，保留空格和标点。游戏按这个名称注册 DIY 地图。</li>
+<li>背景相机是可选的。把 Scene 视图调整到想要的构图后点击 <strong>设置背景相机</strong>，会保存该相机的位置与旋转。模式不需要背景视角时保持为零即可。</li>
+</ol>
+<h2 id="4-添加占领区域">4. 添加占领区域</h2>
+<ol>
+<li>点击编辑面板或场景浮层上的 <strong>+ 新区域</strong>。新区域会添加在当前场景视图指向的位置，<code>pointName</code> 为占位值（<code>Zone_&lt;n&gt;</code>），半径默认为 30。</li>
+<li>点击区域标签选中它，然后填写：
+<ul>
+<li><code>pointName</code> —— 必须唯一。区域连通关系按这个字符串解析区域，改名后要同步更新连通项。</li>
+<li><strong>位置</strong> 与 <strong>范围</strong> —— 占领点位置和占领圈半径。</li>
+<li><strong>初始队伍拥有者</strong> —— 初始归属队伍，中立则选 <code>none</code>。</li>
+</ul>
+</li>
+<li>用选中区域的 <strong>+Pt</strong> / <strong>-Pt</strong> 构建边界。<code>zonePoints</code> 是定义区域范围的边界多边形，它与占领点的位置、半径是两套独立数据。边界点应放在可行走地面，并用 <strong>刷新位置 (NavMesh)</strong> 和 <strong>合并附近点</strong> 吸附、整理。</li>
+<li>按同样方式添加其余区域。小型地图通常 2-3 个区域就够，不必为了填满数组硬加区域。</li>
+</ol>
+<h2 id="5-添加每个区域的出生点">5. 添加每个区域的出生点</h2>
+<ol>
+<li>选中区域后点击 <strong>显示出生点</strong>（旧版本按钮名为 Edit），再点 <strong>+</strong> 添加出生点标记。</li>
+<li>会出现带编号的标记。点击标记选中该出生点，用场景手柄移动或旋转它。数值保存在该区域的 <code>spawnTransformInfos</code> 中，也可以在序列化字段里直接编辑。</li>
+<li>请选用清晰可驾驶的位姿：位于地面或其附近、朝向符合设计方向、不要卡进墙体、道具或其他载具。<strong>刷新位置 (NavMesh)</strong> 会把出生点吸附到寻路网格并清零俯仰与翻滚，但仍需人工确认视角。</li>
+<li>完成后点击 <strong>隐藏出生点</strong>，让场景视图更清爽。</li>
+</ol>
+<h2 id="6-添加区域连通关系">6. 添加区域连通关系</h2>
+<ol>
+<li>在 <code>zoneChains</code> 中添加条目，<strong>A</strong> 与 <strong>B</strong> 填写与区域一致的 <code>pointName</code> 字符串。</li>
+<li>只连接地图设计真正允许相连的相邻区域。运行时 <code>CaptureZoneGameMode.Setup.cs</code> 会把 <code>fromZone</code> 作为 <code>toZone</code> 的前置相邻区域，所以每条记录是有方向的。只有地图设计确实允许双向通行时，才补上反方向条目。</li>
+<li>检查所有连接：名称必须能解析到已有区域。解析失败的名称在运行时会被直接跳过，编辑器也不会为它绘制连线，所以拼写错误只会让连接静默消失。</li>
+</ol>
+<h2 id="7-保存打包与测试">7. 保存、打包与测试</h2>
+<ol>
+<li>保存配置。</li>
+<li>在地图模组的构建管线中，把保存的占点 JSON 加到 <strong>Config file</strong>。选择目标平台并构建模组包。管线会把 JSON 转换为配置数据并随 <code>.modpack</code> 交付。地图场景仍由地图构建流程提供。</li>
+<li>本地只导出配置时，可用 <strong>打包所有配置</strong>（Pack All Configs）。它重建 <code>Build/Config</code>，占点配置输出到 <code>Build/Config/capturezone/&lt;配置 GUID&gt;.bytes</code>。</li>
+<li>安装刚构建的模组，在目标地图运行一次占点战斗。核对占领区、出生点与区域推进顺序。</li>
+</ol>
+<p>本例给 <strong>Tutorial Town</strong> 配置 <strong>Depot</strong> 和 <strong>Ridge</strong> 两个区域，连通方向为 Depot 到 Ridge。回放生成并核对本地 <code>.bytes</code> 文件。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;return assert(loadfile(\&quot;../../Docs/Manual/tutorials/capture-mode-config/example.lua\&quot;))()&quot;,
+        &quot;docs-capture&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Capture mode JSON and .bytes export verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -139,7 +215,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

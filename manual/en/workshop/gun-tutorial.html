@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Vehicle Workshop Gun Simulation | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Vehicle Workshop Gun Simulation | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/gun-tutorial/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="vehicle-workshop-gun-simulation">Vehicle Workshop Gun Simulation</h1>
+<p><a href="../../workshop/gun-tutorial.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run gun-tutorial
+</code></pre>
+<p>The vehicle workshop simulates guns and shells without rebuilding the vehicle. Select an installed gun, choose a reload FireState, and configure shell subobjects for the simulation.</p>
+<h2 id="1-select-an-installed-gun">1. Select an installed gun</h2>
+<p>Open the vehicle in the workshop and select the gun already installed on it. The workshop edits that gun's simulation entry instead of creating a separate weapon.</p>
+<p><img src="../../workshop/imgs/gun-tutorial-select-gun.en.png" alt="The 90 MM DCA 45 selected on the teaching vehicle in the Tank Workshop"></p>
+<h2 id="2-set-a-custom-reload-firestate">2. Set a custom reload FireState</h2>
+<p>Choose the reload FireState that matches the intended behaviour:</p>
+<table>
+<thead>
+<tr>
+<th>FireState</th>
+<th>What to configure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>Custom reload with <code>ReloadTime</code></td>
+</tr>
+<tr>
+<td>Advanced (<code>Advance</code>)</td>
+<td><code>advanceMaxSmallAmmo</code> sets the magazine capacity, <code>advanceSmallReloadTime</code> sets the interval between shots, and <code>advanceLargeReloadTime</code> sets the full refill time.</td>
+</tr>
+<tr>
+<td>Drum</td>
+<td><code>drumReloadTimes</code> sets the reload durations for the individual backed-up rounds. <code>drumFireDuration</code> sets the firing interval.</td>
+</tr>
+</tbody>
+</table>
+<p>Scroll to <strong>Reload Type</strong> on the right and fill the fields for the selected mode. To try a magazine, set the capacity to <strong>3</strong>, the short reload to <strong>2.5 seconds</strong>, and the full refill to <strong>14 seconds</strong>. For large magazines, the Advanced and Drum options let you hide the grouped ammo icons. Drum mode can fire a ready round while replenishing the backup rounds. Check the timing during a test drive.</p>
+<h2 id="3-configure-shell-subobjects">3. Configure shell subobjects</h2>
+<p>Expand the gun's shell subobjects. Use <strong>Import Default Bullets</strong> to copy an existing game shell configuration, or press <strong>+</strong> to add a shell type from scratch. Then edit the basic shell data and the module-mode overrides for that shell.</p>
+<p>After editing a shell, press <strong>Recalculate Bullet Info</strong> and read its debug display again. Shells that use the De Marre model show in-game estimates by range and impact angle. Other shell types use their own parameters. Compare the same range and angle before and after editing, then try the result in game.</p>
+<h2 id="4-test-in-game">4. Test in game</h2>
+<p>Run the vehicle in game to check reload timing, shell selection and the shell behaviour you configured. The debug penetration estimates shown by the simulation are estimates derived from the in-game inputs, so compare them against the actual in-game behaviour rather than treating them as a fixed reference.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local data, core = CS.ShanghaiWindy.Core.Data, CS.ShanghaiWindy.Core\nlocal gun = data.DIYUserCustomizeGunProperty()\ngun:SetPropertyInfos()\nlocal function has(name)\n    return gun:GetEditableFields(false):Contains(name)\nend\nassert(has(\&quot;ReloadTime\&quot;) and not has(\&quot;advanceMaxSmallAmmo\&quot;))\ngun.fireState:SetValue(core.FireState.Advance)\ngun.advanceMaxSmallAmmo.isEnabled = true\ngun.advanceMaxSmallAmmo:SetValue(3)\nassert(gun.advanceMaxSmallAmmo:GetValue() == 3 and has(\&quot;advanceSmallReloadTime\&quot;) and not has(\&quot;drumReloadTimes\&quot;))\ngun.fireState:SetValue(core.FireState.Drum)\nassert(has(\&quot;drumReloadTimes\&quot;) and has(\&quot;drumFireDuration\&quot;) and not has(\&quot;ReloadTime\&quot;))\nlocal shell = data.PenetrateBulletProperty()\nshell.name:SetValue(\&quot;Tutorial AP\&quot;)\ngun.bulletPropertyWrapper:GetValue():Add(shell)\nassert(gun.bulletPropertyWrapper:GetValue().Count == 1 and not has(\&quot;FirePowerMultiplier\&quot;))\nassert(shell:IsDemarrePeneration() and not data.HEATBulletProperty():IsDemarrePeneration())\nreturn \&quot;Verified Simple, Advance, Drum and workshop AP entry\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Verified Simple, Advance, Drum and workshop AP entry&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Select the installed gun on a test vehicle and use its ruleGuid from vehicle_rules as gun. The replay checks the mode fields and their values.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;vehicle_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${gun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DIYUserCustomizeGunProperty&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${gun}&quot;,
+      &quot;json&quot;: &quot;{\&quot;fireState\&quot;:{\&quot;value\&quot;:1},\&quot;advanceMaxSmallAmmo\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:3},\&quot;advanceSmallReloadTime\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:2.5},\&quot;advanceLargeReloadTime\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:14}}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;rebuilt&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${gun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;advanceMaxSmallAmmo\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:3}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>3. Gun Tutorial 火炮教程 | Panzer War Document </title>
+      <title>载具工坊火炮模拟 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="3. Gun Tutorial 火炮教程 | Panzer War Document ">
-    
-    
+      <meta name="title" content="载具工坊火炮模拟 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,77 +77,103 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="3-gun-tutorial-火炮教程">3. Gun Tutorial 火炮教程</h1>
 
-<h1 id="custom-reload-type-自定义装填类型">Custom Reload Type 自定义装填类型</h1>
-<h2 id="simple-简单">Simple 简单</h2>
-<p>Traditional single-shot shells only require setting the reload time.</p>
-<p>传统的单发炮弹，仅需设置装填时间。</p>
-<p><img src="imgs/4959f5b4f97f_1720280457664-b26d68db-3e46-47a3-8b35-f645c5fbfbd2.png" alt=""></p>
-<h2 id="advanced-高级">Advanced 高级</h2>
-<p>For multi-shot magazine guns, you need to set the small reload time, the large reload time, and the magazine size.</p>
-<p>多发弹夹炮需要设置小装填时间、大装填时间以及弹夹容量。</p>
-<p><img src="imgs/4fb21c57d48e_1720280509647-8507bfef-2a96-4d37-ba59-a4dedbc2be1d.png" alt=""></p>
-<p>If the magazine size is too large, you can hide the icon to avoid a cluttered UI.</p>
-<p>如果弹夹容量过大，可以隐藏图标，以避免 UI 过于拥挤。</p>
-<p><img src="imgs/e426a58d2ef5_1720280519104-2953d13f-a005-4b23-a504-bbd1b13e429d.png" alt=""></p>
-<h2 id="drum-弹鼓">Drum 弹鼓</h2>
-<p>Invented by the Italians, the drum mechanism is an optimized type of magazine gun that allows you to fire while loading backup rounds. You need to set the reload time for each backup round and the minimum firing interval of the drum.</p>
-<p>由意大利人发明的弹鼓机制，是弹夹炮的一种优化类型，允许在装载备弹的同时开火。需要设置每发备弹的装填时间以及弹鼓的最小射击间隔。</p>
-<p><img src="imgs/e55bb4c77f0d_1720280662921-01c432af-5998-4d67-abce-89f9e488d45d.png" alt=""></p>
-<h1 id="import-default-bullet-导入现有炮弹">Import Default Bullet 导入现有炮弹</h1>
-<p>You can modify the specific parameters of the default shells by importing the default shells.</p>
-<p>你可以通过导入默认炮弹来修改其具体参数。</p>
-<p>If you wish to fully customize your shells, you can also directly add different types of shells using the add button above.</p>
-<p>如果你希望完全自定义炮弹，也可以直接通过上方的添加按钮，添加不同类型的炮弹。</p>
-<p><img src="imgs/da15683f9a4d_1720279864362-98fa2bda-293d-4523-8ed3-2273be7f16e9.png" alt=""></p>
-<p>The shell data will display the basic parameters of the shell, along with some specialized parameters in modular mode.</p>
-<p>炮弹数据将显示炮弹的基本参数，以及模块模式下的部分专用参数。</p>
-<p><img src="imgs/1f4c434b350e_1720279926841-2c463374-0b29-42eb-b333-27136315059a.png" alt=""></p>
-<p>In the debugging information of the shell, you can see the calculated data. If you modify the parameters of the shell, you need to click the recalculate button.</p>
-<p>在炮弹的调试信息中，你可以查看计算后的数据。若修改了炮弹参数，需点击重新计算按钮。</p>
-<p><img src="imgs/2641d22efc41_1720279935068-a5d32b6d-680e-4e12-a5f1-20d94faf2a73.png" alt=""></p>
-<h1 id="demarre-formula-德马尔公式">Demarre Formula 德马尔公式</h1>
-<p>In our game, the penetration mechanics are based on the De Marre formula, which is used to estimate the penetration of a shell against armor. Here is an explanation of the formula and its parameters.</p>
-<p>在我们的游戏中，穿甲机制基于德马尔公式，用于估算炮弹对装甲的穿透能力。以下是公式及其参数的解释。</p>
-<p><span class="math">\(\text{Penetration 穿深} = \left( \frac{m \cdot v_{\text{rel}}^2}{d^3 \cdot D_{\text{term}}} \right)^{\frac{1}{C_{\text{armor}}}} \cdot d \cdot K_{\text{nap}} \cdot 100\)</span></p>
-<ul>
-<li><p><span class="math">\(m\)</span> is the shell mass (kg)</p>
-<p>是炮弹的质量（千克）；</p>
-</li>
-<li><p><span class="math">\(v_{\text{rel}}\)</span> is the shell velocity component in the direction of the plate, calculated as:</p>
-<p>是炮弹沿装甲板方向的速度分量，计算如下：</p>
-<p><span class="math">\(v_{\text{rel}} = v_d \cdot \cos(\theta \cdot 0.85 \cdot C_{\text{angle}})\)</span></p>
-<p><span class="math">\(v_d  = v_0 \left( 1 - \frac{\lambda d}{v_0} \right)\)</span></p>
-<p>where <span class="math">\(C_{\text{angle}}\)</span> is the penetration vs angle coefficient, <span class="math">\(\lambda\)</span> is the drag, and <span class="math">\(v_0\)</span> is the initial velocity;</p>
-<p>其中 <span class="math">\(C_{\text{angle}}\)</span> 是斜穿系数，<span class="math">\(\lambda\)</span> 是阻力，<span class="math">\(v_0\)</span> 是炮弹初速度；</p>
-</li>
-<li><p><span class="math">\(d\)</span> is the shell diameter (m)</p>
-<p>是炮弹直径（单位：米）；</p>
-</li>
-<li><p><span class="math">\(D_{\text{term}}\)</span> is the De Marre term, calculated as:</p>
-<p>是德马尔项，计算如下：</p>
-<p><span class="math">\(D_{\text{term}} = \left( D_{\text{const}} \right)^2 \cdot d^{-0.1}\)</span></p>
-<p>where <span class="math">\(D_{\text{const}}\)</span> is the De Marre constant;</p>
-<p>其中 <span class="math">\(D_{\text{const}}\)</span> 是德马尔常数；</p>
-</li>
-<li><p><span class="math">\(C_{\text{armor}}\)</span> is the armor material coefficient</p>
-<p>是装甲材料系数；</p>
-</li>
-<li><p><span class="math">\(K_{\text{nap}}\)</span> is the adjustment factor based on the TNT ratio, calculated as follows:</p>
-<p>是基于 TNT 比例的调整系数，计算如下：</p>
-<p>$   K_{\text{nap}} = \begin{cases}
-1 &amp; \text{if } \frac{\text{TNT}}{m} &lt; 0.65 \
-1 + \frac{\left(\frac{\text{TNT}}{m} - 0.65 \right) \cdot (0.93 - 1)}{1.6 - 0.65} &amp; \text{if } 0.65 \leq \frac{\text{TNT}}{m} &lt; 1.6 \
-0.93 + \frac{\left(\frac{\text{TNT}}{m} - 1.6 \right) \cdot (0.9 - 0.93)}{2 - 1.6} &amp; \text{if } 1.6 \leq \frac{\text{TNT}}{m} &lt; 2 \
-0.9 + \frac{\left(\frac{\text{TNT}}{m} - 2 \right) \cdot (0.85 - 0.9)}{3 - 2} &amp; \text{if } 2 \leq \frac{\text{TNT}}{m} &lt; 3 \
-0.85 + \frac{\left(\frac{\text{TNT}}{m} - 3 \right) \cdot (0.75 - 0.85)}{4 - 3} &amp; \text{if } 3 \leq \frac{\text{TNT}}{m} &lt; 4 \
-0.75 &amp; \text{if } \frac{\text{TNT}}{m} \geq 4
-\end{cases} $</p>
-</li>
-</ul>
-<p>This formula combines all the terms to calculate the penetration of the shell against armor, taking into account the mass, velocity, diameter, material properties, impact angle, and explosive charge of the shell.</p>
-<p>该公式结合所有参数来计算炮弹对装甲的穿透力，考虑了炮弹的质量、速度、直径、材料特性、入射角度和装药量。</p>
+<!-- Generated from tutorials/gun-tutorial/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="载具工坊火炮模拟">载具工坊火炮模拟</h1>
+<p><strong>中文</strong> | <a href="../en/workshop/gun-tutorial.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run gun-tutorial
+</code></pre>
+<p>载具工坊可以模拟火炮与炮弹，无需重新构建载具。选择已安装的火炮，设置装填 FireState，并配置炮弹子对象用于模拟。</p>
+<h2 id="1-选择已安装的火炮">1. 选择已安装的火炮</h2>
+<p>在工坊中打开载具，选择它已安装的火炮。工坊编辑的是该火炮的模拟条目，而不是另外新建一件武器。</p>
+<p><img src="imgs/gun-tutorial-select-gun.zh-CN.png" alt="在工坊选中教学车的 90 MM DCA 45 火炮"></p>
+<h2 id="2-设置自定义装填-firestate">2. 设置自定义装填 FireState</h2>
+<p>根据需要的表现选择装填 FireState：</p>
+<table>
+<thead>
+<tr>
+<th>FireState</th>
+<th>需要配置的内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>使用 <code>ReloadTime</code> 的自定义装填</td>
+</tr>
+<tr>
+<td>Advanced（<code>Advance</code>）</td>
+<td><code>advanceMaxSmallAmmo</code> 是弹匣容量，<code>advanceSmallReloadTime</code> 是匣内两发间隔，<code>advanceLargeReloadTime</code> 是整匣补充时间。</td>
+</tr>
+<tr>
+<td>Drum</td>
+<td><code>drumReloadTimes</code> 逐项设置备份弹药的装填时间，<code>drumFireDuration</code> 设置开火间隔。</td>
+</tr>
+</tbody>
+</table>
+<p>在右侧下滚到<strong>装填类型</strong>，填入选中模式显示的数值。试用弹夹炮时可把容量设为 <strong>3</strong>，小装填设为 <strong>2.5 秒</strong>，大装填设为 <strong>14 秒</strong>。容量较大时，可以在弹夹炮或弹鼓炮选项中隐藏成组的弹药图标。弹鼓炮允许在补充备弹期间发射已就绪的炮弹。用试驾确认实际节奏。</p>
+<h2 id="3-配置炮弹子对象">3. 配置炮弹子对象</h2>
+<p>展开火炮的炮弹子对象。使用 <strong>Import Default Bullets</strong> 复制游戏已有的炮弹配置，或点击 <strong>+</strong> 新增一种炮弹类型。然后编辑该炮弹的基础数据和模块模式覆盖项。</p>
+<p>修改炮弹数据后，按 <strong>Recalculate Bullet Info</strong>，在当前弹种的调试区重新读表。支持德马尔模型的弹种会按游戏配置显示与射距、入射角有关的穿深估算。其他弹种使用自身参数。用同一距离和角度比较改前改后的结果，再在游戏里试射。</p>
+<h2 id="4-在游戏中测试">4. 在游戏中测试</h2>
+<p>在游戏中运行该载具，检查装填节奏、弹种选择以及配置的炮弹表现。模拟显示的调试穿深估算来自游戏内输入，属于估算值，应结合实际游戏内的表现来判断，而不是当作固定参考。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local data, core = CS.ShanghaiWindy.Core.Data, CS.ShanghaiWindy.Core\nlocal gun = data.DIYUserCustomizeGunProperty()\ngun:SetPropertyInfos()\nlocal function has(name)\n    return gun:GetEditableFields(false):Contains(name)\nend\nassert(has(\&quot;ReloadTime\&quot;) and not has(\&quot;advanceMaxSmallAmmo\&quot;))\ngun.fireState:SetValue(core.FireState.Advance)\ngun.advanceMaxSmallAmmo.isEnabled = true\ngun.advanceMaxSmallAmmo:SetValue(3)\nassert(gun.advanceMaxSmallAmmo:GetValue() == 3 and has(\&quot;advanceSmallReloadTime\&quot;) and not has(\&quot;drumReloadTimes\&quot;))\ngun.fireState:SetValue(core.FireState.Drum)\nassert(has(\&quot;drumReloadTimes\&quot;) and has(\&quot;drumFireDuration\&quot;) and not has(\&quot;ReloadTime\&quot;))\nlocal shell = data.PenetrateBulletProperty()\nshell.name:SetValue(\&quot;Tutorial AP\&quot;)\ngun.bulletPropertyWrapper:GetValue():Add(shell)\nassert(gun.bulletPropertyWrapper:GetValue().Count == 1 and not has(\&quot;FirePowerMultiplier\&quot;))\nassert(shell:IsDemarrePeneration() and not data.HEATBulletProperty():IsDemarrePeneration())\nreturn \&quot;Verified Simple, Advance, Drum and workshop AP entry\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Verified Simple, Advance, Drum and workshop AP entry&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>先在测试车上选择已装的火炮，把 vehicle_rules 返回的火炮 ruleGuid 填入 gun。该回放验证模式字段和数值。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;vehicle_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${gun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DIYUserCustomizeGunProperty&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_set_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${gun}&quot;,
+      &quot;json&quot;: &quot;{\&quot;fireState\&quot;:{\&quot;value\&quot;:1},\&quot;advanceMaxSmallAmmo\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:3},\&quot;advanceSmallReloadTime\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:2.5},\&quot;advanceLargeReloadTime\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:14}}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;rebuilt&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_props&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${gun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;advanceMaxSmallAmmo\&quot;:{\&quot;isEnabled\&quot;:true,\&quot;value\&quot;:3}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -175,7 +201,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>37. 着色器收集与打包 Shader Variant Collection and Build | Panzer War Document </title>
+      <title>为打包收集着色器变体 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="37. 着色器收集与打包 Shader Variant Collection and Build | Panzer War Document ">
-    
-    
+      <meta name="title" content="为打包收集着色器变体 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,51 +77,219 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="37-着色器收集与打包-shader-variant-collection-and-build">37. 着色器收集与打包 Shader Variant Collection and Build</h1>
 
-<p>如果使用任何自定义着色器，请按以下方式收集其变体：</p>
-<p>If you use any custom shader, collect its variants as follows.</p>
-<p><img src="imgs/c65a39c6f6fd_1713719391158-1bbb686b-e6fc-4dd6-a37e-41847efd5f69.png" alt=""></p>
-<p>开启开发模式</p>
-<p>Enable developer mode.</p>
-<p><img src="imgs/336f82472234_1713719419634-3d3bd5bd-f2da-4ead-9904-751436c6d9e3.png" alt=""></p>
-<p>创建变体收集</p>
-<p>Create a shader variant collection.</p>
-<p><img src="imgs/21c5db82ef38_1713719497023-22fc69d0-5bf0-4578-b02e-0d0f05fe98f2.png" alt=""></p>
-<p>在模组打包文件上，选择刚刚创建的变体收集。</p>
-<p>On the Mod build asset, select the variant collection you just created.</p>
-<p>如果着色器存在自定义的着色器特性，则需将其填写在变体收集的列表中。</p>
-<p>If the shader has custom shader features, you need to fill them into the list of the variant collection.</p>
-<p><img src="imgs/8c58359cf072_1713719541568-58431855-0d47-4613-9bd6-46128e6db4d0.png" alt=""></p>
-<p>点击导出 Shader 变体</p>
-<p>Click export shader variants.</p>
-<p><img src="imgs/fc63203b9e33_1713719442621-f8b9c319-7e53-4dc5-b025-99b961ac8e5c.png" alt=""></p>
-<p>会在模组打包文件下方，生成一份 svc 文件</p>
-<p>An svc file will be generated under the Mod build asset.</p>
-<p><img src="imgs/09e7e68aff66_1713719561038-929d42c0-ace4-4390-be50-6b20efd8282e.png" alt=""></p>
-<p>拖入打包的资源列表，并勾选上共享相同的着色器。</p>
-<p>Drag it into the asset list of the build, and tick share identical shaders.</p>
-<p><img src="imgs/d1439b059d49_1713719583559-afabf455-82e5-4f56-80cb-bcc33f7fc06d.png" alt=""></p>
-<p>打包后，我们会将所有的 Shader 放在一个 .shader 文件下。以保证所有的材质之间的shader ，公用一份。</p>
-<p>After the build, all shaders are placed in a single .shader file, so that every material shares one copy of the shader.</p>
-<p><img src="imgs/6f7cdd882474_1713719717348-4a02d427-18f7-4560-a68f-f273e2499d50.png" alt=""></p>
-<h1 id="fog-关键词-fog-keywords">Fog 关键词 Fog Keywords</h1>
-<table>
-<thead>
-<tr>
-<th>_FOG_LINEAR</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>_FOG_EXP</td>
-</tr>
-<tr>
-<td>_FOG_EXP2</td>
-</tr>
-</tbody>
-</table>
-<p><img src="imgs/595b7c241467_1731504004944-6012b630-03f7-4b08-971c-023b10ace923.png" alt=""></p>
+<!-- Generated from tutorials/shader-variant-collection/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="为打包收集着色器变体">为打包收集着色器变体</h1>
+<p><strong>中文</strong> | <a href="../en/mod/shader-variant-collection.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run shader-variant-collection --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;f0b49ca6-f958-40b5-9f75-69d9ae7f927a&quot;,
+    &quot;data&quot;: &quot;${fixture}/Tutorial_VariantInputs.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>给模组自带的自定义着色器收集并打包实际使用的变体。</p>
+<h2 id="启用开发模式">启用开发模式</h2>
+<p>在编辑器中开启开发模式（Dev Mode）。打包管线 Inspector 随后会显示 <strong>Export Shader Variants</strong> 按钮，普通模式下不显示。</p>
+<h2 id="创建着色器集合">创建着色器集合</h2>
+<p>创建 <strong>Shader Collection</strong>（<strong>ShaderCollectionData</strong>）资产，赋给管线的 <strong>Shader Variant Collections</strong>（<code>shaderCollectionData</code>）字段。该资产只描述需要收集哪些内容。</p>
+<h2 id="添加着色器关键字">添加着色器关键字</h2>
+<p>在 <strong>Shader Keywords</strong> 中加入源着色器和该着色器的功能关键字。关键字必须在该着色器里真实存在——例如 <code>_FOG_LINEAR</code>、<code>_FOG_EXP</code>、<code>_FOG_EXP2</code> 只有在着色器声明了它们时才有效。请核对实际关键字名，不要凭猜测填写。</p>
+<p><img src="imgs/shader-variant-collection-keywords.zh-CN.png" alt="着色器变体收集输入中的 Shader Keywords"></p>
+<h2 id="导出变体">导出变体</h2>
+<p>点击 <strong>Export Shader Variants</strong>。工具会依据管线的依赖路径，在管线 build <code>.asset</code> 旁边生成 <code>.shadervariants</code> 文件。</p>
+<h2 id="登记生成的集合">登记生成的集合</h2>
+<p>把生成的 Unity <strong>ShaderVariantCollection</strong> 加入 <strong>Linked Objects</strong>。上面的设置资产用来生成集合。构建管线上的 <strong>Load Manifest Dependence</strong> 和 <strong>Share Dependence Shader</strong> 都要打开，收集器会检查这两个选项。</p>
+<h2 id="构建与测试">构建与测试</h2>
+<p>按目标平台构建，然后安装产物并在游戏中检查雾效与材质变体。应以共享着色器 bundle 的方式分发，不要把着色器源码合并进 <code>.shader</code> 文件。</p>
+<h2 id="着色器变更后重新生成">着色器变更后重新生成</h2>
+<p>着色器或其关键字发生变化时，重新导出变体，再重新构建模组包。</p>
+<p>示例用车辆着色器声明的 <code>_KEYWORD_ENABLE_CAMO</code> 创建一条变体，验证输入和输出资产绑定，并在构建管线里启用共享着色器。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local sample=assert(loadfile(\&quot;../../Docs/Manual/tutorials/shader-variant-collection/example.lua\&quot;))()\nreturn sample(\&quot;${fixture}\&quot;, \&quot;${pipeline}\&quot;)&quot;,
+        &quot;docs-shader-variant-collection&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Variant input, generated collection and sharing flags verified&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -149,7 +317,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

@@ -5,20 +5,20 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>1. Poly Edit 建模工具 | Panzer War Document </title>
+      <title>多边形编辑工具 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="1. Poly Edit 建模工具 | Panzer War Document ">
-    
-    
+      <meta name="title" content="多边形编辑工具 | Panzer War Document ">
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -77,48 +77,145 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="1-poly-edit-建模工具">1. Poly Edit 建模工具</h1>
 
-<h1 id="use-editable-poly-使用可编辑多边形">Use Editable Poly 使用可编辑多边形</h1>
-<p>In the Item tab, search for Editable, then install it onto the vehicle. Click the Edit Polygons button to enter edit mode.</p>
-<p>在 Item 标签页中搜索 Editable，然后将其安装到载具上。点击 Edit Polygons 按钮，即可进入编辑模式。</p>
-<p><img src="imgs/c3a3e5b231b0_1719803601050-e9cb9175-90f3-40b4-92a1-f5244228e149.png" alt=""></p>
-<p><img src="imgs/3db30f7887e2_1719803720637-56e84bd2-a11b-43d9-9fdc-51403ff7152f.png" alt=""></p>
-<h1 id="basic-options-基础选项">Basic Options 基础选项</h1>
-<h2 id="face-面">Face 面</h2>
-<p>In the right-side inspector window, select the <strong>Face</strong>, choose the faces on the model, and then click Move. Drag the arrow to edit the position of the face. Similarly, you can rotate the face orientation and use the Scale tool to modify the size of the face.</p>
-<p>在右侧检查器窗口中选择<strong>面</strong>工具，选中模型上的面，然后点击 Move。拖动箭头即可编辑面的位置。同理，可以旋转面的朝向，并使用 Scale 工具修改面的大小。</p>
-<p><img src="imgs/92b34b5bec3a_1719803778799-9be66524-934a-44cb-a998-cab61c20952a.png" alt=""></p>
-<h2 id="edge-边">Edge 边</h2>
-<p><img src="imgs/bacf839a17c3_1719804252933-08b177e1-d776-488b-9833-0b0c661a63d2.png" alt=""></p>
-<h2 id="vertex-顶点">Vertex 顶点</h2>
-<p><img src="imgs/6cb46870b32a_1719804279557-5c163499-daa1-4ec0-aa65-4cadbd7f0e29.png" alt=""></p>
-<h1 id="operations-操作">Operations 操作</h1>
-<h2 id="extrude-挤出功能">Extrude 挤出功能</h2>
-<p>One of the most commonly used operations is used to extend a face. Select any face, then click the Extrude button. The face will move in its normal direction and extend out multiple new faces (as shown in the yellow area in the second image).</p>
-<p>最常用的操作之一，用于扩展面。选中任意一个面，然后点击 Extrude 按钮，面会沿其法线方向移动，并扩展出多个新的面（如第二张图中的黄色区域所示）。</p>
-<p><img src="imgs/aede93c79366_1719804008003-43dec5f9-6997-42b5-bf78-e06a764cb576.png" alt="Pick Any Face to Extrude 选中任意面，点击挤出"></p>
-<p><img src="imgs/b684e016bde9_1719804031504-3de9dd5f-d4aa-4663-94e6-bec942e4baf2.png" alt="Extruded Faces 挤出区域"></p>
-<h2 id="bevel-倒角功能">Bevel 倒角功能</h2>
-<p><strong>Bevel</strong> is used to create chamfers on the edges or vertices of a model. In the image below, the red marked area shows the generated bevel.</p>
-<p><strong>Bevel</strong> 用于在模型的边缘或顶点处创建倒角。下图中红色标记区域即为生成的倒角。</p>
-<p><img src="imgs/0652cd8196db_1719804617718-c5373d05-456b-433d-94bc-13110c4d7aa2.png" alt=""></p>
-<p>This document is still under construction, please check back later. This feature is currently in development.</p>
-<p>Future support will include:</p>
+<!-- Generated from tutorials/poly-edit-tool/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="多边形编辑工具">多边形编辑工具</h1>
+<p><strong>中文</strong> | <a href="../en/workshop/poly-edit-tool.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run poly-edit-tool
+</code></pre>
+<p>用多边形编辑工具可以直接在坦克工坊里改动载具的网格，不必离开工坊。你在挂到物品上的网格上做编辑，结束后会写回该物品。</p>
+<h2 id="准备-editable-物品">准备 Editable 物品</h2>
 <ol>
-<li>Importing obj files</li>
-<li>Models as external armor models</li>
-<li>Models as internal structures</li>
+<li>打开<strong>坦克工坊</strong>（Tank Workshop），进入 <strong>Item</strong>。</li>
+<li>搜索 <strong>Editable</strong>。</li>
+<li>把 Editable 物品挂到载具上。</li>
+<li>在工作区里选中这个物品。</li>
 </ol>
-<p>The full modeling tool functionality will be released in a future update.</p>
-<p>本文档仍在建设中，请稍后查看。此功能目前仍处于开发阶段。</p>
-<p>后续将支持：</p>
+<h2 id="进入编辑模式">进入编辑模式</h2>
 <ol>
-<li>导入 obj 文件</li>
-<li>模型作为 HitBox</li>
-<li>模型作为内部结构</li>
+<li>点击 <strong>编辑（Edit）</strong>。旧版界面里这个按钮叫 <strong>Edit Polygons</strong>。</li>
+<li>会出现工具栏（tool shelf）。按你要改的部分选择 <strong>Face</strong>、<strong>Edge</strong> 或 <strong>Vertex</strong>。</li>
 </ol>
-<p>完整的建模工具功能将在后续更新中发布。</p>
+<h2 id="移动旋转缩放几何体">移动、旋转、缩放几何体</h2>
+<p>先选中要改的几何体，再按需要使用 <strong>Move</strong>、<strong>Rotate</strong> 或 <strong>Scale</strong> 手柄。哪种选择方式更容易抓到你要的部件，就在 Face、Edge、Vertex 之间切换。</p>
+<h2 id="挤出extrude一个面">挤出（Extrude）一个面</h2>
+<ol>
+<li>把工具栏切到 <strong>Face</strong>，选中一个面。</li>
+<li>设置 <strong>Extrude Distance</strong> 为你想要的厚度。</li>
+<li>点击 <strong>Extrude</strong>。这个面会沿它自己的法线方向推出，并在四周生成新的侧面。</li>
+</ol>
+<p><img src="imgs/poly-edit-tool-face.zh-CN.png" alt="工坊中可编辑立方体的面编辑模式"></p>
+<h2 id="倒角bevel一条边">倒角（Bevel）一条边</h2>
+<ol>
+<li>把工具栏切到 <strong>Edge</strong>，选中一条边。</li>
+<li>设置 <strong>Bevel Amount</strong> 为你想要的宽度。</li>
+<li>点击 <strong>倒角（Bevel）</strong>。这条边会被一圈倒角面取代。</li>
+</ol>
+<h2 id="结束并验证">结束并验证</h2>
+<ol>
+<li>点击 <strong>End Edit</strong>。你会回到物体模式，编辑过的网格会写入所选物品。</li>
+<li>保存载具。</li>
+<li>重新加载载具，确认形状符合预期。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>parent 是独立测试车上有空槽的父配件 ruleGuid。该示例用实际 ProBuilder 操作选面、挤出并读回保存网格。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;vehicle_equip&quot;,
+    &quot;arguments&quot;: {
+      &quot;itemGuid&quot;: &quot;1e8e9f60-3ed6-43b0-aa67-b8bd65f18cae&quot;,
+      &quot;slotIndex&quot;: 0,
+      &quot;isMain&quot;: false,
+      &quot;parentRuleGuid&quot;: &quot;${parent}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;built=True&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;poly&quot;: {
+        &quot;regex&quot;: &quot;ruleGuid=([\\w-]+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;vehicle_focus&quot;,
+    &quot;arguments&quot;: {
+      &quot;ruleGuid&quot;: &quot;${poly}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ok focused&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local mode=CS.ShanghaiWindy.Core.GameModeManager.Instance:GetGameMode()\nlocal binding=assert(mode:GetBinding(\&quot;${poly}\&quot;))\nmode:EditMesh(binding.reference.proBuilderMesh)\nreturn mode.CurEditType:Get():ToString()&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ProBuilder&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;ui_click&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;gen_PbFaceButton&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Clicked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local pb=CS.ShanghaiWindy.Core.GameModeManager.Instance:GetGameMode().ProBuilder\nlocal faces=pb.selectedMesh.faces:GetEnumerator()\nassert(faces:MoveNext())\nlocal list=assert(pb:GetSelectedFace())\nlist:Clear()\nlist:Add(faces.Current)\nlocal count=pb.selectedMesh.faceCount\npb:Extrude(0.25)\nassert(pb.selectedMesh.faceCount&gt;count)\nreturn \&quot;Extruded selected face\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Extruded selected face&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;ui_click&quot;,
+    &quot;arguments&quot;: {
+      &quot;name&quot;: &quot;gen_PbObjectButton&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Clicked&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local mode=CS.ShanghaiWindy.Core.GameModeManager.Instance:GetGameMode()\nlocal rule=assert(mode:GetPickedRule())\nlocal got,bytes=rule:TryGetCustomBuffer()\nassert(mode.CurEditType:Get():ToString()==\&quot;Object\&quot; and got and #bytes&gt;0)\nreturn \&quot;Edited mesh stored in rule\&quot;&quot;,
+        &quot;docs-workshop&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Edited mesh stored in rule&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="网格类型与相关控制">网格类型与相关控制</h2>
+<p>当前网格类型有 <strong>Visual</strong>、<strong>VisualHitBox</strong>、<strong>HitBox</strong>、<strong>InternalModule</strong>、<strong>VisualInternalModule</strong>。碰撞体是否启用与网格类型分开设置。材质和伤害相关控制取决于网格类型，所以某个物品上能看到的控制项在另一个物品上不一定适用。</p>
+<h2 id="输入格式">输入格式</h2>
+<p>载具网格支持的模型格式是 GLB，具体要求见 <a href="glb-model-import-specs.html">GLB 导入规范</a>。OBJ 不在该规范的覆盖范围内。</p>
 
 </article>
           </div>
@@ -146,7 +243,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>

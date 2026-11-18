@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T133839Z",
+  "builtAt": "20261118T141802Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -116,9 +116,20 @@
     "diy-map-project-import",
     "editor-configs",
     "destructible-object-creation",
-    "mod-mirror-site-setup"
+    "mod-mirror-site-setup",
+    "tank-workshop-basics",
+    "poly-edit-tool",
+    "track-editor-tutorial",
+    "glb-model-import-specs",
+    "gun-tutorial",
+    "capture-mode-config",
+    "custom-shader-data",
+    "decals",
+    "shader-variant-collection",
+    "vrm-model",
+    "upload-to-modhub"
   ],
-  "reviewedDependenciesSha256": "c115c426e8faf3022512226822c2d6e7a04106ff3af2b1302c14dd9ee943ae37",
+  "reviewedDependenciesSha256": "b20520df803045a05916efc739df05d7c23e9475b0ceb45275a73a1917c7b7e7",
   "contentReviewedTutorials": [
     "blender-axis-fix",
     "continuous-build",

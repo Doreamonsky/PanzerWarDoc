@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Custom Shader Data for Vehicles | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Custom Shader Data for Vehicles | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/custom-shader-data/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="custom-shader-data-for-vehicles">Custom Shader Data for Vehicles</h1>
+<p><a href="../../mod/custom-shader-data.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run custom-shader-data --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;shaderData&quot;: &quot;${fixture}/Tutorial_CustomShader.asset&quot;,
+    &quot;packageGuid&quot;: &quot;4ccfd3f8-eabc-44d6-b599-82486dbd4604&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Use this tutorial when a vehicle needs a shader and material that the built-in shader types do not provide. A <code>CustomShaderData</code> asset stores the custom Material plus channel-name mappings, and <code>CoreRPMatComponent</code> selects it per renderer material slot at runtime.</p>
+<p>A custom shader is a Unity shader project of its own. If the Unity Material, Shader Graph or URP/HDRP basics are new to you, read those first; this page only covers how Panzer War plugs your material into a vehicle.</p>
+<h2 id="1-prepare-the-materials">1. Prepare the materials</h2>
+<ol>
+<li>Build and test the Shader Graph / shader in the target render pipeline (URP or HDRP), not in the other one.</li>
+<li>Create one Material per pipeline that uses that shader. The URP material and the HDRP material are separate assets with separate pipeline requirements; a material packed for HDRP cannot serve URP.</li>
+<li>Keep the source vehicle textures (albedo, normal, mask) and base colour out of the custom shader defaults. The game writes them back at runtime under the channel names you configure, so the shader must expose those names.</li>
+</ol>
+<h2 id="2-create-the-custom-shader-data">2. Create the Custom Shader Data</h2>
+<p>In the Project window choose <code>Create &gt; A Panzer War - 装甲纷争 &gt; C Config - 配置 &gt; Custom Material - 自定义材质</code> to create a <strong>CustomShaderData</strong> asset.</p>
+<p>The inspector of that asset (<code>CustomShaderDataEditor</code>) fills <code>guid</code> automatically when the asset is opened, and provides:</p>
+<ul>
+<li><strong>复制唯一标识 - Copy Guid</strong>: copies the generated <code>guid</code> to the clipboard. This is the identifier you paste into the component later.</li>
+<li><strong>创建新的唯一标识 - Create new guid</strong>: clears the guid and lets it regenerate. Every reference to the old guid breaks, so only do this before the data is referenced by vehicles or another mod.</li>
+</ul>
+<p>Assign your tested Material to <strong>Custom Material</strong> (<code>overrideMaterialPath</code>) by picking it from the material dropdown. This is the material whose properties are copied onto the vehicle material.</p>
+<h3 id="default-vs-custom-vehicle-option">Default vs Custom Vehicle Option</h3>
+<p><code>customShaderType</code> has two values:</p>
+<ul>
+<li><strong>默认 - Default</strong> (<code>Default</code>) shows <code>overrideMaterialPath</code> and <code>customKeywords</code>. The loader can still fill the vehicle's texture and color inputs through the default channel names.</li>
+<li><strong>自定义载具选项 - Custom Vehicle Option</strong> (<code>VehicleOption</code>): additionally shows the channel names the game uses when it restores the vehicle's own maps and colour:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>customMainTexName</code></td>
+<td>Channel the vehicle albedo map is written to</td>
+<td><code>_BaseMap</code></td>
+</tr>
+<tr>
+<td><code>customNormalTexName</code></td>
+<td>Channel the vehicle normal map is written to</td>
+<td><code>_BumpMap</code></td>
+</tr>
+<tr>
+<td><code>customMaskTexName</code></td>
+<td>Channel the vehicle mask map is written to</td>
+<td><code>_MaskMap</code></td>
+</tr>
+<tr>
+<td><code>customBaseColor</code></td>
+<td>Channel the vehicle base colour is written to</td>
+<td><code>_BaseColor</code></td>
+</tr>
+</tbody>
+</table>
+<p>Change these only when your shader uses different property names. The names must match the shader exactly, including case.</p>
+<h2 id="3-configure-corerpmatcomponent">3. Configure CoreRPMatComponent</h2>
+<p><img src="../../mod/imgs/custom-shader-data-channels.en.png" alt="Custom Vehicle Option and material channel names"></p>
+<ol>
+<li>Add <strong>CoreRPMatComponent</strong> to the object that owns the <code>MeshRenderer</code> you want to re-shade.</li>
+<li>Enable <strong>Component Based</strong> (<code>isComponentBased</code>).</li>
+<li>Add one entry to <code>indexCoreRPMatParams</code> per material slot you want to override. <code>index</code> is the material slot number on that Mesh Renderer, starting at 0.</li>
+<li>In each entry set <strong>Shader</strong> (<code>coreRPShaderType</code>) to <code>Custom</code>. This reveals <code>customNatParam</code>.</li>
+<li>Fill <code>customNatParam</code>:
+<ul>
+<li><code>urpMaterialGuid</code>: the <code>guid</code> of the CustomShaderData whose Material targets URP.</li>
+<li><code>hdrpMaterialGuid</code>: the <code>guid</code> of the CustomShaderData whose Material targets HDRP.</li>
+<li>The two GUIDs must be different, and each must point to material data built for the matching pipeline. Do not put a URP GUID into <code>hdrpMaterialGuid</code>.</li>
+</ul>
+</li>
+</ol>
+<p>The GUID is resolved when the vehicle's resources load. An empty GUID uses the renderer's default shader. When a nonempty GUID fails to resolve or its material bundle is absent, the loader logs the fallback. Supply valid data for each pipeline where the vehicle should use the custom shader.</p>
+<p><code>customNatParam</code> also carries per-slot channel writes:</p>
+<ul>
+<li><code>customTextureChannels</code>: <code>channelName</code> plus <code>channelTex</code>, written directly to the material.</li>
+<li><code>customColorChannel</code>: <code>channelName</code> plus either a normal colour or, with <code>isHDR</code> enabled, an HDR colour.</li>
+</ul>
+<p>These are useful for per-vehicle variations (markings, lamp colours, insignia) that should not live in the shared custom material.</p>
+<h2 id="4-package-it">4. Package it</h2>
+<ul>
+<li><strong>Single vehicle</strong>: keep the CustomShaderData asset in the same mod package as that vehicle's <code>VehicleInfo</code> and other vehicle resources, and build them together.</li>
+<li><strong>Shared across vehicles or mods</strong>: build the CustomShaderData (and its materials) as its own mod package, and have the vehicle mod declare an explicit dependency on that package by its package GUID. Do not rely on load order or on the asset merely existing in another package.</li>
+</ul>
+<p>The shipped <code>guid</code> is part of the runtime contract. Rebuilding a shared shader mod with new GUIDs silently breaks every dependant, so treat GUIDs as stable once published.</p>
+<h2 id="5-what-happens-at-runtime">5. What happens at runtime</h2>
+<p>For a renderer whose slot resolves to <code>Custom</code>, the shader asset manager:</p>
+<ol>
+<li>Resolves the CustomShaderData by the pipeline-specific GUID (<code>urpMaterialGuid</code> or <code>hdrpMaterialGuid</code>).</li>
+<li>Loads the custom material, assigns its shader to the vehicle material, and copies the custom material's properties (including toggles and dropdown values) onto it.</li>
+<li>Restores the vehicle's own data: albedo, normal and mask maps plus base colour are written to <code>customMainTexName</code>, <code>customNormalTexName</code>, <code>customMaskTexName</code> and <code>customBaseColor</code>.</li>
+<li>Enables the keywords listed in <code>customKeywords</code> whose <code>isTextureChannelCondition</code> condition is satisfied (that is, the referenced texture channel is assigned), and writes the per-slot texture and colour channels.</li>
+</ol>
+<p>Property copying happens before the vehicle data is restored, so anything your custom material sets on the four mapped channels is overwritten by the vehicle's own textures and colour. Use other property names for values that must survive.</p>
+<p>Not every property you author is guaranteed to survive: copying is generic (name-based), while the vehicle maps and base colour are restored explicitly. Verify the properties you depend on in the actual game build.</p>
+<h2 id="6-optional-channel-conventions">6. Optional channel conventions</h2>
+<p>The vehicle camouflage and dirt systems use a set of conventional names. They are optional: use them only if your shader implements the matching behaviour. They are shader-side conventions, not properties the loader guarantees to populate.</p>
+<table>
+<thead>
+<tr>
+<th>Channel name</th>
+<th>Type</th>
+<th>Convention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_Smoothness</code></td>
+<td>float</td>
+<td>Smoothness</td>
+</tr>
+<tr>
+<td><code>_CamoPatternMap</code></td>
+<td>Texture2D</td>
+<td>Camouflage pattern map</td>
+</tr>
+<tr>
+<td><code>_CamoPatternTiling</code></td>
+<td>Vector4</td>
+<td>Tiling of the pattern map</td>
+</tr>
+<tr>
+<td><code>_CamoBlackTint</code></td>
+<td>Color</td>
+<td>Colour mixed for the pattern map's black channel</td>
+</tr>
+<tr>
+<td><code>_CamoRedTint</code></td>
+<td>Color</td>
+<td>Colour mixed for the pattern map's red channel</td>
+</tr>
+<tr>
+<td><code>_CamoGreenTint</code></td>
+<td>Color</td>
+<td>Colour mixed for the pattern map's green channel</td>
+</tr>
+<tr>
+<td><code>_CamoBlueTint</code></td>
+<td>Color</td>
+<td>Colour mixed for the pattern map's blue channel</td>
+</tr>
+<tr>
+<td><code>_Lerp</code></td>
+<td>float (0-1)</td>
+<td>Blend weight of the camouflage colour</td>
+</tr>
+<tr>
+<td><code>_DirtTex</code></td>
+<td>Texture2D</td>
+<td>Dirt texture</td>
+</tr>
+<tr>
+<td><code>_DirtRange</code></td>
+<td>float (0-1)</td>
+<td>Dirt blend weight</td>
+</tr>
+<tr>
+<td><code>_KEYWORD_ENABLE_CAMO</code></td>
+<td>keyword</td>
+<td>Camouflage enabled (used by <code>VehicleCamoManager</code>)</td>
+</tr>
+<tr>
+<td><code>_KEYWORD_ENABLE_CAMO_COLOR_TEX</code></td>
+<td>keyword</td>
+<td>Texture-based camouflage enabled</td>
+</tr>
+<tr>
+<td><code>_KEYWORDENABLEDIRT</code></td>
+<td>keyword</td>
+<td>Dirt texture enabled</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li><code>_KEYWORD_ENABLE_CAMO</code> and <code>_KEYWORD_ENABLE_CAMO_COLOR_TEX</code> are the keywords the current <code>VehicleCamoManager</code> drives. The older <code>_EnableCamo</code> / <code>_EnableCamoColorTex</code> property names you may see in old shaders are not the same thing.</li>
+<li><code>_KEYWORDENABLEDIRT</code> is the dirt keyword name. The blending described below is the legacy sample shader graph behaviour, shown as an example of how the channels can be combined, not a rule the loader enforces. A custom shader that ignores dirt channels simply renders without dirt.</li>
+</ul>
+<p>Example dirt behaviour from the legacy sample: when <code>_KEYWORDENABLEDIRT</code> is enabled, the vehicle AO map is blended with <code>_DirtTex</code> at the strength given by <code>_DirtRange</code>. Reimplement it in your graph if you want that look.</p>
+<h2 id="7-rgba-pattern-and-tint-technique">7. RGBA pattern and tint technique</h2>
+<p>The camouflage pattern technique used by the sample shaders: treat <code>_CamoPatternMap</code> as four independent masks, split the RGBA channels, and lerp each channel's tint colour (<code>_CamoBlackTint</code>, <code>_CamoRedTint</code>, <code>_CamoGreenTint</code>, <code>_CamoBlueTint</code>) into the base colour using that channel as the mask, then blend the whole result with the base colour by <code>_Lerp</code> (clamped to 0-1). Gate the branch with <code>_KEYWORD_ENABLE_CAMO</code> / <code>_KEYWORD_ENABLE_CAMO_COLOR_TEX</code> so vehicles without camouflage keep their plain look.</p>
+<p>The same idea works for any per-vehicle data: a mask texture plus tint colours gives you markings, stencils or wear patterns without shipping a separate material per vehicle.</p>
+<h2 id="8-shader-authoring-notes">8. Shader authoring notes</h2>
+<ul>
+<li>The asset inspector recommends <code>multi_compile</code> for your keywords. If you use <code>shader_feature</code>, build with the shader variant collection so variants are not stripped and the keyword silently stops working in player builds.</li>
+<li>Declare every keyword you toggle from <code>customKeywords</code> in the shader, and keep the keyword string identical to the field in the asset.</li>
+<li>Avoid <code>shader_feature</code> variants that only exist in the editor; check the player build, not just Play Mode.</li>
+</ul>
+<h2 id="9-verify-in-the-target-renderer">9. Verify in the target renderer</h2>
+<ol>
+<li>Open the vehicle in the URP project and confirm the custom look appears; then repeat in the HDRP project with the HDRP GUID and material. Each pipeline must be checked separately.</li>
+<li>Confirm the vehicle's own albedo, normal, mask and base colour reach the intended channels by temporarily tinting the base colour or swapping a texture.</li>
+<li>Toggle a camouflage or dirt option and confirm the keyword actually changes the result in a build, not only in the editor.</li>
+<li>Load a second vehicle that shares the custom shader mod to confirm the shared package dependency resolves.</li>
+<li>Check the log for loader errors about unresolved GUIDs or missing material bundles; those indicate a wrong GUID, a pipeline mismatch, or a package that was not built with the asset.</li>
+</ol>
+<p>The MCP example builds a Windows package from a teaching material and its data asset. Check the final appearance in the target renderer using the steps above.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local sample=assert(loadfile(\&quot;../../Docs/Manual/tutorials/custom-shader-data/example.lua\&quot;))()\nreturn sample(\&quot;${fixture}\&quot;)&quot;,
+        &quot;docs-custom-shader-data&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Vehicle Option and material channel bindings verified&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${shaderData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssetIfDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;csd&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
