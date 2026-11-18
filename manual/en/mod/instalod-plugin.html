@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Generate vehicle LODs with InstaLOD | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Generate vehicle LODs with InstaLOD | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/instalod-plugin/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="generate-vehicle-lods-with-instalod">Generate vehicle LODs with InstaLOD</h1>
+<p><a href="../../mod/instalod-plugin.html">中文</a> | <strong>English</strong></p>
+<p>LOD generation ships with the mod SDK: its manifest already references the sibling package <code>com.shanghaiwindy.simplygon</code>, which embeds InstaLOD and <code>InstaLodMeshProvider</code>. You do not install anything by hand for the public SDK. The provider hosting LOD work is InstaLOD even though the package and field names say simplygon.</p>
+<p>Ordinary automatic LOD runs when <code>VehicleData.isGenLOD</code> is enabled. Advanced mode additionally requires both <code>isPriorityAdvanceLOD</code> and <code>EditorStorage.useSimplygon</code> to be true; <code>useSimplygon</code> defaults to false, so advanced mode is off until you turn it on.</p>
+<ol>
+<li>Enable <code>isGenLOD</code> on the vehicle data. For advanced reduction, authorize the plugin on this machine through <strong>Window → InstaLOD</strong>, then enable <strong>Priority Advance LOD</strong> for the vehicle and <strong>Use Insta Lod</strong> in the editor settings. If authorization fails, turn the editor setting off and repack with ordinary LOD generation. <a href="https://docs.instalod.io/en/Products">InstaLOD documentation</a></li>
+<li>Repack the vehicle so the pipeline runs.</li>
+<li>Inspect the generated prefab and read its <code>LODGroup</code> for the levels that were actually produced. Level count and naming depend on the asset; do not assume fixed node names.</li>
+</ol>
+<p>The screenshot sequence below is <strong>historical</strong>: package installation and configuration screens come from an older client. Do not treat their labels as current UI promises.</p>
+<ul>
+<li><strong>Package Manager → Add package from disk</strong>, then pick the provider <code>package.json</code>; older SDKs also required provider authorization.</li>
+<li><strong>Framework → Gm → Editor Config → Use Insta Lod</strong>, then <strong>Save</strong>.</li>
+<li><strong>Repack</strong>, then <strong>Open Vehicle Data Tool → View Packed Asset</strong>.</li>
+</ul>
+<p>The default shared mesh output is <code>Assets/Res/Cooked/SimplifiedMeshGroup</code>. For a vehicle with a local cook directory, look for <code>SimplifiedMeshGroup</code> under that output directory. The older hull example used node suffixes <code>100</code>, <code>75</code>, <code>50</code>, and <code>30</code>. Check the generated <code>LODGroup</code> for its actual levels. For mesh editing outside the pipeline, see <a href="instalod-studio.html">InstaLOD Studio</a>.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

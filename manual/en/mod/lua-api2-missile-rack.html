@@ -111,8 +111,9 @@
 }
 </code></pre>
 </details>
-<p>Attach the script to the vehicle model and add children such as <code>Missile_1</code> and <code>Missile_2</code> in hierarchy order. Set the zero-based <code>weaponIndex</code> and the text to match in object names, <code>modelPrefix</code>. Matching is case-sensitive.</p>
-<p>The script caches the models during initialization and shows the first models in the list according to the weapon's current ammo count. An ammo change refreshes the display. When ammo decreases, the models at the end disappear first.</p>
+<p>Attach the script to the vehicle model and add children such as <code>Missile_1</code> and <code>Missile_2</code> in hierarchy order. Set <code>weaponIndex</code> and the text to match in object names, <code>modelPrefix</code>. The default index <code>1</code> selects the second weapon. Use <code>0</code> for the first. <code>modelPrefix</code> matches a case-sensitive substring anywhere in the name, so choose text unique to this group of models.</p>
+<p>The script calls <code>TransformAPI.FindAllDeep</code> once in <code>OnVehicleReady</code> to cache matched descendants in hierarchy order, including inactive objects. It then shows the first models in the list according to the weapon's current ammo count.</p>
+<p><code>WeaponAPI.OnAmmoChanged</code> refreshes the display when ammo is spent or replenished. Subscribing with <code>self.script</code> ties the callback to the script's lifetime, so the subscription is removed automatically on destruction; there is no <code>OnUpdated</code> polling. When ammo decreases, the models at the end disappear first.</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     weaponIndex = { type = &quot;number&quot;, value = 1 },

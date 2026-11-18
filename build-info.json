@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T123654Z",
+  "builtAt": "20261118T125109Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -100,10 +100,15 @@
     "continuous-build",
     "jenkins-setup",
     "fmod-profiler",
+    "voice-pack-practice",
     "official-art-assets",
-    "map-asset-download"
+    "map-asset-download",
+    "mod-texture-group",
+    "instalod-studio",
+    "instalod-plugin",
+    "upload-naming-art-standards"
   ],
-  "reviewedDependenciesSha256": "23e764eaebbd722abae7646e9745473961f7e280367896e3ab01c3dab61c1527",
+  "reviewedDependenciesSha256": "f6bddc8561b273662ccfb00479839e1afe13ce97fa83b7c2b5bca37aacd1ba22",
   "contentReviewedTutorials": [
     "blender-axis-fix",
     "continuous-build",
@@ -114,17 +119,38 @@
     "jenkins-setup",
     "lua-api2-air-warning",
     "lua-api2-charged-shot",
+    "lua-api2-engine-gear",
+    "lua-api2-missile-rack",
     "lua-api2-module-trigger",
     "lua-api2-overview",
+    "lua-api2-radar-screen",
+    "lua-behavior-mono",
+    "lua-callbacks-and-self",
+    "model-not-displaying",
+    "multi-turret-legacy",
     "physics-wheels",
     "ravenfield-map-support",
+    "set-steam-game-folder",
     "track-ik-suspension",
     "unity-engine-requirements",
     "vehicle-basics",
     "vehicle-dev-qa",
     "vehicle-modding-notes",
     "vehicle-playground",
-    "vehicle-text-data"
+    "vehicle-text-data",
+    "vfx-mod",
+    "voice-pack-practice"
   ],
-  "newContentReviews": []
+  "newContentReviews": [
+    "lua-behavior-mono",
+    "lua-callbacks-and-self",
+    "set-steam-game-folder",
+    "model-not-displaying",
+    "lua-api2-engine-gear",
+    "lua-api2-missile-rack",
+    "lua-api2-radar-screen",
+    "multi-turret-legacy",
+    "vfx-mod",
+    "voice-pack-practice"
+  ]
 }

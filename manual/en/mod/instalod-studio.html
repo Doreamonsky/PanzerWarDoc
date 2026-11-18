@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Reduce a mesh in InstaLOD Studio | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Reduce a mesh in InstaLOD Studio | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/instalod-studio/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="reduce-a-mesh-in-instalod-studio">Reduce a mesh in InstaLOD Studio</h1>
+<p><a href="../../mod/instalod-studio.html">中文</a> | <strong>English</strong></p>
+<p>InstaLOD Studio is an optional external tool for editing a mesh before it goes back into the project. Nothing in the build pipeline depends on it; you can use it on a copy of a vehicle or prop mesh when the geometry needs decimation or cleanup that is easier outside Unity. The vendor's <a href="https://docs.instalod.io/Products/InstaLOD_Studio/Getting_Started">Getting Started guide</a> covers installation and the general workflow.</p>
+<p>The button and menu labels below are <strong>screenshot observations</strong> from an older session. Treat them as the sequence to expect, not as a promise about the names in the version you are running.</p>
+<h2 id="1-set-up-a-profile">1. Set up a profile</h2>
+<ol>
+<li>Start with a new profile: <strong>New Profile</strong>, choose the <strong>Optimize (AutoLow)</strong> template, then <strong>Create Profile</strong>. This gives you a decimation pipeline without assembling the operations by hand.</li>
+<li>Use <strong>File → Import Scene</strong> to load the mesh you want to work on. Work on a copy, so the original asset stays untouched.</li>
+</ol>
+<h2 id="2-decide-how-far-to-reduce">2. Decide how far to reduce</h2>
+<p>The historic session left the default quality settings alone for a first attempt. If you need more reduction than the template gives, it is optional to switch <strong>Automatic Quality</strong> off and enter a <strong>Percent Triangles</strong> value by hand, for example <code>20</code>. The percentage is a target for the operation, not a guaranteed final ratio, so read the result rather than assuming it.</p>
+<h2 id="3-run-the-operation-and-compare">3. Run the operation and compare</h2>
+<p>Press <strong>Start</strong> and let the pipeline finish, then compare the counts. In the observed example the scene went from 6,340 to 758 polygons and from 10,451 to 1,415 vertices. That is what that particular mesh produced with those settings; a different mesh or a different percentage will land elsewhere.</p>
+<p>Check the silhouette while the reduced mesh is still in the tool. A shape that looked acceptable at the original density can lose thin parts, flat panels or small details once the polygon count drops.</p>
+<h2 id="4-export-to-a-separate-file">4. Export to a separate file</h2>
+<p>Use <strong>File → Export Scene</strong> and write to a <strong>new file</strong>. Keeping the exported mesh separate from the source makes it easy to compare the two and to discard the result if something went wrong.</p>
+<h2 id="5-reimport-into-unity-and-inspect">5. Reimport into Unity and inspect</h2>
+<p>Import the exported file into a test folder in Unity and check it before replacing anything:</p>
+<ul>
+<li><strong>Silhouette</strong>: the reduced shape still reads as the same object from the angles the player sees.</li>
+<li><strong>Materials</strong>: the material assignments survived the export and still point at the intended surfaces.</li>
+<li><strong>UVs</strong>: texture coordinates are intact, so textures do not stretch or slide on the reduced mesh.</li>
+<li><strong>Pivots</strong>: the object's origin and orientation are where the project expects them, so turrets, guns, wheels and attachments still rotate and mount correctly.</li>
+</ul>
+<p>If any of these checks fails, adjust the settings and export again, or keep the original mesh and treat InstaLOD as a one-off experiment.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -111,8 +111,9 @@
 }
 </code></pre>
 </details>
-<p>把脚本挂到载具模型，按层级顺序放置 <code>Missile_1</code>、<code>Missile_2</code> 等子物体。设置从 0 开始的 <code>weaponIndex</code> 和用于匹配对象名的 <code>modelPrefix</code>。匹配区分大小写。</p>
-<p>初始化时缓存模型数组，并按武器当前弹量显示数组中最前面的模型。弹量变化时刷新，减少时先隐藏数组末尾的模型。</p>
+<p>把脚本挂到载具模型，按层级顺序放置 <code>Missile_1</code>、<code>Missile_2</code> 等子物体。设置 <code>weaponIndex</code> 和用于匹配对象名的 <code>modelPrefix</code>。<code>weaponIndex</code> 默认值 <code>1</code> 表示第二个武器，第一个武器填 <code>0</code>。<code>modelPrefix</code> 区分大小写，可以匹配名称中的任意位置。取一个只会命中该组模型的字符串。</p>
+<p>脚本在 <code>OnVehicleReady</code> 中调用一次 <code>TransformAPI.FindAllDeep</code>，按层级缓存名称中含该字符串的后代对象，包括未激活的对象。随后按武器当前弹量显示列表中最前面的模型。</p>
+<p><code>WeaponAPI.OnAmmoChanged</code> 在弹药消耗或补给时刷新显示。通过 <code>self.script</code> 订阅会让回调与脚本生命周期绑定，销毁时自动解除订阅；不使用 <code>OnUpdated</code> 轮询。弹量减少时先隐藏数组末尾的模型。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     weaponIndex = { type = &quot;number&quot;, value = 1 },

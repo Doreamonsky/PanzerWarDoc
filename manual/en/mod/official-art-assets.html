@@ -94,7 +94,7 @@
 <li><p>Set up Git and Git LFS, see <a href="install-git.html">install Git</a>, and add <a href="install-tortoisegit.html">TortoiseGit</a> if you prefer a graphical client.</p>
 </li>
 <li><p>When you work on one package, use Git Bash in a clean checkout to fetch the package and its dependencies. This example uses <code>Vehicles/German</code>.</p>
-<pre><code class="lang-sh">GIT_LFS_SKIP_SMUDGE=1 git clone git@github.com:WindyVerse/Panzer-War-Mods.git
+<pre><code class="lang-sh">GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/WindyVerse/Panzer-War-Mods.git
 cd Panzer-War-Mods
 python Tools/ci.py prepare Vehicles/German
 git lfs pull --include=&quot;&lt;the lfs paths printed above&gt;&quot;
@@ -110,7 +110,7 @@ git lfs pull --include=&quot;&lt;the lfs paths printed above&gt;&quot;
 <li><p>Personal editor settings such as the Steam game path live in <code>Assets/EditorStorage.json</code>, which is not committed. When the file is absent, start from <code>Projects/&lt;Group&gt;/EditorStorage.template.json</code>.</p>
 </li>
 </ol>
-<p>Keep existing paths and <code>.meta</code> files when moving or re-exporting assets so GUIDs and references survive. Naming and export requirements are in <a href="../../mod/upload-naming-art-standards.html">art asset naming and upload standards</a>.</p>
+<p>Keep existing paths and <code>.meta</code> files when moving or re-exporting assets so GUIDs and references survive. Naming and export requirements are in <a href="upload-naming-art-standards.html">art asset naming and upload standards</a>.</p>
 <h2 id="make-one-coherent-change">Make one coherent change</h2>
 <p>Keep one related change per branch so the developers can review and merge it. Do not mix unrelated cleanup, formatting, or re-exports into the same branch.</p>
 <p>A local test build rewrites the build records in the ModPackage asset (file list, <code>createdTime</code>). If you only tested a build locally, do not commit those changes.</p>

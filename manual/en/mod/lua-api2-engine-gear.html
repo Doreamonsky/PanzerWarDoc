@@ -112,7 +112,8 @@
 </code></pre>
 </details>
 <p>Attach the script to a vehicle. Assign <code>fan</code>, <code>smoke</code> or <code>gearLights</code> as needed. On aircraft, read the initial gear state and update the lights with <code>FlightAPI.OnGearChanged</code>. Pass <code>self.script</code> as the subscription owner and turn off per-frame updates for this branch.</p>
-<p>The ground branch uses <code>TankAPI.GetEngineState</code>, which returns success, RPM, RPM percentage, gear, speed and reverse status. Multiply RPM by 6 to get degrees per second. The example scales the fan speed by 0.1 and shows smoke above 80 percent RPM.</p>
+<p>The ground branch uses <code>TankAPI.GetEngineState</code>, which returns success, RPM, RPM percentage, gear, speed and reverse status. The RPM percentage runs from 0 to 100; multiply RPM by 6 to get degrees per second. Speed is in km/h and is negative in reverse for tracked and wheeled vehicles. Tracked vehicles report first gear as 1 and reverse as 0. A wheeled vehicle without a gearbox reports RPM 0 and gear 1. Ships report RPM and speed, always gear 1 and reversing false. Fixed vehicles report RPM and speed 0, gear 1. The example scales the fan speed by 0.1 and shows smoke above 80 percent RPM.</p>
+<p><code>FlightAPI.IsOnGround</code> checks ground contact. With the gear down, it can also run one physics overlap per wheel and return <code>true</code> for nearby ground or buildings. Limit the frequency of this physics query if the visual update runs often.</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     fan = { type = &quot;object&quot;, value = nil },

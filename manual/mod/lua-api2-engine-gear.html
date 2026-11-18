@@ -112,7 +112,8 @@
 </code></pre>
 </details>
 <p>把脚本挂到载具，按需绑定 <code>fan</code>、<code>smoke</code> 或 <code>gearLights</code>。飞机先读取起落架初始状态，再用 <code>FlightAPI.OnGearChanged</code> 更新灯光。事件订阅传入 <code>self.script</code>，并关闭飞机分支的逐帧更新。</p>
-<p>地面分支从 <code>TankAPI.GetEngineState</code> 读取成功标记、转速、转速百分比、挡位、速度和倒车状态。每分钟转数乘 6 得到每秒角度，示例额外按 0.1 缩放风扇转速，并在转速百分比超过 80 时显示烟雾。</p>
+<p>地面分支从 <code>TankAPI.GetEngineState</code> 读取成功标记、转速、转速百分比、挡位、速度和倒车状态。转速百分比范围为 0 到 100，每分钟转数乘 6 得到每秒角度。速度单位为 km/h，履带车和轮式车倒车时为负值。履带车一挡为 1、倒挡为 0；没有变速箱的轮式车转速为 0、挡位为 1；船只返回转速和速度，挡位恒为 1、倒车状态恒为 false；固定载具转速和速度为 0、挡位为 1。示例额外按 0.1 缩放风扇转速，并在转速百分比超过 80 时显示烟雾。</p>
+<p>起落架状态和接地检测各有接口。<code>FlightAPI.IsOnGround</code> 会检查实际接触。起落架放下时，它还可能对每个轮子做一次重叠检测，轮子附近有地面或建筑也可能返回 <code>true</code>。需要频繁做视觉更新时，适当降低这个物理查询的调用频率。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     fan = { type = &quot;object&quot;, value = nil },

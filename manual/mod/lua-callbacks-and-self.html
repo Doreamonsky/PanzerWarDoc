@@ -140,6 +140,7 @@ end
 return InputTutorial
 </code></pre>
 <p>传给 <code>RegisterKeyInput</code> 的两个函数保留当前 <code>self</code>。对象销毁时，用相同的动作名调用 <code>UnregisterKeyInput</code>。</p>
+<p><code>RegisterKeyInput</code> 接收的是回调函数值，引擎会在按下和释放时调用它，而不是一个已经执行过的方法引用。闭包记住了当前实例，把 <code>context</code> 传给处理函数，这里的冒号调用等同于点号加显式 <code>self</code>。若传入冒号调用的结果，或直接传裸的类方法（如 <code>InputTutorial.OnKeyPerformed</code>），都无法保留实例。</p>
 <p><img src="imgs/lua-callbacks-and-self-binding.zh-CN.png" alt="绑定输入示例与实例按键"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>

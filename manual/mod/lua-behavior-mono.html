@@ -154,7 +154,8 @@ return ExampleBehavior
 </code></pre>
 </details>
 <h2 id="2-绑定组件">2. 绑定组件</h2>
-<p>添加 <strong>LuaBehaviorMono</strong>，将导入的 <strong>ExampleBehavior</strong> 赋给「行为脚本」。如果脚本声明了 <code>Property</code>，用「同步变量属性定义」补上实例中缺少的字段。已有的同名值会保留。实例覆盖见<a href="lua-properties.html">Lua 属性配置</a>。</p>
+<p>打开目标 prefab，或在场景中选中目标物体，然后依次点击 <strong>Inspector &gt; Add Component</strong>，搜 <strong>LuaBehaviorMono</strong> 并添加。从 Project 窗口将导入的 <strong>ExampleBehavior</strong> 资产拖到「行为脚本」字段上。该字段接受导入的行为资产，不能拖原始 <code>.lua</code> 文本文件。</p>
+<p>如果脚本声明了 <code>Property</code>，用「同步变量属性定义」补上实例中缺少的字段，再为该实例逐个设置字段值；字段名必须与声明的 <code>Property</code> 条目一致。已有的同名值会保留。实例覆盖见<a href="lua-properties.html">Lua 属性配置</a>。</p>
 <p><img src="imgs/lua-behavior-mono-binding.zh-CN.png" alt="在行为脚本字段中绑定 Lua 资产"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -209,7 +210,7 @@ return ExampleBehavior
 </code></pre>
 </details>
 <h2 id="3-保存并核对">3. 保存并核对</h2>
-<p>保存 prefab，确认「行为脚本」仍指向 <strong>ExampleBehavior</strong>。在运行时，场景中的组件会启动行为。要编写有输出的启动回调，见 <a href="lua-hello-world.html">Hello World</a>。</p>
+<p>保存 prefab，确认「行为脚本」仍指向 <strong>ExampleBehavior</strong>。在运行时，场景中的组件会启动行为。在脚本里可用 <code>self.script:GetLuaComponent(&quot;ClassName&quot;)</code> 和 <code>self.script:GetNativeComponent(&quot;ComponentName&quot;)</code> 获取同一个物体上的 Lua 组件与原生组件。要编写有输出的启动回调，见 <a href="lua-hello-world.html">Hello World</a>。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

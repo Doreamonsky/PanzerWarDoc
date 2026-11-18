@@ -136,7 +136,7 @@
 </code></pre>
 </details>
 <h2 id="1-找到-steam-安装目录里的-luaproject">1. 找到 Steam 安装目录里的 LuaProject</h2>
-<p>在 Steam 的游戏条目中浏览本地文件。打开游戏安装目录中的 <code>dlc/LuaProject</code>，确认里面有 <code>main.lua</code> 和 <code>resources/windows/default</code>。</p>
+<p>在 Steam 库里右键游戏，选择<strong>管理 → 浏览本地文件</strong>。打开游戏安装目录中的 <code>dlc/LuaProject</code>，确认里面有 <code>main.lua</code> 和 <code>resources/windows/default</code>。例如旧版决定版路径为 <code>steamapps\common\PanzerWar-DE\dlc\LuaProject</code>。以 Steam 打开的实际目录为准。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>用目录标记核对教学样例。Steam 的本地文件菜单由读者打开。</p>
@@ -169,7 +169,7 @@
 </code></pre>
 </details>
 <h2 id="2-在编辑器里绑定目录">2. 在编辑器里绑定目录</h2>
-<p>打开 <strong>Framework - 框架 → 0. Home Page</strong>。首次绑定时，在 <strong>Steam 游戏路径</strong> 输入找到的 <code>LuaProject</code> 路径，或点击 <strong>浏览</strong> 选中该文件夹并确认。编辑器会把路径写入 <code>Assets/EditorStorage.json</code>。绑定后，首页显示试车场等快捷入口。</p>
+<p>打开 <strong>Framework - 框架 → 0. Home Page</strong>。在 <strong>Steam 游戏路径</strong> 输入找到的 <code>LuaProject</code> 路径，或点击 <strong>浏览</strong> 选中该文件夹并确认。当前首页会在路径变更时自动写入 <code>Assets/EditorStorage.json</code>。旧界面使用<strong>保存</strong>按钮。绑定有效后，首页显示试车场等快捷入口。</p>
 <p><img src="imgs/set-steam-game-folder-steam-path.zh-CN.png" alt="Unity 首页中高亮的 Steam 游戏路径和浏览按钮"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>26.3. VoicePack As Practice 语音包实战 | Panzer War Document </title>
+      <title>语音包实战 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="26.3. VoicePack As Practice 语音包实战 | Panzer War Document ">
+      <meta name="title" content="语音包实战 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,65 +77,416 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="263-voicepack-as-practice-语音包实战">26.3. VoicePack As Practice 语音包实战</h1>
 
-<p>As an example, this chapter will introduce the events in Fmod and configs for the game.</p>
-<p>以语音包为例，本章将讲解 Fmod 中的事件以及游戏的音频配置。</p>
-<h1 id="1-import-assets-导入资源">1. Import Assets 导入资源</h1>
-<p>Create a subfolder in the crew folder, and drag your voice assets into this folder.</p>
-<p>在 crew 文件夹下创建一个子文件夹，然后将音频文件拖入该文件夹。</p>
-<p><img src="imgs/3942e5a2c71f_1669543199675-74bd3eb3-5c23-4d6d-bc47-c4c137377c77.png" alt=""></p>
-<h1 id="2-create-events-创建事件">2. Create Events 创建事件</h1>
-<p>Create a subfolder in crew/ground. Select a set of existing voice events. Press Ctrl + D to duplicate it and drag it into the newly created subfolder. Change the suffix from cn to whatever you want.</p>
-<p>在 crew/ground 下创建一个子文件夹，选中一组现有的语音事件，按 Ctrl + D 复制并将其拖入刚刚创建的子文件夹。将事件后缀从 cn 更改为你想要的标识。例如，如图中所示，将 cn 改为 jp。</p>
-<p><img src="imgs/d8e5f4739832_1669543254097-88e5f04d-cf55-41c0-b975-c401ef0ec2b0.png" alt=""></p>
-<p><img src="imgs/3fbf2ddd75b9_1669543423758-b4bd9913-79f8-4a98-b3ea-0d9d6e9775f2.png" alt=""></p>
-<p>Select your event. Delete the original sounds from the playlist and add your sounds into the playlist one by one.</p>
-<p>选中该事件，将 Playlist 中的原有音频删除，然后逐一将你的音频拖入其中。</p>
-<p><img src="imgs/a6ed9a8f6b13_1669543842835-7220ab79-a9c6-49b5-a4d1-786bf7c35b4e.png" alt=""></p>
-<h1 id="3-check-mixer-检查-mixer">3. Check Mixer 检查 Mixer</h1>
-<p>Press Ctrl + 2 to enter the Mixer window. Be sure the newly created events are under the dialogs group.</p>
-<p>按 Ctrl + 2 进入 Mixer 窗口，确保新创建的事件位于 dialogs 组中。</p>
-<p><img src="imgs/690733adb310_1669543667628-297e0600-5bc9-435c-9150-d80a9bb022fc.png" alt=""></p>
-<h1 id="4-create-sound-bank-创建-soundbank">4. Create Sound Bank 创建 SoundBank</h1>
-<p>Create a new bank under Banks.</p>
-<p>在 Banks 中创建一个新的 Bank。</p>
-<p><img src="imgs/230c669a8165_1669543719240-deb5993a-5838-477d-a02d-8af881cfdaca.png" alt=""></p>
-<p><img src="imgs/3382e3c704f6_1669543817900-abbdc4f0-e24b-4682-ab4e-cd0f3e650b7b.png" alt=""></p>
-<p>Then build all platforms. It will generate bank files at PanzerWar-Mods\PanzerWar-FMod-UGC-Project\Build.</p>
-<p>然后，打包所有平台。Bank 文件将在 PanzerWar-Mods\PanzerWar-FMod-UGC-Project\Build 目录下生成。</p>
-<p><img src="imgs/d2abffc80f4e_1669543954260-bd16691e-d84e-4998-8f37-8bc15a36bb04.png" alt=""></p>
-<p>Then the work in Fmod Studio is finished. Let's go back to the Unity project.</p>
-<p>至此，Fmod Studio 中的工作已完成。让我们回到 Unity 工程。</p>
-<h1 id="5-create-config-创建配置">5. Create Config 创建配置</h1>
-<p>Use the following tool to create configs faster.</p>
-<p>使用以下工具快速创建配置。</p>
-<p><img src="imgs/24cc3e414efa_1669546221698-3b866bc6-a3b0-44be-90d7-928e9e89baad.png" alt=""></p>
-<h2 id="51-create-crew-voice-config-创建成员语音配置">5.1 Create Crew Voice Config 创建成员语音配置</h2>
-<p><img src="imgs/85bf4a3d9d83_1669546247890-a49e8db7-855c-4ecb-9200-58d99929fd25.png" alt=""></p>
-<p>Select the events that you created in Fmod in the previous step.</p>
-<p>将上一步在 Fmod 中创建的事件名称填入对应类型。</p>
-<p><img src="imgs/39e283de3fd7_1669546208456-1c2880b6-fd76-4f00-be73-e1d9bfa297cc.png" alt=""></p>
-<h2 id="52-create-bank-buildpipline-创建-bank-打包配置">5.2 Create Bank BuildPipline 创建 Bank 打包配置</h2>
-<p><img src="imgs/a7864e719290_1669546918411-111e4ced-bab2-4ed8-b253-2b79778f2bce.png" alt=""></p>
-<p>Create the SoundBankBuildPiplineData Build file.</p>
-<p>创建音效打包文件（SoundBankBuildPiplineData）。</p>
-<p><img src="imgs/ce28d8445b1c_1713594578218-e33eef5e-c86b-4175-8cee-d08f3e1f3885.png" alt=""></p>
-<p>Pick the folder that banks are built.</p>
-<p>选择 Bank 文件所在的文件夹。</p>
-<p><img src="imgs/9d9fe87fd8b9_1713594613629-782ff71f-a2ca-4392-97f7-e16992005288.png" alt=""></p>
-<p>Pick .bank extension files.</p>
-<p>选择 .bank 扩展名的文件。</p>
-<p><img src="imgs/ea6f9a93f18e_1713594630787-282e8025-641a-4bc5-8ad8-11efdb4e61f2.png" alt=""></p>
-<p>In the configs array, sound bank configs are generated automatically.</p>
-<p>在配置数组中，SoundBank Config 会自动生成。</p>
-<p><img src="imgs/b6b6be571c9e_1713594642933-3e1ca774-3b51-4699-81c6-586ea931f78b.png" alt=""></p>
-<h1 id="6-build-config-打包配置">6. Build Config 打包配置</h1>
-<p><img src="imgs/e729c06b9786_1669547074862-2fdacc45-bdff-43f0-b601-137c5409dbe9.png" alt=""></p>
-<p><img src="imgs/a7b0436199c4_1669547092596-13eb4869-9e68-4592-a98a-121c26ed0a04.png" alt=""></p>
-<p><img src="imgs/f5389fe6f4a0_1669547149232-b53d4a2b-50ce-4f5d-ae78-930dc7bb295c.png" alt=""></p>
-<p>Then, you can build like other Mods.</p>
-<p>然后，即可像其他模组一样进行打包。</p>
+<!-- Generated from tutorials/voice-pack-practice/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="语音包实战">语音包实战</h1>
+<p><strong>中文</strong> | <a href="../en/mod/voice-pack-practice.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run voice-pack-practice --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;5cd6ae9b-1231-5334-90e0-87a3974c3d4a&quot;,
+    &quot;bankConfig&quot;: &quot;${fixture}/TutorialVoiceBank.asset&quot;,
+    &quot;bankPipeline&quot;: &quot;${fixture}/TutorialVoicePipeline.asset&quot;,
+    &quot;crew&quot;: &quot;${fixture}/TutorialCrewVoice.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>按 <a href="fmod-project-setup.html">FMOD 工程设置</a> 在可用的 Studio 工程中操作：</p>
+<ol>
+<li>在 Audio Bin 的 <code>crew</code> 下新建子文件夹，并导入录音。</li>
+<li>在 Events 的 <code>crew/ground</code> 下新建子文件夹，用 Ctrl+D 复制现有分组，并修改后缀（例如 <code>cn</code> -&gt; <code>jp</code>）。</li>
+<li>用你的录音替换原 Playlist 中的片段，同时保留事件参数。</li>
+<li>按 <strong>Ctrl+2</strong> 打开 <strong>Mixer</strong>，确认新事件路由到 <code>dialogs</code> 组。在 <strong>Banks</strong> 下另外建一个语音 Bank，把这些事件分配给该 Bank。构建需要的目标平台，再在 FMOD 工程的 <code>Build</code> 子目录检查相应平台的 <code>.bank</code> 文件。</li>
+</ol>
+<p>回到 Unity，创建 <strong>SoundBankBuildPiplineData</strong>。在 <strong>Desktop／Mobile</strong> 分别指定对应的输出目录。用 <strong>Pick Multi Banks</strong> 从输出中选择 <code>.bank</code> 文件，检查配置列表自动生成的 <strong>SoundBankConfig</strong> 和各平台路径，再保存。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.SoundBankConfig)&quot;,
+        &quot;${bankConfig}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.SoundBankBuildPiplineData)&quot;,
+        &quot;${bankPipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bankConfig}/soundBankName&quot;,
+      &quot;value&quot;: &quot;tanks_crews_cn&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;eventRefList\&quot;:[]}&quot;,
+        &quot;@asset:${bankConfig}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.SoundBankConfigEditor/RefreshBanks&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${bankConfig}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bankPipeline}/desktopSoundBankPath&quot;,
+      &quot;value&quot;: &quot;../Fmod/Build/Desktop&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bankPipeline}/mobileSoundBankPath&quot;,
+      &quot;value&quot;: &quot;../Fmod/Build/Mobile&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal bank = E.AssetDatabase.LoadMainAssetAtPath('${bankConfig}')\nlocal pipeline = E.AssetDatabase.LoadMainAssetAtPath('${bankPipeline}')\nlocal configType = CS.ShanghaiWindy.Core.SoundBankBuildPiplineData.Config\nlocal row = configType()\nrow.soundBankConfig = bank\nrow.desktopSoundBankPath = pipeline.desktopSoundBankPath .. '/' .. bank.soundBankName .. '.bank'\nrow.mobileSoundBankPath = pipeline.mobileSoundBankPath .. '/' .. bank.soundBankName .. '.bank'\nlocal rows = CS.System.Array.CreateInstance(typeof(configType), 1)\nrows:SetValue(row, 0)\npipeline.configs = rows\nassert(CS.System.IO.File.Exists(row.desktopSoundBankPath))\nE.EditorUtility.SetDirty(pipeline)\nE.AssetDatabase.SaveAssets()\nreturn 'Bank row linked'\n&quot;,
+        &quot;link-voice-bank&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Bank row linked&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>创建 <strong>CrewFmodVoiceData</strong>，用事件选择器为 <strong>StartBattleEvent</strong> 等字段绑定上一节创建的事件。把乘员语音资源和 Bank 构建资源都加入模组构建管线的 <strong>Linked Objects</strong>，再对目标平台构建并打包。</p>
+<p><img src="imgs/voice-pack-practice-start.zh-CN.png" alt="乘员语音的战斗开始事件"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.CrewFmodVoiceData)&quot;,
+        &quot;${crew}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${crew}/voiceName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Crew&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = CS.UnityEditor\nlocal bank = E.AssetDatabase.LoadMainAssetAtPath('${bankConfig}')\nlocal crew = E.AssetDatabase.LoadMainAssetAtPath('${crew}')\nfor index = 0, bank.eventRefList.Count - 1 do\n    local evt = bank.eventRefList[index]\n    if evt.Path:lower():find('start_battle_cn', 1, true) then\n        crew.StartBattleEvent = evt\n        E.EditorUtility.SetDirty(crew)\n        E.AssetDatabase.SaveAssets()\n        return evt.Path\n    end\nend\nerror('No start-battle event found in bank')\n&quot;,
+        &quot;wire-voice-crew&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;start_battle_cn&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${crew}/StartBattleEvent/Path&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;start_battle_cn&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${bankPipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${crew}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;crewvoice\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
