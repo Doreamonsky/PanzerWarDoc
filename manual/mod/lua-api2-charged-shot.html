@@ -111,8 +111,10 @@
 }
 </code></pre>
 </details>
-<p>把脚本挂到载具。示例给第 0 个武器配置 4 秒蓄力和最高 50% 的伤害加成。装填完成后开始蓄力，开火时清零。</p>
-<p>用 <code>BuffAPI.CreateValueBuff</code> 创建一个可变数值的 Buff，挂到 <code>DamageBuffedCoff</code>。更新只调用 <code>SetValue</code>，行为销毁时移除 Buff。</p>
+<h2 id="1-导入脚本并绑定载具">1. 导入脚本并绑定载具</h2>
+<p>在 Lua 源码目录创建 <code>ChargedShot.lua</code>，复制下方脚本，按 <a href="lua-hello-world.html">Lua Hello World</a> 导入 Unity。选中 <strong>VehicleTextData</strong> 的载具级 Lua 行为，将导入资产加到列表。若要在独立测试预制体上试验，可用 <a href="lua-behavior-mono.html">LuaBehaviorMono</a> 的挂载方式，并让它位于载具层级内。</p>
+<p>保留 <code>chargeTime = 4</code> 秒和 <code>maxBonus = 0.5</code>。示例选择武器索引 <code>0</code>。需要另一个武器时，先用 <code>WeaponAPI.GetWeaponCount</code> 看可用数量，再修改索引。找不到武器或蓄力时长不大于零时，脚本停用周期更新。</p>
+<p>用 <code>BuffAPI.CreateValueBuff</code> 创建一个可修改的 Buff，挂到武器的 <code>DamageBuffedCoff</code>。第二个参数 <code>false</code> 选加法，数值 <code>0.5</code> 表示加 50%。传 <code>true</code> 时系数参与乘法叠加。保留同一对象，只在数值变化时用 <code>SetValue</code> 更新它，省去反复移除和创建。行为销毁时调用 <code>RemoveBuff</code>。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     maxBonus = { type = &quot;number&quot;, value = 0.5 },
@@ -234,7 +236,13 @@ return ChargedShot
 ]
 </code></pre>
 </details>
-<p>回放验证蓄力上限、开火清零和清理。游戏中的实际伤害需要另行验证。</p>
+<h2 id="2-按装填蓄力和开火顺序试验">2. 按装填、蓄力和开火顺序试验</h2>
+<ol>
+<li>让武器完成装填。装填期间脚本跳过蓄力。</li>
+<li>等约两秒后开火一次，再完整装填并等超过四秒后开火。可先临时记录 <code>self.charge</code>，确认它随 <code>dt / chargeTime</code> 增长，达到 1 后不再增长。更新间隔设为 0.1 秒，按收到的 <code>dt</code> 积累。</li>
+<li>检查 <code>OnFired</code> 同时清零蓄力与 Buff 数值。移除脚本后再查看 Buff 是否已从武器移除。测试实际伤害时使用相同的弹种和目标，并保持命中位置一致。</li>
+</ol>
+<p>回放使用 xLua 测试替身核对装填门槛、蓄力上限、开火复位和销毁清理。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

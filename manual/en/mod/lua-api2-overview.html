@@ -85,8 +85,39 @@
 <p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-overview
 </code></pre>
-<h2 id="1-check-the-client-version">1. Check the client version</h2>
-<p>These examples use <code>GAME_API_VERSION</code> 2 or later. To support older clients, check <code>(GAME_API_VERSION or 1) &gt;= 2</code>. The replay reads the client API version and checks the version branches in xLua.</p>
+<p>API 2 adds a vehicle assembly callback, managed event subscriptions, and interfaces for querying battles, radars, weapons, and vehicle state. If this is your first script, follow <a href="lua-hello-world.html">Lua Hello World</a> to import and attach a script, then attach the example below to a test vehicle.</p>
+<h2 id="1-check-the-version-and-wait-for-vehicle-assembly">1. Check the version and wait for vehicle assembly</h2>
+<p>Older clients may leave <code>GAME_API_VERSION</code> unset. Check <code>(GAME_API_VERSION or 1) &gt;= 2</code> before calling API 2 methods. On a current client, opening this vehicle in the garage should log <code>Ready</code> once. Entering a battle creates a fresh instance and logs it again.</p>
+<pre><code class="lang-lua">Behavior()
+Property = {}
+
+local MyBehavior = class(&quot;MyBehavior&quot;)
+
+function MyBehavior:OnStarted()
+  self.supportsAPI2 = (GAME_API_VERSION or 1) &gt;= 2
+  if not self.supportsAPI2 then
+    print(&quot;[MyBehavior] This mod needs API 2&quot;)
+  end
+end
+
+function MyBehavior:OnVehicleReady(vehicle)
+  if not self.supportsAPI2 then return end
+  self.vehicle = vehicle
+  print(&quot;[MyBehavior] Ready: &quot; .. VehicleAPI.GetDisplayName(vehicle))
+  if VehicleAPI.IsGarage(vehicle) then
+    self.script:SetUpdateEnabled(false)
+    return
+  end
+  self.script:SetUpdateInterval(0.2)
+end
+
+function MyBehavior:OnUpdated(dt)
+  if not self.vehicle then return end
+  -- dt is the time in seconds since the previous call. Run periodic battle logic here.
+end
+
+return MyBehavior
+</code></pre>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -113,18 +144,147 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;API version verified&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local function verify(version, garage)\n  local GAME_API_VERSION = version\n  local function Behavior() end\n  local function class() return {} end\n  local function print() end\n  local vehicle = {}\n  local VehicleAPI = {\n    GetDisplayName = function(target) assert(target == vehicle); return \&quot;Example\&quot; end,\n    IsGarage = function() return garage end,\n  }\n  local seed = {interval = 0, enabled = true}\n  function seed:SetUpdateEnabled(enabled) self.enabled = enabled end\n  function seed:SetUpdateInterval(interval) self.interval = interval end\n  local object = (function()\nBehavior()\nProperty = {}\n\nlocal MyBehavior = class(\&quot;MyBehavior\&quot;)\n\nfunction MyBehavior:OnStarted()\n  self.supportsAPI2 = (GAME_API_VERSION or 1) &gt;= 2\n  if not self.supportsAPI2 then\n    print(\&quot;[MyBehavior] This mod needs API 2\&quot;)\n  end\nend\n\nfunction MyBehavior:OnVehicleReady(vehicle)\n  if not self.supportsAPI2 then return end\n  self.vehicle = vehicle\n  print(\&quot;[MyBehavior] Ready: \&quot; .. VehicleAPI.GetDisplayName(vehicle))\n  if VehicleAPI.IsGarage(vehicle) then\n    self.script:SetUpdateEnabled(false)\n    return\n  end\n  self.script:SetUpdateInterval(0.2)\nend\n\nfunction MyBehavior:OnUpdated(dt)\n  if not self.vehicle then return end\n  -- dt is the time in seconds since the previous call. Run periodic battle logic here.\nend\n\nreturn MyBehavior\n  end)()\n  object.script = seed\n  object:OnStarted()\n  object:OnVehicleReady(vehicle)\n  object:OnUpdated(0.2)\n  assert(object.supportsAPI2 == ((version or 1) &gt;= 2))\n  assert(seed.enabled == (not object.supportsAPI2 or not garage))\n  assert(seed.interval == ((object.supportsAPI2 and not garage) and 0.2 or 0))\nend\nverify(nil, false)\nverify(1, false)\nverify(2, true)\nverify(3, false)\n\nlocal vehicle, weapon, self = {}, {}, {script = {}}\nlocal ammo, callback = 7\nlocal WeaponAPI = {\n  GetWeapon = function(target, index) assert(target == vehicle and index == 0); return weapon end,\n  GetTotalAmmo = function(target) assert(target == weapon); return ammo end,\n  OnAmmoChanged = function(owner, target, fn)\n    assert(owner == self.script and target == weapon)\n    callback = fn\n    return {IsActive = true}\n  end,\n}\nlocal weapon = WeaponAPI.GetWeapon(vehicle, 0)\nif weapon then\n  self.ammo = WeaponAPI.GetTotalAmmo(weapon)\n  self.ammoSubscription = WeaponAPI.OnAmmoChanged(self.script, weapon, function()\n    self.ammo = WeaponAPI.GetTotalAmmo(weapon)\n  end)\nend\nassert(self.ammo == 7 and self.ammoSubscription.IsActive)\nammo = 6\ncallback()\nassert(self.ammo == 6)\nreturn \&quot;Lifecycle and ammo examples verified with Lua stubs\&quot;\n&quot;,
+        &quot;manual-api-overview-samples&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lifecycle and ammo examples verified with Lua stubs&quot;
+    }
   }
 ]
 </code></pre>
 </details>
-<h2 id="2-pick-callbacks-and-queries">2. Pick callbacks and queries</h2>
+<h2 id="2-choose-lifecycle-callbacks-and-an-update-interval">2. Choose lifecycle callbacks and an update interval</h2>
+<table>
+<thead>
+<tr>
+<th>Callback</th>
+<th>When it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OnStarted()</code></td>
+<td>The script instance starts. Its vehicle may still be assembling.</td>
+</tr>
+<tr>
+<td><code>OnVehicleReady(vehicle)</code></td>
+<td>Once after the owning vehicle is assembled, including in the garage. If the vehicle is already assembled when the script starts, this follows the startup routine. Standalone map and effect behaviours have no owning vehicle.</td>
+</tr>
+<tr>
+<td><code>OnUpdated(dt)</code></td>
+<td>Once per frame by default, or at the configured interval. <code>dt</code> is the accumulated time in seconds since the previous call.</td>
+</tr>
+<tr>
+<td><code>OnVehicleDestroyed(vehicle)</code></td>
+<td>The owning vehicle is killed. Use it for a destruction animation or cleanup.</td>
+</tr>
+<tr>
+<td><code>OnDestroyed()</code></td>
+<td>The behaviour instance is destroyed. Release resources managed by the script here. The game disposes of subscriptions owned by this behaviour afterward.</td>
+</tr>
+</tbody>
+</table>
+<p>Tank, turret, and tank weapon behaviours configured in vehicle data receive <code>self.vehicle</code> before <code>OnStarted</code>. Turret behaviours also receive <code>self.turretController</code>, tank weapon behaviours receive <code>self.tankFire</code>, and aircraft weapon behaviours receive <code>self.flightFire</code>. See <a href="lua-vehicle-init-timing.html">vehicle initialization timing</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>self.script:GetVehicle()</code></td>
+<td>Gets and caches the owning tank, aircraft, or infantry unit. Returns <code>nil</code> for behaviours with no owning vehicle.</td>
+</tr>
+<tr>
+<td><code>self.script:SetUpdateInterval(seconds)</code></td>
+<td>Spreads out calls to <code>OnUpdated</code>. Pass <code>0</code> to run on every frame again.</td>
+</tr>
+<tr>
+<td><code>self.script:SetUpdateEnabled(false)</code></td>
+<td>Stops <code>OnUpdated</code> while keeping event callbacks and <code>OnGUI</code> available. Pass <code>true</code> to resume.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-subscribe-to-state-changes">3. Subscribe to state changes</h2>
+<p>Get a weapon in <code>OnVehicleReady</code> and subscribe to its ammo updates. Read ammo once for the initial display, then refresh it on <code>OnAmmoChanged</code>. Add the code below to the battle branch in the first example and draw <code>self.ammo</code> in <code>OnGUI</code>.</p>
+<pre><code class="lang-lua">local weapon = WeaponAPI.GetWeapon(vehicle, 0)
+if weapon then
+  self.ammo = WeaponAPI.GetTotalAmmo(weapon)
+  self.ammoSubscription = WeaponAPI.OnAmmoChanged(self.script, weapon, function()
+    self.ammo = WeaponAPI.GetTotalAmmo(weapon)
+  end)
+end
+</code></pre>
 <ul>
-<li>Handle startup in <code>OnStarted</code> and use <code>OnVehicleReady</code> to access assembled vehicle components. <code>OnVehicleReady</code> can also run in the garage. Use <code>VehicleAPI.IsGarage</code> to check the context. See <a href="lua-vehicle-init-timing.html">vehicle initialization timing</a>.</li>
-<li>Create and reuse a battle query with <code>VehicleAPI.CreateQuery</code>. Cache model nodes found by <code>TransformAPI.FindDeep</code> or <code>FindAllDeep</code> during initialization. Handle missing results according to each API signature. C# arrays and contact indices start at zero.</li>
-<li>Pass <code>self.script</code> to subscriptions so they end when the behaviour is destroyed. Weapons, modules, landing gear and radar expose change events.</li>
-<li>Use <code>self.script:SetUpdateInterval(seconds)</code> for slower updates. Use <code>SetUpdateEnabled(false)</code> for event-driven behaviours. Draw cached results in <code>OnGUI</code>.</li>
-<li>Angles generally use degrees and distances use metres. Check the signature for speed units. For example, <code>GetSpeedKmh</code> returns kilometres per hour.</li>
+<li><code>self.script</code> owns the subscription. Destroying the behaviour or removing an associated target vehicle ends it.</li>
+<li>To stop early, check that the subscription object exists and call <code>sub:Dispose()</code>. Repeat calls are safe. <code>sub.IsActive</code> tells you whether the subscription is still registered.</li>
+<li>A game mode or library script can pass <code>nil</code> as the owner. Subscriptions with a target follow the target's lifetime. Subscriptions with neither an owner nor a target end when the game mode exits.</li>
+<li>The game stops invoking a subscription callback after 10 consecutive errors. Check the event name and script context in the game log to locate the error.</li>
 </ul>
+<h2 id="4-find-the-api-and-handle-return-values">4. Find the API and handle return values</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Purpose and common methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VehicleAPI</code></td>
+<td>Vehicle identity, state, queries, and events. <code>GetContext</code>, <code>IsGarage</code>, <code>IsLocalPlayer</code>, <code>IsBot</code>, <code>IsRemote</code>, <code>IsAlive</code>, <code>GetTeam</code>, <code>IsEnemy</code>, <code>GetDisplayName</code>, <code>GetGuid</code>, <code>GetVelocity</code>, <code>GetSpeedKmh</code>, <code>GetAimPoint</code>, <code>CreateQuery</code>, <code>OnVehicleSpawned</code>, <code>OnVehicleKilled</code>.</td>
+</tr>
+<tr>
+<td><code>RadarAPI</code></td>
+<td>Ground and airborne radars. <code>TryGetRadar</code>, <code>IsActive</code>, <code>GetWorkMode</code>, <code>GetScanAzimuth</code>, <code>GetContactCount</code>, <code>GetContact</code>, <code>GetContactWorldAzimuth</code>, <code>GetLockedTarget</code>, <code>TryLock</code>, <code>Unlock</code>, <code>OnLockChanged</code>, <code>OnThreat</code>.</td>
+</tr>
+<tr>
+<td><code>WeaponAPI</code></td>
+<td>Weapons, ammo, reloads, lead, and events. <code>GetWeaponCount</code>, <code>GetWeapon</code>, <code>GetAmmo</code>, <code>GetTotalAmmo</code>, <code>IsReloaded</code>, <code>GetReloadProgress</code>, <code>GetReloadTime</code>, <code>GetMuzzle</code>, <code>GetShellSpeed</code>, <code>PredictLead</code>, <code>OnFired</code>, <code>OnAmmoChanged</code>, <code>OnReloaded</code>, <code>OnHit</code>, <code>OnKill</code>.</td>
+</tr>
+<tr>
+<td><code>TankAPI</code></td>
+<td>Turret and engine. <code>GetTurretCount</code>, <code>GetTurretTransform</code>, <code>GetGunTransform</code>, <code>GetEngineState</code>.</td>
+</tr>
+<tr>
+<td><code>FlightAPI</code></td>
+<td>Flight state and landing gear. <code>IsOnGround</code>, <code>IsGearDown</code>, <code>GetAirspeedKmh</code>, <code>GetAltitude</code>, <code>GetThrottle</code>, <code>IsEngineRunning</code>, <code>OnGearChanged</code>.</td>
+</tr>
+<tr>
+<td><code>InternalModuleAPI</code></td>
+<td>Internal modules. <code>GetInternalModule</code>, <code>IsDestroyed</code>, <code>GetHitPointRatio</code>, <code>OnStateChanged</code>, <code>OnDamaged</code>, <code>OnRepaired</code>.</td>
+</tr>
+<tr>
+<td><code>CameraAPI</code></td>
+<td>Player camera. <code>GetCameraMode</code>, <code>IsZoomed</code>, <code>GetLockTarget</code>.</td>
+</tr>
+<tr>
+<td><code>TransformAPI</code></td>
+<td>Model nodes. <code>FindDeep</code>, <code>FindAllDeep</code>.</td>
+</tr>
+<tr>
+<td><code>BuffAPI</code></td>
+<td>Create a buff with an editable value using <code>CreateValueBuff</code>.</td>
+</tr>
+<tr>
+<td><code>TimeAPI</code></td>
+<td>Check the pause state with <code>IsPaused</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Find the signatures in <code>ShanghaiWindy.Core.API</code> or use the SDK hints in VS Code after setting up <a href="install-vs-code-emmylua.html">EmmyLua</a>. C# arrays and contact indices start at zero. For methods with <code>out</code> values such as <code>TryGetRadar</code> or <code>GetContact</code>, first check the boolean result in Lua. Handle missing results according to each signature, such as <code>nil</code>, <code>false</code>, or <code>0</code>. Distances are generally in metres and angles in degrees. Check the method's speed units. For example, <code>GetSpeedKmh</code> returns kilometres per hour.</p>
+<p>Online battle queries filter enemy vehicles by team visibility. Radar contacts are subject to detection. To control a radar, use the vehicle currently controlled by the player and check the result of methods such as <code>TryLock</code>.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -154,10 +314,164 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;GetContactWorldAzimuth&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.GameAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetApiVersion&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.TankAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetEngineState&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.FlightAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OnGearChanged&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.InternalModuleAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OnStateChanged&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.CameraAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetCameraMode&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.TransformAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FindAllDeep&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.BuffAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CreateValueBuff&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.TimeAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;IsPaused&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local api = CS.ShanghaiWindy.Core.API\nlocal query = api.VehicleAPI.CreateQuery()\nassert(query:Run(nil) == 0 and query.Count == 0 and query:Get(0) == nil and query:GetDistance(0) == 0)\nassert(api.WeaponAPI.GetWeapon(nil, 0) == nil and api.WeaponAPI.GetTotalAmmo(nil) == 0)\nreturn \&quot;API 2 query and weapon fallbacks verified\&quot;\n&quot;,
+        &quot;manual-api-query-fallbacks&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;API 2 query and weapon fallbacks verified&quot;
+    }
   }
 ]
 </code></pre>
 </details>
+<h2 id="5-migrate-older-scripts">5. Migrate older scripts</h2>
+<p>Create the battle query and cache model nodes in <code>OnVehicleReady</code>. At each update, call <code>query:Run(vehicle)</code> and read results by index with <code>query:Get(index)</code>. Run initialization methods such as <code>CreateQuery</code> and <code>FindAllDeep</code> when you build or rebuild the cache. If a node is missing, check the model's name and hierarchy. Subscribe to ammo, reload, module, landing gear, and radar lock changes. Draw the cached result in <code>OnGUI</code> and use <code>SetUpdateInterval</code> for other periodic checks.</p>
+<table>
+<thead>
+<tr>
+<th>Older approach</th>
+<th>Current API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scanning for vehicles with <code>GetObjectsInWorld(&quot;Rigidbody&quot;)</code>, <code>FindObjectsOfType</code>, or <code>Identity.GlobalTeamList</code></td>
+<td>Reuse <code>VehicleAPI.CreateQuery()</code>. Use <code>RadarAPI</code> for radar contacts. The old <code>GlobalTeamList</code> can omit remote players online.</td>
+</tr>
+<tr>
+<td>Using <code>RaycastAll</code> for ground clutter and calculating elevation limits manually</td>
+<td>Configure the radar in <code>groundAARadarData</code> and read detections with <code>RadarAPI.GetContact</code>.</td>
+</tr>
+<tr>
+<td>Comparing <code>InstanceNetType</code> as text, reading <code>GarageManager.inGarage</code>, or comparing with <code>GetPlayerVehicle()</code></td>
+<td><code>VehicleAPI.IsGarage</code>, <code>IsLocalPlayer</code>, <code>IsBot</code>, and <code>IsRemote</code>.</td>
+</tr>
+<tr>
+<td><code>Time.timeScale &lt; 0.01</code></td>
+<td><code>TimeAPI.IsPaused()</code>.</td>
+</tr>
+<tr>
+<td>Retrying <code>TryGetTankInitSystem</code> in <code>OnUpdated</code></td>
+<td>Initialize once in <code>OnVehicleReady(vehicle)</code>.</td>
+</tr>
+<tr>
+<td>Recursing through <code>GetChild</code> to find <code>TurretTransform</code>, <code>GunTransform</code>, or <code>FFPoint</code></td>
+<td><code>TankAPI.GetTurretTransform</code>, <code>GetGunTransform</code>, and <code>WeaponAPI.GetMuzzle</code>. For arbitrary nodes, use <code>TransformAPI.FindDeep</code>.</td>
+</tr>
+<tr>
+<td>Reading <code>bulletCountList</code> or <code>simpleReloadNowTime</code>, or reflecting private fields</td>
+<td><code>WeaponAPI.GetAmmo</code>, <code>GetReloadProgress</code>, and <code>GetReloadTime</code>.</td>
+</tr>
+<tr>
+<td>Counting shots manually</td>
+<td><code>WeaponAPI.OnAmmoChanged</code> and <code>GetTotalAmmo</code>.</td>
+</tr>
+<tr>
+<td>Reflecting module hit points every frame</td>
+<td><code>InternalModuleAPI.OnStateChanged</code>.</td>
+</tr>
+<tr>
+<td>Guessing field names such as <code>curRPM</code> and <code>engineRPM</code></td>
+<td><code>TankAPI.GetEngineState</code>.</td>
+</tr>
+<tr>
+<td>Checking <code>WheelCollider.isGrounded</code> and interpreting landing gear node names</td>
+<td><code>FlightAPI.IsOnGround</code>, <code>IsGearDown</code>, and <code>OnGearChanged</code>.</td>
+</tr>
+<tr>
+<td>Writing a drag-aware lead solver</td>
+<td><code>WeaponAPI.PredictLead</code>.</td>
+</tr>
+<tr>
+<td>Replacing a buff every frame with <code>RemoveBuff</code> and a new buff</td>
+<td><code>BuffAPI.CreateValueBuff</code>, then <code>SetValue</code>.</td>
+</tr>
+<tr>
+<td>Deduplicating frame callbacks with <code>Time.frameCount</code></td>
+<td><code>SetUpdateInterval</code> and the elapsed time from <code>OnUpdated(dt)</code>.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="examples">Examples</h2>
 <ul>
 <li><a href="lua-api2-missile-rack.html">Missile rack</a></li>

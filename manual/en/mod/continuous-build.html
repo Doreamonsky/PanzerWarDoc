@@ -97,7 +97,9 @@
     &quot;gun&quot;: &quot;${fixture}/TutorialSightGun.asset&quot;,
     &quot;manifest&quot;: &quot;${fixture}/pipeline.json&quot;,
     &quot;destination&quot;: &quot;${fixture}/Output&quot;,
-    &quot;expectedArchive&quot;: &quot;${destination}/StandaloneWindows64_Docs_${runId}_Package.modpack&quot;
+    &quot;expectedArchive&quot;: &quot;${destination}/StandaloneWindows64_Docs_${runId}_Package.modpack&quot;,
+    &quot;rawDestination&quot;: &quot;${fixture}/RawOutput&quot;,
+    &quot;otherPlatformDestination&quot;: &quot;${fixture}/AndroidOutput&quot;
   },
   &quot;calls&quot;: [
     {
@@ -220,8 +222,28 @@
 <h2 id="local-build-manifest-for-an-sdk-project">Local build manifest for an SDK project</h2>
 <ol>
 <li>In <strong>ModPackageBuildPiplineData</strong>, reference <strong>ModPackageData</strong> and the assets to package.</li>
-<li>Add an entry to <code>infos</code> in the JSON file. Put the pipeline asset path in <code>modNames</code> and give <code>copyInfo</code> a <code>platform</code> matching the active target and a dedicated <code>dstDir</code>. Create the directory first. Set <code>isPackage=true</code> for an archive and keep <code>isCleanDstFolder=false</code> to preserve the destination contents.</li>
-<li>Call <code>ShanghaiWindy.Editor.Utility_BuildPipline.BuildPiplineManifest(path)</code> from your editor entry point and check the destination for the archive. Use <code>Frontend.Editor.ModPackageWorkshopMeta.WriteSidecar(archivePath)</code> if you need a sidecar.</li>
+<li>Add an entry to <code>infos</code> in the JSON file. List the pipelines in <code>modNames</code>. A pipeline directly in <code>Assets/ModManager</code> can use its bare name. For subfolders, enter the full Unity asset path from the project root, including <code>.asset</code>.</li>
+<li>List output directories by target in <code>copyInfo</code>. An Android build uses the Android row. A StandaloneWindows64 build uses the Windows row. Create the directories before building. Use <code>isPackage=true</code> for a <code>.modpack</code> archive. Use <code>false</code> to copy the built resource folder for a workflow that takes unpacked resources. Keep <code>isCleanDstFolder=false</code> when several pipelines share an output directory. With <code>true</code>, each pipeline clears its destination before copying.</li>
+</ol>
+<pre><code class="lang-json">{
+  &quot;infos&quot;: [
+    {
+      &quot;modNames&quot;: [
+        &quot;BuildPipline-Lua-ModeRes&quot;,
+        &quot;Assets/ModManager/Vehicles/BuildPipline-Vehicles.asset&quot;
+      ],
+      &quot;copyInfo&quot;: [
+        { &quot;platform&quot;: &quot;Android&quot;, &quot;dstDir&quot;: &quot;Build/Ship/Android&quot; },
+        { &quot;platform&quot;: &quot;StandaloneWindows64&quot;, &quot;dstDir&quot;: &quot;Build/Ship/Windows&quot; }
+      ],
+      &quot;isPackage&quot;: true,
+      &quot;isCleanDstFolder&quot;: false
+    }
+  ]
+}
+</code></pre>
+<ol start="4">
+<li>Call <code>ShanghaiWindy.Editor.Utility_BuildPipline.BuildPiplineManifest(path)</code> from your editor entry point and check the corresponding directory. Use <code>Frontend.Editor.ModPackageWorkshopMeta.WriteSidecar(archivePath)</code> to create the matching <code>.modpack.json</code>. Verify the platform, GUID, and version.</li>
 </ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -326,10 +348,22 @@
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${rawDestination}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DirectoryInfo&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
       &quot;args&quot;: [
         &quot;${manifest}&quot;,
-        &quot;{\&quot;infos\&quot;: [{\&quot;modNames\&quot;: [\&quot;${pipeline}\&quot;], \&quot;copyInfo\&quot;: [{\&quot;platform\&quot;: \&quot;StandaloneWindows64\&quot;, \&quot;dstDir\&quot;: \&quot;${destination}\&quot;}], \&quot;isPackage\&quot;: true, \&quot;isCleanDstFolder\&quot;: false}]}&quot;
+        &quot;{\&quot;infos\&quot;: [{\&quot;modNames\&quot;: [\&quot;${pipeline}\&quot;], \&quot;copyInfo\&quot;: [{\&quot;platform\&quot;: \&quot;StandaloneWindows64\&quot;, \&quot;dstDir\&quot;: \&quot;${destination}\&quot;}, {\&quot;platform\&quot;: \&quot;Android\&quot;, \&quot;dstDir\&quot;: \&quot;${otherPlatformDestination}\&quot;}], \&quot;isPackage\&quot;: true, \&quot;isCleanDstFolder\&quot;: false}, {\&quot;modNames\&quot;: [\&quot;${pipeline}\&quot;], \&quot;copyInfo\&quot;: [{\&quot;platform\&quot;: \&quot;StandaloneWindows64\&quot;, \&quot;dstDir\&quot;: \&quot;${rawDestination}\&quot;}], \&quot;isPackage\&quot;: false, \&quot;isCleanDstFolder\&quot;: false}]}&quot;
       ]
     },
     &quot;expect&quot;: {
@@ -407,10 +441,26 @@
         &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
       }
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local io = CS.System.IO\nassert(io.Directory.GetFiles('${rawDestination}', '*.usersight', io.SearchOption.AllDirectories).Length == 1)\nassert(io.Directory.GetFiles('${rawDestination}', '*.modpack', io.SearchOption.AllDirectories).Length == 0)\nassert(not io.Directory.Exists('${otherPlatformDestination}'))\nreturn 'Windows archive and raw output used their matching target; Android was skipped'\n&quot;,
+        &quot;docs-build-raw&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Android was skipped&quot;
+    }
   }
 ]
 </code></pre>
 </details>
+<h2 id="run-from-the-command-line">Run from the command line</h2>
+<p>The old <code>DoBuildPiplineManifest -config</code> entry has changed. Use a parameterless static Editor method as Unity's <code>-executeMethod</code> entry point, read the manifest path there, and call <code>BuildPiplineManifest(path)</code>. Pass the Unity executable, project root, target platform, entry method, and log path. On Windows, you can use PowerShell or Git Bash. See the complete command in <a href="jenkins-setup.html">self-hosted Jenkins builds</a>.</p>
 
 </article>
           </div>

@@ -97,7 +97,9 @@
     &quot;gun&quot;: &quot;${fixture}/TutorialSightGun.asset&quot;,
     &quot;manifest&quot;: &quot;${fixture}/pipeline.json&quot;,
     &quot;destination&quot;: &quot;${fixture}/Output&quot;,
-    &quot;expectedArchive&quot;: &quot;${destination}/StandaloneWindows64_Docs_${runId}_Package.modpack&quot;
+    &quot;expectedArchive&quot;: &quot;${destination}/StandaloneWindows64_Docs_${runId}_Package.modpack&quot;,
+    &quot;rawDestination&quot;: &quot;${fixture}/RawOutput&quot;,
+    &quot;otherPlatformDestination&quot;: &quot;${fixture}/AndroidOutput&quot;
   },
   &quot;calls&quot;: [
     {
@@ -220,8 +222,28 @@
 <h2 id="sdk-工程中的本地构建清单">SDK 工程中的本地构建清单</h2>
 <ol>
 <li>在 <strong>ModPackageBuildPiplineData</strong> 中引用 <strong>ModPackageData</strong> 和要打包的资源。</li>
-<li>在 JSON 的 <code>infos</code> 中新增条目。将管线资源的路径填到 <code>modNames</code>，将活动平台与专用输出目录写进 <code>copyInfo</code> 的 <code>platform</code>、<code>dstDir</code>。先创建输出目录。设置 <code>isPackage=true</code> 生成归档，让 <code>isCleanDstFolder=false</code> 保留目录内容。</li>
-<li>从自有编辑器入口调用 <code>ShanghaiWindy.Editor.Utility_BuildPipline.BuildPiplineManifest(path)</code>，检查目标目录的包。需要 sidecar 时调用 <code>Frontend.Editor.ModPackageWorkshopMeta.WriteSidecar(archivePath)</code>。</li>
+<li>在 JSON 的 <code>infos</code> 新增一项。把要一起构建的管线加到 <code>modNames</code>。直接位于 <code>Assets/ModManager</code> 的资产可以只填名称。位于子目录时写从工程根开始的完整资产路径，包括 <code>.asset</code> 后缀。</li>
+<li>将每个平台的输出加到 <code>copyInfo</code>。当前活动平台为 Android 时只处理 Android 条目，为 StandaloneWindows64 时只处理 Windows 条目。先创建输出目录。<code>isPackage=true</code> 输出 <code>.modpack</code>。使用原始资源目录的流程可填 <code>false</code>。多个管线共用一个输出目录时，保持 <code>isCleanDstFolder=false</code>。设为 <code>true</code> 会在每个管线复制前清理目标目录。</li>
+</ol>
+<pre><code class="lang-json">{
+  &quot;infos&quot;: [
+    {
+      &quot;modNames&quot;: [
+        &quot;BuildPipline-Lua-ModeRes&quot;,
+        &quot;Assets/ModManager/Vehicles/BuildPipline-Vehicles.asset&quot;
+      ],
+      &quot;copyInfo&quot;: [
+        { &quot;platform&quot;: &quot;Android&quot;, &quot;dstDir&quot;: &quot;Build/Ship/Android&quot; },
+        { &quot;platform&quot;: &quot;StandaloneWindows64&quot;, &quot;dstDir&quot;: &quot;Build/Ship/Windows&quot; }
+      ],
+      &quot;isPackage&quot;: true,
+      &quot;isCleanDstFolder&quot;: false
+    }
+  ]
+}
+</code></pre>
+<ol start="4">
+<li>从编辑器入口调用 <code>ShanghaiWindy.Editor.Utility_BuildPipline.BuildPiplineManifest(path)</code>。核对相应目录的归档。可用 <code>Frontend.Editor.ModPackageWorkshopMeta.WriteSidecar(archivePath)</code> 生成同名 <code>.modpack.json</code>，再核对平台、GUID 与版本。</li>
 </ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -326,10 +348,22 @@
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${rawDestination}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DirectoryInfo&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
       &quot;args&quot;: [
         &quot;${manifest}&quot;,
-        &quot;{\&quot;infos\&quot;: [{\&quot;modNames\&quot;: [\&quot;${pipeline}\&quot;], \&quot;copyInfo\&quot;: [{\&quot;platform\&quot;: \&quot;StandaloneWindows64\&quot;, \&quot;dstDir\&quot;: \&quot;${destination}\&quot;}], \&quot;isPackage\&quot;: true, \&quot;isCleanDstFolder\&quot;: false}]}&quot;
+        &quot;{\&quot;infos\&quot;: [{\&quot;modNames\&quot;: [\&quot;${pipeline}\&quot;], \&quot;copyInfo\&quot;: [{\&quot;platform\&quot;: \&quot;StandaloneWindows64\&quot;, \&quot;dstDir\&quot;: \&quot;${destination}\&quot;}, {\&quot;platform\&quot;: \&quot;Android\&quot;, \&quot;dstDir\&quot;: \&quot;${otherPlatformDestination}\&quot;}], \&quot;isPackage\&quot;: true, \&quot;isCleanDstFolder\&quot;: false}, {\&quot;modNames\&quot;: [\&quot;${pipeline}\&quot;], \&quot;copyInfo\&quot;: [{\&quot;platform\&quot;: \&quot;StandaloneWindows64\&quot;, \&quot;dstDir\&quot;: \&quot;${rawDestination}\&quot;}], \&quot;isPackage\&quot;: false, \&quot;isCleanDstFolder\&quot;: false}]}&quot;
       ]
     },
     &quot;expect&quot;: {
@@ -407,10 +441,26 @@
         &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
       }
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local io = CS.System.IO\nassert(io.Directory.GetFiles('${rawDestination}', '*.usersight', io.SearchOption.AllDirectories).Length == 1)\nassert(io.Directory.GetFiles('${rawDestination}', '*.modpack', io.SearchOption.AllDirectories).Length == 0)\nassert(not io.Directory.Exists('${otherPlatformDestination}'))\nreturn 'Windows archive and raw output used their matching target; Android was skipped'\n&quot;,
+        &quot;docs-build-raw&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Android was skipped&quot;
+    }
   }
 ]
 </code></pre>
 </details>
+<h2 id="在命令行运行">在命令行运行</h2>
+<p>旧版 <code>DoBuildPiplineManifest -config</code> 入口已变更。使用一个无参数的静态 Editor 方法作为 Unity 的 <code>-executeMethod</code> 入口，在方法内读取清单位置并调用 <code>BuildPiplineManifest(path)</code>。命令行传入 Unity 安装路径、项目根目录、目标平台、入口方法与日志路径。Windows 可在 PowerShell 或 Git Bash 运行。完整命令见 <a href="jenkins-setup.html">Jenkins 自建构建</a>。</p>
 
 </article>
           </div>

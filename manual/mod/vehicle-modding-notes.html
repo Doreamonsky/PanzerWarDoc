@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>载具模组开发笔记 | Panzer War Document </title>
+      <title>祝昔的载具 Mod 开发总结 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="载具模组开发笔记 | Panzer War Document ">
+      <meta name="title" content="祝昔的载具 Mod 开发总结 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -80,23 +80,51 @@
 
 <!-- Generated from tutorials/vehicle-modding-notes/zh-CN.md and steps.json; edit those sources. -->
 <link rel="stylesheet" href="../tools/tutorials.css">
-<h1 id="载具模组开发笔记">载具模组开发笔记</h1>
+<h1 id="祝昔的载具-mod-开发总结">祝昔的载具 Mod 开发总结</h1>
 <p><strong>中文</strong> | <a href="../en/mod/vehicle-modding-notes.html">English</a></p>
-<p>原文作者 @情绪薫。</p>
-<h2 id="模型与枢轴">模型与枢轴</h2>
-<p>购买或下载模型前，先核对具体资源的改作与分发授权。把炮塔的枢轴放在水平旋转中心，把 Gun 放在俯仰轴上，把 Dym 放在炮管所需原点。车轮枢轴应与轮轴一致。无炮塔载具也可以保留一个空的炮塔节点，为主炮提供所需层级。参见<a href="vehicle-basics.html">载具基础</a>和<a href="blender-axis-fix.html">轴向修正</a>。</p>
-<h2 id="显示与碰撞">显示与碰撞</h2>
-<ul>
-<li>内构缺失时检查 <code>VehicleInfo</code> 的模块配置和 <a href="hitbox-naming-conventions.html">HitBox 命名</a>。看不到整个模型时，按<a href="model-not-displaying.html">模型显示排查</a>检查隐藏状态、层、材质和相机遮罩。</li>
-<li>装甲分析出现透明区域时检查法线、碰撞体和装甲分组。爆反的条件见<a href="reactive-armor.html">反应装甲</a>。命中特效尺寸异常时检查炮弹口径及特效参数。</li>
-<li>模组未出现时，先查看<a href="vehicle-dev-qa.html">载具开发排查</a>和<a href="../gameplay/runtime-log.html">日志</a>，再沿提示检查打包平台和资源引用。</li>
-</ul>
-<h2 id="运动与细节">运动与细节</h2>
-<ul>
-<li>车库翻转或起步、刹停时俯仰过大，检查质量、重心、轮子接地和摩擦，再<a href="physics-wheels.html">按场景测试轮式物理</a>。</li>
-<li>雷达旋转等可用 Animator 写在独立枢轴下。<a href="track-ik-suspension.html">履带节点</a>负责跟随负重轮并定义路径。不同方向的俯仰限位应在游戏里逐向检查。</li>
-<li>旧载具的顶部武器和同轴武器可参考<a href="multi-turret-legacy.html">旧版多炮塔配置</a>。展示图参见<a href="vehicle-thumbnail.html">载具缩略图</a>。</li>
-</ul>
+<p>原作者 @情绪薫。本页保留原有案例，并标出当前工具中的对应入口。第一次搭载具先完成<a href="vehicle-basics.html">坦克制作</a>。</p>
+<h2 id="找到模型">找到模型</h2>
+<p>原作者从 Sketchfab、GameModels3D、CGTrader 和其他素材渠道挑选模型。少数模型带内部结构，下载之前核对具体素材的修改和再分发许可。已有许可的素材也要检查贴图、部件层级及比例。 <a href="https://sketchfab.com/">Sketchfab</a> · <a href="https://gamemodels3d.com/">GameModels3D</a> · <a href="https://www.cgtrader.com/">CGTrader</a></p>
+<h2 id="制作时遇到的问题">制作时遇到的问题</h2>
+<h3 id="1-模型的原点在哪里">1. 模型的原点在哪里</h3>
+<p>在 Blender 物体模式打开 3D 视图的 <strong>Options</strong>。选中 <strong>Affect Only → Origins</strong> 后用 <strong>Move</strong> 把原点移到轴心。分别检查炮塔座圈、<code>Gun</code> 的俯仰轴、<code>Dym</code> 的炮管后坐轴，以及 <code>Wheel</code> 和 <code>UpperWheel</code> 的轮轴。对规则车轮可用 <strong>Set Origin → Origin to Center of Mass (Volume)</strong>。原例若需保持子部件位置也勾选 <strong>Parents</strong>。完成后取消这些选项，测试旋转时模型是否仍在原位。</p>
+<h3 id="2-没有炮塔的坦歼">2. 没有炮塔的坦歼</h3>
+<p>原例使用猎虎。按 <strong>Shift+A → Empty → Plain Axes</strong>，用 <strong>G</strong> 将空轴移到炮座位置，命名为 <code>Turret</code>。将 <code>Gun</code> 放到这个空轴下面，展开确认仍是 <code>Turret → Gun → Dym</code>。</p>
+<h3 id="3-内部模块不显示">3. 内部模块不显示</h3>
+<p>在 <strong>VehicleInfo</strong> 查 <strong>Is Module Ready</strong>，并确认测试场选择模块模式。若仍缺失，核对伤害预制体的内部模块组和当前载具的绑定。<a href="hitbox-naming-conventions.html">模块命名</a> · <a href="vehicle-playground.html">试车场模式</a></p>
+<h3 id="4-编辑时突然看不到-hitbox">4. 编辑时突然看不到 HitBox</h3>
+<p>先检查 Hierarchy 的可见性，再检查伤害编辑器的隐藏选项。原图通过右侧选择菜单恢复可见性。回到目标预制体选一个装甲板，确认它仍在 <code>HitBox</code> 分组里。<a href="hitbox-naming-conventions.html">伤害模型</a></p>
+<h3 id="5-车库里车辆腾空或翻倒">5. 车库里车辆腾空或翻倒</h3>
+<p>先确认 <strong>VehicleTextData → 移动 → Mass</strong> 已填写实际车重。再看轮碰撞是否接地、车体碰撞是否穿过地面。<a href="physics-wheels.html">物理轮</a></p>
+<h3 id="6-命中贴图过大">6. 命中贴图过大</h3>
+<p>打开该弹种资产，检查 <strong>Caliber</strong> 是否用毫米填对，再比对匹配的 <strong>Bullet VFX</strong>。分别以近距和远距测试同一弹种。</p>
+<h3 id="7-模组出包后在列表找不到">7. 模组出包后在列表找不到</h3>
+<p>旧案例中缺的是音效引用。现在先看<a href="../gameplay/runtime-log.html">运行日志</a>，确认包的平台和版本、发动机／开火音效与 <strong>VehicleInfo → Spawn Policy</strong>。普通载具使用 <strong>Player Pick</strong>。 <a href="vehicle-dev-qa.html">载具排查</a></p>
+<h2 id="做出更完整的载具">做出更完整的载具</h2>
+<h3 id="1-让雷达绕自己的轴旋转">1. 让雷达绕自己的轴旋转</h3>
+<p>在 Blender 将雷达挂到轴心空物体，再把空物体挂在炮塔下。Unity 中选中该轴，打开 <strong>Window → Animation → Animation</strong>，创建旋转片段，为开始和结束的旋转设关键帧。激活播放此片段的 <strong>Animator</strong> 和控制器。应用材质，配置物理碰撞并保存碰撞预制体。进场检查雷达随炮塔转动时还能独立转动。 <a href="https://www.bilibili.com/video/BV1zR4y1G7rt/">原动画操作视频</a></p>
+<h3 id="2-统一实体履带节朝向">2. 统一实体履带节朝向</h3>
+<p>在 Blender 分离单节，<strong>Set Origin → Origin to Center of Mass (Volume)</strong>，再 <strong>Snap → Selection to Cursor</strong>。摆正后按 <strong>Ctrl+A → Rotation</strong>。原作者的左右履带样例将左节相对右节旋转 180°。将对应模型给 <code>TrackMesh</code> 和 <code>LeftTrackMesh</code>，预览整圈，检查转折和镜像方向。 <a href="track-ik-suspension.html">履带预览</a></p>
+<h3 id="3-不同方向限制俯仰角">3. 不同方向限制俯仰角</h3>
+<p>打开 <strong>VehicleTextData → 炮塔 → Override Ranges</strong>。为经过发动机舱等有遮挡的角度新增区间，分别填起止回转角、最大仰角和最大俯角。旧例是对称区间 138° 至 180°，仰角 20°、俯角 11°。用自己的模型测试炮口是否碰到上层结构。</p>
+<h3 id="4-为载具生成缩略图">4. 为载具生成缩略图</h3>
+<p>导入图片，选 <strong>Texture Type → Sprite (2D and UI)</strong>，<strong>Sprite Mode → Single</strong>，点击 <strong>Apply</strong>。将 Sprite 绑定到 <strong>VehicleInfo</strong> 的缩略图。 <a href="vehicle-thumbnail.html">缩略图</a></p>
+<h3 id="5-外置与内置反应装甲">5. 外置与内置反应装甲</h3>
+<p>在外部 <strong>HitBox</strong> 选择 <strong>Reactive</strong>。旧作品另用一份内部网格表示反应装甲，其材料在内部结构中按内部装甲归类。先确认外部块的厚度与消耗范围，再按需要增加内部表示。 <a href="reactive-armor.html">反应装甲</a></p>
+<h3 id="6-装甲查看中某片透明">6. 装甲查看中某片透明</h3>
+<p>在 Blender 用 <strong>Face Orientation</strong> 查看法线。按 <strong>Tab</strong> 进编辑模式，选中异常面后按 <strong>Shift+N</strong> 重新计算外侧。导出覆盖 FBX 后刷新 Unity，检查该板件和 HitBox 分组都会出现。透明也可能来自缺失的板件或分组。 <a href="https://www.bilibili.com/video/BV1xr4y187Fc/">原法线讲解</a></p>
+<h3 id="7-去掉内部模型的表面贴图">7. 去掉内部模型的表面贴图</h3>
+<p>将内部模型放入场景，再打开其 <strong>Mesh Renderer → Materials</strong>。旧例在材质菜单点 <strong>Reset</strong>。如果这个材质也供显示模型使用，先在 Project 复制材质，再给内部网格分配该副本或合适的无贴图材质。保存内部预制体，到游戏的内构视图检查。</p>
+<h3 id="8-载具在界面内如何命名">8. 载具在界面内如何命名</h3>
+<p>旧图高亮的是 <strong>VehicleInfo → Localized Name</strong>。编辑默认显示名，再按语言填写本地化名字。项目中的内部资产名保持唯一。保存后切换语言检查车辆列表。</p>
+<h3 id="9-让多边形炮管的表面看起来连续">9. 让多边形炮管的表面看起来连续</h3>
+<p>在 Blender 选炮管，右键 <strong>Shade Smooth</strong>。从侧面和炮口确认平滑边界和轮廓可接受，再导出。</p>
+<h3 id="10-旧版车顶与同轴武器">10. 旧版车顶与同轴武器</h3>
+<p>原例的 <code>SubTurret02</code> 是车顶机枪，用空轴当 <code>Dym</code>。同轴的 <code>SubTurret01</code> 用三个空节点套在主炮 <code>Dym</code> 下，让它随主炮移动。把三段路径和开火点逐项核对。 <a href="multi-turret-legacy.html">旧版多炮塔</a> · <a href="../component/vehicle-text-data.html">当前多炮塔参数</a></p>
+<h3 id="11-配对节点与重力节点">11. 配对节点与重力节点</h3>
+<p>打开 <code>VehicleTrackData</code>。在 <code>SpringNode</code> 填允许自然下垂的路径节点。用 <code>PairNodes</code> 将上层与负重轮附近节点配对，让上下履带随轮子移动。旧图的节距为 <code>0.12 m</code>，重力节点为 15，配对为 2→14、3→13、4→12、5→11、6→10。先确认自己模型编号，再用 <strong>Preview Track</strong> 看悬挂压缩时的形状。</p>
+<h3 id="12-起步和刹车时车体点头">12. 起步和刹车时车体点头</h3>
+<p>在 <strong>VehicleData</strong> 编辑 <code>CenterOfGravity</code>，小幅下移，按 <strong>K</strong> 保存。再用 <strong>WheelCollider → Forward Friction / Sideways Friction</strong> 调整轮胎摩擦。旧图示例纵向刚度 1.7、横向刚度 4。每次改一个变量，用相同速度测试起步和制动。 <a href="physics-wheels.html">物理车轮</a> · <a href="https://blog.csdn.net/weixin_43147385/article/details/124266796">原 WheelCollider 讨论</a></p>
 
 </article>
           </div>

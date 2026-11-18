@@ -2,2113 +2,2125 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.AbstractNetBattleGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.CaptureZoneNetGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.ReplayNetGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.RtsNetGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.StandardWarNetGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.TotalWarNetGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.WarZoneNetGameMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.Mode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/Frontend.Runtime.Impl.GameImpl.Battle.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.ArmyAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.AssetAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.BattlePlayerAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.BotAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.BuffAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.CameraAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.CaptureZoneAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.ColorAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.ComponentAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.ConfigAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.ConvertAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.CustomOptionUIAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.FlightAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.FontAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.GameAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.GameObjectAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.HitBoxAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.InputAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.InternalModuleAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.LuaSubscription.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.LuaValueBuff.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.MapAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.MaterialAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.MeshAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.ModeAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.PointAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.RadarAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.RandomAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.SoundAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.SpawnAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.SpawnVehicleAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.StorageAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.TankAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.TeamAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.TimeAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.TransformAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.UIAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.VehicleAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.VehicleContext.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.VehicleKind.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.VehicleQuery.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.VehicleRelation.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.WeaponAPI.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.eDefaultButtonInputType.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.eDefaultValueInputType.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.API.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.AbstractBattlePlayer.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.BaseFireSystem-1.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.BaseInitSystem.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.BasePawn-1.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.CaptureZoneInfo.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.CaptureZoneTask.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Data.BulletFiredInfo.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.InstantiateNonPoolObjectDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.LoadPoolAssetDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnBattleSceneLoadedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnBattleUILoadedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnFiredDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnGameVehicleDestroyedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnGameVehicleGameObjectRemovedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnGameVehicleLoadedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnKeyCanceled.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnKeyPerformed.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnKeyRegistered.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnKeyUnregistered.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaBoolEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaFloatEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaHitEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaIntEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaModuleStateEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaRadarLockEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaRadarModeEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaRadarThreatEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnLuaVehicleEventDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnQuarterTickDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnTickDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnVehicleDestroyedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnVehicleLoadedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnVehicleRemovedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.OnVehicleThumbnailLoadedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.PostEventLoadedDelegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Delegate.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.ECaptureStage.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.EIconPosition.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.ERWRThreatType.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.ERadarWorkMode.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.IVehicleController.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Lua.ILuaBase.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Lua.ILuaBehavior.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Lua.ILuaBuffCaster.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Lua.ILuaVehicleController.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Lua.LuaBehaviorMono.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.Lua.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.MultiInputWrapperManageComponent.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.ObjectPoolComponent.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.PropValue-1.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.TankFire.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.TeamManager.Team.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.TeamManager.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.TurretController.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.UIEnum.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.UIPoolComponent.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.VehicleComponents.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.VehicleInfo.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.VehicleInitSystem.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Core.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.CaptureZone.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.CaptureZoneModeConfig.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.MaterialConfig.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.TransformInfo.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.WarZoneCaptureZone.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.WarZoneModeConfig.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.WarZoneSPRule.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.WaveAttackInfo.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.WaveInfo.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.WaveMissionConfig.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.ZoneCapturePoint.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.ZoneChain.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/ShanghaiWindy.Data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/api/index.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/index.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/component/built-in-components.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/component/fmod-play-component.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/component/vehicle-text-data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/component/built-in-components.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/component/fmod-play-component.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/component/vehicle-text-data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/config-files.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/crash-and-launch-problems.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/definitive-edition-troubleshooting.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/game-debugging-tools.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/install-mods.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/map-editor-tutorial.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/mod-changelog.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/ravenfield-map-support.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/gameplay/runtime-log.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/intro.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/3d-decals-and-items.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/amphibious-vehicles.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/artillery-skill.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/blender-axis-fix.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/continuous-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/convert-to-diy-equipment.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/crew-data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/destructible-objects.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/diy-equipment-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/encrypted-mods.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/fixed-angle-reload.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/flight-vehicles.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/fmod-installation.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://doc.game.windyverse.net/manual/en/mod/fmod-profiler.html</loc>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/fmod-project-setup.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/get-started.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/hitbox-naming-conventions.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/install-git.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/install-tortoisegit.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/install-vs-code-emmylua.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://doc.game.windyverse.net/manual/en/mod/jenkins-setup.html</loc>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-air-warning.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-charged-shot.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-engine-gear.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-missile-rack.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-module-trigger.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-overview.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-api2-radar-screen.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-behavior-mono.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-breakpoint-debugging.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-callbacks-and-self.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-callbacks.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-custom-buff.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-custom-ui.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-hello-world.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-knowledge-base.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-lessons.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-profiler.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-properties.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-random-meteors.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-self-dot-vs-colon.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/lua-vehicle-init-timing.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/map-wizard-tutorial.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/mask-texture-preview.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/material-component.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/merge-texture-channels.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/migrate-old-project.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/mod-env-setup-hub.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/mod-env-setup.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/mod-tools-changelog.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/modding-index.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/modding-issue-archive.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/model-not-displaying.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/multi-platform-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/multi-turret-legacy.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/native-vehicle-components.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/new-water-integration.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/physics-wheels.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/preset-vehicle-queue.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/project-download-links.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/reactive-armor.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/set-steam-game-folder.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/shared-resources-folder.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/shield-skill.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/sight-mod.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/spg-td-hydraulic-suspension.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/tank-shell-ejection-animation.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/texture-channel-conversion-tools.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/track-ik-suspension.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/umodpack-upgrade-notice.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/unity-engine-requirements.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/upload-to-steam-workshop.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-basics.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-buff-config.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-dev-qa.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-hatches.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-light-component.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-modding-notes.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-playground.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vehicle-thumbnail.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/vfx-mod.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/voice-pack.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/weapon-support-skill.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/en/mod/zoom-ratio-config.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/config-files.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/crash-and-launch-problems.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/definitive-edition-troubleshooting.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/game-debugging-tools.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/install-mods.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/map-editor-tutorial.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/mod-changelog.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/ravenfield-map-support.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/gameplay/runtime-log.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/intro.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/3d-decals-and-items.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/amphibious-vehicles.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/artillery-skill.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/blender-axis-fix.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/capture-mode-config.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/continuous-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/convert-to-diy-equipment.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/crew-data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/custom-shader-data.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/decals.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/destructible-object-creation.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/destructible-objects.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/diy-equipment-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/diy-map-project-import.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/diy-to-mod.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/editor-configs.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/encrypted-mods.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/fixed-angle-reload.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/flight-vehicles.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/fmod-installation.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/fmod-profiler.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/fmod-project-setup.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/fmod-sound-debugging.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/get-started.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/hitbox-naming-conventions.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/install-git.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/install-tortoisegit.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/install-vs-code-emmylua.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/instalod-plugin.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/instalod-studio.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/jenkins-setup.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-air-warning.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-charged-shot.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-engine-gear.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-missile-rack.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-module-trigger.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-overview.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-api2-radar-screen.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-behavior-mono.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-breakpoint-debugging.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-callbacks-and-self.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-callbacks.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-custom-buff.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-custom-ui.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-hello-world.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-knowledge-base.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-lessons.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-profiler.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-properties.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-random-meteors.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-self-dot-vs-colon.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/lua-vehicle-init-timing.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/map-asset-download.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/map-wizard-tutorial.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/map-workshop-asset-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/mask-texture-preview.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/material-component.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/merge-texture-channels.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/migrate-old-project.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/mod-env-setup-hub.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/mod-env-setup.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/mod-mirror-site-setup.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/mod-texture-group.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/mod-tools-changelog.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/modding-index.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/modding-issue-archive.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/model-not-displaying.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/multi-platform-build.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/multi-turret-legacy.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/native-vehicle-components.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/new-water-integration.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/official-art-assets.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/physics-wheels.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/preset-vehicle-queue.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/project-download-links.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/reactive-armor.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/reference-third-party-fmod.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/send-mod-for-debugging.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/set-steam-game-folder.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/shader-variant-collection.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/shared-resources-folder.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/shield-skill.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/sight-mod.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/spg-td-hydraulic-suspension.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/tank-shell-ejection-animation.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/texture-channel-conversion-tools.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/track-ik-suspension.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/umodpack-upgrade-notice.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/unity-engine-requirements.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/upload-naming-art-standards.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/upload-to-modhub.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/upload-to-steam-workshop.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/uv-automation-tool.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-basics.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-buff-config.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-dev-qa.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-hatches.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-light-component.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-modding-notes.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-playground.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vehicle-thumbnail.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vfx-mod.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/voice-pack-practice.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/voice-pack.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/vrm-model.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/weapon-support-skill.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/mod/zoom-ratio-config.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/workshop/glb-model-import-specs.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/workshop/gun-tutorial.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/workshop/poly-edit-tool.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/workshop/tank-workshop-basics.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://doc.game.windyverse.net/manual/workshop/track-editor-tutorial.html</loc>
-    <lastmod>2026-11-18T08:02:20+08:00</lastmod>
+    <lastmod>2026-11-18T08:08:53+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

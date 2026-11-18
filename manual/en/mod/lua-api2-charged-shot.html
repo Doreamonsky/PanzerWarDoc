@@ -111,8 +111,10 @@
 }
 </code></pre>
 </details>
-<p>Attach the script to a vehicle. The example gives weapon index 0 a four-second charge time and a maximum 50% damage bonus. Charging starts after reload. Firing resets the charge.</p>
-<p>Use <code>BuffAPI.CreateValueBuff</code> to attach one mutable buff to <code>DamageBuffedCoff</code>. Update it with <code>SetValue</code> and remove it when the behaviour is destroyed.</p>
+<h2 id="1-import-the-script-and-attach-it-to-a-vehicle">1. Import the script and attach it to a vehicle</h2>
+<p>Create <code>ChargedShot.lua</code> in your Lua source folder and copy in the script below. Follow <a href="lua-hello-world.html">Lua Hello World</a> to import it into Unity, then add the asset to the vehicle-level Lua behaviours in <strong>VehicleTextData</strong>. For a test prefab, you can also attach it with <a href="lua-behavior-mono.html">LuaBehaviorMono</a> on an object in the vehicle hierarchy.</p>
+<p>Keep <code>chargeTime = 4</code> seconds and <code>maxBonus = 0.5</code> for the first test. The example uses weapon index <code>0</code>. To pick another weapon, check the available count with <code>WeaponAPI.GetWeaponCount</code> and change the index. The script disables periodic updates if the weapon is missing or charge time is zero or negative.</p>
+<p>Use <code>BuffAPI.CreateValueBuff</code> to attach one mutable buff to the weapon's <code>DamageBuffedCoff</code>. Passing <code>false</code> for the second argument makes it additive. A value of <code>0.5</code> adds 50%. Passing <code>true</code> gives a multiplier that stacks multiplicatively. Keep one object and use <code>SetValue</code> to update it. An unchanged value leaves it as-is. On destruction, remove it with <code>RemoveBuff</code>.</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     maxBonus = { type = &quot;number&quot;, value = 0.5 },
@@ -234,7 +236,13 @@ return ChargedShot
 ]
 </code></pre>
 </details>
-<p>The replay checks the charge limit, firing reset and cleanup. Verify the actual damage in game.</p>
+<h2 id="2-test-reload-charge-and-fire-in-order">2. Test reload, charge, and fire in order</h2>
+<ol>
+<li>Let the weapon finish reloading. The script skips charging during reload.</li>
+<li>Wait about two seconds and fire once. Reload, wait more than four seconds, and fire again. Log <code>self.charge</code> temporarily to check that it grows by <code>dt / chargeTime</code> and stops at 1. The update interval is 0.1 seconds. The script accumulates the actual <code>dt</code> it receives.</li>
+<li>Check that <code>OnFired</code> clears both the charge and the buff amount. After removing the behaviour, check that its buff was removed from the weapon. To compare damage in game, keep the ammo, target, and hit location consistent.</li>
+</ol>
+<p>The replay uses xLua test doubles to check the reload gate, charge limit, firing reset, and cleanup.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[

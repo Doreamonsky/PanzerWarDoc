@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Build mods with a self-hosted Jenkins setup | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Build mods with a self-hosted Jenkins setup | Panzer War Document ">
+
+
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+
+    <meta property="docfx:rel" content="../../../">
+
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/jenkins-setup/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="build-mods-with-a-self-hosted-jenkins-setup">Build mods with a self-hosted Jenkins setup</h1>
+<p><a href="../../mod/jenkins-setup.html">中文</a> | <strong>English</strong></p>
+<p>Use Jenkins to schedule a <a href="continuous-build.html">local build manifest</a> on your own Windows build machine. The official mod repository uses GitHub Actions <strong>Build modpack</strong>.</p>
+<h2 id="1-install-the-service-and-complete-setup">1. Install the service and complete setup</h2>
+<ol>
+<li>Install a Java version supported by your Jenkins LTS, then run its Windows MSI. Choose the installation directory. Use a local or domain account with <strong>Log on as a service</strong> permission, then select the Java home and port. <a href="https://www.jenkins.io/doc/book/installing/windows/">Jenkins Windows installation</a></li>
+<li>Check that <strong>Jenkins</strong> is running in Windows <strong>Services</strong>. Use <strong>Restart</strong> there after changing the service configuration. Open the selected local port in a browser. The default is <code>http://localhost:8080</code>.</li>
+<li>On <strong>Unlock Jenkins</strong>, read the <code>initialAdminPassword</code> file from the shown location and enter it. Choose <strong>Install suggested plugins</strong> or <strong>Select plugins to install</strong>. Create the first administrator and open Jenkins. The Pipeline below calls Unity directly. Install other plugins as needed.</li>
+</ol>
+<h2 id="2-prepare-the-build-machine-and-manifest">2. Prepare the build machine and manifest</h2>
+<ol>
+<li>Install Git, Git LFS, the <a href="unity-engine-requirements.html">SDK's Unity version</a>, and the target platform modules. Verify that the Jenkins service account can read the project and run Unity. Put the full path to the matching <code>Unity.exe</code> in the worker's <code>UNITY_EXE</code> environment variable.</li>
+<li>Commit the <strong>ModPackageBuildPiplineData</strong> asset and <code>CI/ModBuild.json</code> in the Unity project. Follow the <a href="continuous-build.html">manifest example</a> and keep <code>StandaloneWindows64</code> as its platform and <code>Build/Ship/Windows</code> as its destination. Begin with an empty output directory.</li>
+<li>Add <code>Assets/Editor/CiModBuild.cs</code> to the Unity project with this <code>-executeMethod</code> entry point. The caller passes the manifest path.</li>
+</ol>
+<pre><code class="lang-csharp">using System;
+using System.IO;
+using ShanghaiWindy.Editor;
+
+public static class CiModBuild
+{
+    public static void Run()
+    {
+        var args = Environment.GetCommandLineArgs();
+        var index = Array.IndexOf(args, &quot;-modManifest&quot;);
+        if (index &lt; 0 || index + 1 &gt;= args.Length)
+        {
+            throw new ArgumentException(&quot;Supply -modManifest followed by the JSON path.&quot;);
+        }
+
+        Utility_BuildPipline.BuildPiplineManifest(Path.GetFullPath(args[index + 1]));
+    }
+}
+</code></pre>
+<h2 id="3-create-a-pipeline-and-check-the-build">3. Create a Pipeline and check the build</h2>
+<ol>
+<li>Save the script below as <code>CI/Build-Mod.ps1</code> in the Unity project. <code>Win64</code> is Unity 2022.3's command-line switch value. The manifest still uses <code>StandaloneWindows64</code>. <a href="https://docs.unity3d.com/2022.3/Documentation/Manual/EditorCommandLineArguments.html">Unity Editor command-line arguments</a></li>
+</ol>
+<pre><code class="lang-powershell">$ErrorActionPreference = 'Stop'
+$project = (Resolve-Path .).Path
+$manifest = Join-Path $project 'CI/ModBuild.json'
+$output = Join-Path $project 'Build/Ship/Windows'
+$log = Join-Path $project 'Build/UnityBuild.log'
+New-Item -ItemType Directory -Path $output -Force | Out-Null
+if (Get-ChildItem -LiteralPath $output -Filter '*.modpack' -File) {
+    throw &quot;Use a clean output directory before building: $output&quot;
+}
+$arguments = @(
+    '-batchmode', '-quit', '-projectPath', ('&quot;' + $project + '&quot;'),
+    '-buildTarget', 'Win64', '-executeMethod', 'CiModBuild.Run',
+    '-modManifest', ('&quot;' + $manifest + '&quot;'), '-logFile', ('&quot;' + $log + '&quot;')
+)
+$build = Start-Process -FilePath $env:UNITY_EXE -ArgumentList $arguments -Wait -PassThru -WindowStyle Hidden
+if ($build.ExitCode -ne 0) { throw &quot;Unity exited with $($build.ExitCode). See $log&quot; }
+if (-not (Get-ChildItem -LiteralPath $output -Filter '*.modpack' -File)) {
+    throw &quot;No .modpack in $output. Check the manifest's target platform and directory.&quot;
+}
+</code></pre>
+<ol start="2">
+<li>Create a Jenkins <strong>Pipeline</strong> and select <strong>Pipeline script from SCM</strong>. Save the following <code>Jenkinsfile</code> at the repository root. Replace <code>windows-unity</code> with the label on your Windows agent. The <strong>Checkout</strong> stage resets this job's dedicated build workspace before cloning so each build has a fresh output directory. If the Unity project is in a subdirectory, wrap the PowerShell build step in <code>dir('path/to/project')</code> and prefix the archive patterns with that path. <a href="https://www.jenkins.io/doc/book/pipeline/jenkinsfile/">Jenkinsfile guide</a> · <a href="https://www.jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#powershell-windows-powershell-script">PowerShell step</a></li>
+</ol>
+<pre><code class="lang-groovy">pipeline {
+    agent { label 'windows-unity' }
+    options { skipDefaultCheckout() }
+    stages {
+        stage('Checkout') {
+            steps {
+                deleteDir()
+                checkout scm
+                bat 'git lfs pull'
+            }
+        }
+        stage('Build mods') {
+            steps {
+                powershell '&amp; ./CI/Build-Mod.ps1'
+                archiveArtifacts artifacts: 'Build/Ship/Windows/*.modpack'
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'Build/UnityBuild.log', allowEmptyArchive: true
+        }
+    }
+}
+</code></pre>
+<ol start="3">
+<li>Choose <strong>Build Now</strong> with a teaching mod. Open <code>Build/UnityBuild.log</code> from the artifacts and check the target, the names built, and the destination. Before distributing a successful build, create the matching <code>.modpack.json</code> using the <a href="continuous-build.html">manifest guide</a> and keep it alongside the archive. Check each archive's GUID, version, and target.</li>
+</ol>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

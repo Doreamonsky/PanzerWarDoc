@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T120158Z",
+  "builtAt": "20261118T120806Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -97,20 +97,43 @@
     "merge-texture-channels",
     "texture-channel-conversion-tools",
     "mask-texture-preview",
-    "continuous-build"
+    "continuous-build",
+    "jenkins-setup",
+    "fmod-profiler"
   ],
-  "reviewedDependenciesSha256": "6732df85123e0c9131d91eb3713e75b7c55c38d5e5b43bd246442699336f6700",
+  "reviewedDependenciesSha256": "7d102fadf38c938e8d2ebdf6e8a1fb353364ab11b0151ad0e9bcc1a295f938f2",
   "contentReviewedTutorials": [
     "blender-axis-fix",
+    "continuous-build",
+    "fmod-profiler",
     "get-started",
     "hitbox-naming-conventions",
+    "install-vs-code-emmylua",
+    "jenkins-setup",
+    "lua-api2-air-warning",
+    "lua-api2-charged-shot",
+    "lua-api2-module-trigger",
+    "lua-api2-overview",
     "physics-wheels",
+    "ravenfield-map-support",
     "track-ik-suspension",
     "unity-engine-requirements",
     "vehicle-basics",
     "vehicle-dev-qa",
+    "vehicle-modding-notes",
     "vehicle-playground",
     "vehicle-text-data"
   ],
-  "newContentReviews": []
+  "newContentReviews": [
+    "lua-api2-module-trigger",
+    "lua-api2-charged-shot",
+    "lua-api2-air-warning",
+    "lua-api2-overview",
+    "install-vs-code-emmylua",
+    "ravenfield-map-support",
+    "vehicle-modding-notes",
+    "continuous-build",
+    "jenkins-setup",
+    "fmod-profiler"
+  ]
 }

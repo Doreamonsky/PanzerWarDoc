@@ -85,7 +85,7 @@
 <p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run ravenfield-map-support
 </code></pre>
-<p>当前客户端停用了 Ravenfield 的 <code>.rfl</code> 地图注册。旧教程中的目录、同名 YAML 和手工 ZIP 流程只适用于当时的版本。当前制作地图请使用<a href="map-editor-tutorial.html">地图工坊</a>。</p>
+<p>当前客户端已停用 Ravenfield 的 <code>.rfl</code> 地图注册。制作当前版本的地图请从<a href="map-editor-tutorial.html">地图工坊</a>开始。</p>
 <p>分发 Ravenfield 地图之前，请确认你有权发布该地图和其中使用的资源。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -101,6 +101,39 @@
   }
 ]
 </code></pre>
+</details>
+<details>
+<summary>查看旧版 Steam 地图及配置格式</summary>
+<p>以下步骤用于识别旧存档和迁移手头资料。旧版 Steam 普通版曾读取 Ravenfield <strong>Maps - Mod Tools</strong> 类型的工坊地图。订阅后，Steam 会将地图文件下载到 Steam 库的 <code>steamapps/workshop/content/636480</code>，每个工坊条目有自己的子目录。<a href="https://steamcommunity.com/workshop/browse/?appid=636480&amp;requiredtags%5B%5D=Maps+-+Mod+Tools">Ravenfield 地图工坊旧分类</a></p>
+<ol>
+<li>找到后缀为 <code>.rfl</code> 的地图，旧版安装在 <code>steamapps/common/PanzerWar-DE/dlc/PanzerWar/Mods/StandaloneWindows64_RvlMaps</code>。</li>
+<li>启动支持它的旧客户端后，同一目录会生成 <code>地图名.rfl.yaml</code>。出生位置有误时，设 <code>isCustomPoints: true</code> 并调整两队出生点。每新增一个点就增加一组 <code>x</code>、<code>y</code>、<code>z</code>。以下字段和大小写取自旧教程。</li>
+</ol>
+<pre><code class="lang-yaml">isCustomPoints: true
+customTeamASpawnPoints:
+- x: 0
+  y: 0
+  z: 0
+- x: -4
+  y: 0
+  z: -4
+- x: 4
+  y: 0
+  z: 4
+customTeamBSpawnPoints:
+- x: 0
+  y: 0
+  z: 0
+customPartolPoints:
+- x: 0
+  y: 0
+  z: 0
+tileSize: 512
+voxelSize: 2
+</code></pre>
+<ol start="3">
+<li>旧版共享时将 <code>.rfl</code> 和配套 YAML 放进一个 ZIP，命名为 <code>StandaloneWindows64_任意名称.modpack</code>。个别老地图可能无法加载或导致旧客户端崩溃。</li>
+</ol>
 </details>
 
 </article>

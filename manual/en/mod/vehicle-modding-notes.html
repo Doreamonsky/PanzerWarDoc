@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Vehicle modding notes | Panzer War Document </title>
+      <title>Vehicle modding notes by 祝昔 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Vehicle modding notes | Panzer War Document ">
+      <meta name="title" content="Vehicle modding notes by 祝昔 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../../favicon.ico">
@@ -80,23 +80,51 @@
 
 <!-- Generated from tutorials/vehicle-modding-notes/en.md and steps.json; edit those sources. -->
 <link rel="stylesheet" href="../../tools/tutorials.css">
-<h1 id="vehicle-modding-notes">Vehicle modding notes</h1>
+<h1 id="vehicle-modding-notes-by-祝昔">Vehicle modding notes by 祝昔</h1>
 <p><a href="../../mod/vehicle-modding-notes.html">中文</a> | <strong>English</strong></p>
-<p>Original notes by @情绪薫.</p>
-<h2 id="models-and-pivots">Models and pivots</h2>
-<p>Check the specific asset's modification and distribution license before buying or downloading it. Place the turret pivot on the traverse axis, the Gun pivot on the elevation axis, and Dym at the barrel's intended origin. Wheel pivots belong on the axles. A turretless vehicle can keep an empty turret node for the gun hierarchy. See <a href="vehicle-basics.html">ground vehicle creation</a> and <a href="blender-axis-fix.html">axis correction</a>.</p>
-<h2 id="visibility-and-collision">Visibility and collision</h2>
-<ul>
-<li>If internal components are missing, check the <code>VehicleInfo</code> module configuration and <a href="hitbox-naming-conventions.html">hitbox naming</a>. If the model is missing, check its visibility, layer, material, and camera mask. See <a href="model-not-displaying.html">model visibility troubleshooting</a>.</li>
-<li>For transparent areas in the armor viewer, check normals, colliders, and armor groups. See <a href="reactive-armor.html">reactive armor</a> for those parts. If impact effects are too large, check shell caliber and effect parameters.</li>
-<li>If a mod is missing, check <a href="vehicle-dev-qa.html">vehicle troubleshooting</a> and the <a href="../gameplay/runtime-log.html">runtime log</a>, then follow the error to the package platform or the asset reference.</li>
-</ul>
-<h2 id="movement-and-detail">Movement and detail</h2>
-<ul>
-<li>If the vehicle flips in the garage or pitches excessively under acceleration or braking, investigate mass, center of gravity, wheel contact, and friction. <a href="physics-wheels.html">Test wheel physics in an appropriate scene</a>.</li>
-<li>For radar rotation and similar animations, put the animated mesh under a separate pivot. <a href="track-ik-suspension.html">Track nodes</a> follow the road wheels and define the track path. Check gun elevation limits across headings in game.</li>
-<li>See <a href="multi-turret-legacy.html">legacy multiple turrets</a> for existing roof and coaxial guns. See <a href="vehicle-thumbnail.html">vehicle thumbnails</a> for preview images.</li>
-</ul>
+<p>Original notes by @情绪薫. These cases retain the author's examples and use current labels where available. Start with <a href="vehicle-basics.html">tank creation</a> for a complete build.</p>
+<h2 id="find-a-model">Find a model</h2>
+<p>The author looked for free and paid assets on Sketchfab, GameModels3D, CGTrader, and other libraries. Some include interior meshes. Check the individual asset's terms for modification and redistribution, then check its textures, hierarchy, and scale. <a href="https://sketchfab.com/">Sketchfab</a> · <a href="https://gamemodels3d.com/">GameModels3D</a> · <a href="https://www.cgtrader.com/">CGTrader</a></p>
+<h2 id="problems-during-creation">Problems during creation</h2>
+<h3 id="1-place-model-pivots">1. Place model pivots</h3>
+<p>In Blender Object Mode, open the 3D View's <strong>Options</strong> and select <strong>Affect Only → Origins</strong>. Use <strong>Move</strong> to place each pivot. Check the turret ring, the <code>Gun</code> elevation axis, the <code>Dym</code> recoil axis, and the axle centers for the road wheels and return rollers. On a regular wheel you can use <strong>Set Origin → Origin to Center of Mass (Volume)</strong>. The author also used <strong>Parents</strong> when keeping children in position. Turn those options off afterward and test a rotation.</p>
+<h3 id="2-set-up-a-turretless-tank-destroyer">2. Set up a turretless tank destroyer</h3>
+<p>The author used a Jagdtiger. Choose <strong>Shift+A → Empty → Plain Axes</strong> and use <strong>G</strong> to move the empty to the gun mount. Name it <code>Turret</code> and parent <code>Gun</code> below it. Verify the chain <code>Turret → Gun → Dym</code>.</p>
+<h3 id="3-internal-modules-are-missing">3. Internal modules are missing</h3>
+<p>Check <strong>Is Module Ready</strong> in <strong>VehicleInfo</strong> and use module mode in the playground. If the parts still do not appear, check the internal groups and ensure the vehicle references the right damage prefab. <a href="hitbox-naming-conventions.html">Module names</a> · <a href="vehicle-playground.html">Playground modes</a></p>
+<h3 id="4-the-hitbox-disappears-while-editing">4. The HitBox disappears while editing</h3>
+<p>Check scene visibility in Hierarchy and the damage editor. The original screenshot used the menu on the right to restore visibility. Select one plate and confirm it still belongs to the vehicle's <code>HitBox</code> groups. <a href="hitbox-naming-conventions.html">Damage model setup</a></p>
+<h3 id="5-the-tank-flips-in-the-garage">5. The tank flips in the garage</h3>
+<p>Check <strong>VehicleTextData → Mobility → Mass</strong> first. Then inspect the wheel contact and whether the hull collider penetrates the ground. <a href="physics-wheels.html">Wheel physics</a></p>
+<h3 id="6-the-impact-decal-is-oversized">6. The impact decal is oversized</h3>
+<p>Open that shell's asset. Check <strong>Caliber</strong> in millimetres and make sure the <strong>Bullet VFX</strong> suits it. Test the same ammo from near and far.</p>
+<h3 id="7-the-mod-is-missing-from-the-vehicle-list">7. The mod is missing from the vehicle list</h3>
+<p>The original case was missing its sound assignment. Check the <a href="../gameplay/runtime-log.html">runtime log</a> for package target and version or missing asset references. Verify engine and firing audio and set <strong>VehicleInfo → Spawn Policy</strong> to <strong>Player Pick</strong> for a regular vehicle. <a href="vehicle-dev-qa.html">Vehicle troubleshooting</a></p>
+<h2 id="refining-the-vehicle">Refining the vehicle</h2>
+<h3 id="1-animate-a-radar-on-its-own-pivot">1. Animate a radar on its own pivot</h3>
+<p>In Blender parent the radar to an empty at its axis, then parent the empty to the turret. Select the axis in Unity and open <strong>Window → Animation → Animation</strong>. Create a clip and key the starting and ending rotations. Assign and enable the <strong>Animator</strong> and its controller. Apply the materials, configure physical collision, and save the collision prefab. In game, check the radar can rotate independently while following the turret. <a href="https://www.bilibili.com/video/BV1zR4y1G7rt/">Original animation video</a></p>
+<h3 id="2-orient-individual-track-links">2. Orient individual track links</h3>
+<p>Separate one link in Blender, set its origin to the volume center of mass, and use <strong>Snap → Selection to Cursor</strong>. Align it and apply <strong>Ctrl+A → Rotation</strong>. The author's left link was turned 180° relative to the right. Assign them to <code>TrackMesh</code> and <code>LeftTrackMesh</code>, then preview the whole loop to check corners and mirror orientation. <a href="track-ik-suspension.html">Track preview</a></p>
+<h3 id="3-limit-elevation-by-turret-direction">3. Limit elevation by turret direction</h3>
+<p>Open <strong>VehicleTextData → Turret → Override Ranges</strong>. Add a range for a direction with obstructions and set the beginning and ending traverse angles, elevation, and depression. The old symmetrical example used 138°–180°, 20° elevation, and 11° depression. Check for clipping on your own vehicle.</p>
+<h3 id="4-add-a-thumbnail">4. Add a thumbnail</h3>
+<p>Import your image, use <strong>Texture Type → Sprite (2D and UI)</strong> and <strong>Sprite Mode → Single</strong>, then click <strong>Apply</strong>. Assign the Sprite to the thumbnail in <strong>VehicleInfo</strong>. <a href="vehicle-thumbnail.html">Thumbnail guide</a></p>
+<h3 id="5-set-up-external-and-internal-reactive-armor">5. Set up external and internal reactive armor</h3>
+<p>Select <strong>Reactive</strong> on the outer <strong>HitBox</strong>. The old example used a separate interior mesh to represent the reactive plates inside the structure and classified it as internal armor. Configure the outer block's protection and consumption first. Add the internal representation if needed. <a href="reactive-armor.html">Reactive armor</a></p>
+<h3 id="6-a-plate-is-transparent-in-the-armor-viewer">6. A plate is transparent in the armor viewer</h3>
+<p>Inspect it with Blender's <strong>Face Orientation</strong> display. Enter Edit Mode with <strong>Tab</strong>, select the affected faces, and press <strong>Shift+N</strong> to recalculate outside. Export over the FBX and refresh Unity. Check that the plate appears in the intended HitBox group. A missing plate or wrong group can also cause a gap. <a href="https://www.bilibili.com/video/BV1xr4y187Fc/">Original normals video</a></p>
+<h3 id="7-remove-texture-from-an-interior-mesh">7. Remove texture from an interior mesh</h3>
+<p>Put the internal model in the scene and open <strong>Mesh Renderer → Materials</strong>. The old example used <strong>Reset</strong> in the material menu. If the visual hull uses the same material, duplicate it first, then assign the copy or a neutral untextured material to the internal mesh. Save the prefab and check the internal view.</p>
+<h3 id="8-name-the-vehicle-in-the-ui">8. Name the vehicle in the UI</h3>
+<p>The old screenshot highlighted <strong>VehicleInfo → Localized Name</strong>. Fill in the default display name and the localized names. Keep the internal asset name unique. Save and check the vehicle list in both languages.</p>
+<h3 id="9-smooth-a-faceted-barrel">9. Smooth a faceted barrel</h3>
+<p>Select the barrel in Blender and use <strong>Shade Smooth</strong>. Check its shading and silhouette from the side and at the muzzle, then export.</p>
+<h3 id="10-legacy-roof-and-coaxial-guns">10. Legacy roof and coaxial guns</h3>
+<p>The original <code>SubTurret02</code> was the roof machine gun and used an empty for <code>Dym</code>. The coaxial <code>SubTurret01</code> used three nested empties under the main gun's <code>Dym</code> so it followed the main gun. Verify the three paths and the muzzle. <a href="multi-turret-legacy.html">Legacy multiple turrets</a> · <a href="../component/vehicle-text-data.html">Current multi-turret parameters</a></p>
+<h3 id="11-pair-and-spring-track-nodes">11. Pair and spring track nodes</h3>
+<p>Open <code>VehicleTrackData</code>. Put nodes that should sag under gravity in <code>SpringNode</code>. Use <code>PairNodes</code> to connect upper path nodes to nodes near the road wheels. The old screenshot used a link spacing of <code>0.12 m</code>, spring node 15, and pairs 2→14, 3→13, 4→12, 5→11, and 6→10. Check your own indices and use <strong>Preview Track</strong> to inspect suspension compression.</p>
+<h3 id="12-reduce-heavy-pitch-on-starts-and-stops">12. Reduce heavy pitch on starts and stops</h3>
+<p>Edit <code>CenterOfGravity</code> in <strong>VehicleData</strong>, lower it by a small amount, and press <strong>K</strong> to save. Then tune <strong>WheelCollider → Forward Friction / Sideways Friction</strong>. The old screenshot used stiffness 1.7 forward and 4 sideways. Change one value at a time and test from the same speed. <a href="physics-wheels.html">Physical wheels</a> · <a href="https://blog.csdn.net/weixin_43147385/article/details/124266796">Original WheelCollider discussion</a></p>
 
 </article>
           </div>

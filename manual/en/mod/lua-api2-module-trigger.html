@@ -91,7 +91,8 @@
 <pre><code class="lang-json">{
   &quot;variables&quot;: {
     &quot;script&quot;: &quot;${fixture}/ModuleDestroyedTrigger.lua&quot;,
-    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ModuleDestroyedTrigger.prefab&quot;
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ModuleDestroyedTrigger.prefab&quot;,
+    &quot;controller&quot;: &quot;${fixture}/ModuleAnimator.controller&quot;
   },
   &quot;calls&quot;: [
     {
@@ -111,8 +112,14 @@
 }
 </code></pre>
 </details>
-<p>Attach the script to the object that contains the internal module. Assign the object with the <strong>Animator</strong> to <code>animator</code> and set <code>triggerName</code> to the matching Trigger parameter in its controller. The example uses <code>Destroyed</code>.</p>
-<p>The script resolves the module in <code>OnVehicleReady</code> and subscribes to state changes. It triggers on entry to the destroyed state, and can trigger again after repair. The <code>self.script</code> subscription ends with the behaviour.</p>
+<p>Use this example to play an animation when an internal module such as the ammo rack or engine is destroyed. You could open a hatch or play an engine fire effect. The script responds to module events and avoids reading hit points every frame.</p>
+<h2 id="1-configure-the-animator-and-attach-the-script">1. Configure the Animator and attach the script</h2>
+<ol>
+<li>Open the damage model in Prefab Mode. Put the object to animate inside that prefab, such as a child of the module. Add an <strong>Animator</strong> and assign an <strong>Animator Controller</strong>. In <strong>Animator → Parameters</strong>, choose <strong>+ → Trigger</strong> and add <code>Destroyed</code>. Create the target animation state and set <code>Destroyed</code> as its transition condition.</li>
+<li>Import the Lua script below. Add <a href="lua-behavior-mono.html">LuaBehaviorMono</a> to the object containing the internal module and assign the script.</li>
+<li>Drag the object with the <strong>Animator</strong> into <code>animator</code>. Set <code>triggerName</code> to the exact spelling and case used in the controller. Save the prefab.</li>
+</ol>
+<p>The script resolves the module in <code>OnVehicleReady</code>. In <code>OnStarted</code>, the damage model might still be assembling. If your test does not trigger the animation, check that the script and module share the same object and that <code>animator</code> is assigned.</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     animator = { type = &quot;object&quot;, value = nil },
@@ -169,6 +176,20 @@ return ModuleDestroyedTrigger
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local e, u = CS.UnityEditor, CS.UnityEngine\nlocal a = e.Animations\nlocal controller = a.AnimatorController.CreateAnimatorControllerAtPath(\&quot;${controller}\&quot;)\ncontroller:AddParameter(\&quot;Destroyed\&quot;, u.AnimatorControllerParameterType.Trigger)\nlocal machine = controller.layers[0].stateMachine\nlocal intact = machine:AddState(\&quot;Intact\&quot;)\nlocal destroyed = machine:AddState(\&quot;Destroyed\&quot;)\nmachine.defaultState = intact\nlocal transition = intact:AddTransition(destroyed)\ntransition.hasExitTime = false\ntransition:AddCondition(a.AnimatorConditionMode.If, 0, \&quot;Destroyed\&quot;)\ne.EditorUtility.SetDirty(controller)\ne.AssetDatabase.SaveAssets()\nassert(controller.parameters[0].name == \&quot;Destroyed\&quot; and transition.conditions[0].parameter == \&quot;Destroyed\&quot;)\nreturn \&quot;Destroyed Animator trigger and transition configured\&quot;\n&quot;,
+        &quot;manual-module-animator&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Destroyed Animator trigger and transition configured&quot;
     }
   },
   {
@@ -232,7 +253,14 @@ return ModuleDestroyedTrigger
         &quot;path&quot;: &quot;${prefab}&quot;,
         &quot;mode&quot;: &quot;update&quot;,
         &quot;component&quot;: &quot;UnityEngine.Animator&quot;,
-        &quot;child&quot;: &quot;ModuleAnimator&quot;
+        &quot;child&quot;: &quot;ModuleAnimator&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Controller&quot;,
+            &quot;asset&quot;: &quot;${controller}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.RuntimeAnimatorController&quot;
+          }
+        ]
       }
     },
     &quot;expect&quot;: {
@@ -253,7 +281,13 @@ return ModuleDestroyedTrigger
 ]
 </code></pre>
 </details>
-<p>The replay checks the trigger count and repeated notifications. Check the actual Animator state transition in game.</p>
+<h2 id="2-check-state-changes-and-animation">2. Check state changes and animation</h2>
+<ol>
+<li>In a test drive, take the module from intact to destroyed. The animation should run once when it enters the destroyed state. Repair it and destroy it again to check that the animation can repeat.</li>
+<li>To pick different animations by state, accept <code>(oldState, newState)</code> in the <code>OnStateChanged</code> callback and read <code>GetHitPointRatio(module)</code>. For feedback on every damaging hit, subscribe to <code>OnDamaged</code>, whose callback receives the hit points lost.</li>
+<li>Pass <code>self.script</code> as the owner, as shown in the example. The game ends the subscription when that behaviour is destroyed.</li>
+</ol>
+<p>The xLua replay checks state transitions and trigger counts. Check the actual Animator transition in game.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[

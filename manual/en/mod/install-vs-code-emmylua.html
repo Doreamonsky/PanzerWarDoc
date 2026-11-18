@@ -124,7 +124,11 @@
 </code></pre>
 </details>
 <h2 id="1-install-the-editor-and-the-extension">1. Install the editor and the extension</h2>
-<p>Install <a href="https://code.visualstudio.com/download">VS Code</a>. In the <strong>Extensions</strong> view, search for <code>@id:tangzx.emmylua</code> and install <a href="https://marketplace.visualstudio.com/items?itemName=tangzx.emmylua">EmmyLua</a>. In a new terminal, use <code>code --list-extensions</code> and look for <code>tangzx.emmylua</code>. Current EmmyLua includes its own language server. Check the extension's current requirements.</p>
+<ol>
+<li>Choose the appropriate OS and architecture on the <a href="https://code.visualstudio.com/download">VS Code download page</a>. Run the Windows installer. On macOS, unpack the download and drag <strong>Visual Studio Code.app</strong> into <strong>Applications</strong>.</li>
+<li>Open <strong>Extensions</strong> in the sidebar. The shortcut is <strong>Ctrl+Shift+X</strong> on Windows and <strong>Cmd+Shift+X</strong> on macOS. Search for <code>@id:tangzx.emmylua</code>, open EmmyLua, and click <strong>Install</strong>. <a href="https://marketplace.visualstudio.com/items?itemName=tangzx.emmylua">EmmyLua extension</a></li>
+<li>If the command-line launcher is available, open a new terminal and run <code>code --list-extensions</code>. Look for <code>tangzx.emmylua</code>.</li>
+</ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <p>Checks the per-user installation on this Windows machine. Run the installer and Extensions actions manually.</p>
@@ -157,8 +161,20 @@
 ]
 </code></pre>
 </details>
-<h2 id="2-add-the-projects-api-definitions">2. Add the project's API definitions</h2>
-<p>Open the Lua source folder in VS Code. In Unity, use <strong>XLua → Generate EmmyLua for LuaCallCSharp</strong> to generate API definitions in the project's <code>Build/EmmyLua/</code> folder. Include these definitions with the Lua sources in the VS Code workspace.</p>
+<h2 id="2-configure-an-installation-that-still-uses-java">2. Configure an installation that still uses Java</h2>
+<p>Check the installed version and settings. The current upstream extension uses a Rust language server. Some older releases still offer the Java backend, including the 0.6.18 installation checked for this guide. Follow these steps if your selected backend requires Java. <a href="https://github.com/EmmyLua/VSCode-EmmyLua">EmmyLua project</a></p>
+<ol>
+<li>Follow that version's requirements and choose the <a href="https://www.oracle.com/java/technologies/javase-downloads.html">JDK</a> for your OS and CPU. The legacy guide listed 1.8.0_181 as its minimum.</li>
+<li>In <strong>Extensions</strong>, open the gear menu for EmmyLua, choose <strong>Extension Settings</strong>, and find <strong>Java Home</strong>. Enter the JDK directory, such as <code>C:/Program Files/Java/jdk-17</code> on Windows or <code>/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</code> on macOS. Use your actual install path.</li>
+<li>If you use <strong>Preferences: Open User Settings (JSON)</strong>, the key is <code>emmylua.java.home</code>. Use forward slashes in Windows paths to avoid escaping backslashes in JSON.</li>
+</ol>
+<pre><code class="lang-json">{
+  &quot;emmylua.java.home&quot;: &quot;C:/Program Files/Java/jdk-17&quot;
+}
+</code></pre>
+<p>Save, reload the VS Code window, and open a <code>.lua</code> file. If the language server fails to start, choose EmmyLua in the <strong>Output</strong> panel to check the missing dependency or path.</p>
+<h2 id="3-add-the-projects-api-definitions">3. Add the project's API definitions</h2>
+<p>Open the Lua source folder in VS Code. Run <strong>XLua → Generate EmmyLua for LuaCallCSharp</strong> in Unity. Confirm that the project's <code>Build/EmmyLua/</code> folder contains <code>csharp.lua</code> and <code>api.lua</code>. Add that folder to the VS Code workspace as editor definitions. Type <code>WeaponAPI.</code> in your script and check whether VS Code offers method names.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[

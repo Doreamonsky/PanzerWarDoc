@@ -111,8 +111,43 @@
 }
 </code></pre>
 </details>
-<p>Attach the script to the local player's vehicle. The example reuses a <code>VehicleQuery</code> every 0.5 seconds to find the nearest enemy aircraft within 3,000 metres. Online queries respect team visibility.</p>
-<p>The warning logs once when a target appears. It can fire again after the query returns no targets. Supply a valid FMOD event GUID to play a sound with the warning.</p>
+<p>This vehicle Lua behaviour logs a warning when an enemy aircraft comes within range of the local player. It can also play an FMOD warning. Start with <a href="lua-hello-world.html">Lua Hello World</a> if you need help importing and attaching a script.</p>
+<h2 id="1-import-and-configure-the-warning">1. Import and configure the warning</h2>
+<ol>
+<li>Create <code>AirThreatWarning.lua</code> under the Unity project's assets and copy the script below. In <strong>VehicleTextData → Misc → Vehicle Lua behavior</strong>, add a row, assign the script, and click <strong>Sync Properties</strong>. To bind through a prefab, add <a href="lua-behavior-mono.html">LuaBehaviorMono</a> to an object in the owning vehicle hierarchy.</li>
+<li>Keep <code>warnDistance</code> at <strong>3,000 m</strong>. Assign an FMOD event GUID to <code>soundGuid</code>, or leave it empty for the first log-only test.</li>
+<li>Save, repack, and test the vehicle. The script creates one query in <code>OnVehicleReady</code> and runs it every <strong>0.5 seconds</strong>.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Query field</th>
+<th>Value and use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Kind</code></td>
+<td><code>VehicleKind.Flight</code> matches aircraft. Other options include <code>Any</code>, <code>Ground</code>, and <code>Army</code>.</td>
+</tr>
+<tr>
+<td><code>Relation</code></td>
+<td><code>VehicleRelation.Enemy</code> uses the team of the vehicle passed to <code>Run(vehicle)</code>. Other values include <code>Any</code> and <code>Friendly</code>.</td>
+</tr>
+<tr>
+<td><code>MaxDistance</code></td>
+<td><code>warnDistance</code>, measured in metres. A value of <code>0</code> removes that distance limit.</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td><code>1</code>, so the sorted result contains only the nearest aircraft. The default capacity is 32.</td>
+</tr>
+<tr>
+<td><code>SortByDistance</code></td>
+<td><code>true</code>, so the nearest result comes first.</td>
+</tr>
+</tbody>
+</table>
 <pre><code class="lang-lua">Behavior()
 Property = {
     warnDistance = { type = &quot;number&quot;, value = 3000 },
@@ -239,7 +274,13 @@ return AirThreatWarning
 ]
 </code></pre>
 </details>
-<p>The replay simulates a target entering and leaving. Verify sound and online visibility in game.</p>
+<h2 id="2-check-when-the-warning-repeats">2. Check when the warning repeats</h2>
+<ol>
+<li>Drive the vehicle as the local player in the playground. Bring a visible enemy aircraft into range. Look for <code>[AirWarning]</code> followed by the nearest aircraft's name and distance. The script reads the first result with <code>Get(0)</code> and <code>GetDistance(0)</code>.</li>
+<li>The warning should run once while detections remain in range. When the query becomes empty, the next detection can trigger it again. If you added a sound GUID, check that it plays at the vehicle's position.</li>
+<li>Check the local player, teams, and visibility. Online results follow team visibility. For scripts on maps or game modes, use <code>RunAt(position, team)</code> to query around a point for a chosen team.</li>
+</ol>
+<p>Older scripts polled scene rigidbodies and filtered aircraft in Lua. This example keeps one query and performs the filtering and sorting in the game. The MCP replay simulates a target appearing, remaining in range, and leaving. Check the actual sound and online visibility in game.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
