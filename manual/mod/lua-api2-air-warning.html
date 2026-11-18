@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning | Panzer War Document </title>
+      <title>敌机接近告警 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning | Panzer War Document ">
+      <meta name="title" content="敌机接近告警 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,107 +77,189 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2274-用例敌机接近告警-example-enemy-aircraft-warning">22.7.4 用例：敌机接近告警 Example: Enemy Aircraft Warning</h1>
 
-<p>敌方飞机进入 3 公里内时，播放一次告警音效并打印最近一架的名字；飞机离开后重新开始监视。</p>
-<p>When an enemy aircraft comes within 3 km, play an alert sound once and print the name of the nearest one; resume monitoring once the aircraft leaves.</p>
-<p>以前常见的写法是每秒取出场景里的所有刚体，再逐个判断是不是飞机、是不是敌人。<code>VehicleAPI.CreateQuery()</code> 在游戏内部完成筛选和排序，Lua 只拿到结果；它的数据来自战场玩家列表，联机时也包含其他玩家。</p>
-<p>A common approach in the past was to retrieve all rigid bodies in the scene every second and then check each one to see if it was an aircraft and an enemy. <code>VehicleAPI.CreateQuery()</code> performs the filtering and sorting internally within the game, so Lua only receives the results; its data comes from the battle player list and includes other players during online battles.</p>
+<!-- Generated from tutorials/lua-api2-air-warning/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="敌机接近告警">敌机接近告警</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-api2-air-warning.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-air-warning
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/AirThreatWarning.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_AirThreatWarning.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>把脚本挂到本地玩家的载具。示例每 0.5 秒用同一个 <code>VehicleQuery</code> 查找 3000 米内最近的敌机。联机查询遵守队伍的可见性。</p>
+<p>从无目标变为有目标时记录一次告警，查不到目标后恢复待触发状态。填写有效的 FMOD 事件 GUID 可同时播放音效。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
-  warnDistance = { type = &quot;number&quot;, value = 3000 },   -- 米 / Metres
-  soundGuid = { type = &quot;string&quot;, value = &quot;&quot; },        -- 告警音效的 FMOD 事件 guid / FMOD event guid of the warning sound
+    warnDistance = { type = &quot;number&quot;, value = 3000 },
+    soundGuid = { type = &quot;string&quot;, value = &quot;&quot; },
 }
 
 local AirThreatWarning = class(&quot;AirThreatWarning&quot;)
 
 function AirThreatWarning:OnVehicleReady(vehicle)
-  self.vehicle = vehicle
-
-  -- 查询对象只建一次，之后反复使用 / Create the query once and reuse it
-  self.query = VehicleAPI.CreateQuery()
-  self.query.Kind = VehicleKind.Flight
-  self.query.Relation = VehicleRelation.Enemy
-  self.query.MaxDistance = self.warnDistance
-  self.query.MaxCount = 1                 -- 只要最近的一架 / Only the nearest one
-  self.query.SortByDistance = true
-
-  self.warned = false
-  self.script:SetUpdateInterval(0.5)
+    self.vehicle = vehicle
+    self.query = VehicleAPI.CreateQuery()
+    self.query.Kind = VehicleKind.Flight
+    self.query.Relation = VehicleRelation.Enemy
+    self.query.MaxDistance = self.warnDistance
+    self.query.MaxCount = 1
+    self.query.SortByDistance = true
+    self.warned = false
+    self.script:SetUpdateInterval(0.5)
 end
 
-function AirThreatWarning:OnUpdated(dt)
-  if not VehicleAPI.IsLocalPlayer(self.vehicle) then
-    return
-  end
-
-  local count = self.query:Run(self.vehicle)
-  if count &gt; 0 and not self.warned then
-    self.warned = true
-    local nearest = self.query:Get(0)
-    print(string.format(&quot;[AirWarning] %s at %.0f m&quot;, VehicleAPI.GetDisplayName(nearest), self.query:GetDistance(0)))
-    if self.soundGuid ~= &quot;&quot; then
-      SoundAPI.PlayOneShot(self.soundGuid, self.transform.position)
+function AirThreatWarning:OnUpdated()
+    if self.query == nil or not VehicleAPI.IsLocalPlayer(self.vehicle) then
+        return
     end
-  elseif count == 0 then
-    self.warned = false
-  end
+    local count = self.query:Run(self.vehicle)
+    if count == 0 then
+        self.warned = false
+        return
+    end
+    if self.warned then
+        return
+    end
+    local nearest = self.query:Get(0)
+    if nearest == nil then
+        return
+    end
+    self.warned = true
+    print(string.format(&quot;[AirWarning] %s at %.0f m&quot;,
+        VehicleAPI.GetDisplayName(nearest), self.query:GetDistance(0)))
+    if self.soundGuid ~= &quot;&quot; then
+        SoundAPI.PlayOneShot(self.soundGuid, self.transform.position)
+    end
 end
 
 return AirThreatWarning
 </code></pre>
-<p>查询对象的属性：</p>
-<p>Properties of the query object:</p>
-<table>
-<thead>
-<tr>
-<th>属性 Property</th>
-<th>含义 Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Kind</code></td>
-<td><code>VehicleKind.Any</code> / <code>Ground</code> / <code>Flight</code> / <code>Army</code>，单选<br>Pick one</td>
-</tr>
-<tr>
-<td><code>Relation</code></td>
-<td><code>VehicleRelation.Any</code> / <code>Enemy</code> / <code>Friendly</code>，相对于 <code>Run</code> 传入的载具<br>Relative to the vehicle passed to <code>Run</code></td>
-</tr>
-<tr>
-<td><code>MaxDistance</code></td>
-<td>最大距离（米），0 为不限<br>Maximum distance in metres, 0 for no limit</td>
-</tr>
-<tr>
-<td><code>MaxCount</code></td>
-<td>最多返回几辆，默认 32<br>At most this many results, 32 by default</td>
-</tr>
-<tr>
-<td><code>SortByDistance</code></td>
-<td>按距离从近到远排序，默认开启<br>Nearest first, on by default</td>
-</tr>
-</tbody>
-</table>
-<p>要点：</p>
-<p>Key points:</p>
-<ul>
-<li><p>查询对象在 <code>OnVehicleReady</code> 里建一次，之后反复调用 <code>Run</code>，不会产生垃圾。</p>
-</li>
-<li><p><code>Run(vehicle)</code> 以这辆载具的位置和队伍为准，结果里不包含它自己；地图和模式脚本可以用 <code>RunAt(position, team)</code>。</p>
-</li>
-<li><p>结果按序号读取：<code>Get(i)</code> 返回载具，<code>GetDistance(i)</code> 返回距离，序号从 0 开始。</p>
-</li>
-<li><p>联机对战中，只会返回你的队伍当前看得见的敌人。</p>
-</li>
-<li><p>Create the query object once in <code>OnVehicleReady</code>, then call <code>Run</code> repeatedly; this will not generate garbage.</p>
-</li>
-<li><p><code>Run(vehicle)</code> uses the position and team of this vehicle as the reference, and the results do not include the vehicle itself; map and mode scripts can use <code>RunAt(position, team)</code>.</p>
-</li>
-<li><p>Read the results by index: <code>Get(i)</code> returns the vehicle, <code>GetDistance(i)</code> returns the distance, with indices starting from 0.</p>
-</li>
-<li><p>In online battles, only enemies currently visible to your team are returned.</p>
-</li>
-</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-api2-air-warning/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;numberProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;warnDistance&quot;,
+                &quot;value&quot;: 3000
+              }
+            ],
+            &quot;stringProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;soundGuid&quot;,
+                &quot;value&quot;: &quot;&quot;
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) AirThreatWarning&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>回放模拟目标进入和离开。实际音效和联机可见性在游戏中验证。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal count, played, checks, localPlayer = 0, 0, 0, true\nlocal aircraft = {}\nlocal query = {\n    Run = function() checks = checks + 1; return count end,\n    Get = function(_, i) assert(i == 0); return aircraft end,\n    GetDistance = function(_, i) assert(i == 0); return 500 end,\n}\nE.VehicleKind = { Flight = 2 }\nE.VehicleRelation = { Enemy = 1 }\nE.VehicleAPI = {\n    CreateQuery = function() return query end,\n    IsLocalPlayer = function() return localPlayer end,\n    GetDisplayName = function(v) assert(v == aircraft); return \&quot;Sample\&quot; end,\n}\nE.SoundAPI = { PlayOneShot = function(guid, _) assert(guid == \&quot;sample\&quot;); played = played + 1 end }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-api2-air-warning/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\nlocal script = { SetUpdateInterval = function(_, x) assert(x == 0.5) end }\nlocal sample = instance({ script = script, warnDistance = 3000, soundGuid = \&quot;sample\&quot;, transform = {} })\nsample:OnUpdated()\nsample:OnVehicleReady({})\nassert(query.Kind == 2 and query.Relation == 1 and query.MaxCount == 1 and query.MaxDistance == 3000)\nsample:OnUpdated()\ncount = 1\nsample:OnUpdated()\nsample:OnUpdated()\nassert(played == 1)\ncount = 0\nsample:OnUpdated()\ncount = 1\nsample:OnUpdated()\nassert(played == 2)\nlocalPlayer = false\nsample:OnUpdated()\nassert(checks == 5)\nlocal api = CS.ShanghaiWindy.Core.API\nlocal real = api.VehicleAPI.CreateQuery()\nreal.Kind = api.VehicleKind.Flight\nreal.Relation = api.VehicleRelation.Enemy\nreal.MaxCount = 1\nassert(real.Run(real, nil) == 0 and real.Count == 0)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-api2-air-warning&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -187,7 +269,7 @@ return AirThreatWarning
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-api2-air-warning.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/lua-api2-air-warning.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

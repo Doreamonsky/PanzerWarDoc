@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>07. VFX Mod 特效模组 | Panzer War Document </title>
+      <title>制作特效模组 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="07. VFX Mod 特效模组 | Panzer War Document ">
+      <meta name="title" content="制作特效模组 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,41 +77,493 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="07-vfx-mod-特效模组">07. VFX Mod 特效模组</h1>
 
-<h1 id="identifier-资源标识">Identifier 资源标识</h1>
-<p>通过资源标识创建特效包的选项，以便选择并切换不同的特效包。</p>
-<p>The resource identifier creates the entry for a VFX package, so that different VFX packages can be selected and switched between.</p>
-<p><img src="imgs/f6f1f2e03293_1677679938034-2bafedeb-38b9-42de-b5a0-b6bc6ddf8e24.png" alt=""></p>
-<p>旧版“马哥特效包”的共享 Identifier 资产已无法恢复。若仅制作自己的特效包，请在 Project 窗口中选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; P Pool - 对象池 &gt; Pool Resource Identifier - 对象池标识</code> 新建 Identifier，并将其关联到下方的 Pool Resource。Identifier 的 GUID 会自动生成。</p>
-<p>The shared Identifier asset of the old “马哥特效包” VFX package can no longer be recovered. If you are only building your own VFX package, create a new Identifier from the Project window with <code>Create &gt; A Panzer War - 装甲纷争 &gt; P Pool - 对象池 &gt; Pool Resource Identifier - 对象池标识</code>, then link it to the Pool Resource below. The GUID of the Identifier is generated automatically.</p>
-<p>若必须向旧特效包追加资源，需从原特效包作者处获取同一个 Identifier 资产；新建资产的 GUID 不同，不能作为兼容替代。</p>
-<p>If you really need to add resources to an old VFX package, you must obtain the very same Identifier asset from the author of that package. A newly created asset has a different GUID and cannot serve as a compatible replacement.</p>
-<h1 id="pool-resource-特效资源">Pool Resource 特效资源</h1>
-<p>创建 Pool Resource，并关联 Identifier。</p>
-<p>Create a Pool Resource and link the Identifier to it.</p>
-<p><img src="imgs/57087d85721d_1677679715599-bf307cec-59ac-4cfb-87dd-eeb0f5879353.png" alt=""></p>
-<p>添加 Spawn Reses</p>
-<p>Add Spawn Reses.</p>
-<p>特效名称：特效的键值，可自定义，然后在 Bullet VFX 中选择该自定义特效键值进行关联。</p>
-<p>VFX name: the key of the effect. You may name it freely, then select this custom key in Bullet VFX to link the two.</p>
-<p>特效物体：特效的预制体。</p>
-<p>VFX object: the prefab of the effect.</p>
-<p>预加载实例数量：在加载场景时，预先加载一批特效进内存，以减少游戏时的卡顿。但填写过大的数量会导致加载时间增加。填写 -1 则表示运行时根据需求再创建。</p>
-<p>Preload instance count: loads a batch of effects into memory while the scene is loading, which reduces stutter during play. Entering too large a number increases the loading time. Enter -1 to create instances on demand at runtime instead.</p>
-<p>生命时长：特效播放的时长，时间到之后会被回收以便下次使用。请不要填写 0，0 是为喷火、激光等特殊特效所准备的。</p>
-<p>Lifetime: how long the effect plays. When the time is up, the effect is recycled so it can be used again. Do not enter 0 — 0 is reserved for special effects such as flamethrowers and lasers.</p>
-<p><img src="imgs/fd946a3eab68_1677680067566-8d01cca8-4f30-483b-83f1-fd3073393f0b.png" alt=""></p>
-<p>特效对象池的物体，请挂载 PoolItemComponent。若此物体是炮弹的 Weapon Projectile，请将其拖尾特效挂到指定位置。</p>
-<p>Attach PoolItemComponent to the objects in the VFX pool. If the object is the Weapon Projectile of a shell, attach its trail effect at the designated position.</p>
-<p><img src="imgs/b4007e2795ed_1765798376745-92f95e1a-c139-4d70-8f27-c65e582477ad.png" alt=""></p>
-<h1 id="using-the-vfx-特效的使用">Using the VFX 特效的使用</h1>
-<p>在重载中，选择你的特效。如果不使用重载的选项，请务必将你的特效的模组包放入你的载具依赖的 guid 中。</p>
-<p>Select your effect in the override settings. If you do not use the override option, make sure the guid of your VFX mod package is added to the dependency guids of your vehicle.</p>
-<p><img src="imgs/b05f1d1d4091_1677680425323-765a3691-42b5-4e90-ae4a-069261bedfaf.png" alt=""></p>
-<h1 id="build-打包">Build 打包</h1>
-<p>将 Pool Resource 放入 BuildPipline。</p>
-<p>Put the Pool Resource into the BuildPipline.</p>
+<!-- Generated from tutorials/vfx-mod/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="制作特效模组">制作特效模组</h1>
+<p><strong>中文</strong> | <a href="../en/mod/vfx-mod.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vfx-mod --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;prefab&quot;: &quot;${fixture}/TutorialVFX.prefab&quot;,
+    &quot;identifier&quot;: &quot;${fixture}/TutorialVFXIdentifier.asset&quot;,
+    &quot;pool&quot;: &quot;${fixture}/TutorialVFXPool.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;packageGuid&quot;: &quot;69127c62-2de8-5f37-ac99-fe95537a9298&quot;,
+    &quot;bulletVfx&quot;: &quot;${fixture}/TutorialBulletVFX.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>在 Project 窗口使用 <strong>Create → A Panzer War → P Pool</strong> 创建 <strong>Pool Resource Identifier</strong>。新建资产会获得自己的 GUID。给已有特效包追加资源时，使用作者提供的原标识资产。</li>
+<li>创建特效预制体，根节点挂 <strong>PoolItemComponent</strong>。如果是炮弹拖尾，在组件的 <strong>Weapon Projectile</strong> 列表中指定拖尾子物体，供回放和展示时隐藏。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.PoolItemComponent&quot;,
+        &quot;children&quot;: [
+          &quot;Trail&quot;
+        ],
+        &quot;values&quot;: {
+          &quot;weaponProjectiles&quot;: [
+            null
+          ]
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;weaponProjectiles.Array.data[0]&quot;,
+            &quot;child&quot;: &quot;Trail&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.TrailRenderer&quot;,
+        &quot;child&quot;: &quot;Trail&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/PoolItemComponent/weaponProjectiles/0/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) Trail&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>创建 <strong>Pool Resource</strong> 并绑定标识。添加资源条目，把 <strong>特效名称</strong>设为脚本或 BulletVFX 使用的键，<strong>特效物体</strong>设为预制体。预加载数量 <code>-1</code> 让资源按需生成。普通一次性特效用正数寿命，<code>0</code> 交由程序回收。</li>
+</ol>
+<p><img src="imgs/vfx-mod-pool.zh-CN.png" alt="对象池特效名称与特效预制体"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.PoolResourceIdentifierData)&quot;,
+        &quot;${identifier}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${identifier}/OnValidate&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${identifier}/guid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;poolGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9-]{36})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.PoolResource)&quot;,
+        &quot;${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;spawnReses\&quot;:[{\&quot;spawnName\&quot;:\&quot;TutorialVFX\&quot;,\&quot;instanceCount\&quot;:-1,\&quot;lifeTime\&quot;:3}]}&quot;,
+        &quot;@asset:${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pool}/identifier&quot;,
+      &quot;value&quot;: &quot;@asset:${identifier}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pool}/spawnReses/0/spawnObject&quot;,
+      &quot;value&quot;: &quot;@asset:${prefab}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pool}/spawnReses/0/spawnObject/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) TutorialVFX&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>在 <strong>BulletVFX</strong> 的弹道或命中字段中填写相同的键。把 Pool Resource 加入构建管线，构建目标平台的特效包。载具包引用这个外部键时，将特效包的 GUID 加入载具包依赖。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.BulletVFX)&quot;,
+        &quot;${bulletVfx}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bulletVfx}/weaponProjectileEffect&quot;,
+      &quot;value&quot;: &quot;TutorialVFX&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${bulletVfx}/weaponProjectileEffect&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) TutorialVFX&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${bulletVfx}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;pooldata\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -121,7 +573,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/vfx-mod.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/vfx-mod.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

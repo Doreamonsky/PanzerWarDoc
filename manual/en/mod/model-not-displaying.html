@@ -82,8 +82,8 @@
 <link rel="stylesheet" href="../../tools/tutorials.css">
 <h1 id="troubleshoot-an-invisible-model">Troubleshoot an invisible model</h1>
 <p><a href="../../mod/model-not-displaying.html">中文</a> | <strong>English</strong></p>
-<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
-<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run model-not-displaying
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run model-not-displaying --capture
 </code></pre>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -207,6 +207,7 @@
 </details>
 <h2 id="3-check-the-cameras-culling-mask">3. Check the Camera's Culling Mask</h2>
 <p>Find the model object's <strong>Layer</strong> at the top of the Inspector. Select the <strong>Camera</strong> that renders the view and include that layer in its <strong>Culling Mask</strong>. The example excludes the Default layer and then adds it back.</p>
+<p><img src="../../mod/imgs/model-not-displaying-camera-mask.en.png" alt="Find Culling Mask under Rendering in the Camera Inspector"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -291,7 +292,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

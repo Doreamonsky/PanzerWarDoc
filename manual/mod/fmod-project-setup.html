@@ -97,7 +97,8 @@
 </code></pre>
 </details>
 <h2 id="1-打开工程并构建-bank">1. 打开工程并构建 Bank</h2>
-<p>先 <a href="fmod-installation.html">安装 FMOD Studio</a>。在 Studio 用 <strong>File → Open</strong> 打开 SDK 内的 <code>PanzerWar-FMod-UGC-Project/PanzerWar-FMod-Project.fspackage</code>，并选择新的解包目录。已有完整的 <code>.fspro</code> 工程可直接打开。在 Studio 构建目标平台的 Bank。Desktop 构建后，确认输出里有 <code>Master.strings.bank</code>。</p>
+<p>先 <a href="fmod-installation.html">安装 FMOD Studio</a>。有完整的 <code>.fspro</code> 工程时，在 Studio 打开它并为目标平台构建 Bank。Desktop 构建后，确认输出里有 <code>Master.strings.bank</code>。已有各平台 Bank 时，直接做第 2 步。</p>
+<p>SDK 内的 <code>PanzerWar-FMod-UGC-Project/PanzerWar-FMod-Project.fspackage</code> 可通过 <strong>File → Open</strong> 解包到新目录。实测 Studio 2.02.09 解包后报告 Workspace、Mixer 和 Master Bank 等数据未能载入。遇到此提示时，可以改用完整工程或已有 Bank。</p>
 <p>已连接 Studio 的用户可以用 FMOD MCP 的 <code>list_banks</code> 检查项目，再执行 <code>build_banks</code>。以下 Unity MCP 配方检查 SDK 压缩包和已有 Desktop Bank。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -175,7 +176,7 @@
 ]
 </code></pre>
 </details>
-<p>命令行已用 Studio 自带示例构建 Desktop Bank。SDK 包在 Studio 的打开流程和 Unity 设置界面的操作留待桌面验收。</p>
+<p>命令行已用 Studio 自带示例构建 Desktop Bank。Unity 设置界面的保存和刷新仍待实测。</p>
 
 </article>
           </div>
@@ -185,7 +186,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/fmod-project-setup.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/fmod-project-setup.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

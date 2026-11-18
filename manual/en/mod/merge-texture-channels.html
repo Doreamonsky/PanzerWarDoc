@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Merge PBR mask channels | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Merge PBR mask channels | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/merge-texture-channels/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="merge-pbr-mask-channels">Merge PBR mask channels</h1>
+<p><a href="../../mod/merge-texture-channels.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run merge-texture-channels
+</code></pre>
+<ol>
+<li>In the mod SDK's <strong>GM Editor</strong>, open <strong>Remap PBR Masks</strong>.</li>
+<li>Assign <strong>metallic</strong>, <strong>occlusion</strong>, and <strong>smoothness</strong>. If you have a roughness map, put it in the smoothness slot and enable <strong>Is Roughness</strong>.</li>
+<li>Select <strong>Create Mask Map</strong> and save a PNG. The output uses the metallic texture's dimensions, or 512 × 512 if you omit metallic.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Output channel</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R</td>
+<td>Red channel of metallic</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Green channel of occlusion</td>
+</tr>
+<tr>
+<td>B</td>
+<td>0</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Red channel of smoothness, transformed by the tool. For roughness, the tool inverts the transformed value</td>
+</tr>
+</tbody>
+</table>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.SystemInfo/graphicsDeviceName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Standalone shader check in DE. It needs an adjacent Panzer-War-Mod-SDK checkout and an unused TutorialMaskTest folder.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+      &quot;args&quot;: [
+        &quot;Assets&quot;,
+        &quot;TutorialMaskTest&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../../Panzer-War-Mod-SDK/Packages/Sdk/com.shanghaiwindy.middlelayer/Tools/TextureMergeTool/Editor/MaskMap.shader&quot;,
+        &quot;Assets/TutorialMaskTest/SDKMask.shader&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Assets/TutorialMaskTest/SDKMask.shader&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U = CS.UnityEngine\nlocal function texture(r, g)\n    local image = U.Texture2D(2, 2, U.TextureFormat.RGBA32, false, true)\n    for x = 0, 1 do\n        for y = 0, 1 do\n            image:SetPixel(x, y, U.Color(r, g, 0, 1))\n        end\n    end\n    image:Apply()\n    return image\nend\nlocal shader = U.Shader.Find(\&quot;Hidden/MaskMap\&quot;)\nassert(shader and shader.isSupported, 'SDK MaskMap shader did not import')\nlocal material = U.Material(shader)\nlocal metal, ao, smooth = texture(0.25, 0.4), texture(0.1, 0.75), texture(0.48, 0.8)\nlocal readout = texture(0, 0)\nlocal target = U.RenderTexture(2, 2, 0, U.RenderTextureFormat.ARGB32, U.RenderTextureReadWrite.Linear)\nlocal active = U.RenderTexture.active\nlocal ok, failure = pcall(function()\n    material:SetTexture(\&quot;_Metallic\&quot;, metal)\n    material:SetTexture(\&quot;_Occlusion\&quot;, ao)\n    material:SetTexture(\&quot;_Smoothness\&quot;, smooth)\n    for useRoughness = 0, 1 do\n        material:SetFloat(\&quot;_UseRoughness\&quot;, useRoughness)\n        U.Graphics.Blit(metal, target, material)\n        U.RenderTexture.active = target\n        readout:ReadPixels(U.Rect(0, 0, 2, 2), 0, 0)\n        local read = readout:GetPixel(0, 0)\n        local expect = smooth:GetPixel(0, 0).r ^ 0.45\n        if useRoughness == 1 then expect = 1 - expect end\n        assert(math.abs(read.r - .25) &lt; .015 and math.abs(read.g - .75) &lt; .015 and read.b &lt; .01)\n        assert(math.abs(read.a - expect) &lt; .015, tostring(read.a) .. ' != ' .. tostring(expect))\n    end\nend)\nU.RenderTexture.active = active\nfor _, asset in ipairs({ material, metal, ao, smooth, readout, target }) do U.Object.DestroyImmediate(asset) end\nassert(ok, failure)\nreturn \&quot;SDK RGBA channels and roughness passed\&quot;\n&quot;,
+        &quot;tutorial-mask&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;SDK RGBA channels and roughness passed&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/DeleteAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Assets/TutorialMaskTest&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>Use the output as the material's mask texture. The replay checked numeric values from the SDK shader with both roughness settings. Inspect the final appearance on the vehicle material.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/merge-texture-channels.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

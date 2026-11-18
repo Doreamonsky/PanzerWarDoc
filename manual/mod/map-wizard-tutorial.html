@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>03. Map Wizard Tutorial 地图教程 | Panzer War Document </title>
+      <title>用 Unity 地图向导制作模组地图 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="03. Map Wizard Tutorial 地图教程 | Panzer War Document ">
+      <meta name="title" content="用 Unity 地图向导制作模组地图 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,49 +77,272 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="03-map-wizard-tutorial-地图教程">03. Map Wizard Tutorial 地图教程</h1>
 
-<p>The Map Wizard Tool is built for creating custom maps easily.</p>
-<p>地图创建指引工具可快速用于地图文件的创建，让你专注于地图的创建，而无需关心相关配置信息的生成。</p>
-<h1 id="create-map-创建地图">Create Map 创建地图</h1>
-<h2 id="open-the-tool-打开工具">Open the tool 打开工具</h2>
-<p>You can open this tool from this menu if you have installed the Panzer War ToolKit correctly.</p>
-<p>你可以在顶部菜单栏打开地图工具。</p>
-<p><img src="imgs/baf9b9d0d3c2_1731398284812-1e40947e-d7c6-4a65-8569-fbf2f8be2f0f.png" alt=""></p>
-<p><img src="imgs/8c17075b1504_1731396607368-08731798-666d-4e99-a04e-c1896cca2232.png" alt=""></p>
-<h2 id="create-the-map-创建地图">Create the map 创建地图</h2>
-<p>Change the map name and click Create New Map. (You can keep the default map name)</p>
-<p>修改地图名称，点击按钮 Create New Map。</p>
-<p><img src="imgs/6b6faa832f72_1731396614675-dbe799d4-2cae-4907-a540-a6393f0372db.png" alt=""></p>
-<h1 id="modify-map-修改地图">Modify Map 修改地图</h1>
-<h2 id="spawn-points--way-points-出生点与寻路点">Spawn Points &amp; Way Points 出生点与寻路点</h2>
-<p>Then, the new map is created. It is an almost empty map. You can add buildings and terrains into it. And you have to set the tag of the buildings and terrains. You can refer to the default objects. Also, you can add points to the map. Finally, you should click re-build path if you changed something on the map.</p>
-<p>随后，你的新地图已创建。这是一张几乎为空的地图。你可以向场景中添加建筑与地形，并必须设置这些建筑与地形的标签。你可以参考默认物体。此外，你可以向地图上添加出生点和寻路点。最后，如果你修改了地图内容，需要点击 Re-Build Path 按钮。</p>
-<p><img src="imgs/4ab14eb43e97_1731396741897-9bb9211a-ba33-4724-97d5-3fc84f837c0c.png" alt=""></p>
-<h2 id="map-info-地图信息配置">Map Info 地图信息配置</h2>
-<p>Change Render Pipline Type to URP in the MapData.</p>
-<p>将地图信息配置的 Render Pipline Type 改成 URP。</p>
-<p><img src="imgs/cfe12ac37719_1731396781548-14b31b08-bc8a-4c12-88aa-0b94d5863e7a.png" alt=""></p>
-<p>Change the supported modes for this map.</p>
-<p>修改你希望此地图支持的模式。</p>
-<p><img src="imgs/427afc34e3b0_1731396788726-581c45d9-866f-40c5-a26a-a679cbc03b7c.png" alt=""></p>
-<p>Add map name for client display.</p>
-<p>为地图增加客户端显示的名称。</p>
-<p><img src="imgs/dced7ce9ad80_1731396798613-87d38525-7094-41b9-8b2c-e77b423bc11d.png" alt=""></p>
-<h1 id="package-打包">Package 打包</h1>
-<h2 id="build-the-assets-编译资源">Build the assets 编译资源</h2>
-<p>You can find the BuildPipline file in the folder &quot;ModManager&quot;. It names BuildPipline-Map-YourMapName. And click Build Linked Objects to AssetBundle.</p>
-<p>你可以在 ModManager 文件夹寻找到地图对应的 BuildPipline 文件夹。点击 Build Linked Objects to AssetBundle 按钮打包资源。</p>
-<p><img src="imgs/d5183b91c972_1731396698133-5a615c9d-c619-455f-a81c-cf375fb73cf5.png" alt=""></p>
-<p><img src="imgs/d4769c8e0b85_1731396661596-c12ce702-f687-42bd-9f28-b7aa8688594c.png" alt=""></p>
-<h2 id="package-files-打包文件">Package Files 打包文件</h2>
-<p>You can find the ModPackage file in the folder &quot;ModManager&quot;. It names Map-YourMapName. Click Package Mod Now. And you can get the .modpack file.</p>
-<p>你可以在 ModManager 文件夹寻找到地图对应的 ModPackage 文件夹。点击 Package Mod Now 按钮打包资源。</p>
-<p><img src="imgs/e530c2594d38_1731396683518-8e8cc128-a77f-4444-801c-e027ae35c47f.png" alt=""></p>
-<h1 id="extra---point-function-额外---功能点">Extra - Point function 额外 - 功能点</h1>
-<p><img src="imgs/d5ee6548f171_1637487641298-4edfa4f1-b3da-4835-ba1b-df20b2a88023.jpeg" alt=""></p>
-<p>You can add repair and supply point in the map.</p>
-<p>通过增加组件和碰撞触发器方式，可以增加补给和维修功能点。</p>
+<!-- Generated from tutorials/map-wizard-tutorial/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="用-unity-地图向导制作模组地图">用 Unity 地图向导制作模组地图</h1>
+<p><strong>中文</strong> | <a href="../en/mod/map-wizard-tutorial.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run map-wizard-tutorial --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;map&quot;: &quot;${fixture}/TutorialMapData.asset&quot;,
+    &quot;thumbnail&quot;: &quot;Packages/com.shanghaiwindy.urpresources/Main/Maps/DefaultMap/DefaultMap_Thumbnail.png&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>保存其他已打开的场景。在 SDK 的 <strong>GM 编辑器 → 地图与场景 → 地图创建</strong> 中输入一个未使用的地图名称，点<strong>新建地图</strong>并确认。向导会把名称转成小写，并打开新场景。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_describe&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CreateMap&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在已保存的 SDK 工程中执行。执行前把 tutorialmap 改为未使用的名称，工具会切换当前场景。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;CreateMap&quot;,
+      &quot;params&quot;: &quot;{\&quot;mapName\&quot;:\&quot;tutorialmap\&quot;}&quot;,
+      &quot;confirm&quot;: true
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>用自己的内容替换默认地形和方块。把地形设到 Terrain 层，建筑物设到 Building 层。检查 <strong>TeamAStartPoint</strong>、<strong>TeamBStartPoint</strong> 和 <strong>PatorlPoint</strong>。在地图向导中可添加各类点。修改后点 <strong>Rebuild Path</strong>，如需重烘走路面则启用 <strong>Rebuild Navmesh</strong>，并保存场景。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>先打开自己的地图场景。添加点位后调整布局，再重建并保存。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;AddTeamAStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;AddTeamBStartPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;AddPatrolPoint&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;MapCreation&quot;,
+      &quot;action&quot;: &quot;RebuildPath&quot;,
+      &quot;params&quot;: &quot;{\&quot;rebuildNavmesh\&quot;:true}&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.SceneManagement.EditorSceneManager/SaveOpenScenes&quot;,
+      &quot;args&quot;: []
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>打开生成的 <strong>MapData</strong>，填写地图显示名、<strong>支持模式</strong>和 <strong>700 × 200 流式缩略图</strong>。为需要测试的模式添加一项。流式缩略图使用已导入的图片资源。</li>
+</ol>
+<p><img src="imgs/map-wizard-tutorial-settings.zh-CN.png" alt="地图数据中的支持模式和流式缩略图"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.MapData)&quot;,
+        &quot;${map}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/guid&quot;,
+      &quot;value&quot;: &quot;a9be4c0a-31a4-44e3-ac12-cf19312d60ec&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/AssetPathToGUID&quot;,
+      &quot;args&quot;: [
+        &quot;${thumbnail}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;thumbnailGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) ([a-f0-9]{32})&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;supportModes\&quot;:[5]}&quot;,
+        &quot;@asset:${map}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/localizedMapName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Map&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/streamingThumbnail/assetGUID&quot;,
+      &quot;value&quot;: &quot;${thumbnailGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/streamingThumbnail/extra&quot;,
+      &quot;value&quot;: &quot;${thumbnail}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${map}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${map}/supportModes/0&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Mode) PlayField&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>检查 <strong>MapBuildGroup</strong> 中关联的是你的场景与 MapData。打开 <code>Assets/ModManager</code> 中对应的构建管线和 ModPackageData，填写包信息。按目标平台构建资产与 <code>.modpack</code> 后安装测试。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>用你的地图名替换 tutorialmap。构建前填写 ModPackageData 的名称、说明、作者和支持链接。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:Assets/MapBuildGroup-tutorialmap.asset/mapDatas/0&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;Assets/ModManager/BuildPipline-Map-tutorialmap.asset&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;Assets/ModManager/BuildPipline-Map-tutorialmap.asset&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -129,7 +352,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/map-wizard-tutorial.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/map-wizard-tutorial.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

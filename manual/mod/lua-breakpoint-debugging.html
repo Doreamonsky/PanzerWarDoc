@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.1 Lua 断点调试 Lua Breakpoint Debugging | Panzer War Document </title>
+      <title>Lua 断点调试 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.1 Lua 断点调试 Lua Breakpoint Debugging | Panzer War Document ">
+      <meta name="title" content="Lua 断点调试 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,33 +77,41 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="221-lua-断点调试-lua-breakpoint-debugging">22.1 Lua 断点调试 Lua Breakpoint Debugging</h1>
 
-<p>通过断点调试，你可以查看运行时 Lua 的变量值。你需要先安装 Emmy Lua。</p>
-<p>With breakpoint debugging you can inspect the values of Lua variables at runtime. You need to install Emmy Lua first.</p>
-<p><a href="install-vs-code-emmylua.html">安装 VS Code 和配置 Emmy Lua 环境</a></p>
-<h1 id="运行断点调试-run-breakpoint-debugging">运行断点调试 Run Breakpoint Debugging</h1>
-<p><img src="imgs/0b62bf4862f8_1681836392329-737fb11e-34b7-4c10-b596-21de4b4177ca.png" alt=""></p>
-<p><img src="imgs/807e6eeec6e4_1681836413131-4d9434ec-6695-459b-8106-6caee6013522.png" alt=""></p>
-<h1 id="选择应用-select-the-application">选择应用 Select the Application</h1>
-<h2 id="调试游戏-debug-the-game">调试游戏 Debug the Game</h2>
-<p>搜索 PanzerWar-DE.exe</p>
-<p>Search for PanzerWar-DE.exe</p>
-<p><img src="imgs/7e2663e27264_1681836516197-910f39f9-7e0a-48b1-9857-75fb7e44d424.png" alt=""></p>
-<h2 id="调试编辑器-debug-the-editor">调试编辑器 Debug the Editor</h2>
-<p>搜索 unity.exe</p>
-<p>Search for unity.exe</p>
-<p><img src="imgs/6dba6311ea04_1681836540436-8c79a2c9-b743-4934-b0a7-dd16c4e5dbbc.png" alt=""></p>
-<h1 id="断点-breakpoints">断点 Breakpoints</h1>
-<p>在需要设置断点的代码行左侧单击，会出现一个小红点，表示代码运行至此行时会暂停。</p>
-<p>Click to the left of the line of code where you want a breakpoint. A small red dot will appear, indicating that execution will pause when it reaches this line.</p>
-<p><img src="imgs/7b00472c39aa_1681836303706-4cc4f3ff-2b11-4919-9c8c-b872cc9963ad.png" alt=""></p>
-<p>单击此按钮，可逐行执行代码。</p>
-<p>Click this button to step through the code line by line.</p>
-<p><img src="imgs/1429bb9c8fc1_1681836342765-540ed0d5-6607-43f1-bfc4-80e1a776e64a.png" alt=""></p>
-<p>将鼠标悬停在变量上，可查看该变量的各种值。</p>
-<p>Hover the mouse over a variable to see its values.</p>
-<p><img src="imgs/a786d7551e32_1681836368581-5f3e5fa2-28b6-439e-80dc-c22b7062f30b.png" alt=""></p>
+<!-- Generated from tutorials/lua-breakpoint-debugging/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="lua-断点调试">Lua 断点调试</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-breakpoint-debugging.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-breakpoint-debugging
+</code></pre>
+<p>先 <a href="install-vs-code-emmylua.html">安装 VS Code 和 EmmyLua</a>，用 VS Code 打开与目标运行实例匹配的 Lua 源文件。</p>
+<ol>
+<li>从 <strong>Run and Debug</strong> 选择 <strong>EmmyLua Attach Debug</strong>，并选择你自己的 Unity Editor 或本地游戏进程，例如 <code>PanzerWar-DE</code>。附加调试需要目标提供 Lua 符号。</li>
+<li>在目标代码的行号左侧点击设置断点。在游戏中触发脚本，例如 <a href="lua-hello-world.html">Hello World</a> 的行为启动。</li>
+<li>命中断点后，在 <strong>Variables</strong> 查看变量，点击 <strong>Step Over</strong> 单步执行。如果断点未绑定，检查运行中的脚本与工作区文件路径和内容是否一致。</li>
+</ol>
+<p>回放在项目的 xLua 中检查行号和局部变量。VS Code 附加及发行版的符号可用性需要按目标版本实测。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local source = \&quot;@manual-breakpoint-example.lua\&quot;\nlocal handler = assert(load(\&quot;local total = 8\\nlocal sum = total + 4\\nreturn sum\&quot;, source))\nlocal observed\nlocal thread = coroutine.create(function()\n    debug.sethook(function(_, line)\n        if line == 2 and debug.getinfo(2, \&quot;S\&quot;).source == source then\n            local name, value = debug.getlocal(2, 1)\n            if name == \&quot;total\&quot; then observed = value end\n        end\n    end, \&quot;l\&quot;)\n    local result = handler()\n    debug.sethook()\n    assert(result == 12 and observed == 8)\nend)\nlocal ok, err = coroutine.resume(thread)\nassert(ok, err)\nreturn \&quot;Lua line information verified\&quot;\n&quot;,
+        &quot;manual-breakpoint&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua line information verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -113,7 +121,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-breakpoint-debugging.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/lua-breakpoint-debugging.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

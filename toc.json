@@ -1,2 +1,2 @@
 
-{"items":[{"name":"Manual 手册","href":"manual/intro.html","tocHref":"manual/toc.html","topicHref":"manual/intro.html","homepage":"manual/intro.html"},{"name":"Api Doc 代码文档","href":"api/index.html","tocHref":"api/toc.html","topicHref":"api/index.html","homepage":"api/index.html"}]}
+{"items":[{"name":"中文手册","href":"manual/intro.html","tocHref":"manual/toc.html","topicHref":"manual/intro.html","homepage":"manual/intro.html"},{"name":"English Manual","href":"manual/en/intro.html","tocHref":"manual/en/toc.html","topicHref":"manual/en/intro.html","homepage":"manual/en/intro.html"},{"name":"API Reference","href":"api/index.html","tocHref":"api/toc.html","topicHref":"api/index.html","homepage":"api/index.html"}]}

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>17.2. Mask 贴图编辑器内预览 Preview Mask Texture in the Editor | Panzer War Document </title>
+      <title>在 Unity 预览遮罩贴图 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="17.2. Mask 贴图编辑器内预览 Preview Mask Texture in the Editor | Panzer War Document ">
+      <meta name="title" content="在 Unity 预览遮罩贴图 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,34 +77,193 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="172-mask-贴图编辑器内预览-preview-mask-texture-in-the-editor">17.2. Mask 贴图编辑器内预览 Preview Mask Texture in the Editor</h1>
 
-<h1 id="unity-中使用贴图-using-the-texture-in-unity">Unity 中使用贴图 Using the Texture in Unity</h1>
-<p>使用此 Shader：Shader Graphs/SRP-Vehicle-Camouflage</p>
-<p>Use this shader: Shader Graphs/SRP-Vehicle-Camouflage</p>
-<p><img src="imgs/ebb15823d96b_1679576649816-61e60ed8-7c22-436d-8fe4-8b813d16823b.png" alt=""></p>
-<p>在编辑器内预览 PBR 效果：</p>
-<p>To preview the PBR result inside the editor:</p>
-<p>编辑 Shader，点击 Edit。</p>
-<p>Click Edit to open the shader for editing.</p>
-<p><img src="imgs/067db92b02af_1679576714496-d813af52-6522-45af-ba07-be6078e28d74.png" alt=""></p>
-<p>从 Unlit 改为 Lit。</p>
-<p>Change Unlit to Lit.</p>
-<p><img src="imgs/f687dbe28739_1679576738302-a012418e-7fe4-4704-b6ba-104c1da79ddf.png" alt=""></p>
-<p>然后点击 Save，Shader 会重新编译。</p>
-<p>Then click Save, and the shader will be recompiled.</p>
-<p>在材质球中勾选 Enable Mask 选项。</p>
-<p>Tick the Enable Mask option on the material.</p>
-<p><img src="imgs/2e57e605ba4d_1679577010281-d16c0a8c-c7a5-4011-bb51-0e5b7d5c644c.png" alt=""></p>
-<p><strong>在预览完毕后，务必把 Material 改回 unlit。 否则会导致打包大小变大。</strong></p>
-<p><strong>After you finish previewing, make sure to change the material back to unlit. Otherwise the build size will grow.</strong></p>
-<h1 id="预览效果-preview-result">预览效果 Preview Result</h1>
-<p><img src="imgs/dc8d66c09cee_1679577141651-9868170b-5d68-463b-8968-a3046301946d.png" alt=""></p>
-<h1 id="注意事项-notes">注意事项 Notes</h1>
-<p><strong>在预览完毕后，务必把 Material 改回 unlit。 否则会导致打包大小变大。</strong></p>
-<p><strong>After you finish previewing, make sure to change the material back to unlit. Otherwise the build size will grow.</strong></p>
-<p><strong>在决定版运行时，会自动识别 Mask 贴图，并使用 PBR 的材质球。</strong></p>
-<p><strong>At runtime, the Definitive Edition automatically detects the Mask texture and uses the PBR material.</strong></p>
+<!-- Generated from tutorials/mask-texture-preview/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="在-unity-预览遮罩贴图">在 Unity 预览遮罩贴图</h1>
+<p><strong>中文</strong> | <a href="../en/mod/mask-texture-preview.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run mask-texture-preview
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;material&quot;: &quot;${fixture}/Tutorial_Prop.mat&quot;,
+    &quot;settings&quot;: &quot;${fixture}/Tutorial_MaterialSettings.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_Material.prefab&quot;,
+    &quot;texture&quot;: &quot;${fixture}/TutorialMask.png&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>将自己的遮罩贴图导入 Unity，关闭 <strong>sRGB (Color Texture)</strong>。用<a href="merge-texture-channels.html">遮罩合并教程</a>核对通道。</li>
+<li>复制要预览的材质，选择 <strong>WindyVerse/Vehicle/FullPBR</strong>。将贴图赋给遮罩字段 <strong>_MaskMap</strong>，把预览材质拖到独立模型上。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U = CS.UnityEngine\nlocal source = U.Texture2D(2, 2, U.TextureFormat.RGBA32, false, true)\nlocal color = U.Color(0.24, 0.76, 0, 0.5)\nfor x = 0, 1 do\n    for y = 0, 1 do source:SetPixel(x, y, color) end\nend\nsource:Apply()\nlocal png = U.ImageConversion.EncodeToPNG(source)\nCS.System.IO.File.WriteAllBytes('${texture}', png)\nlocal copy = U.Texture2D(2, 2, U.TextureFormat.RGBA32, false, true)\nassert(U.ImageConversion.LoadImage(copy, png, false))\nlocal pixel = copy:GetPixel(0, 0)\nassert(math.abs(color.r - pixel.r) &lt; .005 and math.abs(color.g - pixel.g) &lt; .005)\nassert(math.abs(color.b - pixel.b) &lt; .005 and math.abs(color.a - pixel.a) &lt; .005)\nU.Object.DestroyImmediate(source)\nU.Object.DestroyImmediate(copy)\nreturn \&quot;PNG channel sample verified\&quot;\n&quot;,
+        &quot;tutorial-pbr-mask&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;PNG channel sample verified&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${texture}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;importer:${texture}/sRGBTexture&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;importer:${texture}/sRGBTexture&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) False&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/Altius-U/Art/Default-FastProp.mat&quot;,
+        &quot;${material}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/shader/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;WindyVerse/Vehicle/FullPBR&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/HasProperty&quot;,
+      &quot;args&quot;: [
+        &quot;_MaskMap&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/SetTexture&quot;,
+      &quot;args&quot;: [
+        &quot;_MaskMap&quot;,
+        &quot;@asset:${texture}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${material}/GetTexture(_MaskMap)/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) TutorialMask&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshRenderer&quot;,
+        &quot;values&quot;: {
+          &quot;m_Materials&quot;: [
+            {}
+          ]
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Materials.Array.data[0]&quot;,
+            &quot;asset&quot;: &quot;${material}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Material&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/MeshRenderer/sharedMaterial/GetTexture(_MaskMap)/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) TutorialMask&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>在带灯光的场景观察金属度、遮蔽和平滑度。检查项目运行时材质组件的覆盖配置。<a href="material-component.html">材质组件教程</a></li>
+</ol>
 
 </article>
           </div>
@@ -114,7 +273,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/mask-texture-preview.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/mask-texture-preview.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

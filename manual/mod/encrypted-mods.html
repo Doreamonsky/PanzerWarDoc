@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>10. Encryption 加密模组 | Panzer War Document </title>
+      <title>构建加密模组 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="10. Encryption 加密模组 | Panzer War Document ">
+      <meta name="title" content="构建加密模组 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,46 +77,438 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="10-encryption-加密模组">10. Encryption 加密模组</h1>
 
-<p>The encryption Mod is a way to encourage modders to create high quality Mods. You can only create the encryption Mods to player if you created your Mod without copyright issues. <strong>In other words, you can't use models from other games such as World of Tanks / War Thunder to make encryption Mods. If you make encryption Mods with copyright issues, the developer has rights to close your account and revoke all the keys you have generated.</strong> This agreement will affect all the mod package that is created after <strong>2020/7/5.</strong> You can purchase models from CGTrader / Unity asset store and other cg stores to create encryption Mods. Or you can learn to create model on your own.</p>
-<p>加密模组是一种鼓励模组制作者创造高质量模组的方式。只有在确保自己所制作的模组没有版权问题的情况下，才能为玩家创建加密模组。换句话说，你不能使用其他游戏（如《坦克世界》/《战争雷霆》）的模型来制作加密模组。如果你使用有版权问题的内容制作加密模组，开发者有权关闭你的账户并撤销你生成的所有密钥。该协议将影响 2020/7/5 之后创建的所有模组包。你可以从 CGTrader、Unity 资产商店及其他 CG 商店购买模型来制作加密模组，或者学习自己创建模型。</p>
-<h2 id="enable-encryption-in-buildpipline-在构建管线中启用加密">Enable Encryption in BuildPipline 在构建管线中启用加密</h2>
-<p><img src="imgs/a0caa48cb552_1637488778183-a2ced63b-8a1c-4e71-b3a4-5f7271ac49d9.jpeg" alt=""></p>
-<p>The Build-Pipline file will automatically generate key and iv for your package.</p>
-<p>构建管线文件将自动为你的模组包生成密钥和 IV。</p>
-<h2 id="create-mod-package-创建模组包">Create Mod Package 创建模组包</h2>
-<p>You can manage your paid Mod from</p>
-<p>你可以从以下位置管理你的付费模组</p>
-<p><a href="https://game.windyverse.net/packagemanager">https://game.windyverse.net/packagemanager</a></p>
-<p>To use this page, you need to apply for permission. Please send an email to message@windyverse.net and provide some of your works for our review.</p>
-<p>此页面需要向我们申请资格才可以使用，请发送邮件至 message@windyverse.net，并提供一些你的作品以供我们审核。</p>
-<p>Copy and Paste Key and IV from your mod package in to the web page.</p>
-<p>Qp+zqMYSnmFeLzYAY2BDK6AFMhmm4V1DAnoHoqgqPxE=</p>
-<p>3MHPAwfwqCS9ZsC6UF+NLQ==</p>
-<h2 id="get-uid-for-modpackage-获取-modpackage-的-uid">Get Uid for ModPackage 获取 ModPackage 的 UID</h2>
-<p><img src="imgs/75d4cfb297f6_1746957693985-7fd08584-bef8-4bcc-94b4-33be8fdb44b4.png" alt=""></p>
-<h2 id="set-uid-for-modpackage-设置-modpackage-的-uid">Set Uid for ModPackage 设置 ModPackage 的 UID</h2>
-<p><img src="imgs/f3da404a8401_1637488778073-4f229b6b-a4c1-4217-a936-25088527e8c7.jpeg" alt=""></p>
-<p>After that, you can build the package as normal.</p>
-<p>之后，你可以像往常一样构建模组包。</p>
-<h2 id="manage-cd-key-管理激活码">Manage CD-Key 管理激活码</h2>
-<p><img src="imgs/bc620f019e66_1746957730309-20c17bf3-1473-4865-ab0b-ee313f163f32.png" alt=""></p>
-<h2 id="request-cd-key-申请激活码">Request CD-Key 申请激活码</h2>
-<p><img src="imgs/7e088ed0581e_1746957751612-06b0c460-4fe5-4a8d-ae6a-6ecf9cc7bc33.png" alt=""></p>
-<p><img src="imgs/d9fde48af9d1_1746957773899-b98e7df3-d54c-4bf8-8c23-a6f49885ebe7.png" alt=""></p>
-<h1 id="others-其他附加">Others 其他附加</h1>
-<h2 id="bundled-sub-mod-package-捆绑包">Bundled Sub Mod Package 捆绑包</h2>
-<p><img src="imgs/2729f75c6948_1757840368491-976cbc56-df3d-44dd-9279-7ec17248439c.png" alt="">
-Mods now support bundling. For example, if Mod A is set to bundle the UIDs of Mods B and C, a user who activates Mod A automatically receives Mods B and C as well. You can also adjust the bundle of Mod A at any time, and the change is synchronized to users in real time.</p>
-<p>模组现支持捆绑功能。例如，如果模组 A 设置捆绑了模组 B 和 C 的 UID，用户激活模组 A 后，将自动获得模组 B 和 C。你也可以随时调整模组 A 的捆绑设置，变更结果会实时同步给用户。</p>
-<h2 id="payment-link-支付链接">Payment Link 支付链接</h2>
-<p><img src="imgs/f552c1d5399f_1757840343068-1bdb3184-0972-4722-9a00-146009fb4be0.png" alt="">
-<img src="imgs/9854231158d7_1757840505402-59c01a99-0eaf-4f76-a9d3-fa35c0c4c837.png" alt=""></p>
-<p>Mods now support setting a payment link. Once a payment link is selected, it is shown directly on the Mod's guided unlock page.</p>
-<p>模组现已支持设置支付链接。选择支付链接后，该链接将直接显示在模组的引导解锁页面上。</p>
-<h2 id="user-activation-用户激活">User Activation 用户激活</h2>
-<p><img src="imgs/bccc2e7bacb5_1757840487395-b7b2e099-d114-4b78-b6ad-17e59a57fb0d.png" alt=""></p>
+<!-- Generated from tutorials/encrypted-mods/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="构建加密模组">构建加密模组</h1>
+<p><strong>中文</strong> | <a href="../en/mod/encrypted-mods.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run encrypted-mods --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;928f6ba6-b865-5e24-aef3-8426b6680d35&quot;,
+    &quot;pool&quot;: &quot;${fixture}/TutorialProtectionPool.asset&quot;,
+    &quot;identifier&quot;: &quot;${fixture}/TutorialProtectionIdentifier.asset&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/TutorialProtection.prefab&quot;,
+    &quot;uid&quot;: &quot;93ad71d5-639a-59ab-9078-c3c0a2242f24&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>发布前确认你有权修改和分发包内资源。</p>
+<ol>
+<li>在模组构建管线启用<strong>加密</strong>。编辑器为新管线生成 Key 和 IV。保存在获授权的私有位置。更新已发布模组时，保留对应的 Key 和 IV。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/isEncryption&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.ModPackageBuildPipelineInspector/CreateKeys&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/isEncryption&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>从构建管线的<strong>打开加密模组管理</strong>进入管理页。获授权后，配置该模组的授权记录，把匹配的 UID 填入关联 ModPackageData。</li>
+</ol>
+<p><img src="imgs/encrypted-mods-ownership.zh-CN.png" alt="加密包授权开关与教学 UID"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${package}/isAuthorizeOwnerShip&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${package}/packUuid&quot;,
+      &quot;value&quot;: &quot;${uid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${package}/packUuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${uid}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>为目标平台构建资源和加密包。回放使用随机生成的教学密钥，验证本地授权数据和构建流程。上传和玩家激活由获授权账号核验。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.PoolItemComponent&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.PoolResourceIdentifierData)&quot;,
+        &quot;${identifier}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${identifier}/OnValidate&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.PoolResource)&quot;,
+        &quot;${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;spawnReses\&quot;:[{\&quot;spawnName\&quot;:\&quot;TutorialVFX\&quot;,\&quot;instanceCount\&quot;:-1,\&quot;lifeTime\&quot;:3}]}&quot;,
+        &quot;@asset:${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pool}/identifier&quot;,
+      &quot;value&quot;: &quot;@asset:${identifier}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pool}/spawnReses/0/spawnObject&quot;,
+      &quot;value&quot;: &quot;@asset:${prefab}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pool}/spawnReses/0/spawnObject/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) TutorialProtection&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pool}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;pooldata\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.umodpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -126,7 +518,7 @@ Mods now support bundling. For example, if Mod A is set to bundle the UIDs of Mo
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/encrypted-mods.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/encrypted-mods.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

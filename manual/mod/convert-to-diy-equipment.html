@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>11. Convert To DIY Equipment 一键转为 DIY 配件 | Panzer War Document </title>
+      <title>将载具拆解为 DIY 配件 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="11. Convert To DIY Equipment 一键转为 DIY 配件 | Panzer War Document ">
+      <meta name="title" content="将载具拆解为 DIY 配件 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,27 +77,287 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="11-convert-to-diy-equipment-一键转为-diy-配件">11. Convert To DIY Equipment 一键转为 DIY 配件</h1>
 
-<h1 id="1-diy-equipment-diy-配件">1. DIY Equipment DIY 配件</h1>
-<p>DIY equipments are in the workshop of Panzer War : DE. DIY equipments are consist of Hull, Turret, Gun and other equipments.</p>
-<p>DIY 配件为《装甲纷争》决定版的坦克工坊相关内容，可创建自定义车体、炮塔、炮管和其他配件。</p>
-<h1 id="2-auto-convert-一键转换">2. Auto Convert 一键转换</h1>
-<p><img src="imgs/0878124eb1b2_1638629841399-4e631e68-0f3b-4413-bbfd-7c153a056e9a.png" alt=""></p>
-<p>Click <strong>Export As DIY Equipmen</strong>t button.</p>
-<p>点击 <strong>拆解为 DIY</strong> 配件 按钮</p>
-<p><img src="imgs/59857395ac05_1638629922935-66af6b14-63a1-4c64-b1a3-076600fce34a.png" alt=""></p>
-<p>Select a folder in your project. Your vehicle data will create DIY Equipment.</p>
-<p>选择项目内的一个文件夹。你的 Vehicle Data 数据将生成 DIY 配件信息。</p>
-<h1 id="3-adjust-调整">3. Adjust 调整</h1>
-<p><img src="imgs/d250a4826d55_1638630086125-c6b57d09-bd50-40f1-902e-b83c371eeb2c.png" alt=""></p>
-<p>Adjust the position of the <strong>model</strong> and <strong>hitbox</strong>. Make sure the pivot of your model is at the origin (0,0,0).</p>
-<p>调整<strong>模型</strong>和<strong>伤害模型</strong>的位置，确保它们的轴位于坐标原点 (0,0,0)。</p>
-<p><img src="imgs/33b25257b699_1638630305586-9f75ae3d-0b45-4443-9a27-ee46080d14f6.png" alt=""></p>
-<p>Adjust the position of <strong>Slot Info</strong> and <strong>Dump Node</strong>. Make sure they are in the proper position.</p>
-<p>调整<strong>插槽信息</strong>和<strong>虚节点</strong>的位置，确保它们位于合适的位置。</p>
-<h1 id="4-build-打包">4. Build 打包</h1>
-<p><a href="diy-equipment-build.html">Build 打包</a></p>
+<!-- Generated from tutorials/convert-to-diy-equipment/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="将载具拆解为-diy-配件">将载具拆解为 DIY 配件</h1>
+<p><strong>中文</strong> | <a href="../en/mod/convert-to-diy-equipment.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run convert-to-diy-equipment --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;source&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar&quot;,
+    &quot;vehicleData&quot;: &quot;${fixture}/Tutorial_NativeVehicleData.asset&quot;,
+    &quot;vehicleText&quot;: &quot;${fixture}/Tutorial_NativeText.asset&quot;,
+    &quot;vehicleInfo&quot;: &quot;${fixture}/Tutorial_NativeVehicleInfo.asset&quot;,
+    &quot;packModel&quot;: &quot;${fixture}/Tutorial_NativePackModel.prefab&quot;,
+    &quot;vehicleName&quot;: &quot;Docs-DIY-Convert-${runId}&quot;,
+    &quot;vehicleGuid&quot;: &quot;fd9092ed4d67429f44c5${runId}&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>准备有对应 <strong>VehicleInfo</strong> 的 <strong>VehicleData</strong>。主模型使用约定的车体与 <code>Turret/Gun/Dym</code> 层级。检查伤害模型和节点位置，保存手头的场景。</li>
+<li>在 VehicleData 的 Inspector 打开<strong>载具工具</strong>。在导出设置中选目标模型质量，给 <strong>Folder</strong> 赋一个独立的工程目录，勾选本次要导出的车体、炮塔和炮管。</li>
+</ol>
+<p><img src="imgs/convert-to-diy-equipment-export.zh-CN.png" alt="拆解设置中的模型质量和部件开关"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_Model.prefab&quot;,
+        &quot;${packModel}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleData.asset&quot;,
+        &quot;${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleTextData.asset&quot;,
+        &quot;${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}.asset&quot;,
+        &quot;${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/AssetName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/vehicleName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/assetGuid&quot;,
+      &quot;value&quot;: &quot;${vehicleGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/cookedDirectory&quot;,
+      &quot;value&quot;: &quot;${fixture}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/vehicleTextData&quot;,
+      &quot;value&quot;: &quot;@asset:${vehicleText}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/modelData/MainModel&quot;,
+      &quot;value&quot;: &quot;@asset:${packModel}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/cookedLocation&quot;,
+      &quot;value&quot;: &quot;NextToData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/exportData/exportFolder&quot;,
+      &quot;value&quot;: &quot;@asset:${fixture}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/exportData/exportModelQuality&quot;,
+      &quot;value&quot;: &quot;HighQuality&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/exportData/isExportHull&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/exportData/isExportTurret&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/exportData/isExportGun&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="3">
+<li>点击<strong>拆解为 DIY 配件</strong>并确认，工具只导出勾选的部件。新版副炮塔与额外开火节点会从模型副本移除。分别检查输出的部件数据、模型原点、伤害模型、插槽与虚节点位置。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_describe&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;ExportVehicleDIY&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Export — Export&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在自己的编辑器中执行，先保存场景并给 VehicleData 的 exportFolder 指定输出。将变量替换成目标 VehicleData 的工程路径。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;gm_run&quot;,
+    &quot;arguments&quot;: {
+      &quot;id&quot;: &quot;ExportVehicleDIY&quot;,
+      &quot;action&quot;: &quot;Export&quot;,
+      &quot;params&quot;: &quot;{\&quot;vehicleListType\&quot;:\&quot;List\&quot;,\&quot;vehicleList\&quot;:[\&quot;${yourVehicleData}\&quot;]}&quot;,
+      &quot;confirm&quot;: true
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>将要使用的部件加入 <a href="diy-equipment-build.html">DIY 配件构建组</a>，构建和安装后在坦克工坊检查装配。</li>
+</ol>
 
 </article>
           </div>
@@ -107,7 +367,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/convert-to-diy-equipment.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/convert-to-diy-equipment.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

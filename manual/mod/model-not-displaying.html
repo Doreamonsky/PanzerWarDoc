@@ -82,8 +82,8 @@
 <link rel="stylesheet" href="../tools/tutorials.css">
 <h1 id="模型不显示">模型不显示</h1>
 <p><strong>中文</strong> | <a href="../en/mod/model-not-displaying.html">English</a></p>
-<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
-<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run model-not-displaying
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run model-not-displaying --capture
 </code></pre>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
@@ -207,6 +207,7 @@
 </details>
 <h2 id="3-检查相机的-culling-mask">3. 检查相机的 Culling Mask</h2>
 <p>记下模型物体顶部的 <strong>Layer</strong>。选中实际渲染当前视图的 <strong>Camera</strong>，在 <strong>Culling Mask</strong> 里确保勾选了该层。示例先排除 Default 层，再把它加回。</p>
+<p><img src="imgs/model-not-displaying-camera-mask.zh-CN.png" alt="在 Camera 的 Rendering 分组中找到 Culling Mask"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -291,7 +292,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/model-not-displaying.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

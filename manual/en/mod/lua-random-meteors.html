@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Spawn random meteors in a scene with Lua | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Spawn random meteors in a scene with Lua | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/lua-random-meteors/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="spawn-random-meteors-in-a-scene-with-lua">Spawn random meteors in a scene with Lua</h1>
+<p><a href="../../mod/lua-random-meteors.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-random-meteors --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/RandomSpawn.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_RandomSpawn.prefab&quot;,
+    &quot;meteor&quot;: &quot;${fixture}/Tutorial_Meteor.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>Add an empty GameObject to the scene and attach <strong>LuaBehaviorMono</strong>.</li>
+<li>Save the code below as <code>RandomSpawn.lua</code>, import it into Unity, and assign it to the component.</li>
+<li>Assign a meteor prefab to <code>prefab</code> in the Lua object properties. The example uses <code>count</code>, <code>fieldSize</code>, and <code>noiseScale</code> to control the object count, XZ range, and height variation. Start with a small number of objects.</li>
+</ol>
+<pre><code class="lang-lua">Behavior()
+Property = {
+    prefab = { type = &quot;object&quot;, value = nil },
+    count = { type = &quot;number&quot;, value = 100 },
+    fieldSize = { type = &quot;number&quot;, value = 100 },
+    noiseScale = { type = &quot;number&quot;, value = 10 }
+}
+
+local RandomSpawn = class(&quot;RandomSpawn&quot;)
+local Mathf = CS.UnityEngine.Mathf
+local Vector3 = CS.UnityEngine.Vector3
+local Quaternion = CS.UnityEngine.Quaternion
+
+function RandomSpawn:OnStarted()
+    if self.prefab == nil then
+        return
+    end
+
+    local count = math.max(0, math.floor(self.count or 100))
+    local fieldSize = math.max(0, self.fieldSize or 100)
+    local noiseScale = math.max(0.01, self.noiseScale or 10)
+    for i = 1, count do
+        local x = math.random() * fieldSize
+        local z = math.random() * fieldSize
+        local y = Mathf.PerlinNoise(x / noiseScale, z / noiseScale) * fieldSize
+        local meteor = CS.UnityEngine.Object.Instantiate(self.prefab, Vector3(x, y, z), Quaternion.identity)
+        meteor.name = &quot;Meteor_&quot; .. i
+    end
+end
+
+return RandomSpawn
+</code></pre>
+<p><img src="../../mod/imgs/lua-random-meteors-bind.en.png" alt="Lua behavior script and meteor prefab reference"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-random-meteors/example.lua&quot;,
+        &quot;${script}&quot;,
+        &quot;true&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${meteor}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.SphereCollider&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          },
+          {
+            &quot;property&quot;: &quot;instanceLuaProperty.objectProperties.Array.data[0].value&quot;,
+            &quot;asset&quot;: &quot;${meteor}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;objectProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;prefab&quot;
+              }
+            ],
+            &quot;numberProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;count&quot;,
+                &quot;value&quot;: 3
+              },
+              {
+                &quot;variableName&quot;: &quot;fieldSize&quot;,
+                &quot;value&quot;: 20
+              },
+              {
+                &quot;variableName&quot;: &quot;noiseScale&quot;,
+                &quot;value&quot;: 5
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) RandomSpawn&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/objectProperties/0/value/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) Tutorial_Meteor&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p><code>OnStarted</code> samples the XZ plane and calculates Y with <code>Mathf.PerlinNoise</code>. A missing reference skips spawning. The replay checks the count, names, coordinates, and missing reference.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal spawned = {}\nlocal U = CS.UnityEngine\nE.CS = { UnityEngine = {\n    Mathf = U.Mathf, Vector3 = U.Vector3, Quaternion = U.Quaternion,\n    Object = { Instantiate = function(prefab, position, rotation)\n        assert(prefab == \&quot;meteor\&quot; and rotation == U.Quaternion.identity)\n        local go = { position = position }\n        spawned[#spawned + 1] = go\n        return go\n    end }\n} }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-random-meteors/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\ninstance({ count = 2 }):OnStarted()\nassert(#spawned == 0)\ninstance({ prefab = \&quot;meteor\&quot;, count = 3, fieldSize = 20, noiseScale = 5 }):OnStarted()\nassert(#spawned == 3)\nfor i, meteor in ipairs(spawned) do\n    local p = meteor.position\n    assert(meteor.name == \&quot;Meteor_\&quot; .. i)\n    assert(p.x &gt;= 0 and p.x &lt;= 20 and p.z &gt;= 0 and p.z &lt;= 20)\n    assert(math.abs(p.y - U.Mathf.PerlinNoise(p.x / 5, p.z / 5) * 20) &lt; 0.0001)\nend\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-random-meteors&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/lua-random-meteors.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Add a charge bonus to the primary weapon | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Add a charge bonus to the primary weapon | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/lua-api2-charged-shot/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="add-a-charge-bonus-to-the-primary-weapon">Add a charge bonus to the primary weapon</h1>
+<p><a href="../../mod/lua-api2-charged-shot.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-charged-shot
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/ChargedShot.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ChargedShot.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Attach the script to a vehicle. The example gives weapon index 0 a four-second charge time and a maximum 50% damage bonus. Charging starts after reload. Firing resets the charge.</p>
+<p>Use <code>BuffAPI.CreateValueBuff</code> to attach one mutable buff to <code>DamageBuffedCoff</code>. Update it with <code>SetValue</code> and remove it when the behaviour is destroyed.</p>
+<pre><code class="lang-lua">Behavior()
+Property = {
+    maxBonus = { type = &quot;number&quot;, value = 0.5 },
+    chargeTime = { type = &quot;number&quot;, value = 4 },
+}
+
+local ChargedShot = class(&quot;ChargedShot&quot;)
+
+function ChargedShot:OnVehicleReady(vehicle)
+    local weapon = WeaponAPI.GetWeapon(vehicle, 0)
+    if weapon == nil or self.chargeTime &lt;= 0 then
+        self.script:SetUpdateEnabled(false)
+        return
+    end
+    self.weapon = weapon
+    self.damage = weapon.DamageBuffedCoff
+    self.charge = 0
+    self.buff = BuffAPI.CreateValueBuff(&quot;Charged Shot&quot;, false, 0)
+    self.damage:AddBuff(self.buff)
+    WeaponAPI.OnFired(self.script, weapon, function()
+        self.charge = 0
+        self.buff:SetValue(0)
+    end)
+    self.script:SetUpdateInterval(0.1)
+end
+
+function ChargedShot:OnUpdated(dt)
+    if self.buff == nil or not WeaponAPI.IsReloaded(self.weapon) then
+        return
+    end
+    self.charge = math.min(self.charge + dt / self.chargeTime, 1)
+    self.buff:SetValue(self.charge * self.maxBonus)
+end
+
+function ChargedShot:OnDestroyed()
+    if self.buff ~= nil then
+        self.damage:RemoveBuff(self.buff)
+        self.buff = nil
+    end
+end
+
+return ChargedShot
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-api2-charged-shot/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;numberProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;maxBonus&quot;,
+                &quot;value&quot;: 0.5
+              },
+              {
+                &quot;variableName&quot;: &quot;chargeTime&quot;,
+                &quot;value&quot;: 4
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) ChargedShot&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>The replay checks the charge limit, firing reset and cleanup. Verify the actual damage in game.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal reloaded, value, callback = false, 0, nil\nlocal adds, removes = 0, 0\nlocal buff = { SetValue = function(_, coefficient) value = coefficient end }\nlocal weapon = { DamageBuffedCoff = {\n    AddBuff = function(_, x) assert(x == buff); adds = adds + 1 end,\n    RemoveBuff = function(_, x) assert(x == buff); removes = removes + 1 end,\n} }\nE.WeaponAPI = {\n    GetWeapon = function(_, i) assert(i == 0); return weapon end,\n    IsReloaded = function(_) return reloaded end,\n    OnFired = function(_, _, cb) callback = cb end,\n}\nE.BuffAPI = { CreateValueBuff = function() return buff end }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-api2-charged-shot/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\nlocal script = { SetUpdateInterval = function(_, x) assert(x == 0.1) end }\nlocal instance = instance({ script = script, chargeTime = 4, maxBonus = 0.5 })\ninstance:OnUpdated(1)\ninstance:OnVehicleReady({})\ninstance:OnUpdated(2)\nassert(value == 0 and adds == 1)\nreloaded = true\ninstance:OnUpdated(2)\nassert(value == 0.25)\ninstance:OnUpdated(5)\nassert(value == 0.5)\ncallback()\nassert(value == 0)\nreloaded = false\ninstance:OnUpdated(1)\nassert(value == 0)\ninstance:OnDestroyed()\nassert(removes == 1)\nlocal realBuff = CS.ShanghaiWindy.Core.API.BuffAPI.CreateValueBuff(\&quot;Example\&quot;, false, 0)\nrealBuff:SetValue(0.5)\nassert(realBuff:GetValue() == 0.5)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-api2-charged-shot&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/lua-api2-charged-shot.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

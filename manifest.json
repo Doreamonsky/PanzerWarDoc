@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2076,10 +2076,30 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/map-editor-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/map-editor-tutorial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/gameplay/mod-changelog.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/gameplay/mod-changelog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/ravenfield-map-support.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/ravenfield-map-support.html"
         }
       },
       "version": ""
@@ -2100,6 +2120,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/3d-decals-and-items.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/3d-decals-and-items.html"
         }
       },
       "version": ""
@@ -2136,6 +2166,36 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/continuous-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/continuous-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/convert-to-diy-equipment.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/convert-to-diy-equipment.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/create-mech.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/create-mech.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/crew-data.md",
       "output": {
         ".html": {
@@ -2146,10 +2206,50 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/destructible-objects.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/destructible-objects.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/diy-equipment-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/diy-equipment-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/encrypted-mods.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/encrypted-mods.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/fixed-angle-reload.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/fixed-angle-reload.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/flight-vehicles.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/flight-vehicles.html"
         }
       },
       "version": ""
@@ -2216,10 +2316,50 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/install-vs-code-emmylua.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/install-vs-code-emmylua.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-air-warning.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-air-warning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-charged-shot.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-charged-shot.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/lua-api2-engine-gear.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/lua-api2-engine-gear.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-missile-rack.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-missile-rack.html"
         }
       },
       "version": ""
@@ -2236,10 +2376,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-overview.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-overview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-radar-screen.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-radar-screen.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/lua-behavior-mono.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/lua-behavior-mono.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-breakpoint-debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-breakpoint-debugging.html"
         }
       },
       "version": ""
@@ -2260,6 +2430,26 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/lua-callbacks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-custom-buff.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-custom-buff.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-custom-ui.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-custom-ui.html"
         }
       },
       "version": ""
@@ -2296,10 +2486,30 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-profiler.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-profiler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/lua-properties.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/lua-properties.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-random-meteors.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-random-meteors.html"
         }
       },
       "version": ""
@@ -2326,10 +2536,40 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/map-wizard-tutorial.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/map-wizard-tutorial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/mask-texture-preview.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/mask-texture-preview.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/material-component.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/material-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/merge-texture-channels.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/merge-texture-channels.html"
         }
       },
       "version": ""
@@ -2410,6 +2650,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/multi-platform-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/multi-turret-legacy.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/multi-turret-legacy.html"
         }
       },
       "version": ""
@@ -2506,6 +2756,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/sight-mod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/sight-mod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/spg-td-hydraulic-suspension.md",
       "output": {
         ".html": {
@@ -2520,6 +2780,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/tank-shell-ejection-animation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/texture-channel-conversion-tools.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/texture-channel-conversion-tools.html"
         }
       },
       "version": ""
@@ -2550,6 +2820,26 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/unity-engine-requirements.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/upload-to-steam-workshop.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/upload-to-steam-workshop.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-basics.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-basics.html"
         }
       },
       "version": ""
@@ -2590,6 +2880,46 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/vehicle-light-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-modding-notes.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-modding-notes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-playground.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-playground.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-thumbnail.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-thumbnail.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vfx-mod.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vfx-mod.html"
         }
       },
       "version": ""
@@ -4653,6 +4983,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/3cf45f3193bf_1653838705692-3791586a-3068-4a14-a6a6-ade13316d8ac.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/3d-decals-and-items-models.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/3d-decals-and-items-models.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/3d-decals-and-items-models.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/3d-decals-and-items-models.zh-CN.png"
         }
       },
       "version": ""
@@ -8139,6 +8489,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/convert-to-diy-equipment-export.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/convert-to-diy-equipment-export.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/convert-to-diy-equipment-export.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/convert-to-diy-equipment-export.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/create-mech-mech.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/create-mech-mech.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/create-mech-mech.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/create-mech-mech.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/crew-data-basic.en.png",
       "output": {
         "resource": {
@@ -8579,6 +8969,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/destructible-objects-settings.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/destructible-objects-settings.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/destructible-objects-settings.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/destructible-objects-settings.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/df5164cb41b9_1703143705789-5ce626e3-528b-4f17-be2a-5d09115c7aaf.png",
       "output": {
         "resource": {
@@ -8593,6 +9003,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/dfc3c19d431e_1677922746658-0c4d72ee-e83e-4073-8e15-7623b6d329a2.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/diy-equipment-build-assemble.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/diy-equipment-build-assemble.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/diy-equipment-build-assemble.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/diy-equipment-build-assemble.zh-CN.png"
         }
       },
       "version": ""
@@ -9079,6 +9509,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/encrypted-mods-ownership.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/encrypted-mods-ownership.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/encrypted-mods-ownership.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/encrypted-mods-ownership.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/f0b3572d45ef_1669732135669-566a5af7-a0dd-428f-86a0-53500aa48bcc.png",
       "output": {
         "resource": {
@@ -9479,6 +9929,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/flight-vehicles-bind.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/flight-vehicles-bind.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/flight-vehicles-bind.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/flight-vehicles-bind.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/hitbox-naming-conventions-armor.en.png",
       "output": {
         "resource": {
@@ -9559,6 +10029,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-custom-ui-pool.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-custom-ui-pool.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-custom-ui-pool.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-custom-ui-pool.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/lua-hello-world-binding.en.png",
       "output": {
         "resource": {
@@ -9599,6 +10089,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-random-meteors-bind.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-random-meteors-bind.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-random-meteors-bind.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-random-meteors-bind.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/map-wizard-tutorial-settings.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/map-wizard-tutorial-settings.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/map-wizard-tutorial-settings.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/map-wizard-tutorial-settings.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/material-component-component.en.png",
       "output": {
         "resource": {
@@ -9633,6 +10163,46 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/material-component-data.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/model-not-displaying-camera-mask.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/model-not-displaying-camera-mask.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/model-not-displaying-camera-mask.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/model-not-displaying-camera-mask.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/multi-turret-legacy-settings.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/multi-turret-legacy-settings.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/multi-turret-legacy-settings.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/multi-turret-legacy-settings.zh-CN.png"
         }
       },
       "version": ""
@@ -9839,6 +10409,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/sight-mod-ballistics.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/sight-mod-ballistics.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/sight-mod-ballistics.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/sight-mod-ballistics.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-assignment.en.png",
       "output": {
         "resource": {
@@ -9959,6 +10549,66 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/upload-to-steam-workshop-shipping.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/upload-to-steam-workshop-shipping.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/upload-to-steam-workshop-shipping.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/upload-to-steam-workshop-shipping.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-bindings.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-bindings.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-bindings.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-bindings.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-dev-qa-elevation-angles.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-dev-qa-elevation-angles.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-dev-qa-elevation-angles.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-dev-qa-elevation-angles.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/vehicle-hatches-movement.en.png",
       "output": {
         "resource": {
@@ -10033,6 +10683,46 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vehicle-light-component-shape.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-thumbnail-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-thumbnail-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-thumbnail-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-thumbnail-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-pool.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-pool.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vfx-mod-pool.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vfx-mod-pool.zh-CN.png"
         }
       },
       "version": ""

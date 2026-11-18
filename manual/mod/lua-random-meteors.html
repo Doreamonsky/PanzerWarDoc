@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.5.4 场景功能：随机陨石 Scene Feature: Random Meteors | Panzer War Document </title>
+      <title>用 Lua 在场景中生成随机陨石 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.5.4 场景功能：随机陨石 Scene Feature: Random Meteors | Panzer War Document ">
+      <meta name="title" content="用 Lua 在场景中生成随机陨石 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,52 +77,216 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2254-场景功能随机陨石-scene-feature-random-meteors">22.5.4 场景功能：随机陨石 Scene Feature: Random Meteors</h1>
 
-<p>编写如下脚本，将其保存为 RandomSpawn.lua，并放置在工程目录下。</p>
-<p>Write the following script, save it as RandomSpawn.lua, and place it in the project directory.</p>
+<!-- Generated from tutorials/lua-random-meteors/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="用-lua-在场景中生成随机陨石">用 Lua 在场景中生成随机陨石</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-random-meteors.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-random-meteors --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/RandomSpawn.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_RandomSpawn.prefab&quot;,
+    &quot;meteor&quot;: &quot;${fixture}/Tutorial_Meteor.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<ol>
+<li>在场景中添加一个空对象，挂上 <strong>LuaBehaviorMono</strong>。</li>
+<li>将下面的代码保存为 <code>RandomSpawn.lua</code>，导入 Unity，再绑定到组件。</li>
+<li>在 Lua 对象属性中把 <code>prefab</code> 设为流星预制体。示例使用 <code>count</code>、<code>fieldSize</code> 和 <code>noiseScale</code> 控制数量、XZ 范围和高度变化。先用少量物体验证效果。</li>
+</ol>
 <pre><code class="lang-lua">Behavior()
 Property = {
-  prefab = {
-    type = &quot;object&quot;,
-    value = nil     
-  }
+    prefab = { type = &quot;object&quot;, value = nil },
+    count = { type = &quot;number&quot;, value = 100 },
+    fieldSize = { type = &quot;number&quot;, value = 100 },
+    noiseScale = { type = &quot;number&quot;, value = 10 }
 }
 
 local RandomSpawn = class(&quot;RandomSpawn&quot;)
-
-local GameObject = CS.UnityEngine.GameObject
-local PerlinNoise = CS.UnityEngine.Mathf.PerlinNoise
-local Instantiate = CS.UnityEngine.Object.Instantiate
+local Mathf = CS.UnityEngine.Mathf
 local Vector3 = CS.UnityEngine.Vector3
-
-local meteorAmount = 100  -- 生成的陨石数量
-local fieldSize = 100  -- 生成陨石的场景大小
-local noiseScale = 10  -- 噪点大小，调整以获得不同的效果
-
-
+local Quaternion = CS.UnityEngine.Quaternion
 
 function RandomSpawn:OnStarted()
-  for i = 1, meteorAmount do
-    local x = math.random() * fieldSize
-    local z = math.random() * fieldSize
-    local y = PerlinNoise(x / noiseScale, z / noiseScale) * fieldSize
-    local pos = Vector3(x, y, z)
+    if self.prefab == nil then
+        return
+    end
 
-    local newMeteor = Instantiate(self.prefab, pos, Quaternion.identity)
-    newMeteor.name = &quot;Meteor_&quot; .. tostring(i)
-  end
+    local count = math.max(0, math.floor(self.count or 100))
+    local fieldSize = math.max(0, self.fieldSize or 100)
+    local noiseScale = math.max(0.01, self.noiseScale or 10)
+    for i = 1, count do
+        local x = math.random() * fieldSize
+        local z = math.random() * fieldSize
+        local y = Mathf.PerlinNoise(x / noiseScale, z / noiseScale) * fieldSize
+        local meteor = CS.UnityEngine.Object.Instantiate(self.prefab, Vector3(x, y, z), Quaternion.identity)
+        meteor.name = &quot;Meteor_&quot; .. i
+    end
 end
 
 return RandomSpawn
-
 </code></pre>
-<p>为场景物体挂载 LuaBehaviorMono，在行为脚本中选择刚刚编写的 Lua 脚本，然后在 Lua 引用属性中关联该场景物体。</p>
-<p>Attach LuaBehaviorMono to a scene object, choose the Lua script you just wrote as its behavior script, then link the scene object in the Lua reference property.</p>
-<p><img src="imgs/a169c8d8c0cd_1689090224356-4bb44189-1d4f-4db2-9463-38cf604e269e.png" alt=""></p>
-<p>场景内随机生成了一系列陨石。</p>
-<p>A series of meteors are randomly spawned in the scene.</p>
-<p><img src="imgs/9f8a6f54e32c_1689090368237-549484bf-d08f-4e39-b323-e5a1cd7fc4dc.png" alt=""></p>
+<p><img src="imgs/lua-random-meteors-bind.zh-CN.png" alt="Lua 行为脚本和流星预制体引用"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-random-meteors/example.lua&quot;,
+        &quot;${script}&quot;,
+        &quot;true&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${meteor}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.SphereCollider&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          },
+          {
+            &quot;property&quot;: &quot;instanceLuaProperty.objectProperties.Array.data[0].value&quot;,
+            &quot;asset&quot;: &quot;${meteor}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;objectProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;prefab&quot;
+              }
+            ],
+            &quot;numberProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;count&quot;,
+                &quot;value&quot;: 3
+              },
+              {
+                &quot;variableName&quot;: &quot;fieldSize&quot;,
+                &quot;value&quot;: 20
+              },
+              {
+                &quot;variableName&quot;: &quot;noiseScale&quot;,
+                &quot;value&quot;: 5
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) RandomSpawn&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/objectProperties/0/value/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) Tutorial_Meteor&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p><code>OnStarted</code> 会在 XZ 平面取样，并用 <code>Mathf.PerlinNoise</code> 计算 Y 坐标。空引用会跳过生成。回放检查数量、名称、坐标和空值路径。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal spawned = {}\nlocal U = CS.UnityEngine\nE.CS = { UnityEngine = {\n    Mathf = U.Mathf, Vector3 = U.Vector3, Quaternion = U.Quaternion,\n    Object = { Instantiate = function(prefab, position, rotation)\n        assert(prefab == \&quot;meteor\&quot; and rotation == U.Quaternion.identity)\n        local go = { position = position }\n        spawned[#spawned + 1] = go\n        return go\n    end }\n} }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-random-meteors/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\ninstance({ count = 2 }):OnStarted()\nassert(#spawned == 0)\ninstance({ prefab = \&quot;meteor\&quot;, count = 3, fieldSize = 20, noiseScale = 5 }):OnStarted()\nassert(#spawned == 3)\nfor i, meteor in ipairs(spawned) do\n    local p = meteor.position\n    assert(meteor.name == \&quot;Meteor_\&quot; .. i)\n    assert(p.x &gt;= 0 and p.x &lt;= 20 and p.z &gt;= 0 and p.z &lt;= 20)\n    assert(math.abs(p.y - U.Mathf.PerlinNoise(p.x / 5, p.z / 5) * 20) &lt; 0.0001)\nend\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-random-meteors&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -132,7 +296,7 @@ return RandomSpawn
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-random-meteors.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/lua-random-meteors.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.3 Multi-Fire (Old) - 多炮塔 （旧） | Panzer War Document </title>
+      <title>旧版多炮塔配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.3 Multi-Fire (Old) - 多炮塔 （旧） | Panzer War Document ">
+      <meta name="title" content="旧版多炮塔配置 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,34 +77,351 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="023-multi-fire-old---多炮塔-旧">02.3 Multi-Fire (Old) - 多炮塔 （旧）</h1>
 
-<p><a href="blender-axis-fix.html">2.13 Blender 修正模型轴向</a></p>
-<h1 id="general-综合">General 综合</h1>
-<p>Multi-Fire (Old) system is designed for one turret and one gun.</p>
-<p>多炮塔（旧）系统被设计用于对应一个炮塔（Turret）与一门主炮（Gun）。</p>
-<h1 id="child-parent-relation-父子关系">Child-Parent Relation 父子关系</h1>
-<p>Suppose we have an ATGM on the turret. We should SubTurret under Turret. Also you need to put SubGun under SubTurret and SubDym under SubTurret.</p>
-<p>假设我们在炮塔上装备了 ATGM，则需要将 SubTurret 置于 Turret 之下。此外，需要将 SubGun 和 SubDym 均置于 SubTurret 之下。</p>
-<p><img src="imgs/b11b4769b8fd_1647607782289-4385d419-0af3-4687-aa4a-0aba3e505e6c.png" alt=""></p>
-<h1 id="property-属性">Property 属性</h1>
-<h2 id="relative-path-相对路径">Relative Path 相对路径</h2>
-<p>You need to set the relative path of turret ,gun and dym.</p>
-<p>你需要分别设置炮塔（Turret）、主炮（Gun）和炮管（Dym）的相对路径。</p>
-<h1 id="section"><img src="imgs/c7d52613f809_1647607724903-f76fa47a-7a52-47e1-b3d1-4083469992bd.png" alt=""></h1>
-<h2 id="ffpoint--effect-start-offset-开火位置偏移">FFPoint / Effect Start Offset 开火位置偏移</h2>
-<p>The offset will decide where ffpoint and effect start are. In the generated prefab, you can see the dummy points indicating these positions.</p>
-<p>偏移量将决定开火点（ffpoint）和特效起始点（effect start）的位置。在生成的预制体中，可以看到指示这些位置的虚节点。</p>
-<p><img src="imgs/b8fac1aec081_1647608307261-bdb72e3b-0a15-40dc-8327-b4d3aa80a800.png" alt=""></p>
-<p><img src="imgs/d269eb7066ea_1647608351642-29f790c3-da03-4358-abbe-f131a0ec542e.png" alt=""></p>
-<h2 id="tank-fire-param-开火设置">Tank Fire Param 开火设置</h2>
-<p>The structure is same as the ordinary one.</p>
-<p>结构与普通的开火设置相同。</p>
-<p><img src="imgs/4d2db4b2cd6c_1647608099719-cd47bb84-cd40-45fe-a333-cd4dc8a6080a.png" alt=""></p>
-<h2 id="turret-param-炮塔设置">Turret Param 炮塔设置</h2>
-<p>The structure is same as the ordinary one.</p>
-<p>结构与普通的炮塔设置相同。</p>
-<p><img src="imgs/cf04c92488ad_1647608145787-31779669-8a61-41db-8c9b-8f8f6a5fc798.png" alt=""></p>
+<!-- Generated from tutorials/multi-turret-legacy/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="旧版多炮塔配置">旧版多炮塔配置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/multi-turret-legacy.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run multi-turret-legacy --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;source&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar&quot;,
+    &quot;vehicleData&quot;: &quot;${fixture}/Tutorial_NativeVehicleData.asset&quot;,
+    &quot;vehicleText&quot;: &quot;${fixture}/Tutorial_NativeText.asset&quot;,
+    &quot;vehicleInfo&quot;: &quot;${fixture}/Tutorial_NativeVehicleInfo.asset&quot;,
+    &quot;packModel&quot;: &quot;${fixture}/Tutorial_NativePackModel.prefab&quot;,
+    &quot;vehicleName&quot;: &quot;Docs-Legacy-Turret-${runId}&quot;,
+    &quot;vehicleGuid&quot;: &quot;205563420ee989807e2${runId}&quot;,
+    &quot;cooked&quot;: &quot;${fixture}/205563420ee989807e2${runId}_pre.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>现有载具可以继续使用 <strong>VehicleTextData → 旧版多炮塔系统</strong>。新配置可先查看同一 Inspector 中的<strong>新版多炮塔系统</strong>。</p>
+<ol>
+<li>在模型中为副炮准备三层节点。示例中 <code>TutorialSubTurret</code> 位于主炮塔 <code>Turret</code> 下，再依次嵌套 <code>TutorialSubGun</code>、<code>TutorialSubDym</code>。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_Model.prefab&quot;,
+        &quot;${packModel}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${packModel}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Transform&quot;,
+        &quot;children&quot;: [
+          &quot;Turret/TutorialSubTurret/TutorialSubGun/TutorialSubDym&quot;
+        ],
+        &quot;child&quot;: &quot;Turret/TutorialSubTurret/TutorialSubGun/TutorialSubDym&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${packModel}/Turret/TutorialSubTurret/TutorialSubGun/TutorialSubDym/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TutorialSubDym&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="2">
+<li>在 <code>MultiFireSystemData</code> 添加一项。<code>turretPath</code> 从模型根节点开始，<code>gunPath</code> 从副炮塔开始，<code>dymPath</code> 从副炮开始。示例依次填 <code>Turret/TutorialSubTurret</code>、<code>TutorialSubGun</code>、<code>TutorialSubDym</code>。</li>
+<li>将 <code>ffPointOffSet</code> 和 <code>effectStartOffSet</code> 设为从炮管原点沿局部 +Z 的距离。为该项配置开火和炮塔参数，可绑定对应的共享参数资产。</li>
+</ol>
+<p><img src="imgs/multi-turret-legacy-settings.zh-CN.png" alt="旧版多炮塔中三个逐级解析的节点路径"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleData.asset&quot;,
+        &quot;${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleTextData.asset&quot;,
+        &quot;${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}.asset&quot;,
+        &quot;${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/AssetName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/vehicleName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/assetGuid&quot;,
+      &quot;value&quot;: &quot;${vehicleGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/cookedDirectory&quot;,
+      &quot;value&quot;: &quot;${fixture}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/vehicleTextData&quot;,
+      &quot;value&quot;: &quot;@asset:${vehicleText}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/modelData/MainModel&quot;,
+      &quot;value&quot;: &quot;@asset:${packModel}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/cookedLocation&quot;,
+      &quot;value&quot;: &quot;NextToData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.JsonUtility/FromJsonOverwrite&quot;,
+      &quot;args&quot;: [
+        &quot;{\&quot;MultiFireSystemData\&quot;: [{\&quot;turretPath\&quot;: \&quot;Turret/TutorialSubTurret\&quot;, \&quot;gunPath\&quot;: \&quot;TutorialSubGun\&quot;, \&quot;dymPath\&quot;: \&quot;TutorialSubDym\&quot;, \&quot;isTurretWrapper\&quot;: true, \&quot;ffPointOffSet\&quot;: 2.5, \&quot;effectStartOffSet\&quot;: 1.25}]}&quot;,
+        &quot;@asset:${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MultiFireSystemData/0/sharedGunData&quot;,
+      &quot;value&quot;: &quot;@asset:${vehicleText}/sharedGunData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MultiFireSystemData/0/sharedTurretData&quot;,
+      &quot;value&quot;: &quot;@asset:${vehicleText}/sharedTurretData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MultiFireSystemData/0/turretPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Turret/TutorialSubTurret&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MultiFireSystemData/0/gunPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TutorialSubGun&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/MultiFireSystemData/0/dymPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TutorialSubDym&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<ol start="4">
+<li>在 VehicleData 重新打包。检查生成预制体的 <strong>FFPoint</strong> 和 <strong>EffectStart</strong>，再进游戏试射。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.PackUtil/Pack&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/VehicleComponentsReferenceManager/mutiTurretTrans/0/ffPoint/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) FFPoint&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/VehicleComponentsReferenceManager/mutiTurretTrans/0/ffPoint/localPosition&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Vector3) (0.00, 0.00, 2.50)&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/VehicleComponentsReferenceManager/mutiTurretTrans/0/fireEffectPoint/localPosition&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Vector3) (0.00, 0.00, 1.25)&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -114,7 +431,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/multi-turret-legacy.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/multi-turret-legacy.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
