@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T021140Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -1905,11 +1905,194 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/fmod-play-component-distance.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/fmod-play-component-distance.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/fmod-play-component-distance.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/fmod-play-component-distance.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/fmod-play-component-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/fmod-play-component-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/fmod-play-component-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/fmod-play-component-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/vehicle-text-data-basic.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/vehicle-text-data-basic.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/vehicle-text-data-basic.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/vehicle-text-data-basic.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/vehicle-text-data-identity.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/vehicle-text-data-identity.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/component/imgs/vehicle-text-data-identity.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/component/imgs/vehicle-text-data-identity.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "manual/component/vehicle-text-data.md",
       "output": {
         ".html": {
           "relative_path": "manual/component/vehicle-text-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/component/fmod-play-component.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/component/fmod-play-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/component/vehicle-text-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/component/vehicle-text-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/crew-data.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/crew-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/fixed-angle-reload.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/fixed-angle-reload.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/preset-vehicle-queue.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/preset-vehicle-queue.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-buff-config.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-buff-config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-hatches.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-hatches.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-light-component.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-light-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/zoom-ratio-config.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/zoom-ratio-config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "manual/en/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/toc.html"
+        },
+        ".json": {
+          "relative_path": "manual/en/toc.json"
         }
       },
       "version": ""
@@ -7336,6 +7519,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/crew-data-basic.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/crew-data-basic.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/crew-data-basic.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/crew-data-basic.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/crew-data-unlock.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/crew-data-unlock.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/crew-data-unlock.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/crew-data-unlock.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/d0585367cc81_1752997869570-5773ba35-3b41-4feb-9533-0d2f11053e4e.png",
       "output": {
         "resource": {
@@ -8595,6 +8818,206 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/fixed-angle-reload-fields.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/fixed-angle-reload-fields.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/fixed-angle-reload-fields.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/fixed-angle-reload-fields.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/fixed-angle-reload-gun.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/fixed-angle-reload-gun.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/fixed-angle-reload-gun.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/fixed-angle-reload-gun.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/preset-vehicle-queue-identity.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/preset-vehicle-queue-identity.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/preset-vehicle-queue-identity.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/preset-vehicle-queue-identity.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/preset-vehicle-queue-vehicles.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/preset-vehicle-queue-vehicles.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/preset-vehicle-queue-vehicles.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/preset-vehicle-queue-vehicles.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-hatches-movement.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-hatches-movement.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-hatches-movement.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-hatches-movement.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-hatches-pivots.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-hatches-pivots.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-hatches-pivots.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-hatches-pivots.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-light-component-appearance.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-light-component-appearance.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-light-component-appearance.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-light-component-appearance.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-light-component-shape.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-light-component-shape.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-light-component-shape.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-light-component-shape.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/zoom-ratio-config-ratios.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/zoom-ratio-config-ratios.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/zoom-ratio-config-ratios.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/zoom-ratio-config-ratios.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/zoom-ratio-config-vision.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/zoom-ratio-config-vision.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/zoom-ratio-config-vision.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/zoom-ratio-config-vision.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "manual/mod/install-git.md",
       "output": {
@@ -9423,6 +9846,16 @@
         },
         ".json": {
           "relative_path": "manual/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/tools/tutorials.css",
+      "output": {
+        "resource": {
+          "relative_path": "manual/tools/tutorials.css"
         }
       },
       "version": ""

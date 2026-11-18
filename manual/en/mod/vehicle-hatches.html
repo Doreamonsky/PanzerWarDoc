@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Vehicle Hatch Configuration Tutorial | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Vehicle Hatch Configuration Tutorial | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/vehicle-hatches/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="vehicle-hatch-configuration-tutorial">Vehicle Hatch Configuration Tutorial</h1>
+<p><a href="../../mod/vehicle-hatches.html">中文</a> | <strong>English</strong></p>
+<p>The MCP examples use separate teaching assets. <code>${variables}</code> come from the shared recipe. Run this command at the repository root to create the sample, execute each group and capture both languages through the same local Unity MCP routes.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-hatches --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Teaching-fixture preparation only; official assets are not modified.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_Hatch.prefab&quot;,
+    &quot;sourceMesh&quot;: &quot;${fixture}/Tutorial_HatchSource.obj&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>This tutorial uses a separate <code>Tutorial_Hatch.prefab</code> to show hatch markers, moving parts and double-sided meshes. The example contains teaching nodes and a mesh rather than a complete vehicle. Field spellings match the source.</p>
+<h2 id="1-add-and-register-the-component">1. Add and register the component</h2>
+<ul>
+<li>Add <strong>VehicleHatchAttachmentMonoComponent</strong> to the hatch object and expand <code>hatchAttachmentSlot.attachment</code> to edit its nested configuration.</li>
+<li>On the same object, configure <code>VehicleAttachmentMonoComponent</code> for runtime discovery: set <code>attachmentSlotType</code> to <code>Specific</code> and assign the hatch component to <code>specificAttachmentMonoComponent</code>. The project's CustomEditor adds this companion automatically; the recipe creates and saves it explicitly.</li>
+</ul>
+<p>Check that the companion references the current hatch component.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {}
+          }
+        },
+        &quot;children&quot;: [
+          &quot;HatchCenter&quot;,
+          &quot;LeftHand&quot;,
+          &quot;RightHand&quot;,
+          &quot;HatchPivot&quot;,
+          &quot;HatchPivot/HatchMesh&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;attachmentSlotType&quot;: 1
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;specificAttachmentMonoComponent&quot;,
+            &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-hatch-centre-hand-markers-and-hinge">2. Hatch centre, hand markers and hinge</h2>
+<ul>
+<li><code>hatchRadius=0.5</code>; <code>hatchTransform</code> is the hatch opening centre.</li>
+<li><code>leftHandSlotTransform</code> and <code>rightHandSlotTransform</code> are hand placement markers, not the moving hinge or pivot.</li>
+<li>The moving pivot is each <code>activeParts</code> entry's <code>activePartTransform</code>: assign the independent moving pivot to <code>activePartTransform</code> with identity initial local rotation.</li>
+</ul>
+<p>Expected check: the hatch centre sits at the opening, hand markers are not used as hinges, and the pivot starts at identity rotation.</p>
+<p><img src="../../mod/imgs/vehicle-hatches-pivots.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;hatchRadius&quot;: 0.5
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.hatchTransform&quot;,
+            &quot;child&quot;: &quot;HatchCenter&quot;
+          },
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.leftHandSlotTransform&quot;,
+            &quot;child&quot;: &quot;LeftHand&quot;
+          },
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.rightHandSlotTransform&quot;,
+            &quot;child&quot;: &quot;RightHand&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-configure-movement">3. Configure movement</h2>
+<ul>
+<li><code>isSemiOpen=false</code> shows <code>activeParts</code>.</li>
+<li>Each entry uses <code>axis=(1,0,0)</code>, <code>activeAngle=90</code>, <code>closeAngle=0</code>, <code>moveSpeed=120</code>.</li>
+<li>At runtime <code>localRotation=Quaternion.AngleAxis(angle,axis)</code> overwrites the local rotation; it does not add a delta.</li>
+<li><code>isSemiOpen</code> is a state or display condition; setting it does not guarantee runtime code disables existing <code>activeParts</code> animation.</li>
+</ul>
+<p>Expected check: the pivot starts at identity rotation, so the result does not depend on the original orientation.</p>
+<p><img src="../../mod/imgs/vehicle-hatches-movement.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;isSemiOpen&quot;: false,
+              &quot;activeParts&quot;: [
+                {
+                  &quot;axis&quot;: {
+                    &quot;x&quot;: 1,
+                    &quot;y&quot;: 0,
+                    &quot;z&quot;: 0
+                  },
+                  &quot;activeAngle&quot;: 90,
+                  &quot;closeAngle&quot;: 0,
+                  &quot;moveSpeed&quot;: 120
+                }
+              ]
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.activeParts.Array.data[0].activePartTransform&quot;,
+            &quot;child&quot;: &quot;HatchPivot&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-save-and-check">4. Save and check</h2>
+<ul>
+<li>Verify the component, pivots and movement values, including the runtime discovery condition.</li>
+<li>Save the prefab and read back the moving pivot reference, <code>moveSpeed</code> and companion type. In-game opening, crew hand placement and complete vehicle loading still require runtime verification.</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleAttachmentMonoComponent)/attachmentSlotType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Specific&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent)/hatchAttachmentSlot/attachment/activeParts/0/activePartTransform/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;HatchPivot&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent)/hatchAttachmentSlot/attachment/activeParts/0/moveSpeed&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;120&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-bake-double-sided-meshes-when-needed">5. Bake double-sided meshes when needed</h2>
+<p>If an open hatch needs visible backfaces, assign the relevant <code>MeshFilter</code> entries to <code>doubleSidedMeshFilters</code>. In the vehicle attachment configuration editor, click the double-sided mesh bake button and choose an output folder under Assets. <code>doubleSidedMeshes</code> is generated output, not a list to fill manually. Limit this to the moving regions that need backfaces to avoid doubling the entire vehicle's triangle count.</p>
+<p>The recipe demonstrates the input and output references with a separately copied quad mesh. It calls the same baker with an explicit output folder, bypassing the interactive folder dialog. Repeated baking updates generated meshes while preserving GUIDs. Temporarily enabled source Read/Write settings are restored afterwards. This verifies mesh data and references, not the final rendered appearance.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Square.obj&quot;,
+        &quot;${sourceMesh}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;,
+        &quot;child&quot;: &quot;HatchPivot/HatchMesh&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Mesh&quot;,
+            &quot;asset&quot;: &quot;${sourceMesh}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Mesh&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;doubleSidedMeshFilters&quot;: [
+                {}
+              ]
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.doubleSidedMeshFilters.Array.data[0]&quot;,
+            &quot;child&quot;: &quot;HatchPivot/HatchMesh&quot;,
+            &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.VehicleHatchMeshBaker/BakePrefab&quot;,
+      &quot;args&quot;: [
+        &quot;${asset}&quot;,
+        &quot;&quot;,
+        &quot;${fixture}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;_DoubleSided_&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent)/hatchAttachmentSlot/attachment/doubleSidedMeshes/Length&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/en/mod/vehicle-hatches.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

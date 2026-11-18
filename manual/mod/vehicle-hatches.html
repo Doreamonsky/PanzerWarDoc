@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.16 Hatch Compatible - 载具舱盖适配 | Panzer War Document </title>
+      <title>载具舱门配置教程 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.16 Hatch Compatible - 载具舱盖适配 | Panzer War Document ">
+      <meta name="title" content="载具舱门配置教程 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,20 +77,346 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0216-hatch-compatible---载具舱盖适配">02.16 Hatch Compatible - 载具舱盖适配</h1>
 
-<p>创建空物体，挂载 VehicleHatchAttachmentMonoComponent。</p>
-<p>Create an empty GameObject and attach the VehicleHatchAttachmentMonoComponent.</p>
-<p><img src="imgs/2c99fc77943a_1751724352081-56286e3e-055b-4005-b7ec-5d5177218d32.png" alt=""></p>
-<p><strong>Double Side Rendering 双面渲染</strong></p>
-<p>舱盖打开时，需显示背面的部分应设置为双面渲染。注意，此选项会使三角形数量翻倍，请尽可能分离模型，使仅活动区域生成背面模型。</p>
-<p>When the hatch is open, the back side needs to be set as double-sided. Note: enabling this option will double the triangle count. Please separate the model as much as possible so that only the moving parts generate the back side geometry.</p>
-<p><img src="imgs/bc1834785167_1751724496482-fba1ed8f-fd34-4a2b-8812-c83d22f5e0ee.png" alt=""></p>
-<p>设置完成双面模型后，点击烘焙按钮以生成模型文件。</p>
-<p>After setting the double side model, click bake button to create model file.</p>
-<p><img src="imgs/b7a1f26a65c6_1751724789309-07a4dc19-08c1-4212-a5db-1d25e0d9360f.png" alt=""></p>
-<p><strong>活动部分 - Active Part</strong></p>
-<p><img src="imgs/fe2ebdb0b377_1751724578341-00eafd0e-3a33-4070-a93e-1a7a71507c71.png" alt=""></p>
+<!-- Generated from tutorials/vehicle-hatches/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="载具舱门配置教程">载具舱门配置教程</h1>
+<p><strong>中文</strong> | <a href="../en/mod/vehicle-hatches.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-hatches --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_Hatch.prefab&quot;,
+    &quot;sourceMesh&quot;: &quot;${fixture}/Tutorial_HatchSource.obj&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本教程用独立的 <code>Tutorial_Hatch.prefab</code> 说明舱口标记、活动部件和双面网格配置。示例提供教学节点和网格，不包含完整载具；字段名保持源代码拼写。</p>
+<h2 id="1-添加并注册组件">1. 添加并注册组件</h2>
+<ul>
+<li>在舱盖物体上添加 <strong>VehicleHatchAttachmentMonoComponent</strong>，展开 <code>hatchAttachmentSlot.attachment</code> 编辑嵌套配置。</li>
+<li>同一物体上配置 <code>VehicleAttachmentMonoComponent</code>：将 <code>attachmentSlotType</code> 设为 <code>Specific</code>，<code>specificAttachmentMonoComponent</code> 引用舱盖组件，供运行时发现附件。项目 CustomEditor 会自动补这个伴随组件；配方显式创建并保存它。</li>
+</ul>
+<p>检查伴随组件引用的是当前舱盖组件。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {}
+          }
+        },
+        &quot;children&quot;: [
+          &quot;HatchCenter&quot;,
+          &quot;LeftHand&quot;,
+          &quot;RightHand&quot;,
+          &quot;HatchPivot&quot;,
+          &quot;HatchPivot/HatchMesh&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;attachmentSlotType&quot;: 1
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;specificAttachmentMonoComponent&quot;,
+            &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-舱口中心手部标记与铰链">2. 舱口中心、手部标记与铰链</h2>
+<ul>
+<li><code>hatchRadius=0.5</code>，<code>hatchTransform</code> 是舱口开口中心。</li>
+<li><code>leftHandSlotTransform</code>、<code>rightHandSlotTransform</code> 是手部放置标记，不是运动的铰链或枢轴。</li>
+<li>运动枢轴来自各 <code>activeParts</code> 条目的 <code>activePartTransform</code>：把独立的运动枢轴赋予 <code>activePartTransform</code>，初始 local rotation 保持单位旋转。</li>
+</ul>
+<p>预期检查：舱口中心位于开口处，手部标记未被当作铰链，枢轴初始旋转为单位值。</p>
+<p><img src="imgs/vehicle-hatches-pivots.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;hatchRadius&quot;: 0.5
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.hatchTransform&quot;,
+            &quot;child&quot;: &quot;HatchCenter&quot;
+          },
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.leftHandSlotTransform&quot;,
+            &quot;child&quot;: &quot;LeftHand&quot;
+          },
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.rightHandSlotTransform&quot;,
+            &quot;child&quot;: &quot;RightHand&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-设置运动参数">3. 设置运动参数</h2>
+<ul>
+<li><code>isSemiOpen=false</code> 时显示 <code>activeParts</code>。</li>
+<li>每个条目：<code>axis=(1,0,0)</code>、<code>activeAngle=90</code>、<code>closeAngle=0</code>、<code>moveSpeed=120</code>。</li>
+<li>运行时按 <code>localRotation=Quaternion.AngleAxis(angle,axis)</code> 设置，直接覆盖原 local rotation，不叠加增量。</li>
+<li><code>isSemiOpen</code> 是状态或显示条件；设置它并不保证运行时代码会禁用已有 <code>activeParts</code> 动画。</li>
+</ul>
+<p>预期检查：枢轴初始旋转为单位值，旋转结果不依赖原始朝向。</p>
+<p><img src="imgs/vehicle-hatches-movement.zh-CN.png" alt="真实 Inspector 中带编号高亮的配置字段"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;isSemiOpen&quot;: false,
+              &quot;activeParts&quot;: [
+                {
+                  &quot;axis&quot;: {
+                    &quot;x&quot;: 1,
+                    &quot;y&quot;: 0,
+                    &quot;z&quot;: 0
+                  },
+                  &quot;activeAngle&quot;: 90,
+                  &quot;closeAngle&quot;: 0,
+                  &quot;moveSpeed&quot;: 120
+                }
+              ]
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.activeParts.Array.data[0].activePartTransform&quot;,
+            &quot;child&quot;: &quot;HatchPivot&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-保存并检查">4. 保存并检查</h2>
+<ul>
+<li>校验组件、枢轴与运动参数，并确认运行时发现条件。</li>
+<li>保存 prefab，读回活动枢轴引用、<code>moveSpeed</code> 和伴随组件类型。实际开合、乘员手部位置和完整载具加载仍需在游戏中确认。</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleAttachmentMonoComponent)/attachmentSlotType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Specific&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent)/hatchAttachmentSlot/attachment/activeParts/0/activePartTransform/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;HatchPivot&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent)/hatchAttachmentSlot/attachment/activeParts/0/moveSpeed&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;120&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-按需烘焙双面网格">5. 按需烘焙双面网格</h2>
+<p>打开舱盖后如果需要显示网格背面，将相应 <code>MeshFilter</code> 填入 <code>doubleSidedMeshFilters</code>。在载具附件配置编辑界面点击烘焙双面网格按钮，选择 Assets 内的输出目录；<code>doubleSidedMeshes</code> 是生成结果，不需要手工填写。只为必要的活动区域生成背面，避免整个载具的三角形数量翻倍。</p>
+<p>配方使用独立复制的方片网格演示输入和输出引用，通过同一个烘焙实现直接指定目录，跳过交互式文件夹对话框。重复烘焙会更新已有生成网格并保留 GUID；源模型临时开启的 Read/Write 会在结束后恢复。此步骤验证网格数据与引用，没有验证最终渲染效果。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Square.obj&quot;,
+        &quot;${sourceMesh}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;,
+        &quot;child&quot;: &quot;HatchPivot/HatchMesh&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Mesh&quot;,
+            &quot;asset&quot;: &quot;${sourceMesh}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Mesh&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;hatchAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;doubleSidedMeshFilters&quot;: [
+                {}
+              ]
+            }
+          }
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;hatchAttachmentSlot.attachment.doubleSidedMeshFilters.Array.data[0]&quot;,
+            &quot;child&quot;: &quot;HatchPivot/HatchMesh&quot;,
+            &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.VehicleHatchMeshBaker/BakePrefab&quot;,
+      &quot;args&quot;: [
+        &quot;${asset}&quot;,
+        &quot;&quot;,
+        &quot;${fixture}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;_DoubleSided_&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleHatchAttachmentMonoComponent)/hatchAttachmentSlot/attachment/doubleSidedMeshes/Length&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;1&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>

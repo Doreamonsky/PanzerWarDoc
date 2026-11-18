@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Preset Vehicle Queue | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Preset Vehicle Queue | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/preset-vehicle-queue/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="preset-vehicle-queue">Preset Vehicle Queue</h1>
+<p><a href="../../mod/preset-vehicle-queue.html">中文</a> | <strong>English</strong></p>
+<p>The MCP examples use separate teaching assets. <code>${variables}</code> come from the shared recipe. Run this command at the repository root to create the sample, execute each group and capture both languages through the same local Unity MCP routes.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run preset-vehicle-queue --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Teaching-fixture preparation only; official assets are not modified.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_VehicleQueue.asset&quot;,
+    &quot;vehicleInfo&quot;: &quot;${fixture}/Tutorial_VehicleInfo.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;66dc2d51-e05e-4e6d-9afd-7cc47e11a002&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleInfo)&quot;,
+          &quot;${vehicleInfo}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${vehicleInfo}/vehicleName&quot;,
+        &quot;value&quot;: &quot;Tutorial T-34-85 ID Metadata&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${vehicleInfo}/assetGuid&quot;,
+        &quot;value&quot;: &quot;a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>A built-in vehicle queue is a resource asset packed into a mod. It lists the vehicles a match may offer, is read-only in game, and feeds the battle-configuration vehicle picker.</p>
+<p>Not to be confused with <strong>PresetVehicleQueueConfig</strong>, a saved per-player config, not a packed asset.</p>
+<h2 id="1-create-the-asset">1. Create the asset</h2>
+<pre><code>Assets &gt; Create &gt; A Panzer War - 装甲纷争 &gt; G Ground Vehicle - 地面载具 &gt; Base - 载具配置 &gt; Vehicle Queue - 载具队列
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.BuiltInVehicleQueueData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-set-match-identity-and-name">2. Set Match identity and name</h2>
+<ul>
+<li><strong>Guid</strong> — <code>tutorial-queue-001</code>; a plain string, not a Unity asset GUID</li>
+<li><strong>Vehicle Queue Type</strong> — select <code>Match</code></li>
+<li><strong>Queue Name</strong> — expand it, set <strong>Default Name</strong> to <code>Tutorial Queue</code></li>
+</ul>
+<p>An empty Guid is generated automatically. Keep each published queue's identifier unique and stable; <code>tutorial-queue-001</code> is only the pictured example.</p>
+<p><img src="../../mod/imgs/preset-vehicle-queue-identity.en.png" alt="Set the Match queue identifier, type and name"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;,
+      &quot;value&quot;: &quot;tutorial-queue-001&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleQueueType&quot;,
+      &quot;value&quot;: &quot;Match&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/queueName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Queue&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleQueueType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Match&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-add-one-vehicle-entry">3. Add one vehicle entry</h2>
+<p>In <strong>Vehicle Guids</strong> click <strong>+</strong> to add one entry, then fill its two strings: <strong>Comment</strong> = an author note, <strong>Vehicle Guid</strong> = the vehicle load identifier.</p>
+<p>The identifier is what <code>VehicleInfo</code> exposes: <code>assetGuid</code>, or the lower-cased <code>vehicleName</code> when <code>assetGuid</code> is empty. Copy it from your own driveable <code>VehicleInfo</code>; do not use the Unity <code>.meta</code> GUID or <code>VehicleTextData.editorAssetGuid</code>.</p>
+<p>Select that <code>VehicleInfo</code> asset and click <strong>Copy Asset GUID</strong> to copy the correct identifier, then paste it into <strong>Vehicle Guid</strong>.</p>
+<p>The example <code>Comment: T-34-85 No.215</code> with <code>Vehicle Guid: a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c</code> is official AAA2 content, illustrative only, and not automatically supplied to your project.</p>
+<p>The list is a set of eligible vehicles, not quantities: the item count is the entry count, and there is no spawn quantity field. How many vehicles actually appear is decided by mode settings.</p>
+<p><img src="../../mod/imgs/preset-vehicle-queue-vehicles.en.png" alt="A queue entry contains a comment and a vehicle load ID"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>To reproduce GUID copying, setup recreates only the official T-34's name/load-ID metadata. This fixture has no model, is excluded from the pack and cannot be driven. For release, select a real driveable VehicleInfo and include its content or dependencies. Whole-list JSON assignment adds and fills entries; there is no quantity field.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/GetLoadGUID&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;vehicleGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleGuids&quot;,
+      &quot;value&quot;: &quot;[{\&quot;comment\&quot;:\&quot;T-34-85 No.215\&quot;,\&quot;vehicleGuid\&quot;:\&quot;${vehicleGuid}\&quot;}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleGuids/0/vehicleGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${vehicleGuid}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-pack-with-the-vehicles">4. Pack with the vehicles</h2>
+<ul>
+<li>The asset's <strong>Guid</strong> is its bundle name with variant <code>vehiclequeue</code>: <code>&lt;Guid&gt;.vehiclequeue</code></li>
+<li>Add the asset to the mod build pipeline's <strong>Linked Objects</strong> (<code>linkedObjects</code>)</li>
+<li>Entries are strings, so they do <strong>not</strong> pull in the vehicles: put each referenced vehicle's content in this pack or an installed dependency</li>
+</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>This builds the queue-definition teaching package and excludes the recreated VehicleInfo metadata. A successful build does not supply the T-34 model. Real use requires vehicle content or a mod dependency.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;vehiclequeue\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-select-in-the-battle-config-picker">5. Select in the battle-config picker</h2>
+<p>Built-in queues appear in the current picker next to the player's own queues and are read-only in game; to change a shipped queue, edit the asset and rebuild. Lookup covers room presets, war-zone configs and built-in <strong>Match</strong> queues, so keep <strong>Match</strong> here.</p>
+<p>The asset defaults to <strong>Lobby</strong>; that list is not used by the current battle-configuration picker.</p>
+<p>A queue that shows no entries usually means the string matches no registered <code>VehicleInfo</code>, the vehicle is not driveable, it cannot spawn on the loaded map, or the vehicle content is missing from the pack and its dependencies. Check the identifier, dependency content and vehicle eligibility when this happens.</p>
+<p>Menu path, field names and behavior come from source and Inspector checks; the pictures are real editor captures. The shared recipe verifies the queue-definition package's Windows build, ZIP manifests and sidecar. It does not include the T-34 model and has not been installed or run in game.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>These calls check the authoring type and ID. Mod installation, in-game queue selection and vehicle eligibility remain unverified; this pass is not a battle-config pass.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleQueueType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Match&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;tutorial-queue-001&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleGuids/0/vehicleGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;a922ecf1-f7ce-45f9-b0f8-86a23ec26c2c&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Runtime MCP mapping (not executed): install a pack with actual vehicle content or dependencies and open the queue picker in battle configuration. Use world_overview to find the BattleConfigCtrl entity/entity-ID/component-index path as battleConfigPath, then call the same OnSelectQueue handler as the Select button. Confirm FindQueueByGuid is non-null first. This recipe does not start, install or alter your game session automatically.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.GameMode.VehicleQueueUtil/FindQueueByGuid&quot;,
+      &quot;args&quot;: [
+        &quot;tutorial-queue-001&quot;
+      ]
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;world_overview&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;${battleConfigPath}/QueuePicker/OnSelectQueue&quot;,
+      &quot;args&quot;: [
+        &quot;@static:ShanghaiWindy.Core.GameMode.VehicleQueueUtil/FindQueueByGuid(tutorial-queue-001)&quot;
+      ]
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/en/mod/preset-vehicle-queue.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

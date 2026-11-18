@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>42. Crew Data 指挥官配置 | Panzer War Document </title>
+      <title>指挥官配置 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="42. Crew Data 指挥官配置 | Panzer War Document ">
+      <meta name="title" content="指挥官配置 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,20 +77,567 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="42-crew-data-指挥官配置">42. Crew Data 指挥官配置</h1>
 
-<p><a href="get-started.html">1. GetStarted 项目初始化</a></p>
-<h1 id="配置-config">配置 Config</h1>
-<p><img src="imgs/94349031e7aa_1743820908990-ee33fd4c-efa7-4b36-8b77-263ccf41434f.png" alt=""></p>
-<p><img src="imgs/2f19723766f5_1743820926443-48fa6c05-d740-414f-9e60-a9038259fdb1.png" alt=""></p>
-<p><img src="imgs/0a5215c822f9_1743820935972-7b2ff0a2-7b54-470a-9df5-8f7e9c96a492.png" alt=""></p>
-<h1 id="build-打包">Build 打包</h1>
-<p>Just like other game assets, simply add <code>CrewData</code> to the BuildPipeline's Object List.</p>
-<p>与其他游戏资源打包方式一样，将 <code>CrewData</code> 放入 BuildPipeline 的 Object List 即可。</p>
-<h1 id="skill-技能">Skill 技能</h1>
-<p><a href="artillery-skill.html">Artillery Skill Config 火炮技能配置参考</a></p>
-<p><a href="weapon-support-skill.html">Weapon Support Skill 武器支援技能</a></p>
-<p><a href="shield-skill.html">Shield Skill 护盾技能</a></p>
+<!-- Generated from tutorials/crew-data/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="指挥官配置">指挥官配置</h1>
+<p><strong>中文</strong> | <a href="../en/mod/crew-data.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run crew-data --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_CrewData.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;66dc2d51-e05e-4e6d-9afd-7cc47e11a001&quot;,
+    &quot;sourceCrew&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Crew/AinoKoskinen/AinoKoskinen.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>前置：<a href="get-started.html">1. GetStarted 项目初始化</a></p>
+<h2 id="1-创建路径">1. 创建路径</h2>
+<p>在 Project 窗口选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; C Config - 配置 &gt; Crew - 成员</code>，创建后将资产改名为 <code>Tutorial_CrewData</code>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.CrewData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-身份与名称">2. 身份与名称</h2>
+<p>在 Inspector 填 <code>分类</code>（<code>category</code>）为 Tutorial、<code>年龄</code>（<code>age</code>）为 28，在 <code>名称</code>（<code>crewName</code>）折叠项里填写 <code>默认名称</code>（<code>defaultName</code>）为 Tutorial Commander。<code>唯一标识</code>（<code>guid</code>）在为空时自动生成一次，之后保持稳定，不要改写已发布的标识。下图 <code>guid</code> <code>9a719528-38a2-4fd4-8e70-f8f07dd56f81</code> 仅为教学示例，不是官方 ID，也不要给所有资产复用同一个。</p>
+<p><img src="imgs/crew-data-basic.zh-CN.png" alt="设置成员 GUID、分类和年龄"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;,
+      &quot;value&quot;: &quot;9a719528-38a2-4fd4-8e70-f8f07dd56f81&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/category&quot;,
+      &quot;value&quot;: &quot;Tutorial&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/age&quot;,
+      &quot;value&quot;: &quot;28&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/crewName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Commander&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/guid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;9a719528-38a2-4fd4-8e70-f8f07dd56f81&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-解锁与美术">3. 解锁与美术</h2>
+<p>示例勾选 <code>是否已解锁</code>（<code>isUnlock</code>），设置 <code>好感度上限</code>（<code>maxFriendship</code>）为 100、<code>好感度成长系数</code>（<code>friendshipGrowCoff</code>）为 1。为 <code>avatarTex</code>（256x256 头像）与 <code>inGameAvatarTex</code>（360x720 战斗头像）选择实际贴图；需要皮肤时，可在皮肤条目中分别覆盖这两项。</p>
+<p><img src="imgs/crew-data-unlock.zh-CN.png" alt="成员的解锁和好感度字段"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例借用现有 Aino 头像引用；制作自己的成员时换成自己的有效纹理。AssetProp 使用资产 GUID 包装，不能直接写成 Texture2D 引用。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/isUnlock&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/maxFriendship&quot;,
+      &quot;value&quot;: &quot;100&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/friendshipGrowCoff&quot;,
+      &quot;value&quot;: &quot;1&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/avatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/avatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/inGameAvatarTex&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/inGameAvatarTex&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/avatarTex/assetGUID&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;e15f1856cb824c9497b0e31b15082463&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/inGameAvatarTex/assetGUID&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;81f42f9b50b840a2890ae5d48008b6b5&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-增益与技能">4. 增益与技能</h2>
+<p>在增益分组把引用加入 <code>buffRefs</code>；在可升级技能分组（<code>upgradableSkillContents</code>）的 <code>skills[]</code> 中设置 <code>crewSkillRef</code> 与 <code>friendshipRequirement</code>。技能按槽位选择与好感度门槛生效；弃用的 <code>buffs</code> / <code>skillBuff</code> 不要新填。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>示例复制现有 Aino 的有效 SafeRef 配置，再放入一个友好度门槛为 0 的独立技能槽；不会改动来源成员。技能是否在游戏内生效仍需离线验证。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/buffRefs&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/buffRefs&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents&quot;,
+      &quot;value&quot;: &quot;[{\&quot;skills\&quot;:[{\&quot;friendshipRequirement\&quot;:0,\&quot;crewSkillRef\&quot;:{}}]}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/fullName&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/buffRefs/0/fullName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/className&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/buffRefs/0/className&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/json&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/buffRefs/0/json&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/crewSkillRef/safeRefAssetProvider&quot;,
+      &quot;value&quot;: &quot;@asset:${sourceCrew}/buffRefs/0/safeRefAssetProvider&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/upgradableSkillContents/0/skills/0/friendshipRequirement&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-生效与排查">5. 生效与排查</h2>
+<p>当前增益与技能（含召唤）只在离线模式且 <code>commanderCrewBuff</code> 未关闭时生效；效果缺失时先检查离线模式与该开关。当前代码中 <code>SummonSkillsOnline = false</code>，这是代码里的固定属性，不是需要改动的 Inspector 设置。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>可在编辑器查询固定的联机规则。离线状态和 commanderCrewBuff 属于运行态条件，本配方不启动游戏，也不把此查询记作技能效果验收。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.CrewData/SummonSkillsOnline&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;False&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时 MCP 映射（未执行）：在已安装模组的离线游戏会话中检查离线状态，以及 commanderCrewBuff 是否关闭。这些调用不属于编辑器配方。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;runtime_status&quot;,
+    &quot;arguments&quot;: {}
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.GameDataManager/OfflineMode/Get()&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;CommonDataManager/GetMiscSetting()/commanderCrewBuff&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="6-打包与验证">6. 打包与验证</h2>
+<p>将 <code>CrewData</code> 资产加入构建管线的资源数组（字段 <code>linkedObjects</code>）。打包前设置有效头像；需要技能时，再配置相应引用和资源。构建会生成以指挥官 <code>guid</code> 命名的 <code>crew</code> bundle，以及对应的头像 <code>avatar</code> bundle。出包后请离线检查条目显示、头像、解锁状态和已配置的技能。</p>
+<p>共享配方已验证教学包的编辑器操作、Windows 构建、ZIP 清单与 sidecar；没有安装此包或执行游戏内技能验证。截图只说明字段位置。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>使用生产打包器计划并构建独立教学包，不发布、不安装。头像与技能效果的游戏内检查仍未执行。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;crew\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>运行时 MCP 映射（未执行）：模组安装后，用 list 查询 CrewManager/_crews，找到目标 GUID，将 crewPath 换成 CrewManager/_crews/实际索引，再检查头像与解锁。头像非空仍不等于技能实际效果已验收。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;list&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;CrewManager/_crews&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;${crewPath}/isUnlock&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;CrewManager/AsyncLoadBasicAvatar&quot;,
+      &quot;args&quot;: [
+        &quot;@${crewPath}&quot;
+      ]
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;CrewManager/AsyncLoadInGameAvatar&quot;,
+      &quot;args&quot;: [
+        &quot;@${crewPath}&quot;
+      ]
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="技能参考">技能参考</h2>
+<p>下列旧页面可能仍展示弃用字段，请以当前 <code>buffRefs</code> 与可升级技能为准。</p>
+<p><a href="artillery-skill.html">火炮技能配置参考</a></p>
+<p><a href="weapon-support-skill.html">武器支援技能</a></p>
+<p><a href="shield-skill.html">护盾</a></p>
 
 </article>
           </div>

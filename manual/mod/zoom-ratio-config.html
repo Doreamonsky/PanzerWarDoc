@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.11 Zoom Ratio 炮镜倍率设置 | Panzer War Document </title>
+      <title>配置载具缩放倍率 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.11 Zoom Ratio 炮镜倍率设置 | Panzer War Document ">
+      <meta name="title" content="配置载具缩放倍率 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,17 +77,255 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0211-zoom-ratio-炮镜倍率设置">02.11 Zoom Ratio 炮镜倍率设置</h1>
 
-<h1 id="create-data-创建数据">Create Data 创建数据</h1>
-<p><img src="imgs/837e4ab25567_1714481228306-4fec970a-4b7d-41a4-98e3-da2fb210a644.png" alt=""></p>
-<p><img src="imgs/c6bf648f3514_1714481241702-e916ccf3-de56-4d57-8d6c-5cd18213200b.png" alt=""></p>
-<p><img src="imgs/4dbc6db0cf42_1714481258195-729e44ed-ef3a-4398-a7d9-299ea7868aa0.png" alt=""></p>
-<h1 id="use-data-使用数据">Use data 使用数据</h1>
-<p>Data can be used for binocular or sight.</p>
-<p>数据可用于双目观察镜或瞄具。</p>
-<p><img src="imgs/f46c841566ae_1714481278471-6396a2ad-bb95-496e-ac21-b0c3c0958d6d.png" alt=""></p>
-<p><img src="imgs/f32144bd8b89_1714481312701-538f7d05-5469-4af4-9eae-7c659e0474b1.png" alt=""></p>
+<!-- Generated from tutorials/zoom-ratio-config/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置载具缩放倍率">配置载具缩放倍率</h1>
+<p><strong>中文</strong> | <a href="../en/mod/zoom-ratio-config.html">English</a></p>
+<p>下方 MCP 示例使用独立教学资产。<code>${变量}</code> 由共享配方提供；在仓库根目录运行以下命令可创建样例、逐组执行并重拍两种语言。调用经本机 Unity MCP 的相同路由执行。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run zoom-ratio-config --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>教学样例的准备操作（仅用于复现配图，不修改官方资产）。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_ZoomProfile.asset&quot;,
+    &quot;vehicle&quot;: &quot;${fixture}/Tutorial_VehicleTextData.asset&quot;,
+    &quot;gun&quot;: &quot;${fixture}/Tutorial_SharedGun.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>本教程用 ZoomProfileData 资产为载具设置双目与瞄准镜的缩放倍率范围。所有字段名保持源代码中的原始拼写。</p>
+<h2 id="1-创建-zoomprofiledata-资产">1. 创建 ZoomProfileData 资产</h2>
+<p>在 Project 窗口选择 <code>Create &gt; A Panzer War - 装甲纷争 &gt; G Ground Vehicle - 地面载具 &gt; Base - 载具配置 &gt; Zoom - 倍率</code>，创建 <code>ZoomProfileData</code> 资产。展开 <code>倍率名称</code>（<code>zoomName</code>），把默认名称填为 Tutorial Zoom。</p>
+<p>本例使用独立教学资产，不修改现有载具配置。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ZoomProfileData)&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/zoomName/defaultName&quot;,
+      &quot;value&quot;: &quot;Tutorial Zoom&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.Selection/activeObject&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置缩放倍率范围">2. 设置缩放倍率范围</h2>
+<p>minRatio 默认值为 1.9，maxRatio 默认值为 3.5。请使用正数倍率，并让 minRatio 小于或等于 maxRatio；这是作者约束，代码没有在此处校验。教程示例采用 minRatio = 2、maxRatio = 8，分别设置低倍与高倍端点。</p>
+<p>运行时会读取这两个值来得出可用的倍率范围：BaseVehiclePawn.GetZoomRatio 对双目读取 binocularZoomProfileData 的 minRatio 与 maxRatio，对瞄准镜读取 zoomProfileData 的同样字段；资产为空时会退回到内置的默认区间。VehicleCameraZoom 随后按倍率换算水平视场角，并在区间内做插值。</p>
+<p><img src="imgs/zoom-ratio-config-ratios.zh-CN.png" alt="最小倍率为 2，最大倍率为 8 的教学配置"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/minRatio&quot;,
+      &quot;value&quot;: &quot;2&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/maxRatio&quot;,
+      &quot;value&quot;: &quot;8&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/minRatio&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;2&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/maxRatio&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;8&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-视觉覆盖与热成像">3. 视觉覆盖与热成像</h2>
+<p>勾选 <code>是否重载成像</code>（<code>isVisionOverride</code>）后，才会显示 <code>是否具有热成像</code>（<code>isThermalVision</code>）。两项默认均为 false，本例均设为 true。运行时的热成像锁定条件仍可禁止热成像；此开关不是无条件启用游戏效果的保证。</p>
+<p>如果不打算改变视觉模式，就保持两个开关为 false，缩放倍率仍然照常生效。</p>
+<p><img src="imgs/zoom-ratio-config-vision.zh-CN.png" alt="启用视效覆盖后显示热成像字段"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/isVisionOverride&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/isThermalVision&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/isThermalVision&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-指派到载具参数">4. 指派到载具参数</h2>
+<p>按用途选择引用槽：双目使用 <code>VehicleTextData.PSParameter.binocularZoomProfileData</code>；瞄具使用实际火炮参数的 <code>zoomProfileData</code>。有 <code>sharedGunData</code> 时在其 <code>tankFireParameter.zoomProfileData</code> 设置；没有共享引用时，在载具的 <code>TFParameter.zoomProfileData</code> 设置。同一个倍率资产可以用于两个槽位。</p>
+<p>指派完成后保存并读回引用。本配方验证编辑器资产与引用，未验证游戏内视场角、热成像效果或模组加载。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>对象引用赋值对应把倍率资产拖到引用槽。本例创建独立参数资产并读回引用，未进入游戏验证视角或热成像效果。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleTextData)&quot;,
+        &quot;${vehicle}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.SharedGunData)&quot;,
+        &quot;${gun}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PSParameter/binocularZoomProfileData&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${gun}/tankFireParameter/zoomProfileData&quot;,
+      &quot;value&quot;: &quot;@asset:${asset}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/sharedGunData&quot;,
+      &quot;value&quot;: &quot;@asset:${gun}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PSParameter/binocularZoomProfileData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_ZoomProfile&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetTankFireParam()/zoomProfileData/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Tutorial_ZoomProfile&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>

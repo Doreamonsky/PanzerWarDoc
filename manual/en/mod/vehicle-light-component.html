@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>VehicleLightAttachment Guide | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="VehicleLightAttachment Guide | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/vehicle-light-component/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="vehiclelightattachment-guide">VehicleLightAttachment Guide</h1>
+<p><a href="../../mod/vehicle-light-component.html">中文</a> | <strong>English</strong></p>
+<p>The MCP examples use separate teaching assets. <code>${variables}</code> come from the shared recipe. Run this command at the repository root to create the sample, execute each group and capture both languages through the same local Unity MCP routes.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-light-component --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Teaching-fixture preparation only; official assets are not modified.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_Light.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>This example configures a circular low-beam light. <strong>VehicleLightAttachment</strong> is serialized configuration data; <strong>VehicleLightAttachmentMonoComponent</strong> is the component attached to a GameObject. Field names keep their original C# identifiers.</p>
+<h2 id="1-create-the-component-and-bind-the-object">1. Create the component and bind the object</h2>
+<ol>
+<li>Create a light object in the vehicle prefab and add <code>VehicleLightAttachmentMonoComponent</code>. Expand <code>lightAttachmentSlot</code>, then <code>attachment</code>, and assign the light origin to <code>lightTransform</code>. This example uses a separate <code>Tutorial_Light.prefab</code> with a node named <code>LightOrigin</code>.</li>
+<li>The same object needs <code>VehicleAttachmentMonoComponent</code> for runtime discovery. Set <code>attachmentSlotType</code> to <code>Specific</code> and assign the light component to <code>specificAttachmentMonoComponent</code>. The project's CustomEditor adds this companion when drawing the light Inspector; the recipe creates and saves it explicitly.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;lightAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {}
+          }
+        },
+        &quot;children&quot;: [
+          &quot;LightOrigin&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;attachmentSlotType&quot;: 1
+        },
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;specificAttachmentMonoComponent&quot;,
+            &quot;child&quot;: &quot;&quot;,
+            &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;lightAttachmentSlot.attachment.lightTransform&quot;,
+            &quot;child&quot;: &quot;LightOrigin&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-shape-and-size">2. Shape and size</h2>
+<ol>
+<li>Set the shape to <code>Circle</code>. <code>Circle</code> and <code>HalfCircle</code> show <code>radiusSize</code>; this example uses 0.3.</li>
+<li>Rectangles use <code>rectSize</code> instead, and <code>CustomShape</code> uses <code>customShapeRenderers</code>; the existing Light/AuthoringSamples assets are a reference.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-light-component-shape.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;lightAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;lightSizeType&quot;: 0,
+              &quot;radiusSize&quot;: 0.3
+            }
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-appearance-and-visibility">3. Appearance and visibility</h2>
+<ol>
+<li>Set <code>lightType</code> to <code>LowBeam</code>, <code>baseColor</code> to white, and <code>emissionColor</code> to HDR white with intensity 3.5 as in this example.</li>
+<li>Keep <code>isAlwaysVisible = true</code> and <code>isBlinker = false</code>, and turn off <code>isAutoNaming</code>. Enabling <code>isBlinker</code> reveals frequency and phase fields. The defaults, <code>blinkerFrequency = 1</code> and <code>blinkerStep = 0.5</code>, are examples rather than the only working values.</li>
+<li><code>lensEmitters</code> contains lens-glare sampling nodes, up to eight entries; <code>beamOrigin</code> specifies a separate beam origin. Leave both empty for this basic Circle setup. These fields are distinct from Unity Light components.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-light-component-appearance.en.png" alt="Numbered configuration fields in the actual Inspector"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${asset}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent&quot;,
+        &quot;values&quot;: {
+          &quot;lightAttachmentSlot&quot;: {
+            &quot;attachment&quot;: {
+              &quot;lightType&quot;: 0,
+              &quot;baseColor&quot;: {
+                &quot;r&quot;: 1,
+                &quot;g&quot;: 1,
+                &quot;b&quot;: 1,
+                &quot;a&quot;: 1
+              },
+              &quot;emissionColor&quot;: {
+                &quot;r&quot;: 3.5,
+                &quot;g&quot;: 3.5,
+                &quot;b&quot;: 3.5,
+                &quot;a&quot;: 1
+              },
+              &quot;isAlwaysVisible&quot;: true,
+              &quot;isBlinker&quot;: false,
+              &quot;isAutoNaming&quot;: false
+            }
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-verify">4. Verify</h2>
+<ol>
+<li>Check the object binding to <code>lightTransform</code>, that the companion runtime components were saved, that the Circle radius and colors were written, and that <code>lensEmitters</code> has at most 8 entries; Inspector screenshots show field locations and values, not runtime behavior, so look at the light in game once as well.</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleAttachmentMonoComponent)/attachmentSlotType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Specific&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleAttachmentMonoComponent)/specificAttachmentMonoComponent&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;--- VehicleLightAttachmentMonoComponent ---&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/lightTransform/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;LightOrigin&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetComponent(ShanghaiWindy.Core.VehicleLightAttachmentMonoComponent)/lightAttachmentSlot/attachment/radiusSize&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.3&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/en/mod/vehicle-light-component.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
