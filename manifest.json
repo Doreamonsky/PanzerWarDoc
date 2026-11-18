@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T125109Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T131958Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -10699,20 +10699,20 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.en.png",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-hitbox-controls.en.png",
       "output": {
         "resource": {
-          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.en.png"
+          "relative_path": "manual/mod/imgs/vehicle-basics-hitbox-controls.en.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.zh-CN.png",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-hitbox-controls.zh-CN.png",
       "output": {
         "resource": {
-          "relative_path": "manual/mod/imgs/vehicle-basics-kv2-armor.zh-CN.png"
+          "relative_path": "manual/mod/imgs/vehicle-basics-hitbox-controls.zh-CN.png"
         }
       },
       "version": ""
@@ -10813,6 +10813,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vehicle-basics-muzzle.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-plate.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-plate.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-plate.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-plate.zh-CN.png"
         }
       },
       "version": ""

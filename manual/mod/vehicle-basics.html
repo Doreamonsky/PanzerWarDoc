@@ -8,17 +8,17 @@
       <title>从零制作你的第一辆坦克 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="从零制作你的第一辆坦克 | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../styles/docfx.css">
       <link rel="stylesheet" href="../../styles/main.css">
       <meta property="docfx:navrel" content="../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -105,6 +105,7 @@
     &quot;track&quot;: &quot;${fixture}/Tutorial_Track.asset&quot;,
     &quot;link&quot;: &quot;${fixture}/Tutorial_TrackLink.prefab&quot;,
     &quot;armor&quot;: &quot;${fixture}/Tutorial_TankHitBox.asset&quot;,
+    &quot;armorDraft&quot;: &quot;${fixture}/Tutorial_TankHitBox_Setup.asset&quot;,
     &quot;armorSource&quot;: &quot;${fixture}/Tutorial_ArmorSource.prefab&quot;,
     &quot;armorPrefab&quot;: &quot;${fixture}/Tutorial_Armor.prefab&quot;,
     &quot;bullet&quot;: &quot;${fixture}/Tutorial-76mm-AP.asset&quot;,
@@ -495,18 +496,25 @@
 </code></pre>
 </details>
 <h2 id="5-生成并编辑伤害模型">5. 生成并编辑伤害模型</h2>
+<h3 id="51-绑定源模型并生成预制体">5.1 绑定源模型并生成预制体</h3>
 <ol>
-<li>在 Project 选中 <strong>VehicleHitBox</strong>。把外部装甲 FBX 拖入 <strong>外部装甲模型（External Armor Model）</strong>。有单独制作的模块模型时，同时填入 <strong>Internal Module Model</strong>。可给 <strong>Refer Model</strong> 绑定显示模型作为定位参考。</li>
-<li>点击 <strong>生成预制</strong>，再点击 <strong>编辑模式</strong>。确认 Unity 进入这辆车的 Prefab Mode，编辑窗口显示相同的预制体。点击 <strong>外部装甲模型 - Generate External Armor</strong> 生成板件。已有内部模块模型时，使用 <strong>内部模块模型 - Generate Internal Armor</strong>。</li>
-<li>在 Hierarchy 选中一个板件，在其 <strong>HitBox</strong> 组件中核对装甲厚度和类型。把板件拖到 <code>HitBox/Main</code>、<code>HitBox/Turret</code>、<code>HitBox/Gun</code> 或 <code>HitBox/Dym</code> 对应组。上下移动或转动某部件时，它的板件应跟着对应部件。命名解析和数据图见 <a href="hitbox-naming-conventions.html">伤害模型命名与导入</a>。</li>
-<li>在编辑窗口选择模块类型和预设，点击放置后移动到实际位置。在 <code>InternalModule</code> 下用相同的四组关系整理模块。通过 <strong>InternalModule</strong> 组件可逐个给模块设置 HP。批量调整时，在 <strong>VehicleHitBox</strong> 里填写总血量并设置需要的按类型覆盖，然后点击 <strong>自动设置模块血量</strong>。</li>
-<li>对乘员勾选其岗位。准备支持模块模式的履带载具时，检查车长、驾驶员、炮手和通讯员，还需要装填手或自动装填模块。第一轮只验证基础车时可先保留模块模式关闭，完成内部配置后再开启。</li>
-<li>选中弹药架节点的 <strong>InternalModule</strong>。为它添加边界并调整到覆盖相应的弹药区域，再点击 <strong>创建弹药架模型缓存 - Create Ammo Cache</strong>。可以在伤害编辑窗口用<strong>批量更新弹药架模型缓存</strong>处理多个弹药架。检查边界与生成的网格缓存一一对应。</li>
-<li>在 Prefab Mode 按 <strong>Ctrl+S</strong> 保存并退出。回到 <strong>VehicleHitBox</strong> 检查已绑定生成的预制体。</li>
+<li>在 Project 选中 <strong>VehicleHitBox</strong>。把外部装甲 FBX 拖入 <strong>外部装甲模型</strong>。若已有独立的内构 FBX，拖入 <strong>内部模块模型</strong>。导入前，用显示模型核对两个源模型的原点、朝向和比例。下图的两个源资产是教程 MCP 使用的样例预制体。</li>
 </ol>
-<p>在 Scene View 比较两份模型。KV-2 的显示模型保留材质和细节，橙色伤害模型按装甲区域拆分，供伤害和装甲检查使用。两份模型在示意图里并排摆放。配置时应保持它们的原点和方向一致。</p>
-<p><img src="imgs/vehicle-basics-kv2-armor.zh-CN.png" alt="Unity 中并排展示 KV-2 的伤害模型与显示模型"></p>
-<p><img src="imgs/vehicle-basics-armor.zh-CN.png" alt="外部装甲模型与已生成的伤害预制体"></p>
+<p><img src="imgs/vehicle-basics-armor.zh-CN.png" alt="VehicleHitBox 中的外部装甲模型、内部模块模型与生成预制按钮"></p>
+<ol start="2">
+<li>点击 <strong>生成预制 - Create Prefab</strong>，再点 <strong>编辑模式 - Open Edit Mode</strong>。确认 Unity 已进入这辆车的 Prefab Mode。到独立的 <strong>伤害模型编辑器</strong> 窗口下半区，点击 <strong>外部装甲模型 - Generate External Armor</strong>。已绑定内构 FBX 时，再点 <strong>内部模块模型 - Generate Internal Armor</strong>。两个按钮会在当前预制体中新增对象。需要重新导入时，先备份预制体，再清理准备替换的旧节点。</li>
+</ol>
+<p><img src="imgs/vehicle-basics-hitbox-controls.zh-CN.png" alt="伤害模型编辑器中的外部装甲生成、内部模块生成、批量更新缓存和自动分配血量按钮"></p>
+<h3 id="52-检查装甲板和内构层级">5.2 检查装甲板和内构层级</h3>
+<ol>
+<li>在 Hierarchy 展开 <code>HitBox/Main</code>，选中教学车的 <code>HullFront_65</code>。在 <strong>HitBox</strong> 组件中确认装甲类型与厚度 <strong>65 mm</strong>。依次检查 <code>HitBox/Main</code>、<code>HitBox/Turret</code>、<code>HitBox/Gun</code>、<code>HitBox/Dym</code> 分别对应车体、炮塔、俯仰和后坐。源模型中的 <code>HitBox_Main</code>、<code>HitBox_Turret</code> 等组能自动匹配。如果网格仍留在新导入的根节点内，把它拖进对应组，保持相对整车的位置。详见<a href="hitbox-naming-conventions.html">伤害模型命名与导入</a>。</li>
+</ol>
+<p><img src="imgs/vehicle-basics-plate.zh-CN.png" alt="HullFront_65 的 HitBox 组件，装甲厚度为 65 mm"></p>
+<ol start="2">
+<li>在伤害模型编辑器选择模块类型和预设，放置后移动到实际位置。在 <code>InternalModule</code> 下按同样的四组归位。内构源模型用 <code>Module_Main</code>、<code>Module_Turret</code> 等组自动匹配。通过 <strong>InternalModule</strong> 组件设置单个模块的 HP。批量调整时，在 <strong>VehicleHitBox</strong> 填写总体 HP 和所需的按类型覆盖，再回到窗口点击 <strong>自动设置模块血量</strong>。批量分配后复查需要保留的单个数值。</li>
+<li>对乘员勾选其岗位。准备支持模块模式的履带载具时，检查车长、驾驶员、炮手、通讯员，以及装填手或自动装填模块。首轮验证基础车时可先关闭模块模式，完成下方内构配置后再启用。</li>
+<li>在 Prefab Mode 按 <strong>Ctrl+S</strong> 保存。退出后，回到 <strong>VehicleHitBox</strong> 的 Inspector，确认 <strong>伤害模型预制体（自动生成）</strong> 已指向刚编辑的预制体。</li>
+</ol>
 <h3 id="内构模块怎么填">内构模块怎么填</h3>
 <ol>
 <li>打开生成的伤害预制体。选中 <code>InternalModule</code> 下的网格，在它的 <strong>InternalModule</strong> 组件里确认 <strong>模块类型</strong>、<strong>模块装甲</strong>（mm）和<strong>伤害点数</strong>（模块 HP）。用 FBX 导入时可直接采用第一列的名字，手动放预设时需要自己填写数值与岗位。</li>
@@ -560,7 +568,7 @@
 </tbody>
 </table>
 <ol start="2">
-<li>用本例的弹药架先做一个整组边界。把 <strong>最大可携带炮弹数量</strong>填为 <strong>30</strong>，关闭<strong>是否待发弹</strong>。导入器可能已经建立一个边界，先检查 <strong>当前编辑 ID = 1</strong> 和 Scene 视图中边框的位置。没有边界时点<strong>增加新边界</strong>，用 Scene 手柄围住弹药网格。改边界后点<strong>创建弹药架模型缓存</strong>。这个例子应显示 <strong>缓存模型数 1</strong>。制作分段弹药架时，每段单独圈出，再重建并检查每段都有网格。</li>
+<li>选中 <code>InternalModule/Main/AmmoShell_25_5</code>，把<strong>最大可携带炮弹数量</strong>填为 <strong>30</strong>，关闭<strong>是否待发弹</strong>。导入器可能已经建立一个边界，先检查 <strong>当前编辑 ID = 1</strong> 和 Scene 视图中边框的位置。没有边界时点<strong>增加新边界</strong>，用 Scene 手柄围住弹药网格。改边界后点<strong>创建弹药架模型缓存</strong>。图中的教学弹药架应显示 <strong>缓存模型数 1</strong>。制作分段弹药架时，每段单独圈出再重建。要处理多个弹药架，回到伤害模型编辑器点<strong>批量更新弹药架模型缓存</strong>，再逐个核对结果。</li>
 <li>若要让内构损坏联动指定的火炮或炮塔，可在组件底部查看<strong>可相连载具模块</strong>，再从 <strong>VehicleTextData → 模块标识</strong>复制对应主炮或炮塔的 GUID，填入 <strong>Connected Vehicle Module Guids</strong> 列表。节点路径决定模块跟谁移动，GUID 决定损坏后关联哪个系统。</li>
 <li>按 <strong>Ctrl+S</strong> 保存伤害预制体。回到 <strong>VehicleInfo</strong> 打开 <strong>Is Module Ready</strong>，重打包，在测试场选 <strong>Module Based</strong>。检查发动车体、瞄准和开火；再切换内构视图，确认驾驶员在车体、炮手随炮塔走。用对方车辆射击一个已知模块，检查对应模块的 HP 或损坏状态。</li>
 </ol>
@@ -586,7 +594,7 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
       &quot;args&quot;: [
-        &quot;local run = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/armor.lua\&quot;))()\nreturn run({armorSource = \&quot;${armorSource}\&quot;, moduleSource = \&quot;${moduleSource}\&quot;, armorPrefab = \&quot;${armorPrefab}\&quot;})\n&quot;,
+        &quot;local run = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/armor.lua\&quot;))()\nreturn run({armorSource = \&quot;${armorSource}\&quot;, moduleSource = \&quot;${moduleSource}\&quot;, armorPrefab = \&quot;${armorPrefab}\&quot;, armorDraft = \&quot;${armorDraft}\&quot;})\n&quot;,
         &quot;tank-armor&quot;,
         &quot;null&quot;
       ]
@@ -1291,7 +1299,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
