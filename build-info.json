@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T125109Z",
+  "builtAt": "20261118T131958Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -108,7 +108,7 @@
     "instalod-plugin",
     "upload-naming-art-standards"
   ],
-  "reviewedDependenciesSha256": "f6bddc8561b273662ccfb00479839e1afe13ce97fa83b7c2b5bca37aacd1ba22",
+  "reviewedDependenciesSha256": "e85ea267e1ba107397875c6b90b9873c4a51d4095de044ca546a57983f356b82",
   "contentReviewedTutorials": [
     "blender-axis-fix",
     "continuous-build",
@@ -141,16 +141,5 @@
     "vfx-mod",
     "voice-pack-practice"
   ],
-  "newContentReviews": [
-    "lua-behavior-mono",
-    "lua-callbacks-and-self",
-    "set-steam-game-folder",
-    "model-not-displaying",
-    "lua-api2-engine-gear",
-    "lua-api2-missile-rack",
-    "lua-api2-radar-screen",
-    "multi-turret-legacy",
-    "vfx-mod",
-    "voice-pack-practice"
-  ]
+  "newContentReviews": []
 }

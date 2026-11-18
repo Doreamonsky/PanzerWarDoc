@@ -8,17 +8,17 @@
       <title>Build your first tank from scratch | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Build your first tank from scratch | Panzer War Document ">
-    
-    
+
+
       <link rel="shortcut icon" href="../../../favicon.ico">
       <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../../../styles/docfx.css">
       <link rel="stylesheet" href="../../../styles/main.css">
       <meta property="docfx:navrel" content="../../../toc.html">
       <meta property="docfx:tocrel" content="../toc.html">
-    
+
     <meta property="docfx:rel" content="../../../">
-    
+
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -105,6 +105,7 @@
     &quot;track&quot;: &quot;${fixture}/Tutorial_Track.asset&quot;,
     &quot;link&quot;: &quot;${fixture}/Tutorial_TrackLink.prefab&quot;,
     &quot;armor&quot;: &quot;${fixture}/Tutorial_TankHitBox.asset&quot;,
+    &quot;armorDraft&quot;: &quot;${fixture}/Tutorial_TankHitBox_Setup.asset&quot;,
     &quot;armorSource&quot;: &quot;${fixture}/Tutorial_ArmorSource.prefab&quot;,
     &quot;armorPrefab&quot;: &quot;${fixture}/Tutorial_Armor.prefab&quot;,
     &quot;bullet&quot;: &quot;${fixture}/Tutorial-76mm-AP.asset&quot;,
@@ -495,18 +496,25 @@
 </code></pre>
 </details>
 <h2 id="5-generate-and-configure-the-damage-model">5. Generate and configure the damage model</h2>
+<h3 id="51-assign-the-source-models-and-create-the-prefab">5.1 Assign the source models and create the prefab</h3>
 <ol>
-<li>Select <strong>VehicleHitBox</strong> in Project. Drag the damage FBX into <strong>External Armor Model</strong>. If you made a separate model for the internal modules, assign it to <strong>Internal Module Model</strong>. You can assign the visual prefab to <strong>Refer Model</strong> as a positioning reference.</li>
-<li>Click <strong>Create Prefab</strong>, then <strong>Open Edit Mode</strong>. Check that Unity opened the correct prefab. Click <strong>Generate External Armor</strong> to generate the plates. If you assigned an internal model, click <strong>Generate Internal Armor</strong> to generate its modules.</li>
-<li>Select a plate in Hierarchy and inspect the thickness and armor type in its <strong>HitBox</strong> component. Move the plate under <code>HitBox/Main</code>, <code>HitBox/Turret</code>, <code>HitBox/Gun</code>, or <code>HitBox/Dym</code> to match the part it moves with. See <a href="hitbox-naming-conventions.html">damage-model naming and import</a> for the supported names and examples.</li>
-<li>Select a module type and preset in the editor, spawn it, and move it into position. Use the same four groups under <code>InternalModule</code> to attach it to the correct part. You can set each module's HP in its <strong>InternalModule</strong> component. To assign HP in bulk, set the total and any per-type overrides on <strong>VehicleHitBox</strong>, then use <strong>Auto Assign Internal Module Hit Points</strong>.</li>
-<li>Tick the roles on crew modules. To support module mode on a tracked vehicle, check for commander, driver, gunner, radio operator, and either loader or autoloader. You can leave module mode off for the first basic drive test and enable it after configuring the interior.</li>
-<li>Select the ammo rack's <strong>InternalModule</strong>. Add bounds and resize them to cover the corresponding ammo volume. Click <strong>Create Ammo Cache</strong>, or use <strong>Multi-Update Ammo Model Cache</strong> in the HitBox editor for several racks. Verify that every bound has a cached mesh.</li>
-<li>Save the prefab with <strong>Ctrl+S</strong> and leave Prefab Mode. Check that <strong>VehicleHitBox</strong> still references the generated prefab.</li>
+<li>Select <strong>VehicleHitBox</strong> in Project. Drag the external armor FBX into <strong>External Armor Model</strong>. If you have a separate internal module FBX, assign it to <strong>Internal Module Model</strong>. Before importing, check both source models against the visual model for origin, orientation, and scale. The two source assets in the screenshot are the sample prefabs used by the tutorial's MCP replay.</li>
 </ol>
-<p>Compare the two models in Scene View. The KV-2 visual model keeps the paint and details. The orange damage model is split into armor regions for damage and armor inspection. The two meshes are spaced apart in the illustration. Keep their origins and orientations aligned when setting up the vehicle.</p>
-<p><img src="../../mod/imgs/vehicle-basics-kv2-armor.en.png" alt="KV-2 damage and visual models side by side in Unity"></p>
-<p><img src="../../mod/imgs/vehicle-basics-armor.en.png" alt="External armor model and its generated HitBox prefab"></p>
+<p><img src="../../mod/imgs/vehicle-basics-armor.en.png" alt="VehicleHitBox with the external and internal source fields and the Create Prefab button"></p>
+<ol start="2">
+<li>Click <strong>Create Prefab</strong>, then <strong>Open Edit Mode</strong>. Check that Unity opened this vehicle in Prefab Mode. In the lower part of the separate <strong>HitBox Editor</strong> window, click <strong>Generate External Armor</strong>. If you assigned an internal FBX, click <strong>Generate Internal Armor</strong> as well. Both buttons add objects to the current prefab. For a reimport, back up the prefab and remove the existing nodes you intend to replace first.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-basics-hitbox-controls.en.png" alt="Generate armor, generate internal modules, update ammo caches, and assign HP in the HitBox Editor"></p>
+<h3 id="52-check-the-armor-plates-and-module-hierarchy">5.2 Check the armor plates and module hierarchy</h3>
+<ol>
+<li>Expand <code>HitBox/Main</code> in Hierarchy and select the teaching tank's <code>HullFront_65</code>. Check the armor type and the <strong>65 mm</strong> thickness in its <strong>HitBox</strong> component. Check that <code>HitBox/Main</code>, <code>HitBox/Turret</code>, <code>HitBox/Gun</code>, and <code>HitBox/Dym</code> correspond to the hull, turret, gun elevation, and recoil respectively. Source groups such as <code>HitBox_Main</code> and <code>HitBox_Turret</code> can be matched automatically. If a mesh stays under the newly imported root, drag it into the corresponding group while keeping its position relative to the vehicle. See <a href="hitbox-naming-conventions.html">damage-model naming and import</a>.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-basics-plate.en.png" alt="HitBox component for HullFront_65, with a thickness of 65 mm"></p>
+<ol start="2">
+<li>In the HitBox Editor, select a module type and a preset, place it, and move it into position. Use the same four groups under <code>InternalModule</code>. The internal source model can use <code>Module_Main</code>, <code>Module_Turret</code>, and the equivalent group names for automatic placement. Set individual HP values in each <strong>InternalModule</strong> component. To assign HP in bulk, set the total and any per-type overrides on <strong>VehicleHitBox</strong>, then click <strong>Auto Assign Internal Module Hit Points</strong> in the editor. Recheck any individual values you want to keep.</li>
+<li>Tick the roles on the crew modules. For module mode on a tracked vehicle, check for commander, driver, gunner, radio operator, and either loader or autoloader. You can leave module mode off for the first drive test and enable it after configuring the interior below.</li>
+<li>Press <strong>Ctrl+S</strong> in Prefab Mode to save. After leaving Prefab Mode, confirm that the generated prefab field in the <strong>VehicleHitBox</strong> Inspector points to the prefab you just edited.</li>
+</ol>
 <h3 id="configure-the-internal-modules">Configure the internal modules</h3>
 <ol>
 <li>Open the generated damage prefab and select a mesh under <code>InternalModule</code>. In its <strong>InternalModule</strong> component, check <strong>Module Type</strong>, <strong>Module Armor</strong> (mm), and <strong>Hit Point</strong> (module HP). For FBX import, use the node names in the first column. For a manually placed preset, enter the values and role flags in the Inspector.</li>
@@ -560,7 +568,7 @@
 </tbody>
 </table>
 <ol start="2">
-<li>Set <strong>Max Ammo Capacity</strong> to <strong>30</strong> and leave <strong>Is Ready Rack</strong> off. The importer may have created the first bound. Check <strong>CurrentID = 1</strong> and look for the box in Scene View. If there is no box, click <strong>Add new bound</strong> and use its Scene handles to enclose the ammo mesh. Click <strong>Create Ammo Cache</strong> after editing. This sample should show <strong>Cached Mesh Count 1</strong>. For a rack with several visual fill steps, set the bounds separately, rebake, and check that each step has mesh geometry.</li>
+<li>Select <code>InternalModule/Main/AmmoShell_25_5</code>, set <strong>Max Ammo Capacity</strong> to <strong>30</strong>, and leave <strong>Is Ready Rack</strong> off. The importer may have created the first bound. Check <strong>CurrentID = 1</strong> and look for the box in Scene View. If there is no box, click <strong>Add new bound</strong> and use its Scene handles to enclose the ammo mesh. Click <strong>Create Ammo Cache</strong> after editing. The sample in the screenshot shows <strong>Cached Mesh Count 1</strong>. For a rack with several visual fill steps, set the bounds separately and rebake. To process several racks, use <strong>Multi-Update Ammo Model Cache</strong> in the HitBox Editor and check the result for each rack.</li>
 <li>To connect a damaged module to a specific gun or turret, check <strong>Connectable Vehicle Module</strong> at the bottom of the component. Copy the corresponding GUID from <strong>VehicleTextData → Module Guid</strong> into <strong>Connected Vehicle Module Guids</strong>. The hierarchy controls where the mesh moves. The GUID identifies the system affected when the module is damaged.</li>
 <li>Save the damage prefab with <strong>Ctrl+S</strong>. Enable <strong>Is Module Ready</strong> on <strong>VehicleInfo</strong>, repack, and choose <strong>Module Based</strong> in the playground. Check that the vehicle can drive, aim, and fire. Switch to the interior view and confirm that the driver stays with the hull and the gunner follows the turret. Shoot a known module with an opposing vehicle and check its HP or damage state.</li>
 </ol>
@@ -586,7 +594,7 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
       &quot;args&quot;: [
-        &quot;local run = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/armor.lua\&quot;))()\nreturn run({armorSource = \&quot;${armorSource}\&quot;, moduleSource = \&quot;${moduleSource}\&quot;, armorPrefab = \&quot;${armorPrefab}\&quot;})\n&quot;,
+        &quot;local run = assert(loadfile(\&quot;../../Tools/ManualMcp/TankTutorial/armor.lua\&quot;))()\nreturn run({armorSource = \&quot;${armorSource}\&quot;, moduleSource = \&quot;${moduleSource}\&quot;, armorPrefab = \&quot;${armorPrefab}\&quot;, armorDraft = \&quot;${armorDraft}\&quot;})\n&quot;,
         &quot;tank-armor&quot;,
         &quot;null&quot;
       ]
@@ -1291,7 +1299,7 @@
               <a href="#top">Back to top</a>
             </span>
       Panzer War Document
-      
+
           </div>
         </div>
       </footer>
