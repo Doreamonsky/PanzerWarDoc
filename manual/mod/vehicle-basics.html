@@ -510,6 +510,7 @@
 <li>在 Hierarchy 展开 <code>HitBox/Main</code>，选中教学车的 <code>HullFront_65</code>。在 <strong>HitBox</strong> 组件中确认装甲类型与厚度 <strong>65 mm</strong>。依次检查 <code>HitBox/Main</code>、<code>HitBox/Turret</code>、<code>HitBox/Gun</code>、<code>HitBox/Dym</code> 分别对应车体、炮塔、俯仰和后坐。源模型中的 <code>HitBox_Main</code>、<code>HitBox_Turret</code> 等组能自动匹配。如果网格仍留在新导入的根节点内，把它拖进对应组，保持相对整车的位置。详见<a href="hitbox-naming-conventions.html">伤害模型命名与导入</a>。</li>
 </ol>
 <p><img src="imgs/vehicle-basics-plate.zh-CN.png" alt="HullFront_65 的 HitBox 组件，装甲厚度为 65 mm"></p>
+<p>如果外部板件需要记录命中后已消耗的区域，按<a href="reactive-armor.html">反应装甲配置</a>设置对应的 <strong>HitBox</strong>。</p>
 <ol start="2">
 <li>在伤害模型编辑器选择模块类型和预设，放置后移动到实际位置。在 <code>InternalModule</code> 下按同样的四组归位。内构源模型用 <code>Module_Main</code>、<code>Module_Turret</code> 等组自动匹配。通过 <strong>InternalModule</strong> 组件设置单个模块的 HP。批量调整时，在 <strong>VehicleHitBox</strong> 填写总体 HP 和所需的按类型覆盖，再回到窗口点击 <strong>自动设置模块血量</strong>。批量分配后复查需要保留的单个数值。</li>
 <li>对乘员勾选其岗位。准备支持模块模式的履带载具时，检查车长、驾驶员、炮手、通讯员，以及装填手或自动装填模块。首轮验证基础车时可先关闭模块模式，完成下方内构配置后再启用。</li>
@@ -695,7 +696,7 @@
 </tr>
 <tr>
 <td><strong>移动</strong> · <code>PTCParameter</code></td>
-<td>保持履带控制器。质量 <strong>30,000 kg</strong>，前进／倒车限速 <strong>35／10 km/h</strong>，正向／倒车扭矩 <strong>3500／2600</strong>、制动扭矩 <strong>5000</strong>。扭矩曲线的示例点是 <code>(0, 1)</code>、<code>(35, 0.35)</code>，先关闭模拟挡位。绑定有效的引擎音效，在下一节检查 <strong>TankWheelCollider</strong> 与 <strong>Track Data</strong>。</td>
+<td>保持履带控制器。质量 <strong>30,000 kg</strong>，前进／倒车限速 <strong>35／10 km/h</strong>，正向／倒车扭矩 <strong>3500／2600</strong>、制动扭矩 <strong>5000</strong>。扭矩曲线的示例点是 <code>(0, 1)</code>、<code>(35, 0.35)</code>。绑定有效的引擎音效，在第 8 节检查 <strong>TankWheelCollider</strong> 与 <strong>Track Data</strong>。需要调整扭矩曲线、换挡阈值或音效的转速输入时，见<a href="tank-engine-rpm.html">引擎、挡位和 RPM</a>。</td>
 </tr>
 <tr>
 <td><strong>开火</strong> · <code>TFParameter</code></td>
@@ -703,11 +704,12 @@
 </tr>
 <tr>
 <td><strong>炮塔</strong> · <code>MTParameter</code></td>
-<td>对称回转半角 <strong>180°</strong>，炮塔 <strong>18°/s</strong>，炮管俯仰 <strong>12°/s</strong>，最大仰角 <strong>20°</strong>、最大俯角 <strong>6°</strong>。俯角这里填正数。先留空各方向的覆盖范围。</td>
+<td>对称回转半角 <strong>180°</strong>，炮塔 <strong>18°/s</strong>，炮管俯仰 <strong>12°/s</strong>，最大仰角 <strong>20°</strong>、最大俯角 <strong>6°</strong>。俯角这里填正数。先留空各方向的覆盖范围。需要限制左右回转、避让车体或设置稳定器时，见<a href="tank-turret-settings.html">炮塔、俯仰和稳定器</a>。</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Spread</strong> 中的缩圈数据和基础 <code>dispersion</code> 是两组设置。76 mm 的默认缩圈数据为散布 <code>0.35</code>、瞄准时间 <code>1.92</code> 秒、移动／炮塔转向系数各 <code>0.14</code>、炮管移动系数 <code>0.11</code>，开火后系数 <code>3</code>、损毁系数 <code>2</code>。保存后检查 Inspector 已消除散布和炮弹后效提示。</p>
+<p>需要配置弹夹、弹鼓或能量武器时，见<a href="tank-fire-settings.html">火炮、开火与装填</a>。如果装填时炮管必须回到特定角度，见<a href="fixed-angle-reload.html">定角装填配置</a>。</p>
 <p>下面四张 Inspector 图来自同一辆教学车，依次对应移动、开火、炮塔和炮弹资产。</p>
 <p><img src="imgs/vehicle-basics-mobility.zh-CN.png" alt="教学车的质量、轮碰撞器和履带引用"></p>
 <p><img src="imgs/vehicle-basics-fire.zh-CN.png" alt="教学车的 6 秒装填和 30 发总弹量"></p>
@@ -837,6 +839,7 @@
 ]
 </code></pre>
 </details>
+<p>换弹种时，按<a href="tank-ammo-effects.html">炮弹与特效</a>核对穿深、弹道、单弹种携带上限和地面／装甲命中特效。需要在开火时播放弹壳抛出动作，可接着做<a href="tank-shell-ejection-animation.html">坦克抛壳动画</a>。</p>
 <p>KV-2 的资产可用来对照重车参数。其源配置质量为 <strong>52,850 kg</strong>，限速 <strong>37／7 km/h</strong>，共享炮塔回转速度 <strong>14°/s</strong>，最大仰角 <strong>12°</strong>、俯角 <strong>5°</strong>，履带节距 <strong>0.275 m</strong>。它的主炮弹由共享火炮资产提供。试车场读取到的第一发为 <strong>OF-530</strong>，口径 <strong>152 mm</strong>、初速 <strong>530 m/s</strong>。</p>
 <p>可选的 Tanks.gg 入口仍在 <strong>VehicleTextData</strong>。填写 <code>tanksGGName</code> 后可尝试<strong>导入三扩数据</strong>。另一个按钮会覆盖多项现有参数，先把资产保存在 Git 或备份里。外部响应依赖第三方，导入后仍须补齐并检查其余字段。<a href="../component/vehicle-text-data.html">详细参数字段与图示</a></p>
 <h2 id="7-绑定主模型并定位开火节点">7. 绑定主模型并定位开火节点</h2>
@@ -852,6 +855,13 @@
 | <code>EngineSound</code>、<code>EngineSmoke</code> | 分别放在发动机舱和排烟口。每次调整后回到编辑模式检查位置已保存。 |
 3. 点击 <strong>解锁视图（Unlock Inspector）</strong>。回到 Project 核对选中的仍是这辆车，重开编辑模式时节点应保留刚保存的位置。</p>
 <p><img src="imgs/vehicle-basics-bindings.zh-CN.png" alt="载具数据中的主模型与详细参数资产"></p>
+<p>需要为炮手视角增加瞄准倍率时，见<a href="zoom-ratio-config.html">载具缩放倍率配置</a>。</p>
+<h3 id="可选的车载部件">可选的车载部件</h3>
+<ul>
+<li>需要近光、远光或刹车灯时，在 <code>MainBody</code> 下放置独立灯具节点，再按<a href="tank-light-settings.html">坦克灯光设置</a>绑定灯型、发光节点和光束朝向。圆形近光的完整示例见<a href="vehicle-light-component.html">车灯组件</a>。</li>
+<li>在车体上布置主动防御装置时，保留挂载节点和发射点，按<a href="tank-active-protection.html">主动防御系统</a>核对朝向、覆盖范围和冷却。</li>
+<li>需要在游戏内搜索并锁定目标时，打开 <strong>VehicleTextData → 杂项 → 防空雷达</strong>。按<a href="tank-radar-settings.html">地面载具雷达</a>配置扫描，并核对可选的天线模型。</li>
+</ul>
 <h2 id="8-调整负重轮与履带">8. 调整负重轮与履带</h2>
 <ol>
 <li>在 <strong>VehicleTextData → 移动 → TankWheelCollider</strong> 点击引用找到预制体。双击它进入 Prefab Mode，选中带 <strong>Wheel Collider</strong> 的根节点。在场景副本里可同时对照显示模型的轮轴。若改的是场景实例，通过 <strong>Overrides → Apply</strong> 把值写回同一份预制体。</li>
@@ -1271,18 +1281,7 @@
 </tr>
 </tbody>
 </table>
-<p>以上旧图读数用于理解界面，可按你的模组重新调校。新载具的多炮塔优先看 <a href="../component/vehicle-text-data.html">VehicleTextData 的多炮塔配置</a>。遇到模型不显示、开火方向错误或打包后找不到载具时，先查看<a href="vehicle-dev-qa.html">载具开发排查</a>。</p>
-<h2 id="12-按系统继续调校">12. 按系统继续调校</h2>
-<p>完成试驾后，可按这些专题进一步调整每套系统。</p>
-<ul>
-<li><a href="tank-engine-rpm.html">引擎、挡位和 RPM</a></li>
-<li><a href="tank-turret-settings.html">炮塔、俯仰和稳定器</a></li>
-<li><a href="tank-fire-settings.html">火炮、开火与装填</a></li>
-<li><a href="tank-ammo-effects.html">炮弹与特效</a></li>
-<li><a href="tank-active-protection.html">主动防御系统</a></li>
-<li><a href="tank-light-settings.html">载具灯光</a></li>
-<li><a href="tank-radar-settings.html">地面载具雷达</a></li>
-</ul>
+<p>以上旧图读数用于理解界面，可按你的模组重新调校。新载具的多炮塔优先看 <a href="../component/vehicle-text-data.html">VehicleTextData 的多炮塔配置</a>。需要车体辅助转向、固定炮架或液压悬挂时，参考<a href="spg-td-hydraulic-suspension.html">自行火炮、坦克歼击车与 Strv 悬挂</a>。遇到模型不显示、开火方向错误或打包后找不到载具时，先查看<a href="vehicle-dev-qa.html">载具开发排查</a>。</p>
 
 </article>
           </div>
