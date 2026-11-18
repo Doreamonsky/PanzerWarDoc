@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T112725Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T120806Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2256,6 +2256,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/fmod-profiler.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/fmod-profiler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/fmod-project-setup.md",
       "output": {
         ".html": {
@@ -2310,6 +2320,16 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/install-vs-code-emmylua.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/jenkins-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/jenkins-setup.html"
         }
       },
       "version": ""
@@ -10569,6 +10589,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-bullet-vfx.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-bullet-vfx.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-bullet-vfx.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-bullet-vfx.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/vehicle-basics-fire.en.png",
       "output": {
         "resource": {
@@ -10669,6 +10709,46 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-module.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-module.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-module.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-module.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-muzzle.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-muzzle.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-muzzle.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-muzzle.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/vehicle-basics-projectile.en.png",
       "output": {
         "resource": {
@@ -10723,6 +10803,26 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vehicle-basics-turret.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-wheel.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-wheel.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/vehicle-basics-wheel.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/vehicle-basics-wheel.zh-CN.png"
         }
       },
       "version": ""

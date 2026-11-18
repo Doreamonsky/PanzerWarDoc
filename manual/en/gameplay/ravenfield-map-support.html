@@ -85,7 +85,7 @@
 <p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run ravenfield-map-support
 </code></pre>
-<p>The current client has disabled registration of Ravenfield <code>.rfl</code> maps. The older folder layout, matching YAML, and manual ZIP workflow apply to the legacy version. To create a map for the current game, use the <a href="map-editor-tutorial.html">Map Workshop</a>.</p>
+<p>The current client has disabled registration of Ravenfield <code>.rfl</code> maps. To create a map for the current game, use the <a href="map-editor-tutorial.html">Map Workshop</a>.</p>
 <p>Before distributing a Ravenfield map, make sure you have permission to publish it and its assets.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -101,6 +101,39 @@
   }
 ]
 </code></pre>
+</details>
+<details>
+<summary>View the legacy Steam map and configuration format</summary>
+<p>Use these steps to identify old files or recover settings from a legacy archive. The former Steam Free edition supported the <strong>Maps - Mod Tools</strong> category of the Ravenfield Workshop. Subscribed items were downloaded to the Steam library under <code>steamapps/workshop/content/636480</code>, in a subfolder for each item. <a href="https://steamcommunity.com/workshop/browse/?appid=636480&amp;requiredtags%5B%5D=Maps+-+Mod+Tools">Legacy Ravenfield Workshop category</a></p>
+<ol>
+<li>Locate the file ending in <code>.rfl</code>. Installations that supported this format used <code>steamapps/common/PanzerWar-DE/dlc/PanzerWar/Mods/StandaloneWindows64_RvlMaps</code>.</li>
+<li>When a compatible client started, it generated <code>map-name.rfl.yaml</code> next to the map. To correct misplaced spawn points, set <code>isCustomPoints: true</code> and update the coordinates for both teams. Add one <code>x</code>, <code>y</code>, and <code>z</code> block per point. This example retains the original field names and capitalization.</li>
+</ol>
+<pre><code class="lang-yaml">isCustomPoints: true
+customTeamASpawnPoints:
+- x: 0
+  y: 0
+  z: 0
+- x: -4
+  y: 0
+  z: -4
+- x: 4
+  y: 0
+  z: 4
+customTeamBSpawnPoints:
+- x: 0
+  y: 0
+  z: 0
+customPartolPoints:
+- x: 0
+  y: 0
+  z: 0
+tileSize: 512
+voxelSize: 2
+</code></pre>
+<ol start="3">
+<li>The original sharing workflow put the <code>.rfl</code> and its YAML in a ZIP named <code>StandaloneWindows64_Example.modpack</code>. Some old maps may fail to load or crash a legacy client.</li>
+</ol>
 </details>
 
 </article>

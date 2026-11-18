@@ -111,8 +111,43 @@
 }
 </code></pre>
 </details>
-<p>把脚本挂到本地玩家的载具。示例每 0.5 秒用同一个 <code>VehicleQuery</code> 查找 3000 米内最近的敌机。联机查询遵守队伍的可见性。</p>
-<p>从无目标变为有目标时记录一次告警，查不到目标后恢复待触发状态。填写有效的 FMOD 事件 GUID 可同时播放音效。</p>
+<p>这段载具 Lua 行为在本地玩家附近发现敌机时显示一次日志，可附带 FMOD 告警音。先完成 <a href="lua-hello-world.html">Lua Hello World</a>，以便知道在哪里导入并绑定脚本。</p>
+<h2 id="1-导入并填写参数">1. 导入并填写参数</h2>
+<ol>
+<li>在 Unity 项目的资源目录创建 <code>AirThreatWarning.lua</code>，复制下方完整脚本。选中载具的 <strong>VehicleTextData</strong>，在<strong>杂项 → 载具 Lua 行为</strong>新增一项并绑定脚本，点击<strong>同步属性</strong>。通过预制体绑定时，可用 <a href="lua-behavior-mono.html">LuaBehaviorMono</a>，将组件放在所属载具的层级内。</li>
+<li>将 <code>warnDistance</code> 保持在 <strong>3000 m</strong>。把可用的 FMOD 事件 GUID 填到 <code>soundGuid</code>，第一轮可留空以便只查日志。</li>
+<li>保存，重打包并试驾这辆车。脚本复用 <code>OnVehicleReady</code> 中建立的查询，每 <strong>0.5 秒</strong>检查一次。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>查询字段</th>
+<th>本例取值与用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Kind</code></td>
+<td><code>VehicleKind.Flight</code>，只收飞机。其它筛选包括 <code>Any</code>、<code>Ground</code>、<code>Army</code>。</td>
+</tr>
+<tr>
+<td><code>Relation</code></td>
+<td><code>VehicleRelation.Enemy</code>，以调用 <code>Run(vehicle)</code> 的载具所属队伍为准。也可选择 <code>Any</code> 或 <code>Friendly</code>。</td>
+</tr>
+<tr>
+<td><code>MaxDistance</code></td>
+<td><code>warnDistance</code>，单位为米。设为 <code>0</code> 时该属性不限制距离。</td>
+</tr>
+<tr>
+<td><code>MaxCount</code></td>
+<td><code>1</code>，配合距离排序仅保留最近的一架。未设置时查询默认容量为 32。</td>
+</tr>
+<tr>
+<td><code>SortByDistance</code></td>
+<td><code>true</code>，将最近目标放在第一个。</td>
+</tr>
+</tbody>
+</table>
 <pre><code class="lang-lua">Behavior()
 Property = {
     warnDistance = { type = &quot;number&quot;, value = 3000 },
@@ -239,7 +274,13 @@ return AirThreatWarning
 ]
 </code></pre>
 </details>
-<p>回放模拟目标进入和离开。实际音效和联机可见性在游戏中验证。</p>
+<h2 id="2-确认触发与重新触发">2. 确认触发与重新触发</h2>
+<ol>
+<li>在试车场用本地玩家驾驶载具，让一架可见敌机进入警戒距离。在日志查 <code>[AirWarning]</code>，应显示最近目标的名称和当前距离。Lua 用 <code>Get(0)</code> 与 <code>GetDistance(0)</code> 访问这一条结果。</li>
+<li>目标留在范围内时保持单次告警。目标离开或不可见、查询回到零条以后，应能再次触发。填了声音 GUID 时确认飞进范围会在载具位置播放声音。</li>
+<li>检查本地玩家、敌友与可见性。联机查询会经过队伍可见性筛选，不保证隐藏目标出现。地图或模式脚本可用 <code>RunAt(position, team)</code> 以一个位置和队伍为参考。</li>
+</ol>
+<p>旧脚本曾定时遍历所有刚体再在 Lua 筛选飞机。这个例子复用已有查询，筛选及排序在游戏内部执行。MCP 回放模拟目标进入、停留和离开。实际声音与联机可见性在游戏中验证。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

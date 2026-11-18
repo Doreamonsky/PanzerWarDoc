@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>18.1 Jenkins 安装与配置教程 Jenkins Installation and Configuration | Panzer War Document </title>
+      <title>使用 Jenkins 自建模组构建 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="18.1 Jenkins 安装与配置教程 Jenkins Installation and Configuration | Panzer War Document ">
+      <meta name="title" content="使用 Jenkins 自建模组构建 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,61 +77,98 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="181-jenkins-安装与配置教程-jenkins-installation-and-configuration">18.1 Jenkins 安装与配置教程 Jenkins Installation and Configuration</h1>
 
-<h1 id="1-安装-jenkinsinstalling-jenkins">1. 安装 Jenkins：Installing Jenkins</h1>
-<p>Jenkins 是一款开源的自动化构建工具，你需要先安装 Jenkins。你可以从 Jenkins 的官方网站 <a href="https://www.jenkins.io/download/">https://www.jenkins.io/download/</a> 下载适合你系统的 Jenkins 安装包，并按照安装向导完成安装。安装成功后，你可以在浏览器中输入 <a href="http://localhost:8080/">http://localhost:8080/</a> 访问 Jenkins。</p>
-<p>Jenkins is an open source automation build tool, and you need to install it first. You can download the Jenkins installer for your system from the Jenkins official website <a href="https://www.jenkins.io/download/">https://www.jenkins.io/download/</a> and install it by following the setup wizard. After a successful installation you can reach Jenkins by entering <a href="http://localhost:8080/">http://localhost:8080/</a> in your browser.</p>
-<h2 id="面向小白的详细的安装教程step-by-step-installation-guide-for-beginners">面向小白的详细的安装教程：Step-by-step Installation Guide for Beginners</h2>
-<blockquote>
+<!-- Generated from tutorials/jenkins-setup/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="使用-jenkins-自建模组构建">使用 Jenkins 自建模组构建</h1>
+<p><strong>中文</strong> | <a href="../en/mod/jenkins-setup.html">English</a></p>
+<p>需要由自己的 Windows 构建机处理模组时，用 Jenkins 调度 <a href="continuous-build.html">本地构建清单</a>。官方仓库使用 GitHub Actions 的 <strong>Build modpack</strong>。</p>
+<h2 id="1-安装服务并完成首次设置">1. 安装服务并完成首次设置</h2>
 <ol>
-<li><p>在你的服务器或本地计算机上打开浏览器，并访问 Jenkins 官方网站：<a href="https://www.jenkins.io/download/%E3%80%82">https://www.jenkins.io/download/。</a></p>
-<p>On your server or local computer, open a browser and go to the Jenkins official website.</p>
-</li>
-<li><p>在 Jenkins 下载页面上，你可以看到针对不同操作系统的 Jenkins 安装包。请选择适合你操作系统的下载链接，例如 Windows 系统可选择 Windows MSI 安装包。</p>
-<p>On the Jenkins download page you can see installers for the different operating systems. Pick the download link for your own operating system, for example the Windows MSI installer on Windows.</p>
-</li>
-<li><p>下载完成后，双击安装包以启动安装向导。根据向导提示，选择安装目录、安装类型等设置。默认情况下，Jenkins 将安装在 C:\Program Files (x86)\Jenkins 目录下。</p>
-<p>When the download has finished, double click the installer to open the setup wizard. Follow the prompts to choose the install directory, the install type and other settings. By default Jenkins is installed into C:\Program Files (x86)\Jenkins.</p>
-</li>
-<li><p>在安装过程中，你需要选择 Jenkins 的运行环境。你可以选择将 Jenkins 安装为 Windows 服务，或作为普通的 Windows 程序运行。在大多数情况下，我们建议将其安装为 Windows 服务，以便在系统重启后自动启动 Jenkins。</p>
-<p>During the installation you need to choose how Jenkins runs. You can install Jenkins as a Windows service or run it as an ordinary Windows program. In most cases we recommend installing it as a Windows service, so that Jenkins starts automatically after the system reboots.</p>
-</li>
-<li><p>安装完成后，Jenkins 将启动并监听默认的 HTTP 端口 8080。你可以在浏览器中输入 <a href="http://localhost:8080/">http://localhost:8080/</a> 访问 Jenkins 的 Web 界面。如果你已将 Jenkins 安装为 Windows 服务，它将在后台自动运行，并且你可以在 Windows 服务列表中找到它，以便在需要时手动启动、停止或重启 Jenkins。</p>
-<p>After the installation Jenkins starts and listens on the default HTTP port 8080. You can enter <a href="http://localhost:8080/">http://localhost:8080/</a> in your browser to open the Jenkins web interface. If you installed Jenkins as a Windows service it runs in the background automatically, and you can find it in the Windows service list to start, stop or restart it manually when needed.</p>
-</li>
-<li><p>首次启动 Jenkins 时，你需要输入管理员账户的用户名和密码。随后 Jenkins 会要求你选择要安装的插件，你可以选择推荐插件或手动选择所需插件。插件安装需要一些时间，请耐心等待。</p>
-<p>The first time Jenkins starts you need to enter the user name and password of the administrator account. Jenkins then asks you to choose which plugins to install; you can take the recommended plugins or select the ones you need manually. Installing the plugins takes a while, so please be patient.</p>
-</li>
-<li><p>安装完成后，你将看到 Jenkins 的主界面。至此，Jenkins 已成功安装，你可以开始使用它来构建项目。</p>
-<p>Once this is done you will see the Jenkins main interface. Jenkins is now installed successfully and you can start using it to build your projects.</p>
-</li>
+<li>在构建机安装该 Jenkins LTS 支持的 Java，再下载并运行 Windows MSI。按向导选择安装目录。服务账户需要 <strong>Log on as a service</strong> 权限。填写该机的本地或域账户，完成 Java Home 和端口设置。<a href="https://www.jenkins.io/doc/book/installing/windows/">Jenkins Windows 安装</a></li>
+<li>完成安装后，在 Windows <strong>服务</strong>中确认 <strong>Jenkins</strong> 已启动。如果之后修改服务配置，用同一处的 <strong>Restart</strong> 重新启动。浏览器打开本机配置的端口，默认是 <code>http://localhost:8080</code>。</li>
+<li>在初次 <strong>Unlock Jenkins</strong> 页面，读取提示位置的 <code>initialAdminPassword</code> 并填入。选择 <strong>Install suggested plugins</strong>，或在 <strong>Select plugins to install</strong> 自选。安装完成后保存首个管理员账户，再进入 Jenkins。使用下面的 Pipeline 方式时，可以直接调用 Unity，可选插件按需要安装。</li>
 </ol>
-</blockquote>
-<h1 id="2-安装-unity3dinstalling-unity3d">2. 安装 Unity3D：Installing Unity3D</h1>
-<p>在 Jenkins 中打包 Unity3D 项目之前，需要在 Jenkins 服务器上安装 Unity3D。请确保安装了适合你项目的 Unity3D 版本。</p>
-<p>Before you can build a Unity3D project in Jenkins, Unity3D has to be installed on the Jenkins server. Make sure the Unity3D version you install is the one your project needs.</p>
-<p><a href="unity-engine-requirements.html">Unity Engine Requirement Unity 引擎版本要求</a></p>
-<h1 id="3-安装-unity3d-插件installing-the-unity3d-plugin">3. 安装 Unity3D 插件：Installing the Unity3D Plugin</h1>
-<p>在 Jenkins 中打包 Unity3D 项目需要安装 Unity3D 插件。打开 Jenkins，进入“插件管理”页面，搜索“Unity3D”并安装。安装成功后，你需要重启 Jenkins。</p>
-<p>Building a Unity3D project in Jenkins requires the Unity3D plugin. Open Jenkins, go to the plugin management page, search for &quot;Unity3D&quot; and install it. After a successful installation you need to restart Jenkins.</p>
-<p><img src="imgs/23e1d014b2d4_1678808900026-59bf7d21-8d3e-44bf-98f3-34c45fba6f45.png" alt=""></p>
-<h1 id="4-配置-jenkins-项目configuring-the-jenkins-project">4. 配置 Jenkins 项目：Configuring the Jenkins Project</h1>
-<p>进入 Jenkins 项目的“配置”页面，并设置 Unity3D 安装目录路径。</p>
-<p>Go to the configuration page of the Jenkins project and set the path of the Unity3D installation directory there.</p>
-<p><img src="imgs/84da543c5494_1678808965160-e4ffaf1c-6372-4a75-9c24-d9fc97ac03c0.png" alt=""></p>
-<p><img src="imgs/2861a1deed2a_1678809003360-ad517246-05dc-4c95-aa9a-7530f0673948.png" alt=""></p>
-<h1 id="5-创建-jenkins-项目creating-a-jenkins-project">5. 创建 Jenkins 项目：Creating a Jenkins Project</h1>
-<p>在 Jenkins 中创建一个新项目。进入 Jenkins 主页，点击“新建项目”按钮，选择“自由风格软件项目”并输入项目名称。</p>
-<p>Create a new project in Jenkins. Go to the Jenkins home page, click the new project button, choose the freestyle software project type and enter a project name.</p>
-<p>增加一个构建步骤：</p>
-<p>Add a build step.</p>
-<p><img src="imgs/e73606a70870_1678809187663-34e603b3-ddba-4043-89f0-501fd701649b.png" alt=""></p>
-<p>选择刚刚配置的 Unity，然后设置如下打包命令：</p>
-<p>Select the Unity installation you just configured, then set the following build command.</p>
-<pre><code class="lang-shell">-projectPath &lt;项目路径&gt; -batchmode -quit -executeMethod ShanghaiWindy.Editor.Utility_BuildPipline.DoBuildPiplineManifest -config &lt;配置文件路径&gt;
+<h2 id="2-配置构建机和清单">2. 配置构建机和清单</h2>
+<ol>
+<li>安装 Git、Git LFS、<a href="unity-engine-requirements.html">SDK 要求的 Unity</a>和目标平台的模块。用 Jenkins 服务账户确认该账号能读取工程并运行 Unity。把该版本的 <code>Unity.exe</code> 完整路径设到构建机的 <code>UNITY_EXE</code> 环境变量。</li>
+<li>在 Unity 项目中提交 <strong>ModPackageBuildPiplineData</strong> 和 <code>CI/ModBuild.json</code>。按<a href="continuous-build.html">构建清单示例</a>把平台填为 <code>StandaloneWindows64</code>，输出到 <code>Build/Ship/Windows</code>。第一次运行时先让输出目录保持空白。</li>
+<li>在 Unity 工程添加 <code>Assets/Editor/CiModBuild.cs</code>，将下方方法作为 <code>-executeMethod</code> 的入口。清单路径由命令传入。</li>
+</ol>
+<pre><code class="lang-csharp">using System;
+using System.IO;
+using ShanghaiWindy.Editor;
+
+public static class CiModBuild
+{
+    public static void Run()
+    {
+        var args = Environment.GetCommandLineArgs();
+        var index = Array.IndexOf(args, &quot;-modManifest&quot;);
+        if (index &lt; 0 || index + 1 &gt;= args.Length)
+        {
+            throw new ArgumentException(&quot;Supply -modManifest followed by the JSON path.&quot;);
+        }
+
+        Utility_BuildPipline.BuildPiplineManifest(Path.GetFullPath(args[index + 1]));
+    }
+}
 </code></pre>
-<p><img src="imgs/d6a25f76765f_1678808439838-77c2e6d5-1c01-4b08-861f-96b3f276b247.png" alt=""></p>
+<h2 id="3-建立-pipeline-并验收">3. 建立 Pipeline 并验收</h2>
+<ol>
+<li>在 Unity 项目中把脚本保存为 <code>CI/Build-Mod.ps1</code>。Unity 2022.3 命令行使用 <code>Win64</code>，构建清单仍填写 <code>StandaloneWindows64</code>。<a href="https://docs.unity3d.com/cn/2022.3/Manual/EditorCommandLineArguments.html">Unity 编辑器命令行参数</a></li>
+</ol>
+<pre><code class="lang-powershell">$ErrorActionPreference = 'Stop'
+$project = (Resolve-Path .).Path
+$manifest = Join-Path $project 'CI/ModBuild.json'
+$output = Join-Path $project 'Build/Ship/Windows'
+$log = Join-Path $project 'Build/UnityBuild.log'
+New-Item -ItemType Directory -Path $output -Force | Out-Null
+if (Get-ChildItem -LiteralPath $output -Filter '*.modpack' -File) {
+    throw &quot;Use a clean output directory before building: $output&quot;
+}
+$arguments = @(
+    '-batchmode', '-quit', '-projectPath', ('&quot;' + $project + '&quot;'),
+    '-buildTarget', 'Win64', '-executeMethod', 'CiModBuild.Run',
+    '-modManifest', ('&quot;' + $manifest + '&quot;'), '-logFile', ('&quot;' + $log + '&quot;')
+)
+$build = Start-Process -FilePath $env:UNITY_EXE -ArgumentList $arguments -Wait -PassThru -WindowStyle Hidden
+if ($build.ExitCode -ne 0) { throw &quot;Unity exited with $($build.ExitCode). See $log&quot; }
+if (-not (Get-ChildItem -LiteralPath $output -Filter '*.modpack' -File)) {
+    throw &quot;No .modpack in $output. Check the manifest's target platform and directory.&quot;
+}
+</code></pre>
+<ol start="2">
+<li>在 Jenkins 新建 <strong>Pipeline</strong> 任务，选择 <strong>Pipeline script from SCM</strong>。将以下 <code>Jenkinsfile</code> 保存到仓库根目录，将 <code>windows-unity</code> 改成 Windows agent 的标签。<strong>Checkout</strong> 阶段会在检出之前清理该任务的专用构建工作区，保证每轮都有干净的输出目录。如果 Unity 工程在子目录，用 <code>dir('工程子目录')</code> 包住 PowerShell 构建步骤，并在归档路径前加上子目录。<a href="https://www.jenkins.io/doc/book/pipeline/jenkinsfile/">Jenkinsfile 指南</a> · <a href="https://www.jenkins.io/doc/pipeline/steps/workflow-durable-task-step/#powershell-windows-powershell-script">PowerShell 步骤</a></li>
+</ol>
+<pre><code class="lang-groovy">pipeline {
+    agent { label 'windows-unity' }
+    options { skipDefaultCheckout() }
+    stages {
+        stage('Checkout') {
+            steps {
+                deleteDir()
+                checkout scm
+                bat 'git lfs pull'
+            }
+        }
+        stage('Build mods') {
+            steps {
+                powershell '&amp; ./CI/Build-Mod.ps1'
+                archiveArtifacts artifacts: 'Build/Ship/Windows/*.modpack'
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'Build/UnityBuild.log', allowEmptyArchive: true
+        }
+    }
+}
+</code></pre>
+<ol start="3">
+<li>用一个教学模组触发 <strong>Build Now</strong>。从产物中打开 <code>Build/UnityBuild.log</code>，确认活动平台、构建的模组名和输出目录。分发前按<a href="continuous-build.html">构建清单教程</a>生成同名 <code>.modpack.json</code>，与归档一起保存，并核对每个包的 GUID、版本和目标平台。</li>
+</ol>
 
 </article>
           </div>

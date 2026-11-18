@@ -124,7 +124,11 @@
 </code></pre>
 </details>
 <h2 id="1-安装编辑器和扩展">1. 安装编辑器和扩展</h2>
-<p>从 <a href="https://code.visualstudio.com/download">VS Code 官网</a> 下载安装。在 <strong>扩展</strong>视图搜索 <code>@id:tangzx.emmylua</code>，安装 <a href="https://marketplace.visualstudio.com/items?itemName=tangzx.emmylua">EmmyLua</a>。新开终端后用 <code>code --list-extensions</code> 确认结果包含 <code>tangzx.emmylua</code>。新版 EmmyLua 使用自带的语言服务，按扩展的当前说明选择依赖。</p>
+<ol>
+<li>从 <a href="https://code.visualstudio.com/download">VS Code 下载页</a> 选择你的系统和架构。Windows 运行安装程序。macOS 解压后把 <strong>Visual Studio Code.app</strong> 拖入 <strong>Applications</strong>。</li>
+<li>打开 VS Code，点左侧 <strong>扩展</strong>。Windows 可按 <strong>Ctrl+Shift+X</strong>，macOS 可按 <strong>Cmd+Shift+X</strong>。搜索扩展 ID <code>@id:tangzx.emmylua</code>，打开 EmmyLua 并点 <strong>Install</strong>。<a href="https://marketplace.visualstudio.com/items?itemName=tangzx.emmylua">EmmyLua 扩展</a></li>
+<li>命令行可用时，在新终端运行 <code>code --list-extensions</code>。看到 <code>tangzx.emmylua</code> 即确认已安装。</li>
+</ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>检查本机 Windows 用户安装位置。安装程序和扩展商店操作由读者完成。</p>
@@ -157,8 +161,20 @@
 ]
 </code></pre>
 </details>
-<h2 id="2-加入项目的-api-定义">2. 加入项目的 API 定义</h2>
-<p>用 VS Code 打开 Lua 源码所在文件夹。在 Unity 可执行 <strong>XLua → Generate EmmyLua for LuaCallCSharp</strong>，从工程的 <code>Build/EmmyLua/</code> 取生成的 API 定义。把这些定义与 Lua 源码一起纳入 VS Code 工作区。</p>
+<h2 id="2-配置仍使用-java-的-emmylua">2. 配置仍使用 Java 的 EmmyLua</h2>
+<p>先看已安装扩展的版本和设置。上游新版本使用 Rust 语言服务。旧 Java 后端仍包含在部分安装中，本机核对的 0.6.18 也有该模式。当前启用的后端若要求 Java，请按以下步骤配置。<a href="https://github.com/EmmyLua/VSCode-EmmyLua">EmmyLua 项目说明</a></p>
+<ol>
+<li>按你安装版本的说明下载 <a href="https://www.oracle.com/java/technologies/javase-downloads.html">JDK</a>，选择与操作系统和 CPU 一致的安装包。旧文档的版本下限为 1.8.0_181。</li>
+<li>在 <strong>扩展 → EmmyLua → 齿轮 → Extension Settings</strong> 搜索 <strong>Java Home</strong>。填写 JDK 目录，比如 Windows 的 <code>C:/Program Files/Java/jdk-17</code>，或 macOS 的 <code>/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</code>。以本机安装位置为准。</li>
+<li>若使用 <strong>Preferences: Open User Settings (JSON)</strong> 编辑设置，键名为 <code>emmylua.java.home</code>。Windows 路径可写成正斜杠形式，避免处理 JSON 的转义。</li>
+</ol>
+<pre><code class="lang-json">{
+  &quot;emmylua.java.home&quot;: &quot;C:/Program Files/Java/jdk-17&quot;
+}
+</code></pre>
+<p>保存设置后重新加载窗口，打开一个 <code>.lua</code> 文件。若语言服务未启动，先在 <strong>输出</strong>面板选择 EmmyLua，查看具体依赖或路径错误。</p>
+<h2 id="3-加入项目的-api-定义">3. 加入项目的 API 定义</h2>
+<p>用 VS Code 打开 Lua 源码所在文件夹。在 Unity 执行 <strong>XLua → Generate EmmyLua for LuaCallCSharp</strong>，确认工程的 <code>Build/EmmyLua/</code> 出现 <code>csharp.lua</code> 和 <code>api.lua</code>。把该目录加入 VS Code 工作区作为编辑器提示。打开自己的脚本，输入 <code>WeaponAPI.</code> 检查能否提示方法。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[

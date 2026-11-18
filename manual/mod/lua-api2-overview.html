@@ -85,8 +85,39 @@
 <p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-overview
 </code></pre>
-<h2 id="1-检查客户端版本">1. 检查客户端版本</h2>
-<p><code>GAME_API_VERSION</code> 为 2 或以上时使用本节接口。兼容旧客户端可用 <code>(GAME_API_VERSION or 1) &gt;= 2</code> 判断。在编辑器检查客户端 API 版本，并用 xLua 验证版本分支。</p>
+<p>API 2 提供载具装配完成回调、可自动结束的事件订阅，以及战场查询、雷达、武器和载具状态接口。第一次写脚本时，先完成 <a href="lua-hello-world.html">Lua Hello World</a> 中的文件导入和挂载，再把下面的脚本挂到测试载具上。</p>
+<h2 id="1-检查版本并等待载具装配">1. 检查版本并等待载具装配</h2>
+<p>早期客户端的 <code>GAME_API_VERSION</code> 可能为 <code>nil</code>。用 <code>(GAME_API_VERSION or 1) &gt;= 2</code> 判断，并在真正调用 API 2 的入口守住版本分支。当前客户端上，在车库加载这台车时应只看到一次 <code>Ready</code>，进入战斗后新实例会再输出一次。</p>
+<pre><code class="lang-lua">Behavior()
+Property = {}
+
+local MyBehavior = class(&quot;MyBehavior&quot;)
+
+function MyBehavior:OnStarted()
+  self.supportsAPI2 = (GAME_API_VERSION or 1) &gt;= 2
+  if not self.supportsAPI2 then
+    print(&quot;[MyBehavior] This mod needs API 2&quot;)
+  end
+end
+
+function MyBehavior:OnVehicleReady(vehicle)
+  if not self.supportsAPI2 then return end
+  self.vehicle = vehicle
+  print(&quot;[MyBehavior] Ready: &quot; .. VehicleAPI.GetDisplayName(vehicle))
+  if VehicleAPI.IsGarage(vehicle) then
+    self.script:SetUpdateEnabled(false)
+    return
+  end
+  self.script:SetUpdateInterval(0.2)
+end
+
+function MyBehavior:OnUpdated(dt)
+  if not self.vehicle then return end
+  -- dt 是距上次调用的秒数。把战斗中的定时逻辑放在这里。
+end
+
+return MyBehavior
+</code></pre>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -113,18 +144,147 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;API version verified&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local function verify(version, garage)\n  local GAME_API_VERSION = version\n  local function Behavior() end\n  local function class() return {} end\n  local function print() end\n  local vehicle = {}\n  local VehicleAPI = {\n    GetDisplayName = function(target) assert(target == vehicle); return \&quot;Example\&quot; end,\n    IsGarage = function() return garage end,\n  }\n  local seed = {interval = 0, enabled = true}\n  function seed:SetUpdateEnabled(enabled) self.enabled = enabled end\n  function seed:SetUpdateInterval(interval) self.interval = interval end\n  local object = (function()\nBehavior()\nProperty = {}\n\nlocal MyBehavior = class(\&quot;MyBehavior\&quot;)\n\nfunction MyBehavior:OnStarted()\n  self.supportsAPI2 = (GAME_API_VERSION or 1) &gt;= 2\n  if not self.supportsAPI2 then\n    print(\&quot;[MyBehavior] This mod needs API 2\&quot;)\n  end\nend\n\nfunction MyBehavior:OnVehicleReady(vehicle)\n  if not self.supportsAPI2 then return end\n  self.vehicle = vehicle\n  print(\&quot;[MyBehavior] Ready: \&quot; .. VehicleAPI.GetDisplayName(vehicle))\n  if VehicleAPI.IsGarage(vehicle) then\n    self.script:SetUpdateEnabled(false)\n    return\n  end\n  self.script:SetUpdateInterval(0.2)\nend\n\nfunction MyBehavior:OnUpdated(dt)\n  if not self.vehicle then return end\n  -- dt is the time in seconds since the previous call. Run periodic battle logic here.\nend\n\nreturn MyBehavior\n  end)()\n  object.script = seed\n  object:OnStarted()\n  object:OnVehicleReady(vehicle)\n  object:OnUpdated(0.2)\n  assert(object.supportsAPI2 == ((version or 1) &gt;= 2))\n  assert(seed.enabled == (not object.supportsAPI2 or not garage))\n  assert(seed.interval == ((object.supportsAPI2 and not garage) and 0.2 or 0))\nend\nverify(nil, false)\nverify(1, false)\nverify(2, true)\nverify(3, false)\n\nlocal vehicle, weapon, self = {}, {}, {script = {}}\nlocal ammo, callback = 7\nlocal WeaponAPI = {\n  GetWeapon = function(target, index) assert(target == vehicle and index == 0); return weapon end,\n  GetTotalAmmo = function(target) assert(target == weapon); return ammo end,\n  OnAmmoChanged = function(owner, target, fn)\n    assert(owner == self.script and target == weapon)\n    callback = fn\n    return {IsActive = true}\n  end,\n}\nlocal weapon = WeaponAPI.GetWeapon(vehicle, 0)\nif weapon then\n  self.ammo = WeaponAPI.GetTotalAmmo(weapon)\n  self.ammoSubscription = WeaponAPI.OnAmmoChanged(self.script, weapon, function()\n    self.ammo = WeaponAPI.GetTotalAmmo(weapon)\n  end)\nend\nassert(self.ammo == 7 and self.ammoSubscription.IsActive)\nammo = 6\ncallback()\nassert(self.ammo == 6)\nreturn \&quot;Lifecycle and ammo examples verified with Lua stubs\&quot;\n&quot;,
+        &quot;manual-api-overview-samples&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lifecycle and ammo examples verified with Lua stubs&quot;
+    }
   }
 ]
 </code></pre>
 </details>
-<h2 id="2-选择回调和查询">2. 选择回调和查询</h2>
+<h2 id="2-选择回调和更新间隔">2. 选择回调和更新间隔</h2>
+<table>
+<thead>
+<tr>
+<th>回调</th>
+<th>触发时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OnStarted()</code></td>
+<td>脚本实例启动。载具此时可能仍在装配。</td>
+</tr>
+<tr>
+<td><code>OnVehicleReady(vehicle)</code></td>
+<td>所属载具装配完成后触发一次。若脚本启动时载具已经装好，此回调紧接启动流程执行。车库也会触发。独立地图和特效行为没有所属载具时不会收到。</td>
+</tr>
+<tr>
+<td><code>OnUpdated(dt)</code></td>
+<td>默认每帧一次，也可调整间隔。<code>dt</code> 为距上次调用的累计秒数。</td>
+</tr>
+<tr>
+<td><code>OnVehicleDestroyed(vehicle)</code></td>
+<td>所属载具被击毁时，可触发临终动画或清理。</td>
+</tr>
+<tr>
+<td><code>OnDestroyed()</code></td>
+<td>行为实例销毁时，可释放脚本自己管理的资源。随后自动清理以该行为为所有者的订阅。</td>
+</tr>
+</tbody>
+</table>
+<p>载具数据中的坦克、炮塔和坦克武器 Lua 行为可在 <code>OnStarted</code> 读取注入的 <code>self.vehicle</code>。炮塔行为另有 <code>self.turretController</code>，坦克武器行为另有 <code>self.tankFire</code>，飞机武器行为有 <code>self.flightFire</code>。装配时序见 <a href="lua-vehicle-init-timing.html">载具初始化时序</a>。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>self.script:GetVehicle()</code></td>
+<td>获取并缓存所属坦克、飞机或步兵。无所属载具时返回 <code>nil</code>。</td>
+</tr>
+<tr>
+<td><code>self.script:SetUpdateInterval(seconds)</code></td>
+<td>拉长 <code>OnUpdated</code> 间隔。传 <code>0</code> 恢复每帧调用。</td>
+</tr>
+<tr>
+<td><code>self.script:SetUpdateEnabled(false)</code></td>
+<td>停止 <code>OnUpdated</code>，事件回调与 <code>OnGUI</code> 仍可运行。传 <code>true</code> 恢复。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-订阅状态变化">3. 订阅状态变化</h2>
+<p>在 <code>OnVehicleReady</code> 中取得具体武器，再订阅弹药变化。用 <code>OnAmmoChanged</code> 通知 UI 更新，UI 初次显示也主动读取一次弹药。把下面代码接到上面示例的战斗分支，再在 <code>OnGUI</code> 中绘制 <code>self.ammo</code>。</p>
+<pre><code class="lang-lua">local weapon = WeaponAPI.GetWeapon(vehicle, 0)
+if weapon then
+  self.ammo = WeaponAPI.GetTotalAmmo(weapon)
+  self.ammoSubscription = WeaponAPI.OnAmmoChanged(self.script, weapon, function()
+    self.ammo = WeaponAPI.GetTotalAmmo(weapon)
+  end)
+end
+</code></pre>
 <ul>
-<li>用 <code>OnStarted</code> 处理脚本启动，用 <code>OnVehicleReady</code> 获取装配完成的载具。车库也可能触发 <code>OnVehicleReady</code>，用 <code>VehicleAPI.IsGarage</code> 判断场景。详见 <a href="lua-vehicle-init-timing.html">载具初始化时序</a>。</li>
-<li>用 <code>VehicleAPI.CreateQuery</code> 创建并复用战场查询，用 <code>TransformAPI.FindDeep</code> 或 <code>FindAllDeep</code> 在初始化缓存在模型上找到的节点。读取接口按各签名处理失败值。C# 数组和目标索引从 0 开始。</li>
-<li>将 <code>self.script</code> 传给事件订阅，在行为销毁时自动清理。武器、模块、起落架和雷达状态都提供事件。</li>
-<li>用 <code>self.script:SetUpdateInterval(seconds)</code> 调整更新间隔。全靠事件的行为可用 <code>SetUpdateEnabled(false)</code>。<code>OnGUI</code> 中绘制已有结果。</li>
-<li>角度通常用度，距离用米。速度的单位由接口声明，例如 <code>GetSpeedKmh</code> 返回千米/时。</li>
+<li><code>self.script</code> 是订阅所有者。行为销毁或关联目标载具被移除时，订阅会结束。</li>
+<li>要提前停止，就检查订阅对象是否存在，再调用 <code>sub:Dispose()</code>。重复调用安全。<code>sub.IsActive</code> 表示是否仍处于订阅状态。</li>
+<li>模式脚本或依赖库可以传 <code>nil</code> 作为所有者。订阅有目标载具时跟随该目标清理，既没有所有者也没有目标的订阅在退出游戏模式时清理。</li>
+<li>订阅的回调连续抛错 10 次后停止执行。查看游戏日志里的事件名和脚本上下文，定位出错行。</li>
 </ul>
+<h2 id="4-查接口与处理返回值">4. 查接口与处理返回值</h2>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>用途和常用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VehicleAPI</code></td>
+<td>载具身份、状态、战场查询和事件。<code>GetContext</code>、<code>IsGarage</code>、<code>IsLocalPlayer</code>、<code>IsBot</code>、<code>IsRemote</code>、<code>IsAlive</code>、<code>GetTeam</code>、<code>IsEnemy</code>、<code>GetDisplayName</code>、<code>GetGuid</code>、<code>GetVelocity</code>、<code>GetSpeedKmh</code>、<code>GetAimPoint</code>、<code>CreateQuery</code>、<code>OnVehicleSpawned</code>、<code>OnVehicleKilled</code>。</td>
+</tr>
+<tr>
+<td><code>RadarAPI</code></td>
+<td>地面防空和机载雷达。<code>TryGetRadar</code>、<code>IsActive</code>、<code>GetWorkMode</code>、<code>GetScanAzimuth</code>、<code>GetContactCount</code>、<code>GetContact</code>、<code>GetContactWorldAzimuth</code>、<code>GetLockedTarget</code>、<code>TryLock</code>、<code>Unlock</code>、<code>OnLockChanged</code>、<code>OnThreat</code>。</td>
+</tr>
+<tr>
+<td><code>WeaponAPI</code></td>
+<td>武器、弹种、装填、提前量和事件。<code>GetWeaponCount</code>、<code>GetWeapon</code>、<code>GetAmmo</code>、<code>GetTotalAmmo</code>、<code>IsReloaded</code>、<code>GetReloadProgress</code>、<code>GetReloadTime</code>、<code>GetMuzzle</code>、<code>GetShellSpeed</code>、<code>PredictLead</code>、<code>OnFired</code>、<code>OnAmmoChanged</code>、<code>OnReloaded</code>、<code>OnHit</code>、<code>OnKill</code>。</td>
+</tr>
+<tr>
+<td><code>TankAPI</code></td>
+<td>炮塔和引擎。<code>GetTurretCount</code>、<code>GetTurretTransform</code>、<code>GetGunTransform</code>、<code>GetEngineState</code>。</td>
+</tr>
+<tr>
+<td><code>FlightAPI</code></td>
+<td>飞行和起落架。<code>IsOnGround</code>、<code>IsGearDown</code>、<code>GetAirspeedKmh</code>、<code>GetAltitude</code>、<code>GetThrottle</code>、<code>IsEngineRunning</code>、<code>OnGearChanged</code>。</td>
+</tr>
+<tr>
+<td><code>InternalModuleAPI</code></td>
+<td>模块状态。<code>GetInternalModule</code>、<code>IsDestroyed</code>、<code>GetHitPointRatio</code>、<code>OnStateChanged</code>、<code>OnDamaged</code>、<code>OnRepaired</code>。</td>
+</tr>
+<tr>
+<td><code>CameraAPI</code></td>
+<td>玩家相机。<code>GetCameraMode</code>、<code>IsZoomed</code>、<code>GetLockTarget</code>。</td>
+</tr>
+<tr>
+<td><code>TransformAPI</code></td>
+<td>模型节点查找。<code>FindDeep</code>、<code>FindAllDeep</code>。</td>
+</tr>
+<tr>
+<td><code>BuffAPI</code></td>
+<td>用 <code>CreateValueBuff</code> 创建可修改数值的 buff。</td>
+</tr>
+<tr>
+<td><code>TimeAPI</code></td>
+<td>用 <code>IsPaused</code> 查询是否暂停。</td>
+</tr>
+</tbody>
+</table>
+<p>在 <code>ShanghaiWindy.Core.API</code> 命名空间下查函数签名，或在 VS Code 安装 <a href="install-vs-code-emmylua.html">EmmyLua</a> 读取 SDK 提示。C# 数组和目标序号从 0 开始。读取 <code>TryGetRadar</code>、<code>GetContact</code> 等带 <code>out</code> 值的方法时，在 Lua 先检查第一个布尔返回值。查询失败时按签名处理 <code>nil</code>、<code>false</code>、<code>0</code> 等值。距离通常用米、角度用度。速度用各接口注明的单位，例如 <code>GetSpeedKmh</code> 返回千米/时。</p>
+<p>联机查询会按团队可见性过滤敌方载具。雷达联系人还受探测判定约束。控制雷达时请使用玩家当前控制的载具，并检查 <code>TryLock</code> 等控制方法的返回值。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -154,10 +314,164 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;GetContactWorldAzimuth&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.GameAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetApiVersion&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.TankAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetEngineState&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.FlightAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OnGearChanged&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.InternalModuleAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OnStateChanged&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.CameraAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GetCameraMode&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.TransformAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FindAllDeep&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.BuffAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;CreateValueBuff&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.TimeAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;IsPaused&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local api = CS.ShanghaiWindy.Core.API\nlocal query = api.VehicleAPI.CreateQuery()\nassert(query:Run(nil) == 0 and query.Count == 0 and query:Get(0) == nil and query:GetDistance(0) == 0)\nassert(api.WeaponAPI.GetWeapon(nil, 0) == nil and api.WeaponAPI.GetTotalAmmo(nil) == 0)\nreturn \&quot;API 2 query and weapon fallbacks verified\&quot;\n&quot;,
+        &quot;manual-api-query-fallbacks&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;API 2 query and weapon fallbacks verified&quot;
+    }
   }
 ]
 </code></pre>
 </details>
+<h2 id="5-从旧实现迁移">5. 从旧实现迁移</h2>
+<p>在 <code>OnVehicleReady</code> 创建查询并缓存节点。每次更新调用已保留的查询对象 <code>query:Run(vehicle)</code>，再用 <code>query:Get(index)</code> 遍历本次结果。高开销初始化动作如 <code>CreateQuery</code> 和 <code>FindAllDeep</code> 只在需要重建缓存时执行。节点不存在时先核对模型名称和层级。把弹药、装填、模块、起落架和雷达锁定交给事件，把状态绘制安排在 <code>OnGUI</code>，其余周期检查通过 <code>SetUpdateInterval</code> 降频。</p>
+<table>
+<thead>
+<tr>
+<th>旧写法</th>
+<th>当前入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GetObjectsInWorld(&quot;Rigidbody&quot;)</code>、<code>FindObjectsOfType</code> 或 <code>Identity.GlobalTeamList</code> 扫载具</td>
+<td>复用 <code>VehicleAPI.CreateQuery()</code>。雷达目标用 <code>RadarAPI</code>。旧 <code>GlobalTeamList</code> 在联机里可能漏掉远程玩家。</td>
+</tr>
+<tr>
+<td><code>RaycastAll</code> 手算地杂波和仰角限制</td>
+<td>在 <code>groundAARadarData</code> 配置地面雷达，用 <code>RadarAPI.GetContact</code> 读探测结果。</td>
+</tr>
+<tr>
+<td>比较 <code>InstanceNetType</code> 字符串、读 <code>GarageManager.inGarage</code> 或比较 <code>GetPlayerVehicle()</code></td>
+<td><code>VehicleAPI.IsGarage</code>、<code>IsLocalPlayer</code>、<code>IsBot</code>、<code>IsRemote</code>。</td>
+</tr>
+<tr>
+<td><code>Time.timeScale &lt; 0.01</code></td>
+<td><code>TimeAPI.IsPaused()</code>。</td>
+</tr>
+<tr>
+<td>在 <code>OnUpdated</code> 里循环调用 <code>TryGetTankInitSystem</code></td>
+<td>在 <code>OnVehicleReady(vehicle)</code> 初始化一次。</td>
+</tr>
+<tr>
+<td>递归 <code>GetChild</code> 查找 <code>TurretTransform</code>、<code>GunTransform</code>、<code>FFPoint</code></td>
+<td>用 <code>TankAPI.GetTurretTransform</code>、<code>GetGunTransform</code> 和 <code>WeaponAPI.GetMuzzle</code>。通用节点用 <code>TransformAPI.FindDeep</code>。</td>
+</tr>
+<tr>
+<td>读取 <code>bulletCountList</code>、<code>simpleReloadNowTime</code> 或反射私有字段</td>
+<td><code>WeaponAPI.GetAmmo</code>、<code>GetReloadProgress</code>、<code>GetReloadTime</code>。</td>
+</tr>
+<tr>
+<td>计数已经发射的弹药</td>
+<td><code>WeaponAPI.OnAmmoChanged</code> 加 <code>GetTotalAmmo</code>。</td>
+</tr>
+<tr>
+<td>每帧反射模块血量</td>
+<td><code>InternalModuleAPI.OnStateChanged</code>。</td>
+</tr>
+<tr>
+<td>猜 <code>curRPM</code> 或 <code>engineRPM</code> 字段</td>
+<td><code>TankAPI.GetEngineState</code>。</td>
+</tr>
+<tr>
+<td>遍历 <code>WheelCollider.isGrounded</code>，按节点名推测起落架状态</td>
+<td><code>FlightAPI.IsOnGround</code>、<code>IsGearDown</code>、<code>OnGearChanged</code>。</td>
+</tr>
+<tr>
+<td>自己解算带阻力的提前量</td>
+<td><code>WeaponAPI.PredictLead</code>。</td>
+</tr>
+<tr>
+<td>每帧 <code>RemoveBuff</code> 后重新添加</td>
+<td><code>BuffAPI.CreateValueBuff</code>，之后调用 <code>SetValue</code>。</td>
+</tr>
+<tr>
+<td>用 <code>Time.frameCount</code> 对帧回调去重</td>
+<td><code>SetUpdateInterval</code>，用 <code>OnUpdated(dt)</code> 提供的时间。</td>
+</tr>
+</tbody>
+</table>
 <h2 id="示例">示例</h2>
 <ul>
 <li><a href="lua-api2-missile-rack.html">导弹挂架</a></li>

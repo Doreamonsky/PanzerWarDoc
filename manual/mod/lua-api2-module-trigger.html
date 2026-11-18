@@ -91,7 +91,8 @@
 <pre><code class="lang-json">{
   &quot;variables&quot;: {
     &quot;script&quot;: &quot;${fixture}/ModuleDestroyedTrigger.lua&quot;,
-    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ModuleDestroyedTrigger.prefab&quot;
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_ModuleDestroyedTrigger.prefab&quot;,
+    &quot;controller&quot;: &quot;${fixture}/ModuleAnimator.controller&quot;
   },
   &quot;calls&quot;: [
     {
@@ -111,8 +112,14 @@
 }
 </code></pre>
 </details>
-<p>把脚本挂在内部模块所在物体。将带有 <strong>Animator</strong> 的物体分配给 <code>animator</code>，并把 <code>triggerName</code> 设置为控制器中对应的 Trigger。示例使用 <code>Destroyed</code>。</p>
-<p>脚本在 <code>OnVehicleReady</code> 获取模块并订阅状态。模块首次进入损毁状态时触发动画，修复后可以再次触发。用 <code>self.script</code> 订阅，行为销毁时会解除订阅。</p>
+<p>用这段脚本在弹药架或发动机等内部模块损毁时播放演示动画，例如打开盖板，或播放发动机火焰。脚本在游戏发出模块事件时更新，可以省去逐帧读取模块血量。</p>
+<h2 id="1-配置-animator-并绑定脚本">1. 配置 Animator 并绑定脚本</h2>
+<ol>
+<li>打开伤害模型的 Prefab Mode。把要播放动画的物体放在该预制体内，例如作为模块的子节点，给它添加 <strong>Animator</strong> 并绑定 <strong>Animator Controller</strong>。在 <strong>Animator → Parameters</strong> 用 <strong>+ → Trigger</strong> 创建 <code>Destroyed</code>。为目标动画建状态并设置过渡条件 <code>Destroyed</code>。</li>
+<li>将下方 Lua 脚本导入 Unity。在内部模块所在物体上添加 <a href="lua-behavior-mono.html">LuaBehaviorMono</a> 并绑定脚本。</li>
+<li>将有 <strong>Animator</strong> 的物体拖到 <code>animator</code>，填写 <code>triggerName</code>，字符和大小写需与控制器一致。保存预制体。</li>
+</ol>
+<p>脚本在 <code>OnVehicleReady</code> 获取模块，因为 <code>OnStarted</code> 时伤害模型可能仍未装配。如果测试时没有触发，先核对脚本是否与内部模块挂在同一节点，再检查 <code>animator</code> 引用。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
     animator = { type = &quot;object&quot;, value = nil },
@@ -169,6 +176,20 @@ return ModuleDestroyedTrigger
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local e, u = CS.UnityEditor, CS.UnityEngine\nlocal a = e.Animations\nlocal controller = a.AnimatorController.CreateAnimatorControllerAtPath(\&quot;${controller}\&quot;)\ncontroller:AddParameter(\&quot;Destroyed\&quot;, u.AnimatorControllerParameterType.Trigger)\nlocal machine = controller.layers[0].stateMachine\nlocal intact = machine:AddState(\&quot;Intact\&quot;)\nlocal destroyed = machine:AddState(\&quot;Destroyed\&quot;)\nmachine.defaultState = intact\nlocal transition = intact:AddTransition(destroyed)\ntransition.hasExitTime = false\ntransition:AddCondition(a.AnimatorConditionMode.If, 0, \&quot;Destroyed\&quot;)\ne.EditorUtility.SetDirty(controller)\ne.AssetDatabase.SaveAssets()\nassert(controller.parameters[0].name == \&quot;Destroyed\&quot; and transition.conditions[0].parameter == \&quot;Destroyed\&quot;)\nreturn \&quot;Destroyed Animator trigger and transition configured\&quot;\n&quot;,
+        &quot;manual-module-animator&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Destroyed Animator trigger and transition configured&quot;
     }
   },
   {
@@ -232,7 +253,14 @@ return ModuleDestroyedTrigger
         &quot;path&quot;: &quot;${prefab}&quot;,
         &quot;mode&quot;: &quot;update&quot;,
         &quot;component&quot;: &quot;UnityEngine.Animator&quot;,
-        &quot;child&quot;: &quot;ModuleAnimator&quot;
+        &quot;child&quot;: &quot;ModuleAnimator&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Controller&quot;,
+            &quot;asset&quot;: &quot;${controller}&quot;,
+            &quot;type&quot;: &quot;UnityEngine.RuntimeAnimatorController&quot;
+          }
+        ]
       }
     },
     &quot;expect&quot;: {
@@ -253,7 +281,13 @@ return ModuleDestroyedTrigger
 ]
 </code></pre>
 </details>
-<p>回放检查触发次数和重复通知。实际 Animator 状态过渡在游戏中检查。</p>
+<h2 id="2-验证状态和动画">2. 验证状态和动画</h2>
+<ol>
+<li>在试车中让该模块从完好变为损毁。只有第一次进入损毁状态时应触发动画。修复后再损毁一次，应能再次触发。</li>
+<li>如果你需要按状态切换不同动画，让 <code>OnStateChanged</code> 回调接收 <code>(oldState, newState)</code>，结合 <code>GetHitPointRatio(module)</code> 判断血量比例。每次受伤都需要反馈时，可以另外订阅 <code>OnDamaged</code>，其回调参数是本次扣除的血量。</li>
+<li>按示例把 <code>self.script</code> 作为订阅所有者。行为销毁时订阅自动解除。</li>
+</ol>
+<p>回放验证 xLua 的状态和触发次数。实际 Animator 状态过渡在游戏中检查。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
