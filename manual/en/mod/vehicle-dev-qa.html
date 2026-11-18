@@ -112,6 +112,7 @@
 </details>
 <h2 id="a-vehicle-fails-to-load">A vehicle fails to load</h2>
 <p>Check the installation folder and platform in <a href="../gameplay/install-mods.html">mod installation</a>. Find the first error in the <a href="../gameplay/runtime-log.html">runtime log</a> and confirm that the package links to the right build pipeline. If the vehicle loads but behaves incorrectly, use <a href="../component/vehicle-text-data.html">VehicleTextData</a> to check vehicle data, hitboxes, tracks, shells, engine sounds and firing sounds.</p>
+<p>The old project could fail when the package and vehicle shared a name. If the vehicle's internal name is <code>T-72</code>, try naming the package <code>Vehicle-T-72</code>, rebuild, and check whether it loads. If the vehicle appears but fails to run, start from <strong>VehicleData</strong> and follow its references to the main model, damage prefab, movement data, and firing data. Compare them with a working SDK vehicle.</p>
 <h2 id="the-gun-cannot-elevate-or-depress">The gun cannot elevate or depress</h2>
 <p>For ordinary guns, use positive magnitudes for <strong>Elevate Angle</strong> and <strong>Depression Angle</strong>. For example, <code>UpMaxDegree = 20</code> and <code>DownMaxDegree = 8</code> give a range of <code>-8°</code> to <code>20°</code>. Check the shared turret data and any directional override. <code>maxTurretPositiveAngle</code> and <code>maxTurretNegativeAngle</code> control horizontal traverse.</p>
 <p><img src="../../mod/imgs/vehicle-dev-qa-elevation-angles.en.png" alt="Elevation and depression fields highlighted in the turret settings"></p>
@@ -182,10 +183,19 @@
 ]
 </code></pre>
 </details>
-<h2 id="handling-suspension-and-rendering">Handling, suspension and rendering</h2>
-<p>For handling problems, check mass, wheel colliders and suspension using the <a href="physics-wheels.html">wheeled vehicle guide</a>. For invisible models, check materials, Renderers and layers in the <a href="model-not-displaying.html">rendering guide</a>. Set normal textures to <strong>Normal Map</strong> in Unity. Use Blender's <strong>Face Orientation</strong> overlay to check mesh faces when needed.</p>
+<h2 id="handling-or-suspension-problems">Handling or suspension problems</h2>
+<ol>
+<li>Under <strong>VehicleTextData → Mobility</strong>, check vehicle mass in kilograms. The original T-72 example used <code>44100 kg</code>. Check that the field is in kilograms if your source gives mass in tonnes.</li>
+<li>Open the <strong>WheelCollider</strong> prefab referenced under Mobility. Its <strong>Mass</strong> is the wheel's mass. The old example used <code>320 kg</code>, Radius <code>0.5</code>, Wheel Damping Rate <code>0.25</code>, and Suspension Distance <code>0.2</code>. The old guide suggested keeping wheel mass at or below <code>1000 kg</code> as a starting point.</li>
+<li>For <strong>Suspension Spring</strong>, start with the current template's Spring <code>205000</code>, Damper <code>14500</code>, and Target Position <code>0.5</code>. Tune after testing against the wheel size and vehicle mass. <a href="physics-wheels.html">Wheel and friction setup</a></li>
+</ol>
+<h2 id="incorrect-shading-or-missing-surfaces">Incorrect shading or missing surfaces</h2>
+<ol>
+<li>Select the normal texture in Unity. Set <strong>Texture Type</strong> to <strong>Normal Map</strong>, click <strong>Apply</strong>, and assign it to the material's normal slot.</li>
+<li>Turn on Blender's <strong>Face Orientation</strong> overlay. On a closed mesh, select faces that show red from the outside and use <strong>Mesh → Normals → Recalculate Outside</strong> in Edit Mode, or flip the selected normals. For intentionally double-sided surfaces, check the material. Use the <a href="model-not-displaying.html">rendering guide</a> to troubleshoot other visibility problems.</li>
+</ol>
 <h2 id="a-secondary-turret-reports-an-index-error">A secondary turret reports an index error</h2>
-<p>Check that the error in the log refers to shell data, then verify the <code>bulletData</code> references and selected index for each secondary turret. Compare against the <a href="vehicle-modding-notes.html">vehicle modding notes</a> and the template vehicle.</p>
+<p>Check that the error in the log refers to shell data, then open the <code>bulletData</code> list used by each secondary turret. Verify that each list has at least one valid shell and that the selected index is smaller than the list length. Compare against the <a href="vehicle-modding-notes.html">vehicle modding notes</a> and the template vehicle.</p>
 
 </article>
           </div>
@@ -195,7 +205,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

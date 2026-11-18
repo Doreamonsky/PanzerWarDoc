@@ -1,5 +1,5 @@
 {
-  "builtAt": "20261118T090914Z",
+  "builtAt": "20261118T100709Z",
   "sourceBaseCommit": "2f5859e7c3fc6b4fb8e68388eefd07bdb64bbf0b",
   "sourceHasUncommittedChanges": true,
   "reviewedTutorials": [
@@ -100,5 +100,29 @@
     "mask-texture-preview",
     "continuous-build"
   ],
-  "reviewedDependenciesSha256": "f7f778ca9ece5df6e22c564a6a2419adce3c23776e6677fe32faed8a71aa024e"
+  "reviewedDependenciesSha256": "f5f8b389988b3e97cdca12a7420b74e064492e93cc5c8717b8d26009068b6da9",
+  "contentReviewedTutorials": [
+    "blender-axis-fix",
+    "get-started",
+    "hitbox-naming-conventions",
+    "physics-wheels",
+    "track-ik-suspension",
+    "unity-engine-requirements",
+    "vehicle-basics",
+    "vehicle-dev-qa",
+    "vehicle-playground",
+    "vehicle-text-data"
+  ],
+  "newContentReviews": [
+    "vehicle-text-data",
+    "physics-wheels",
+    "track-ik-suspension",
+    "hitbox-naming-conventions",
+    "get-started",
+    "unity-engine-requirements",
+    "blender-axis-fix",
+    "vehicle-dev-qa",
+    "vehicle-playground",
+    "vehicle-basics"
+  ]
 }

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Ground vehicle creation basics | Panzer War Document </title>
+      <title>Build your first tank from scratch | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Ground vehicle creation basics | Panzer War Document ">
+      <meta name="title" content="Build your first tank from scratch | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../../favicon.ico">
@@ -80,7 +80,7 @@
 
 <!-- Generated from tutorials/vehicle-basics/en.md and steps.json; edit those sources. -->
 <link rel="stylesheet" href="../../tools/tutorials.css">
-<h1 id="ground-vehicle-creation-basics">Ground vehicle creation basics</h1>
+<h1 id="build-your-first-tank-from-scratch">Build your first tank from scratch</h1>
 <p><a href="../../mod/vehicle-basics.html">中文</a> | <strong>English</strong></p>
 <p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
 <pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-basics --capture
@@ -100,7 +100,13 @@
     &quot;cooked&quot;: &quot;${fixture}/2a1fb39dea694fdab732${runId}_pre.prefab&quot;,
     &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
     &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
-    &quot;packageGuid&quot;: &quot;f2f8a67f-7edd-5f4d-9bc4-a53463120f09&quot;
+    &quot;packageGuid&quot;: &quot;f2f8a67f-7edd-5f4d-9bc4-a53463120f09&quot;,
+    &quot;wheel&quot;: &quot;${fixture}/Tutorial_WheelCollider.prefab&quot;,
+    &quot;track&quot;: &quot;${fixture}/Tutorial_Track.asset&quot;,
+    &quot;link&quot;: &quot;${fixture}/Tutorial_TrackLink.prefab&quot;,
+    &quot;armor&quot;: &quot;${fixture}/Tutorial_TankHitBox.asset&quot;,
+    &quot;armorSource&quot;: &quot;${fixture}/Tutorial_ArmorSource.prefab&quot;,
+    &quot;armorPrefab&quot;: &quot;${fixture}/Tutorial_Armor.prefab&quot;
   },
   &quot;calls&quot;: [
     {
@@ -214,25 +220,72 @@
 }
 </code></pre>
 </details>
-<h2 id="prepare-models">Prepare models</h2>
+<p>Start with a Blender model and finish with an installable tracked vehicle with one turret. Each section shows where to work, which assets to assign, and how to check the result. You can practice with simple geometry and replace it with a finished model once the workflow works.</p>
+<h2 id="1-prepare-the-project-model-and-sounds">1. Prepare the project, model, and sounds</h2>
 <ol>
-<li><a href="mod-env-setup.html">Set up the SDK project</a>. Model in meters, with <strong>+Z forward and +Y up</strong> in Unity. Set the pivots for the body, turret, gun, and barrel. Tracked vehicles also need left and right wheels and tracks. Prepare textures, engine sounds, and firing sounds. See <a href="blender-axis-fix.html">Blender axis correction</a>.</li>
-<li>Make a separate damage model and follow the <a href="hitbox-naming-conventions.html">hitbox naming guide</a> for armor and module nodes. Check materials and colliders after import.</li>
+<li>Follow <a href="get-started.html">Project setup</a> to open the SDK project in the <a href="unity-engine-requirements.html">required Unity version</a>. Resolve any compilation errors in the Console before opening the mod tools. Check the Console first if a menu is missing.</li>
+<li>Prepare a visual model and a separate damage model in <a href="https://www.blender.org/download/">Blender</a>. You can author base-color and normal textures in tools such as Substance 3D Painter and Photoshop. Gather engine start, idle, and running audio and near and distant firing audio. For the first test, you can reference compatible FMOD configurations already in the SDK.</li>
+<li>Create a folder for this vehicle in Unity's Project window, with subfolders for models, materials, and the collision prefab. Keep your source files. When re-exporting an existing FBX, keep its path and <code>.meta</code> file to preserve the Unity references.</li>
+</ol>
+<h2 id="2-organize-and-export-the-blender-model">2. Organize and export the Blender model</h2>
+<p>Keep one root object in Blender's Outliner. Select the child, Shift-select its parent, and use <strong>Ctrl+P → Object (Keep Transform)</strong>. To separate part of a mesh, select its faces in Edit Mode and use <strong>P → Selection</strong>. Put object origins at their actual pivots so the parts rotate around their own axes in Unity.</p>
+<table>
+<thead>
+<tr>
+<th>Node under the model root</th>
+<th>What to put there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MainBody</code></td>
+<td>The hull mesh.</td>
+</tr>
+<tr>
+<td><code>Turret → Gun → Dym</code></td>
+<td>Turret, gun elevation node, and recoiling barrel. Nest all three. Place the turret origin at the turret ring and the gun origin at its elevation pivot. The barrel points forward.</td>
+</tr>
+<tr>
+<td><code>LeftWheel</code> and <code>RightWheel</code></td>
+<td>Empty grouping objects. Name the road wheels <code>l_1</code>, <code>l_2</code>… and <code>r_1</code>, <code>r_2</code>… and place their origins at the axles.</td>
+</tr>
+<tr>
+<td><code>LeftUpperWheel</code> and <code>RightUpperWheel</code></td>
+<td>Empty groups for the return rollers. Put each side's rollers in its own group, using names such as <code>lu_1</code> and <code>ru_1</code>. The current builder orders the wheels by their front-to-back position.</td>
+</tr>
+<tr>
+<td><code>LeftTrack</code> and <code>RightTrack</code></td>
+<td>Static track meshes or their placeholders. You will set up moving track links and their path later.</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Model to scale in meters. Select the objects and choose <strong>File → Export → FBX</strong>. The original guide used <strong>Scale 1.00</strong>, <strong>Apply Scalings → FBX Units Scale</strong>, <strong>Forward → −Z Forward</strong>, and <strong>Up → Y Up</strong>. In Unity, verify <strong>+Z forward and +Y up</strong>, then measure the hull against a known dimension. See <a href="blender-axis-fix.html">Correct model axes in Blender</a>.</li>
+<li>Export a separate, low-poly damage model. Split plates by armor thickness, material type, and moving part. Each plate gets its own thickness in Unity and belongs under the part it moves with. Separate the internal modules too. Follow the <a href="hitbox-naming-conventions.html">damage-model naming conventions</a>.</li>
+<li>For a small first vehicle, the original art budgets are a useful starting point. Aim for about 20,000 faces or fewer on the visual model, about four materials, textures at 2048 × 2048 or lower, and about 5,000 faces or fewer on the damage model. Consolidate duplicate materials and simplify hidden surfaces and collision shapes.</li>
+</ol>
+<h2 id="3-set-materials-and-physical-collision-in-unity">3. Set materials and physical collision in Unity</h2>
+<ol>
+<li>Drop the visual FBX, damage FBX, and textures in the vehicle folder. Preview the visual FBX. Create or select materials compatible with your project's render pipeline and assign separate base-color and normal textures. Put the materials on each mesh under <strong>Mesh Renderer → Materials</strong> and check the colors and model orientation.</li>
+<li>Drag the visual FBX from Project to Hierarchy and expand it. On <strong>MainBody</strong> and <strong>Turret</strong>, use <strong>Add Component → Box Collider</strong>. Use <strong>Edit Collider</strong> to adjust the size and center. In front and side views, verify that the bottom of the hull collider clears the ground. A collider that extends too low can stop the vehicle from moving.</li>
+<li>Drag the model root from Hierarchy into the <strong>Collision</strong> folder in Project. Use this prefab for <strong>MainModel</strong> later. The separate armor plates supply the game's penetration hitboxes.</li>
 </ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Rebuild the tracked hierarchy with simple geometry. Check hull collision, the turret hierarchy, and forward and up before saving.</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
     &quot;arguments&quot;: {
-      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
       &quot;args&quot;: [
-        &quot;${source}_Model.prefab&quot;,
-        &quot;${packModel}&quot;
+        &quot;local U = CS.UnityEngine\nlocal E = CS.UnityEditor\nlocal function empty(name, parent, x, y, z)\n    local obj = U.GameObject(name)\n    if parent then obj.transform:SetParent(parent.transform, false) end\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    return obj\nend\nlocal function cube(name, parent, x, y, z, sx, sy, sz)\n    local obj = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\n    obj.name = name\n    obj.transform:SetParent(parent.transform, false)\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    obj.transform.localScale = U.Vector3(sx, sy, sz)\n    return obj\nend\n\nlocal root = empty('TutorialTank', nil, 0, 0, 0)\ncube('MainBody', root, 0, 0.9, 0, 2.6, 0.75, 5)\nlocal turret = empty('Turret', root, 0, 1.55, 0)\ncube('TurretMesh', turret, 0, 0, 0, 1.8, 0.65, 1.6)\nlocal gun = empty('Gun', turret, 0, 0, 0.75)\ncube('GunMesh', gun, 0, 0, 0, 0.6, 0.34, 0.35)\nempty('GunSight', gun, 0.24, 0.2, 0.15)\nlocal barrel = empty('Dym', gun, 0, 0, 0)\ncube('BarrelMesh', barrel, 0, 0, 1.2, 0.17, 0.17, 2.4)\nfor _, side in ipairs({{'Left', 'l', -1.42}, {'Right', 'r', 1.42}}) do\n    local sideName, prefix, x = side[1], side[2], side[3]\n    local wheel = empty(sideName .. 'Wheel', root, 0, 0, 0)\n    local upperWheel = empty(sideName .. 'UpperWheel', root, 0, 0, 0)\n    for index, z in ipairs({1.8, 0.6, -0.6, -1.8}) do\n        local axis = empty(prefix .. '_' .. index, wheel, x, 0.43, z)\n        local mesh = U.GameObject.CreatePrimitive(U.PrimitiveType.Cylinder)\n        mesh.name = 'WheelMesh'\n        mesh.transform:SetParent(axis.transform, false)\n        mesh.transform.localRotation = U.Quaternion.Euler(0, 0, 90)\n        mesh.transform.localScale = U.Vector3(0.86, 0.17, 0.86)\n        U.Object.DestroyImmediate(mesh:GetComponent(typeof(U.Collider)))\n    end\n    empty(prefix .. 'u_1', upperWheel, x, 0.91, 0)\n    local track = cube(sideName .. 'Track', root, x, 0.45, 0, 0.34, 0.14, 4.6)\n    U.Object.DestroyImmediate(track:GetComponent(typeof(U.Collider)))\nend\nfor _, path in ipairs({'Turret/Gun/GunMesh', 'Turret/Gun/Dym/BarrelMesh'}) do\n    U.Object.DestroyImmediate(root.transform:Find(path):GetComponent(typeof(U.Collider)))\nend\nassert(root.transform:Find('MainBody'):GetComponent(typeof(U.BoxCollider)) ~= nil)\nassert(root.transform:Find('Turret/Gun/Dym') ~= nil)\nlocal target = E.PrefabUtility.SaveAsPrefabAsset(root, '${packModel}')\nU.Object.DestroyImmediate(root)\nassert(target ~= nil)\nreturn 'Ground-model hierarchy and physical hull created'\n&quot;,
+        &quot;tank-geometry&quot;,
+        &quot;null&quot;
       ]
     },
     &quot;expect&quot;: {
-      &quot;contains&quot;: &quot;(Boolean) True&quot;
+      &quot;contains&quot;: &quot;Ground-model&quot;
     }
   },
   {
@@ -256,15 +309,97 @@
 ]
 </code></pre>
 </details>
-<h2 id="configure-assets">Configure assets</h2>
-<ol start="3">
-<li>In <strong>Framework - 框架 → 0. Home Page</strong>, open the <strong>Vehicle Creation Guide</strong>, then <strong>Open Vehicle Creation Tool</strong>. Enter a new name and create a <strong>Ground</strong> vehicle.</li>
-<li>Fill in <strong>VehicleInfo</strong>. Assign the damage model and configure modules in <strong>VehicleHitBox</strong>. Assign the main model, VehicleHitBox, and <a href="../component/vehicle-text-data.html">VehicleTextData</a> to <strong>VehicleData</strong>. Configure weapons, sounds, <a href="physics-wheels.html">wheel parameters</a>, and tracks to suit the vehicle. Open the vehicle tool from the VehicleData Inspector to check model nodes and firing positions.</li>
+<h2 id="4-create-and-locate-the-vehicle-assets">4. Create and locate the vehicle assets</h2>
+<ol>
+<li>In Unity, open <strong>Framework - 框架 → 0. Home Page</strong> and select the <strong>Vehicle Creation Guide</strong>. Use <strong>Open</strong> on the first step to reach <strong>Vehicle → Vehicle Creation</strong> in the GM Editor. You can also navigate directly to that section.</li>
+<li>Choose <strong>Ground</strong> and enter a unique internal name such as <code>Tutorial-Tank</code>. The current tool accepts uppercase and lowercase English letters, digits, and hyphens. You can add a prefix and assign a separate display name later. Click <strong>Create Vehicle</strong> and confirm.</li>
+<li>In Project, open <code>Assets/Res/Vehicles/Ground/Data/Vehicle/Tutorial-Tank/</code> and find the assets below. Enter the same internal name in the guide to jump to each file.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Generated asset</th>
+<th>Where you use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tutorial-Tank.asset</code> (<strong>VehicleInfo</strong>)</td>
+<td>Set the display name, rank, nation, and thumbnail. Add this asset to the mod build pipeline.</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_VehicleHitBox.asset</code></td>
+<td>Assign external armor, internal modules, and the generated damage prefab.</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_VehicleTextData.asset</code></td>
+<td>Configure basic, movement, firing, and turret parameters.</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_VehicleData.asset</code></td>
+<td>Bind the models and data, edit key nodes, and build the vehicle prefab.</td>
+</tr>
+<tr>
+<td><code>Tutorial-Tank_WheelCollider.prefab</code> and <code>Tutorial-Tank_VehicleTrack.asset</code></td>
+<td>Supply the movement configuration with wheel colliders and dynamic tracks.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-generate-and-configure-the-damage-model">5. Generate and configure the damage model</h2>
+<ol>
+<li>Select <strong>VehicleHitBox</strong> in Project. Drag the damage FBX into <strong>External Armor Model</strong>. If you made a separate model for the internal modules, assign it to <strong>Internal Module Model</strong>. You can assign the visual prefab to <strong>Refer Model</strong> as a positioning reference.</li>
+<li>Click <strong>Create Prefab</strong>, then <strong>Open Edit Mode</strong>. Check that Unity opened the correct prefab. Click <strong>Generate External Armor</strong> to generate the plates. If you assigned an internal model, click <strong>Generate Internal Armor</strong> to generate its modules.</li>
+<li>Select a plate in Hierarchy and inspect the thickness and armor type in its <strong>HitBox</strong> component. Move the plate under <code>HitBox/Main</code>, <code>HitBox/Turret</code>, <code>HitBox/Gun</code>, or <code>HitBox/Dym</code> to match the part it moves with. See <a href="hitbox-naming-conventions.html">damage-model naming and import</a> for the supported names and examples.</li>
+<li>Select a module type and preset in the editor, spawn it, and move it into position. Use the same four groups under <code>InternalModule</code> to attach it to the correct part. You can set each module's HP in its <strong>InternalModule</strong> component. To assign HP in bulk, set the total and any per-type overrides on <strong>VehicleHitBox</strong>, then use <strong>Auto Assign Internal Module Hit Points</strong>.</li>
+<li>Tick the roles on crew modules. To support module mode on a tracked vehicle, check for commander, driver, gunner, radio operator, and either loader or autoloader. You can leave module mode off for the first basic drive test and enable it after configuring the interior.</li>
+<li>Select the ammo rack's <strong>InternalModule</strong>. Add bounds and resize them to cover the corresponding ammo volume. Click <strong>Create Ammo Cache</strong>, or use <strong>Multi-Update Ammo Model Cache</strong> in the HitBox editor for several racks. Verify that every bound has a cached mesh.</li>
+<li>Save the prefab with <strong>Ctrl+S</strong> and leave Prefab Mode. Check that <strong>VehicleHitBox</strong> still references the generated prefab.</li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-basics-armor.en.png" alt="External armor model and its generated HitBox prefab"></p>
+<h2 id="6-set-vehicle-information-shells-audio-and-parameters">6. Set vehicle information, shells, audio, and parameters</h2>
+<ol>
+<li>Open <strong>VehicleInfo</strong> and set the display name and rank. Match the nation in <strong>VehicleTextData</strong>. Packing copies the nation from the detailed parameters. See <a href="vehicle-thumbnail.html">Vehicle thumbnails</a> to assign a picture for the vehicle list.</li>
+<li>For the first test, assign compatible <strong>VehicleEngineFmodSoundData</strong> and <strong>BulletFmodSound</strong> assets. To make your own, import the recordings into a compatible FMOD project. Author engine start and running events with idle and acceleration sounds, and configure the firing event for near and distant sounds. Build and refresh the banks, then bind events with the picker. <strong>Fire Near</strong> and <strong>Fire Far</strong> were fields on the old audio assets. <a href="fmod-project-setup.html">FMOD project setup</a></li>
+<li>Open <strong>VehicleTextData</strong> and use the bullet editor at the bottom of the Inspector to create a shell. You can also use a suitable shell asset already in the project. Pick the <strong>Bullet VFX</strong> for its shell type. Add the shell to the ammo list under <strong>Fire</strong>, check for empty entries, and assign a firing sound.</li>
+<li>Set the parameters below. Start with one gun, one ammo type, and standard reload. Test those before trying a more complex weapon.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>What to configure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Base</strong></td>
+<td>Expand the base parameters and set hull HP, nation, and view range. Starting with defaults limits the number of variables in the first test.</td>
+</tr>
+<tr>
+<td><strong>Movement</strong></td>
+<td>Use the track controller. In <code>PTCParameter</code>, set mass in kg, maximum torque, forward and reverse speed, and engine audio. Verify the generated <strong>TankWheelCollider</strong> and <strong>Track Data</strong> references.</td>
+</tr>
+<tr>
+<td><strong>Fire</strong></td>
+<td>In <code>TFParameter</code>, set caliber in mm, standard reload time, shot interval, ammo capacity, recoil scale, firing sound, shells, and dispersion. If you assigned shared gun data, edit those settings on the shared asset.</td>
+</tr>
+<tr>
+<td><strong>Turret</strong></td>
+<td>In <code>MTParameter</code>, configure traverse range, traverse and elevation speed, and maximum elevation and depression. If you assigned shared turret data, configure it there.</td>
+</tr>
+</tbody>
+</table>
+<p>The optional Tanks.gg tools are still in <strong>VehicleTextData</strong>. Set <code>tanksGGName</code> and use <strong>Import spread data from tank gg</strong> to retrieve dispersion data. The broader override changes several existing settings, so save the asset in Git or make a backup first. The service may be unavailable. Review the imported values and fill in the remaining fields. <a href="../component/vehicle-text-data.html">VehicleTextData fields and screenshots</a></p>
+<h2 id="7-bind-the-main-model-and-position-the-firing-nodes">7. Bind the main model and position the firing nodes</h2>
+<ol>
+<li>Select <strong>VehicleData</strong>. Assign the collision prefab from section 3 to <strong>Model Data → MainModel</strong>. Check that <strong>VehicleTextData</strong> and <strong>HitBox</strong> refer to this vehicle's assets.</li>
+<li>Click <strong>Edit</strong> to position the nodes marked with orange icons in Scene view. Move the firing and muzzle-effect points to the muzzle with forward orientation. Check the camera, center of gravity, engine sound, and exhaust nodes too. Press <strong>K</strong> in Scene view after adjusting the nodes to save their positions and rotations.</li>
+<li>Click <strong>Unlock Inspector</strong>. Check the selected asset and reopen the editor if needed to confirm that the positions were saved.</li>
 </ol>
 <p><img src="../../mod/imgs/vehicle-basics-bindings.en.png" alt="Main model and vehicle parameters assigned in VehicleData"></p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
-<p>Copy the SDK example into a private fixture to keep your own model and parameters intact.</p>
+<p>Start from working sample parameters and bind the visual model and two armor plates generated for this replay.</p>
 <pre><code class="lang-json">[
   {
     &quot;tool&quot;: &quot;invoke&quot;,
@@ -392,14 +527,227 @@
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;${vehicleName}&quot;
     }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleHitBox)&quot;,
+        &quot;${armor}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal function empty(name, parent)\n    local obj = U.GameObject(name)\n    if parent then obj.transform:SetParent(parent.transform, false) end\n    return obj\nend\nlocal function plate(name, parent, x, y, z, sx, sy, sz)\n    local obj = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\n    obj.name = name\n    obj.transform:SetParent(parent.transform, false)\n    obj.transform.localPosition = U.Vector3(x, y, z)\n    obj.transform.localScale = U.Vector3(sx, sy, sz)\n    U.Object.DestroyImmediate(obj:GetComponent(typeof(U.Collider)))\nend\nlocal root = empty('Tutorial Tank Armor', nil)\nlocal external = empty('HitBox', root)\nlocal modules = empty('InternalModule', root)\nfor _, group in ipairs({'Main','Turret','Gun','Dym'}) do\n    empty(group, external)\n    empty(group, modules)\nend\nlocal hull = external.transform:Find('Main').gameObject\nlocal turret = external.transform:Find('Turret').gameObject\nplate('HullFront_65', hull, 0, 0.9, 2.48, 2.5, 0.65, 0.04)\nplate('TurretFront_45', turret, 0, 1.55, 0.78, 1.7, 0.55, 0.04)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorSource}'))\nCS.ShanghaiWindy.Editor.VehicleHitBoxModelImport.ConfigureExternal(external, nil)\nassert(E.PrefabUtility.SaveAsPrefabAsset(root, '${armorPrefab}'))\nU.Object.DestroyImmediate(root)\nreturn 'External armor prepared'\n&quot;,
+        &quot;tank-armor&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;External armor prepared&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/ExternalArmorModel&quot;,
+      &quot;value&quot;: &quot;@asset:${armorSource}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/HitBoxPrefab&quot;,
+      &quot;value&quot;: &quot;@asset:${armorPrefab}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armorPrefab}/HitBox/Main/HullFront_65/HitBox/Armor&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;65&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/modelData/HitBox&quot;,
+      &quot;value&quot;: &quot;@asset:${armor}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/isModuleReady&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/isGenLOD&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
   }
 ]
 </code></pre>
 </details>
-<h2 id="build-and-test">Build and test</h2>
-<ol start="5">
-<li>In the <strong>VehicleData</strong> Inspector, click <strong>Pack Asset</strong> to generate the vehicle prefab. Pack it again after changing the hitbox or model nodes.</li>
-<li>Create a mod package for the target platform. Add <strong>VehicleInfo</strong> to its build pipeline. Install and use the <a href="vehicle-playground.html">Vehicle Playground</a> to check movement, aiming, firing, and damage.</li>
+<h2 id="8-set-up-wheel-colliders-and-moving-tracks">8. Set up wheel colliders and moving tracks</h2>
+<ol>
+<li>Drag the visual prefab and the <strong>WheelCollider</strong> prefab into the scene. Compare the collider radius and suspension travel with the visible wheels. Save overrides to the correct prefab with <strong>Overrides → Apply</strong> or <strong>Apply to Prefab</strong> on the edited value. You can also edit and save the prefab in Prefab Mode.</li>
+<li>Start with the generated defaults. The current template uses Suspension Distance <code>0.2</code>, Spring <code>205000</code>, Damper <code>14500</code>, and Target Position <code>0.5</code>. The four Forward Friction slip/value fields are <code>1</code>, with Stiffness <code>1.7</code>. In Sideways Friction, Extremum Slip/Value are <code>1.2</code>, Asymptote Slip/Value are <code>1</code>, and Stiffness is <code>4</code>. Tune after testing your own mass and wheel size. <a href="physics-wheels.html">Wheel settings and screenshots</a></li>
+<li>Select <strong>VehicleTrackData</strong> and assign one track-link prefab to <strong>TrackMesh</strong>. Use <strong>LeftTrackMesh</strong> if the left side uses a different shape. Start with the default <strong>TrackDistance</strong> of <code>0.12</code> and adjust it against the actual link length. Leave the generated suspension data in place.</li>
+<li>Click <strong>Edit Track</strong> in the <strong>VehicleData</strong> Inspector. If you opened the track asset's editor directly, assign the vehicle edit object to <strong>Target Edit Object</strong>, then click <strong>Load Suspension Data</strong>. If the edit object is missing, return to <strong>VehicleData</strong> and enter edit mode to generate it again.</li>
+<li>View the wheels from the side. Use <strong>Create Node</strong> in order around the loop, under the road wheels, over the return rollers, and around both ends. Temporarily hide damage geometry or static tracks if they obscure the path.</li>
+<li>Click <strong>Preview Track</strong> and check link orientation, corners, and spacing on both sides. Use <strong>Update Preview</strong> after changes. Finish with <strong>Save</strong> and <strong>Unlock Inspector</strong> and check the track reference on the vehicle. <a href="track-ik-suspension.html">Track IK and suspension guide</a></li>
+</ol>
+<p><img src="../../mod/imgs/vehicle-basics-track.en.png" alt="Track link asset and spacing"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.WheelUtil/CreateWheelPrefab&quot;,
+      &quot;args&quot;: [
+        &quot;${wheel}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;GameObject&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.VehicleTrackData)&quot;,
+        &quot;${track}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/isStationary&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/PTCParameter/TankWheelCollider&quot;,
+      &quot;value&quot;: &quot;@asset:${wheel}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/PTCParameter/TrackData&quot;,
+      &quot;value&quot;: &quot;@asset:${track}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U, E = CS.UnityEngine, CS.UnityEditor\nlocal link = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\nlink.name = 'Tutorial Track Link'\nlink.transform.localScale = U.Vector3(0.36, 0.07, 0.12)\nU.Object.DestroyImmediate(link:GetComponent(typeof(U.Collider)))\nassert(E.PrefabUtility.SaveAsPrefabAsset(link, '${link}'))\nU.Object.DestroyImmediate(link)\nlocal data = E.AssetDatabase.LoadMainAssetAtPath('${track}')\ndata.trackNodes:Clear()\nfor _, point in ipairs({{0.02, 1.85}, {0.02, -1.85}, {0.48, -2.29}, {0.95, -1.85},\n    {0.95, 1.85}, {0.48, 2.29}}) do\n    local node = CS.ShanghaiWindy.Core.TrackNode()\n    node.leftNode = U.Vector3(-1.42, point[1], point[2])\n    node.rightNode = U.Vector3(1.42, point[1], point[2])\n    data.trackNodes:Add(node)\nend\nE.EditorUtility.SetDirty(data)\nE.AssetDatabase.SaveAssets()\nreturn 'Six track nodes per side'\n&quot;,
+        &quot;tank-track-nodes&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Six track nodes per side&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${track}/TrackMesh&quot;,
+      &quot;value&quot;: &quot;@asset:${link}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${track}/trackNodes&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Count=6&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${track}/TrackDistance&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;0.12&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/GetGroundType()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="9-cook-the-vehicle-prefab">9. Cook the vehicle prefab</h2>
+<p>Select <strong>VehicleData</strong> and click <strong>Pack</strong>. <strong>Cooked Output</strong> controls whether the generated prefab goes into the shared Cooked folder or beside the data asset. Check that <strong>VehicleInfo</strong> resolves to the output. Pack again after changing the visual model, colliders, damage model, wheel setup, or positions of the edit nodes. Confirm that the prefab exists before building the mod.</p>
+<p><a id="create-mod-package-打包模组"></a></p>
+<h2 id="10-build-install-and-test-the-mod">10. Build, install, and test the mod</h2>
+<ol>
+<li>In the GM Editor, open <strong>Mod Build → Create Mod Package</strong>. Use a distinct name such as <code>Vehicle-Tutorial-Tank</code>. Open <strong>ModPackageBuildPiplineData</strong> and drag this vehicle's <strong>VehicleInfo</strong> into <strong>Linked Objects</strong>. Verify the associated <strong>Linked Mod Package</strong>.</li>
+<li>Use <strong>File → Build Settings</strong> or <strong>Ctrl+Shift+B</strong> and switch to the target platform. Verify the active platform, then build the linked resources from the pipeline. In <strong>ModPackageData</strong>, fill in the name, description, author, and version, then click <strong>Package Now</strong>. Rebuild the linked objects and package again whenever you change platforms.</li>
+<li>Find the resulting <code>.modpack</code> under <code>Build/Mod-Package/&lt;platform&gt;/</code>. Check the target and follow <a href="../gameplay/install-mods.html">Install mods</a>. Use the Windows build for a Windows driving test. Check the build result for the exact file path.</li>
+<li>Open the <a href="vehicle-playground.html">Vehicle Playground</a>, find the new vehicle, and check that it renders and the hull clears the ground. Test forward and reverse movement, steering, tracks, turret traverse, elevation, firing, and reload. Then test damage and make sure the armor and modules line up with the model.</li>
 </ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -424,6 +772,16 @@
     },
     &quot;expect&quot;: {
       &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/VehicleComponentsReferenceManager/LeftWheels&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Count=4&quot;
     },
     &quot;phase&quot;: &quot;build&quot;
   },
@@ -473,8 +831,7 @@
       &quot;equals&quot;: {
         &quot;ok&quot;: true,
         &quot;built&quot;: false
-      },
-      &quot;contains&quot;: &quot;clientextramesh&quot;
+      }
     },
     &quot;phase&quot;: &quot;build&quot;
   },
@@ -532,6 +889,42 @@
 ]
 </code></pre>
 </details>
+<h2 id="11-try-variants-after-the-basic-tank-works">11. Try variants after the basic tank works</h2>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>How to extend the basic tank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wheeled vehicle</td>
+<td>If it still uses the track controller, keep the <code>LeftTrack</code> and <code>RightTrack</code> placeholders. Configure the wheel colliders and review the <a href="physics-wheels.html">wheel and track control differences</a>.</td>
+</tr>
+<tr>
+<td>Slot gun (old M3 Stuart example)</td>
+<td>Use standard fire, enable <strong>Has Slot</strong>, and set <strong>Slot Count</strong> and <strong>Slot Duration</strong>. The old example used 5 and 3.35. Check the burst and reload timing in the playground.</td>
+</tr>
+<tr>
+<td>Drum (Progetto 65 example)</td>
+<td>Set <strong>Fire State</strong> to <strong>Drum</strong>. Configure <strong>Fire Duration</strong> and <strong>Reload Times</strong>. The old example used 2 seconds and <code>[12.4, 10.3, 8.6, 6.8]</code>. Verify reload at each stage.</td>
+</tr>
+<tr>
+<td>Magazine (Bat 25t-style example)</td>
+<td>Choose <strong>Advance</strong>. In <strong>Advance Fire Class</strong>, set the short reload, long reload, and rounds per magazine. The old example used 2 seconds, 33 seconds, and 4 rounds.</td>
+</tr>
+<tr>
+<td>Multiple turrets (BMD-1 and T-35)</td>
+<td>The BMD-1 example used a secondary weapon for missiles. In the T-35 example, <code>SubTurret01 → SubGun01 → SubDym01</code> is under the root. The other three secondary turrets use suffixes 02, 03, and 04. Set the turret path from the model root, the gun path from its turret, and the barrel path from its gun. Check muzzle and effect offsets on each.</td>
+</tr>
+<tr>
+<td>Twin barrels (ST-II)</td>
+<td>The old hierarchy put <code>SubTurret → SubGun → SubDym</code> under <code>Turret/Gun</code>. Put the second barrel's pivot at its breech. The example used <code>Turret/Gun/SubTurret</code> for the turret path and <code>SubGun</code> and <code>SubDym</code> for the relative paths. <a href="multi-turret-legacy.html">Legacy multi-turret setup</a></td>
+</tr>
+</tbody>
+</table>
+<p>The old example values illustrate the controls. Tune them for your own mod after testing. For a new multi-turret vehicle, see <a href="../component/vehicle-text-data.html">the current fire-system fields in VehicleTextData</a>. If the model is invisible, the gun points the wrong way, or the vehicle is missing after installation, see <a href="vehicle-dev-qa.html">vehicle development troubleshooting</a>.</p>
 
 </article>
           </div>
@@ -541,7 +934,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/vehicle-basics.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/vehicle-basics.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

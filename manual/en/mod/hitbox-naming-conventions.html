@@ -306,6 +306,128 @@
 <p>In <code>Transmission_120_15</code>, the segments identify the module type, hit points and module armor in that order. Type names are case-sensitive. The importer rounds the two numeric values up to integers. Include all three segments.</p>
 <p>Click <strong>Generate Internal Armor</strong>, then move the generated modules under their corresponding parents. The numbers in the screenshot match the segments of the node name.</p>
 <p><img src="../../mod/imgs/hitbox-naming-conventions-module.en.png" alt="Internal module fields imported from Transmission_120_15"></p>
+<h3 id="module-type-codes">Module type codes</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Transmission</code></td>
+<td>transmission</td>
+</tr>
+<tr>
+<td><code>Engine</code></td>
+<td>engine</td>
+</tr>
+<tr>
+<td><code>HeatSink</code></td>
+<td>heat sink</td>
+</tr>
+<tr>
+<td><code>OilTank</code></td>
+<td>fuel tank</td>
+</tr>
+<tr>
+<td><code>Traversing</code></td>
+<td>turret traverse mechanism</td>
+</tr>
+<tr>
+<td><code>Breech</code></td>
+<td>breech</td>
+</tr>
+<tr>
+<td><code>Elevator</code></td>
+<td>elevation mechanism</td>
+</tr>
+<tr>
+<td><code>Sighting</code></td>
+<td>sight</td>
+</tr>
+<tr>
+<td><code>AmmoShell</code></td>
+<td>ammunition rack</td>
+</tr>
+<tr>
+<td><code>Crew</code></td>
+<td>crew member</td>
+</tr>
+<tr>
+<td><code>InternalArmor</code></td>
+<td>internal armor</td>
+</tr>
+<tr>
+<td><code>Radiator</code></td>
+<td>radar (current Inspector label)</td>
+</tr>
+<tr>
+<td><code>AutoReloader</code></td>
+<td>autoloader</td>
+</tr>
+<tr>
+<td><code>OilPipline</code></td>
+<td>lubrication system</td>
+</tr>
+<tr>
+<td><code>SurfaceControlRope</code></td>
+<td>control-surface cable</td>
+</tr>
+<tr>
+<td><code>WingSurface</code></td>
+<td>wing</td>
+</tr>
+</tbody>
+</table>
+<h3 id="module-naming-examples">Module naming examples</h3>
+<ul>
+<li><code>Transmission_120_15</code>: transmission part with hit point 120 and armor 15.</li>
+<li><code>AmmoShell_50_15</code>: ammunition rack part with hit point 50 and armor 15. If Blender appends a duplicate suffix, names such as <code>AmmoShell_50_15.001</code> and <code>AmmoShell_50_15.002</code> result; The importer accepts these Blender duplicate suffixes.</li>
+</ul>
+<h3 id="crew-naming-format">Crew naming format</h3>
+<p>Crew members also use <code>Crew</code> as the module code, followed by role codes at the end; separate multiple roles with underscores:</p>
+<pre><code>Crew_{HitPoint}_{ArmorValue}_{RoleCode}
+Crew_{HitPoint}_{ArmorValue}_{RoleCode1}_{RoleCode2}
+</code></pre>
+<p>Write the role codes with the exact spelling and case:</p>
+<ul>
+<li><code>Crew_10_0_Commander_Gunner</code>: crew member serving as both commander and gunner.</li>
+<li><code>Crew_10_0_Radioer</code>: radio operator role.</li>
+<li><code>Crew_10_0_Reloader</code>: loader role. On duplicate names Blender produces <code>Crew_10_0_Reloader.001</code>, <code>Crew_10_0_Reloader.002</code>, and similar; the suffix does not change the role.</li>
+</ul>
+<h3 id="crew-role-code-reference">Crew role code reference</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Commander</code></td>
+<td>commander</td>
+</tr>
+<tr>
+<td><code>Driver</code></td>
+<td>driver</td>
+</tr>
+<tr>
+<td><code>Gunner</code></td>
+<td>gunner</td>
+</tr>
+<tr>
+<td><code>Radioer</code></td>
+<td>radio operator</td>
+</tr>
+<tr>
+<td><code>Reloader</code></td>
+<td>loader</td>
+</tr>
+</tbody>
+</table>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <pre><code class="lang-json">[
@@ -326,7 +448,136 @@
 ]
 </code></pre>
 </details>
-<h2 id="4-save-and-verify">4. Save and verify</h2>
+<h2 id="4-assign-module-hp-in-bulk">4. Assign module HP in bulk</h2>
+<ol>
+<li>Open <strong>VehicleHitBox</strong> and set <strong>Total HitPoints for auto assign</strong>. The original guide and current Inspector give the starting values below.</li>
+<li>To give a module type a fixed value, add it to <strong>Override Module Hit Points</strong>. Other modules use the ratios below.</li>
+<li>Click <strong>Auto Assign Internal Module Hit Points</strong> in the HitBox editor. Verify the HP on the generated <strong>InternalModule</strong> components and press <strong>Ctrl+S</strong> to save.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Vehicle rank</th>
+<th style="text-align: right;">1–3</th>
+<th style="text-align: right;">4–6</th>
+<th style="text-align: right;">7–8</th>
+<th style="text-align: right;">9–10</th>
+<th style="text-align: right;">11–12</th>
+<th style="text-align: right;">13–15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base HP</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">350</td>
+<td style="text-align: right;">380</td>
+</tr>
+</tbody>
+</table>
+<p>The original guide recommends a base HP of no more than 400. The columns below give results for each example base HP. The editor multiplies by the ratio and rounds the result, so in current Unity, 50 × 0.25 becomes 12.</p>
+<table>
+<thead>
+<tr>
+<th>Module types</th>
+<th style="text-align: right;">Ratio</th>
+<th style="text-align: right;">50</th>
+<th style="text-align: right;">100</th>
+<th style="text-align: right;">200</th>
+<th style="text-align: right;">300</th>
+<th style="text-align: right;">350</th>
+<th style="text-align: right;">380</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transmission, WheelOrTrack</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">140</td>
+<td style="text-align: right;">152</td>
+</tr>
+<tr>
+<td>Engine, MainStructure</td>
+<td style="text-align: right;">0.8</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">280</td>
+<td style="text-align: right;">304</td>
+</tr>
+<tr>
+<td>HeatSink, Breech, Barrel, Elevator</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: right;">95</td>
+</tr>
+<tr>
+<td>OilTank, Traversing, AmmoShell, InternalArmor</td>
+<td style="text-align: right;">0.5</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">190</td>
+</tr>
+<tr>
+<td>Sighting, Radiator</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">76</td>
+</tr>
+<tr>
+<td>Other types except Crew</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">300</td>
+<td style="text-align: right;">350</td>
+<td style="text-align: right;">380</td>
+</tr>
+</tbody>
+</table>
+<p>Crew HP comes from <strong>Crew Wear Type</strong>. None uses 10, Vast uses 20, Alien uses 50, and Huawei uses 100.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Verify the actual name parser, duplicate-name suffixes, and the rounding rule used for module HP.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local U, C = CS.UnityEngine, CS.ShanghaiWindy.Core\nlocal go = U.GameObject.CreatePrimitive(U.PrimitiveType.Cube)\nlocal ok, failure = pcall(function()\n    local sample = go:AddComponent(typeof(C.InternalModule))\n    C.VehicleHitBoxImportUtil.SetInternalModuleViaName('AmmoShell_50_15.002', sample)\n    assert(sample.moduleType == C.EInternalModuleType.AmmoShell)\n    assert(sample.HitPoint == 50 and sample.internalArmor == 15)\n    C.VehicleHitBoxImportUtil.SetInternalModuleViaName('Crew_10_0_Commander_Gunner.001', sample)\n    assert(sample.moduleType == C.EInternalModuleType.Crew)\n    assert(sample.isCommander and sample.isGunner and sample.HitPoint == 10)\n    assert(U.Mathf.RoundToInt(50 * 0.25) == 12 and U.Mathf.RoundToInt(350 * 0.25) == 88)\nend)\nU.Object.DestroyImmediate(go)\nassert(ok, failure)\nreturn 'Duplicate names, role flags, and HP rounding verified'\n&quot;,
+        &quot;hitbox-naming-hp&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Duplicate names, role flags, and HP rounding verified&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="5-save-and-verify">5. Save and verify</h2>
 <p>Save the damage model prefab and check the <strong>HitBox</strong> and <strong>InternalModule</strong> fields. The recipe runs the same import processing in isolated prefabs. It verifies all three armor types and thickness values, plus the transmission's hit points and armor.</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
@@ -424,7 +675,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/en/mod/hitbox-naming-conventions.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/en/mod/hitbox-naming-conventions.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

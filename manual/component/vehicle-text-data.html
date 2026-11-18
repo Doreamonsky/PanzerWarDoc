@@ -402,6 +402,16 @@
 <td>仅在 <code>GetGroundType()</code> 返回 TrackController（<code>IsTrackController()</code> 为真）时显示。</td>
 </tr>
 <tr>
+<td><code>MechParameter</code></td>
+<td>机甲参数（移动）</td>
+<td>勾选 <code>isMech</code> 选择机甲控制器，可设置达到最大转向所需时间、步行特效和飞行参数。</td>
+</tr>
+<tr>
+<td><code>CarControllerParameter</code></td>
+<td>汽车参数（移动）</td>
+<td>旧数据字段仍可见，当前的 <code>GetGroundType()</code> 不读取它。轮式载具使用<a href="../mod/physics-wheels.html">车轮设置指南</a>的现行路径。</td>
+</tr>
+<tr>
 <td><code>MultiFireSystemData</code></td>
 <td>旧版多炮塔系统（弃用）</td>
 <td>旧版多炮塔列表，新载具不要新增。</td>
@@ -420,6 +430,13 @@
 </table>
 <p><code>PTCParameter</code> 的显示由 <code>GetGroundType()</code> 的判定顺序决定：<code>isStationary</code> → Stationary，<code>MechParameter.isMech</code> → MechController，<code>LuaVehicleControllerParameter.isLua</code> → Lua，<code>ShipControllerParameter.isShip</code> → Ship，其余情况才返回 TrackController。因此只把模型做成履带车，并不保证该字段出现。</p>
 <p><code>sharedGunData</code> 和 <code>sharedTurretData</code> 是共享引用：多个载具指向同一资产时，修改会影响所有引用者；没有共享引用时才分别使用 <code>TFParameter</code> 或 <code>MTParameter</code>。教学样例保留了 <code>sharedGunData</code> 引用，所以该样例中 <code>TFParameter</code> 不显示；这对只练习生命值与视野的步骤没有影响。</p>
+<h3 id="配置移动开火炮塔与自爆">配置移动、开火、炮塔与自爆</h3>
+<ul>
+<li>履带车在 <strong>移动</strong>中设置动力、前进和倒车速度，绑定 <strong>TankWheelCollider</strong> 与 <strong>Track Data</strong>，再配置悬挂。机甲可从<strong>机甲参数</strong>开始，绑定对应动画与组件。<a href="../mod/physics-wheels.html">车轮</a> · <a href="../mod/track-ik-suspension.html">履带悬挂</a> · <a href="../mod/create-mech.html">机甲</a></li>
+<li>在 <strong>开火</strong>中选择炮弹、弹药容量、装填时间和开火音效。初速在所选炮弹资产中设置，主炮参数另有后坐比例与散布。当多辆车使用同一门炮时，可把这组参数放在共享主炮资产。</li>
+<li>在 <strong>炮塔</strong>中设置回转范围、炮管升降速度、最大仰角和俯角。新副武器在 <strong>多炮塔</strong>页通过 <code>simpleVehicleFireSystemParameters</code> 设置节点和独立开火参数。维护旧载具时，参阅<a href="../mod/multi-turret-legacy.html">旧版多炮塔</a>的模型路径和偏移。</li>
+<li>配置游戏内自爆时，在 <strong>杂项</strong>的 <code>vehicleSelfExplosionParams</code> 增加一项，选择模型中的 <code>explosionPath</code>，再绑定 <code>explosionParam.explosionData</code> 对应的 <strong>SelfExplodeBullet</strong>。范围与伤害由该资源提供，触发方式由脚本决定。</li>
+</ul>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>MCP 可按路径查询高级参数和显示条件，等价于定位数据。截图窗口目前不能自动选择 Odin 标签页；若新增教程需要标签页截图，应由 Codex 补该能力后再重拍。这里不改高级参数。</p>
@@ -501,6 +518,33 @@
     &quot;arguments&quot;: {
       &quot;path&quot;: &quot;asset:${asset}/vehicleSelfExplosionParams&quot;
     }
+  },
+  {
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single)&quot;
+    },
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/MechParameter/timeToFullyTurn&quot;
+    }
+  },
+  {
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean)&quot;
+    },
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/CarControllerParameter/isCar&quot;
+    }
+  },
+  {
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;Count=|\\(VehicleSelfExplosionTextParameter&quot;
+    },
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/vehicleSelfExplosionParams&quot;
+    }
   }
 ]
 </code></pre>
@@ -572,7 +616,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/component/vehicle-text-data.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/component/vehicle-text-data.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

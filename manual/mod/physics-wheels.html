@@ -112,9 +112,12 @@
 }
 </code></pre>
 </details>
-<p>当前载具使用 <strong>TrackController</strong> 的轮式模式。旧工程中的 NPhysicCarController 选择分支已停用，移植时先核对模型的轮子节点和当前载具配置。</p>
+<p>当前载具使用 <strong>TrackController</strong> 的轮式模式。旧教程在车体根节点使用 <code>NPhysicCarController</code>、<code>Rigidbody</code>、<code>CenterOfMass</code> 和 <code>NPhysic</code>，并给每个轮子挂 <code>WheelController</code> 和摩擦预设。迁移旧工程时可以根据这些名字认出旧配置。当前模式由 <code>PTCParameter</code> 选择，车轮和摩擦使用下述轮碰撞器模板。</p>
 <h2 id="1-准备车体和轮子节点">1. 准备车体和轮子节点</h2>
-<p>以<a href="vehicle-basics.html">载具基础配置</a>为前提，将 <code>VehicleDynamics</code> 和 <code>Wheels</code> 放在同一个父节点下。本例车体 prefab 有刚体，<code>Wheels</code> 下建立 <code>FrontLeft</code>、<code>FrontRight</code>、<code>RearLeft</code>、<code>RearRight</code>。实际模型需要将节点放到对应车轴位置。</p>
+<ol>
+<li>按<a href="vehicle-basics.html">载具基础配置</a>准备车体。在显示模型根节点下建立 <code>Wheels</code>，下面放 <code>FrontLeft</code>、<code>FrontRight</code>、<code>RearLeft</code>、<code>RearRight</code>。从侧面和正面检查每个轮子原点在对应车轴中心，左右轮模型方向一致。构建后的 <code>VehicleDynamics</code> 和 <code>Wheels</code> 使用同一父节点，组装器会创建 <code>VehicleDynamics</code>。</li>
+<li>根节点已有 <strong>Rigidbody</strong> 时，打包器会用它。否则会根据载具参数生成。用 <strong>VehicleData → 编辑</strong>移动橙色的 <strong>Center Of Gravity</strong> 节点，在 Scene 视图按 <strong>K</strong> 保存重心调整。</li>
+</ol>
 <p>图中展示最终完成后的移动配置。<code>TankWheelCollider</code> 提供轮胎碰撞器参数，<code>isWheelVehicle</code> 打开轮式模式。</p>
 <p><img src="imgs/physics-wheels-root.zh-CN.png" alt="移动页签中的轮式模式和碰撞器模板，带编号高亮"></p>
 <details class="tutorial-mcp">
@@ -267,7 +270,7 @@
 </code></pre>
 </details>
 <h2 id="4-保存并核对">4. 保存并核对</h2>
-<p>保存车体与配置，检查模式、模板引用、每个轮子路径和前轮角度。本配方使用纯教学节点验证资产配置。完整车辆的悬挂、抓地力和转向需要在组装后试车。</p>
+<p>保存车体与配置并重打包。核对每个轮子的路径都指向一个车轴节点。用<a href="vehicle-playground.html">测试场</a>在平地试车，观察轮胎是否接地、前轮是否随输入转向、后轮是否保持方向，再测试有坡度的地面。方向不对时先查模型轴向和分组，抓地力异常时查当前组实际引用的 WheelCollider 模板。</p>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <pre><code class="lang-json">[
@@ -355,7 +358,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T090914Z/source/Docs/Manual/manual/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T100709Z/source/Docs/Manual/manual/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
