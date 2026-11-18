@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>26.1. Installation 安装 | Panzer War Document </title>
+      <title>安装 FMOD Studio | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="26.1. Installation 安装 | Panzer War Document ">
+      <meta name="title" content="安装 FMOD Studio | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,17 +77,34 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="261-installation-安装">26.1. Installation 安装</h1>
 
-<h1 id="1-download-下载">1. Download 下载</h1>
-<p>Download FMOD Studio 2.02.09 from the <a href="https://www.fmod.com/download">official FMOD download page</a>. Sign in or create an FMOD account to access downloads. This version is the one that matches the current Mod project — do not switch to an incompatible major version.</p>
-<p>请登录 <a href="https://www.fmod.com/download">FMOD 官方下载页</a>下载 FMOD Studio 2.02.09。此版本用于匹配当前模组工程，请勿切换至不兼容的大版本。</p>
-<p><img src="imgs/a7b78cf3f79f_1669542011344-848bc769-656d-4bdf-ae5a-fd13f46f08e7.png" alt=""></p>
-<h1 id="2-install-安装">2. Install 安装</h1>
-<p><img src="imgs/78c160e4398c_1669542299663-ad6f66a0-26d0-492e-afcd-3d982845c12d.png" alt=""></p>
-<p><img src="imgs/842f389cbc7a_1669542304196-4e9ac0a4-cf61-46e8-b312-f81ef9883407.png" alt=""></p>
-<p><img src="imgs/26ad2786b34b_1669542294018-18ba0504-a145-4135-a70a-f0cac39edc45.png" alt=""></p>
-<p><img src="imgs/b47a1a6ea1f7_1669542314905-6f3f32b5-d9cb-4627-9a39-b81f33d1872c.png" alt=""></p>
+<!-- Generated from tutorials/fmod-installation/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="安装-fmod-studio">安装 FMOD Studio</h1>
+<p><strong>中文</strong> | <a href="../en/mod/fmod-installation.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run fmod-installation
+</code></pre>
+<h2 id="1-下载与运行时匹配的版本">1. 下载与运行时匹配的版本</h2>
+<p>登录 <a href="https://www.fmod.com/download">FMOD 官方下载页</a>，下载适合系统的 FMOD Studio 安装包。当前 SDK 的 Windows FMOD 运行时使用 <code>2.02.30</code>，优先选同版本的 Studio。使用其他 <code>2.02.x</code> 补丁版时，按 <a href="https://www.fmod.com/docs/2.04/studio/fmod-studio-concepts.html">FMOD Bank 兼容规则</a> 核对。</p>
+<h2 id="2-确认版本">2. 确认版本</h2>
+<p>运行安装程序后打开 Studio，从 <strong>Help → About</strong> 查看版本。下方 Unity MCP 配方读取客户端运行时的版本。已有 Studio 并启用其脚本连接时，也可执行 FMOD MCP 的 <code>ping</code> 查询 Studio 版本。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:FMOD.VERSION/number&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 131632&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>接下来按 <a href="fmod-project-setup.html">FMOD 工程设置</a> 准备 Bank。</p>
 
 </article>
           </div>
@@ -97,7 +114,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/fmod-installation.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/fmod-installation.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

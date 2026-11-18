@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>3. 游戏运行日志显示 Displaying the Game Runtime Log | Panzer War Document </title>
+      <title>开启和读取运行日志 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="3. 游戏运行日志显示 Displaying the Game Runtime Log | Panzer War Document ">
+      <meta name="title" content="开启和读取运行日志 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,37 +77,113 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="3-游戏运行日志显示-displaying-the-game-runtime-log">3. 游戏运行日志显示 Displaying the Game Runtime Log</h1>
 
-<p>游戏日志是分析游戏卡死原因的主要手段之一。</p>
-<p>The game log is one of the main ways to analyze why the game freezes.</p>
-<h1 id="开启游戏日志-enabling-the-game-log">开启游戏日志 Enabling the Game Log</h1>
-<p>出于性能考虑，游戏默认关闭日志。若需要开启，请在<strong>模组文件夹</strong>中新建一个空文件并命名为 <code>log.debug</code>。请确认系统显示了文件扩展名，避免实际文件名变成 <code>log.debug.txt</code>。</p>
-<p>For performance reasons, the game disables logging by default. To enable it, create an empty file named <code>log.debug</code> in the <strong>Mods folder</strong>. Make sure your system is showing file extensions, so that the actual file name does not end up as <code>log.debug.txt</code>.</p>
-<p><img src="imgs/8adf4def56c5_1668869677465-5ec82ede-d643-4bd6-ba26-83d90b365cc6.png" alt=""></p>
-<p><strong>模组文件夹</strong>各平台路径</p>
-<p>Path of the <strong>Mods folder</strong> on each platform</p>
-<p>安卓决定版：/sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/</p>
-<p>Android Definitive Edition: /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/</p>
-<p>安卓普通版：/sdcard/Android/data/com.ShanghaiWindy.PanzerWarOpenSource/files/mods/</p>
-<p>Android Standard Edition: /sdcard/Android/data/com.ShanghaiWindy.PanzerWarOpenSource/files/mods/</p>
-<p>电脑普通版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar\Mods</p>
-<p>PC Standard Edition: SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar\Mods</p>
-<p>电脑决定版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\Mods</p>
-<p>PC Definitive Edition: SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\Mods</p>
-<p>电脑HDRP版：SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\Mods</p>
-<p>PC HDRP Edition: SteamLibrary\steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\Mods</p>
-<p>对于安卓设备，若已安装 adb 环境，也可以使用如下 adb 命令：</p>
-<p>On an Android device with adb installed, you can also use the following adb command:</p>
-<p>adb shell touch /sdcard/Android/data/com.ShanghaiWindy.PanzerWarDEM/files/mods/log.debug</p>
-<h1 id="调试日志显示-viewing-the-debug-log">调试日志显示 Viewing the Debug Log</h1>
-<p>随后，你可以在游戏内调试窗口中查看运行日志。使用方法：点击右上角的“自定义”，滚动至底部并开启调试日志。点击新出现的框即可查看报错信息。</p>
-<p>After that, you can see the runtime log in the in-game debug window. How to use it: click Customize in the upper-right corner, scroll down to the bottom, and turn on the debug log. Click the box that appears to view the errors.</p>
-<h1 id="电脑版日志文件-log-files-on-pc">电脑版日志文件 Log Files on PC</h1>
-<p>电脑普通版： C:\Users\你的用户名\AppData\LocalLow\ShanghaiWindy\PanzerWar\Player.log</p>
-<p>PC Standard Edition: C:\Users\YourUserName\AppData\LocalLow\ShanghaiWindy\PanzerWar\Player.log</p>
-<p>电脑决定版： C:\Users\你的用户名\AppData\LocalLow\ShanghaiWindy\PanzerWar-DE\Player.log</p>
-<p>PC Definitive Edition: C:\Users\YourUserName\AppData\LocalLow\ShanghaiWindy\PanzerWar-DE\Player.log</p>
+<!-- Generated from tutorials/runtime-log/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="开启和读取运行日志">开启和读取运行日志</h1>
+<p><strong>中文</strong> | <a href="../en/gameplay/runtime-log.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run runtime-log
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;marker&quot;: &quot;${fixture}/log.debug&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<h2 id="1-确认实际目录">1. 确认实际目录</h2>
+<p>连接到要排查的应用，读取 <code>Application.persistentDataPath</code>。这是发布版检查 <code>log.debug</code> 的目录。查看磁盘日志时，可用 <code>Application.consoleLogPath</code> 查询当前实例的日志文件路径。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.Application/persistentDataPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEngine.Application/consoleLogPath&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-开启发布版日志">2. 开启发布版日志</h2>
+<p>在持久化数据目录下创建 <code>log.debug</code>。文件可以为空，确保系统没有额外追加 <code>.txt</code> 后缀。重启游戏以重新检查标记。编辑器和调试构建默认开启日志。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>回放只在临时目录创建标记。发布版使用该应用自己的持久化数据目录。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${marker}&quot;,
+        &quot;&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${marker}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-读取日志">3. 读取日志</h2>
+<p>在连接的实例上调用 <code>logs</code>，读取调试缓冲区中的近期记录。向开发者提供问题发生时间和操作步骤。示例已验证路径查询、临时标记创建和 MCP 日志查询，发布版重启未实测。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;logs&quot;,
+    &quot;arguments&quot;: {
+      &quot;count&quot;: 20
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -117,7 +193,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/gameplay/runtime-log.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/gameplay/runtime-log.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

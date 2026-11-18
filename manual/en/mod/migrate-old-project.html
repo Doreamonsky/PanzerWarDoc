@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Migrate an Old Project to the New Mod SDK Project | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Migrate an Old Project to the New Mod SDK Project | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/migrate-old-project/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="migrate-an-old-project-to-the-new-mod-sdk-project">Migrate an Old Project to the New Mod SDK Project</h1>
+<p><a href="../../mod/migrate-old-project.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run migrate-old-project
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sourceAssetDir&quot;: &quot;${fixture}/.migration/legacy/Assets/MyMod&quot;,
+    &quot;backupAssetDir&quot;: &quot;${fixture}/.migration/backup/Assets/MyMod&quot;,
+    &quot;targetAssetDir&quot;: &quot;${fixture}/.migration/fresh/Assets/MyMod&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/.migration/legacy/Assets/MyMod&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/.migration/backup/Assets&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/.migration/fresh/Assets&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${sourceAssetDir}/Example.lua&quot;,
+          &quot;return { name = \&quot;Migration example\&quot; }\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${sourceAssetDir}/Example.lua.meta&quot;,
+          &quot;fileFormatVersion: 2\nguid: 8164f16a6ac0458b9dd5a79639ccb845\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${sourceAssetDir}.meta&quot;,
+          &quot;fileFormatVersion: 2\nguid: 95f38d6822b44d6ab0dcacb51e81752e\nfolderAsset: yes\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Extract the complete SDK into a <strong>new directory</strong>, then bring over your own assets and their <code>.meta</code> files.</p>
+<h2 id="1-back-up-the-old-project-and-open-the-new-one">1. Back up the old project and open the new one</h2>
+<p>Copy the whole old project or keep a repository snapshot. Download the SDK as described in <a href="get-started.html">project setup</a> and extract the full archive into a new directory, keeping <code>UnityProject</code> and <code>Packages</code> next to each other. Open the project with the Unity version named in <code>ProjectSettings/ProjectVersion.txt</code> and wait for import and compilation.</p>
+<h2 id="2-copy-your-assets">2. Copy your assets</h2>
+<p>Copy your own subfolders under <code>Assets</code> into the new project. Keep relative paths and the <code>.meta</code> files for both assets and folders. Unity uses their GUIDs to resolve asset references.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Copy and back up a scratch subtree, then read the asset and both asset and folder GUIDs back.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}&quot;,
+        &quot;${backupAssetDir}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}.meta&quot;,
+        &quot;${backupAssetDir}.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}&quot;,
+        &quot;${targetAssetDir}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}.meta&quot;,
+        &quot;${targetAssetDir}.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${targetAssetDir}/Example.lua&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;return { name = \&quot;Migration example\&quot; }&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${targetAssetDir}/Example.lua.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 8164f16a6ac0458b9dd5a79639ccb845&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${targetAssetDir}.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 95f38d6822b44d6ab0dcacb51e81752e&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}/Example.lua.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 8164f16a6ac0458b9dd5a79639ccb845&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${backupAssetDir}/Example.lua.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 8164f16a6ac0458b9dd5a79639ccb845&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-check-references-and-rebuild">3. Check references and rebuild</h2>
+<p>Open the migrated prefabs and configuration and check for missing scripts, materials, shaders and dependencies. Follow the <a href="multi-platform-build.html">platform build guide</a> to build and test each target. Keep the old project until the new one passes these checks.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Check the connected Editor. Verify references, compilation and packages in the new project separately.</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;editor_status&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;scriptCompilationFailed\&quot;: false&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;logs&quot;,
+    &quot;arguments&quot;: {
+      &quot;count&quot;: 10
+    }
+  }
+]
+</code></pre>
+</details>
+<p>Early releases used <code>Runtime-Supports</code> to identify old projects and upgraded them by replacing <code>MiddleLibLayer</code> in place. The <a href="mod-tools-changelog.html">mod tools changelog</a> describes that layout.</p>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/migrate-old-project.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

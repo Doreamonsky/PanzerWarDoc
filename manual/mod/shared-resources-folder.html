@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>0.3.3 Shared Resources 共享资源文件夹 | Panzer War Document </title>
+      <title>共享资源包目录 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="0.3.3 Shared Resources 共享资源文件夹 | Panzer War Document ">
+      <meta name="title" content="共享资源包目录 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,43 +77,109 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="033-shared-resources-共享资源文件夹">0.3.3 Shared Resources 共享资源文件夹</h1>
 
-<h1 id="introduction-概述">Introduction 概述</h1>
-<p>To simplify resource updates, VFX, FMOD configuration, and hitbox presets have been moved to shared resources. Old projects need to delete them and add the new package to the project.</p>
-<p>为了简化资源更新流程，特效、FMOD 配置以及伤害模型预设已移至共享资源。旧工程需从项目中移除这些资源，并添加新的包。</p>
-<h2 id="1-download-latest-project-下载最新工程">1. Download Latest Project 下载最新工程</h2>
-<p><a href="get-started.html">1. GetStarted 项目初始化</a></p>
-<p>Download the latest project; you can refer to this document.</p>
-<p>下载最新的工程。</p>
-<h1 id="section"><img src="imgs/290b662bcb31_1669740409603-9e2ca5c8-1df5-45bd-a3cf-62dffea9046b.png" alt=""></h1>
-<h2 id="2-open-your-old-project-打开你的旧工程">2. Open Your Old Project 打开你的旧工程</h2>
-<p><strong>Backup your project</strong>, then delete the following folders.</p>
-<p><strong>备份你的工程</strong>，然后删除以下文件夹。</p>
-<p>UnityProject\Assets\Res\VFX</p>
-<p>UnityProject\Assets\Res\Vehicles\Data\FMod</p>
-<p>UnityProject\Assets\Res\Vehicles\Ground\Data\VFX</p>
-<p>UnityProject\Assets\Res\InternalDamage\Preset</p>
-<p>And delete these four files.</p>
-<p>以及删除这四个文件。</p>
-<p><img src="imgs/72f96a405ff5_1674892227993-f89a1559-4330-45f1-9c54-a1a523bd97e6.png" alt=""></p>
-<h2 id="3-add-new-package-添加新包">3. Add new package 添加新包</h2>
-<p>Add the following package from local. It is located in the directory where you downloaded the project in Step 1.</p>
-<p>添加以下本地包。它位于你在步骤 1 中下载的工程目录中。</p>
-<h2 id="section-1"><img src="imgs/4cee8d048822_1669740659206-80a80517-a1e4-4287-83d5-7a9ce3cdd1cd.png" alt=""></h2>
-<p><img src="imgs/020603c210df_1669740945426-5c6ab13b-bc2e-43da-8d63-628be683799c.png" alt=""></p>
-<p><img src="imgs/ebf4a354fdb4_1674892193913-2e4cf64e-1330-47f7-acac-a00effc15a23.png" alt=""></p>
-<p>When the package is shown, it means the upgrade is finished.</p>
-<p>显示如下文字，即表示升级完成。</p>
-<p><img src="imgs/db2b56b05373_1674892149031-da948892-0759-4ae7-9e98-7622eaa09c10.png" alt=""></p>
-<h2 id="4-switch-picker-切换文件选择器">4. Switch picker 切换文件选择器</h2>
-<p>The classic picker does not support picking files from packages. You need to toggle to the new picker.</p>
-<p>默认的文件选择器不支持从包中选取文件。你需要切换到新的 picker。</p>
-<p><img src="imgs/73c375e87d77_1674893678873-b5c478e3-80fd-4449-8523-d1ee97159f48.png" alt=""></p>
-<p><img src="imgs/ea2a46b9699c_1674893692572-99545336-409e-4850-ab1d-fd7daeb5e6b3.png" alt=""></p>
-<p><img src="imgs/7ca9ed9de1d5_1674893742616-f3f41e3b-10f1-4012-b15d-0c1379462c65.png" alt=""></p>
-<p>When using the picker, toggle on Show Package results.</p>
-<p>在使用 Picker 时，勾选 Show Package results。</p>
+<!-- Generated from tutorials/shared-resources-folder/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="共享资源包目录">共享资源包目录</h1>
+<p><strong>中文</strong> | <a href="../en/mod/shared-resources-folder.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run shared-resources-folder
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sdkCheckout&quot;: &quot;../../../Panzer-War-Mod-SDK&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<h2 id="当前-sdk-布局">当前 SDK 布局</h2>
+<p>完整解压 SDK 后，Unity 工程位于 <code>UnityProject</code>，共享资源包位于旁边的 <code>Packages/Sdk/com.shanghaiwindy.middlesharedresources</code>。</p>
+<p>按 <a href="get-started.html">项目初始化</a> 解压完整 SDK，保留这两个同级目录。</p>
+<p>该包内已有以下目录，大小写与拼写保持不变：</p>
+<ul>
+<li><code>SharedVFX</code></li>
+<li><code>FMod</code></li>
+<li><code>SharedInternalDamage/Preset</code></li>
+</ul>
+<h2 id="依赖与包检查">依赖与包检查</h2>
+<ol>
+<li>确认 <code>UnityProject/Packages/manifest.json</code> 中已引用包 ID <code>com.shanghaiwindy.middlesharedresources</code>。</li>
+<li>确认实际包目录 <code>Packages/Sdk/com.shanghaiwindy.middlesharedresources</code> 存在。</li>
+<li>在 Unity 的 <strong>Window → Package Manager</strong> 中查看 <strong>Panzer War Middle Shared Resources</strong>。</li>
+</ol>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Packages/manifest.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;com.shanghaiwindy.middlesharedresources\&quot;: \&quot;file:../../Packages/Sdk/com.shanghaiwindy.middlesharedresources\&quot;&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/package.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;name\&quot;: \&quot;com.shanghaiwindy.middlesharedresources\&quot;&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/SharedVFX&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/FMod&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.shanghaiwindy.middlesharedresources/SharedInternalDamage/Preset&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="现有资源迁移与历史背景">现有资源迁移与历史背景</h2>
+<p>如果现有资源出现引用丢失，按 <a href="migrate-old-project.html">旧工程迁移</a> 检查资源和 GUID。</p>
+<p>早期版本把资源放在 <code>Assets/Res</code>，后来迁到了共享包。当前 SDK 的位置和依赖以上面的 manifest 为准。</p>
 
 </article>
           </div>
@@ -123,7 +189,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/shared-resources-folder.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/shared-resources-folder.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

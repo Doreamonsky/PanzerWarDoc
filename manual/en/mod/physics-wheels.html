@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Configure a Wheeled Vehicle | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Configure a Wheeled Vehicle | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/physics-wheels/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="configure-a-wheeled-vehicle">Configure a Wheeled Vehicle</h1>
+<p><a href="../../mod/physics-wheels.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run physics-wheels --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;vehicle&quot;: &quot;${fixture}/Tutorial_WheeledVehicle.asset&quot;,
+    &quot;model&quot;: &quot;${fixture}/Tutorial_WheeledBody.prefab&quot;,
+    &quot;collider&quot;: &quot;${fixture}/Tutorial_WheelCollider.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>Current vehicles use the wheeled mode of <strong>TrackController</strong>. The legacy NPhysicCarController selection branch is disabled. When migrating an older model, check its wheel nodes and its current vehicle configuration first.</p>
+<h2 id="1-prepare-the-hull-and-wheel-nodes">1. Prepare the hull and wheel nodes</h2>
+<p>Start from the <a href="../../mod/vehicle-basics.html">vehicle setup guide</a> and place <code>VehicleDynamics</code> and <code>Wheels</code> under the same parent. The teaching prefab has a Rigidbody and four children under <code>Wheels</code>: <code>FrontLeft</code>, <code>FrontRight</code>, <code>RearLeft</code> and <code>RearRight</code>. On your model, place them at the corresponding axle positions.</p>
+<p>The picture shows the finished Mobility configuration. <code>TankWheelCollider</code> supplies the tire collider parameters and <code>isWheelVehicle</code> enables wheeled mode.</p>
+<p><img src="../../mod/imgs/physics-wheels-root.en.png" alt="Wheel mode and collider template on the Mobility tab with numbered highlights"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Rigidbody&quot;,
+        &quot;children&quot;: [
+          &quot;VehicleDynamics&quot;,
+          &quot;Wheels/FrontLeft&quot;,
+          &quot;Wheels/FrontRight&quot;,
+          &quot;Wheels/RearLeft&quot;,
+          &quot;Wheels/RearRight&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_VehicleTextData.asset&quot;,
+        &quot;${vehicle}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/isStationary&quot;,
+      &quot;value&quot;: &quot;false&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-group-wheels-by-drive-and-steering">2. Group wheels by drive and steering</h2>
+<p>Open the Mobility tab of <strong>VehicleTextData</strong> and expand <code>PTCParameter</code>. Assign a template prefab with a Unity <code>WheelCollider</code> to <code>TankWheelCollider</code>. The runtime wheels copy its radius, suspension and friction settings. A group can override this with <code>steerData.wheelCollider</code>. An empty group template falls back to the main template.</p>
+<p>Add two entries to <code>steerableWheels</code>. All <code>wheels</code> paths are resolved relative to the parent of <code>VehicleDynamics</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Paths</th>
+<th><code>isMotor</code></th>
+<th><code>isSteerable</code></th>
+<th><code>maxSteerAngle</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Front</td>
+<td><code>Wheels/FrontLeft</code>, <code>Wheels/FrontRight</code></td>
+<td>true</td>
+<td>true</td>
+<td>28°</td>
+</tr>
+<tr>
+<td>Rear</td>
+<td><code>Wheels/RearLeft</code>, <code>Wheels/RearRight</code></td>
+<td>true</td>
+<td>false</td>
+<td>0°</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../mod/imgs/physics-wheels-wheels.en.png" alt="Front wheel paths, drive, steering and maximum steering angle with numbered highlights"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar_WheelCollider.prefab&quot;,
+        &quot;${collider}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/TankWheelCollider&quot;,
+      &quot;value&quot;: &quot;@asset:${collider}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/steerableWheels&quot;,
+      &quot;value&quot;: &quot;[{\&quot;wheels\&quot;: [\&quot;Wheels/FrontLeft\&quot;, \&quot;Wheels/FrontRight\&quot;], \&quot;steerData\&quot;: {\&quot;isMotor\&quot;: true, \&quot;isSteerable\&quot;: true, \&quot;maxSteerAngle\&quot;: 28}}, {\&quot;wheels\&quot;: [\&quot;Wheels/RearLeft\&quot;, \&quot;Wheels/RearRight\&quot;], \&quot;steerData\&quot;: {\&quot;isMotor\&quot;: true, \&quot;isSteerable\&quot;: false, \&quot;maxSteerAngle\&quot;: 0}}]&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-enable-wheeled-mode">3. Enable wheeled mode</h2>
+<p>Enable <code>isWheelVehicle</code> in the same Mobility tab. This example uses no track data, so <code>TrackData</code> stays empty. Keep Stationary Base off so the ordinary ground vehicle uses TrackController.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/isWheelVehicle&quot;,
+      &quot;value&quot;: &quot;true&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/PTCParameter/TrackData&quot;,
+      &quot;value&quot;: &quot;null&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-save-and-check">4. Save and check</h2>
+<p>Save the hull and configuration, then check the mode, collider template, wheel paths and front steering angle. The recipe verifies the editor assets with teaching nodes. Test suspension, grip and steering after assembling a complete vehicle.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetGroundType()&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;TrackController&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetEngineParam()/isWheelVehicle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetEngineParam()/TankWheelCollider/WheelCollider/radius&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single)&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicle}/GetEngineParam()/steerableWheels/0/steerData/maxSteerAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;28&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/FrontLeft/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FrontLeft&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/FrontRight/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;FrontRight&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/RearLeft/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;RearLeft&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/Wheels/RearRight/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;RearRight&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/physics-wheels.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

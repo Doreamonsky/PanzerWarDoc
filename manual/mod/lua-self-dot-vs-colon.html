@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.6.2 Lua 中 self. 与 self: 的区别 | Panzer War Document </title>
+      <title>Lua 方法的点号和冒号 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.6.2 Lua 中 self. 与 self: 的区别 | Panzer War Document ">
+      <meta name="title" content="Lua 方法的点号和冒号 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,46 +77,47 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2262-lua-中-self-与-self-的区别">22.6.2 Lua 中 self. 与 self: 的区别</h1>
 
-<p>在 Lua 编程语言中，<strong>self.</strong> 和 <strong>self:</strong> 的区别主要涉及方法调用及表中的函数。两者均用于访问表（table）中的字段和方法，但在参数传递方式上有所不同。</p>
-<p>In the Lua programming language, the difference between <strong>self.</strong> and <strong>self:</strong> mainly concerns method calls and functions stored in a table. Both are used to access the fields and methods of a table, but they differ in how arguments are passed.</p>
-<ol>
-<li><p><strong>self.</strong>：当使用 <strong>self.</strong> 调用表（table）中的函数时，必须显式地将表实例作为第一个参数传递。在这种情况下，函数的定义通常如下：</p>
-<p><strong>self.</strong>: when you call a function in a table with <strong>self.</strong>, you must pass the table instance explicitly as the first argument. In this case the function is usually defined like this:</p>
-</li>
-</ol>
-<pre><code class="lang-lua">local myTable = {}
+<!-- Generated from tutorials/lua-self-dot-vs-colon/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="lua-方法的点号和冒号">Lua 方法的点号和冒号</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-self-dot-vs-colon.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-self-dot-vs-colon
+</code></pre>
+<p><code>item:add(3)</code> 在参数前自动传入 <code>item</code>，等价于 <code>item.add(item, 3)</code>。声明 <code>function item:add(n)</code> 时，第一个形参自动命名为 <code>self</code>。不接收实例的普通函数可继续用点号调用。</p>
+<h2 id="在-lua-中比较两种调用">在 Lua 中比较两种调用</h2>
+<pre><code class="lang-lua">local item = { total = 2 }
 
-function myTable.func(self, arg1, arg2)
-    -- 在这里，self 是表的实例
-    -- arg1 和 arg2 是其他参数
+function item:add(n)
+    return self.total + n
 end
-</code></pre>
-<p>调用该函数时，必须显式提供表实例：</p>
-<p>When calling this function, you must provide the table instance explicitly:</p>
-<pre><code class="lang-lua">local instance = myTable
-instance.func(instance, arg1, arg2)
-</code></pre>
-<ol start="2">
-<li><p><strong>self:</strong>：使用 <strong>self:</strong> 调用表中的函数时，Lua 会隐式地将表实例作为第一个参数传递给函数。在这种情况下，函数的定义通常如下：</p>
-<p><strong>self:</strong>: when you call a function in a table with <strong>self:</strong>, Lua implicitly passes the table instance to the function as the first argument. In this case the function is usually defined like this:</p>
-</li>
-</ol>
-<pre><code class="lang-lua">local myTable = {}
 
-function myTable:func(arg1, arg2)
-    -- 在这里，self 是表的实例，已隐式地传递
-    -- arg1 和 arg2 是其他参数
-end
+assert(item:add(3) == 5)
+assert(item.add(item, 3) == 5)
+assert(math.abs(-3) == 3)
 </code></pre>
-<p>调用该函数时，无需显式提供表实例：</p>
-<p>When calling this function, you do not need to provide the table instance explicitly:</p>
-<pre><code class="lang-lua">local instance = myTable
-instance:func(arg1, arg2)
+<p>若写成 <code>item.add(3)</code>，<code>3</code> 会被当作 <code>self</code>，<code>n</code> 则没有实参。需要把方法传给事件时，可参阅<a href="lua-callbacks-and-self.html">在 Lua 回调中保留 self</a>。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local item = { total = 2 }\n\nfunction item:add(n)\n    return self.total + n\nend\n\nassert(item:add(3) == 5)\nassert(item.add(item, 3) == 5)\nassert(math.abs(-3) == 3)\nreturn \&quot;Lua method example OK\&quot;\n&quot;,
+        &quot;manual-dot-colon&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua method example OK&quot;
+    }
+  }
+]
 </code></pre>
-<p>总结：<strong>self.</strong> 和 <strong>self:</strong> 的主要区别在于表实例的传递方式。使用 <strong>self.</strong> 时，需显式地将实例作为第一个参数传递；而使用 <strong>self:</strong> 时，表实例会被隐式传递。在面向对象编程中，<strong>self:</strong> 通常更为便捷，因为它能简化代码。</p>
-<p>Summary: the main difference between <strong>self.</strong> and <strong>self:</strong> is how the table instance is passed. With <strong>self.</strong> you must pass the instance explicitly as the first argument; with <strong>self:</strong> the table instance is passed implicitly. In object-oriented programming <strong>self:</strong> is usually more convenient, because it simplifies the code.</p>
+</details>
 
 </article>
           </div>
@@ -126,7 +127,7 @@ instance:func(arg1, arg2)
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-self-dot-vs-colon.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-self-dot-vs-colon.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

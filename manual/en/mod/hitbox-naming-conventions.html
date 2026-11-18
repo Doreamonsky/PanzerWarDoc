@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Damage model naming rules | Panzer War Document </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Damage model naming rules | Panzer War Document ">
+    
+    
+      <link rel="shortcut icon" href="../../../favicon.ico">
+      <link rel="stylesheet" href="../../../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../../../styles/docfx.css">
+      <link rel="stylesheet" href="../../../styles/main.css">
+      <meta property="docfx:navrel" content="../../../toc.html">
+      <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<!-- Generated from tutorials/hitbox-naming-conventions/en.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../../tools/tutorials.css">
+<h1 id="damage-model-naming-rules">Damage model naming rules</h1>
+<p><a href="../../mod/hitbox-naming-conventions.html">中文</a> | <strong>English</strong></p>
+<p>Run this command at the repository root to replay the examples through the local Unity MCP. The command also captures screenshots in both languages.</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run hitbox-naming-conventions --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<p>Prepare the teaching sample. The recipe provides <code>${variables}</code>.</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;external&quot;: &quot;${fixture}/Tutorial_ExternalSource.prefab&quot;,
+    &quot;internal&quot;: &quot;${fixture}/Tutorial_InternalSource.prefab&quot;,
+    &quot;armor&quot;: &quot;${fixture}/Tutorial_ImportedArmor.prefab&quot;,
+    &quot;module&quot;: &quot;${fixture}/Tutorial_ImportedModule.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>The damage model editor reads armor and internal module settings from mesh node names. The examples below apply to the vehicle's <strong>VehicleHitBox</strong> asset.</p>
+<h2 id="1-prepare-the-source-models">1. Prepare the source models</h2>
+<p>Import the external armor and internal modules into Unity as separate models. Rename the mesh nodes, then assign each model to <code>ExternalArmorModel</code> or <code>InternalModuleModel</code>. The importer processes nodes with a <strong>MeshFilter</strong>. The teaching recipe creates two separate source models.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${external}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Transform&quot;,
+        &quot;children&quot;: [
+          &quot;Plate_100&quot;,
+          &quot;Plate_100_Inter&quot;,
+          &quot;Plate_100_React&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${external}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;,
+        &quot;child&quot;: &quot;Plate_100&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Mesh&quot;,
+            &quot;asset&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Square.obj&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Mesh&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${external}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;,
+        &quot;child&quot;: &quot;Plate_100_Inter&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Mesh&quot;,
+            &quot;asset&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Square.obj&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Mesh&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${external}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;,
+        &quot;child&quot;: &quot;Plate_100_React&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Mesh&quot;,
+            &quot;asset&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Square.obj&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Mesh&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${internal}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;UnityEngine.Transform&quot;,
+        &quot;children&quot;: [
+          &quot;Transmission_120_15&quot;
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${internal}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;UnityEngine.MeshFilter&quot;,
+        &quot;child&quot;: &quot;Transmission_120_15&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;m_Mesh&quot;,
+            &quot;asset&quot;: &quot;Packages/com.shanghaiwindy.coreresources/Light/AuthoringSamples/Square.obj&quot;,
+            &quot;type&quot;: &quot;UnityEngine.Mesh&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-generate-external-armor">2. Generate external armor</h2>
+<p>The second segment is the integer armor thickness. Use <code>Inter</code> for spaced armor and <code>React</code> for reactive armor.</p>
+<table>
+<thead>
+<tr>
+<th>Node name</th>
+<th>Armor type</th>
+<th>Thickness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Plate_100</code></td>
+<td>Normal</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>Plate_100_Inter</code></td>
+<td>Intermittent</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>Plate_100_React</code></td>
+<td>Reactive</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<p>In the damage model editor, click <strong>Generate External Armor</strong>. Move the generated armor under the corresponding parent nodes. See <a href="reactive-armor.html">reactive armor</a> for the extra settings on a reactive plate.</p>
+<p><img src="../../mod/imgs/hitbox-naming-conventions-armor.en.png" alt="Armor type and thickness imported from Plate_100_Inter"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.VehicleHitBoxModelImport/ImportPrefab&quot;,
+      &quot;args&quot;: [
+        &quot;${external}&quot;,
+        &quot;${armor}&quot;,
+        &quot;false&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-generate-internal-modules">3. Generate internal modules</h2>
+<p>In <code>Transmission_120_15</code>, the segments identify the module type, hit points and module armor in that order. Type names are case-sensitive. The importer rounds the two numeric values up to integers. Include all three segments.</p>
+<p>Click <strong>Generate Internal Armor</strong>, then move the generated modules under their corresponding parents. The numbers in the screenshot match the segments of the node name.</p>
+<p><img src="../../mod/imgs/hitbox-naming-conventions-module.en.png" alt="Internal module fields imported from Transmission_120_15"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Editor.VehicleHitBoxModelImport/ImportPrefab&quot;,
+      &quot;args&quot;: [
+        &quot;${internal}&quot;,
+        &quot;${module}&quot;,
+        &quot;true&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-save-and-verify">4. Save and verify</h2>
+<p>Save the damage model prefab and check the <strong>HitBox</strong> and <strong>InternalModule</strong> fields. The recipe runs the same import processing in isolated prefabs. It verifies all three armor types and thickness values, plus the transmission's hit points and armor.</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/Plate_100/HitBox/Armor&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 100&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/Plate_100_Inter/HitBox/Armor&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 100&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/Plate_100_React/HitBox/Armor&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 100&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/Plate_100/HitBox/hitBoxType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Simple&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/Plate_100_Inter/HitBox/hitBoxType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;IntermittentArmor&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${armor}/Plate_100_React/HitBox/hitBoxType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ReactiveArmor&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${module}/Transmission_120_15/InternalModule/moduleType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Transmission&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${module}/Transmission_120_15/InternalModule/HitPoint&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 120&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${module}/Transmission_120_15/InternalModule/internalArmor&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Int32) 15&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/en/mod/hitbox-naming-conventions.md/#L1" class="contribution-link">Edit this page</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Panzer War Document
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

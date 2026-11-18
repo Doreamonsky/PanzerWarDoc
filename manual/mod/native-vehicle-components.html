@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.14 Native Component 原生载具组件 | Panzer War Document </title>
+      <title>配置外置弹药模型和防浪板 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.14 Native Component 原生载具组件 | Panzer War Document ">
+      <meta name="title" content="配置外置弹药模型和防浪板 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,15 +77,664 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0214-native-component-原生载具组件">02.14 Native Component 原生载具组件</h1>
 
-<h1 id="native-component">Native component</h1>
-<p>After adjusting the native vehicle parameters, remember to repackage the vehicle so that the latest settings take effect.</p>
-<p>调整完原生载具参数后，请记得重新打包载具，以使最新设置的参数生效。</p>
-<h2 id="external-shell-model-display-control-外置炮弹模型显示控制">External Shell Model Display Control 外置炮弹模型显示控制</h2>
-<p><img src="imgs/d21a564e4e63_1736320485805-63eda032-6f8d-423c-9b01-52ab8dc1f95f.png" alt=""></p>
-<h2 id="wave-shield-防浪板">Wave Shield 防浪板</h2>
-<p><img src="imgs/31e34514bd58_1736320570805-39fe3902-a45d-4f53-8505-d7548a167d63.png" alt=""></p>
+<!-- Generated from tutorials/native-vehicle-components/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置外置弹药模型和防浪板">配置外置弹药模型和防浪板</h1>
+<p><strong>中文</strong> | <a href="../en/mod/native-vehicle-components.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run native-vehicle-components --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;model&quot;: &quot;${fixture}/Tutorial_NativeAttachments.prefab&quot;,
+    &quot;source&quot;: &quot;Packages/com.shanghaiwindy.coreresources/BuiltInVehicles/PatriotRadar/BuiltIn-Patriot-Radar&quot;,
+    &quot;vehicleData&quot;: &quot;${fixture}/Tutorial_NativeVehicleData.asset&quot;,
+    &quot;vehicleText&quot;: &quot;${fixture}/Tutorial_NativeText.asset&quot;,
+    &quot;vehicleInfo&quot;: &quot;${fixture}/Tutorial_NativeVehicleInfo.asset&quot;,
+    &quot;packModel&quot;: &quot;${fixture}/Tutorial_NativePackModel.prefab&quot;,
+    &quot;vehicleName&quot;: &quot;Docs-Native-Attachments-${runId}&quot;,
+    &quot;vehicleGuid&quot;: &quot;f3d9a1454a994efabda0${runId}&quot;,
+    &quot;cooked&quot;: &quot;${fixture}/f3d9a1454a994efabda0${runId}_pre.prefab&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;66dc2d51-e05e-4e6d-9afd-7cc47e11a007&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>在载具的模型 prefab 中，使用 <strong>VehicleAttachmentMonoComponent</strong> 的通用挂载槽配置外置弹药模型和防浪板。载具打包时会从模型层级收集这些挂载。</p>
+<h2 id="1-连接外置弹药模型">1. 连接外置弹药模型</h2>
+<p>在模型 prefab 内添加一个 <strong>VehicleAttachmentMonoComponent</strong>，将 <code>Attachment Slot Type</code> 保持为 <code>Universal</code>。展开「插槽」，在类型下拉菜单中选择 <strong>VehicleAmmoVisualAttachment</strong>。</p>
+<ol>
+<li>将「弹药可视化类型」设为 <code>Show Hide</code>。</li>
+<li>将「连接炮管唯一 ID」填为对应火炮模块的 GUID。图中是教学占位值。</li>
+<li>把 prefab 中的外置弹药物体拖到「显示模型」。本例物体为 <code>ExternalShell</code>。</li>
+</ol>
+<p>如需让模型跟随发射出的弹体，可选 <code>Follow Bullet</code>。此时才会显示跟随偏移和指定开火点的字段。</p>
+<p><img src="imgs/native-vehicle-components-ammo.zh-CN.png" alt="弹药外观类型、模块 GUID 与显示模型"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;child&quot;: &quot;AmmoVisual&quot;,
+        &quot;children&quot;: [
+          &quot;AmmoVisual&quot;,
+          &quot;ExternalShell&quot;,
+          &quot;WaveShield&quot;,
+          &quot;ShieldPivot&quot;
+        ],
+        &quot;managedReferences&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.VehicleAmmoVisualAttachment&quot;,
+            &quot;values&quot;: {
+              &quot;ammoVisualType&quot;: 0,
+              &quot;connectGunGuid&quot;: &quot;00000000000000000000000000000001&quot;
+            }
+          }
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment.visualModel&quot;,
+            &quot;child&quot;: &quot;ExternalShell&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置防浪板">2. 设置防浪板</h2>
+<p>在模型内另加一个通用挂载，选择 <strong>VehicleWaveShieldAttachment</strong>。将防浪板的转轴指定给「防浪板」字段。本例使用 <code>ShieldPivot</code>，将「默认角度」设为 0°、「激活角度」设为 35°、「角速度」设为每秒 30°。</p>
+<p>在场景视图可以通过红线和黄线检查两种姿态。船只控制器的启用状态决定运行时防浪板转向哪个姿态。</p>
+<p><img src="imgs/native-vehicle-components-shield.zh-CN.png" alt="防浪板转轴与角度"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${model}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;child&quot;: &quot;WaveShield&quot;,
+        &quot;managedReferences&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.VehicleWaveShieldAttachment&quot;,
+            &quot;values&quot;: {
+              &quot;defaultAngle&quot;: 0,
+              &quot;activateAngle&quot;: 35,
+              &quot;angleSpeed&quot;: 30
+            }
+          }
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment.waveShieldTransform&quot;,
+            &quot;child&quot;: &quot;ShieldPivot&quot;,
+            &quot;component&quot;: &quot;UnityEngine.Transform&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-保存并检查模型">3. 保存并检查模型</h2>
+<p>确认两个挂载的数据类型和模型引用已保存。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/AmmoVisual/VehicleAttachmentMonoComponent/slot/attachment/connectGunGuid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;00000000000000000000000000000001&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/AmmoVisual/VehicleAttachmentMonoComponent/slot/attachment/visualModel/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ExternalShell&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/WaveShield/VehicleAttachmentMonoComponent/slot/attachment/waveShieldTransform/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ShieldPivot&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${model}/WaveShield/VehicleAttachmentMonoComponent/slot/attachment/activateAngle&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;35&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="4-重新生成载具并打包">4. 重新生成载具并打包</h2>
+<p>在 <strong>VehicleData</strong> 中确认 <code>MainModel</code> 引用了修改后的模型，再重新生成打包 prefab。检查防浪板挂载是否生成了 <code>DefaultAngle</code> 和 <code>ActivateAngle</code> 两个姿态节点，随后用链接了这辆车 <strong>VehicleInfo</strong> 的构建管线生成模组包。数据和管线的创建见<a href="vehicle-basics.html">载具基础配置</a>。</p>
+<p>配方在完整载具副本上核对姿态节点、外置弹药引用及 Windows 教学包。游戏中的动作与显示效果留待实机查看。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleData.asset&quot;,
+        &quot;${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_VehicleTextData.asset&quot;,
+        &quot;${vehicleText}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}.asset&quot;,
+        &quot;${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${source}_Model.prefab&quot;,
+        &quot;${packModel}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/AssetName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/vehicleName&quot;,
+      &quot;value&quot;: &quot;${vehicleName}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/assetGuid&quot;,
+      &quot;value&quot;: &quot;${vehicleGuid}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleInfo}/cookedDirectory&quot;,
+      &quot;value&quot;: &quot;${fixture}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/vehicleTextData&quot;,
+      &quot;value&quot;: &quot;@asset:${vehicleText}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/modelData/MainModel&quot;,
+      &quot;value&quot;: &quot;@asset:${packModel}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleData}/cookedLocation&quot;,
+      &quot;value&quot;: &quot;NextToData&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${vehicleText}/tankModuleGuid/mainFireGunGuid/guid&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String)&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;,
+    &quot;capture&quot;: {
+      &quot;gunGuid&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${packModel}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;child&quot;: &quot;AmmoVisual&quot;,
+        &quot;children&quot;: [
+          &quot;AmmoVisual&quot;,
+          &quot;ExternalShell&quot;,
+          &quot;WaveShield&quot;,
+          &quot;ShieldPivot&quot;
+        ],
+        &quot;managedReferences&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.VehicleAmmoVisualAttachment&quot;,
+            &quot;values&quot;: {
+              &quot;ammoVisualType&quot;: 0,
+              &quot;connectGunGuid&quot;: &quot;${gunGuid}&quot;
+            }
+          }
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment.visualModel&quot;,
+            &quot;child&quot;: &quot;ExternalShell&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${packModel}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.VehicleAttachmentMonoComponent&quot;,
+        &quot;child&quot;: &quot;WaveShield&quot;,
+        &quot;managedReferences&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.VehicleWaveShieldAttachment&quot;,
+            &quot;values&quot;: {
+              &quot;defaultAngle&quot;: 0,
+              &quot;activateAngle&quot;: 35,
+              &quot;angleSpeed&quot;: 30
+            }
+          }
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;slot.attachment.waveShieldTransform&quot;,
+            &quot;child&quot;: &quot;ShieldPivot&quot;,
+            &quot;component&quot;: &quot;UnityEngine.Transform&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.PackUtil/Pack&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleData}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/WaveShield/VehicleAttachmentMonoComponent/slot/attachment/defaultTrans/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DefaultAngle&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/WaveShield/VehicleAttachmentMonoComponent/slot/attachment/activateTrans/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ActivateAngle&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${cooked}/AmmoVisual/VehicleAttachmentMonoComponent/slot/attachment/visualModel/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ExternalShell&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${vehicleInfo}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;clientextramesh&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;,
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;,
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -95,7 +744,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/native-vehicle-components.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/native-vehicle-components.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

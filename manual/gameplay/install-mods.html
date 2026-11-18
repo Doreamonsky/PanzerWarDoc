@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>0. 模组安装教程 Mod Installation Tutorial | Panzer War Document </title>
+      <title>安装模组 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="0. 模组安装教程 Mod Installation Tutorial | Panzer War Document ">
+      <meta name="title" content="安装模组 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,43 +77,328 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0-模组安装教程-mod-installation-tutorial">0. 模组安装教程 Mod Installation Tutorial</h1>
 
-<p>Note: When downloading files, be mindful of your operating platform and distinguish between the mod packages for the iOS, Android, and Windows platforms!</p>
-<p>注意：下载文件时，请注意你的运行平台，<strong>注意区分 iOS、Android、Windows 平台的模组包！</strong></p>
-<h1 id="installation-安装方式">Installation 安装方式</h1>
-<h2 id="android-安卓平台">Android 安卓平台</h2>
-<p>After downloading the Mod file, select our game as the application to open it.</p>
-<p>模组文件下载后，请选择我们的游戏作为打开方式。</p>
-<p><img src="imgs/fe3b59a77e71_1725260203484-98b9cfd1-b706-441f-9d73-ad4e3c02ad55.jpeg" alt=""></p>
-<p>How to install Mods in bulk:</p>
-<p>批量安装模组的方式：</p>
-<p><strong>Note: do not select too many Mods at once. Select a dozen or so, then launch the game once, so that the Mods install correctly.</strong></p>
-<p><strong>注意：一次不要选择太多模组，选择十多个后启动一次游戏，以确保模组正常安装。</strong></p>
-<p><img src="imgs/47179d7af226_1725271423185-44e00ea4-b220-4efa-9968-63a6c9c67581.png" alt=""></p>
-<p><img src="imgs/b0b7fe38a54f_1725271439101-ede0b087-797a-44af-80f6-bd615b89f487.png" alt=""></p>
-<p><img src="imgs/85a17f8906b6_1725271498237-f48b27ba-b449-4a7a-9d07-1da5e281d3b2.png" alt=""></p>
-<p><img src="imgs/69b5cc5b6bf3_1725271482023-7bb7428b-77ac-4f5c-a03a-1ba5704c4c95.png" alt=""></p>
-<h2 id="windows-电脑平台">Windows 电脑平台</h2>
-<p>Move the Mod file to one of the following locations:</p>
-<ul>
-<li>Standard Edition: <code>steamapps\common\PanzerWar-DE\dlc\PanzerWar\mods\Installs</code></li>
-<li>Definitive Edition: <code>steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\mods\Installs</code></li>
-<li>HD Test Version: <code>steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\mods\Installs</code></li>
-</ul>
-<p>Then, start the game.</p>
-<p>将模组文件移动至以下位置之一：</p>
-<p>普通版：steamapps\common\PanzerWar-DE\dlc\PanzerWar\Mods\Installs</p>
-<p>或决定版：steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE\Mods\Installs</p>
-<p>或高清测试版：steamapps\common\PanzerWar-DE\dlc\PanzerWar-DE-HDRP\Mods\Installs</p>
-<p>然后启动游戏即可。</p>
-<p><img src="imgs/e5017ab8dae7_1725259605827-65787d1a-b35b-43ac-ad15-5772ad013911.png" alt=""></p>
-<h2 id="ios-苹果平台">iOS 苹果平台</h2>
-<p>In your system's file manager, manually move the downloaded mod package into the <code>mods/Installs</code> directory inside our game's folder.</p>
-<p>For the Definitive Edition, the folder is named &quot;Panzer War,&quot; and for the Standard Edition, it's named &quot;WarOfTanks Arcade.&quot;</p>
-<p>在系统的文件管理器中，将下载的模组包手动移至游戏目录下的 <code>mods/Installs</code> 目录中。</p>
-<p>决定版的文件夹名为 &quot;Panzer War&quot;，普通版的文件夹名为 &quot;WarOfTanks Arcade&quot;。</p>
-<p><img src="imgs/1d2bc28b22ab_1725259483898-fa9d82d1-9d77-4b35-95ee-0eff6799404f.png" alt=""><img src="imgs/08fe8685384a_1725259491244-8b55e13d-9df0-4478-a572-a689d1928d03.png" alt=""></p>
+<!-- Generated from tutorials/install-mods/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="安装模组">安装模组</h1>
+<p><strong>中文</strong> | <a href="../en/gameplay/install-mods.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run install-mods
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_VehicleQueue.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;66dc2d51-e05e-4e6d-9afd-7cc47e11a00a&quot;,
+    &quot;staged&quot;: &quot;${fixture}/mods/Installs/Tutorial.modpack&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>先下载与当前运行平台匹配的 <code>.modpack</code>，再把文件放入游戏的安装队列。Windows、Android 和 iOS 各用对应平台构建的包。</p>
+<h2 id="1-找到模组目录">1. 找到模组目录</h2>
+<p>Windows 使用实际启动的游戏可执行文件旁的 <code>mods</code> 目录。Android 和 iOS 使用游戏持久化数据目录下的 <code>mods</code>。在 iOS 的「文件」应用中，打开当前游戏对应的目录。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.ResourceManager.ResourceConsts/GetModDir()/FullName&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;mods&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-暂存安装包">2. 暂存安装包</h2>
+<p>在 <code>mods</code> 下找到或创建 <code>Installs</code>。将完整的 <code>.modpack</code> 直接复制进去，保留原扩展名和压缩包结构。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>先生成可校验的 Windows 教学包，再复制进临时 mods/Installs。无需重建已经下载的模组包。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/preset-vehicle-queue/Tutorial_VehicleQueue.asset&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;vehiclequeue\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${fixture}/mods/Installs&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DirectoryInfo&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;,
+        &quot;${staged}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-重启并检查">3. 重启并检查</h2>
+<p>重启游戏，启动流程会扫描 <code>Installs</code> 顶层的安装包。检查模组内容是否可用。如果没出现，先核对平台、文件位置和包是否完整，再查阅<a href="runtime-log.html">运行日志</a>。教学回放已验证 Windows 模组包构建与暂存。实际安装由游戏启动流程完成。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Exists&quot;,
+      &quot;args&quot;: [
+        &quot;${staged}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -123,7 +408,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/gameplay/install-mods.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/gameplay/install-mods.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

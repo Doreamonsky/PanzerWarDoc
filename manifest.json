@@ -10,7 +10,7 @@
     "baseUrl": "https://doc.game.windyverse.net/",
     "changefreq": "weekly"
   },
-  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T021140Z/source/Docs/Manual",
+  "source_base_path": "D:/Projects/Panzer-War-Client/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -1996,6 +1996,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/component/built-in-components.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/component/built-in-components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/component/fmod-play-component.md",
       "output": {
         ".html": {
@@ -2010,6 +2020,116 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/component/vehicle-text-data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/config-files.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/config-files.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/crash-and-launch-problems.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/crash-and-launch-problems.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/definitive-edition-troubleshooting.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/definitive-edition-troubleshooting.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/game-debugging-tools.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/game-debugging-tools.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/install-mods.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/install-mods.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/mod-changelog.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/mod-changelog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/gameplay/runtime-log.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/gameplay/runtime-log.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/amphibious-vehicles.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/amphibious-vehicles.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/artillery-skill.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/artillery-skill.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/blender-axis-fix.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/blender-axis-fix.html"
         }
       },
       "version": ""
@@ -2036,6 +2156,296 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/fmod-installation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/fmod-installation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/fmod-project-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/fmod-project-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/get-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/get-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/hitbox-naming-conventions.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/hitbox-naming-conventions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/install-git.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/install-git.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/install-tortoisegit.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/install-tortoisegit.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-engine-gear.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-engine-gear.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-api2-module-trigger.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-api2-module-trigger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-behavior-mono.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-behavior-mono.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-callbacks-and-self.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-callbacks-and-self.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-callbacks.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-callbacks.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-hello-world.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-hello-world.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-knowledge-base.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-knowledge-base.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-lessons.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-lessons.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-properties.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-properties.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-self-dot-vs-colon.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-self-dot-vs-colon.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/lua-vehicle-init-timing.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/lua-vehicle-init-timing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/material-component.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/material-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/migrate-old-project.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/migrate-old-project.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/mod-env-setup-hub.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/mod-env-setup-hub.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/mod-env-setup.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/mod-env-setup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/mod-tools-changelog.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/mod-tools-changelog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/modding-index.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/modding-index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/modding-issue-archive.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/modding-issue-archive.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/model-not-displaying.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/model-not-displaying.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/multi-platform-build.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/multi-platform-build.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/native-vehicle-components.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/native-vehicle-components.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/new-water-integration.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/new-water-integration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/physics-wheels.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/physics-wheels.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/preset-vehicle-queue.md",
       "output": {
         ".html": {
@@ -2046,10 +2456,120 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/project-download-links.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/project-download-links.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/reactive-armor.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/reactive-armor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/set-steam-game-folder.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/set-steam-game-folder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/shared-resources-folder.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/shared-resources-folder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/shield-skill.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/shield-skill.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/spg-td-hydraulic-suspension.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/spg-td-hydraulic-suspension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/tank-shell-ejection-animation.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/tank-shell-ejection-animation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/track-ik-suspension.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/track-ik-suspension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/umodpack-upgrade-notice.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/umodpack-upgrade-notice.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/unity-engine-requirements.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/unity-engine-requirements.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "manual/en/mod/vehicle-buff-config.md",
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/vehicle-buff-config.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/vehicle-dev-qa.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/vehicle-dev-qa.html"
         }
       },
       "version": ""
@@ -2070,6 +2590,26 @@
       "output": {
         ".html": {
           "relative_path": "manual/en/mod/vehicle-light-component.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/voice-pack.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/voice-pack.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "manual/en/mod/weapon-support-skill.md",
+      "output": {
+        ".html": {
+          "relative_path": "manual/en/mod/weapon-support-skill.html"
         }
       },
       "version": ""
@@ -6669,6 +7209,86 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/amphibious-vehicles-mobility.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/amphibious-vehicles-mobility.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/amphibious-vehicles-mobility.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/amphibious-vehicles-mobility.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/amphibious-vehicles-water.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/amphibious-vehicles-water.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/amphibious-vehicles-water.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/amphibious-vehicles-water.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/artillery-skill-common.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/artillery-skill-common.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/artillery-skill-common.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/artillery-skill-common.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/artillery-skill-effect.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/artillery-skill-effect.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/artillery-skill-effect.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/artillery-skill-effect.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/b05f1d1d4091_1677680425323-765a3691-42b5-4e90-ae4a-069261bedfaf.png",
       "output": {
         "resource": {
@@ -8859,6 +9479,246 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/hitbox-naming-conventions-armor.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/hitbox-naming-conventions-armor.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/hitbox-naming-conventions-armor.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/hitbox-naming-conventions-armor.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/hitbox-naming-conventions-module.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/hitbox-naming-conventions-module.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/hitbox-naming-conventions-module.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/hitbox-naming-conventions-module.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-behavior-mono-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-behavior-mono-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-behavior-mono-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-behavior-mono-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-callbacks-and-self-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-callbacks-and-self-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-callbacks-and-self-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-callbacks-and-self-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-hello-world-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-hello-world-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-hello-world-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-hello-world-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-properties-property.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-properties-property.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/lua-properties-property.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/lua-properties-property.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/material-component-component.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/material-component-component.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/material-component-component.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/material-component-component.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/material-component-data.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/material-component-data.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/material-component-data.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/material-component-data.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/native-vehicle-components-ammo.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/native-vehicle-components-ammo.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/native-vehicle-components-ammo.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/native-vehicle-components-ammo.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/native-vehicle-components-shield.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/native-vehicle-components-shield.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/native-vehicle-components-shield.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/native-vehicle-components-shield.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/physics-wheels-root.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/physics-wheels-root.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/physics-wheels-root.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/physics-wheels-root.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/physics-wheels-wheels.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/physics-wheels-wheels.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/physics-wheels-wheels.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/physics-wheels-wheels.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "manual/mod/imgs/preset-vehicle-queue-identity.en.png",
       "output": {
         "resource": {
@@ -8893,6 +9753,206 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/preset-vehicle-queue-vehicles.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/reactive-armor-armor.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/reactive-armor-armor.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/reactive-armor-armor.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/reactive-armor-armor.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/set-steam-game-folder-steam-path.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/set-steam-game-folder-steam-path.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/set-steam-game-folder-steam-path.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/set-steam-game-folder-steam-path.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/shield-skill-effect.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/shield-skill-effect.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/shield-skill-effect.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/shield-skill-effect.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/shield-skill-model.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/shield-skill-model.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/shield-skill-model.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/shield-skill-model.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-assignment.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-assignment.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-assignment.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-assignment.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-spg.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-spg.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-spg.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-spg.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-strv.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-strv.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-strv.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/spg-td-hydraulic-suspension-strv.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-shell-ejection-animation-animation.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-shell-ejection-animation-animation.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-shell-ejection-animation-animation.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-shell-ejection-animation-animation.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-shell-ejection-animation-binding.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-shell-ejection-animation-binding.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/tank-shell-ejection-animation-binding.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/tank-shell-ejection-animation-binding.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/track-ik-suspension-ik.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/track-ik-suspension-ik.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/track-ik-suspension-ik.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/track-ik-suspension-ik.zh-CN.png"
         }
       },
       "version": ""
@@ -8973,6 +10033,46 @@
       "output": {
         "resource": {
           "relative_path": "manual/mod/imgs/vehicle-light-component-shape.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/weapon-support-skill-effect.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/weapon-support-skill-effect.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/weapon-support-skill-effect.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/weapon-support-skill-effect.zh-CN.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/weapon-support-skill-model.en.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/weapon-support-skill-model.en.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "manual/mod/imgs/weapon-support-skill-model.zh-CN.png",
+      "output": {
+        "resource": {
+          "relative_path": "manual/mod/imgs/weapon-support-skill-model.zh-CN.png"
         }
       },
       "version": ""

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>0.3.2 Migration 旧工程迁移新工程 | Panzer War Document </title>
+      <title>旧工程迁移到新模组工程 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="0.3.2 Migration 旧工程迁移新工程 | Panzer War Document ">
+      <meta name="title" content="旧工程迁移到新模组工程 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,40 +77,263 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="032-migration-旧工程迁移新工程">0.3.2 Migration 旧工程迁移新工程</h1>
 
-<h1 id="introduction-概述">Introduction 概述</h1>
-<p>To simplify game editor updates, all codes have been removed from the project and moved to the MiddleLibLayer folder. Therefore, to update the game editor, you only need to delete the old MiddleLibLayer folder and copy the new MiddleLibLayer folder to the original location.</p>
-<p>为了简化编辑器功能的更新流程，游戏相关的代码与工程进行了分离。Unity Project 将只包含数据，而游戏相关的代码则放置在 MiddleLibLayer 目录下。若需要使用新的编辑器功能，则只需删除旧的 MiddleLibLayer 目录，然后将新的 MiddleLibLayer 目录复制到原目录即可。</p>
-<h1 id="old-project-migration-老工程迁移">Old Project Migration 老工程迁移</h1>
-<p>Definition of an old project:</p>
-<ol>
-<li>There is a Runtime-Supports folder under the UnityProject folder.</li>
-</ol>
-<p>旧工程定义：</p>
-<ol>
-<li>UnityProject 文件夹下存在 Runtime-Supports 文件夹。</li>
-</ol>
-<p>Q: How to define an old project?</p>
-<p>A: If you have a Runtime-Supports folder under UnityProject, then it is an old project.</p>
-<h2 id="1-download-latest-project-下载最新工程">1. Download Latest Project 下载最新工程</h2>
-<p><a href="get-started.html">1. GetStarted 项目初始化</a></p>
-<p>Download the latest project. You can refer to this document.</p>
-<p>下载最新的工程。</p>
-<h1 id="section"><img src="imgs/290b662bcb31_1669740409603-9e2ca5c8-1df5-45bd-a3cf-62dffea9046b.png" alt=""></h1>
-<h2 id="2-open-your-old-project-打开你的旧工程">2. Open Your Old Project 打开你的旧工程</h2>
-<p><strong>Backup your project</strong>, then delete the following selected folders.</p>
-<p><strong>备份你的工程</strong>，然后删除如图选中的文件夹。</p>
-<p><img src="imgs/79e3065c9469_1669740894907-bb171c5f-590f-4241-84d1-5f50739c8c74.png" alt=""></p>
-<p><img src="imgs/dc8e783e60e3_1669740929293-6e5a6db7-8859-4a14-89a2-c6ca87c571eb.png" alt=""></p>
-<p>Add the following package from local. It is located in the directory where you downloaded the project in Step 1.</p>
-<p>添加以下本地包。它位于本地，路径为你在步骤 1 中下载的工程目录。</p>
-<h2 id="section-1"><img src="imgs/4cee8d048822_1669740659206-80a80517-a1e4-4287-83d5-7a9ce3cdd1cd.png" alt=""></h2>
-<p><img src="imgs/020603c210df_1669740945426-5c6ab13b-bc2e-43da-8d63-628be683799c.png" alt=""></p>
-<p><img src="imgs/9bf63b3b806c_1669740967641-350752f4-73ad-4857-9fc4-fdf69f85542e.png" alt=""></p>
-<p>When the package is shown, it means the upgrade is finished.</p>
-<p>显示如下文字，就说明升级完成。</p>
-<p><img src="imgs/8d1ab07179e9_1669741075648-b31885a0-9beb-4493-95bc-8329c12afd32.png" alt=""></p>
+<!-- Generated from tutorials/migrate-old-project/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="旧工程迁移到新模组工程">旧工程迁移到新模组工程</h1>
+<p><strong>中文</strong> | <a href="../en/mod/migrate-old-project.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run migrate-old-project
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sourceAssetDir&quot;: &quot;${fixture}/.migration/legacy/Assets/MyMod&quot;,
+    &quot;backupAssetDir&quot;: &quot;${fixture}/.migration/backup/Assets/MyMod&quot;,
+    &quot;targetAssetDir&quot;: &quot;${fixture}/.migration/fresh/Assets/MyMod&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/.migration/legacy/Assets/MyMod&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/.migration/backup/Assets&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+        &quot;args&quot;: [
+          &quot;${fixture}/.migration/fresh/Assets&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;DirectoryInfo&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${sourceAssetDir}/Example.lua&quot;,
+          &quot;return { name = \&quot;Migration example\&quot; }\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${sourceAssetDir}/Example.lua.meta&quot;,
+          &quot;fileFormatVersion: 2\nguid: 8164f16a6ac0458b9dd5a79639ccb845\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+        &quot;args&quot;: [
+          &quot;${sourceAssetDir}.meta&quot;,
+          &quot;fileFormatVersion: 2\nguid: 95f38d6822b44d6ab0dcacb51e81752e\nfolderAsset: yes\n&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>把完整 SDK 解压到<strong>新目录</strong>，再迁入自己的资源及其 <code>.meta</code> 文件。</p>
+<h2 id="1-备份旧工程并打开新工程">1. 备份旧工程并打开新工程</h2>
+<p>复制旧工程的完整目录或保留版本库快照。按 <a href="get-started.html">项目初始化</a> 下载 SDK，完整解压到新目录，保留同级的 <code>UnityProject</code> 和 <code>Packages</code>。按新工程的 <code>ProjectSettings/ProjectVersion.txt</code> 选择 Unity 版本，等待首次导入和编译完成。</p>
+<h2 id="2-复制自己的资源">2. 复制自己的资源</h2>
+<p>把自己创建的 <code>Assets</code> 子目录复制进新工程，保留相对路径，并带上文件和目录对应的 <code>.meta</code>。Unity 用其中的 GUID 识别资源引用。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>在独立目录演示复制和备份，并回读资源、文件 GUID 和目录 GUID。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}&quot;,
+        &quot;${backupAssetDir}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}.meta&quot;,
+        &quot;${backupAssetDir}.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}&quot;,
+        &quot;${targetAssetDir}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.FileUtil/CopyFileOrDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}.meta&quot;,
+        &quot;${targetAssetDir}.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${targetAssetDir}/Example.lua&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;return { name = \&quot;Migration example\&quot; }&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${targetAssetDir}/Example.lua.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 8164f16a6ac0458b9dd5a79639ccb845&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${targetAssetDir}.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 95f38d6822b44d6ab0dcacb51e81752e&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sourceAssetDir}/Example.lua.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 8164f16a6ac0458b9dd5a79639ccb845&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${backupAssetDir}/Example.lua.meta&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;guid: 8164f16a6ac0458b9dd5a79639ccb845&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-检查引用并重新构建">3. 检查引用并重新构建</h2>
+<p>打开迁入的 prefab 和配置，检查缺失脚本、材质、着色器和依赖。按 <a href="multi-platform-build.html">多平台打包</a> 逐个目标构建、测试，期间保留旧工程。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>检查当前连接的编辑器。真实新工程中的引用、编译和平台包需另行验证。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;editor_status&quot;,
+    &quot;arguments&quot;: {},
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;scriptCompilationFailed\&quot;: false&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;logs&quot;,
+    &quot;arguments&quot;: {
+      &quot;count&quot;: 10
+    }
+  }
+]
+</code></pre>
+</details>
+<p>早期文档按 <code>Runtime-Supports</code> 识别旧工程，并使用原位替换 <code>MiddleLibLayer</code> 的方式升级。当时的安装布局见 <a href="mod-tools-changelog.html">模组工具更新记录</a>。</p>
 
 </article>
           </div>
@@ -120,7 +343,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/migrate-old-project.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/migrate-old-project.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

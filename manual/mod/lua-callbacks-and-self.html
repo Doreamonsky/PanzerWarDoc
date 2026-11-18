@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.6.1 Lua 回调函数与 self Lua Callbacks and self | Panzer War Document </title>
+      <title>在 Lua 回调中保留 self | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.6.1 Lua 回调函数与 self Lua Callbacks and self | Panzer War Document ">
+      <meta name="title" content="在 Lua 回调中保留 self | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,96 +77,197 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2261-lua-回调函数与-self-lua-callbacks-and-self">22.6.1 Lua 回调函数与 self Lua Callbacks and self</h1>
 
-<p>本文旨在为 Lua 编程新手提供一个关于回调函数与 <strong>self</strong> 的简要教程。我们将通过示例说明如何在 Lua 中正确使用回调函数和 <strong>self</strong>。</p>
-<p>This article is a short tutorial on callback functions and <strong>self</strong> for newcomers to Lua programming. We will use an example to show how to correctly use callbacks and <strong>self</strong> in Lua.</p>
-<h2 id="示例代码-example-code">示例代码 Example Code</h2>
-<p>以下是演示如何在 Lua 中使用回调函数和 <strong>self</strong> 的示例代码：</p>
-<p>The following example code demonstrates how to use callback functions and <strong>self</strong> in Lua:</p>
-<pre><code class="lang-lua">Behavior()
-
--- 定义属性
--- Define properties
-Propery = {
-  keycode = {
-    type = &quot;string&quot;, -- 类型：字符串 Type: string
-    value = &quot;w&quot;      -- 键码值：W键 Key code value: W key
-  }
+<!-- Generated from tutorials/lua-callbacks-and-self/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="在-lua-回调中保留-self">在 Lua 回调中保留 self</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-callbacks-and-self.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-callbacks-and-self --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/InputTutorial.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_LuaCallbacks.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
 }
+</code></pre>
+</details>
+<p>回调通常会在事件发生时由引擎调用。若处理函数需要访问当前对象，用闭包捕获实例，再在闭包内用冒号调用它的方法。</p>
+<h2 id="1-注册两个按键回调">1. 注册两个按键回调</h2>
+<p>将以下内容保存到 <code>InputTutorial.lua</code>，再把脚本绑定到 <a href="lua-behavior-mono.html">LuaBehaviorMono</a>。这个示例绑定 W 键，只为一个物体使用动作名 <code>ManualInputTest</code>。若多个物体都需要注册，各用一个唯一动作名。</p>
+<pre><code class="lang-lua">Behavior()
+Property = { keycode = { type = &quot;string&quot;, value = &quot;w&quot; } }
 
-
--- 定义一个名为 InputTest 的类
--- Define a class called InputTest
 local InputTutorial = class(&quot;InputTutorial&quot;)
 
-function InputTutorial:ctor()
-  self.actionName = &quot;TestAPI&quot;
-end
-
--- 当 InputTest 开始时调用此函数
--- Call this function when InputTest starts
 function InputTutorial:OnStarted()
-  -- 定义键按下的回调函数
-  -- Define the key press callback function
-  self.OnKeyPerformedCb = function(context)
-    self:OnKeyPerformed(context)
-  end
-  -- 定义键取消的回调函数
-  -- Define the key cancel callback function
-  self.OnKeyCanceledCb = function(context)
-    self:OnKeyCanceled(context)
-  end
-
-  -- 注册键输入事件
-  -- Register key input event
-  InputAPI.RegisterKeyInput(self.actionName, self.keycode, self.OnKeyPerformedCb, self.OnKeyCanceledCb)
+    InputAPI.RegisterKeyInput(&quot;ManualInputTest&quot;, self.keycode,
+        function(context) self:OnKeyPerformed(context) end,
+        function(context) self:OnKeyCanceled(context) end)
 end
 
--- 当 InputTest 被销毁时调用此函数
--- Call this function when InputTest is destroyed
-function InputTutorial:OnDestroyed()
-  print(&quot;On Destroyed&quot;)
-  -- 注销键输入事件
-  -- Unregister key input event
-  InputAPI.UnregisterKeyInput(self.actionName, self.keycode, self.OnKeyPerformedCb, self.OnKeyCanceledCb)
-end
-
--- 键按下事件处理函数
--- Key press event handler
 function InputTutorial:OnKeyPerformed(context)
-  print(&quot;on key pressed&quot;) -- 输出“按键按下”
+    print(&quot;pressed&quot;)
 end
 
--- 键取消事件处理函数
--- Key cancel event handler
 function InputTutorial:OnKeyCanceled(context)
-  print(&quot;on key canceled&quot;) -- 输出“按键取消”
+    print(&quot;released&quot;)
 end
 
--- 返回 InputTest 类
--- Return InputTest class
-return InputTutorial
+function InputTutorial:OnDestroyed()
+    InputAPI.UnregisterKeyInput(&quot;ManualInputTest&quot;)
+end
 
+return InputTutorial
 </code></pre>
-<h2 id="关键概念-key-concepts">关键概念 Key Concepts</h2>
-<h3 id="回调函数-callback-functions">回调函数 Callback Functions</h3>
-<p>在本示例中，我们使用了两个回调函数：<strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong>。这两个函数作为参数传递给 <strong>InputAPI.RegisterKeyInput</strong> 函数，以便在按键被按下或取消时执行相应操作。</p>
-<p>In this example we use two callback functions: <strong>self.OnKeyPerformedCb</strong> and <strong>self.OnKeyCanceledCb</strong>. Both are passed as arguments to <strong>InputAPI.RegisterKeyInput</strong>, so that the corresponding action is performed when a key is pressed or canceled.</p>
-<h3 id="self"><strong>self</strong></h3>
-<p>在本示例中，<strong>self</strong> 用于将回调函数与 <strong>InputTutorial</strong> 表的实例关联起来。在函数 <strong>InputTutorial:OnStarted()</strong> 中，我们使用 <strong>self</strong> 定义回调函数，并将它们存储在实例变量中。这样，当调用 <strong>InputTutorial:OnKeyPerformed(context)</strong> 和 <strong>InputTutorial:OnKeyCanceled(context)</strong> 时，这些函数即可访问并操作 <strong>InputTutorial</strong> 表的实例。</p>
-<p>In this example, <strong>self</strong> is used to associate the callback functions with the instance of the <strong>InputTutorial</strong> table. Inside <strong>InputTutorial:OnStarted()</strong> we use <strong>self</strong> to define the callbacks and store them in instance variables. That way, when <strong>InputTutorial:OnKeyPerformed(context)</strong> and <strong>InputTutorial:OnKeyCanceled(context)</strong> are called, these functions can access and operate on the instance of the <strong>InputTutorial</strong> table.</p>
-<h2 id="优点-advantages">优点 Advantages</h2>
-<p>将回调函数与实例关联起来具有以下优点：</p>
-<p>Associating the callback functions with the instance has the following benefits:</p>
-<ol>
-<li><strong>可读性</strong>：这种写法明确表明回调函数属于 <strong>InputTutorial</strong> 表的实例，使代码更加清晰易懂。<br>
-<strong>Readability</strong>: this style makes it explicit that the callbacks belong to the instance of the <strong>InputTutorial</strong> table, which makes the code clearer and easier to understand.</li>
-<li><strong>重用性</strong>：将回调函数存储在实例变量中，意味着你可以在其他地方重用这些回调函数，而无需再次创建匿名函数。<br>
-<strong>Reusability</strong>: storing the callbacks in instance variables means you can reuse them elsewhere instead of creating another anonymous function.</li>
-<li><strong>维护性</strong>：这种写法提高了代码的可维护性，因为当需要修改回调函数行为时，你只需修改 <strong>self.OnKeyPerformedCb</strong> 和 <strong>self.OnKeyCanceledCb</strong> 的定义。<br>
-<strong>Maintainability</strong>: this style improves maintainability, because when you need to change the behavior of a callback you only have to modify the definitions of <strong>self.OnKeyPerformedCb</strong> and <strong>self.OnKeyCanceledCb</strong>.</li>
-</ol>
+<p>传给 <code>RegisterKeyInput</code> 的两个函数保留当前 <code>self</code>。对象销毁时，用相同的动作名调用 <code>UnregisterKeyInput</code>。</p>
+<p><img src="imgs/lua-callbacks-and-self-binding.zh-CN.png" alt="绑定输入示例与实例按键"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/WriteAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;Behavior()\nProperty = { keycode = { type = \&quot;string\&quot;, value = \&quot;w\&quot; } }\n\nlocal InputTutorial = class(\&quot;InputTutorial\&quot;)\n\nfunction InputTutorial:OnStarted()\n    InputAPI.RegisterKeyInput(\&quot;ManualInputTest\&quot;, self.keycode,\n        function(context) self:OnKeyPerformed(context) end,\n        function(context) self:OnKeyCanceled(context) end)\nend\n\nfunction InputTutorial:OnKeyPerformed(context)\n    print(\&quot;pressed\&quot;)\nend\n\nfunction InputTutorial:OnKeyCanceled(context)\n    print(\&quot;released\&quot;)\nend\n\nfunction InputTutorial:OnDestroyed()\n    InputAPI.UnregisterKeyInput(\&quot;ManualInputTest\&quot;)\nend\n\nreturn InputTutorial\n&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          }
+        ]
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/OverrideNilPropertyFrom&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${script}/luaProperty&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.PrefabUtility/SavePrefabAsset&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${prefab}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;--- GameObject ---&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-核对绑定和参数">2. 核对绑定和参数</h2>
+<p>保存 prefab 后，确认「行为脚本」为 <strong>InputTutorial</strong>，实例属性 <code>keycode</code> 为 <code>w</code>。回放已验证组件绑定和 Lua 闭包。测试真实按键时，检查按下与释放是否各调用一次处理函数，以及销毁物体后是否解除绑定。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) InputTutorial&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/stringProperties/0/value&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) w&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.API.InputAPI&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;UnregisterKeyInput(String actionName)&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local item = { prefix = \&quot;item\&quot; }\nfunction item:onInput(context)\n    return self.prefix .. \&quot;:\&quot; .. context\nend\nlocal callback = function(context) return item:onInput(context) end\nassert(callback(\&quot;w\&quot;) == \&quot;item:w\&quot;)\nreturn \&quot;Lua callback example OK\&quot;\n&quot;,
+        &quot;manual-callback-closure&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua callback example OK&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -176,7 +277,7 @@ return InputTutorial
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-callbacks-and-self.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-callbacks-and-self.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

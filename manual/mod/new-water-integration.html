@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>0.3.4 New Water Integration 新水体集成 | Panzer War Document </title>
+      <title>新水体集成 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="0.3.4 New Water Integration 新水体集成 | Panzer War Document ">
+      <meta name="title" content="新水体集成 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,19 +77,92 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="034-new-water-integration-新水体集成">0.3.4 New Water Integration 新水体集成</h1>
 
-<p>启用波浪效果需导入此包。</p>
-<p>Import this package to enable the wave effect.</p>
-<p><img src="imgs/1bc98978d753_1757738755403-5d07d9c8-3cc7-4788-bd03-87f112b54049.png" alt=""><img src="imgs/8aabdbd1014b_1757738764681-d588ca82-bbf5-453a-8a7d-e758050cb786.png" alt=""></p>
-<p>选择 <strong>PanzerWarMods/com.windyverse.urp.water/package.json</strong>。</p>
-<p>Pick <strong>PanzerWarMods/com.windyverse.urp.water/package.json</strong>.</p>
-<p>若不存在 com.windyverse.urp.water 文件夹，则需下载最新工具。</p>
-<p>If the folder com.windyverse.urp.water does not exist, download the latest tool.</p>
-<p><img src="imgs/7b6136ef752c_1757738781467-c53a0b0a-1d01-4d0c-a38d-17dee7c491ca.png" alt=""></p>
-<p>启用实体波浪需在渲染管线中开启此选项，并将游戏内水体调整至最高级别。</p>
-<p>To enable the solid wave geometry, turn this option on in the render pipeline and set the in-game water quality to the highest level.</p>
-<p><img src="imgs/b5c2efc25de8_1757738962554-d407be76-46bc-4c59-872e-2489d579b6c4.png" alt=""></p>
+<!-- Generated from tutorials/new-water-integration/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="新水体集成">新水体集成</h1>
+<p><strong>中文</strong> | <a href="../en/mod/new-water-integration.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run new-water-integration
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;sdkCheckout&quot;: &quot;../../../Panzer-War-Mod-SDK&quot;
+  },
+  &quot;calls&quot;: []
+}
+</code></pre>
+</details>
+<h2 id="1-检查-sdk-自带的水体包">1. 检查 SDK 自带的水体包</h2>
+<p>按 <a href="get-started.html">项目初始化</a> 完整解压 SDK。确认 <code>UnityProject/Packages/manifest.json</code> 已声明 <code>com.windyverse.urp.water</code>，其包文件位于 SDK 根目录下的 <code>Packages/Sdk/com.windyverse.urp.water/package.json</code>。打开 <strong>Window → Package Manager</strong> 查看 <strong>Urp Water</strong>。旧版工具曾要求手动添加此包。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/UnityProject/Packages/manifest.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;com.windyverse.urp.water\&quot;: \&quot;file:../../Packages/Sdk/com.windyverse.urp.water\&quot;&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sdkCheckout}/Packages/Sdk/com.windyverse.urp.water/package.json&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;\&quot;name\&quot;: \&quot;com.windyverse.urp.water\&quot;&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-核对水面画质">2. 核对水面画质</h2>
+<p>客户端按 PC 和移动设备使用各自的画质档位。高和极高档位会请求几何细分，由支持细分着色器的设备启用。回放读取档位配置和本机支持情况，实际画面在目标设备进入有水的地图检查。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.WaterQualityTable/Get(high,false)/tessellation&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.WaterQualityTable/Get(middle,true)/tessellation&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) False&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.WaterSurfaceComponent/TessellationSupported&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean)&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -99,7 +172,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/new-water-integration.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/new-water-integration.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

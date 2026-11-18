@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.10 反应装甲 | Panzer War Document </title>
+      <title>配置反应装甲 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.10 反应装甲 | Panzer War Document ">
+      <meta name="title" content="配置反应装甲 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,19 +77,128 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="0210-反应装甲">02.10 反应装甲</h1>
 
-<p><img src="imgs/4400b1925f2f_1676093974992-483d96d3-7281-424c-9317-53ca37cf3425.png" alt=""></p>
-<p>Reactive Armor Size：表示反应装甲每一块区域的大小。区域越小，对坦克的保护越强。</p>
-<p>Reactive Armor Size: the size of each cell of the reactive armor. The smaller the cell, the stronger the protection it gives the tank.</p>
-<p>Reactive MaxProtect Penetration：表示反应装甲最大可以抵挡的炮弹穿深。</p>
-<p>Reactive MaxProtect Penetration: the maximum shell penetration that the reactive armor can protect against.</p>
-<p>机制：</p>
-<p>Mechanism:</p>
-<p>反应装甲按区域大小被划分为若干区域。</p>
-<p>The reactive armor is divided into several cells according to the cell size.</p>
-<p>当反应装甲的某一区域抵挡住一次炮弹后，该区域失效并变为间隙装甲，其厚度等于 Armor。其他区域不受影响。</p>
-<p>Once a cell of the reactive armor has blocked one shell, that cell fails and becomes Spaced Armor whose thickness equals Armor. The other cells are unaffected.</p>
+<!-- Generated from tutorials/reactive-armor/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="配置反应装甲">配置反应装甲</h1>
+<p><strong>中文</strong> | <a href="../en/mod/reactive-armor.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。 命令也会重拍两种语言的配图。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run reactive-armor --capture
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;plate&quot;: &quot;${fixture}/Tutorial_ReactivePlate.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>在载具伤害模型的 <strong>HitBox</strong> 上配置反应装甲。反应装甲会在有效命中点附近记录已消耗区域。</p>
+<h2 id="1-选择-hitbox">1. 选择 HitBox</h2>
+<p>打开载具的伤害模型 prefab，选中作为反应装甲的装甲部件。确认该物体有 <strong>HitBox</strong> 组件。教学配方新建一个独立的装甲样例。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${plate}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.HitBox&quot;
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="2-设置反应装甲参数">2. 设置反应装甲参数</h2>
+<p>将「装甲类型」设为「反应 - Reactive」。展开「反应装甲」，将「反应装甲区块大小」设为 <code>0.5</code>，「反应装甲最大防御穿深厚度」设为 <code>200</code>。本例使用源码默认值。</p>
+<p>区块大小是从已激活命中点量起的距离。后续命中落在该范围内时，该位置返回的装甲值为 <code>0</code>。未消耗位置使用配置的反应装甲值，是否击穿还取决于游戏的穿深计算。</p>
+<p><img src="imgs/reactive-armor-armor.zh-CN.png" alt="反应装甲类型与参数"></p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${plate}&quot;,
+        &quot;mode&quot;: &quot;update&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.HitBox&quot;,
+        &quot;values&quot;: {
+          &quot;hitBoxType&quot;: 3,
+          &quot;reactiveArmorSize&quot;: 0.5,
+          &quot;reactiveMaxProtectPenetration&quot;: 200
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="3-保存并核对">3. 保存并核对</h2>
+<p>保存 prefab，重新核对装甲类型和两个数值。配方验证了编辑器保存回读。区块消耗、重复命中及修复应在游戏中检查。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${plate}/HitBox/hitBoxType&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;ReactiveArmor&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${plate}/HitBox/reactiveArmorSize&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 0.5&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${plate}/HitBox/reactiveMaxProtectPenetration&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 200&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -99,7 +208,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/reactive-armor.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/reactive-armor.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

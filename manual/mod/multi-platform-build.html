@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>04. Multi-Platform Build 多平台打包 (Hub) | Panzer War Document </title>
+      <title>多平台打包 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="04. Multi-Platform Build 多平台打包 (Hub) | Panzer War Document ">
+      <meta name="title" content="多平台打包 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,37 +77,311 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="04-multi-platform-build-多平台打包-hub">04. Multi-Platform Build 多平台打包 (Hub)</h1>
 
-<h1 id="description-介绍">Description 介绍</h1>
-<p>For sharing Mods with the community, supporting both Windows and Android Mod files is essential. To avoid switching back and forth between platforms, we need to create a soft link and set up a synchronized build environment for Windows and Android resources.</p>
-<p>对于向社区分享模组，同时支持 Windows 和 Android 的模组文件是必不可少的。为了避免频繁切换平台，我们需要对项目进行软链接，建立一个 Windows 与 Android 资源同步的打包环境。</p>
-<p>We will need to use our GameHub to create soft-link for projects.</p>
-<p>我们需要使用启动器来创建项目的软链接。</p>
-<p><img src="imgs/d67bf3dec08c_1758815857990-eab55ab0-940a-4b88-8b7d-04f008470d3f.png" alt=""></p>
-<h1 id="gamehub-启动器">GameHub 启动器</h1>
-<p>Make sure your project has been added to the GameHub. If it hasn’t been added yet, click <strong>Add Path</strong> to include your Unity project in the GameHub.</p>
-<p>请确保你的项目已添加到 GameHub。如果尚未添加，请点击 <strong>Add Path</strong> 将你的 Unity 项目加入到 GameHub 中。</p>
-<p><img src="imgs/0c689308bacc_1758815804623-a67e0d0c-409f-4d99-9a61-0b36e61ec1fb.png" alt=""></p>
-<p>Select the target platform you want to build for</p>
-<p>选择你要打包的目标平台</p>
-<p><img src="imgs/edb42f463df2_1758815821706-882253ed-a257-4e04-8b29-bc534aae1f93.png" alt=""></p>
-<p>A new project has been soft-linked. Click the <strong>Copy</strong> button to copy the path.</p>
-<p>新的项目已创建软链接。点击 <strong>复制</strong> 按钮即可复制路径。</p>
-<p><img src="imgs/bf31949e9876_1758815970841-10c3e556-7f89-4ec9-bfd9-2071842d123d.png" alt=""></p>
-<h1 id="add-in-unityhub-在-unity-hub-添加项目">Add in UnityHub 在 Unity Hub 添加项目</h1>
-<p>Open the UnityHub and click <strong>Add project from disk</strong></p>
-<p>打开 UnityHub，并点击 <strong>Add project from disk</strong></p>
-<p><img src="imgs/c95c7801bae5_1758816056707-b4d564bc-3ca8-4af9-914f-5ca691735925.png" alt=""></p>
-<p>Enter the path of the project that was just soft-linked.</p>
-<p>填入刚刚创建的软链接工程的路径。</p>
-<p><img src="imgs/f399d576bcba_1758816080043-a4bc0d72-e56f-4aad-b5d7-53f4e92dbbfe.png" alt=""></p>
-<p>Click the version</p>
-<p>点击版本号</p>
-<p><img src="imgs/514fb8c55472_1758816093676-5fa8142f-16c7-40ee-a574-9aa6f6c9820b.png" alt=""></p>
-<p>Change the <strong>Current Platform</strong> to the platform of the project you created, make sure the name matches the platform, and then click <strong>Open</strong>.</p>
-<p>将 <strong>Current Platform</strong> 修改为你创建的工程的平台，确保名称与平台一致，然后点击 <strong>打开</strong>。</p>
-<p><img src="imgs/3061ab626f52_1758816128337-fc3460b5-75d3-41fd-a76a-4aecf25ae44c.png" alt=""></p>
+<!-- Generated from tutorials/multi-platform-build/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="多平台打包">多平台打包</h1>
+<p><strong>中文</strong> | <a href="../en/mod/multi-platform-build.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run multi-platform-build
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_VehicleQueue.asset&quot;,
+    &quot;package&quot;: &quot;${fixture}/Docs_${runId}_Package.asset&quot;,
+    &quot;pipeline&quot;: &quot;${fixture}/Docs_${runId}_Pipeline.asset&quot;,
+    &quot;packageGuid&quot;: &quot;66dc2d51-e05e-4e6d-9afd-7cc47e11a00b&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) [a-f0-9]{32}&quot;
+      }
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageData)&quot;,
+          &quot;${package}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateAsset&quot;,
+        &quot;args&quot;: [
+          &quot;@static:UnityEngine.ScriptableObject/CreateInstance(ShanghaiWindy.Core.ModPackageBuildPiplineData)&quot;,
+          &quot;${pipeline}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedModName/defaultName&quot;,
+        &quot;value&quot;: &quot;Tutorial Package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/localizedDescription/defaultName&quot;,
+        &quot;value&quot;: &quot;Documentation teaching package&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/author&quot;,
+        &quot;value&quot;: &quot;Documentation&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/supportURL&quot;,
+        &quot;value&quot;: &quot;https://doc.game.windyverse.net/&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${package}/guid&quot;,
+        &quot;value&quot;: &quot;${packageGuid}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    },
+    {
+      &quot;tool&quot;: &quot;inspect_set&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;asset:${pipeline}/linkedModPackage&quot;,
+        &quot;value&quot;: &quot;@asset:${package}&quot;
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;OK:&quot;
+      },
+      &quot;phase&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>为每个目标平台分别构建 <code>.modpack</code>。游戏需要与运行平台匹配的 AssetBundle。</p>
+<h2 id="前提">前提</h2>
+<ul>
+<li>安装匹配的 <a href="unity-engine-requirements.html">Unity 版本和目标平台模块</a>。</li>
+<li>项目已加入 GameHub。若未加入，在 GameHub 中点 <strong>Add Path</strong> 指向该 Unity 工程。</li>
+<li>本地 <code>file:</code> 依赖（相邻 <code>UnityProject</code> / <code>Packages</code> 布局）可用，SDK 依赖与本平台构建保持一致。</li>
+</ul>
+<h2 id="创建软链接工程">创建软链接工程</h2>
+<ol>
+<li>在 GameHub 中选择要打包的目标平台。</li>
+<li>GameHub 为该平台创建软链接工程，点 <strong>Copy</strong> 复制该路径。</li>
+<li>打开 Unity Hub，点 <strong>Add project from disk</strong>，填入第 2 步复制的路径。</li>
+<li>点击版本号，把 <strong>Current Platform</strong> 改为与所创建的工程一致的平台，确认名称匹配后点 <strong>Open</strong>。</li>
+<li>工程打开后，在 <strong>File → Build Settings</strong> 确认目标平台，等待导入完成。</li>
+</ol>
+<p>GameHub 的链接工程共享源资源，各平台保留独立的 <code>Library</code>。GameHub 和 Unity Hub 步骤由读者完成，MCP 可以检查已打开工程的目标平台。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>样例读取当前 Windows 构建目标。按工程需要在编辑器里手动选择目标平台。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUserBuildSettings/activeBuildTarget&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(BuildTarget) StandaloneWindows64&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="每个平台分别构建与校验">每个平台分别构建与校验</h2>
+<ol>
+<li>对该平台执行 BuildPipeline 的 <strong>Build Linked Objects to AssetBundle</strong>。</li>
+<li>再对关联 ModPackage 执行 <strong>Package Mod Now</strong>。</li>
+<li>保留生成的 <code>.modpack</code> 和同名 <code>.modpack.json</code>。核对包内平台、Unity 版本、资源清单与元数据，在对应平台的游戏中测试。</li>
+</ol>
+<p>资源改动或平台切换后，重新执行前两个打包步骤。下方回放验证 Windows 教学包，Android 和 iOS 包需在对应环境另行验证。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>本机 MCP 使用 Windows 教学包，回放会校验归档、清单和 sidecar。</p>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/preset-vehicle-queue/Tutorial_VehicleQueue.asset&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${pipeline}/linkedObjects/Add&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.EditorUtility/SetDirty&quot;,
+      &quot;args&quot;: [
+        &quot;@asset:${pipeline}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/SaveAssets&quot;,
+      &quot;args&quot;: []
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_plan&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;built&quot;: false
+      },
+      &quot;contains&quot;: &quot;\&quot;vehiclequeue\&quot;&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;modpack_build&quot;,
+    &quot;arguments&quot;: {
+      &quot;pipeline&quot;: &quot;${pipeline}&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true,
+        &quot;archiveExists&quot;: true,
+        &quot;published&quot;: false,
+        &quot;installed&quot;: false
+      }
+    },
+    &quot;capture&quot;: {
+      &quot;archivePath&quot;: {
+        &quot;path&quot;: &quot;archivePath&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:Frontend.Editor.ModPackageWorkshopMeta/WriteSidecar&quot;,
+      &quot;args&quot;: [
+        &quot;${archivePath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;.modpack.json&quot;
+    },
+    &quot;capture&quot;: {
+      &quot;sidecarPath&quot;: {
+        &quot;regex&quot;: &quot;\\(String\\) (.+)&quot;
+      }
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/ReadAllText&quot;,
+      &quot;args&quot;: [
+        &quot;${sidecarPath}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;${packageGuid}&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.Directory/CreateDirectory&quot;,
+      &quot;args&quot;: [
+        &quot;${fixture}/mods/Installs&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;DirectoryInfo&quot;
+    },
+    &quot;phase&quot;: &quot;build&quot;
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -117,7 +391,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/multi-platform-build.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/multi-platform-build.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>02.9 Q&amp;A 疑难杂症解决 | Panzer War Document </title>
+      <title>载具开发疑难排查 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="02.9 Q&amp;A 疑难杂症解决 | Panzer War Document ">
+      <meta name="title" content="载具开发疑难排查 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,44 +77,114 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="029-qa-疑难杂症解决">02.9 Q&amp;A 疑难杂症解决</h1>
 
-<p>Issues you may encounter 你可能遇到的问题</p>
-<h3 id="game-cant-load-the-vehicle-载具无法正常加载">Game can't load the vehicle 载具无法正常加载</h3>
-<p><img src="imgs/5bb7167dd0f2_1637480393085-03147fd5-6417-4e59-a835-7b1890017e92.jpeg" alt=""></p>
-<p>In this case, the reason might be that the name of your mod package is the same as the vehicle name. This is not allowed. Try another mod package name. For example, the mod package name can be Vehicle-XXXX (XXXX refer to the vehicle name) eg. Vehicle-T-72</p>
-<p>这可能是因为你的模组包名与载具名一致所致。请尝试修改模组包名。例如，如果载具是 T-72，模组包名可设置为 Vehicle-T-72。</p>
-<h3 id="game-cant-load-the-vehicle-correctly-无法运行载具">Game can't load the vehicle correctly 无法运行载具</h3>
-<p><img src="imgs/61f8037e42b6_1637480393008-3fc472e8-7e5e-49d8-8d75-baba2c21c1bb.jpeg" alt=""></p>
-<p>In this case, the reason might be that your vehicle assets miss some reference. Please check if the following files are set correctly VehicleEngineSoundData, VehicleHitBox, FireSound Asset, Bullet Data Asset, VehicleTextData, VehicleTrack and VehicleData. You can refer to this document and you can refer to the template vehicle in the project.</p>
-<p>这可能是因为你的载具资源存在引用丢失。请检查以下文件是否设置正确：VehicleEngineSoundData、VehicleHitBox、FireSound Asset、Bullet Data Asset、VehicleTextData、VehicleTrack 以及 VehicleData。你可以参考本文档，也可以参考工程中的模板载具。</p>
-<h3 id="cant-elevate-the-gun-无法抬升炮管">Can't elevate the gun 无法抬升炮管</h3>
-<p>In this case, the reason might be that down max angle can't be negative. It should be positive.</p>
-<p>请检查炮管俯角是否设置为负值，应设置为正值。</p>
-<h3 id="tank-move-strange-坦克移动奇怪">Tank Move Strange 坦克移动奇怪</h3>
-<h4 id="tank-mass-坦克质量">Tank Mass 坦克质量</h4>
-<p><img src="imgs/04c0ba0ff8cc_1637485799550-690e6886-6607-45ca-8688-cd1cb4edb247.png" alt=""></p>
-<p>Do not set a too small or too large mass for the tank</p>
-<p>不要将质量设置得过大或过小。</p>
-<h4 id="wheel-collider">Wheel Collider</h4>
-<p><img src="imgs/132c1dd0a880_1637485841230-426cad9a-ff18-4322-82da-9807abc77ac9.png" alt=""></p>
-<p>Mass should not larger than 1000. You can refer this setting.</p>
-<p>Mass 质量不要超过 1000，悬挂系数参考如下设置。</p>
-<h3 id="model-render-strange-模型渲染奇怪">Model Render Strange 模型渲染奇怪</h3>
-<p>This may caused by wrong normal direction. You can check the following settings.</p>
-<p>这可能是由法线朝向错误导致，你可以检查如下设置。</p>
-<h4 id="normal-map-type-法线贴图类型">Normal Map Type 法线贴图类型</h4>
-<p><img src="imgs/2c3712846e89_1637486029676-bd80ac4e-0eb0-4130-a5ce-5e66c66bff7d.png" alt=""></p>
-<p>If you imported normal map, you should set the texture type to Normal Map.</p>
-<p>如果你导入了法线贴图，则应该将贴图类型设置为 Normal Map。</p>
-<h4 id="mesh-normal-模型法线">Mesh Normal 模型法线</h4>
-<p><img src="imgs/4eba5999e3ab_1637485951371-428d79f3-14f6-4e1c-b60e-8af31efccba6.png" alt=""></p>
-<p>Check face orientation, it should have no red color. Flip the normal of red faces.</p>
-<p>检查面朝向，不应出现红色。请翻转红色面的法线朝向。</p>
-<h1 id="index-out-of-range-数组越界报错">Index out of range 数组越界报错</h1>
-<p>Ensure all sub turrets bullet data length is not zero！确保所有副炮 BulletData 数组不为 0</p>
-<p><img src="imgs/f5ea053b49b0_1653839484476-c385896f-7789-4e59-852d-7785fc48cf1e.jpeg" alt=""></p>
-<p><a href="vehicle-modding-notes.html">祝昔的十万个为什么(1)</a></p>
+<!-- Generated from tutorials/vehicle-dev-qa/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="载具开发疑难排查">载具开发疑难排查</h1>
+<p><strong>中文</strong> | <a href="../en/mod/vehicle-dev-qa.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run vehicle-dev-qa
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;asset&quot;: &quot;${fixture}/Tutorial_VehicleQA.asset&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<h2 id="载具无法加载">载具无法加载</h2>
+<p>检查 <a href="../gameplay/install-mods.html">模组安装</a> 的目录和目标平台。在 <a href="../gameplay/runtime-log.html">运行日志</a> 查第一条报错，确认模组包关联了正确的构建管线。载具能加载但行为异常时，先对照 <a href="../component/vehicle-text-data.html">VehicleTextData</a> 检查载具配置、伤害模型、履带、炮弹、发动机和开火音效引用。</p>
+<h2 id="炮管无法抬升或下压">炮管无法抬升或下压</h2>
+<p>普通炮管填写正值作为 <strong>仰角</strong>和<strong>俯角</strong>的幅度。例如 <code>UpMaxDegree = 20</code>、<code>DownMaxDegree = 8</code> 对应 <code>-8°</code> 到 <code>20°</code>。检查共享炮塔配置和按方向覆盖的限制。炮塔横向旋转的 <code>maxTurretPositiveAngle</code> 与 <code>maxTurretNegativeAngle</code> 是另一组字段。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CopyAsset&quot;,
+      &quot;args&quot;: [
+        &quot;Packages/com.shanghaiwindy.coreresources/Editor/DocumentationSamples/vehicle-text-data/Tutorial_VehicleTextData.asset&quot;,
+        &quot;${asset}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Boolean) True&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/sharedTurretData&quot;,
+      &quot;value&quot;: &quot;null&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/MTParameter/UpMaxDegree&quot;,
+      &quot;value&quot;: &quot;20&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect_set&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/MTParameter/DownMaxDegree&quot;,
+      &quot;value&quot;: &quot;8&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetTurretParam()/UpMaxDegree&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 20&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${asset}/GetTurretParam()/DownMaxDegree&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(Single) 8&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<h2 id="行驶悬挂与渲染">行驶、悬挂与渲染</h2>
+<p>行驶异常时，先用 <a href="physics-wheels.html">轮式载具配置</a> 核对质量、轮碰撞体和悬挂配置。模型不显示时按 <a href="model-not-displaying.html">模型显示排查</a> 检查材质、Renderer 和层级。法线贴图在 Unity 中选 <strong>Normal Map</strong> 类型。需要检查网格正反面时，可在 Blender 开启 <strong>Face Orientation</strong>。</p>
+<h2 id="副炮切换时出现数组越界">副炮切换时出现数组越界</h2>
+<p>从日志确认报错指向炮弹数据，再逐个检查副炮实际使用的 <code>bulletData</code> 引用和选中索引。对照 <a href="vehicle-modding-notes.html">载具开发笔记</a> 和模板载具。</p>
 
 </article>
           </div>
@@ -124,7 +194,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/vehicle-dev-qa.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>

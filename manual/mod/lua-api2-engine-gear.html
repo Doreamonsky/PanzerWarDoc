@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>22.7.6 用例：引擎转速与起落架 Example: Engine RPM and Landing Gear | Panzer War Document </title>
+      <title>引擎转速与起落架 | Panzer War Document </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="22.7.6 用例：引擎转速与起落架 Example: Engine RPM and Landing Gear | Panzer War Document ">
+      <meta name="title" content="引擎转速与起落架 | Panzer War Document ">
     
     
       <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,71 +77,231 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="2276-用例引擎转速与起落架-example-engine-rpm-and-landing-gear">22.7.6 用例：引擎转速与起落架 Example: Engine RPM and Landing Gear</h1>
 
-<p>坦克上的风扇随引擎转速旋转，转速很高时打开排烟；飞机的起落架放下时亮灯、收起时熄灭。同一个脚本可以挂在两种载具上。</p>
-<p>The fan on a tank spins with the engine RPM, and the smoke turns on at very high RPM. When the landing gear of an aircraft is deployed, the lights turn on; when it is retracted, they turn off. The same script can be attached to both types of vehicles.</p>
+<!-- Generated from tutorials/lua-api2-engine-gear/zh-CN.md and steps.json; edit those sources. -->
+<link rel="stylesheet" href="../tools/tutorials.css">
+<h1 id="引擎转速与起落架">引擎转速与起落架</h1>
+<p><strong>中文</strong> | <a href="../en/mod/lua-api2-engine-gear.html">English</a></p>
+<p>在仓库根目录运行以下命令，用本机 Unity MCP 回放本页示例。</p>
+<pre><code class="lang-sh">python Docs/Manual/manual/tools/tutorials.py run lua-api2-engine-gear
+</code></pre>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<p>准备教学样例。<code>${变量}</code> 由配方提供。</p>
+<pre><code class="lang-json">{
+  &quot;variables&quot;: {
+    &quot;script&quot;: &quot;${fixture}/EngineAndGear.lua&quot;,
+    &quot;prefab&quot;: &quot;${fixture}/Tutorial_EngineAndGear.prefab&quot;
+  },
+  &quot;calls&quot;: [
+    {
+      &quot;tool&quot;: &quot;invoke&quot;,
+      &quot;arguments&quot;: {
+        &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/CreateFolder&quot;,
+        &quot;args&quot;: [
+          &quot;${fixtureParent}&quot;,
+          &quot;${folder}&quot;
+        ]
+      },
+      &quot;expect&quot;: {
+        &quot;contains&quot;: &quot;(String)&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+</details>
+<p>把脚本挂到载具，按需绑定 <code>fan</code>、<code>smoke</code> 或 <code>gearLights</code>。飞机先读取起落架初始状态，再用 <code>FlightAPI.OnGearChanged</code> 更新灯光。事件订阅传入 <code>self.script</code>，并关闭飞机分支的逐帧更新。</p>
+<p>地面分支从 <code>TankAPI.GetEngineState</code> 读取成功标记、转速、转速百分比、挡位、速度和倒车状态。每分钟转数乘 6 得到每秒角度，示例额外按 0.1 缩放风扇转速，并在转速百分比超过 80 时显示烟雾。</p>
 <pre><code class="lang-lua">Behavior()
 Property = {
-  fan = { type = &quot;object&quot;, value = nil },          -- 坦克：随转速旋转的风扇 / Tank: fan that spins with the RPM
-  smoke = { type = &quot;object&quot;, value = nil },        -- 坦克：高转速时打开的排烟物体 / Tank: smoke object shown at high RPM
-  gearLights = { type = &quot;object&quot;, value = nil },   -- 飞机：起落架放下时亮的灯 / Aircraft: lights on while the gear is down
+    fan = { type = &quot;object&quot;, value = nil },
+    smoke = { type = &quot;object&quot;, value = nil },
+    gearLights = { type = &quot;object&quot;, value = nil },
 }
 
 local EngineAndGear = class(&quot;EngineAndGear&quot;)
 
 function EngineAndGear:OnVehicleReady(vehicle)
-  self.vehicle = vehicle
-
-  if VehicleAPI.IsFlightVehicle(vehicle) then
-    -- 飞机：起落架用事件，不需要每帧检查 / Aircraft: the gear is an event, no per-frame check
-    if self.gearLights ~= nil then
-      self.gearLights:SetActive(FlightAPI.IsGearDown(vehicle))
-      FlightAPI.OnGearChanged(self.script, vehicle, function(isDown)
-        self.gearLights:SetActive(isDown)
-      end)
+    self.vehicle = vehicle
+    if VehicleAPI.IsFlightVehicle(vehicle) then
+        if self.gearLights ~= nil then
+            self.gearLights:SetActive(FlightAPI.IsGearDown(vehicle))
+            FlightAPI.OnGearChanged(self.script, vehicle, function(isDown)
+                self.gearLights:SetActive(isDown)
+            end)
+        end
+        self.vehicle = nil
+        self.script:SetUpdateEnabled(false)
+        return
     end
-    self.script:SetUpdateEnabled(false)
-    return
-  end
-
-  if self.fan == nil then
-    self.script:SetUpdateEnabled(false)
-  end
+    self.script:SetUpdateEnabled(self.fan ~= nil or self.smoke ~= nil)
 end
 
 function EngineAndGear:OnUpdated(dt)
-  local ok, rpm, rpmPercent, gear, speedKmh, reversing = TankAPI.GetEngineState(self.vehicle)
-  if not ok then
-    return
-  end
-
-  -- rpm 是每分钟转数，每秒转 rpm * 6 度；0.1 是视觉上的缩放
-  -- rpm is revolutions per minute, i.e. rpm * 6 degrees a second; 0.1 scales it down visually
-  self.fan.transform:Rotate(0, 0, rpm * 6 * dt * 0.1)
-  if self.smoke ~= nil then
-    self.smoke:SetActive(rpmPercent &gt; 80)
-  end
+    if self.vehicle == nil then
+        return
+    end
+    local ok, rpm, rpmPercent = TankAPI.GetEngineState(self.vehicle)
+    if not ok then
+        return
+    end
+    if self.fan ~= nil then
+        self.fan.transform:Rotate(0, 0, rpm * 6 * dt * 0.1)
+    end
+    if self.smoke ~= nil then
+        self.smoke:SetActive(rpmPercent &gt; 80)
+    end
 end
 
 return EngineAndGear
 </code></pre>
-<p>要点：</p>
-<p>Key points:</p>
-<ul>
-<li><p><code>TankAPI.GetEngineState</code> 一次返回多个值：是否成功、转速、转速百分比、挡位、速度（千米/时）、是否倒车。不同的载具填写的值不同：履带车全部都有；轮式车只有开启变速箱时才有转速；舰船的挡位总是 1；固定载具的转速和速度为 0、挡位为 1。</p>
-</li>
-<li><p>起落架用 <code>FlightAPI.OnGearChanged</code> 事件，不需要每帧检查，所以飞机上直接关掉 <code>OnUpdated</code>。</p>
-</li>
-<li><p><code>FlightAPI.IsOnGround</code> 在起落架放下、机轮离地时会做一次地面探测，不要每帧调用；需要时降低频率。</p>
-</li>
-<li><p><code>TankAPI.GetEngineState</code> returns multiple values at once: success status, RPM, RPM percentage, gear, speed (km/h), and reverse status. The values populated differ by vehicle: tracked vehicles have all of them; wheeled vehicles only have RPM when the transmission is enabled; ships always have a gear of 1; fixed vehicles have RPM and speed of 0, and a gear of 1.</p>
-</li>
-<li><p>Landing gear uses the <code>FlightAPI.OnGearChanged</code> event, so there is no need to check every frame; therefore, <code>OnUpdated</code> is disabled directly on aircraft.</p>
-</li>
-<li><p><code>FlightAPI.IsOnGround</code> runs a ground check while the gear is down and a wheel is off the ground, so do not call it every frame; call it less often when you need it.</p>
-</li>
-</ul>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:System.IO.File/Copy&quot;,
+      &quot;args&quot;: [
+        &quot;../../Docs/Manual/tutorials/lua-api2-engine-gear/example.lua&quot;,
+        &quot;${script}&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:UnityEditor.AssetDatabase/ImportAsset&quot;,
+      &quot;args&quot;: [
+        &quot;${script}&quot;,
+        &quot;ForceSynchronousImport&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;OK:&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;prefab_edit&quot;,
+    &quot;arguments&quot;: {
+      &quot;json&quot;: {
+        &quot;path&quot;: &quot;${prefab}&quot;,
+        &quot;mode&quot;: &quot;create&quot;,
+        &quot;component&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorMono&quot;,
+        &quot;children&quot;: [
+          &quot;Fan&quot;,
+          &quot;Smoke&quot;,
+          &quot;GearLights&quot;
+        ],
+        &quot;references&quot;: [
+          {
+            &quot;property&quot;: &quot;luaBehavior&quot;,
+            &quot;asset&quot;: &quot;${script}&quot;,
+            &quot;type&quot;: &quot;ShanghaiWindy.Core.Lua.LuaBehaviorScript&quot;
+          },
+          {
+            &quot;property&quot;: &quot;instanceLuaProperty.objectProperties.Array.data[0].value&quot;,
+            &quot;child&quot;: &quot;Fan&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          },
+          {
+            &quot;property&quot;: &quot;instanceLuaProperty.objectProperties.Array.data[1].value&quot;,
+            &quot;child&quot;: &quot;Smoke&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          },
+          {
+            &quot;property&quot;: &quot;instanceLuaProperty.objectProperties.Array.data[2].value&quot;,
+            &quot;child&quot;: &quot;GearLights&quot;,
+            &quot;component&quot;: &quot;UnityEngine.GameObject&quot;
+          }
+        ],
+        &quot;values&quot;: {
+          &quot;instanceLuaProperty&quot;: {
+            &quot;objectProperties&quot;: [
+              {
+                &quot;variableName&quot;: &quot;fan&quot;
+              },
+              {
+                &quot;variableName&quot;: &quot;smoke&quot;
+              },
+              {
+                &quot;variableName&quot;: &quot;gearLights&quot;
+              }
+            ]
+          }
+        }
+      }
+    },
+    &quot;expect&quot;: {
+      &quot;equals&quot;: {
+        &quot;ok&quot;: true
+      }
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/luaBehavior/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) EngineAndGear&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/objectProperties/0/value/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) Fan&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/objectProperties/1/value/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) Smoke&quot;
+    }
+  },
+  {
+    &quot;tool&quot;: &quot;inspect&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;asset:${prefab}/LuaBehaviorMono/instanceLuaProperty/objectProperties/2/value/name&quot;
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;(String) GearLights&quot;
+    }
+  }
+]
+</code></pre>
+</details>
+<p>回放用可控的转速和起落架状态检查脚本分支。在真实载具上检查风扇、烟雾和灯光。</p>
+<details class="tutorial-mcp">
+<summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
+<pre><code class="lang-json">[
+  {
+    &quot;tool&quot;: &quot;invoke&quot;,
+    &quot;arguments&quot;: {
+      &quot;path&quot;: &quot;static:ShanghaiWindy.Core.AssetBundleManager/LuaEnv/DoString&quot;,
+      &quot;args&quot;: [
+        &quot;local E = setmetatable({ Behavior = function() end, class = function() return {} end, print = function() end }, { __index = _G })\nlocal gearCallback, angle, smoke, light\nlocal update\nE.VehicleAPI = { IsFlightVehicle = function(v) return v.aircraft end }\nE.FlightAPI = {\n    IsGearDown = function() return true end,\n    OnGearChanged = function(owner, vehicle, cb) gearCallback = cb end\n}\nE.TankAPI = { GetEngineState = function() return true, 360, 82, 1, 10, false end }\n\nlocal B = assert(loadfile('../../Docs/Manual/tutorials/lua-api2-engine-gear/example.lua', 't', E))()\nlocal function instance(t) return setmetatable(t, { __index = B }) end\nlocal script = { SetUpdateEnabled = function(_, value) update = value end }\nlocal lights = { SetActive = function(_, value) light = value end }\nlocal fan = { transform = { Rotate = function(_, x, y, z) angle = z end } }\nlocal exhaust = { SetActive = function(_, value) smoke = value end }\nlocal aircraft = instance({ gearLights = lights, script = script })\naircraft:OnVehicleReady({ aircraft = true })\nassert(light == true and update == false)\ngearCallback(false)\nassert(light == false)\naircraft:OnUpdated(1)\nassert(angle == nil)\nlocal tank = instance({ fan = fan, smoke = exhaust, script = script })\ntank:OnUpdated(1)\nassert(angle == nil)\ntank:OnVehicleReady({})\nassert(update == true)\ntank:OnUpdated(0.5)\nassert(math.abs(angle - 108) &lt; 0.001 and smoke == true)\nlocal ok = CS.ShanghaiWindy.Core.API.TankAPI.GetEngineState(nil)\nassert(ok == false)\nreturn \&quot;Lua example passed\&quot;\n&quot;,
+        &quot;manual-lua-api2-engine-gear&quot;,
+        &quot;null&quot;
+      ]
+    },
+    &quot;expect&quot;: {
+      &quot;contains&quot;: &quot;Lua example passed&quot;
+    }
+  }
+]
+</code></pre>
+</details>
 
 </article>
           </div>
@@ -151,7 +311,7 @@ return EngineAndGear
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Docs/Manual/manual/mod/lua-api2-engine-gear.md/#L1" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/WindyVerse/Panzer-War-Client/blob/main/Temp/ManualRelease/20261118T060242Z/source/Docs/Manual/manual/mod/lua-api2-engine-gear.md/#L1" class="contribution-link">Edit this page</a>
                   </li>
                 </ul>
               </div>
