@@ -97,9 +97,27 @@
 </code></pre>
 </details>
 <h2 id="1-download-and-extract-the-sdk">1. Download and extract the SDK</h2>
-<p>Open the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK release page</a>, expand <strong>Assets</strong>, and download the release ZIP named <code>Panzer-War-Mod-SDK-sdk-*.zip</code>. It contains the DLLs and local dependencies and opens without Git. GitHub's auto-generated <strong>Source code (zip)</strong> may only contain Git LFS pointers. Extract the whole archive and keep <code>UnityProject</code> next to <code>Packages</code>. For a Git checkout, follow the <a href="project-download-links.html">clone and LFS steps</a>.</p>
+<ol>
+<li>Open the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK release page</a> and expand <strong>Assets</strong>.</li>
+<li>Download the release ZIP named <code>Panzer-War-Mod-SDK-sdk-*.zip</code> (public release <code>sdk-2026.11.04.1</code> is about 600 MB). It contains the DLLs and local dependencies and opens without Git; GitHub's auto-generated <strong>Source code (zip)</strong> may only contain Git LFS pointers.</li>
+<li>Check the ZIP against the release’s <code>SHA256SUMS.txt</code> using the <a href="project-download-links.html">download verification steps</a>. Then extract the whole archive into a new folder and keep the layout below.</li>
+</ol>
+<pre><code class="lang-text">&lt;your extract folder&gt;/
+├─ Packages/                  # SDK dependencies, sibling to UnityProject
+└─ UnityProject/
+   ├─ Assets/
+   ├─ Packages/
+   │  └─ manifest.json
+   └─ ProjectSettings/
+      └─ ProjectVersion.txt
+</code></pre>
+<p>The outer <code>Packages</code> folder supplies local dependencies the project references, while <code>UnityProject/Packages/manifest.json</code> declares the project's own dependencies. Keep both in place. For a Git checkout, follow the <a href="project-download-links.html">clone and LFS steps</a>.</p>
 <h2 id="2-check-the-project-folder-and-version">2. Check the project folder and version</h2>
-<p>Check that <code>UnityProject</code> contains <code>Assets/</code>, <code>Packages/manifest.json</code>, and <code>ProjectSettings/ProjectVersion.txt</code>. The verified public release <code>sdk-2026.11.04.1</code> declares Unity <strong>2022.3.62f1</strong>. For a later release, read <code>m_EditorVersion</code> from that download and follow the <a href="unity-engine-requirements.html">Unity version guide</a>.</p>
+<ol>
+<li>Open <code>UnityProject</code> and check that it contains <code>Assets/</code>, <code>Packages/manifest.json</code>, and <code>ProjectSettings/ProjectVersion.txt</code>.</li>
+<li>Open <code>ProjectVersion.txt</code> and note <code>m_EditorVersion</code>. The verified public release <code>sdk-2026.11.04.1</code> declares Unity <strong>2022.3.62f1</strong>.</li>
+<li>For a later release, read <code>m_EditorVersion</code> from that download and follow the <a href="unity-engine-requirements.html">Unity version guide</a> to install the same version.</li>
+</ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <p>Check the adjacent public SDK checkout for its declared editor version, sibling package dependency, and vehicle template. Set sdkCheckout to the outer directory if the SDK is elsewhere.</p>
@@ -181,9 +199,10 @@
 </details>
 <h2 id="3-open-the-project-in-unity-hub">3. Open the project in Unity Hub</h2>
 <ol>
-<li>In Unity Hub, choose <strong>Projects → Add → Add project from disk</strong> and select <code>UnityProject</code>. Check for the three paths listed in section 2 to identify the correct folder.</li>
-<li>Open the project from the list. If Hub reports a missing editor, install the version declared in <code>ProjectVersion.txt</code>, then open the project again. The first launch imports packages and compiles scripts.</li>
-<li>Once import finishes, check the Console. With compilation complete, look for <strong>Framework - 框架</strong> in the menu bar. If the menu is missing, confirm that you opened the inner <code>UnityProject</code> folder and fully extracted the neighboring <code>Packages</code> folder.</li>
+<li>In Unity Hub, choose <strong>Projects → Add → Add project from disk</strong> and select <code>UnityProject</code> inside the extract folder, not the outer folder, <code>Assets</code>, or <code>Packages</code>. Check for the three paths listed in section 2 to identify the correct folder.</li>
+<li>Open the project from the list with the same editor version declared in <code>ProjectVersion.txt</code>. The first launch downloads packages, imports assets, and compiles scripts, so it takes much longer than later launches; wait for both Hub and Editor progress to finish.</li>
+<li>After compilation, check the Console for compile errors. With compilation complete, look for <strong>Framework - 框架</strong> in the menu bar. If the menu is missing, check in order: that you opened the inner <code>UnityProject</code>, that the neighboring <code>Packages</code> folder is complete, that extraction finished, and that the editor version matches the declaration.</li>
+<li>If Hub reports a missing editor, install that version and open the project again. Common failures: opening the outer folder reports that it is not a Unity project; an incomplete extraction reports missing packages or DLLs; moving <code>Packages</code> away leaves local packages unresolved.</li>
 </ol>
 <h2 id="4-verify-your-setup-with-a-bundled-template">4. Verify your setup with a bundled template</h2>
 <ol>
@@ -192,7 +211,7 @@
 <li>Select <code>Assets/ModManager/Template-Blank-Vehicle.asset</code> and click <strong>Package Mod Now</strong>. The Windows example outputs to <code>UnityProject/Build/Mod-Package/StandaloneWindows64/Template-Blank-Vehicle/</code>. After changing assets or platform, build the linked objects again before packaging.</li>
 <li>Follow <a href="../gameplay/install-mods.html">Install mods</a> to add the <code>.modpack</code> for your game's platform. For a map template, use <code>BuildPipline-Template-Blank.asset</code> and <code>Template-Blank-Scene.asset</code> in the same Project folder.</li>
 </ol>
-<p>Next, <a href="set-steam-game-folder.html">set the Steam game folder</a> if needed or <a href="vehicle-basics.html">build your first tank</a>. If your GameHub build can create projects, you can use the <a href="mod-env-setup-hub.html">GameHub workflow</a> to open the result.</p>
+<p>Packaging the template and loading it in the game confirms the project and editor setup. Next, <a href="set-steam-game-folder.html">set the Steam game folder</a> if needed or <a href="vehicle-basics.html">build your first tank</a>. If your GameHub build can create projects, you can use the <a href="mod-env-setup-hub.html">GameHub workflow</a> to open the result.</p>
 
 </article>
           </div>

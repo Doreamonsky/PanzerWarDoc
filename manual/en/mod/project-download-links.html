@@ -82,13 +82,32 @@
 <link rel="stylesheet" href="../../tools/tutorials.css">
 <h1 id="project-download-reference">Project download reference</h1>
 <p><a href="../../mod/project-download-links.html">中文</a> | <strong>English</strong></p>
-<p>The project ZIP is available from the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK releases</a>. Expand <strong>Assets</strong> and download <code>Panzer-War-Mod-SDK-sdk-*.zip</code>; the release includes working DLLs, so this ZIP needs no Git or LFS. Do not use the auto-generated <strong>Source code</strong> archives. Follow <a href="get-started.html">project setup</a> to open it, or create a project through <a href="mod-env-setup-hub.html">GameHub</a> if it offers <strong>Create Project</strong>.</p>
-<p>To download from the repository instead, clone it with LFS:</p>
+<h2 id="1-get-the-release-package">1. Get the release package</h2>
+<ol>
+<li>Open the <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">Panzer War Mod SDK releases</a>, expand <strong>Assets</strong>, and download <code>Panzer-War-Mod-SDK-sdk-*.zip</code> (public release <code>sdk-2026.11.04.1</code> is about 600 MB).</li>
+<li>The same release's Assets include <code>SHA256SUMS.txt</code> and <code>release.json</code>; download both. <code>release.json</code> records that release's Unity information in a field named <code>sdk.unity</code>; the editor version string <code>m_EditorVersion</code> is not in <code>release.json</code> but in <code>UnityProject/ProjectSettings/ProjectVersion.txt</code> after extraction.</li>
+<li>Do not use the auto-generated <strong>Source code (zip)</strong> / <strong>Source code (tar.gz)</strong> archives; they may contain only Git LFS pointers. Follow <a href="get-started.html">project setup</a> to extract and open the project, or create a project through <a href="mod-env-setup-hub.html">GameHub</a> if it offers <strong>Create Project</strong>.</li>
+</ol>
+<h2 id="2-verify-the-download-on-windows">2. Verify the download on Windows</h2>
+<p>In PowerShell, change to your download folder and replace the file name with the one you actually downloaded:</p>
+<pre><code class="lang-powershell">Get-FileHash -Algorithm SHA256 .\Panzer-War-Mod-SDK-sdk-2026.11.04.1.zip
+</code></pre>
+<p>Compare the printed <code>Hash</code> character by character with the entry for the <strong>same file name</strong> in <code>SHA256SUMS.txt</code>, ignoring case: PowerShell prints uppercase hex while the list may be lowercase or mixed case, so hexadecimal digests must be compared case-insensitively. Extract only when they match. A different file name means you compared the wrong line; a different hash means the download is corrupt or incomplete, or you fetched the wrong file or release, so check the file name and version and download it again.</p>
+<p>On macOS:</p>
+<pre><code class="lang-shell">shasum -a 256 Panzer-War-Mod-SDK-sdk-2026.11.04.1.zip
+</code></pre>
+<p>On Linux:</p>
+<pre><code class="lang-shell">sha256sum Panzer-War-Mod-SDK-sdk-2026.11.04.1.zip
+</code></pre>
+<h2 id="3-release-zip-versus-git-and-lfs">3. Release ZIP versus Git and LFS</h2>
+<p><strong>Use the release ZIP (recommended):</strong> extract the whole archive, keep <code>UnityProject</code> next to <code>Packages</code>, and open <code>UnityProject</code> in Unity. The release bundles the real DLLs and local dependencies, so no Git or LFS install and no <code>git lfs pull</code> is needed.</p>
+<p><strong>Use a Git clone:</strong> for readers who want to track repository updates or history. Install Git LFS and finish the pull before opening the project:</p>
 <pre><code class="lang-shell">git lfs install
 git clone https://github.com/WindyVerse/Panzer-War-Mod-SDK.git
 cd Panzer-War-Mod-SDK
 git lfs pull
 </code></pre>
+<p>If LFS has not finished, or you downloaded a source archive, binary files become pointer files. If a DLL opens as a few lines of text whose first line is <code>version https://git-lfs.github.com/spec/v1</code>, it is an LFS pointer rather than a real binary: for a Git checkout run <code>git lfs pull</code> again, and for a ZIP download use the named release ZIP instead of <strong>Source code</strong>. Pointer files cause Unity plugin-loading or DLL errors.</p>
 <p>The SDK is the public modding package. Official vehicles, maps and other assets live in the separate private Panzer-War-Mods repository, and the game itself is built from Panzer-War-Client. Use the SDK unless you are changing official assets or client code.</p>
 
 </article>

@@ -97,7 +97,11 @@
 </code></pre>
 </details>
 <h2 id="1-check-your-projects-version">1. Check your project's version</h2>
-<p>After extracting the public SDK, read <code>m_EditorVersion</code> in <code>UnityProject/ProjectSettings/ProjectVersion.txt</code>. <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/tag/sdk-2026.11.04.1">GitHub release <code>sdk-2026.11.04.1</code></a> declares <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1">Unity 2022.3.62f1</a>. For later releases or GameHub output, use the version declared by the project you open. The DE, Free, and FreeCN client source projects use <a href="https://unity.com/releases/editor/whats-new/2022.3.62f2">Unity 2022.3.62f2</a>.</p>
+<ol>
+<li>Identify the project you are opening first, then read its version declaration. After extracting the public SDK, read <code>m_EditorVersion</code> in <code>UnityProject/ProjectSettings/ProjectVersion.txt</code>. <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/tag/sdk-2026.11.04.1">GitHub release <code>sdk-2026.11.04.1</code></a> declares <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1">Unity 2022.3.62f1</a>; that release also ships <code>release.json</code> and <code>SHA256SUMS.txt</code> for checking the download.</li>
+<li>For later releases, GameHub output, or a migrated project, always use the value in that project's <code>ProjectVersion.txt</code> instead of a version quoted in older guides.</li>
+<li>The DE, Free, and FreeCN client source projects use <a href="https://unity.com/releases/editor/whats-new/2022.3.62f2">Unity 2022.3.62f2</a>. The client's <code>f2</code> and the SDK's <code>f1</code> are separate declarations for separate projects; do not mix them.</li>
+</ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">Click to expand MCP actions</span><span class="tutorial-mcp-open">Click to collapse MCP actions</span></summary>
 <p>Read the public SDK's declared version first, then compare the current client project's declaration and running Unity version.</p>
@@ -141,8 +145,8 @@
 <h2 id="2-install-the-editor-and-platform-modules">2. Install the Editor and platform modules</h2>
 <ol>
 <li>Install <strong>Unity Hub</strong> from the <a href="https://unity.com/download">Unity download page</a>. To open the public SDK's 2022.3.62f1 installation in Hub on Windows, press <strong>Win+R</strong>, enter <code>unityhub://2022.3.62f1/4af31df58517</code>, and press Enter. You can also open <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1#installs">that version's installation page</a>.</li>
-<li>Check that Hub shows the version declared by your project. If Hub cannot download it, use <strong>Manual installs</strong> on the release page for your OS. Install it and add the existing editor with <strong>Locate</strong> under <strong>Installs</strong> in Hub.</li>
-<li>In Hub, select <strong>Add modules</strong> for the installed version. For Android mods, the SDK instructions specify <strong>Android Build Support</strong>, its <strong>Android SDK &amp; NDK Tools</strong>, and <strong>OpenJDK</strong>. For iOS mods, add <strong>iOS Build Support</strong>.</li>
+<li>Check that Hub shows the version declared by your project. If Hub cannot download it, use <strong>Manual installs</strong> on the release page for your OS. Install it and add the existing editor with <strong>Locate</strong> under <strong>Installs</strong> in Hub, then confirm the version appears as available in Hub's list.</li>
+<li>In Hub, select <strong>Add modules</strong> for the installed version. For Android mods, the SDK instructions specify <strong>Android Build Support</strong>, its <strong>Android SDK &amp; NDK Tools</strong>, and <strong>OpenJDK</strong>. For iOS mods, add <strong>iOS Build Support</strong>. Install only the modules your target platforms need.</li>
 <li>Verify the installed version and modules in <strong>Installs</strong>, then <a href="get-started.html">open the SDK project</a>.</li>
 </ol>
 <p>The MCP replay checks the public SDK's declared version along with the open client project's declaration and running Editor version.</p>

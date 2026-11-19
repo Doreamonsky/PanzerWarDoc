@@ -82,10 +82,24 @@
 <link rel="stylesheet" href="../../tools/tutorials.css">
 <h1 id="set-up-the-modding-environment">Set Up the Modding Environment</h1>
 <p><a href="../../mod/mod-env-setup.html">中文</a> | <strong>English</strong></p>
+<p>Choose the route that matches your situation. The detailed steps live in the linked guides; this page is only the entry point.</p>
+<h2 id="first-time-install">First-time install</h2>
 <ol>
-<li>For a first mod project, download the named SDK ZIP from <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">GitHub Releases</a> and extract it in full. The release bundles the binary files. For updates through Git, follow the <a href="project-download-links.html">download and clone guide</a> to install Git LFS and fetch the files.</li>
-<li>Open <code>UnityProject</code> in Unity Hub, leaving <code>Packages</code> in the same parent directory. Follow <a href="get-started.html">project setup</a> to finish importing and build a bundled template.</li>
-<li>If you already have an older project, bring your assets forward with the <a href="migrate-old-project.html">migration guide</a>. If your GameHub build offers <strong>Create Project</strong>, you can also use the <a href="mod-env-setup-hub.html">GameHub workflow</a>.</li>
+<li>Download the named SDK ZIP from <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">GitHub Releases</a>, then verify its hash and extract it fully using the <a href="project-download-links.html">download reference</a>. The release bundles the binary files, so Git is not required.</li>
+<li>Install the Unity version declared by the project and the modules for your target platform, following the <a href="unity-engine-requirements.html">version requirements</a>.</li>
+<li>Follow <a href="get-started.html">project setup</a> to open <code>UnityProject</code> in Unity Hub, keep the sibling <code>Packages</code> folder, and build a bundled template to verify the environment after import.</li>
+</ol>
+<h2 id="maintain-the-project-with-git">Maintain the project with Git</h2>
+<ol>
+<li>Follow the <a href="project-download-links.html">download and clone guide</a> to install Git LFS, clone the repository, and complete <code>git lfs pull</code>.</li>
+<li>Open <code>UnityProject</code> with the version declared in the project's <code>ProjectVersion.txt</code> and finish importing as described in <a href="get-started.html">project setup</a>.</li>
+<li>When updating the SDK, extract or check out into a new folder. Do not overwrite the new package with the old SDK's <code>Packages</code> folder; carry your own assets forward with the migration steps.</li>
+</ol>
+<h2 id="migrate-an-old-project">Migrate an old project</h2>
+<ol>
+<li>Move your assets together with their <code>.meta</code> files, mod packages, and build pipelines into the new SDK, preserving existing asset references and mod identifiers.</li>
+<li>Confirm references resolve step by step, then rebuild the linked objects and package to test. See the <a href="migrate-old-project.html">migration guide</a> for the detailed rules.</li>
+<li>If your local GameHub build offers <strong>Create Project</strong>, you can also use the <a href="mod-env-setup-hub.html">GameHub workflow</a>.</li>
 </ol>
 
 </article>

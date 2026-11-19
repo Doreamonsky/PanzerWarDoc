@@ -97,9 +97,27 @@
 </code></pre>
 </details>
 <h2 id="1-下载并解压-sdk">1. 下载并解压 SDK</h2>
-<p>打开 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>，展开 <strong>Assets</strong>，下载名称为 <code>Panzer-War-Mod-SDK-sdk-*.zip</code> 的发行包。它包含 DLL 和本地依赖，不需要 Git。自动生成的 <strong>Source code (zip)</strong> 可能只包含 Git LFS 指针。点击<strong>全部解压</strong>，保持 <code>UnityProject</code> 和 <code>Packages</code> 同级。使用 Git 的读者可改走<a href="project-download-links.html">克隆与 LFS 流程</a>。</p>
+<ol>
+<li>打开 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>，展开 <strong>Assets</strong>。</li>
+<li>下载名称为 <code>Panzer-War-Mod-SDK-sdk-*.zip</code> 的发行包（公开版 <code>sdk-2026.11.04.1</code> 约 600 MB）。它内含 DLL 和本地依赖，不需要 Git；自动生成的 <strong>Source code (zip)</strong> 可能只包含 Git LFS 指针。</li>
+<li>按<a href="project-download-links.html">下载校验步骤</a>对照发行版的 <code>SHA256SUMS.txt</code> 检查 ZIP。点击<strong>全部解压</strong>到新建目录，保留下方的目录结构。</li>
+</ol>
+<pre><code class="lang-text">&lt;任意解压目录&gt;/
+├─ Packages/                  # SDK 依赖包，与 UnityProject 同级
+└─ UnityProject/
+   ├─ Assets/
+   ├─ Packages/
+   │  └─ manifest.json
+   └─ ProjectSettings/
+      └─ ProjectVersion.txt
+</code></pre>
+<p>外层 <code>Packages</code> 提供工程引用的本地依赖，<code>UnityProject</code> 内部的 <code>Packages/manifest.json</code> 声明工程自身依赖。两者都要保留原位。使用 Git 的读者可改走<a href="project-download-links.html">克隆与 LFS 流程</a>。</p>
 <h2 id="2-确认工程根目录和版本">2. 确认工程根目录和版本</h2>
-<p>打开 <code>UnityProject</code>，确认包含 <code>Assets/</code>、<code>Packages/manifest.json</code> 和 <code>ProjectSettings/ProjectVersion.txt</code>。已核验的公开发行版 <code>sdk-2026.11.04.1</code> 声明 Unity <strong>2022.3.62f1</strong>。若下载的是更新版，读取该包的 <code>m_EditorVersion</code>，按<a href="unity-engine-requirements.html">版本要求</a>安装。</p>
+<ol>
+<li>打开 <code>UnityProject</code>，确认包含 <code>Assets/</code>、<code>Packages/manifest.json</code> 和 <code>ProjectSettings/ProjectVersion.txt</code>。</li>
+<li>打开 <code>ProjectVersion.txt</code>，记录 <code>m_EditorVersion</code>。已核验的公开发行版 <code>sdk-2026.11.04.1</code> 声明 Unity <strong>2022.3.62f1</strong>。</li>
+<li>若下载的是更新版，读取该包的 <code>m_EditorVersion</code>，按<a href="unity-engine-requirements.html">版本要求</a>安装同一版本。</li>
+</ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>针对并排存放的公开 SDK 验证工程版本、同级资源依赖和首个载具模板。SDK 在其他位置时，调整 sdkCheckout 指向它的外层目录。</p>
@@ -181,9 +199,10 @@
 </details>
 <h2 id="3-在-unity-hub-打开工程">3. 在 Unity Hub 打开工程</h2>
 <ol>
-<li>在 Unity Hub 的 <strong>Projects → Add → Add project from disk</strong> 中选择 <code>UnityProject</code>。选到正确目录时，应能看到本教程第 2 节列出的三个位置。</li>
-<li>在项目列表打开刚添加的工程。如果 Hub 提示缺少版本，先安装 <code>ProjectVersion.txt</code> 声明的编辑器，再重新打开。第一次打开需要导入包和编译。</li>
-<li>等进度结束后查看 Console。编译通过时，顶部会出现 <strong>Framework - 框架</strong> 菜单。找不到菜单时，先确认选择的是内层 <code>UnityProject</code>，再检查相邻的 <code>Packages</code> 是否完整解压。</li>
+<li>在 Unity Hub 的 <strong>Projects → Add → Add project from disk</strong> 中选择解压目录内的 <code>UnityProject</code>，不要选外层解压目录，也不要选 <code>Assets</code> 或 <code>Packages</code>。选到正确目录时，应能看到本教程第 2 节列出的三个位置。</li>
+<li>在项目列表打开刚添加的工程，并用 <code>ProjectVersion.txt</code> 声明的同一版本打开。首次打开会下载包、导入资源并编译脚本，耗时明显长于后续启动；请等到 Hub 和编辑器进度结束。</li>
+<li>编译完成后查看 Console，确认没有编译错误；通过时顶部会出现 <strong>Framework - 框架</strong> 菜单。找不到菜单时，依次检查：是否选的是内层 <code>UnityProject</code>、相邻 <code>Packages</code> 是否完整、解压是否中断、编辑器版本是否与声明一致。</li>
+<li>若 Hub 提示缺少版本，先安装该编辑器再重新打开。典型故障：打开外层目录会提示不是 Unity 工程；解压不完整会报缺失包或 DLL；<code>Packages</code> 被移走会导致本地包无法解析。</li>
 </ol>
 <h2 id="4-先用随包模板验收项目">4. 先用随包模板验收项目</h2>
 <ol>
@@ -192,7 +211,7 @@
 <li>选 <code>Assets/ModManager/Template-Blank-Vehicle.asset</code>，点击 <strong>Package Mod Now</strong>。Windows 示例输出在 <code>UnityProject/Build/Mod-Package/StandaloneWindows64/Template-Blank-Vehicle/</code> 下。切平台或改资源后，先重新构建链接资源再打包。</li>
 <li>按<a href="../gameplay/install-mods.html">安装模组</a>导入与游戏平台一致的 <code>.modpack</code>。地图模板在同一目录下，改选 <code>BuildPipline-Template-Blank.asset</code> 与 <code>Template-Blank-Scene.asset</code>。</li>
 </ol>
-<p>接着按需<a href="set-steam-game-folder.html">设置 Steam 游戏目录</a>，或开始<a href="vehicle-basics.html">从零制作第一辆坦克</a>。如果使用能创建项目的 GameHub 版本，可参照<a href="mod-env-setup-hub.html">环境配置</a>打开它生成的工程。</p>
+<p>第 3、4 步能生成模板包并在游戏中加载，说明工程与编辑器环境可用。接着按需<a href="set-steam-game-folder.html">设置 Steam 游戏目录</a>，或开始<a href="vehicle-basics.html">从零制作第一辆坦克</a>。如果使用能创建项目的 GameHub 版本，可参照<a href="mod-env-setup-hub.html">环境配置</a>打开它生成的工程。</p>
 
 </article>
           </div>
