@@ -1,6 +1,6 @@
 {
-  "builtAt": "20261118T162902Z",
-  "sourceBaseCommit": "e4d9b27a99c125453e345eed86d1c4a76b7d4254",
+  "builtAt": "20261119T034534Z",
+  "sourceBaseCommit": "e041a778a0c7fc294071fbfe80b6c4ebf145e60a",
   "sourceHasUncommittedChanges": false,
   "reviewedTutorials": [
     "vehicle-text-data",
@@ -136,7 +136,7 @@
     "tank-light-settings",
     "tank-radar-settings"
   ],
-  "reviewedDependenciesSha256": "c1756babe8659e9321492a1d1688c4be07f1b62ae91e256dd7232db3839f5f96",
+  "reviewedDependenciesSha256": "ab89f26839419840060ab98bb54a00409832b7f2d01fe3d9157a7d907050a752",
   "contentReviewedTutorials": [
     "artillery-skill",
     "blender-axis-fix",

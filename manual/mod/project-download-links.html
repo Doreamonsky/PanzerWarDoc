@@ -82,13 +82,32 @@
 <link rel="stylesheet" href="../tools/tutorials.css">
 <h1 id="项目下载参考">项目下载参考</h1>
 <p><strong>中文</strong> | <a href="../en/mod/project-download-links.html">English</a></p>
-<p>模组工程 ZIP 在 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>。展开 <strong>Assets</strong>，下载 <code>Panzer-War-Mod-SDK-sdk-*.zip</code>；发行包内含可用的 DLL，使用该 ZIP 不需要 Git 或 LFS。不要使用自动生成的 <strong>Source code</strong> 源码压缩包。下载后按 <a href="get-started.html">项目初始化</a> 打开工程。若 GameHub 提供 <strong>Create Project</strong>（创建工程），也可通过 <a href="mod-env-setup-hub.html">GameHub</a> 创建工程。</p>
-<p>也可以改用 LFS 克隆仓库：</p>
+<h2 id="1-获取发行包">1. 获取发行包</h2>
+<ol>
+<li>打开 <a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/latest">装甲纷争模组 SDK 发行页</a>，展开 <strong>Assets</strong>，下载 <code>Panzer-War-Mod-SDK-sdk-*.zip</code>（公开版 <code>sdk-2026.11.04.1</code> 约 600 MB）。</li>
+<li>同一发行版的 Assets 中还有 <code>SHA256SUMS.txt</code> 和 <code>release.json</code>，一并下载。<code>release.json</code> 记录该版本的 Unity 发行信息，字段名为 <code>sdk.unity</code>；具体编辑器版本号 <code>m_EditorVersion</code> 不在 <code>release.json</code> 中，而在解压后的 <code>UnityProject/ProjectSettings/ProjectVersion.txt</code>。</li>
+<li>不要使用自动生成的 <strong>Source code (zip)</strong> / <strong>Source code (tar.gz)</strong>；它们可能只含 Git LFS 指针。下载后按 <a href="get-started.html">项目初始化</a> 解压并打开工程。若 GameHub 提供 <strong>Create Project</strong>（创建工程），也可通过 <a href="mod-env-setup-hub.html">GameHub</a> 创建工程。</li>
+</ol>
+<h2 id="2-windows-校验下载文件">2. Windows 校验下载文件</h2>
+<p>在 PowerShell 中进入下载目录，把文件名换成你实际下载的名字：</p>
+<pre><code class="lang-powershell">Get-FileHash -Algorithm SHA256 .\Panzer-War-Mod-SDK-sdk-2026.11.04.1.zip
+</code></pre>
+<p>将输出的 <code>Hash</code> 与 <code>SHA256SUMS.txt</code> 中<strong>同一文件名</strong>对应行的哈希逐字符比较，并且<strong>忽略大小写</strong>：PowerShell 输出为大写，清单可能为小写或混合大小写，十六进制摘要应大小写不敏感地比较。两者一致才继续解压。文件名不一致说明比较了错误条目；哈希不一致说明下载损坏或不完整，也可能下载了错误的文件或版本，应核对文件名和版本后重新下载。</p>
+<p>macOS 可用：</p>
+<pre><code class="lang-shell">shasum -a 256 Panzer-War-Mod-SDK-sdk-2026.11.04.1.zip
+</code></pre>
+<p>Linux 可用：</p>
+<pre><code class="lang-shell">sha256sum Panzer-War-Mod-SDK-sdk-2026.11.04.1.zip
+</code></pre>
+<h2 id="3-发行-zip-与-git--lfs-两种流程">3. 发行 ZIP 与 Git + LFS 两种流程</h2>
+<p><strong>使用发行 ZIP（推荐）</strong>：解压完整压缩包，保持 <code>UnityProject</code> 与 <code>Packages</code> 同级，然后直接用 Unity 打开 <code>UnityProject</code>。发行包内含真实的 DLL 和本地依赖，不需要安装 Git 或 LFS，也不需要执行 <code>git lfs pull</code>。</p>
+<p><strong>使用 Git 克隆</strong>：适合需要跟踪仓库更新或查看历史的读者。必须先安装 Git LFS 并完成拉取，再打开工程：</p>
 <pre><code class="lang-shell">git lfs install
 git clone https://github.com/WindyVerse/Panzer-War-Mod-SDK.git
 cd Panzer-War-Mod-SDK
 git lfs pull
 </code></pre>
+<p>LFS 拉取未完成、或下载了源码压缩包时，二进制文件会变成指针文件。若某个 DLL 打开后只有几行文本，且第一行是 <code>version https://git-lfs.github.com/spec/v1</code>，说明它是 LFS 指针而不是真实二进制：Git 流程请重新执行 <code>git lfs pull</code>，ZIP 流程请改用发行 ZIP 而不是 <strong>Source code</strong>。指针文件会导致 Unity 报插件加载或 DLL 相关错误。</p>
 <p>SDK 是公开的模组开发包。官方载具、地图等素材在独立的私有仓库 Panzer-War-Mods，游戏本体由 Panzer-War-Client 构建。除修改官方素材或客户端代码外，使用 SDK 即可。</p>
 
 </article>

@@ -97,7 +97,11 @@
 </code></pre>
 </details>
 <h2 id="1-确认工程版本">1. 确认工程版本</h2>
-<p>公开 SDK 解压后，在 <code>UnityProject/ProjectSettings/ProjectVersion.txt</code> 查看 <code>m_EditorVersion</code>。<a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/tag/sdk-2026.11.04.1">GitHub 发行版 <code>sdk-2026.11.04.1</code></a>声明 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1">Unity 2022.3.62f1</a>。使用新发行版或 GameHub 生成的工程时，以该工程的文件值为准。维护客户端 DE、Free 或 FreeCN 源码时，按客户端工程要求使用 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f2">Unity 2022.3.62f2</a>。</p>
+<ol>
+<li>先确定要打开的工程，再读它的版本声明。公开 SDK 解压后，查看 <code>UnityProject/ProjectSettings/ProjectVersion.txt</code> 中的 <code>m_EditorVersion</code>。<a href="https://github.com/WindyVerse/Panzer-War-Mod-SDK/releases/tag/sdk-2026.11.04.1">GitHub 发行版 <code>sdk-2026.11.04.1</code></a> 声明 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f1">Unity 2022.3.62f1</a>；该发行版同时提供 <code>release.json</code> 与 <code>SHA256SUMS.txt</code> 供核对。</li>
+<li>使用新发行版、GameHub 生成的工程或已迁移的工程时，一律以该工程 <code>ProjectVersion.txt</code> 的值为准，不要沿用旧教程里的版本号。</li>
+<li>维护客户端 DE、Free 或 FreeCN 源码时，按客户端工程要求使用 <a href="https://unity.com/releases/editor/whats-new/2022.3.62f2">Unity 2022.3.62f2</a>。客户端工程的 <code>f2</code> 与 SDK 的 <code>f1</code> 是不同工程各自的声明，不要混用。</li>
+</ol>
 <details class="tutorial-mcp">
 <summary><span class="tutorial-mcp-closed">点击展开 MCP 操作</span><span class="tutorial-mcp-open">点击收起 MCP 操作</span></summary>
 <p>先读取公开 SDK 的 ProjectVersion，再读取当前客户端工程的项目配置和正在运行的编辑器版本。</p>
@@ -141,8 +145,8 @@
 <h2 id="2-安装编辑器和目标平台模块">2. 安装编辑器和目标平台模块</h2>
 <ol>
 <li>从 <a href="https://unity.com/download">Unity 官网</a> 安装 <strong>Unity Hub</strong>。安装公开 SDK 使用的 2022.3.62f1 时，可以在 Windows 按 <strong>Win+R</strong>，输入 <code>unityhub://2022.3.62f1/4af31df58517</code>，按回车交给 Hub。也可以打开<a href="https://unity.com/releases/editor/whats-new/2022.3.62f1#installs">该版本的安装页</a>。</li>
-<li>确认 Hub 显示的安装版本与工程声明一致。如果 Hub 无法下载，在发行页的 <strong>Manual installs</strong> 下载对应系统的编辑器安装包。安装后在 Hub 的 <strong>Installs</strong> 使用 <strong>Locate</strong> 添加已有编辑器。</li>
-<li>在 Hub 的编辑器版本条目选择 <strong>Add modules</strong>。按 SDK 说明，构建 Android 模组时安装 <strong>Android Build Support</strong> 及其配套的 <strong>Android SDK &amp; NDK Tools</strong>、<strong>OpenJDK</strong>。构建 iOS 模组时安装 <strong>iOS Build Support</strong>。</li>
+<li>确认 Hub 显示的安装版本与工程声明一致。如果 Hub 无法下载，在发行页的 <strong>Manual installs</strong> 下载对应系统的编辑器安装包。安装后在 Hub 的 <strong>Installs</strong> 使用 <strong>Locate</strong> 添加已有编辑器，并确认 Hub 列表中该版本可用。</li>
+<li>在 Hub 的编辑器版本条目选择 <strong>Add modules</strong>。按 SDK 说明，构建 Android 模组时安装 <strong>Android Build Support</strong> 及其配套的 <strong>Android SDK &amp; NDK Tools</strong>、<strong>OpenJDK</strong>。构建 iOS 模组时安装 <strong>iOS Build Support</strong>。只安装自己目标平台需要的模块。</li>
 <li>在 <strong>Installs</strong> 查看编辑器版本与模块，再回到<a href="get-started.html">项目初始化</a>打开 SDK 工程。</li>
 </ol>
 <p>MCP 回放核对公开 SDK 文件中的版本，以及本地打开的客户端工程与编辑器版本。</p>
